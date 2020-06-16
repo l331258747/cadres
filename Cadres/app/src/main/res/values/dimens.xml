@@ -47,6 +47,7 @@
     <dimen name="dp_240">240dp</dimen>
     <dimen name="dp_280">280dp</dimen>
     <dimen name="dp_300">300dp</dimen>
+    <dimen name="dp_400">400dp</dimen>
 
     <dimen name="sp_6">6sp</dimen>
     <dimen name="sp_7">7sp</dimen>

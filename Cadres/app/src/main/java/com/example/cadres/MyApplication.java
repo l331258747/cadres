@@ -6,6 +6,10 @@ import android.content.Context;
 import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
+import com.example.cadres.utils.greendao.DaoManager;
+import com.facebook.stetho.Stetho;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by LGQ
@@ -48,7 +52,13 @@ public class MyApplication extends Application {
         AppUtils.init(this);
         LogUtil.setShowLog(true);
 
+        initGreenDao();
+
     }
 
+    private void initGreenDao() {
+        DaoManager mManager = DaoManager.getInstance();
+        mManager.init(this);
+    }
 
 }
