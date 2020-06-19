@@ -66,15 +66,12 @@ public class FileUtil {
      *
      */
 
-
     //获取文件夹 filename:log
     public static File getFolder(String filename){
         String filePath;
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
-            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator +
-                    Constant.BASE_PATH + File.separator + filename;
-        } else  // 系统下载缓存根目录的hello.text
+//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
+//            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
+//        } else  // 系统下载缓存根目录的hello.text
             filePath = AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
         File dir = new File(filePath);
 
@@ -90,12 +87,15 @@ public class FileUtil {
     public static void delAllFile(File file){
         if (file.isDirectory()) {
             File[] files = file.listFiles();
+            LogUtil.e("文件夹图片数量：" + files.length);
             for (int i = 0; i < files.length; i++) {
                 File f = files[i];
                 delAllFile(f);
             }
         } else if (file.exists()) {
             file.delete();
+        } else{
+            LogUtil.e("文件不存在");
         }
     }
 

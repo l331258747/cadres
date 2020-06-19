@@ -16,51 +16,18 @@ public class SPUtils {
 
     public static final String FIRST_OPENED = "first_open";
 
-
-    public static final String SP_USER_TOKEN = "sp_user_token";
-    public static final String SP_USER_FANS = "sp_user_fans";
-    public static final String SP_USER_COUPON_NUM = "sp_user_coupon_num";
-    public static final String SP_USER_FOCUS = "sp_user_focus";
-    public static final String SP_USER_GENDER = "sp_user_gender";
-    public static final String SP_USER_BIRTHDAY = "sp_user_birthday";
-    public static final String SP_USER_USERLEVEL = "sp_user_userLevel";
-    public static final String SP_USER_NICKNAME = "sp_user_nickname";
-    public static final String SP_USER_NAME = "sp_user_name";
-    public static final String SP_USER_MOBILE = "sp_user_mobile";
-    public static final String SP_USER_AVATAR = "sp_user_avatar";
-    public static final String SP_USER_LOCAL_AREA = "sp_user_localArea";
-    public static final String SP_USER_HOME_AREA = "sp_user_homeArea";
-    public static final String SP_USER_PERSONAL_STATEMENT = "sp_user_personalStatement";
-    public static final String SP_USER_IMG_URL = "sp_user_imgUrl";
-    public static final String SP_USER_LABELS = "sp_user_labels";
-    public static final String SP_USER_FREE_LABELS = "sp_user_free_labels";
     public static final String SP_USER_ID = "sp_user_id";
-    public static final String SP_DEFAULT_CITY = "sp_default_city";
-    public static final String SP_CUSTOMER_MOBILE = "sp_customer_mobile";
-    public static final String SP_USER_BACKIMG = "sp_user_backimg";
-    public static final String SP_IM_LOGIN = "sp_im_login";
-
-    public static final String SP_APP_VERSION = "sp_app_version";
-
-    //历史搜索
-    public static final String SP_SEARCH_GUIDE = "sp_search_guide";
-    public static final String SP_SEARCH_SERVER = "sp_search_server";
-    public static final String SP_SEARCH_CITY = "sp_search_city";
-
-    //活动弹窗
-    public static final String SP_ACTIVITY_USERID = "sp_activity_userId";
-    public static final String SP_ACTIVITY_TIME = "sp_activity_time";
-    public static final String SP_ACTIVITY_ID = "sp_activity_id";
-
+    public static final String SP_DEPT_ID = "sp_deptId";
+    public static final String SP_LOGIN_NAME = "sp_login_name";
+    public static final String SP_PASSWORD = "sp_password";
+    public static final String SP_SALT = "sp_salt";
+    public static final String SP_USER_NAME = "sp_user_name";
 
     private static SharedPreferences mSharedPreferences;
     private static SPUtils mPreferenceUtils;
     private static SharedPreferences.Editor editor;
 
-    public static final String PREFERENCE_NAME = "com.njz.letsgo_preferences";
-
-
-
+    public static final String PREFERENCE_NAME = "com.cadres_preferences";
 
     public static synchronized void init(Context cxt) {
         if (mPreferenceUtils == null) {
@@ -178,12 +145,4 @@ public class SPUtils {
         editor.clear().commit();
     }
 
-    public void logoff() {
-        remove(SP_USER_TOKEN);
-        remove(SP_USER_ID);
-        remove(SP_USER_NAME);
-        remove(SP_USER_MOBILE);
-        remove(SP_USER_NICKNAME);
-        remove(SP_USER_BACKIMG);
-    }
 }

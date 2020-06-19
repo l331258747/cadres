@@ -1,14 +1,12 @@
 package com.example.cadres.utils.http;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
 
 import com.example.cadres.bean.BaseResponse;
-import com.example.cadres.bean.MySelfInfo;
+import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.dialog.LoadingDialog;
 
@@ -109,7 +107,6 @@ public class OnSuccessAndFaultSub extends DisposableObserver<BaseResponse> imple
                 mResponseCallback.onFault("--");
             }
 
-            final String phone = MySelfInfo.getInstance().getUserMoble();
             if(t.getCode() == 401){
 //                MySelfInfo.getInstance().loginOff();
 //                DialogUtil.getInstance().getDefaultDialog(context, t.getMsg(), "去登录", new DialogUtil.DialogCallBack() {

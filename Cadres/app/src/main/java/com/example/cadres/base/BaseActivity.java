@@ -9,10 +9,12 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,9 +43,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private RelativeLayout titleLayout;
     private FrameLayout contentLayout;
     public ImageView leftIv;
-    private TextView titleTv,rightTv;
-    private ImageView rightIv;
-    private View line;
+    private TextView titleTv;
+    private LinearLayout ll_right1,ll_right2;
     ///////////////////////////////////////////////////
 
     @Override
@@ -104,9 +105,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void initTitleView() {
         leftIv = $(R.id.left_iv);
         titleTv = $(R.id.title_tv);
-        rightTv = $(R.id.right_tv);
-        rightIv = $(R.id.right_iv);
-        line = $(R.id.line);
+        ll_right1 = $(R.id.ll_right1);
+        ll_right2 = $(R.id.ll_right2);
 
         leftIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +170,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         showView(leftIv);
     }
 
-    public void showTitleTv() {
+    public void showTitleTv(String str) {
+        if(!TextUtils.isEmpty(str))
+            titleTv.setText(str);
         showView(titleTv);
     }
 
@@ -180,28 +182,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public TextView getRightTv() {
-        return rightTv;
-    }
-
-    //显示右边 tv
-    public void showRightTv(){
-        showView(rightTv);
-    }
-
-    public ImageView getRightIv(){
-        return rightIv;
-    }
-
     //显示右边iv
-    public void showRightIv(){
-        showView(rightIv);
+    public void showLLRight1(){
+        showView(ll_right1);
+    }
+    //显示右边iv
+    public void showLLRight2(){
+        showView(ll_right2);
     }
 
-
-    //显示line
-    public void hideLine(){
-        line.setVisibility(View.INVISIBLE);
+    public LinearLayout getLLRight1(){
+        return ll_right1;
+    }
+    public LinearLayout getLLRight2(){
+        return ll_right2;
     }
 
     //-------------------title设置 end---------------

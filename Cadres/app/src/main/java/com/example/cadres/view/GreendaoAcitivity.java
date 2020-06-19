@@ -5,7 +5,7 @@ import android.view.View;
 import com.cadres.greendao.gen.MeiziDao;
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
-import com.example.cadres.bean.allData.Meizi;
+import com.example.cadres.beanDB.Meizi;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;

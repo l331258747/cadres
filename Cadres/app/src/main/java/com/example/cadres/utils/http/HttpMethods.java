@@ -2,7 +2,7 @@ package com.example.cadres.utils.http;
 
 import android.text.TextUtils;
 
-import com.example.cadres.bean.MySelfInfo;
+import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.constant.URLConstant;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.StringUtils;
@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpMethods {
 
     public static final String CACHE_NAME = "lets_go_cache";
-    public static String BASE_URL = URLConstant.BASE_URL + "/api/";
+    public static String BASE_URL = URLConstant.BASE_URL + "/mobile/";
     private static final int DEFAULT_CONNECT_TIMEOUT = 10;//设置连接超时时间
     private static final int DEFAULT_WRITE_TIMEOUT = 30;//设置写入超时时间
     private static final int DEFAULT_READ_TIMEOUT = 30;//设置读取超时时间
@@ -61,7 +61,7 @@ public class HttpMethods {
                         .addHeader("Connection", "keep-alive")
                         .addHeader("Accept", "*/*")
                         .addHeader("X-Nideshop-Id", MySelfInfo.getInstance().getUserId()+"")
-                        .addHeader("X-Nideshop-Token", TextUtils.isEmpty(MySelfInfo.getInstance().getUserToken())?"": MySelfInfo.getInstance().getUserToken())
+//                        .addHeader("X-Nideshop-Token", TextUtils.isEmpty(MySelfInfo.getInstance().getUserToken())?"": MySelfInfo.getInstance().getUserToken())
                         .method(originalRequest.method(), originalRequest.body());
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

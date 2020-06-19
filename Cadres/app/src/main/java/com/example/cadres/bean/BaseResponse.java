@@ -8,7 +8,7 @@ package com.example.cadres.bean;
 public class BaseResponse<T> {
 
     private int code; // 返回的code
-    private T data; // 具体的数据结果
+    private T user; // 具体的数据结果
     private String msg; // message 可用来返回接口的说明
 
     private int errno;
@@ -39,11 +39,11 @@ public class BaseResponse<T> {
     }
 
     public T getData() {
-        return data;
+        return user;
     }
 
     public void setData(T data) {
-        this.data = data;
+        this.user = data;
     }
 
     public String getMsg() {

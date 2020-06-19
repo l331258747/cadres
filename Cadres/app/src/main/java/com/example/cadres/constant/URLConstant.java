@@ -14,9 +14,9 @@ public class URLConstant {
 
     public static String getUrl(){
         if(AppUtils.getVersionCodeInt() % 100 == 0){
-            return "正式环境";//TODO
+            return "http://192.168.100.101:8099";//TODO
         }else{
-            return "测试环境";
+            return "http://192.168.100.101:8099";
 
         }
     }

@@ -16,7 +16,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 public class DaoManager
 {
     private static final String TAG = DaoManager.class.getSimpleName();
-    private static final String DB_NAME = "greendaotest";
+    private static final String DB_NAME = "cadres.db";
 
     private Context context;
 

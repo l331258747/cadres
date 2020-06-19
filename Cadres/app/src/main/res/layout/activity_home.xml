@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_home_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:text="干部大数据管理系统"
+        android:textSize="@dimen/sp_28"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="@dimen/dp_460"
+        android:drawableLeft="@mipmap/ic_search"
+        android:background="@drawable/shape_db1b21_fce8e6_r40"
+        android:layout_height="@dimen/dp_40"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:imeOptions="actionSearch"
+        android:paddingStart="@dimen/dp_20"
+        android:hint="请输入干部姓名。单位名称。文件名进行搜索"
+        android:paddingEnd="@dimen/dp_15"
+        android:maxLines="1"
+        android:inputType="text"
+        android:maxLength="20"
+        android:drawablePadding="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_30"/>
+
+    <View
+        android:id="@+id/view_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/dp_30"
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dp_80"/>
+
+    <!-- 名册表-->
+
+    <View
+        android:id="@+id/view_mcb"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@+id/view_btn"
+        app:layout_constraintEnd_toStartOf="@+id/view_gbmc"
+        app:layout_constraintTop_toTopOf="@+id/view_btn"
+        app:layout_constraintBottom_toTopOf="@+id/view_dsj"
+        android:background="@mipmap/ic_home_mcb_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/view_mcb"
+        app:layout_constraintEnd_toEndOf="@+id/view_mcb"
+        app:layout_constraintTop_toTopOf="@+id/view_mcb"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_mcb">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_home_mcb"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市管职务名册表"
+            android:textSize="@dimen/sp_20"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+
+
+
+<!--    干部名册-->
+    <View
+        android:id="@+id/view_gbmc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@+id/view_mcb"
+        app:layout_constraintEnd_toStartOf="@+id/view_yjjc"
+        android:layout_marginStart="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="@+id/view_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/view_mcb"
+        android:background="@mipmap/ic_home_gbmc_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/view_gbmc"
+        app:layout_constraintEnd_toEndOf="@+id/view_gbmc"
+        app:layout_constraintTop_toTopOf="@+id/view_gbmc"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_gbmc">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_home_gbmc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="有关干部名册"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+
+<!--研究决策-->
+    <View
+        android:id="@+id/view_yjjc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@+id/view_gbmc"
+        app:layout_constraintEnd_toStartOf="@+id/view_zcfg"
+        app:layout_constraintTop_toTopOf="@+id/view_btn"
+        android:layout_marginStart="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="@+id/view_mcb"
+        android:background="@mipmap/ic_home_yjjc_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/view_yjjc"
+        app:layout_constraintEnd_toEndOf="@+id/view_yjjc"
+        app:layout_constraintTop_toTopOf="@+id/view_yjjc"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_yjjc">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_home_yjjc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="研究决策"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+
+
+<!--    政策法规-->
+    <View
+        android:id="@+id/view_zcfg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@+id/view_yjjc"
+        app:layout_constraintEnd_toEndOf="@+id/view_btn"
+        app:layout_constraintTop_toTopOf="@+id/view_btn"
+        android:layout_marginStart="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="@+id/view_btn"
+        android:background="@mipmap/ic_home_zcfg_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/view_zcfg"
+        app:layout_constraintEnd_toEndOf="@+id/view_zcfg"
+        app:layout_constraintTop_toTopOf="@+id/view_zcfg"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_zcfg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_home_zcfg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="政策法规"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_10"/>
+
+    </LinearLayout>
+
+<!--大数据-->
+    <View
+        android:id="@+id/view_dsj"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@+id/view_btn"
+        app:layout_constraintEnd_toEndOf="@+id/view_yjjc"
+        app:layout_constraintTop_toBottomOf="@+id/view_mcb"
+        app:layout_constraintBottom_toBottomOf="@+id/view_btn"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@mipmap/ic_home_dsj_bg"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/view_dsj"
+        app:layout_constraintEnd_toEndOf="@+id/view_dsj"
+        app:layout_constraintTop_toTopOf="@+id/view_dsj"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_dsj">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_home_dsj"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大数据推演"
+            android:textSize="@dimen/sp_20"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/dp_15"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,19 +3,6 @@ package com.example.cadres.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-
-import com.example.cadres.bean.MySelfInfo;
-import com.example.cadres.utils.ToastUtil;
-import com.example.cadres.utils.http.ResponseCallback;
 
 
 /**
