@@ -8,6 +8,7 @@ import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommonDaoUtils<T> {
@@ -114,7 +115,12 @@ public class CommonDaoUtils<T> {
      * @return
      */
     public List<T> queryAll() {
-        return daoSession.loadAll(entityClass);
+        try {
+            return daoSession.loadAll(entityClass);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -131,7 +137,12 @@ public class CommonDaoUtils<T> {
      * 使用native sql进行查询操作
      */
     public List<T> queryByNativeSql(String sql, String[] conditions) {
-        return daoSession.queryRaw(entityClass, sql, conditions);
+        try {
+            return daoSession.queryRaw(entityClass, sql, conditions);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     /**

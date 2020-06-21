@@ -96,13 +96,11 @@ public class OnSuccessAndFaultSub extends DisposableObserver<BaseResponse> imple
         LogUtil.e("msg:"+t.getMsg());
         LogUtil.e("data:"+t.getData());
 
-        if(t.getCode()==0 && t.getErrno() == 0){
+        if(t.getCode()==0){
             mResponseCallback.onSuccess(t.getData());
         }else{
             if(!TextUtils.isEmpty(t.getMsg())){
                 mResponseCallback.onFault(t.getMsg());
-            }else if(!TextUtils.isEmpty(t.getErrmsg())){
-                mResponseCallback.onFault(t.getErrmsg());
             }else{
                 mResponseCallback.onFault("--");
             }

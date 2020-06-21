@@ -2,6 +2,7 @@ package com.example.cadres.view.home;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,11 +14,20 @@ import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.bean.zcfg.ZcfgBean;
+import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
+import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
+import com.example.cadres.utils.greendao.CommonDaoUtils;
+import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.view.zcfg.ZcfgActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View, View.OnClickListener {
 
@@ -28,6 +38,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     ProgressDialog progress;
 
+    CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_home;
@@ -35,8 +47,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void initView() {
-        showLLRight1();
-        showLLRight2();
+        showLLRightUpData();
+        showLLRightOutOff();
         showTitleTv(getTitleName());
 
         view_mcb = findViewById(R.id.view_mcb);
@@ -47,7 +59,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         et_search = findViewById(R.id.et_search);
 
         getLLRight1().setOnClickListener(this);
-        getLLRight2().setOnClickListener(this);
         view_mcb.setOnClickListener(this);
         view_gbmc.setOnClickListener(this);
         view_yjjc.setOnClickListener(this);
@@ -74,7 +85,12 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void initData() {
+        SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, true);
+
         mPresenter = new HomePresenter(context, this);
+
+        DaoUtilsStore _Store = DaoUtilsStore.getInstance();
+        dBZcfgDaoUtils = _Store.getZcfgDaoUtils();
 
         fistOne();
         initProgress();
@@ -95,7 +111,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
             str = MySelfInfo.getInstance().getUserName();
         }
         if (!TextUtils.isEmpty(MySelfInfo.getInstance().getLoginName())) {
-            str = str + "（" + MySelfInfo.getInstance().getUserName() + "）";
+            str = str + "（" + MySelfInfo.getInstance().getLoginName() + "）";
         }
         if (TextUtils.isEmpty(str))
             return "欢迎";
@@ -115,56 +131,96 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 ToastUtil.showShortToast(context, "研究决策");
                 break;
             case R.id.view_zcfg:
-                ToastUtil.showShortToast(context, "政策法规");
+                startActivity(new Intent(context, ZcfgActivity.class));
                 break;
             case R.id.view_dsj:
                 ToastUtil.showShortToast(context, "大数据");
                 break;
             case R.id.ll_right1:
-                updata();
-                break;
-            case R.id.ll_right2:
-                DialogUtil.getInstance().getDefaultDialog(context, "您是否确认退出?", new DialogUtil.DialogCallBack() {
+                DialogUtil.getInstance().getDefaultDialog(context, "同步数据需要时间较长，您是否确认同步数据？", new DialogUtil.DialogCallBack() {
                     @Override
                     public void exectEvent(DialogInterface alterDialog) {
-                        finish();
+                        getUserInfoData();
                     }
                 }).show();
                 break;
         }
     }
 
-    private void updata() {
-        progress.show();
-        ToastUtil.showShortToast(context, "同步数据");
+    private void getUserInfoData() {
+//        progress.show();
+        mPresenter.findUserInfo(SPUtils.getInstance().getInt(SPUtils.SP_USER_ID));
     }
 
     @Override
     public void findUserInfoSuccess(LoginBean.LoginBean2 data) {
         MySelfInfo.getInstance().setData(data);
-
         //数据库数据
+        cleanDBData();
 
+        mPresenter.getZcfgList();
+    }
 
-        progress.dismiss();
+    public void cleanDBData() {
+        if (dBZcfgDaoUtils.queryAll() != null) {
+            dBZcfgDaoUtils.queryAll().size();
+            LogUtil.e("政策法规 条数：" + dBZcfgDaoUtils.queryAll().size());
+        } else {
+            LogUtil.e("政策法规 没有数据");
+        }
+
+        dBZcfgDaoUtils.deleteAll();
+        LogUtil.e("政策法规 记录删除 完成");
     }
 
     @Override
     public void findUserInfoFailed(String msg) {
-        ToastUtil.showShortToast(context, "同步数据失败，请检查网络情况");
-        progress.dismiss();
+        ToastUtil.showShortToast(context, "同步数据失败 " + msg);
+    }
+
+
+    @Override
+    public void getZcfgListSuccess(List<ZcfgBean.ZcfgBean2> data) {
+        List<DBZcfgBean> dbList = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            ZcfgBean.ZcfgBean2 item = data.get(i);
+            dbList.add(new DBZcfgBean(
+                    null,
+                    item.getSearchValue(),
+                    item.getCreateBy(),
+                    item.getCreateTime(),
+                    item.getUpdateBy(),
+                    item.getUpdateTime(),
+                    item.getRemark(),
+                    item.getDeptCode(),
+                    item.getNoticeId(),
+                    item.getNoticeTitle(),
+                    item.getNoticeType(),
+                    item.getNoticeTypeName(),
+                    item.getNoticeContent(),
+                    item.getStatus(),
+                    item.getStatusName(),
+                    item.getTitleFileUrl()
+            ));
+        }
+        dBZcfgDaoUtils.insertMulti(dbList);
+    }
+
+    @Override
+    public void getZcfgListFailed(String msg) {
+
     }
 
     //第一次
     public void fistOne() {
-        if (SPUtils.getInstance().getBoolean(SPUtils.FIRST_OPENED, false)) {
+        if (SPUtils.getInstance().getBoolean(SPUtils.FIRST_OPENED, true)) {
             DialogUtil.getInstance().getDefaultDialog(context, "是否需要同步数据", new DialogUtil.DialogCallBack() {
                 @Override
                 public void exectEvent(DialogInterface alterDialog) {
-                    updata();
+                    getUserInfoData();
                 }
             }).show();
         }
-        SPUtils.getInstance().putBoolean(SPUtils.FIRST_OPENED, true);
+        SPUtils.getInstance().putBoolean(SPUtils.FIRST_OPENED, false);
     }
 }

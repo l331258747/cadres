@@ -32,9 +32,9 @@ public class DialogUtil {
                 .setPositiveButton(positiveName, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(callBack == null){
+                        if (callBack == null) {
                             dialog.cancel();
-                        }else{
+                        } else {
                             callBack.exectEvent(dialog);
                         }
                     }
@@ -50,19 +50,36 @@ public class DialogUtil {
     }
 
     public AlertDialog getDefaultDialog(Context context, String content) {
-        return this.getDefaultDialog(context,"提示",content,"确定",null);
+        return this.getDefaultDialog(context, "提示", content, "确定", null);
     }
 
-    public AlertDialog getDefaultDialog(Context context, String content,final DialogCallBack callBack) {
-        return this.getDefaultDialog(context,"提示",content,"确定",callBack);
+    public AlertDialog getDefaultDialog(Context context, String content, final DialogCallBack callBack) {
+        return this.getDefaultDialog(context, "提示", content, "确定", callBack);
     }
 
-    public AlertDialog getDefaultDialog(Context context, String content,String positiveName,final DialogCallBack callBack) {
-        return this.getDefaultDialog(context,"提示",content,positiveName,callBack);
+    public AlertDialog getDefaultDialog(Context context, String content, String positiveName, final DialogCallBack callBack) {
+        return this.getDefaultDialog(context, "提示", content, positiveName, callBack);
     }
+
+    public AlertDialog getListDialog(Context context, String[] items, final DialogListCallBack callBack) {
+        AlertDialog alterDialog = new AlertDialog.Builder(context)
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        callBack.exectEvent(dialog, which);
+                        dialog.dismiss();
+                    }
+                }).create();
+        return alterDialog;
+    }
+
 
     public interface DialogCallBack {
         void exectEvent(DialogInterface alterDialog);
+    }
+
+    public interface DialogListCallBack {
+        void exectEvent(DialogInterface alterDialog, int which);
     }
 
 

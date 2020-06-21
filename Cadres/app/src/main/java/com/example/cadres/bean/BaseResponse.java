@@ -8,27 +8,8 @@ package com.example.cadres.bean;
 public class BaseResponse<T> {
 
     private int code; // 返回的code
-    private T user; // 具体的数据结果
-    private String msg; // message 可用来返回接口的说明
-
-    private int errno;
-    private String errmsg;
-
-    public int getErrno() {
-        return errno;
-    }
-
-    public void setErrno(int errno) {
-        this.errno = errno;
-    }
-
-    public String getErrmsg() {
-        return errmsg;
-    }
-
-    public void setErrmsg(String errmsg) {
-        this.errmsg = errmsg;
-    }
+    private T data; // 具体的数据结果
+    private String message; // message 可用来返回接口的说明
 
     public int getCode() {
         return code;
@@ -39,22 +20,22 @@ public class BaseResponse<T> {
     }
 
     public T getData() {
-        return user;
+        return data;
     }
 
     public void setData(T data) {
-        this.user = data;
+        this.data = data;
     }
 
     public String getMsg() {
-        return msg;
+        return message;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+        this.message = msg;
     }
 
     public String toString(){
-        return msg;
+        return message;
     }
 }

@@ -14,7 +14,11 @@ import androidx.annotation.Nullable;
  */
 public class SPUtils {
 
+    //第一次打开进入首页 提示升级
     public static final String FIRST_OPENED = "first_open";
+
+    //是否登录，用来判断判断是否需要登录页面
+    public static final String IS_LOGIN = "isLogin";
 
     public static final String SP_USER_ID = "sp_user_id";
     public static final String SP_DEPT_ID = "sp_deptId";

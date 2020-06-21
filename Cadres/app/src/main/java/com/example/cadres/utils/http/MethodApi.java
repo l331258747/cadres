@@ -21,4 +21,9 @@ public class MethodApi {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
+    //获取政策法规列表
+    public static void getZcfgList(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getZcfgList(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

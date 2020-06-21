@@ -1,5 +1,6 @@
 package com.example.cadres.view.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,8 +11,10 @@ import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.LoginContract;
 import com.example.cadres.mvp.LoginPresenter;
+import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.view.home.HomeActivity;
@@ -47,6 +50,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void initData() {
         mPresenter = new LoginPresenter(context, this);
 
+        if (SPUtils.getInstance().getBoolean(SPUtils.IS_LOGIN, false)) {
+            startActivity(new Intent(context, HomeActivity.class));
+            finish();
+        }
+
 //        DaoUtilsStore _Store = DaoUtilsStore.getInstance();
 //        userListDaoUtils = _Store.getUserListDaoUtils();
     }
@@ -55,20 +63,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_btn:
-                startActivity(new Intent(context, HomeActivity.class)); //TODO jinru
-                finish();
 
-//                username = et_account.getText().toString();
-//                password = et_password.getText().toString();
-//                if(TextUtils.isEmpty(username)){
-//                    ToastUtil.showShortToast(context,"请输入帐号");
-//                    return;
-//                }
-//                if(TextUtils.isEmpty(password)){
-//                    ToastUtil.showShortToast(context,"请输入帐号");
-//                    return;
-//                }
-//                mPresenter.login(username,password);
+                username = et_account.getText().toString();
+                password = et_password.getText().toString();
+                if(TextUtils.isEmpty(username)){
+                    ToastUtil.showShortToast(context,"请输入帐号");
+                    return;
+                }
+                if(TextUtils.isEmpty(password)){
+                    ToastUtil.showShortToast(context,"请输入帐号");
+                    return;
+                }
+                mPresenter.login(username,password);
                 break;
 //            case R.id.tv_btn:
 //                if (userListDaoUtils.queryAll() != null) {
@@ -144,7 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void loginSuccess(LoginBean.LoginBean2 data) {
         MySelfInfo.getInstance().setData(data);
 
-        startActivity(new Intent(context, HomeActivity.class)); //TODO jinru
+        startActivity(new Intent(context, HomeActivity.class));
         finish();
 
     }
@@ -152,7 +158,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void loginFailed(String msg) {
         if (TextUtils.isEmpty(SPUtils.getInstance().getString(SPUtils.SP_SALT))) {
-            ToastUtil.showShortToast(context, "请查看您的网络");
+            ToastUtil.showShortToast(context, msg);
             return;
         }
 
@@ -161,11 +167,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         }
         String psd = encryptPassword(username, password, SPUtils.getInstance().getString(SPUtils.SP_SALT));
-        if (!TextUtils.equals(psd, SPUtils.getInstance().getString(SPUtils.SP_LOGIN_NAME))) {
+        LogUtil.e(psd);
+        LogUtil.e(SPUtils.getInstance().getString(SPUtils.SP_PASSWORD));
+        if (!TextUtils.equals(psd, SPUtils.getInstance().getString(SPUtils.SP_PASSWORD))) {
             ToastUtil.showShortToast(context, "密码不正确");
             return;
         }
-        startActivity(new Intent(context, HomeActivity.class)); //TODO jinru
+        startActivity(new Intent(context, HomeActivity.class));
         finish();
 
     }

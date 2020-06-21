@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.cadres.R;
+import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.StatusBarUtil;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.view.home.HomeActivity;
@@ -42,8 +43,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     ///////////////////////////////////////////////////
     private RelativeLayout titleLayout;
     private FrameLayout contentLayout;
-    public ImageView leftIv;
-    private TextView titleTv;
+    public ImageView leftIv,right_iv2;
+    private TextView titleTv,right_tv2;
     private LinearLayout ll_right1,ll_right2;
     ///////////////////////////////////////////////////
 
@@ -107,6 +108,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         titleTv = $(R.id.title_tv);
         ll_right1 = $(R.id.ll_right1);
         ll_right2 = $(R.id.ll_right2);
+        right_iv2 = $(R.id.right_iv2);
+        right_tv2 = $(R.id.right_tv2);
 
         leftIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +124,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(activity instanceof HomeActivity){
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                showLongToast("再按一次退出那就走旅行");
+                showLongToast("再按一次退出系统");
                 mExitTime = System.currentTimeMillis();
                 return;
             }
@@ -183,12 +186,35 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     //显示右边iv
-    public void showLLRight1(){
+    public void showLLRightUpData(){
         showView(ll_right1);
     }
     //显示右边iv
-    public void showLLRight2(){
+    public void showLLRightOutOff(){
+        right_iv2.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_out));
+        right_tv2.setText("退出");
         showView(ll_right2);
+
+        ll_right2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, false);
+                ActivityCollect.getAppCollect().finishAllActivity();
+            }
+        });
+    }
+
+    public void showLLRightGoHome(){
+        right_iv2.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_go_home));
+        right_tv2.setText("首页");
+        showView(ll_right2);
+
+        ll_right2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityCollect.getAppCollect().finishAllNotHome();
+            }
+        });
     }
 
     public LinearLayout getLLRight1(){

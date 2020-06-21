@@ -71,7 +71,7 @@
                 android:layout_marginStart="@dimen/dp_10"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
-                android:text="推出" />
+                android:text="退出" />
 
         </LinearLayout>
 

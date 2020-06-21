@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="zcfg_array">
+        <item>全部</item>
+        <item>法律法规 </item>
+        <item>重要文件</item>
+        <item>其他</item>
+    </string-array>
+</resources>
