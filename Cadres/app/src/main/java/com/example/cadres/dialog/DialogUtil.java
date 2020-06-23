@@ -61,26 +61,8 @@ public class DialogUtil {
         return this.getDefaultDialog(context, "提示", content, positiveName, callBack);
     }
 
-    public AlertDialog getListDialog(Context context, String[] items, final DialogListCallBack callBack) {
-        AlertDialog alterDialog = new AlertDialog.Builder(context)
-                .setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        callBack.exectEvent(dialog, which);
-                        dialog.dismiss();
-                    }
-                }).create();
-        return alterDialog;
-    }
-
-
     public interface DialogCallBack {
         void exectEvent(DialogInterface alterDialog);
     }
-
-    public interface DialogListCallBack {
-        void exectEvent(DialogInterface alterDialog, int which);
-    }
-
 
 }

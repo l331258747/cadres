@@ -1,7 +1,5 @@
 package com.example.cadres.view.zcfg;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -9,15 +7,15 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cadres.R;
+import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.adapter.ZcfgAdapter;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.beanDB.DBZcfgBean;
-import com.example.cadres.beanDB.Meizi;
-import com.example.cadres.dialog.DialogUtil;
+import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -42,8 +40,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
     int type = 0;//0全部，4重要文件，5付律法规
     String key = "";
 
-    final String[] types = {"全部", "重要文件", "付律法规"};
-    final int[] typeIds = {0, 4, 5};
+    List<ListDialogBean> dialogDatas;
 
     @Override
     public int getLayoutId() {
@@ -84,6 +81,11 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBZcfgDaoUtils = _Store.getZcfgDaoUtils();
 
+        dialogDatas = new ArrayList<>();
+        dialogDatas.add(new ListDialogBean(0,"全部"));
+        dialogDatas.add(new ListDialogBean(4,"重要文件"));
+        dialogDatas.add(new ListDialogBean(5,"付律法规"));
+
         mAdapter.setData(getData());
     }
 
@@ -96,12 +98,10 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
         }else{
             if (type == 0) {
                 dbList = dBZcfgDaoUtils.queryAll();
-                LogUtil.e("数据库条数：" + dbList.size());
             } else {
                 String sql = "where NOTICE_TYPE = ?";
                 String[] condition = new String[]{"" + type};
                 dbList = dBZcfgDaoUtils.queryByNativeSql(sql, condition);
-                LogUtil.e("数据库条数：" + dbList.size());
             }
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -160,20 +160,27 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    ListDialog listDialog;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_screen:
-                DialogUtil.getInstance().getListDialog(context, types, new DialogUtil.DialogListCallBack() {
-                    @Override
-                    public void exectEvent(DialogInterface alterDialog, int which) {
-                        type = typeIds[which];
-                        tv_screen.setText(types[which]);
-                        mAdapter.setData(getData());
-                        key = "";
-                        et_search.setText("");
-                    }
-                }).show();
+                if(listDialog == null){
+                    listDialog = new ListDialog(context, dialogDatas);
+                    listDialog.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            type = dialogDatas.get(position).getId();
+                            tv_screen.setText(dialogDatas.get(position).getName());
+                            mAdapter.setData(getData());
+                            key = "";
+                            et_search.setText("");
+                            listDialog.dismiss();
+                        }
+                    });
+                }
+                listDialog.show();
+
                 break;
 
         }

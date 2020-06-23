@@ -1,5 +1,7 @@
 package com.example.cadres.bean.zcfg;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 public class ZcfgBean {
@@ -102,11 +104,22 @@ public class ZcfgBean {
             return noticeTitle;
         }
 
+        public String getNoticeTitleStr() {
+            if(TextUtils.isEmpty(noticeTitle))
+                return "";
+            return noticeTitle;
+        }
+
         public String getNoticeType() {
             return noticeType;
         }
 
         public String getNoticeTypeName() {
+            return noticeTypeName;
+        }
+        public String getNoticeTypeNameStr() {
+            if(TextUtils.isEmpty(noticeTypeName))
+                return "";
             return noticeTypeName;
         }
 

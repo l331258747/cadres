@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cl_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--单位名称-->
+    <TextView
+        android:id="@+id/tv_dwmc"
+        android:layout_width="@dimen/dp_140"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_ff7800"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="单位名称"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_dwmc"
+        app:layout_constraintEnd_toStartOf="@+id/view_hdzs"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--    核定职数-->
+    <View
+        android:id="@+id/view_hdzs"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/tv_dwmc"
+        app:layout_constraintEnd_toStartOf="@+id/view_spqk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_dwmc"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_fz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minLines="2"
+        android:maxLines="2"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_hdzs"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_qt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--实配情况-->
+    <View
+        android:id="@+id/view_spqk"
+        android:layout_width="0dp"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk"
+        android:layout_height="0dp"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_qt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_fz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_spqk"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_qt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+
+    <!--超配情况-->
+    <TextView
+        android:id="@+id/tv_cpqk"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="超配情况"/>
+
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_dwmc"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--   空缺情况 -->
+    <TextView
+        android:id="@+id/tv_kqqk"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:minLines="2"
+        android:maxLines="2"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="空缺情况"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_dwmc"
+        android:background="@color/color_ffd7b4"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.cadres.mvp;
 
 import android.content.Context;
 
+import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.utils.http.MethodApi;
@@ -47,5 +48,21 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getZcfgList(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getBmList() {
+        ResponseCallback listener = new ResponseCallback<BmBean>() {
+            @Override
+            public void onSuccess(BmBean data) {
+                iView.getBmListSuccess(data.getZzbOrganization());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getBmListFailed(errorMsg);
+            }
+        };
+        MethodApi.getbmList(new OnSuccessAndFaultSub(listener, context,false));
     }
 }

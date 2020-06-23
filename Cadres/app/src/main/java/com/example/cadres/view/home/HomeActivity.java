@@ -12,9 +12,13 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.zcfg.ZcfgBean;
+import com.example.cadres.beanDB.DBBmBean;
+import com.example.cadres.beanDB.DBBmExplainBean;
 import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
@@ -24,6 +28,7 @@ import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
 import java.util.ArrayList;
@@ -39,6 +44,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     ProgressDialog progress;
 
     CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
+    CommonDaoUtils<DBBmBean> dBBmDaoUtils;
+    CommonDaoUtils<DBBmExplainBean> dBBmExplainDaoUtils;
 
     @Override
     public int getLayoutId() {
@@ -91,6 +98,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBZcfgDaoUtils = _Store.getZcfgDaoUtils();
+        dBBmDaoUtils = _Store.getBmDaoUtils();
+        dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
         fistOne();
         initProgress();
@@ -122,7 +131,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.view_mcb:
-                ToastUtil.showShortToast(context, "名称表");
+                startActivity(new Intent(context, BmActivity.class));
                 break;
             case R.id.view_gbmc:
                 ToastUtil.showShortToast(context, "干部名册");
@@ -163,14 +172,24 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     public void cleanDBData() {
         if (dBZcfgDaoUtils.queryAll() != null) {
-            dBZcfgDaoUtils.queryAll().size();
             LogUtil.e("政策法规 条数：" + dBZcfgDaoUtils.queryAll().size());
         } else {
             LogUtil.e("政策法规 没有数据");
         }
+        if (dBBmDaoUtils.queryAll() != null) {
+            LogUtil.e("部门 条数：" + dBBmDaoUtils.queryAll().size());
+        } else {
+            LogUtil.e("部门 没有数据");
+        }
+        if (dBBmExplainDaoUtils.queryAll() != null) {
+            LogUtil.e("部门描述 条数：" + dBBmExplainDaoUtils.queryAll().size());
+        } else {
+            LogUtil.e("部门描述 没有数据");
+        }
 
         dBZcfgDaoUtils.deleteAll();
-        LogUtil.e("政策法规 记录删除 完成");
+        dBBmDaoUtils.deleteAll();
+        dBBmExplainDaoUtils.deleteAll();
     }
 
     @Override
@@ -204,10 +223,69 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
             ));
         }
         dBZcfgDaoUtils.insertMulti(dbList);
+
+        mPresenter.getBmList();
     }
 
     @Override
     public void getZcfgListFailed(String msg) {
+
+    }
+
+    @Override
+    public void getBmListSuccess(List<BmBean.BmBean2> data) {
+        List<DBBmBean> dbList = new ArrayList<>();
+        List<DBBmExplainBean> dbList_a = new ArrayList<>();
+
+        for (int i = 0; i < data.size(); i++) {
+            BmBean.BmBean2 item = data.get(i);
+            dbList.add(new DBBmBean(
+                    null,
+                    item.getDeptId(),
+                    item.getParentId(),
+                    item.getDeptName(),
+                    item.getDzzName(),
+                    item.getOrgCode(),
+                    item.getOrgType(),
+                    item.getOrgTypeName(),
+                    item.getFinanceType(),
+                    item.getFinanceTypeName(),
+                    item.getSimpleName(),
+                    item.getOrderNum(),
+                    item.getDeptType(),
+                    item.getDeptTypeName(),
+                    item.getDelFlag(),
+                    item.getParentName(),
+                    item.getVerification(),
+                    item.getActual(),
+                    item.getOvermatch(),
+                    item.getMismatch(),
+                    item.getApprovedPosition(),
+                    item.getApprovedDeputy(),
+                    item.getApprovedOther(),
+                    item.getActualPosition(),
+                    item.getActualDeputy(),
+                    item.getActualOther()
+            ));
+
+            for (int a = 0; a < data.get(i).getOrganizationExplain().size(); a++) {
+                BmExplainBean item_a = data.get(i).getOrganizationExplain().get(a);
+                dbList_a.add(new DBBmExplainBean(
+                        null,
+                        item_a.getExplainId(),
+                        item_a.getDeptId(),
+                        item_a.getOrgExplain(),
+                        item_a.getYear()
+                ));
+            }
+        }
+
+        dBBmDaoUtils.insertMulti(dbList);
+        dBBmExplainDaoUtils.insertMulti(dbList_a);
+    }
+
+    @Override
+    public void getBmListFailed(String msg) {
 
     }
 

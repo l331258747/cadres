@@ -26,4 +26,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getZcfgList(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取 职务名册/部门 列表
+    public static void getbmList(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getbmList(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

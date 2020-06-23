@@ -41,6 +41,8 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.zcfg.ZcfgDetailActivity"/>
+        <activity
+            android:name=".view.Bm.BmActivity"/>
 
     </application>
 

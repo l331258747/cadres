@@ -1,6 +1,5 @@
 package com.example.cadres.mvp;
 
-import com.example.cadres.bean.UserListBean;
 import com.example.cadres.bean.login.LoginBean;
 
 import java.util.List;
