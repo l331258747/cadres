@@ -21,7 +21,7 @@
         android:overScrollMode="never">
 
         <include
-            layout="@layout/activity_bm_drawer_content"
+            layout="@layout/activity_bm_drawer_end"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -46,7 +46,7 @@ public class BmActivity extends BaseActivity {
     public void initView() {
         showLeftIcon();
         showLLRightGoHome();
-        showTitleTv("干部名册");
+        showTitleTv("职务名册表");
 
         et_search = findViewById(R.id.et_search);
 

@@ -29,6 +29,7 @@ import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
+import com.example.cadres.view.Gb.GbActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
 import java.util.ArrayList;
@@ -134,7 +135,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, BmActivity.class));
                 break;
             case R.id.view_gbmc:
-                ToastUtil.showShortToast(context, "干部名册");
+                startActivity(new Intent(context, GbActivity.class));
                 break;
             case R.id.view_yjjc:
                 ToastUtil.showShortToast(context, "研究决策");

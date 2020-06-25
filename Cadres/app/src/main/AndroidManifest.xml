@@ -43,6 +43,8 @@
             android:name=".view.zcfg.ZcfgDetailActivity"/>
         <activity
             android:name=".view.Bm.BmActivity"/>
+        <activity
+            android:name=".view.Gb.GbActivity"/>
 
     </application>
 
