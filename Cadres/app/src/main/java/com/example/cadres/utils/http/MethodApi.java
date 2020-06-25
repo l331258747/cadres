@@ -32,4 +32,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getbmList(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取 干部 列表
+    public static void getGbList(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getGbList(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.cadres.mvp;
 
+import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
@@ -12,6 +13,7 @@ public interface HomeContract {
         void findUserInfo(int userId);
         void getZcfgList();
         void getBmList();
+        void getGbList();
     }
 
     interface View {
@@ -24,6 +26,9 @@ public interface HomeContract {
 
         void getBmListSuccess(List<BmBean.BmBean2> data);
         void getBmListFailed(String msg);
+
+        void getGbListSuccess(List<GbBean> data);
+        void getGbListFailed(String msg);
     }
 
 }

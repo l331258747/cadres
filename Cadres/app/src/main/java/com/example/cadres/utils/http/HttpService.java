@@ -2,7 +2,7 @@ package com.example.cadres.utils.http;
 
 
 import com.example.cadres.bean.BaseResponse;
-import com.example.cadres.bean.GbmcBean;
+import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
@@ -36,5 +36,8 @@ public interface HttpService {
 
     @POST("organization/findOrganizationList")
     Observable<BaseResponse<BmBean>> getbmList();
+
+    @GET("cadreBase/findCadreBaseList")
+    Observable<BaseResponse<GbBean>> getGbList();
 
 }

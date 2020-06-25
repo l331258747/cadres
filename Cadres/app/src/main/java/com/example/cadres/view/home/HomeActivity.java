@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.login.LoginBean;
@@ -287,6 +288,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getBmListFailed(String msg) {
+
+    }
+
+    @Override
+    public void getGbListSuccess(List<GbBean> data) {
+
+    }
+
+    @Override
+    public void getGbListFailed(String msg) {
 
     }
 

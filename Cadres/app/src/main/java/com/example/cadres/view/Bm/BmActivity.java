@@ -60,6 +60,7 @@ public class BmActivity extends BaseActivity {
         tv_dr_kqqk2 = findViewById(R.id.tv_dr_kqqk2);
         tv_dr_cz2 = findViewById(R.id.tv_dr_cz2);
 
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {

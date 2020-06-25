@@ -23,6 +23,15 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         DBBmBeanDao.createTable(db, ifNotExists);
         DBBmExplainBeanDao.createTable(db, ifNotExists);
+        DBGbBeanDao.createTable(db, ifNotExists);
+        DBGbCadreAwardPunishListDao.createTable(db, ifNotExists);
+        DBGbCadreDeptListBeanDao.createTable(db, ifNotExists);
+        DBGbCadreFamilyMemberListDao.createTable(db, ifNotExists);
+        DBGbCadreHistoryPositionListBeanDao.createTable(db, ifNotExists);
+        DBGbCadreNowPositionListBeanDao.createTable(db, ifNotExists);
+        DBGbCadreRankListBeanDao.createTable(db, ifNotExists);
+        DBGbCadreResumeListBeanDao.createTable(db, ifNotExists);
+        DBGbCadreTrainListBeanDao.createTable(db, ifNotExists);
         DBUserListBeanDao.createTable(db, ifNotExists);
         DBZcfgBeanDao.createTable(db, ifNotExists);
         MeiziDao.createTable(db, ifNotExists);
@@ -32,6 +41,15 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void dropAllTables(Database db, boolean ifExists) {
         DBBmBeanDao.dropTable(db, ifExists);
         DBBmExplainBeanDao.dropTable(db, ifExists);
+        DBGbBeanDao.dropTable(db, ifExists);
+        DBGbCadreAwardPunishListDao.dropTable(db, ifExists);
+        DBGbCadreDeptListBeanDao.dropTable(db, ifExists);
+        DBGbCadreFamilyMemberListDao.dropTable(db, ifExists);
+        DBGbCadreHistoryPositionListBeanDao.dropTable(db, ifExists);
+        DBGbCadreNowPositionListBeanDao.dropTable(db, ifExists);
+        DBGbCadreRankListBeanDao.dropTable(db, ifExists);
+        DBGbCadreResumeListBeanDao.dropTable(db, ifExists);
+        DBGbCadreTrainListBeanDao.dropTable(db, ifExists);
         DBUserListBeanDao.dropTable(db, ifExists);
         DBZcfgBeanDao.dropTable(db, ifExists);
         MeiziDao.dropTable(db, ifExists);
@@ -55,6 +73,15 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(DBBmBeanDao.class);
         registerDaoClass(DBBmExplainBeanDao.class);
+        registerDaoClass(DBGbBeanDao.class);
+        registerDaoClass(DBGbCadreAwardPunishListDao.class);
+        registerDaoClass(DBGbCadreDeptListBeanDao.class);
+        registerDaoClass(DBGbCadreFamilyMemberListDao.class);
+        registerDaoClass(DBGbCadreHistoryPositionListBeanDao.class);
+        registerDaoClass(DBGbCadreNowPositionListBeanDao.class);
+        registerDaoClass(DBGbCadreRankListBeanDao.class);
+        registerDaoClass(DBGbCadreResumeListBeanDao.class);
+        registerDaoClass(DBGbCadreTrainListBeanDao.class);
         registerDaoClass(DBUserListBeanDao.class);
         registerDaoClass(DBZcfgBeanDao.class);
         registerDaoClass(MeiziDao.class);
