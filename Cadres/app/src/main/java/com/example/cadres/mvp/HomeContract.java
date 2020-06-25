@@ -27,7 +27,7 @@ public interface HomeContract {
         void getBmListSuccess(List<BmBean.BmBean2> data);
         void getBmListFailed(String msg);
 
-        void getGbListSuccess(List<GbBean> data);
+        void getGbListSuccess(List<GbBean.GbBean2> data);
         void getGbListFailed(String msg);
     }
 

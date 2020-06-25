@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/left_iv"
-        android:layout_width="@dimen/title_height"
-        android:layout_height="@dimen/title_height"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_back"
         android:visibility="gone"

@@ -10,8 +10,6 @@ import com.example.cadres.utils.http.MethodApi;
 import com.example.cadres.utils.http.OnSuccessAndFaultSub;
 import com.example.cadres.utils.http.ResponseCallback;
 
-import java.util.List;
-
 public class HomePresenter implements HomeContract.Presenter {
     HomeContract.View iView;
     Context context;
@@ -71,10 +69,10 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void getGbList() {
-        ResponseCallback listener = new ResponseCallback<List<GbBean>>() {
+        ResponseCallback listener = new ResponseCallback<GbBean>() {
             @Override
-            public void onSuccess(List<GbBean> data) {
-                iView.getGbListSuccess(data);
+            public void onSuccess(GbBean data) {
+                iView.getGbListSuccess(data.getCadreBaseList());
             }
 
             @Override
@@ -82,6 +80,6 @@ public class HomePresenter implements HomeContract.Presenter {
                 iView.getGbListFailed(errorMsg);
             }
         };
-        MethodApi.getbmList(new OnSuccessAndFaultSub(listener, context,false));
+        MethodApi.getGbList(new OnSuccessAndFaultSub(listener, context,false));
     }
 }

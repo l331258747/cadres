@@ -45,6 +45,8 @@
             android:name=".view.Bm.BmActivity"/>
         <activity
             android:name=".view.Gb.GbActivity"/>
+        <activity
+            android:name=".view.Gb.GbDetailActivity"/>
 
     </application>
 
