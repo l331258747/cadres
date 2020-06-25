@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_dw_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/sp_24"
+        android:layout_marginTop="@dimen/dp_30"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dp_60" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/dp_30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/dp_30" />
+
+
+    <TextView
+        android:id="@+id/tv_dr_dwjb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dw_title"
+        android:layout_marginTop="@dimen/dp_50"
+        android:text="单位级别："/>
+
+    <TextView
+        android:id="@+id/tv_dr_dwjb2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_dwjb"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_dwjb"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位级别："/>
+
+    <TextView
+        android:id="@+id/tv_dr_dwxz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_dwjb2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_dwxz2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_dwxz"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_dwxz"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_hdzs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_dwxz2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="核定职数："/>
+
+    <TextView
+        android:id="@+id/tv_dr_hdzs2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_hdzs"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_hdzs"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_sjpb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_hdzs2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="实际配备："/>
+
+    <TextView
+        android:id="@+id/tv_dr_sjpb2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_sjpb"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_sjpb"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_cpqk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_sjpb2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="超配情况："/>
+
+    <TextView
+        android:id="@+id/tv_dr_cpqk2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_cpqk"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_cpqk"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_kqqk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_cpqk2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="空缺情况："/>
+
+    <TextView
+        android:id="@+id/tv_dr_kqqk2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_kqqk"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_kqqk"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+    <TextView
+        android:id="@+id/tv_dr_cz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dr_kqqk2"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="财政供养类型："/>
+
+    <TextView
+        android:id="@+id/tv_dr_cz2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_dr_cz"
+        app:layout_constraintTop_toTopOf="@+id/tv_dr_cz"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        tools:text="单位性质单位性质单位性质单位性质单位性质单位性质："/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

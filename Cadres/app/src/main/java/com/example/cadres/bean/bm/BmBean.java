@@ -178,11 +178,23 @@ public class BmBean {
             return orgTypeName;
         }
 
+        public String getOrgTypeNameStr() {
+            if(TextUtils.isEmpty(orgTypeName))
+                return "";
+            return orgTypeName;
+        }
+
         public String getFinanceType() {
             return financeType;
         }
 
         public String getFinanceTypeName() {
+            return financeTypeName;
+        }
+
+        public String getFinanceTypeNameStr() {
+            if(TextUtils.isEmpty(financeTypeName))
+                return "无";
             return financeTypeName;
         }
 
@@ -202,6 +214,12 @@ public class BmBean {
             return deptTypeName;
         }
 
+        public String getDeptTypeNameStr() {
+            if(TextUtils.isEmpty(deptTypeName))
+                return "";
+            return deptTypeName;
+        }
+
         public String getDelFlag() {
             return delFlag;
         }
@@ -214,7 +232,18 @@ public class BmBean {
             return verification;
         }
 
+        public String getVerificationStr() {
+            if(TextUtils.isEmpty(verification))
+                return "无";
+            return verification;
+        }
+
         public String getActual() {
+            return actual;
+        }
+        public String getActualStr() {
+            if(TextUtils.isEmpty(actual))
+                return "无";
             return actual;
         }
 

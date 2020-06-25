@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/drawer_layout"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/activity_bm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="@dimen/dp_460"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:overScrollMode="never">
+
+        <include
+            layout="@layout/activity_bm_drawer_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

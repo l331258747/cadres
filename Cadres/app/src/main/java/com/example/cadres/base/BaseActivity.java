@@ -2,6 +2,7 @@ package com.example.cadres.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.cadres.R;
+import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.StatusBarUtil;
 import com.example.cadres.utils.ToastUtil;
@@ -198,8 +200,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         ll_right2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, false);
-                ActivityCollect.getAppCollect().finishAllActivity();
+                DialogUtil.getInstance().getDefaultDialog(context, "是否确认退出？退出后需要重新登录。", new DialogUtil.DialogCallBack() {
+                    @Override
+                    public void exectEvent(DialogInterface alterDialog) {
+                        SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, false);
+                        ActivityCollect.getAppCollect().finishAllActivity();
+                    }
+                }).show();
             }
         });
     }

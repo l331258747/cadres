@@ -1,7 +1,9 @@
 package com.example.cadres.view.Bm;
 
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.example.cadres.utils.greendao.DaoUtilsStore;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,9 +34,12 @@ public class BmActivity extends BaseActivity {
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
     List<BmBean.BmBean2> datas;
 
+    TextView tv_dw_title,tv_dr_dwjb2,tv_dr_dwxz2,tv_dr_hdzs2,tv_dr_sjpb2,tv_dr_cpqk2,tv_dr_kqqk2,tv_dr_cz2;
+    DrawerLayout drawer_layout;
+
     @Override
     public int getLayoutId() {
-        return R.layout.activity_bm;
+        return R.layout.activity_bm_drawer;
     }
 
     @Override
@@ -43,6 +49,33 @@ public class BmActivity extends BaseActivity {
         showTitleTv("干部名册");
 
         et_search = findViewById(R.id.et_search);
+
+        drawer_layout = findViewById(R.id.drawer_layout);
+        tv_dw_title = findViewById(R.id.tv_dw_title);
+        tv_dr_dwjb2 = findViewById(R.id.tv_dr_dwjb2);
+        tv_dr_dwxz2 = findViewById(R.id.tv_dr_dwxz2);
+        tv_dr_hdzs2 = findViewById(R.id.tv_dr_hdzs2);
+        tv_dr_sjpb2 = findViewById(R.id.tv_dr_sjpb2);
+        tv_dr_cpqk2 = findViewById(R.id.tv_dr_cpqk2);
+        tv_dr_kqqk2 = findViewById(R.id.tv_dr_kqqk2);
+        tv_dr_cz2 = findViewById(R.id.tv_dr_cz2);
+
+        drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);//关闭手势滑动
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //打开手势滑动
+            }
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
 
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -131,14 +164,17 @@ public class BmActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new BmAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-//                String content = datas.get(pos).getNoticeContent();
-//                if (TextUtils.isEmpty(content)) {
-//                    ToastUtil.showShortToast(context, "详情没有数据");
-//                    return;
-//                }
-//                Intent intent = new Intent(context, ZcfgDetailActivity.class);
-//                intent.putExtra("content", content);
-//                startActivity(intent);
+                BmBean.BmBean2 item = datas.get(pos);
+                tv_dw_title.setText(item.getDeptNameStr());
+                tv_dr_dwjb2.setText(item.getDeptTypeNameStr());
+                tv_dr_dwxz2.setText(item.getOrgTypeNameStr());
+                tv_dr_hdzs2.setText(item.getVerificationStr());
+                tv_dr_sjpb2.setText(item.getActual());
+                tv_dr_cpqk2.setText(item.getOvermatchStr());
+                tv_dr_kqqk2.setText(item.getMismatchStr());
+                tv_dr_cz2.setText(item.getFinanceTypeNameStr());
+
+                drawer_layout.openDrawer(Gravity.RIGHT);
             }
         });
     }
