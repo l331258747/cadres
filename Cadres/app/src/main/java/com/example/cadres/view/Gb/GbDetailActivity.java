@@ -18,6 +18,8 @@ public class GbDetailActivity extends BaseActivity {
 
     private String[] titles = {"干部基本信息", "工作简历", "现任职信息", "职级信息","曾任职信息","家庭成员","奖惩记录,培训情况"};
 
+    int baseId;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_gb_detail;
@@ -26,9 +28,14 @@ public class GbDetailActivity extends BaseActivity {
     @Override
     public void initView() {
 
+        showLeftIcon();
+        showLLRightGoHome();
+        showTitleTv("干部详情");
+
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);
 
+        baseId = intent.getIntExtra("ID",0);
 
     }
 
@@ -36,10 +43,7 @@ public class GbDetailActivity extends BaseActivity {
     public void initData() {
 
         List<Fragment> mFragments = new ArrayList<>();
-        mFragments.add((GbResumeFragment) GbResumeFragment.newInstance());
-        mFragments.add((GbResumeFragment) GbResumeFragment.newInstance());
-        mFragments.add((GbResumeFragment) GbResumeFragment.newInstance());
-        mFragments.add((GbResumeFragment) GbResumeFragment.newInstance());
+        mFragments.add((GbInfoFragment) GbInfoFragment.newInstance(baseId));
 
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, titles);
         mViewPager.setAdapter(adapter);

@@ -259,8 +259,9 @@
             app:layout_constraintStart_toEndOf="@+id/tv_rysf_title"
             android:layout_height="0dp"/>
 
+
         <View
-            android:id="@+id/view_jtzz"
+            android:id="@+id/view_zzmm"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_60"
             app:layout_constraintTop_toBottomOf="@+id/view_rysf"
@@ -268,29 +269,27 @@
             app:layout_constraintEnd_toEndOf="@+id/view_left"/>
 
         <TextView
-            android:id="@+id/tv_jtzz_title"
+            android:id="@+id/tv_zzmm_title"
             android:layout_width="@dimen/dp_120"
-            app:layout_constraintTop_toTopOf="@+id/view_jtzz"
-            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"
+            app:layout_constraintTop_toTopOf="@+id/view_zzmm"
+            app:layout_constraintBottom_toBottomOf="@+id/view_zzmm"
             android:gravity="center"
-            android:text="家庭住址"
+            android:text="政治面貌"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/view_jtzz"
+            app:layout_constraintStart_toStartOf="@+id/view_zzmm"
             android:layout_height="0dp"/>
 
         <TextView
-            android:id="@+id/tv_jtzz"
+            android:id="@+id/tv_zzmm"
             android:layout_width="0dp"
-            app:layout_constraintTop_toTopOf="@+id/view_jtzz"
-            app:layout_constraintEnd_toEndOf="@+id/view_jtzz"
-            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"
+            app:layout_constraintTop_toTopOf="@+id/view_zzmm"
+            app:layout_constraintEnd_toEndOf="@+id/view_zzmm"
+            app:layout_constraintBottom_toBottomOf="@+id/view_zzmm"
             android:gravity="center"
-            tools:text="出生日期(年龄)"
+            tools:text="姓名"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/tv_jtzz_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_zzmm_title"
             android:layout_height="0dp"/>
-
-
 
 
 
@@ -648,7 +647,37 @@
             android:layout_height="0dp"/>
 
 
+        <View
+            android:id="@+id/view_sfzh"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_60"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gblx"
+            app:layout_constraintStart_toStartOf="@+id/view_center"
+            app:layout_constraintEnd_toEndOf="@+id/view_center"/>
 
+
+        <TextView
+            android:id="@+id/tv_sfzh_title"
+            android:layout_width="@dimen/dp_120"
+            app:layout_constraintTop_toTopOf="@+id/view_sfzh"
+            app:layout_constraintBottom_toBottomOf="@+id/view_sfzh"
+            android:gravity="center"
+            android:text="身份证号"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/view_sfzh"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/tv_sfzh"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toTopOf="@+id/view_sfzh"
+            app:layout_constraintEnd_toEndOf="@+id/view_sfzh"
+            app:layout_constraintBottom_toBottomOf="@+id/view_sfzh"
+            android:gravity="center"
+            tools:text="姓名"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_sfzh_title"
+            android:layout_height="0dp"/>
 
 
 
@@ -1043,68 +1072,205 @@
             app:layout_constraintStart_toEndOf="@+id/tv_jrdwsj_title"
             android:layout_height="0dp"/>
 
-        <View
-            android:id="@+id/view_zzmm"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_60"
-            app:layout_constraintTop_toBottomOf="@+id/view_jrdwsj"
-            app:layout_constraintStart_toStartOf="@+id/view_right"
-            app:layout_constraintEnd_toEndOf="@+id/view_right"/>
 
-        <TextView
-            android:id="@+id/tv_zzmm_title"
-            android:layout_width="@dimen/dp_120"
-            app:layout_constraintTop_toTopOf="@+id/view_zzmm"
-            app:layout_constraintBottom_toBottomOf="@+id/view_zzmm"
-            android:gravity="center"
-            android:text="政治面貌"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/view_zzmm"
-            android:layout_height="0dp"/>
-
-        <TextView
-            android:id="@+id/tv_zzmm"
-            android:layout_width="0dp"
-            app:layout_constraintTop_toTopOf="@+id/view_zzmm"
-            app:layout_constraintEnd_toEndOf="@+id/view_zzmm"
-            app:layout_constraintBottom_toBottomOf="@+id/view_zzmm"
-            android:gravity="center"
-            tools:text="姓名"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/tv_zzmm_title"
-            android:layout_height="0dp"/>
 
         <View
-            android:id="@+id/view_sfzh"
+            android:id="@+id/view_jtzz"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_60"
             app:layout_constraintTop_toBottomOf="@+id/view_zzmm"
-            app:layout_constraintStart_toStartOf="@+id/view_right"
+            app:layout_constraintStart_toStartOf="@+id/view_left"
             app:layout_constraintEnd_toEndOf="@+id/view_right"/>
 
-
         <TextView
-            android:id="@+id/tv_sfzh_title"
+            android:id="@+id/tv_jtzz_title"
             android:layout_width="@dimen/dp_120"
-            app:layout_constraintTop_toTopOf="@+id/view_sfzh"
-            app:layout_constraintBottom_toBottomOf="@+id/view_sfzh"
+            app:layout_constraintTop_toTopOf="@+id/view_jtzz"
+            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"
             android:gravity="center"
-            android:text="身份证号"
+            android:text="家庭住址"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/view_sfzh"
+            app:layout_constraintStart_toStartOf="@+id/view_jtzz"
             android:layout_height="0dp"/>
 
         <TextView
-            android:id="@+id/tv_sfzh"
+            android:id="@+id/tv_jtzz"
             android:layout_width="0dp"
-            app:layout_constraintTop_toTopOf="@+id/view_sfzh"
-            app:layout_constraintEnd_toEndOf="@+id/view_sfzh"
-            app:layout_constraintBottom_toBottomOf="@+id/view_sfzh"
+            app:layout_constraintTop_toTopOf="@+id/view_jtzz"
+            app:layout_constraintEnd_toEndOf="@+id/view_jtzz"
+            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"
             android:gravity="center"
-            tools:text="姓名"
+            tools:text="出生日期(年龄)"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/tv_sfzh_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_jtzz_title"
             android:layout_height="0dp"/>
+
+
+
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_center"
+            app:layout_constraintEnd_toStartOf="@+id/view_right"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/color_ffd7b4"
+            app:layout_constraintBottom_toTopOf="@+id/view_jtzz"/>
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_left"
+            app:layout_constraintEnd_toStartOf="@+id/view_center"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/color_ffd7b4"
+            app:layout_constraintBottom_toTopOf="@+id/view_jtzz"/>
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_csny_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_csny"
+            app:layout_constraintTop_toBottomOf="@+id/view_head"
+            android:background="@color/color_ffd7b4"
+            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"/>
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_name_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/color_ffd7b4"
+            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"/>
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_sex_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sex"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/color_ffd7b4"
+            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_name"
+            app:layout_constraintBottom_toTopOf="@+id/tv_mz"
+            app:layout_constraintStart_toStartOf="@+id/view_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_mz"
+            app:layout_constraintBottom_toTopOf="@+id/view_rdsj"
+            app:layout_constraintStart_toStartOf="@+id/view_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_rdsj"
+            app:layout_constraintBottom_toTopOf="@+id/view_zyjszw"
+            app:layout_constraintStart_toStartOf="@+id/view_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_head"
+            app:layout_constraintBottom_toTopOf="@+id/view_csny"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_csny"
+            app:layout_constraintBottom_toTopOf="@+id/view_qrzxl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_qrzxl"
+            app:layout_constraintBottom_toTopOf="@+id/view_zzjyxl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_zzjyxl"
+            app:layout_constraintBottom_toTopOf="@+id/view_xrzw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_xrzw"
+            app:layout_constraintBottom_toTopOf="@+id/view_xrzwjb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_xrzwjb"
+            app:layout_constraintBottom_toTopOf="@+id/view_gzdh"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_gzdh"
+            app:layout_constraintBottom_toTopOf="@+id/view_rysf"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_rysf"
+            app:layout_constraintBottom_toTopOf="@+id/view_zzmm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_zzmm"
+            app:layout_constraintBottom_toTopOf="@+id/view_jtzz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            app:layout_constraintTop_toBottomOf="@+id/view_jtzz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/color_ffd7b4"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

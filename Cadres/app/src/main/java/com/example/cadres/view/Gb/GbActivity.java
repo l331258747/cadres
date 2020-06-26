@@ -167,7 +167,9 @@ public class GbActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                startActivity(new Intent(context,GbDetailActivity.class));
+                Intent intent = new Intent(context,GbDetailActivity.class);
+                intent.putExtra("ID", datas.get(pos).getBaseId());
+                startActivity(intent);
             }
         });
     }

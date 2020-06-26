@@ -1,5 +1,7 @@
 package com.example.cadres.bean.Gb;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 public class GbBean {
@@ -188,6 +190,16 @@ public class GbBean {
 
         public String getBirthday() {
             return birthday;
+        }
+
+        public String getBirthdayAge() {
+            if(!TextUtils.isEmpty(birthday) && age != 0)
+                return birthday + "(" + age + ")";
+            if(!TextUtils.isEmpty(birthday))
+                return birthday;
+            if(age != 0)
+                return age+"";
+            return "";
         }
 
         public int getAge() {
