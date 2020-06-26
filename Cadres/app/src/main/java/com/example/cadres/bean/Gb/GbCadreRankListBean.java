@@ -29,6 +29,17 @@ public class GbCadreRankListBean {
     private String treatmentRank;
     private String treatmentRankTime;
 
+    public GbCadreRankListBean(int rankId, int baseId, String cadreName, String state, String dutiesRank, String dutiesRankTime, String treatmentRank, String treatmentRankTime) {
+        this.rankId = rankId;
+        this.baseId = baseId;
+        this.cadreName = cadreName;
+        this.state = state;
+        this.dutiesRank = dutiesRank;
+        this.dutiesRankTime = dutiesRankTime;
+        this.treatmentRank = treatmentRank;
+        this.treatmentRankTime = treatmentRankTime;
+    }
+
     public int getRankId() {
         return rankId;
     }

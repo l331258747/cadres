@@ -3,10 +3,10 @@ package com.example.cadres.view.Gb;
 import android.os.Bundle;
 
 import com.example.cadres.R;
-import com.example.cadres.adapter.GbResumeAdapter;
+import com.example.cadres.adapter.GbFamilyAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.bean.Gb.GbCadreResumeListBean;
-import com.example.cadres.beanDB.DBGbCadreResumeListBean;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
+import com.example.cadres.beanDB.DBGbCadreFamilyMemberList;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
@@ -19,22 +19,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GbResumeFragment extends BaseFragment {
+public class GbFamilyFragment extends BaseFragment {
 
     RecyclerView recyclerView;
 
-    GbResumeAdapter mAdapter;
+    GbFamilyAdapter mAdapter;
 
-    CommonDaoUtils<DBGbCadreResumeListBean> dBGbDaoUtils;
-    List<GbCadreResumeListBean> datas;
+    CommonDaoUtils<DBGbCadreFamilyMemberList> dBGbDaoUtils;
+    List<GbCadreFamilyMemberList> datas;
 
     int baseId;
 
     private boolean isViewCreated;
     boolean isLoad = false;
 
+
     public static Fragment newInstance(int baseId) {
-        GbResumeFragment fragment = new GbResumeFragment();
+        GbFamilyFragment fragment = new GbFamilyFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("ID", baseId);
         fragment.setArguments(bundle);
@@ -62,7 +63,7 @@ public class GbResumeFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_gb_resume;
+        return R.layout.fragment_gb_family;
     }
 
     @Override
@@ -73,15 +74,15 @@ public class GbResumeFragment extends BaseFragment {
     @Override
     public void initData() {
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
-        dBGbDaoUtils = _Store.getGbResumeDaoUtils();
+        dBGbDaoUtils = _Store.getGbFamilyDaoUtils();
 
         if (getUserVisibleHint()) {
             getData(baseId);
         }
     }
 
-    public List<DBGbCadreResumeListBean> getDbList(int id) {
-        List<DBGbCadreResumeListBean> dbList = new ArrayList<>();
+    public List<DBGbCadreFamilyMemberList> getDbList(int id) {
+        List<DBGbCadreFamilyMemberList> dbList = new ArrayList<>();
         String sql = "where BASE_ID = ?";
         String[] condition = new String[]{"" + id};
         dbList = dBGbDaoUtils.queryByNativeSql(sql, condition);
@@ -93,18 +94,19 @@ public class GbResumeFragment extends BaseFragment {
         isLoad = true;
 
         datas = new ArrayList<>();
-        List<DBGbCadreResumeListBean> dbList = getDbList(id);
+        List<DBGbCadreFamilyMemberList> dbList = getDbList(id);
         if (dbList != null) {
             for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreResumeListBean item = dbList.get(i);
-                datas.add(new GbCadreResumeListBean(
-                        item.getResumeId(),
+                DBGbCadreFamilyMemberList item = dbList.get(i);
+                datas.add(new GbCadreFamilyMemberList(
+                        item.getMemberId(),
                         item.getBaseId(),
                         item.getCadreName(),
-                        item.getWorkType(),
-                        item.getWorkStartTime(),
-                        item.getWorkEndTime(),
-                        item.getWorkDescribe()
+                        item.getAppellation(),
+                        item.getName(),
+                        item.getBirthday(),
+                        item.getPoliticalOutlook(),
+                        item.getWorkUnit()
                 ));
             }
         }
@@ -118,7 +120,7 @@ public class GbResumeFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbResumeAdapter(activity, new ArrayList<GbCadreResumeListBean>());
+        mAdapter = new GbFamilyAdapter(activity, new ArrayList<GbCadreFamilyMemberList>());
         recyclerView.setAdapter(mAdapter);
     }
 }

@@ -35,6 +35,19 @@ public class GbCadreTrainListBean {
     private String trainMode;
     private String trainContent;
 
+    public GbCadreTrainListBean(int trainId, int baseId, String cadreName, String startTime, String endTime, String trainingCourse, String trainLevel, String trainType, String trainOrganization, String trainMode, String trainContent) {
+        this.trainId = trainId;
+        this.baseId = baseId;
+        this.cadreName = cadreName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.trainingCourse = trainingCourse;
+        this.trainLevel = trainLevel;
+        this.trainType = trainType;
+        this.trainOrganization = trainOrganization;
+        this.trainMode = trainMode;
+        this.trainContent = trainContent;
+    }
 
     public int getTrainId() {
         return trainId;

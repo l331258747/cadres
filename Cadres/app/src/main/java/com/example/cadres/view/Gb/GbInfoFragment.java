@@ -65,7 +65,7 @@ public class GbInfoFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_gb_resume;
+        return R.layout.fragment_gb_info;
     }
 
     @Override

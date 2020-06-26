@@ -14,77 +14,122 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_start_time"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_zwdw"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/view_title"
         app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzqk"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="开始时间"/>
+        android:text="职务单位"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_start_time"
-        app:layout_constraintEnd_toStartOf="@+id/tv_end_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwdw"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzqk"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_end_time"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_rzqk"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_start_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwdw"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwmc"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="结束时间"/>
+        android:text="任职情况"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_end_time"
-        app:layout_constraintEnd_toStartOf="@+id/tv_lx"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwmc"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_lx"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_zwmc"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
         android:maxLines="3"
-        app:layout_constraintStart_toEndOf="@+id/tv_end_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzyy"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="类型"/>
+        android:text="职务名称"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_lx"
-        app:layout_constraintEnd_toStartOf="@+id/tv_nr"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwmc"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzyy"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_nr"
+        android:id="@+id/tv_rzyy"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:textSize="14sp"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_lx"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwmc"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzsj"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="内容"/>
+        android:text="任职原因"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzyy"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_rzsj"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzyy"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzwh"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="任职时间"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rzwh"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_rzwh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzsj"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="任职文号"/>
 
     <View
         android:layout_width="0dp"
@@ -93,6 +138,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="@dimen/dp_1"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

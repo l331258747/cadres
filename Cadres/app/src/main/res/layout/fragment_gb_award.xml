@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/view_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_jclx"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="奖惩类型"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_jclx"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cjmc"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_jcmc"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_jclx"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="奖惩名称"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_jcmc"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pzsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pzsj"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_jcmc"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="批准时间"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jllx"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_jllx"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="奖励类型"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_jllx"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cflx"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_cflx"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_jllx"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="惩戒类型"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_cflx"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jcyy"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_jcyy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_cflx"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jcsm"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="奖惩原因"/>
+
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_jcyy"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jcsm"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_jcsm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_jcyy"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="奖惩说明"/>
+    
+
+    <View
+        android:layout_width="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="@dimen/dp_1"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintTop_toBottomOf="@+id/view_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

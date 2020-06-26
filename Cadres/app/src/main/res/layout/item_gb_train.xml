@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_kssj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_50"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jssj"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="开始时间"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_kssj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_jssj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_jssj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_kssj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxts"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="结束时间"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_jssj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxts"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_jssj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训天数"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxts"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxts"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxjb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训班"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxjb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxjb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxlb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训级别"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxlb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxlb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxjg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训类别"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxlb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxjg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxjg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxlb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxfs"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训机构"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxjg"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxfs"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxfs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxjg"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxnr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训方式"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxfs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pxnr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pxnr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pxfs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="培训内容"/>
+
+    <View
+        android:layout_width="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/dp_1"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

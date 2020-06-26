@@ -27,6 +27,16 @@ public class GbCadreResumeListBean {
     private String workEndTime;
     private String workDescribe;
 
+    public GbCadreResumeListBean(int resumeId, int baseId, String cadreName, String workType, String workStartTime, String workEndTime, String workDescribe) {
+        this.resumeId = resumeId;
+        this.baseId = baseId;
+        this.cadreName = cadreName;
+        this.workType = workType;
+        this.workStartTime = workStartTime;
+        this.workEndTime = workEndTime;
+        this.workDescribe = workDescribe;
+    }
+
     public int getResumeId() {
         return resumeId;
     }

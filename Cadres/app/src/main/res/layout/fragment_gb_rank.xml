@@ -14,77 +14,102 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_start_time"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_zt"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/view_title"
         app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwjb"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="开始时间"/>
+        android:text="状态"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_start_time"
-        app:layout_constraintEnd_toStartOf="@+id/tv_end_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_zt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwjb"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_end_time"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_zwjb"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_start_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_zt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pzsj"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="结束时间"/>
+        android:text="职务级别"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_end_time"
-        app:layout_constraintEnd_toStartOf="@+id/tv_lx"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pzsj"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_lx"
-        android:layout_width="@dimen/dp_140"
+        android:id="@+id/tv_pzsj"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="14sp"
         android:maxLines="3"
-        app:layout_constraintStart_toEndOf="@+id/tv_end_time"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjb"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="类型"/>
+        android:text="批准时间"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:background="@color/color_ffd7b4"
-        app:layout_constraintStart_toEndOf="@+id/tv_lx"
-        app:layout_constraintEnd_toStartOf="@+id/tv_nr"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjb"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="0dp"/>
 
     <TextView
-        android:id="@+id/tv_nr"
+        android:id="@+id/tv_xsdyjb"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:textSize="14sp"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_lx"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjbsj"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="内容"/>
+        android:text="享受待遇级别"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_xsdyjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjbsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_xsdyjbsj"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_xsdyjb"
+        app:layout_constraintEnd_toEndOf="@id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        android:text="享受待遇级别时间"/>
 
     <View
         android:layout_width="0dp"
@@ -93,6 +118,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:layout_height="@dimen/dp_1"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

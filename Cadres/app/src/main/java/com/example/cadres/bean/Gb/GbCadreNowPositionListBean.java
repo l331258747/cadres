@@ -35,6 +35,22 @@ public class GbCadreNowPositionListBean {
     private String dutiesRank;
     private String vacantPosition;
 
+    public GbCadreNowPositionListBean(int positionId, int deptId, String deptName, int baseId, String cadreName, String positionTime, String position, int positionTitle, String positionTitleName, String positionReason, String positionFileNumber, String dutiesRank, String vacantPosition) {
+        this.positionId = positionId;
+        this.deptId = deptId;
+        this.deptName = deptName;
+        this.baseId = baseId;
+        this.cadreName = cadreName;
+        this.positionTime = positionTime;
+        this.position = position;
+        this.positionTitle = positionTitle;
+        this.positionTitleName = positionTitleName;
+        this.positionReason = positionReason;
+        this.positionFileNumber = positionFileNumber;
+        this.dutiesRank = dutiesRank;
+        this.vacantPosition = vacantPosition;
+    }
+
     public int getPositionId() {
         return positionId;
     }

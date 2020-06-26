@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_zt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_50"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwjb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="状态"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_zt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_zwjb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_zwjb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_zt"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pzsj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="职务级别"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pzsj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pzsj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="批准时间"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_xsdyjb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_pzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjbsj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="享受待遇级别"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toEndOf="@+id/tv_xsdyjb"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xsdyjbsj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_xsdyjbsj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_xsdyjb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="任职原因"/>
+
+    <View
+        android:layout_width="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/dp_1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

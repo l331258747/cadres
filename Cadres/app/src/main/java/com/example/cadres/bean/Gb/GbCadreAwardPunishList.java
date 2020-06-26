@@ -14,6 +14,21 @@ public class GbCadreAwardPunishList {
     String awardPunishReason;
     String awardPunishExplain;
 
+    public GbCadreAwardPunishList(int awardPunishId, int baseId, String cadreName, String awardPunishType, String awardType, String awardLevel, String punishType, String awardPunishName, String ratifyTime, String ratifyDept, String awardPunishReason, String awardPunishExplain) {
+        this.awardPunishId = awardPunishId;
+        this.baseId = baseId;
+        this.cadreName = cadreName;
+        this.awardPunishType = awardPunishType;
+        this.awardType = awardType;
+        this.awardLevel = awardLevel;
+        this.punishType = punishType;
+        this.awardPunishName = awardPunishName;
+        this.ratifyTime = ratifyTime;
+        this.ratifyDept = ratifyDept;
+        this.awardPunishReason = awardPunishReason;
+        this.awardPunishExplain = awardPunishExplain;
+    }
+
     public int getAwardPunishId() {
         return awardPunishId;
     }
