@@ -17,6 +17,7 @@
         android:layout_width="@dimen/dp_460"
         android:background="@color/white"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_gravity="end"
         android:overScrollMode="never">
 

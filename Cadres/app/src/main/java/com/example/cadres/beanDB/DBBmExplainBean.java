@@ -53,6 +53,9 @@ public class DBBmExplainBean {
     public int getYear() {
         return this.year;
     }
+    public String getYearStr() {
+        return this.year + "";
+    }
     public void setYear(int year) {
         this.year = year;
     }
