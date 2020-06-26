@@ -5,6 +5,7 @@ import com.example.cadres.bean.BaseResponse;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.login.LoginBean;
+import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 
 import io.reactivex.Observable;
@@ -39,5 +40,8 @@ public interface HttpService {
 
     @GET("cadreBase/findCadreBaseList")
     Observable<BaseResponse<GbBean>> getGbList();
+
+    @GET("appointDismissScheme/findAppointDismissSchemeList")
+    Observable<BaseResponse<YjjcBean>> getYjjcList();
 
 }

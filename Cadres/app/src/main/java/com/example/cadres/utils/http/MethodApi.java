@@ -38,4 +38,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getGbList(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取 研究决策 列表
+    public static void getYjjcList(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getYjjcList(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

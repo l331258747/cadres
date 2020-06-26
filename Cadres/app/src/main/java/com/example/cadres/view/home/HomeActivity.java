@@ -34,6 +34,7 @@ import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
@@ -57,6 +58,7 @@ import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbActivity;
+import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
 import java.util.ArrayList;
@@ -185,7 +187,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, GbActivity.class));
                 break;
             case R.id.view_yjjc:
-                ToastUtil.showShortToast(context, "研究决策");
+                startActivity(new Intent(context, YjjcActivity.class));
                 break;
             case R.id.view_zcfg:
                 startActivity(new Intent(context, ZcfgActivity.class));
@@ -249,11 +251,21 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getGbListSuccess(List<GbBean.GbBean2> data) {
         setDBGb(data);
-
+        mPresenter.getYjjcList();
     }
 
     @Override
     public void getGbListFailed(String msg) {
+
+    }
+
+    @Override
+    public void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data) {
+        setDBYjjc(data);
+    }
+
+    @Override
+    public void getYjjcListFailed(String msg) {
 
     }
 
@@ -583,6 +595,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBGbRankDaoUtils.insertMulti(dbList_rank);
         dBGbResumeDaoUtils.insertMulti(dbList_resume);
         dBGbTrainDaoUtils.insertMulti(dbList_train);
+    }
+
+    public void setDBYjjc(List<YjjcBean.YjjcBean2> data){
+
     }
 
 }

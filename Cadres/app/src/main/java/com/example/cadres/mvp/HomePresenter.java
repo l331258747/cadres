@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.login.LoginBean;
+import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.utils.http.MethodApi;
 import com.example.cadres.utils.http.OnSuccessAndFaultSub;
@@ -81,5 +82,21 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getGbList(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getYjjcList() {
+        ResponseCallback listener = new ResponseCallback<YjjcBean>() {
+            @Override
+            public void onSuccess(YjjcBean data) {
+                iView.getYjjcListSuccess(data.getAppointDismissSchemeList());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getYjjcListFailed(errorMsg);
+            }
+        };
+        MethodApi.getYjjcList(new OnSuccessAndFaultSub(listener, context,false));
     }
 }
