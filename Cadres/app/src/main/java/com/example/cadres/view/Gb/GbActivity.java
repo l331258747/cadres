@@ -3,9 +3,7 @@ package com.example.cadres.view.Gb;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,12 +21,12 @@ import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
-import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.view.search.SearchActivity;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -44,7 +42,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     Group group_View_top;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
-    TextView tv_right_title, tv_right_btn, tv_right_content;
+    TextView tv_right_title, tv_right_btn, tv_right_content,tv_all;
     View view_menu;
     EditText et_search;
 
@@ -78,6 +76,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_top_cpqk2 = findViewById(R.id.tv_top_cpqk2);
         tv_top_kqqk2 = findViewById(R.id.tv_top_kqqk2);
         view_menu = findViewById(R.id.view_menu);
+        tv_all = findViewById(R.id.tv_all);
 
         tv_right_title = findViewById(R.id.tv_right_title);
         tv_right_btn = findViewById(R.id.tv_right_btn);
@@ -86,22 +85,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_right_btn.setOnClickListener(this);
         view_menu.setOnClickListener(this);
         tv_top_btn.setOnClickListener(this);
+        tv_all.setOnClickListener(this);
 
-        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                /*判断是否是“搜索”键*/
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String key = et_search.getText().toString().trim();
-                    mAdapter.setData(getData(key));
-
-                    group_View_top.setVisibility(View.GONE);
-
-                    return true;
-                }
-                return false;
-            }
-        });
+        et_search.setOnClickListener(this);
 
         drawer_layout = findViewById(R.id.drawer_layout);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
@@ -360,6 +346,13 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 tv_right_content.setText(item.getOrgExplain());
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
+                break;
+            case R.id.tv_all:
+                mAdapter.setData(getData(""));
+                group_View_top.setVisibility(View.GONE);
+                    break;
+            case R.id.et_search:
+                startActivity(new Intent(context, SearchActivity.class));
                 break;
         }
     }

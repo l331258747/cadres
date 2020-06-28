@@ -409,6 +409,17 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/iv_menu"/>
 
+    <TextView
+        android:id="@+id/tv_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/view_menu"
+        app:layout_constraintBottom_toBottomOf="@+id/view_menu"
+        android:layout_marginStart="@dimen/dp_15"
+        android:text="展示全部"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/view_menu"/>
+
     <EditText
         android:id="@+id/et_search"
         android:layout_width="@dimen/dp_420"
@@ -421,6 +432,11 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLength="15"
+
+        android:focusable="false"
+        android:editable="false"
+        android:focusableInTouchMode="false"
+
         android:maxLines="1"
         android:drawableLeft="@mipmap/ic_search"
         android:drawablePadding="@dimen/dp_10"

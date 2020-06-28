@@ -63,6 +63,7 @@ import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbActivity;
+import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
@@ -121,23 +122,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         view_yjjc.setOnClickListener(this);
         view_zcfg.setOnClickListener(this);
         view_dsj.setOnClickListener(this);
+        et_search.setOnClickListener(this);
 
-        et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                /*判断是否是“搜索”键*/
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String key = et_search.getText().toString().trim();
-                    if (TextUtils.isEmpty(key)) {
-                        ToastUtil.showShortToast(context, "请输入您想要搜索的内容");
-                        return true;
-                    }
-
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     @Override
@@ -194,6 +180,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.et_search:
+                startActivity(new Intent(context, SearchActivity.class));
+                break;
             case R.id.view_mcb:
                 startActivity(new Intent(context, BmActivity.class));
                 break;

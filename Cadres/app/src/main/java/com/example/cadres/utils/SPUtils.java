@@ -26,6 +26,7 @@ public class SPUtils {
     public static final String SP_PASSWORD = "sp_password";
     public static final String SP_SALT = "sp_salt";
     public static final String SP_USER_NAME = "sp_user_name";
+    public static final String SP_SEARCH = "sp_search";
 
     private static SharedPreferences mSharedPreferences;
     private static SPUtils mPreferenceUtils;

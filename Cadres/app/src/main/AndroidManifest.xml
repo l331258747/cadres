@@ -51,6 +51,10 @@
             android:name=".view.yjjc.YjjcActivity"/>
         <activity
             android:name=".view.yjjc.YjjcDetailActivity"/>
+        <activity
+            android:name=".view.search.SearchActivity"/>
+        <activity
+            android:name=".view.search.SearchDetailActivity"/>
 
     </application>
 

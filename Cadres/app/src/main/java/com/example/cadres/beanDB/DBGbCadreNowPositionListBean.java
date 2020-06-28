@@ -160,4 +160,5 @@ public class DBGbCadreNowPositionListBean {
     public void setVacantPosition(String vacantPosition) {
         this.vacantPosition = vacantPosition;
     }
+
 }

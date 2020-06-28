@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="@dimen/dp_460"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@drawable/shape_ffe5ce_r40"
+        android:drawableLeft="@mipmap/ic_search"
+        android:drawablePadding="@dimen/dp_15"
+        android:hint="请输入干部姓名、单位名称进行搜索"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingEnd="@dimen/dp_15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_search">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dp_30" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_180"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp_180" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start_30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp_30" />
+
+            <TextView
+                android:id="@+id/tv_history_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史搜索"
+                android:textSize="@dimen/sp_24"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_zdy_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义条件搜索"
+                android:textSize="@dimen/sp_24"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_history" />
+
+            <TextView
+                android:id="@+id/tv_gblx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/tv_zdy_title"
+                android:text="干部类型："/>
+            
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_gblx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_gblx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_bmlx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_gblx"
+                android:text="部门类型："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_bmlx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_bmlx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_csn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_bmlx"
+                android:text="出生年："/>
+
+            <TextView
+                android:id="@+id/progress2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/seekbar2"
+                app:layout_constraintStart_toStartOf="@+id/seekbar2"
+                app:layout_constraintEnd_toEndOf="@+id/seekbar2"
+                tools:text="asdfasdf"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/seekbar2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:lineColorSelected="@color/color_b31f23"
+                app:lineColorEdge="@color/color_4b_66"
+                app:thumbSecondaryColor="@color/color_b31f23"
+                app:thumbPrimaryColor="@color/color_b31f23"
+                app:layout_constraintTop_toTopOf="@+id/tv_csn"
+                app:thumbSize="20dp"
+                app:seekBarHeight="10dp"
+                app:cellMode="number"
+                app:seekBarMode="range"
+                app:progressHintMode="alwaysHide"
+                />
+
+            <TextView
+                android:id="@+id/tv_zwjb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar2"
+                android:text="职务级别："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_zwjb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_zwjb"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_xl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_zwjb"
+                android:text="学历："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xl"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_xxlx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_xl"
+                android:text="学校类型："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xxlx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xxlx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_gzjl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_xxlx"
+                android:text="工作经历："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_gzjl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_gzjl"
+                app:max_select="-1"/>
+
+
+            <TextView
+                android:id="@+id/tv_xrzjnx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_gzjl"
+                android:text="现任职级年限："/>
+
+            <TextView
+                android:id="@+id/progress2_tv_xrzjnx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/seekbar2_xrzjnx"
+                app:layout_constraintStart_toStartOf="@+id/seekbar2_xrzjnx"
+                app:layout_constraintEnd_toEndOf="@+id/seekbar2_xrzjnx"
+                tools:text="asdfasdf"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/seekbar2_xrzjnx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:lineColorSelected="@color/color_b31f23"
+                app:lineColorEdge="@color/color_4b_66"
+                app:thumbSecondaryColor="@color/color_b31f23"
+                app:thumbPrimaryColor="@color/color_b31f23"
+                app:layout_constraintTop_toTopOf="@+id/tv_xrzjnx"
+                app:thumbSize="20dp"
+                app:seekBarHeight="10dp"
+                app:cellMode="number"
+                app:seekBarMode="range"
+                app:progressHintMode="alwaysHide"
+                />
+
+            <TextView
+                android:id="@+id/tv_xb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar2_xrzjnx"
+                android:text="性别："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xb"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_xb"
+                android:text="党派："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_dp"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_btn"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_b31f23_r5"
+                app:layout_constraintTop_toBottomOf="@+id/fl_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/dp_30"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_8"
+                app:layout_goneMarginTop="@dimen/dp_50"
+                android:text="开始选人"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

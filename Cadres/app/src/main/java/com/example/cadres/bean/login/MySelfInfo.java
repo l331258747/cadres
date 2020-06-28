@@ -1,6 +1,12 @@
 package com.example.cadres.bean.login;
 
+import android.text.TextUtils;
+
+import com.example.cadres.utils.GsonUtil;
 import com.example.cadres.utils.SPUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by LGQ
@@ -53,6 +59,38 @@ public class MySelfInfo {
 
     public String getUserName() {
         return SPUtils.getInstance().getString(SPUtils.SP_USER_NAME);
+    }
+
+    //---------搜索 start
+    public void setSearch(List<String> lists){
+        if(lists == null) return;
+        SPUtils.getInstance().putString(SPUtils.SP_SEARCH, GsonUtil.convertVO2String(lists));
+    }
+
+    public void addSearch(String str){
+        List<String> results = new ArrayList<>();
+
+        List<String> lists = getSearch();
+        for (String item : lists){
+            if(TextUtils.equals(str,item)){
+                lists.remove(item);
+                break;
+            }
+        }
+
+        while (lists.size() > 8){
+            lists.remove(lists.size() - 1);
+        }
+
+        results.add(str);
+        results.addAll(lists);
+        setSearch(results);
+    }
+
+    public List<String> getSearch(){
+        if(TextUtils.isEmpty(SPUtils.getInstance().getString(SPUtils.SP_SEARCH)))
+            return new ArrayList<>();
+        return GsonUtil.convertJson2Array(SPUtils.getInstance().getString(SPUtils.SP_SEARCH));
     }
 
 }
