@@ -16,6 +16,7 @@ import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.bean.common.SearchBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
+import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
@@ -100,31 +101,31 @@ public class SearchDetailActivity extends BaseActivity {
         buildWhereOr(queryBuilder,searchBean.getGblxLists(),DBGbBeanDao.Properties.CadreType);
         LogUtil.e("干部类型 数据条数："+queryBuilder.count());
 
-        Join join_bm = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId);
-        joinWhereOr(join_bm,searchBean.getBmlxLists(),DBGbCadreDeptListBeanDao.Properties.DeptId);
-        LogUtil.e("部门类型 数据条数："+queryBuilder.count());
+//        Join join_bm = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId);
+//        joinWhereOr(join_bm,searchBean.getBmlxLists(),DBGbCadreDeptListBeanDao.Properties.DeptId);
+//        LogUtil.e("部门类型 数据条数："+queryBuilder.count());
 
 //        queryBuilder.where(DBGbBeanDao.Properties.Birthday.between())//TODO 年范围sql
 
         buildWhereOr(queryBuilder,searchBean.getZwjbLists(),DBGbBeanDao.Properties.CurrentRank);
         LogUtil.e("职务级别 数据条数："+queryBuilder.count());
 
-        buildWhereOr(queryBuilder,searchBean.getGblxLists(),DBGbBeanDao.Properties.FullTimeSchool);//TODO 在职教育
+        buildWhereOr(queryBuilder,searchBean.getXlLists(),DBGbBeanDao.Properties.FullTimeSchool);//TODO 在职教育
         LogUtil.e("学历 数据条数："+queryBuilder.count());
 
         buildWhereOr(queryBuilder,searchBean.getXxlxLists(),DBGbBeanDao.Properties.FullTimeSchoolType);//TODO 在职教育
         LogUtil.e("学校类型 数据条数："+queryBuilder.count());
 
-        Join join_gzjl = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreNowPositionListBeanDao.Properties.BaseId);
-        joinWhereOr(join_gzjl,searchBean.getBmlxLists(), DBGbCadreResumeListBeanDao.Properties.WorkType);
-        LogUtil.e("工作经历 数据条数："+queryBuilder.count());
+//        Join join_gzjl = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreResumeListBean.class, DBGbCadreResumeListBeanDao.Properties.BaseId);
+//        joinWhereOr(join_gzjl,searchBean.getGzjlLists(), DBGbCadreResumeListBeanDao.Properties.WorkType);
+//        LogUtil.e("工作经历 数据条数："+queryBuilder.count());
 
         //        queryBuilder.where(DBGbBeanDao.Properties.Birthday.between())//TODO 任职年限 范围sql
 
         buildWhereOr(queryBuilder,searchBean.getXbLists(),DBGbBeanDao.Properties.Gender);
         LogUtil.e("性别 数据条数："+queryBuilder.count());
 
-        buildWhereOr(queryBuilder,searchBean.getXbLists(),DBGbBeanDao.Properties.PoliticalOutlook);
+        buildWhereOr(queryBuilder,searchBean.getDpLists(),DBGbBeanDao.Properties.PoliticalOutlook);
         LogUtil.e("党派 数据条数："+queryBuilder.count());
 
         dbList = queryBuilder.list();

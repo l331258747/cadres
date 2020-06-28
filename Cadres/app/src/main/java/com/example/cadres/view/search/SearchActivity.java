@@ -75,25 +75,25 @@ public class SearchActivity extends BaseActivity {
                     searchBean.getGblxLists().add(mVals_gblx[index]);
                 }
                 for (int index : fl_bmlx.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_bmlx[index]);
+                    searchBean.getBmlxLists().add(mVals_bmlx[index]);
                 }
                 for (int index : fl_zwjb.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_zwjb[index]);
+                    searchBean.getZwjbLists().add(mVals_zwjb[index]);
                 }
                 for (int index : fl_xl.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_xl[index]);
+                    searchBean.getXlLists().add(mVals_xl[index]);
                 }
                 for (int index : fl_xxlx.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_xxlx[index]);
+                    searchBean.getXxlxLists().add(mVals_xxlx[index]);
                 }
                 for (int index : fl_gzjl.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_gzjl[index]);
+                    searchBean.getGzjlLists().add(mVals_gzjl[index]);
                 }
                 for (int index : fl_xb.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_xb[index]);
+                    searchBean.getXbLists().add(mVals_xb[index]);
                 }
                 for (int index : fl_dp.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_dp[index]);
+                    searchBean.getDpLists().add(mVals_dp[index]);
                 }
                 searchBean.getCsnLists().add(csnMin + "");
                 searchBean.getCsnLists().add(csnMax + "");
