@@ -17,6 +17,7 @@ import com.example.cadres.adapter.GbLeftAdapter;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
@@ -138,7 +139,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
         mAdapter.setData(getData(""));
-        leftAdapter.setData(getDbBmList());
+        getDbBmList();
+        leftAdapter.setData(bmLeftBeans);
     }
 
     public List<DBGbBean> getDbList(String key) {
@@ -235,6 +237,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dbBmList = new ArrayList<>();
         dbBmList = dBBmDaoUtils.queryAll();
         LogUtil.e("数据库条数：" + dbBmList.size());
+
+        setBmLeftBean();
+
         return dbBmList;
     }
 
@@ -247,15 +252,16 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         recyclerViewLeft = $(R.id.recycler_view_left);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerViewLeft.setLayoutManager(linearLayoutManager);
-        leftAdapter = new GbLeftAdapter(activity, new ArrayList<DBBmBean>());
+        leftAdapter = new GbLeftAdapter(activity, new ArrayList<BmLeftBean>());
         recyclerViewLeft.setAdapter(leftAdapter);
 
         leftAdapter.setOnItemClickListener(new GbLeftAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                group_View_top.setVisibility(View.VISIBLE);
+                DBBmBean item = getDBBmBean(pos);
 
-                DBBmBean item = dbBmList.get(pos);
+                if(item == null) return;
+                group_View_top.setVisibility(View.VISIBLE);
                 tv_top_title.setText(item.getDeptName());
                 tv_top_btn.setText(item.getDeptTypeName());
                 tv_top_hdzs2.setText(item.getVerification());
@@ -272,6 +278,15 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+    }
+
+    public DBBmBean getDBBmBean(int pos){
+        for (int i=0;i<dbBmList.size();i++){
+            if(bmLeftBeans.get(pos).getId() == dbBmList.get(i).getDeptId()){
+                return dbBmList.get(i);
+            }
+        }
+        return null;
     }
 
     //------------------right
@@ -299,18 +314,18 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         return item;
     }
 
-    public void setDialogDatas(){
+    public void setDialogDatas() {
         dialogDatas = new ArrayList<>();
-        for (int i=0;i<dbBmExplainList.size();i++){
+        for (int i = 0; i < dbBmExplainList.size(); i++) {
             DBBmExplainBean dbBmExplainBean = dbBmExplainList.get(i);
-            ListDialogBean item = new ListDialogBean(dbBmExplainBean.getExplainId(),dbBmExplainBean.getYearStr());
+            ListDialogBean item = new ListDialogBean(dbBmExplainBean.getExplainId(), dbBmExplainBean.getYearStr());
             dialogDatas.add(item);
         }
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv_right_btn:
                 listDialog = new ListDialog(context, dialogDatas);
                 listDialog.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
@@ -418,6 +433,47 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             }
         }
         return datas;
+    }
+
+
+    public void setBmLeftBean() {
+        List<BmLeftBean> bmLeftBeans = new ArrayList<>();
+        for (int i = 0; i < dbBmList.size(); i++) {
+            DBBmBean dbItem = dbBmList.get(i);
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName());
+            bmLeftBeans.add(item);
+        }
+
+        List<BmLeftBean> rootTrees = new ArrayList<BmLeftBean>();
+        for (BmLeftBean tree : bmLeftBeans) {
+            if (tree.getParentId() == 0) {
+                rootTrees.add(tree);
+            }
+            for (BmLeftBean t : bmLeftBeans) {
+                if (t.getParentId() == tree.getId()) {
+                    if (tree.getLists() == null) {
+                        List<BmLeftBean> myChildrens = new ArrayList<BmLeftBean>();
+                        myChildrens.add(t);
+                        tree.setLists(myChildrens);
+                    } else {
+                        tree.getLists().add(t);
+                    }
+                }
+            }
+        }
+        sysout(rootTrees,"");
+    }
+
+    List<BmLeftBean> bmLeftBeans = new ArrayList<BmLeftBean>();
+    public void sysout(List<BmLeftBean> trees, String str) {
+        if (trees != null && trees.size() > 0) {
+            for (BmLeftBean tree : trees) {
+                tree.setName(str + tree.getName());
+                bmLeftBeans.add(tree);
+                sysout(tree.getLists(), str + "   ");
+            }
+        }
+
     }
 
 }

@@ -4,8 +4,23 @@ import java.util.List;
 
 public class BmLeftBean {
     int id;
+    int parentId;
     String name;
     List<BmLeftBean> lists;
+
+    public BmLeftBean(int id, int parentId, String name) {
+        this.id = id;
+        this.parentId = parentId;
+        this.name = name;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
 
     public int getId() {
         return id;

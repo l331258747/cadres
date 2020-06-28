@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cadres.R;
+import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.beanDB.DBBmBean;
 
 import java.util.List;
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbLeftAdapter extends RecyclerView.Adapter<GbLeftAdapter.ViewHolder> {
 
     Context mContext;
-    List<DBBmBean> datas;
+    List<BmLeftBean> datas;
 
-    public GbLeftAdapter(Context mContext, List<DBBmBean> datas) {
+    public GbLeftAdapter(Context mContext, List<BmLeftBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -35,10 +36,10 @@ public class GbLeftAdapter extends RecyclerView.Adapter<GbLeftAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if (holder == null) return;
-        final DBBmBean data = datas.get(position);
+        final BmLeftBean data = datas.get(position);
         if (data == null) return;
 
-        holder.tv_title.setText(data.getDeptName());
+        holder.tv_title.setText(data.getName());
 
         if(mOnItemClickListener != null){
             holder.tv_title.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +56,7 @@ public class GbLeftAdapter extends RecyclerView.Adapter<GbLeftAdapter.ViewHolder
         return datas.size();
     }
 
-    public void setData(List<DBBmBean> datas) {
+    public void setData(List<BmLeftBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
