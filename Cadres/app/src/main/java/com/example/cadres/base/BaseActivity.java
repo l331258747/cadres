@@ -72,7 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         setContentView(getLayoutId());  /// 此处设置内容布局
 
-        StatusBarUtil.setStatusBar(this, Color.WHITE);
+        StatusBarUtil.setStatusBar(this, getResources().getColor(R.color.color_73060a));
 
         /////////////////
         getIntentData();

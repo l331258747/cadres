@@ -95,7 +95,7 @@
         app:layout_constraintStart_toStartOf="@+id/iv_swcw_bg"
         app:layout_constraintEnd_toEndOf="@+id/iv_swcw_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_swcw"
-        android:text="书记专题会议"
+        android:text="市委常委会议"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_22"
         app:layout_constraintBottom_toBottomOf="@+id/iv_swcw_bg"

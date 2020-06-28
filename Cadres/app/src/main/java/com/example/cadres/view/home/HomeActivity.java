@@ -34,6 +34,8 @@ import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
+import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.beanDB.DBBmBean;
@@ -47,7 +49,10 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBYjjcCadre;
+import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
+import com.example.cadres.beanDB.DbYjjcBean;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
@@ -74,6 +79,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     ProgressDialog progress;
 
     CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
+
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
     CommonDaoUtils<DBBmExplainBean> dBBmExplainDaoUtils;
 
@@ -86,6 +92,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     CommonDaoUtils<DBGbCadreRankListBean> dBGbRankDaoUtils;
     CommonDaoUtils<DBGbCadreResumeListBean> dBGbResumeDaoUtils;
     CommonDaoUtils<DBGbCadreTrainListBean> dBGbTrainDaoUtils;
+
+    CommonDaoUtils<DbYjjcBean> dBYjjcDaoUtils;
+    CommonDaoUtils<DBYjjcCadre> dBYjjcCadreDaoUtils;
+    CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
 
     @Override
     public int getLayoutId() {
@@ -150,6 +160,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBGbRankDaoUtils = _Store.getGbRankDaoUtils();
         dBGbResumeDaoUtils = _Store.getGbResumeDaoUtils();
         dBGbTrainDaoUtils = _Store.getGbTrainDaoUtils();
+
+        dBYjjcDaoUtils = _Store.getYjjcDaoUtils();
+        dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
+        dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
 
         fistOne();
         initProgress();
@@ -297,6 +311,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("干部简历 条数：" + dBGbResumeDaoUtils.queryAll().size());
         LogUtil.e("干部培训情况 条数：" + dBGbTrainDaoUtils.queryAll().size());
 
+        LogUtil.e("研究决策 条数：" + dBYjjcDaoUtils.queryAll().size());
+        LogUtil.e("研究决策 任免会议信息 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
+        LogUtil.e("研究决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
+
 
         dBZcfgDaoUtils.deleteAll();
         dBBmDaoUtils.deleteAll();
@@ -311,6 +329,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBGbRankDaoUtils.deleteAll();
         dBGbResumeDaoUtils.deleteAll();
         dBGbTrainDaoUtils.deleteAll();
+
+        dBYjjcDaoUtils.deleteAll();
+        dBYjjcCadreDaoUtils.deleteAll();
+        dBYjjcMeetingDaoUtils.deleteAll();
     }
 
     private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
@@ -598,7 +620,87 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
     public void setDBYjjc(List<YjjcBean.YjjcBean2> data){
+        List<DbYjjcBean> dbList = new ArrayList<>();
+        List<DBYjjcCadre> dbList_cadre = new ArrayList<>();
+        List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
 
+        for (int i = 0; i < data.size(); i++) {
+            YjjcBean.YjjcBean2 item = data.get(i);
+            dbList.add(new DbYjjcBean(
+                    null,
+                    item.getSchemeId(),
+                    item.getSchemeName(),
+                    item.getSchemeTime(),
+                    item.getSchemeDescribe()
+            ));
+
+            for (int i_cadre = 0; i_cadre < data.get(i).getAppointDismissCadreVoList().size(); i_cadre++) {
+                AppointDismissCadreVoListBean item_cadre = data.get(i).getAppointDismissCadreVoList().get(i_cadre);
+                dbList_cadre.add(new DBYjjcCadre(
+                        null,
+                        item_cadre.getDismissCadreId(),
+                        item_cadre.getSchemeId(),
+                        item_cadre.getSchemeName(),
+                        item_cadre.getBaseId(),
+                        item_cadre.getCadreName(),
+                        item_cadre.getGender(),
+                        item_cadre.getBirthday(),
+                        item_cadre.getAge(),
+                        item_cadre.getJoinPartyDate(),
+                        item_cadre.getCurrentPosition(),
+                        item_cadre.getCurrentPositionTime(),
+                        item_cadre.getNativePlace(),
+                        item_cadre.getFullTimeEducation(),
+                        item_cadre.getCurrentEducation(),
+                        item_cadre.getAppointDismissType(),
+                        item_cadre.getAppointPosition(),
+                        item_cadre.getAppointPositionName(),
+                        item_cadre.getAppointDeptId(),
+                        item_cadre.getAppointDeptName(),
+                        item_cadre.getPositionTime(),
+                        item_cadre.getPositionReason(),
+                        item_cadre.getPositionFileNumber(),
+                        item_cadre.getDismissPosition(),
+                        item_cadre.getDismissPositionName(),
+                        item_cadre.getDismissDeptId(),
+                        item_cadre.getDismissDeptName(),
+                        item_cadre.getLeaveTime(),
+                        item_cadre.getLeaveReason(),
+                        item_cadre.getLeaveFileNumber(),
+                        item_cadre.getCurrentRank(),
+                        item_cadre.getAppointDismissResult(),
+                        item_cadre.getMeetingDescribe(),
+                        item_cadre.getTalkNumber(),
+                        item_cadre.getRecommendNumber(),
+                        item_cadre.getRanking(),
+                        item_cadre.getVacantPosition(),
+                        item_cadre.getValidTicket(),
+                        item_cadre.getGainVotes(),
+                        item_cadre.getInspectFileName()
+                ));
+            }
+
+            for (int i_meeting = 0; i_meeting < data.get(i).getAppointDismissMeetingList().size(); i_meeting++) {
+                AppointDismissMeetingListBean item_meeting = data.get(i).getAppointDismissMeetingList().get(i_meeting);
+                dbList_meeting.add(new DBYjjcMeeting(
+                        null,
+                        item_meeting.getMeetingId(),
+                        item_meeting.getSchemeId(),
+                        item_meeting.getSchemeName(),
+                        item_meeting.getMeetingSummary(),
+                        item_meeting.getMeetingName(),
+                        item_meeting.getMeetingType(),
+                        item_meeting.getMeetingTime(),
+                        item_meeting.getMeetingUser(),
+                        item_meeting.getMeetingDescribe(),
+                        item_meeting.getMaterialFileName()
+                ));
+            }
+        }
+
+        dBYjjcDaoUtils.insertMulti(dbList);
+        dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
+        dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
     }
 
 }
