@@ -157,7 +157,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     private void initProgress() {
         progress = new ProgressDialog(context);
-        progress.setTitle("文件下载");
+        progress.setTitle("同步数据");
         progress.setMessage("数据正在更新中，请勿中途退出系统！");
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progress.setIndeterminate(false);//设置为fase等待进度更新，设置为true则左右循环滚动
@@ -210,7 +210,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
     private void getUserInfoData() {
-//        progress.show();
+        progress.show();
+
+        progress.setProgress(5);
         mPresenter.findUserInfo(SPUtils.getInstance().getInt(SPUtils.SP_USER_ID));
     }
 
@@ -220,12 +222,15 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         //数据库数据
         cleanDBData();
 
+        progress.setProgress(10);
+
         mPresenter.getZcfgList();
     }
 
     @Override
     public void findUserInfoFailed(String msg) {
         ToastUtil.showShortToast(context, "同步数据失败 " + msg);
+        progress.dismiss();
     }
 
 
@@ -237,7 +242,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getZcfgListFailed(String msg) {
-
+        progress.setProgress(30);
+        mPresenter.getBmList();
     }
 
     @Override
@@ -248,7 +254,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getBmListFailed(String msg) {
-
+        progress.setProgress(50);
+        mPresenter.getGbList();
     }
 
     @Override
@@ -259,17 +266,20 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getGbListFailed(String msg) {
-
+        progress.setProgress(70);
+        mPresenter.getYjjcList();
     }
 
     @Override
     public void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data) {
         setDBYjjc(data);
+        progress.dismiss();
     }
 
     @Override
     public void getYjjcListFailed(String msg) {
-
+        progress.setProgress(90);
+        progress.dismiss();
     }
 
     //第一次
@@ -327,6 +337,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
         List<DBZcfgBean> dbList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
+            progress.setProgress(10 + (20/data.size() * i));
             ZcfgBean.ZcfgBean2 item = data.get(i);
             dbList.add(new DBZcfgBean(
                     null,
@@ -355,6 +366,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBBmExplainBean> dbList_explain = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
+            progress.setProgress(30 + (20/data.size() * i));
             BmBean.BmBean2 item = data.get(i);
             dbList.add(new DBBmBean(
                     null,
@@ -413,6 +425,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBGbCadreTrainListBean> dbList_train = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
+            progress.setProgress(50 + (20/data.size() * i));
             GbBean.GbBean2 item = data.get(i);
             dbList.add(new DBGbBean(
                     null,
@@ -614,6 +627,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
+            progress.setProgress(70 + (20/data.size() * i));
             YjjcBean.YjjcBean2 item = data.get(i);
             dbList.add(new DbYjjcBean(
                     null,
