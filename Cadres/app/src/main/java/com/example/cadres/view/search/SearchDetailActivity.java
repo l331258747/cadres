@@ -95,38 +95,83 @@ public class SearchDetailActivity extends BaseActivity {
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
+    /**
+     public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {
+     List<HistoryData> dbList = new ArrayList<>();
+
+     HistoryDataDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getHistoryDataDao();
+     QueryBuilder<HistoryData> queryBuilder = dbGbBeanDao.queryBuilder();
+     queryBuilder.where(HistoryDataDao.Properties.History.in(historys));
+     Log.e("--------------","数据库条数：" + queryBuilder.count());
+
+     queryBuilder.join(HistoryDataDao.Properties.Date,HelloData.class,HelloDataDao.Properties.Date)
+     .where(HelloDataDao.Properties.Hello.in(hellos));
+     queryBuilder.distinct();
+     Log.e("--------------","数据库条数：" + queryBuilder.list().size());
+
+     queryBuilder.whereOr(HistoryDataDao.Properties.History.in(historys),HistoryDataDao.Properties.Date.in(historys));
+     Log.e("--------------","数据库条数：" + queryBuilder.list().size());
+
+     return dbList;
+     }
+     */
+
     public void getDbList(){
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        buildWhereOr(queryBuilder,searchBean.getGblxLists(),DBGbBeanDao.Properties.CadreType);
-        LogUtil.e("干部类型 数据条数："+queryBuilder.count());
 
-//        Join join_bm = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId);
-//        joinWhereOr(join_bm,searchBean.getBmlxLists(),DBGbCadreDeptListBeanDao.Properties.DeptId);
-//        LogUtil.e("部门类型 数据条数："+queryBuilder.count());
+        if(searchBean.getGblxLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.CadreType.in(searchBean.getGblxLists()));
+            LogUtil.e("干部类型 数据条数："+queryBuilder.count());
+        }
+        if(searchBean.getBmlxLists().size() > 0){
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreDeptListBean.class,DBGbCadreDeptListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.in(searchBean.getBmlxLists()));
+            queryBuilder.distinct();
+            LogUtil.e("部门类型 数据条数："+queryBuilder.count());
+        }
+        if(searchBean.getCsnLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchBean.getCsnLists().get(0),searchBean.getCsnLists().get(1)));
+            LogUtil.e("出生年 数据条数："+queryBuilder.count());
+        }
+        if(searchBean.getZwjbLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentRank.in(searchBean.getZwjbLists()));
+            LogUtil.e("职务级别 数据条数："+queryBuilder.count());
+        }
 
-//        queryBuilder.where(DBGbBeanDao.Properties.Birthday.between())//TODO 年范围sql
+        if(searchBean.getXlLists().size() > 0){
+            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeEducation.in(searchBean.getXlLists())
+                    ,DBGbBeanDao.Properties.CurrentEducation.in(searchBean.getXlLists()));
+            LogUtil.e("学历 数据条数："+queryBuilder.count());
+        }
 
-        buildWhereOr(queryBuilder,searchBean.getZwjbLists(),DBGbBeanDao.Properties.CurrentRank);
-        LogUtil.e("职务级别 数据条数："+queryBuilder.count());
+        if(searchBean.getXxlxLists().size() > 0){
+            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.in(searchBean.getXxlxLists())
+                    ,DBGbBeanDao.Properties.CurrentSchoolType.in(searchBean.getXxlxLists()));
+            LogUtil.e("学校类型 数据条数："+queryBuilder.count());
+        }
 
-        buildWhereOr(queryBuilder,searchBean.getXlLists(),DBGbBeanDao.Properties.FullTimeSchool);//TODO 在职教育
-        LogUtil.e("学历 数据条数："+queryBuilder.count());
+        if(searchBean.getGzjlLists().size() > 0){
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreResumeListBean.class,DBGbCadreResumeListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreResumeListBeanDao.Properties.WorkType.in(searchBean.getGzjlLists()));
+            queryBuilder.distinct();
+            LogUtil.e("工作经历 数据条数："+queryBuilder.count());
+        }
 
-        buildWhereOr(queryBuilder,searchBean.getXxlxLists(),DBGbBeanDao.Properties.FullTimeSchoolType);//TODO 在职教育
-        LogUtil.e("学校类型 数据条数："+queryBuilder.count());
+        if(searchBean.getXrzjnxLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(searchBean.getXrzjnxLists2().get(0),searchBean.getXrzjnxLists2().get(1)));
+            LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
+        }
 
-//        Join join_gzjl = queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreResumeListBean.class, DBGbCadreResumeListBeanDao.Properties.BaseId);
-//        joinWhereOr(join_gzjl,searchBean.getGzjlLists(), DBGbCadreResumeListBeanDao.Properties.WorkType);
-//        LogUtil.e("工作经历 数据条数："+queryBuilder.count());
+        if(searchBean.getXbLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.Gender.in(searchBean.getXbLists()));
+            LogUtil.e("性别 数据条数："+queryBuilder.count());
+        }
 
-        //        queryBuilder.where(DBGbBeanDao.Properties.Birthday.between())//TODO 任职年限 范围sql
-
-        buildWhereOr(queryBuilder,searchBean.getXbLists(),DBGbBeanDao.Properties.Gender);
-        LogUtil.e("性别 数据条数："+queryBuilder.count());
-
-        buildWhereOr(queryBuilder,searchBean.getDpLists(),DBGbBeanDao.Properties.PoliticalOutlook);
-        LogUtil.e("党派 数据条数："+queryBuilder.count());
+        if(searchBean.getDpLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
+            LogUtil.e("党派 数据条数："+queryBuilder.count());
+        }
 
         dbList = queryBuilder.list();
 
@@ -209,62 +254,7 @@ public class SearchDetailActivity extends BaseActivity {
     }
 
 
-//    public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {
-//        List<HistoryData> dbList = new ArrayList<>();
-//        if(historys.size() == 0) return dbList;
-//        HistoryDataDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getHistoryDataDao();
-//        QueryBuilder<HistoryData> queryBuilder = dbGbBeanDao.queryBuilder();
-//
-//        buildWhereOr(queryBuilder,historys,HistoryDataDao.Properties.History);
-//
-//        Join join = queryBuilder.join(HistoryDataDao.Properties.Date, HelloData.class, HelloDataDao.Properties.Date);
-//        joinWhereOr(join,hellos,HelloDataDao.Properties.Hello);
-//
-//        dbList = queryBuilder.list();
-//        Log.e("Lgq","数据库条数2：" + queryBuilder.count());
-//        return dbList;
-//    }
 
-    public void joinWhereOr(Join join, List<String> lists, Property property){
-        if(lists.size() == 0){
-            return;
-        }else if(lists.size() == 1){
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            join.where(whereCondition0);
-        }else if(lists.size() == 2){
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            WhereCondition whereCondition1 = property.eq(lists.get(1));
-            join.whereOr(whereCondition0,whereCondition1);
-        }else{
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            WhereCondition whereCondition1 = property.eq(lists.get(1));
-            WhereCondition[] whereConditions = new WhereCondition[lists.size() - 2];
-            for (int i=2;i<lists.size();i++){
-                whereConditions[i-2] = property.eq(lists.get(i));
-            }
-            join.whereOr(whereCondition0,whereCondition1,whereConditions);
-        }
-    }
 
-    public void buildWhereOr(QueryBuilder queryBuilder, List<String> lists, Property property){
-        if(lists.size() == 0){
-            return;
-        }else if(lists.size() == 1){
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            queryBuilder.where(whereCondition0);
-        }else if(lists.size() == 2){
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            WhereCondition whereCondition1 = property.eq(lists.get(1));
-            queryBuilder.whereOr(whereCondition0,whereCondition1);
-        }else{
-            WhereCondition whereCondition0 = property.eq(lists.get(0));
-            WhereCondition whereCondition1 = property.eq(lists.get(1));
-            WhereCondition[] whereConditions = new WhereCondition[lists.size() - 2];
-            for (int i=2;i<lists.size();i++){
-                whereConditions[i-2] = property.eq(lists.get(i));
-            }
-            queryBuilder.whereOr(whereCondition0,whereCondition1,whereConditions);
-        }
-    }
 
 }

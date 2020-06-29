@@ -2,6 +2,7 @@ package com.example.cadres.bean.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class SearchBean implements Serializable {
@@ -76,7 +77,7 @@ public class SearchBean implements Serializable {
     public List<String> getCsnLists() {
         if(csnLists.size() == 0)
             return new ArrayList<>();
-        if(csnLists.get(0).equals("1950") && csnLists.get(0).equals("2000"))
+        if(csnLists.get(0).equals("1950") && csnLists.get(1).equals("2000"))
             return new ArrayList<>();
         return csnLists;
     }
@@ -132,9 +133,28 @@ public class SearchBean implements Serializable {
     public List<String> getXrzjnxLists() {
         if(xrzjnxLists.size() == 0)
             return new ArrayList<>();
-        if(xrzjnxLists.get(0).equals("0") && xrzjnxLists.get(0).equals("20"))
+        if(xrzjnxLists.get(0).equals("0") && xrzjnxLists.get(1).equals("20"))
             return new ArrayList<>();
         return xrzjnxLists;
+    }
+
+    public List<String> getXrzjnxLists2() {
+        if(xrzjnxLists.size() == 0)
+            return new ArrayList<>();
+        if(xrzjnxLists.get(0).equals("0") && xrzjnxLists.get(1).equals("20"))
+            return new ArrayList<>();
+        int min = getCurrentYear() - Integer.parseInt(xrzjnxLists.get(1));
+        int max = getCurrentYear() - Integer.parseInt(xrzjnxLists.get(0));
+        xrzjnxLists = new ArrayList<>();
+        xrzjnxLists.add(min + "");
+        xrzjnxLists.add(max + "");
+        return xrzjnxLists;
+    }
+
+    public int getCurrentYear(){
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        return year;
     }
 
     public void setXrzjnxLists(List<String> xrzjnxLists) {
