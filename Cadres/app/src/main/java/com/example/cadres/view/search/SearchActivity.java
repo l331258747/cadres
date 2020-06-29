@@ -21,6 +21,7 @@ import com.example.cadres.widget.flowlayout.TagFlowLayout;
 import com.jaygoo.widget.RangeSeekBar;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends BaseActivity {
@@ -95,10 +96,14 @@ public class SearchActivity extends BaseActivity {
                 for (int index : fl_dp.getSelectedList()) {
                     searchBean.getDpLists().add(mVals_dp[index]);
                 }
-                searchBean.getCsnLists().add(csnMin + "");
-                searchBean.getCsnLists().add(csnMax + "");
-                searchBean.getXrzjnxLists().add(xrzjnxMin + "");
-                searchBean.getXrzjnxLists().add(xrzjnxMax + "");
+                List<String> listNl = new ArrayList<>();
+                listNl.add(csnMin + "");
+                listNl.add(csnMax + "");
+                searchBean.getCsnLists().addAll(listNl);
+                List<String> listRz = new ArrayList<>();
+                listRz.add(xrzjnxMin + "");
+                listRz.add(xrzjnxMax + "");
+                searchBean.getXrzjnxLists().addAll(listRz);
 
                 Intent intent = new Intent(context,SearchDetailActivity.class);
                 intent.putExtra("data",searchBean);

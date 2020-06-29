@@ -76,9 +76,9 @@ public class SearchBean implements Serializable {
 
     public List<String> getCsnLists() {
         if(csnLists.size() == 0)
-            return new ArrayList<>();
+            return csnLists = new ArrayList<>();
         if(csnLists.get(0).equals("1950") && csnLists.get(1).equals("2000"))
-            return new ArrayList<>();
+            return csnLists = new ArrayList<>();
         return csnLists;
     }
 
@@ -132,9 +132,9 @@ public class SearchBean implements Serializable {
 
     public List<String> getXrzjnxLists() {
         if(xrzjnxLists.size() == 0)
-            return new ArrayList<>();
+            return xrzjnxLists = new ArrayList<>();
         if(xrzjnxLists.get(0).equals("0") && xrzjnxLists.get(1).equals("20"))
-            return new ArrayList<>();
+            return xrzjnxLists = new ArrayList<>();
         return xrzjnxLists;
     }
 
