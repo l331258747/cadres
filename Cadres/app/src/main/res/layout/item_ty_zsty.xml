@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/id_ty_zs_layout"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    tools:background="@color/black"
+    android:visibility="visible"
+    tools:visibility="visible"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <View
+            android:id="@+id/view_top_zs"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_200"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintBottom_toTopOf="@+id/view_bottom_zs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_1_zs"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/view_top_zs"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@mipmap/ic_zs_table"
+            app:layout_constraintEnd_toStartOf="@+id/view_2_zs"
+            app:layout_constraintBottom_toBottomOf="@+id/view_top_zs"/>
+
+        <ImageView
+            android:id="@+id/iv_1_zs"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            app:layout_constraintStart_toStartOf="@+id/view_1_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_1_zs"
+            app:layout_constraintTop_toTopOf="@+id/view_1_zs"
+            android:src="@mipmap/ic_zs_bx"/>
+
+        <TextView
+            android:id="@+id/tv_1_zs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/view_1_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_1_zs"
+            app:layout_constraintTop_toBottomOf="@+id/iv_1_zs"
+            android:textColor="@color/white"
+            android:text="调整到空缺职位任职(人)"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_eac71c"
+            app:layout_constraintStart_toStartOf="@+id/view_1_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_1_zs"
+            app:layout_constraintTop_toBottomOf="@+id/tv_1_zs"
+            android:textSize="@dimen/sp_28"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="5"/>
+
+        <View
+            android:id="@+id/view_2_zs"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_30"
+            app:layout_constraintStart_toEndOf="@+id/view_1_zs"
+            app:layout_constraintEnd_toStartOf="@+id/view_3_zs"
+            android:background="@mipmap/ic_zs_table"
+            app:layout_constraintTop_toTopOf="@+id/view_top_zs"
+            app:layout_constraintBottom_toBottomOf="@+id/view_top_zs"/>
+
+        <ImageView
+            android:id="@+id/iv_2_zs"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            app:layout_constraintStart_toStartOf="@+id/view_2_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_2_zs"
+            app:layout_constraintTop_toTopOf="@+id/view_2_zs"
+            android:src="@mipmap/ic_zs_bx"/>
+
+        <TextView
+            android:id="@+id/tv_2_zs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/view_2_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_2_zs"
+            app:layout_constraintTop_toBottomOf="@+id/iv_2_zs"
+            android:textColor="@color/white"
+            android:text="职务与职级并行(人)"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_eac71c"
+            app:layout_constraintStart_toStartOf="@+id/view_2_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_2_zs"
+            app:layout_constraintTop_toBottomOf="@+id/tv_2_zs"
+            android:textSize="@dimen/sp_28"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="4"/>
+
+        <View
+            android:id="@+id/view_3_zs"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_2_zs"
+            android:layout_height="0dp"
+            android:background="@mipmap/ic_zs_table"
+            android:layout_marginStart="@dimen/dp_30"
+            app:layout_constraintEnd_toStartOf="@+id/view_4_zs"
+            app:layout_constraintTop_toTopOf="@+id/view_top_zs"
+            app:layout_constraintBottom_toBottomOf="@+id/view_top_zs"/>
+
+        <ImageView
+            android:id="@+id/iv_3_zs"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            app:layout_constraintStart_toStartOf="@+id/view_3_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_3_zs"
+            app:layout_constraintTop_toTopOf="@+id/view_3_zs"
+            android:src="@mipmap/ic_zs_cp"/>
+
+        <TextView
+            android:id="@+id/tv_3_zs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/view_3_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_3_zs"
+            app:layout_constraintTop_toBottomOf="@+id/iv_3_zs"
+            android:textColor="@color/white"
+            android:text="超配数"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_eac71c"
+            app:layout_constraintStart_toStartOf="@+id/view_3_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_3_zs"
+            app:layout_constraintTop_toBottomOf="@+id/tv_3_zs"
+            android:textSize="@dimen/sp_28"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="1"/>
+
+        <View
+            android:id="@+id/view_4_zs"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_3_zs"
+            android:background="@mipmap/ic_zs_table"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dp_30"
+            app:layout_constraintTop_toTopOf="@+id/view_top_zs"
+            app:layout_constraintBottom_toBottomOf="@+id/view_top_zs"/>
+
+        <ImageView
+            android:id="@+id/iv_4_zs"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            app:layout_constraintStart_toStartOf="@+id/view_4_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_4_zs"
+            app:layout_constraintTop_toTopOf="@+id/view_4_zs"
+            android:src="@mipmap/ic_zs_kq"/>
+
+        <TextView
+            android:id="@+id/tv_4_zs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/view_4_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_4_zs"
+            app:layout_constraintTop_toBottomOf="@+id/iv_4_zs"
+            android:textColor="@color/white"
+            android:text="可用空缺职位数(人)"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_eac71c"
+            app:layout_constraintStart_toStartOf="@+id/view_4_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_4_zs"
+            app:layout_constraintTop_toBottomOf="@+id/tv_4_zs"
+            android:textSize="@dimen/sp_28"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="7"/>
+
+        <View
+            android:id="@+id/view_bottom_zs"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_top_zs" />
+
+        <ImageView
+            android:id="@+id/iv_bottom_zs"
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_bottom_zs"
+            app:layout_constraintBottom_toBottomOf="@+id/view_bottom_zs"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_zs_tx"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_bottom_zs"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="到龄退休(人)"
+            app:layout_constraintTop_toTopOf="@+id/iv_zs_tx"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_zs_tx"
+            app:layout_constraintStart_toStartOf="@+id/iv_zs_tx"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_20"/>
+
+
+        <TextView
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="@dimen/dp_40"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bottom_zs"
+            android:background="@color/color_15415b"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="退休人数：22"
+            android:gravity="center"
+            android:textColor="@color/color_23cffd"
+            app:layout_constraintTop_toTopOf="@+id/iv_bottom_zs" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_zs_line"
+            app:layout_constraintStart_toStartOf="@+id/iv_bottom_zs"
+            app:layout_constraintEnd_toEndOf="@+id/iv_bottom_zs"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:paddingBottom="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_30"
+            app:layout_constraintTop_toBottomOf="@+id/iv_zs_tx"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

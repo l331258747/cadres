@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/id_ty_jg_layout"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:visibility="gone"
+    tools:visibility="visible"
+    tools:background="@color/black"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <View
+           android:id="@+id/view_1_jg"
+           android:layout_width="0dp"
+           app:layout_constraintStart_toStartOf="parent"
+           android:layout_marginTop="@dimen/dp_10"
+           android:background="@mipmap/ic_zs_line_bg"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintEnd_toStartOf="@+id/view_2_jg"
+           android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_xb"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_1_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_1_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性別"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_xb"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_xb"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_xb"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_nan"
+            android:layout_width="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintStart_toStartOf="@+id/view_1_jg"
+            app:layout_constraintEnd_toStartOf="@+id/iv_jg_nv"
+            android:src="@mipmap/iv_jg_nan"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_xb"
+            android:layout_height="@dimen/dp_100"/>
+
+        <TextView
+            android:id="@+id/tv_jg_nan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="85%"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_nan"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_nan"
+            app:layout_constraintEnd_toEndOf="@+id/iv_jg_nan"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/color_eac71c"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_jg_nan"
+            app:layout_constraintStart_toStartOf="@+id/tv_jg_nan"
+            app:layout_constraintEnd_toEndOf="@+id/tv_jg_nan"
+            android:textColor="@color/color_23cffd"
+            android:text="男"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_nv"
+            android:layout_width="@dimen/dp_100"
+            android:src="@mipmap/ic_jg_nv"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintStart_toEndOf="@+id/iv_jg_nan"
+            app:layout_constraintEnd_toEndOf="@+id/view_1_jg"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_xb"
+            android:layout_height="@dimen/dp_100"/>
+
+        <TextView
+            android:id="@+id/tv_gj_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16%"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_nv"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_nv"
+            app:layout_constraintEnd_toEndOf="@+id/iv_jg_nv"
+            android:textSize="@dimen/sp_28"
+            android:textColor="@color/color_eac71c"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gj_nv"
+            app:layout_constraintStart_toStartOf="@+id/tv_gj_nv"
+            app:layout_constraintEnd_toEndOf="@+id/tv_gj_nv"
+            android:textColor="@color/color_23cffd"
+            android:text="女"/>
+
+        <View
+            android:id="@+id/view_2_jg"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_1_jg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_jg_zzmm"
+            app:layout_constraintStart_toStartOf="@+id/view_2_jg"
+            app:layout_constraintEnd_toEndOf="@+id/view_2_jg"
+            app:layout_constraintTop_toTopOf="@+id/view_2_jg"
+            app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_zzmm"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_2_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_2_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="政治面貌"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_zzmm"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_zzmm"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_zzmm"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+        <View
+            android:id="@+id/view_3_jg"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_1_jg"
+            app:layout_constraintEnd_toStartOf="@+id/view_4_jg"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_jg_mz"
+            app:layout_constraintStart_toStartOf="@+id/view_3_jg"
+            app:layout_constraintEnd_toEndOf="@+id/view_3_jg"
+            app:layout_constraintTop_toTopOf="@+id/view_3_jg"
+            app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_mz"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_3_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_3_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="民族"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_mz"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_mz"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_mz"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+        <View
+            android:id="@+id/view_4_jg"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_3_jg"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_2_jg"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_jg_nljg"
+            app:layout_constraintStart_toStartOf="@+id/view_4_jg"
+            app:layout_constraintEnd_toEndOf="@+id/view_4_jg"
+            app:layout_constraintTop_toTopOf="@+id/view_4_jg"
+            app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_nljg"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_4_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_4_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年龄架构"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_nljg"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_nljg"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_nljg"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

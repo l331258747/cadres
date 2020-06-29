@@ -466,7 +466,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 sysout(tree.getLists(), str + "   ");
             }
         }
-
     }
 
 }

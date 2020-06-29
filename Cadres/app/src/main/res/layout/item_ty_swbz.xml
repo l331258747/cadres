@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/id_ty_swbz_layout"
+    android:fillViewport="true"
+    android:visibility="gone"
+    tools:visibility="visible"
+    android:overScrollMode="never"
+    tools:background="@color/black"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <View
+           android:id="@+id/view_1_swbz"
+           android:layout_width="0dp"
+           app:layout_constraintStart_toStartOf="parent"
+           android:layout_marginTop="@dimen/dp_10"
+           android:background="@mipmap/ic_zs_line_bg"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintEnd_toStartOf="@+id/view_2_swbz"
+           android:layout_height="@dimen/dp_260"/>
+
+     <ImageView
+         android:layout_width="0dp"
+         android:src="@mipmap/ic_swbz_swbz"
+         app:layout_constraintStart_toStartOf="@+id/view_1_swbz"
+         app:layout_constraintEnd_toEndOf="@+id/view_1_swbz"
+         app:layout_constraintTop_toTopOf="@+id/view_1_swbz"
+         app:layout_constraintBottom_toBottomOf="@+id/view_1_swbz"
+         android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_swbz_xb"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_1_swbz"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_1_swbz"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市委班子"
+            app:layout_constraintTop_toTopOf="@+id/iv_swbz_xb"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_swbz_xb"
+            app:layout_constraintStart_toStartOf="@+id/iv_swbz_xb"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+        <View
+            android:id="@+id/view_2_swbz"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_1_swbz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_swbz_szfbz"
+            app:layout_constraintStart_toStartOf="@+id/view_2_swbz"
+            app:layout_constraintEnd_toEndOf="@+id/view_2_swbz"
+            app:layout_constraintTop_toTopOf="@+id/view_2_swbz"
+            app:layout_constraintBottom_toBottomOf="@+id/view_2_swbz"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_swbz_zzmm"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_2_swbz"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_2_swbz"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市政府班子"
+            app:layout_constraintTop_toTopOf="@+id/iv_swbz_zzmm"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_swbz_zzmm"
+            app:layout_constraintStart_toStartOf="@+id/iv_swbz_zzmm"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+        <View
+            android:id="@+id/view_3_swbz"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_1_swbz"
+            app:layout_constraintEnd_toStartOf="@+id/view_4_swbz"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_swbz_srdcwhbz"
+            app:layout_constraintStart_toStartOf="@+id/view_3_swbz"
+            app:layout_constraintEnd_toEndOf="@+id/view_3_swbz"
+            app:layout_constraintTop_toTopOf="@+id/view_3_swbz"
+            app:layout_constraintBottom_toBottomOf="@+id/view_3_swbz"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_swbz_mz"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_3_swbz"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_3_swbz"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市人大常委班子"
+            app:layout_constraintTop_toTopOf="@+id/iv_swbz_mz"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_swbz_mz"
+            app:layout_constraintStart_toStartOf="@+id/iv_swbz_mz"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_20"/>
+
+        <View
+            android:id="@+id/view_4_swbz"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_3_swbz"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_2_swbz"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_height="@dimen/dp_260"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_swbz_szxbz"
+            app:layout_constraintStart_toStartOf="@+id/view_4_swbz"
+            app:layout_constraintEnd_toEndOf="@+id/view_4_swbz"
+            app:layout_constraintTop_toTopOf="@+id/view_4_swbz"
+            app:layout_constraintBottom_toBottomOf="@+id/view_4_swbz"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/iv_swbz_nlswbz"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_4_swbz"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_4_swbz"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市政协班子"
+            app:layout_constraintTop_toTopOf="@+id/iv_swbz_nlswbz"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_swbz_nlswbz"
+            app:layout_constraintStart_toStartOf="@+id/iv_swbz_nlswbz"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

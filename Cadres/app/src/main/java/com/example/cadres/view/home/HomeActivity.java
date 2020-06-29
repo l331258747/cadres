@@ -63,6 +63,7 @@ import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbActivity;
+import com.example.cadres.view.dsjty.DsjtyActivity;
 import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
@@ -193,10 +194,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, YjjcActivity.class));
                 break;
             case R.id.view_zcfg:
-                startActivity(new Intent(context, ZcfgActivity.class));
+
                 break;
             case R.id.view_dsj:
-                ToastUtil.showShortToast(context, "大数据");
+                startActivity(new Intent(context, DsjtyActivity.class));
                 break;
             case R.id.ll_right1:
                 DialogUtil.getInstance().getDefaultDialog(context, "同步数据需要时间较长，您是否确认同步数据？", new DialogUtil.DialogCallBack() {
