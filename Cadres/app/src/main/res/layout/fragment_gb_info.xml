@@ -1142,7 +1142,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@color/color_ffd7b4"
-            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"/>
+            app:layout_constraintBottom_toTopOf="@+id/view_jtzz"/>
 
         <View
             android:layout_width="@dimen/dp_1"
@@ -1151,7 +1151,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_sex"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@color/color_ffd7b4"
-            app:layout_constraintBottom_toBottomOf="@+id/view_jtzz"/>
+            app:layout_constraintBottom_toTopOf="@+id/view_jtzz"/>
 
         <View
             android:layout_width="0dp"

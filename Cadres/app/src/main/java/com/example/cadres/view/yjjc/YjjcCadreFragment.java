@@ -1,11 +1,13 @@
 package com.example.cadres.view.yjjc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.YjjcCadreAdapter;
 import com.example.cadres.base.BaseFragment;
 import com.example.cadres.beanDB.DBYjjcCadre;
+import com.example.cadres.view.Gb.GbDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,5 +72,14 @@ public class YjjcCadreFragment extends BaseFragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new YjjcCadreAdapter(activity, new ArrayList<DBYjjcCadre>());
         recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new YjjcCadreAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                Intent intent = new Intent(context, GbDetailActivity.class);
+                intent.putExtra("ID", datas.get(pos).getBaseId());
+                startActivity(intent);
+            }
+        });
     }
 }

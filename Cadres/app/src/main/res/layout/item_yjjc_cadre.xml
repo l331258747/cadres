@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/cl_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -307,7 +308,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_yxp"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        tools:text="的票"/>
+        tools:text="得票"/>
 
     <View
         android:layout_width="@dimen/dp_1"

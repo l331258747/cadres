@@ -46,7 +46,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         holder.tv_xrzw.setText(data.getCurrentPosition());
         holder.tv_xrzsj.setText(data.getCurrentPositionTime());
 
-        holder.tv_zwjb.setText(data.getFunctionaryRankName());
+        holder.tv_zwjb.setText(data.getCurrentRank());
         holder.tv_rzjsj.setText(data.getFunctionaryRankTime());
 
         holder.tv_sex.setText(data.getGender());

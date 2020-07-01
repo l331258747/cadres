@@ -12,6 +12,7 @@ import com.example.cadres.beanDB.DBYjjcCadre;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.ViewHolder> {
@@ -33,7 +34,7 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if (holder == null) return;
         final DBYjjcCadre data = datas.get(position);
         if (data == null) return;
@@ -57,6 +58,14 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
         holder.tv_yxp.setText(data.getValidTicket() + "");
         holder.tv_dp.setText(data.getGainVotes() + "");
 
+        if(mOnItemClickListener != null){
+            holder.cl_parent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onClick(position);
+                }
+            });
+        }
     }
 
     @Override
@@ -74,10 +83,12 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
         TextView tv_tip2,tv_name,tv_csny,tv_rdsj,tv_xrzw,tv_nrzw;
         TextView tv_nmzw,tv_xrzsj,tv_jg,tv_whcd_qrz,tv_whcd_zz,tv_thrs;
         TextView tv_tjrs,tv_pm,tv_yxp,tv_dp;
+        ConstraintLayout cl_parent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            cl_parent = itemView.findViewById(R.id.cl_parent);
             tv_tip2 = itemView.findViewById(R.id.tv_tip2);
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_csny = itemView.findViewById(R.id.tv_csny);
@@ -95,5 +106,15 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
             tv_yxp = itemView.findViewById(R.id.tv_yxp);
             tv_dp = itemView.findViewById(R.id.tv_dp);
         }
+    }
+
+    OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener {
+        void onClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 }

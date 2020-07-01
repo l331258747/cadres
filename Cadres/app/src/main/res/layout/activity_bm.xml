@@ -166,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_spqk"
         app:layout_constraintTop_toTopOf="@+id/view_spqk"
         app:layout_constraintBottom_toTopOf="@+id/tv_spqk_zz"
-        android:text="核定职数"/>
+        android:text="实际配备"/>
 
     <TextView
         android:id="@+id/tv_spqk_zz"

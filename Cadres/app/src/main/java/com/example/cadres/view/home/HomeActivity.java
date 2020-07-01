@@ -194,7 +194,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, YjjcActivity.class));
                 break;
             case R.id.view_zcfg:
-
+                startActivity(new Intent(context, ZcfgActivity.class));
                 break;
             case R.id.view_dsj:
                 startActivity(new Intent(context, DsjtyActivity.class));
