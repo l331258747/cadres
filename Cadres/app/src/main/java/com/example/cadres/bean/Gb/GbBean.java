@@ -2,6 +2,7 @@ package com.example.cadres.bean.Gb;
 
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GbBean {
@@ -347,34 +348,42 @@ public class GbBean {
         }
 
         public List<GbCadreResumeListBean> getCadreResumeList() {
+            if(cadreResumeList == null) return new ArrayList<>();
             return cadreResumeList;
         }
 
         public List<GbCadreNowPositionListBean> getCadreNowPositionList() {
+            if(cadreNowPositionList == null) return new ArrayList<>();
             return cadreNowPositionList;
         }
 
         public List<GbCadreHistoryPositionListBean> getCadreHistoryPositionList() {
+            if(cadreHistoryPositionList == null) return new ArrayList<>();
             return cadreHistoryPositionList;
         }
 
         public List<GbCadreRankListBean> getCadreRankList() {
+            if(cadreRankList == null) return new ArrayList<>();
             return cadreRankList;
         }
 
         public List<GbCadreFamilyMemberList> getCadreFamilyMemberList() {
+            if(cadreFamilyMemberList == null) return new ArrayList<>();
             return cadreFamilyMemberList;
         }
 
         public List<GbCadreAwardPunishList> getCadreAwardPunishList() {
+            if(cadreAwardPunishList == null) return new ArrayList<>();
             return cadreAwardPunishList;
         }
 
         public List<GbCadreTrainListBean> getCadreTrainList() {
+            if(cadreTrainList == null) return new ArrayList<>();
             return cadreTrainList;
         }
 
         public List<GbCadreDeptListBean> getCadreDeptList() {
+            if(cadreDeptList == null) return new ArrayList<>();
             return cadreDeptList;
         }
     }
