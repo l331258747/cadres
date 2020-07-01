@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_home_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +19,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_40"
-        android:text="干部大数据管理系统"
+        android:text="宁乡市干部大数据系统"
         android:textSize="@dimen/sp_28"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    
+    <ImageView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        android:src="@mipmap/ic_home_logo"
+        android:layout_marginEnd="@dimen/dp_20"
+        app:layout_constraintEnd_toStartOf="@+id/tv_title"/>
 
     <EditText
         android:id="@+id/et_search"
@@ -251,5 +260,14 @@
             android:layout_marginStart="@dimen/dp_15"/>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:text="技术支持：宁乡市数据资源中心"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
