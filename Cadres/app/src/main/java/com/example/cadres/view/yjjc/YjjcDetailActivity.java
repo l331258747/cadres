@@ -115,7 +115,8 @@ public class YjjcDetailActivity extends BaseActivity {
         yjjcMettingFragment.setData(dbYjjcMeeting);
         yjjcCadreFragment.setData(dbYjjcCadres);
 
-        tv_dialog.setText(dbYjjcMeeting.getSchemeName());
+        if(dbYjjcMeeting != null)
+            tv_dialog.setText(dbYjjcMeeting.getSchemeName());
     }
 
     public void getDbList() {
@@ -142,7 +143,8 @@ public class YjjcDetailActivity extends BaseActivity {
         if(dbList.size() > 0)
             dbYjjcMeeting =  dbList.get(0);
 
-        getDbCadreingList(dbYjjcMeeting.getSchemeId());
+        if(dbYjjcMeeting !=null)
+            getDbCadreingList(dbYjjcMeeting.getSchemeId());
 
     }
 
