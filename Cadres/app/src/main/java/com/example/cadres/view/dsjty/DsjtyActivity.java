@@ -30,7 +30,6 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     ImageView iv_title_left, iv_title_center, iv_title_right;
     TextView tv_title_left, tv_title_center, tv_title_right;
     View view_back, view_home;
-    TextView tv_dialog;
 
     @Override
     public int getLayoutId() {
@@ -55,9 +54,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         tv_title_right = findViewById(R.id.tv_title_right);
         view_back = findViewById(R.id.view_back);
         view_home = findViewById(R.id.view_home);
-        tv_dialog = findViewById(R.id.tv_dialog);
 
-        tv_dialog.setOnClickListener(this);
         view_home.setOnClickListener(this);
         view_back.setOnClickListener(this);
         iv_title_left.setOnClickListener(this);
@@ -68,11 +65,6 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void initData() {
         setType(1);
-
-        DaoUtilsStore _Store = DaoUtilsStore.getInstance();
-        dBBmDaoUtils = _Store.getBmDaoUtils();
-
-        getDbBmList();
     }
 
     public void setType(int type) {
@@ -106,28 +98,9 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         tv_title_right.setTextColor(ContextCompat.getColor(context,R.color.color_23cffd));
     }
 
-    ListDialog2 listDialog;
-    List<ListDialogBean> dialogDatas = new ArrayList<>();
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_dialog:
-                if(listDialog == null){
-                    dialogDatas = new ArrayList<>();
-                    for (int i=0;i<bmLeftBeans.size();i++){
-                        ListDialogBean item = new ListDialogBean(bmLeftBeans.get(i).getId(),bmLeftBeans.get(i).getName());
-                        dialogDatas.add(item);
-                    }
-                    listDialog = new ListDialog2(context, dialogDatas);
-                    listDialog.setItemClickListener(new ListDialogAdapter2.OnItemClickListener() {
-                        @Override
-                        public void onClick(int position) {
-                            listDialog.dismiss();
-                        }
-                    });
-                }
-                listDialog.show();
-                break;
             case R.id.view_home:
             case R.id.view_back:
                 finish();
@@ -145,55 +118,4 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-
-    List<DBBmBean> dbBmList;
-    CommonDaoUtils<DBBmBean> dBBmDaoUtils;
-
-    public List<DBBmBean> getDbBmList() {
-        dbBmList = new ArrayList<>();
-        dbBmList = dBBmDaoUtils.queryAll();
-        LogUtil.e("数据库条数：" + dbBmList.size());
-
-        setBmLeftBean();
-
-        return dbBmList;
-    }
-    public void setBmLeftBean() {
-        List<BmLeftBean> bmLeftBeans = new ArrayList<>();
-        for (int i = 0; i < dbBmList.size(); i++) {
-            DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName());
-            bmLeftBeans.add(item);
-        }
-
-        List<BmLeftBean> rootTrees = new ArrayList<BmLeftBean>();
-        for (BmLeftBean tree : bmLeftBeans) {
-            if (tree.getParentId() == 0) {
-                rootTrees.add(tree);
-            }
-            for (BmLeftBean t : bmLeftBeans) {
-                if (t.getParentId() == tree.getId()) {
-                    if (tree.getLists() == null) {
-                        List<BmLeftBean> myChildrens = new ArrayList<BmLeftBean>();
-                        myChildrens.add(t);
-                        tree.setLists(myChildrens);
-                    } else {
-                        tree.getLists().add(t);
-                    }
-                }
-            }
-        }
-        sysout(rootTrees,"");
-    }
-
-    List<BmLeftBean> bmLeftBeans = new ArrayList<BmLeftBean>();
-    public void sysout(List<BmLeftBean> trees, String str) {
-        if (trees != null && trees.size() > 0) {
-            for (BmLeftBean tree : trees) {
-                tree.setName(str + tree.getName());
-                bmLeftBeans.add(tree);
-                sysout(tree.getLists(), str + "   ");
-            }
-        }
-    }
 }
