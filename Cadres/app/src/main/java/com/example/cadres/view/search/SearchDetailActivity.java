@@ -77,10 +77,7 @@ public class SearchDetailActivity extends BaseActivity {
         }else{
             getDbList();
         }
-
-        //TODO 根据内容写sql语句
         mAdapter.setData(getData());
-
     }
 
 

@@ -8,14 +8,20 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
+import com.cadres.greendao.gen.DBGbBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.BmAdapter;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.beanDB.DBBmBean;
+import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
+import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,12 +110,16 @@ public class BmActivity extends BaseActivity {
 
     public List<DBBmBean> getDbList(String key) {
         List<DBBmBean> dbList = new ArrayList<>();
+        DBBmBeanDao dbBmBeanDao = DaoManager.getInstance().getDaoSession().getDBBmBeanDao();
+        QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
+
         if(!TextUtils.isEmpty(key)){
-            String sql = "where DEPT_NAME like ?";
-            String[] condition = new String[]{"%" + key + "%"};
-            dbList = dBBmDaoUtils.queryByNativeSql(sql, condition);
+            queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%")
+                    ,DBBmBeanDao.Properties.DeptType.eq(1));
+            dbList = queryBuilder.list();
         }else{
-            dbList = dBBmDaoUtils.queryAll();
+            queryBuilder.where(DBBmBeanDao.Properties.DeptType.eq(1));
+            dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
         return dbList;
