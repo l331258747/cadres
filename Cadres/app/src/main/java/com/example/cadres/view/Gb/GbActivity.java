@@ -1,9 +1,13 @@
 package com.example.cadres.view.Gb;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +26,7 @@ import com.example.cadres.beanDB.DBBmExplainBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
 import com.example.cadres.dialog.ListDialog;
+import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
@@ -42,9 +47,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     Group group_View_top;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
-    TextView tv_right_title, tv_right_btn, tv_right_content;
+    TextView tv_right_btn,tv_right_content;
     View view_menu;
-    EditText et_search;
+    EditText et_search,et_left_search;
 
     RecyclerView recyclerView;
 
@@ -77,10 +82,11 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_top_kqqk2 = findViewById(R.id.tv_top_kqqk2);
         view_menu = findViewById(R.id.view_menu);
 
-        tv_right_title = findViewById(R.id.tv_right_title);
+        et_left_search = findViewById(R.id.et_left_search);
+        initLeftSearch();
+
         tv_right_btn = findViewById(R.id.tv_right_btn);
         tv_right_content = findViewById(R.id.tv_right_content);
-
         tv_right_btn.setOnClickListener(this);
         view_menu.setOnClickListener(this);
         tv_top_btn.setOnClickListener(this);
@@ -114,6 +120,43 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    private void initLeftSearch() {
+        et_left_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                /*判断是否是“搜索”键*/
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String key = et_left_search.getText().toString().trim();
+                    if(!TextUtils.isEmpty(key)){
+                        getDbBmList(key);
+                        leftAdapter.setData(bmLeftBeans);
+                        AppUtils.HideKeyboard(et_left_search);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        et_left_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(et_left_search.getText().toString())){
+                    getDbBmList("");
+                    leftAdapter.setData(bmLeftBeans);
+                }
+            }
+        });
+    }
+
     @Override
     public void initData() {
 
@@ -122,79 +165,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dBBmDaoUtils = _Store.getBmDaoUtils();
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
-        mAdapter.setData(getData(""));
-        getDbBmList();
+        mAdapter.setData(getGbBmData(0));
+        getDbBmList("");
         leftAdapter.setData(bmLeftBeans);
-    }
-
-    public List<DBGbBean> getDbList(String key) {
-        List<DBGbBean> dbList = new ArrayList<>();
-        if (!TextUtils.isEmpty(key)) {
-            String sql = "where NAME like ?";
-            String[] condition = new String[]{"%" + key + "%"};
-            dbList = dBGbDaoUtils.queryByNativeSql(sql, condition);
-        } else {
-            dbList = dBGbDaoUtils.queryAll();
-        }
-        LogUtil.e("数据库条数：" + dbList.size());
-        return dbList;
-    }
-
-
-    public List<GbBean.GbBean2> getData(String key) {
-        datas = new ArrayList<>();
-        List<DBGbBean> dbList = getDbList(key);
-        if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbBean item = dbList.get(i);
-                datas.add(new GbBean.GbBean2(
-                        item.getBaseId(),
-                        item.getName(),
-                        item.getPhotoFileName(),
-                        item.getGender(),
-                        item.getIdCard(),
-                        item.getBirthday(),
-                        item.getAge(),
-                        item.getNation(),
-                        item.getPoliticalOutlook(),
-                        item.getJoinPartyDate(),
-                        item.getNativePlace(),
-                        item.getBirthplace(),
-                        item.getWorkTime(),
-                        item.getPersonnelRelationsDeptId(),
-                        item.getPersonnelRelationsDeptName(),
-                        item.getEnterUnitTime(),
-                        item.getCurrentRank(),
-                        item.getCurrentRankTime(),
-                        item.getHealth(),
-                        item.getFunctionaryRankId(),
-                        item.getFunctionaryRankName(),
-                        item.getFunctionaryRankTime(),
-                        item.getCadreType(),
-                        item.getCurrentPosition(),
-                        item.getCurrentPositionTime(),
-                        item.getPersonnelType(),
-                        item.getTechnicalTitle(),
-                        item.getExpertise(),
-                        item.getFullTimeEducation(),
-                        item.getFullTimeSchool(),
-                        item.getFullTimeDegreeId(),
-                        item.getFullTimeDegreeName(),
-                        item.getFullTimeSchoolType(),
-                        item.getCurrentEducation(),
-                        item.getCurrentDegreeId(),
-                        item.getCurrentDegreeName(),
-                        item.getCurrentSchool(),
-                        item.getCurrentSchoolType(),
-                        item.getWorkPhone(),
-                        item.getPhoneNumber(),
-                        item.getHomeAddress(),
-                        item.getResponsibilities(),
-                        item.getAffectedState()
-                ));
-            }
-        }
-        return datas;
     }
 
     //初始化recyclerview
@@ -218,13 +191,18 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     //--------------left
     List<DBBmBean> dbBmList;
 
-    public List<DBBmBean> getDbBmList() {
+    public List<DBBmBean> getDbBmList(String key) {
         dbBmList = new ArrayList<>();
-        dbBmList = dBBmDaoUtils.queryAll();
-        LogUtil.e("数据库条数：" + dbBmList.size());
-
-        setBmLeftBean();
-
+        if(TextUtils.isEmpty(key)){
+            dbBmList = dBBmDaoUtils.queryAll();
+            LogUtil.e("数据库条数：" + dbBmList.size());
+            setBmLeftBean();
+        }else{
+            String sql = "where DEPT_NAME like ?";
+            String[] condition = new String[]{"%" + key + "%"};
+            dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
+            setBmLeftBean2();
+        }
         return dbBmList;
     }
 
@@ -244,22 +222,29 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onClick(int pos) {
                 DBBmBean item = getDBBmBean(pos);
-
                 if(item == null) return;
-                group_View_top.setVisibility(View.VISIBLE);
-                tv_top_title.setText(item.getDeptName());
-                tv_top_btn.setText(item.getDeptTypeName());
-                tv_top_hdzs2.setText(item.getVerification());
-                tv_top_sjpb2.setText(item.getActual());
-                tv_top_cpqk2.setText(item.getOvermatch());
-                tv_top_kqqk2.setText(item.getMismatch());
+                leftAdapter.setItemData(item.getDeptId());
+
+                if(TextUtils.equals(item.getDeptType(),"1")){
+                    group_View_top.setVisibility(View.VISIBLE);
+                    tv_top_title.setText(item.getDeptName());
+                    tv_top_hdzs2.setText(item.getVerification());
+                    tv_top_sjpb2.setText(item.getActual());
+                    tv_top_cpqk2.setText(item.getOvermatch());
+                    tv_top_kqqk2.setText(item.getMismatch());
+                }else{
+                    group_View_top.setVisibility(View.GONE);
+                }
 
                 deptId = item.getDeptId();
-                deptName = item.getDeptName();
-
                 drawer_layout.closeDrawer(Gravity.LEFT);
+                AppUtils.HideKeyboard(et_left_search);
 
-                mAdapter.setData(getGbBmData(deptId));
+                if(item.getParentId() == 0){
+                    mAdapter.setData(getGbBmData(0));
+                } else {
+                    mAdapter.setData(getGbBmData(deptId));
+                }
 
             }
         });
@@ -281,7 +266,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     List<DBBmExplainBean> dbBmExplainList;
     CommonDaoUtils<DBBmExplainBean> dBBmExplainDaoUtils;
     int deptId;
-    String deptName;
 
     public List<DBBmExplainBean> getDbBmExplainList(int id) {
         dbBmExplainList = new ArrayList<>();
@@ -320,7 +304,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                         DBBmExplainBean item = getRightData(position);
                         if (item == null) return;
 
-                        tv_right_title.setText(deptName);
                         tv_right_btn.setText(item.getYearStr());
                         tv_right_content.setText(item.getOrgExplain());
 
@@ -340,9 +323,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 DBBmExplainBean item = getRightData(0);
                 if (item == null) return;
 
-                tv_right_title.setText(deptName);
                 tv_right_btn.setText(item.getYearStr());
-                tv_right_content.setText(item.getOrgExplain());
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;
@@ -360,17 +341,19 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     //-----------------------------搜部门干部 多表查询
     public List<DBGbBean> getDbGbBmList(int deptId) {
         List<DBGbBean> dbList = new ArrayList<>();
-
-        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
-                .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(deptId));
-        dbList = queryBuilder.list();
-
+        if(deptId == 0){
+            dbList = dBGbDaoUtils.queryAll();
+        }else{
+            DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+            QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptCode.like("%" + deptId + "%"));
+            queryBuilder.distinct();
+            dbList = queryBuilder.list();
+        }
         LogUtil.e("数据库条数：" + dbList.size());
         return dbList;
     }
-
 
     public List<GbBean.GbBean2> getGbBmData(int deptId) {
         datas = new ArrayList<>();
@@ -433,7 +416,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         List<BmLeftBean> bmLeftBeans = new ArrayList<>();
         for (int i = 0; i < dbBmList.size(); i++) {
             DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName());
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
             bmLeftBeans.add(item);
         }
 
@@ -454,6 +437,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 }
             }
         }
+        this.bmLeftBeans = new ArrayList<>();
         sysout(rootTrees,"");
     }
 
@@ -468,4 +452,12 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    public void setBmLeftBean2(){
+        bmLeftBeans = new ArrayList<>();
+        for (int i = 0; i < dbBmList.size(); i++) {
+            DBBmBean dbItem = dbBmList.get(i);
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
+            bmLeftBeans.add(item);
+        }
+    }
 }

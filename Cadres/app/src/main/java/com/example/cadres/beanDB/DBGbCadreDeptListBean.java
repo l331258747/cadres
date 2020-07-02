@@ -14,16 +14,18 @@ public class DBGbCadreDeptListBean {
     private String state;
     private String deptName;
     private String deptType;
+    private String deptCode;
 
-    @Generated(hash = 407238319)
+    @Generated(hash = 904475614)
     public DBGbCadreDeptListBean(Long _id, int deptId, int baseId, String state,
-            String deptName, String deptType) {
+            String deptName, String deptType, String deptCode) {
         this._id = _id;
         this.deptId = deptId;
         this.baseId = baseId;
         this.state = state;
         this.deptName = deptName;
         this.deptType = deptType;
+        this.deptCode = deptCode;
     }
 
     @Generated(hash = 1217129680)
@@ -76,5 +78,13 @@ public class DBGbCadreDeptListBean {
 
     public void setDeptType(String deptType) {
         this.deptType = deptType;
+    }
+
+    public String getDeptCode() {
+        return this.deptCode;
+    }
+
+    public void setDeptCode(String deptCode) {
+        this.deptCode = deptCode;
     }
 }

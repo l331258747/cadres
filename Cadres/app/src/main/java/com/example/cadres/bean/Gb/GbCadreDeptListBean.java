@@ -22,6 +22,11 @@ public class GbCadreDeptListBean {
     private String state;
     private String deptName;
     private String deptType;
+    private String deptCode;
+
+    public String getDeptCode() {
+        return deptCode;
+    }
 
     public int getDeptId() {
         return deptId;

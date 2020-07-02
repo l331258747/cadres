@@ -6,12 +6,31 @@ public class BmLeftBean {
     int id;
     int parentId;
     String name;
+    String idType;
+    boolean isSelect;
     List<BmLeftBean> lists;
 
-    public BmLeftBean(int id, int parentId, String name) {
+    public BmLeftBean(int id, int parentId, String name,String idType) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
+        this.idType = idType;
+    }
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
+    }
+
+    public String getIdType() {
+        return idType;
+    }
+
+    public void setIdType(String idType) {
+        this.idType = idType;
     }
 
     public int getParentId() {

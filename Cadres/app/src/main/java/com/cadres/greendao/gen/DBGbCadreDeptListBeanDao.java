@@ -30,6 +30,7 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
         public final static Property State = new Property(3, String.class, "state", false, "STATE");
         public final static Property DeptName = new Property(4, String.class, "deptName", false, "DEPT_NAME");
         public final static Property DeptType = new Property(5, String.class, "deptType", false, "DEPT_TYPE");
+        public final static Property DeptCode = new Property(6, String.class, "deptCode", false, "DEPT_CODE");
     }
 
 
@@ -50,7 +51,8 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
                 "\"BASE_ID\" INTEGER NOT NULL ," + // 2: baseId
                 "\"STATE\" TEXT," + // 3: state
                 "\"DEPT_NAME\" TEXT," + // 4: deptName
-                "\"DEPT_TYPE\" TEXT);"); // 5: deptType
+                "\"DEPT_TYPE\" TEXT," + // 5: deptType
+                "\"DEPT_CODE\" TEXT);"); // 6: deptCode
     }
 
     /** Drops the underlying database table. */
@@ -84,6 +86,11 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
         if (deptType != null) {
             stmt.bindString(6, deptType);
         }
+ 
+        String deptCode = entity.getDeptCode();
+        if (deptCode != null) {
+            stmt.bindString(7, deptCode);
+        }
     }
 
     @Override
@@ -111,6 +118,11 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
         if (deptType != null) {
             stmt.bindString(6, deptType);
         }
+ 
+        String deptCode = entity.getDeptCode();
+        if (deptCode != null) {
+            stmt.bindString(7, deptCode);
+        }
     }
 
     @Override
@@ -126,7 +138,8 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
             cursor.getInt(offset + 2), // baseId
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // state
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // deptName
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // deptType
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // deptType
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // deptCode
         );
         return entity;
     }
@@ -139,6 +152,7 @@ public class DBGbCadreDeptListBeanDao extends AbstractDao<DBGbCadreDeptListBean,
         entity.setState(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDeptName(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setDeptType(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDeptCode(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

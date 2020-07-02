@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:text="标题"
+    android:paddingStart="@dimen/dp_20"
+    android:paddingEnd="@dimen/dp_20"
     android:paddingTop="@dimen/dp_10"
-    android:paddingBottom="@dimen/dp_10">
+    android:paddingBottom="@dimen/dp_10"
+    tools:text="标题">
 
 </TextView>

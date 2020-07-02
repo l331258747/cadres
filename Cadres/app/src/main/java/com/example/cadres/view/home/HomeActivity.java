@@ -517,7 +517,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item_dept.getBaseId(),
                         item_dept.getState(),
                         item_dept.getDeptName(),
-                        item_dept.getDeptType()
+                        item_dept.getDeptType(),
+                        item_dept.getDeptCode()
                 ));
             }
 
