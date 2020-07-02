@@ -42,7 +42,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     Group group_View_top;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
-    TextView tv_right_title, tv_right_btn, tv_right_content,tv_all;
+    TextView tv_right_title, tv_right_btn, tv_right_content;
     View view_menu;
     EditText et_search;
 
@@ -76,7 +76,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_top_cpqk2 = findViewById(R.id.tv_top_cpqk2);
         tv_top_kqqk2 = findViewById(R.id.tv_top_kqqk2);
         view_menu = findViewById(R.id.view_menu);
-        tv_all = findViewById(R.id.tv_all);
 
         tv_right_title = findViewById(R.id.tv_right_title);
         tv_right_btn = findViewById(R.id.tv_right_btn);
@@ -85,7 +84,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_right_btn.setOnClickListener(this);
         view_menu.setOnClickListener(this);
         tv_top_btn.setOnClickListener(this);
-        tv_all.setOnClickListener(this);
 
         et_search.setOnClickListener(this);
 
@@ -191,7 +189,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                         item.getWorkPhone(),
                         item.getPhoneNumber(),
                         item.getHomeAddress(),
-                        item.getResponsibilities()
+                        item.getResponsibilities(),
+                        item.getAffectedState()
                 ));
             }
         }
@@ -347,10 +346,10 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;
-            case R.id.tv_all:
-                mAdapter.setData(getData(""));
-                group_View_top.setVisibility(View.GONE);
-                    break;
+//            case R.id.tv_all:
+//                mAdapter.setData(getData(""));
+//                group_View_top.setVisibility(View.GONE);
+//                    break;
             case R.id.et_search:
                 startActivity(new Intent(context, SearchActivity.class));
                 break;
@@ -421,7 +420,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                         item.getWorkPhone(),
                         item.getPhoneNumber(),
                         item.getHomeAddress(),
-                        item.getResponsibilities()
+                        item.getResponsibilities(),
+                        item.getAffectedState()
                 ));
             }
         }

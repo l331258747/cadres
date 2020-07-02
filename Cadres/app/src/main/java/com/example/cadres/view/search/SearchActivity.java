@@ -13,8 +13,6 @@ import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.common.SearchBean;
 import com.example.cadres.bean.login.MySelfInfo;
-import com.example.cadres.utils.LogUtil;
-import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.widget.flowlayout.FlowLayout;
 import com.example.cadres.widget.flowlayout.TagAdapter;
 import com.example.cadres.widget.flowlayout.TagFlowLayout;
@@ -71,6 +69,7 @@ public class SearchActivity extends BaseActivity {
         tv_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 searchBean.clean();
                 for (int index : fl_gblx.getSelectedList()) {
                     searchBean.getGblxLists().add(mVals_gblx[index]);
@@ -338,5 +337,11 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void initData() {
         searchBean = new SearchBean();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initFLHistory();
     }
 }

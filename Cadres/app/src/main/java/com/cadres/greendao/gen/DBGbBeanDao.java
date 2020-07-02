@@ -67,6 +67,7 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property PhoneNumber = new Property(40, String.class, "phoneNumber", false, "PHONE_NUMBER");
         public final static Property HomeAddress = new Property(41, String.class, "homeAddress", false, "HOME_ADDRESS");
         public final static Property Responsibilities = new Property(42, String.class, "responsibilities", false, "RESPONSIBILITIES");
+        public final static Property AffectedState = new Property(43, String.class, "affectedState", false, "AFFECTED_STATE");
     }
 
 
@@ -124,7 +125,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"WORK_PHONE\" TEXT," + // 39: workPhone
                 "\"PHONE_NUMBER\" TEXT," + // 40: phoneNumber
                 "\"HOME_ADDRESS\" TEXT," + // 41: homeAddress
-                "\"RESPONSIBILITIES\" TEXT);"); // 42: responsibilities
+                "\"RESPONSIBILITIES\" TEXT," + // 42: responsibilities
+                "\"AFFECTED_STATE\" TEXT);"); // 43: affectedState
     }
 
     /** Drops the underlying database table. */
@@ -327,6 +329,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (responsibilities != null) {
             stmt.bindString(43, responsibilities);
         }
+ 
+        String affectedState = entity.getAffectedState();
+        if (affectedState != null) {
+            stmt.bindString(44, affectedState);
+        }
     }
 
     @Override
@@ -523,6 +530,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (responsibilities != null) {
             stmt.bindString(43, responsibilities);
         }
+ 
+        String affectedState = entity.getAffectedState();
+        if (affectedState != null) {
+            stmt.bindString(44, affectedState);
+        }
     }
 
     @Override
@@ -575,7 +587,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // workPhone
             cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // phoneNumber
             cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // homeAddress
-            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42) // responsibilities
+            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // responsibilities
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43) // affectedState
         );
         return entity;
     }
@@ -625,6 +638,7 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setPhoneNumber(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
         entity.setHomeAddress(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
         entity.setResponsibilities(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
+        entity.setAffectedState(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
      }
     
     @Override

@@ -34,7 +34,9 @@ public class DBBmBean {
     private int actualPosition;
     private int actualDeputy;
     private int actualOther;
-    @Generated(hash = 260534896)
+    private String orgLevelName;
+    
+    @Generated(hash = 1229488510)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -42,7 +44,7 @@ public class DBBmBean {
             String parentName, String verification, String actual, String overmatch,
             String mismatch, int approvedPosition, int approvedDeputy,
             int approvedOther, int actualPosition, int actualDeputy,
-            int actualOther) {
+            int actualOther, String orgLevelName) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -69,6 +71,7 @@ public class DBBmBean {
         this.actualPosition = actualPosition;
         this.actualDeputy = actualDeputy;
         this.actualOther = actualOther;
+        this.orgLevelName = orgLevelName;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -228,6 +231,12 @@ public class DBBmBean {
     }
     public void setActualOther(int actualOther) {
         this.actualOther = actualOther;
+    }
+    public String getOrgLevelName() {
+        return this.orgLevelName;
+    }
+    public void setOrgLevelName(String orgLevelName) {
+        this.orgLevelName = orgLevelName;
     }
 
 }

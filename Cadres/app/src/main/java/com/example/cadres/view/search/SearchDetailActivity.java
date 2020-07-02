@@ -88,7 +88,10 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Name.like("%"+key + "%"));
+        queryBuilder.whereOr(
+                DBGbBeanDao.Properties.Name.like("%"+key + "%"),
+                DBGbBeanDao.Properties.Name.like("%"+key + "%")
+        );
         dbList = queryBuilder.list();
 
         tv_search_content.setText(searchBean.getSearch());
@@ -227,7 +230,8 @@ public class SearchDetailActivity extends BaseActivity {
                         item.getWorkPhone(),
                         item.getPhoneNumber(),
                         item.getHomeAddress(),
-                        item.getResponsibilities()
+                        item.getResponsibilities(),
+                        item.getAffectedState()
                 ));
             }
         }

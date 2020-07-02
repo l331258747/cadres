@@ -50,6 +50,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property ActualPosition = new Property(23, int.class, "actualPosition", false, "ACTUAL_POSITION");
         public final static Property ActualDeputy = new Property(24, int.class, "actualDeputy", false, "ACTUAL_DEPUTY");
         public final static Property ActualOther = new Property(25, int.class, "actualOther", false, "ACTUAL_OTHER");
+        public final static Property OrgLevelName = new Property(26, String.class, "orgLevelName", false, "ORG_LEVEL_NAME");
     }
 
 
@@ -90,7 +91,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"APPROVED_OTHER\" INTEGER NOT NULL ," + // 22: approvedOther
                 "\"ACTUAL_POSITION\" INTEGER NOT NULL ," + // 23: actualPosition
                 "\"ACTUAL_DEPUTY\" INTEGER NOT NULL ," + // 24: actualDeputy
-                "\"ACTUAL_OTHER\" INTEGER NOT NULL );"); // 25: actualOther
+                "\"ACTUAL_OTHER\" INTEGER NOT NULL ," + // 25: actualOther
+                "\"ORG_LEVEL_NAME\" TEXT);"); // 26: orgLevelName
     }
 
     /** Drops the underlying database table. */
@@ -196,6 +198,11 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         stmt.bindLong(24, entity.getActualPosition());
         stmt.bindLong(25, entity.getActualDeputy());
         stmt.bindLong(26, entity.getActualOther());
+ 
+        String orgLevelName = entity.getOrgLevelName();
+        if (orgLevelName != null) {
+            stmt.bindString(27, orgLevelName);
+        }
     }
 
     @Override
@@ -295,6 +302,11 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         stmt.bindLong(24, entity.getActualPosition());
         stmt.bindLong(25, entity.getActualDeputy());
         stmt.bindLong(26, entity.getActualOther());
+ 
+        String orgLevelName = entity.getOrgLevelName();
+        if (orgLevelName != null) {
+            stmt.bindString(27, orgLevelName);
+        }
     }
 
     @Override
@@ -330,7 +342,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.getInt(offset + 22), // approvedOther
             cursor.getInt(offset + 23), // actualPosition
             cursor.getInt(offset + 24), // actualDeputy
-            cursor.getInt(offset + 25) // actualOther
+            cursor.getInt(offset + 25), // actualOther
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26) // orgLevelName
         );
         return entity;
     }
@@ -363,6 +376,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setActualPosition(cursor.getInt(offset + 23));
         entity.setActualDeputy(cursor.getInt(offset + 24));
         entity.setActualOther(cursor.getInt(offset + 25));
+        entity.setOrgLevelName(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
      }
     
     @Override

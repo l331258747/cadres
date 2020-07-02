@@ -146,7 +146,8 @@ public class BmActivity extends BaseActivity {
                         item.getApprovedOther(),
                         item.getActualPosition(),
                         item.getActualDeputy(),
-                        item.getActualOther()
+                        item.getActualOther(),
+                        item.getOrgLevelName()
                 ));
             }
         }
@@ -167,7 +168,7 @@ public class BmActivity extends BaseActivity {
             public void onClick(int pos) {
                 BmBean.BmBean2 item = datas.get(pos);
                 tv_dw_title.setText(item.getDeptNameStr());
-                tv_dr_dwjb2.setText(item.getDeptTypeNameStr());
+                tv_dr_dwjb2.setText(item.getOrgLevelName());
                 tv_dr_dwxz2.setText(item.getOrgTypeNameStr());
                 tv_dr_hdzs2.setText(item.getVerificationStr());
                 tv_dr_sjpb2.setText(item.getActual());

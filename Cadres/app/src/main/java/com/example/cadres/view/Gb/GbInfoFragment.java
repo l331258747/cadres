@@ -177,7 +177,9 @@ public class GbInfoFragment extends BaseFragment {
                     item.getWorkPhone(),
                     item.getPhoneNumber(),
                     item.getHomeAddress(),
-                    item.getResponsibilities());
+                    item.getResponsibilities(),
+                    item.getAffectedState()
+            );
         }
 
 

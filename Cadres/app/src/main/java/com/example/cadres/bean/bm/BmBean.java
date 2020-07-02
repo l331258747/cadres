@@ -15,7 +15,7 @@ public class BmBean {
 
     public static class BmBean2 {
 
-        public BmBean2(int deptId, int parentId, String deptName, String dzzName, String orgCode, String orgType, String orgTypeName, String financeType, String financeTypeName, String simpleName, int orderNum, String deptType, String deptTypeName, String delFlag, String parentName, String verification, String actual, String overmatch, String mismatch, int approvedPosition, int approvedDeputy, int approvedOther, int actualPosition, int actualDeputy, int actualOther) {
+        public BmBean2(int deptId, int parentId, String deptName, String dzzName, String orgCode, String orgType, String orgTypeName, String financeType, String financeTypeName, String simpleName, int orderNum, String deptType, String deptTypeName, String delFlag, String parentName, String verification, String actual, String overmatch, String mismatch, int approvedPosition, int approvedDeputy, int approvedOther, int actualPosition, int actualDeputy, int actualOther,String orgLevelName) {
             this.deptId = deptId;
             this.parentId = parentId;
             this.deptName = deptName;
@@ -41,6 +41,7 @@ public class BmBean {
             this.actualPosition = actualPosition;
             this.actualDeputy = actualDeputy;
             this.actualOther = actualOther;
+            this.orgLevelName = orgLevelName;
         }
 
         /**
@@ -103,6 +104,7 @@ public class BmBean {
         private int orderNum;
         private String deptType;
         private String deptTypeName;
+        private String orgLevelName;
         private String delFlag;
         private String parentName;
         private String verification;
@@ -116,6 +118,12 @@ public class BmBean {
         private int actualDeputy;
         private int actualOther;
         private List<BmExplainBean> organizationExplain;
+
+        public String getOrgLevelName() {
+            if(TextUtils.isEmpty(orgLevelName))
+                return "";
+            return orgLevelName;
+        }
 
         public String getSearchValue() {
             return searchValue;

@@ -32,6 +32,7 @@ public class SearchBean implements Serializable {
     }
 
     public void clean(){
+        search = "";
         gblxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();

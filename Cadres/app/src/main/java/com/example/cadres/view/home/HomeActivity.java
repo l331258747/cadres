@@ -395,7 +395,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getApprovedOther(),
                     item.getActualPosition(),
                     item.getActualDeputy(),
-                    item.getActualOther()
+                    item.getActualOther(),
+                    item.getOrgLevelName()
             ));
 
             for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {
@@ -471,7 +472,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getWorkPhone(),
                     item.getPhoneNumber(),
                     item.getHomeAddress(),
-                    item.getResponsibilities()
+                    item.getResponsibilities(),
+                    item.getAffectedState()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {

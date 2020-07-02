@@ -15,7 +15,7 @@ public class GbBean {
 
     public static class GbBean2 {
 
-        public GbBean2(int baseId, String name, String photoFileName, String gender, String idCard, String birthday, int age, String nation, String politicalOutlook, String joinPartyDate, String nativePlace, String birthplace, String workTime, int personnelRelationsDeptId, String personnelRelationsDeptName, String enterUnitTime, String currentRank, String currentRankTime, String health, int functionaryRankId, String functionaryRankName, String functionaryRankTime, String cadreType, String currentPosition, String currentPositionTime, String personnelType, String technicalTitle, String expertise, String fullTimeEducation, String fullTimeSchool, int fullTimeDegreeId, String fullTimeDegreeName, String fullTimeSchoolType, String currentEducation, int currentDegreeId, String currentDegreeName, String currentSchool, String currentSchoolType, String workPhone, String phoneNumber, String homeAddress, String responsibilities) {
+        public GbBean2(int baseId, String name, String photoFileName, String gender, String idCard, String birthday, int age, String nation, String politicalOutlook, String joinPartyDate, String nativePlace, String birthplace, String workTime, int personnelRelationsDeptId, String personnelRelationsDeptName, String enterUnitTime, String currentRank, String currentRankTime, String health, int functionaryRankId, String functionaryRankName, String functionaryRankTime, String cadreType, String currentPosition, String currentPositionTime, String personnelType, String technicalTitle, String expertise, String fullTimeEducation, String fullTimeSchool, int fullTimeDegreeId, String fullTimeDegreeName, String fullTimeSchoolType, String currentEducation, int currentDegreeId, String currentDegreeName, String currentSchool, String currentSchoolType, String workPhone, String phoneNumber, String homeAddress, String responsibilities,String affectedState) {
             this.baseId = baseId;
             this.name = name;
             this.photoFileName = photoFileName;
@@ -58,6 +58,7 @@ public class GbBean {
             this.phoneNumber = phoneNumber;
             this.homeAddress = homeAddress;
             this.responsibilities = responsibilities;
+            this.affectedState = affectedState;
         }
 
         /**
@@ -160,6 +161,7 @@ public class GbBean {
         private String phoneNumber;
         private String homeAddress;
         private String responsibilities;
+        private String affectedState;
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
         private List<GbCadreHistoryPositionListBean> cadreHistoryPositionList;//干部曾任职信息
@@ -168,6 +170,10 @@ public class GbBean {
         private List<GbCadreAwardPunishList> cadreAwardPunishList;//干部奖惩记录信息
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
+
+        public String getAffectedState() {
+            return affectedState;
+        }
 
         public int getBaseId() {
             return baseId;

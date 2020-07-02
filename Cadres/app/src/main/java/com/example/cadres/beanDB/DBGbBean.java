@@ -51,7 +51,8 @@ public class DBGbBean {
     private String phoneNumber;
     private String homeAddress;
     private String responsibilities;
-    @Generated(hash = 333014703)
+    private String affectedState;
+    @Generated(hash = 1104299861)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -66,7 +67,7 @@ public class DBGbBean {
             String fullTimeSchoolType, String currentEducation, int currentDegreeId,
             String currentDegreeName, String currentSchool,
             String currentSchoolType, String workPhone, String phoneNumber,
-            String homeAddress, String responsibilities) {
+            String homeAddress, String responsibilities, String affectedState) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -110,6 +111,7 @@ public class DBGbBean {
         this.phoneNumber = phoneNumber;
         this.homeAddress = homeAddress;
         this.responsibilities = responsibilities;
+        this.affectedState = affectedState;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -371,6 +373,12 @@ public class DBGbBean {
     }
     public void setResponsibilities(String responsibilities) {
         this.responsibilities = responsibilities;
+    }
+    public String getAffectedState() {
+        return this.affectedState;
+    }
+    public void setAffectedState(String affectedState) {
+        this.affectedState = affectedState;
     }
 
 
