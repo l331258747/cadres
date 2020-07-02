@@ -22,6 +22,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.constraintlayout.widget.Group;
+
 public class SearchActivity extends BaseActivity {
 
     EditText et_search;
@@ -36,6 +38,8 @@ public class SearchActivity extends BaseActivity {
     TextView tv_btn;
 
     SearchBean searchBean;
+
+    Group group_history;
 
 
     private DecimalFormat df = new DecimalFormat("0");
@@ -304,9 +308,18 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void initFLHistory() {
+        group_history = $(R.id.group_history);
+
         fl_history = $(R.id.fl_history);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
         final List<String> lists = MySelfInfo.getInstance().getSearch();
+
+        if(lists == null || lists.size() == 0){
+            group_history.setVisibility(View.GONE);
+        }else{
+            group_history.setVisibility(View.VISIBLE);
+        }
+
         TagAdapter adapter1 = new TagAdapter<String>(lists) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
