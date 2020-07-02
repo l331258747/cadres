@@ -162,6 +162,11 @@ public class GbBean {
         private String homeAddress;
         private String responsibilities;
         private String affectedState;
+
+        private String fullTimeMajor;
+        private String currentMajor;
+
+
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
         private List<GbCadreHistoryPositionListBean> cadreHistoryPositionList;//干部曾任职信息
@@ -170,6 +175,14 @@ public class GbBean {
         private List<GbCadreAwardPunishList> cadreAwardPunishList;//干部奖惩记录信息
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
+
+        public String getFullTimeMajor() {
+            return fullTimeMajor;
+        }
+
+        public String getCurrentMajor() {
+            return currentMajor;
+        }
 
         public String getAffectedState() {
             return affectedState;

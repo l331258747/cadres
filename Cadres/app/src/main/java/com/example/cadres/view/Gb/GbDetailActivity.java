@@ -16,7 +16,7 @@ public class GbDetailActivity extends BaseActivity {
     TabLayout mTabLayout;
     ViewPager mViewPager;
 
-    private String[] titles = {"干部基本信息", "工作简历", "现任职信息", "曾任职信息","职级信息","家庭成员","奖惩记录","培训情况"};
+    private String[] titles = {"干部基本信息", "工作简历", "现任职信息","职级信息","家庭成员","奖惩记录","培训情况"};
 
     int baseId;
 
@@ -46,7 +46,6 @@ public class GbDetailActivity extends BaseActivity {
         mFragments.add(GbInfoFragment.newInstance(baseId));
         mFragments.add(GbResumeFragment.newInstance(baseId));
         mFragments.add(GbNowFragment.newInstance(baseId));
-        mFragments.add(GbHistoryFragment.newInstance(baseId));
         mFragments.add(GbRankFragment.newInstance(baseId));
         mFragments.add(GbFamilyFragment.newInstance(baseId));
         mFragments.add(GbAwardFragment.newInstance(baseId));

@@ -473,7 +473,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getPhoneNumber(),
                     item.getHomeAddress(),
                     item.getResponsibilities(),
-                    item.getAffectedState()
+                    item.getAffectedState(),
+                    item.getFullTimeMajor(),
+                    item.getCurrentMajor()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {

@@ -21,11 +21,13 @@ import androidx.fragment.app.Fragment;
 
 public class GbInfoFragment extends BaseFragment {
 
+    TextView tv_xrzwjb,tv_qrzxl,tv_zzjyxl,tv_gblx,tv_rysf,tv_jtzz,
+            tv_name,tv_csny,tv_rdsj,tv_jg,tv_xrzjsj,tv_qrzxw,tv_zzjyxw,tv_xrzsj,tv_zyjszw,
+            tv_sex,tv_mz,tv_cjgzsj,tv_csd,tv_gwyzj,tv_qrzbyyxx,tv_zzjybyyxx,tv_xrzw,tv_sxzyjzc,
+            tv_sfzh,tv_sjhm,tv_jkzk,tv_zzmm,tv_rgwyzjsj,tv_qrzzy,tv_zzjyzy;
+
+
     ImageView iv_head;
-    TextView tv_qrzxl,tv_zzjyxl,tv_xrzw,tv_xrzwjb,tv_gzdh, tv_rysf,tv_jtzz,
-    tv_name,tv_mz,tv_rdsj,tv_zyjszw,tv_qrzxw,tv_zzjyxw,tv_dqfggz,tv_xrzjsj,tv_sjhm,tv_gblx,
-            tv_sex,tv_jg,tv_cjgzsj,tv_sxzyjzc,tv_byyxjzy,tv_byyxjzy2,tv_xrzsj,tv_gwyzj,tv_rsgxszdw,tv_zzmm,
-            tv_csny,tv_csd,tv_jkzk,tv_rgwyzjsj,tv_jrdwsj,tv_sfzh;
 
     private boolean isViewCreated;
     boolean isLoad = false;
@@ -65,18 +67,22 @@ public class GbInfoFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_gb_info;
+        return R.layout.fragment_gb_info2;
     }
 
     @Override
     public void initView() {
         iv_head = $(R.id.iv_head);
 
+        tv_qrzbyyxx = $(R.id.tv_qrzbyyxx);
+        tv_zzjybyyxx = $(R.id.tv_zzjybyyxx);
+        tv_qrzzy = $(R.id.tv_qrzzy);
+        tv_zzjyzy = $(R.id.tv_zzjyzy);
+
         tv_qrzxl = $(R.id.tv_qrzxl);
         tv_zzjyxl = $(R.id.tv_zzjyxl);
         tv_xrzw = $(R.id.tv_xrzw);
         tv_xrzwjb = $(R.id.tv_xrzwjb);
-        tv_gzdh = $(R.id.tv_gzdh);
         tv_rysf = $(R.id.tv_rysf);
         tv_jtzz = $(R.id.tv_jtzz);
 
@@ -86,7 +92,6 @@ public class GbInfoFragment extends BaseFragment {
         tv_zyjszw = $(R.id.tv_zyjszw);
         tv_qrzxw = $(R.id.tv_qrzxw);
         tv_zzjyxw = $(R.id.tv_zzjyxw);
-        tv_dqfggz = $(R.id.tv_dqfggz);
         tv_xrzjsj = $(R.id.tv_xrzjsj);
         tv_sjhm = $(R.id.tv_sjhm);
         tv_gblx = $(R.id.tv_gblx);
@@ -95,18 +100,14 @@ public class GbInfoFragment extends BaseFragment {
         tv_jg = $(R.id.tv_jg);
         tv_cjgzsj = $(R.id.tv_cjgzsj);
         tv_sxzyjzc = $(R.id.tv_sxzyjzc);
-        tv_byyxjzy = $(R.id.tv_byyxjzy);
-        tv_byyxjzy2 = $(R.id.tv_byyxjzy2);
         tv_xrzsj = $(R.id.tv_xrzsj);
         tv_gwyzj = $(R.id.tv_gwyzj);
-        tv_rsgxszdw = $(R.id.tv_rsgxszdw);
         tv_zzmm = $(R.id.tv_zzmm);
 
         tv_csny = $(R.id.tv_csny);
         tv_csd = $(R.id.tv_csd);
         tv_jkzk = $(R.id.tv_jkzk);
         tv_rgwyzjsj = $(R.id.tv_rgwyzjsj);
-        tv_jrdwsj = $(R.id.tv_jrdwsj);
         tv_sfzh = $(R.id.tv_sfzh);
     }
 
@@ -196,7 +197,6 @@ public class GbInfoFragment extends BaseFragment {
             tv_zzjyxl.setText(data.getCurrentEducation());
             tv_xrzw.setText(data.getCurrentPosition());
             tv_xrzwjb.setText(data.getCurrentRank());
-            tv_gzdh.setText(data.getWorkPhone());
             tv_rysf.setText(data.getPersonnelType());
             tv_jtzz.setText(data.getHomeAddress());
 
@@ -206,7 +206,6 @@ public class GbInfoFragment extends BaseFragment {
             tv_zyjszw.setText(data.getTechnicalTitle());
             tv_qrzxw.setText(data.getFullTimeDegreeName());
             tv_zzjyxw.setText(data.getCurrentDegreeName());
-            tv_dqfggz.setText(data.getResponsibilities());
             tv_xrzjsj.setText(data.getCurrentRankTime());
             tv_sjhm.setText(data.getPhoneNumber());
             tv_gblx.setText(data.getCadreType());
@@ -215,19 +214,21 @@ public class GbInfoFragment extends BaseFragment {
             tv_jg.setText(data.getNativePlace());
             tv_cjgzsj.setText(data.getWorkTime());
             tv_sxzyjzc.setText(data.getExpertise());
-            tv_byyxjzy.setText(data.getFullTimeSchool());
-            tv_byyxjzy2.setText(data.getCurrentSchool());
             tv_xrzsj.setText(data.getCurrentPositionTime());
             tv_gwyzj.setText(data.getFunctionaryRankName());
-            tv_rsgxszdw.setText(data.getFunctionaryRankTime());
             tv_zzmm.setText(data.getPoliticalOutlook());
 
             tv_csny.setText(data.getBirthdayAge());
             tv_csd.setText(data.getBirthplace());
             tv_jkzk.setText(data.getHealth());
             tv_rgwyzjsj.setText(data.getFunctionaryRankTime());
-            tv_jrdwsj.setText(data.getEnterUnitTime());
             tv_sfzh.setText(data.getIdCard());
+
+
+            tv_qrzbyyxx.setText(data.getFullTimeSchool());
+            tv_zzjybyyxx.setText(data.getCurrentSchool());
+            tv_qrzzy.setText(data.getFullTimeMajor());
+            tv_zzjyzy.setText(data.getCurrentMajor());
         }
     }
 }

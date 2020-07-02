@@ -68,6 +68,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property HomeAddress = new Property(41, String.class, "homeAddress", false, "HOME_ADDRESS");
         public final static Property Responsibilities = new Property(42, String.class, "responsibilities", false, "RESPONSIBILITIES");
         public final static Property AffectedState = new Property(43, String.class, "affectedState", false, "AFFECTED_STATE");
+        public final static Property FullTimeMajor = new Property(44, String.class, "fullTimeMajor", false, "FULL_TIME_MAJOR");
+        public final static Property CurrentMajor = new Property(45, String.class, "currentMajor", false, "CURRENT_MAJOR");
     }
 
 
@@ -126,7 +128,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"PHONE_NUMBER\" TEXT," + // 40: phoneNumber
                 "\"HOME_ADDRESS\" TEXT," + // 41: homeAddress
                 "\"RESPONSIBILITIES\" TEXT," + // 42: responsibilities
-                "\"AFFECTED_STATE\" TEXT);"); // 43: affectedState
+                "\"AFFECTED_STATE\" TEXT," + // 43: affectedState
+                "\"FULL_TIME_MAJOR\" TEXT," + // 44: fullTimeMajor
+                "\"CURRENT_MAJOR\" TEXT);"); // 45: currentMajor
     }
 
     /** Drops the underlying database table. */
@@ -334,6 +338,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (affectedState != null) {
             stmt.bindString(44, affectedState);
         }
+ 
+        String fullTimeMajor = entity.getFullTimeMajor();
+        if (fullTimeMajor != null) {
+            stmt.bindString(45, fullTimeMajor);
+        }
+ 
+        String currentMajor = entity.getCurrentMajor();
+        if (currentMajor != null) {
+            stmt.bindString(46, currentMajor);
+        }
     }
 
     @Override
@@ -535,6 +549,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (affectedState != null) {
             stmt.bindString(44, affectedState);
         }
+ 
+        String fullTimeMajor = entity.getFullTimeMajor();
+        if (fullTimeMajor != null) {
+            stmt.bindString(45, fullTimeMajor);
+        }
+ 
+        String currentMajor = entity.getCurrentMajor();
+        if (currentMajor != null) {
+            stmt.bindString(46, currentMajor);
+        }
     }
 
     @Override
@@ -588,7 +612,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // phoneNumber
             cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // homeAddress
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // responsibilities
-            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43) // affectedState
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // affectedState
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // fullTimeMajor
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45) // currentMajor
         );
         return entity;
     }
@@ -639,6 +665,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setHomeAddress(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
         entity.setResponsibilities(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
         entity.setAffectedState(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
+        entity.setFullTimeMajor(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setCurrentMajor(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
      }
     
     @Override

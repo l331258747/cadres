@@ -52,7 +52,10 @@ public class DBGbBean {
     private String homeAddress;
     private String responsibilities;
     private String affectedState;
-    @Generated(hash = 1104299861)
+    private String fullTimeMajor;
+    private String currentMajor;
+    
+    @Generated(hash = 1791136848)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -67,7 +70,8 @@ public class DBGbBean {
             String fullTimeSchoolType, String currentEducation, int currentDegreeId,
             String currentDegreeName, String currentSchool,
             String currentSchoolType, String workPhone, String phoneNumber,
-            String homeAddress, String responsibilities, String affectedState) {
+            String homeAddress, String responsibilities, String affectedState,
+            String fullTimeMajor, String currentMajor) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -112,6 +116,8 @@ public class DBGbBean {
         this.homeAddress = homeAddress;
         this.responsibilities = responsibilities;
         this.affectedState = affectedState;
+        this.fullTimeMajor = fullTimeMajor;
+        this.currentMajor = currentMajor;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -379,6 +385,18 @@ public class DBGbBean {
     }
     public void setAffectedState(String affectedState) {
         this.affectedState = affectedState;
+    }
+    public String getFullTimeMajor() {
+        return this.fullTimeMajor;
+    }
+    public void setFullTimeMajor(String fullTimeMajor) {
+        this.fullTimeMajor = fullTimeMajor;
+    }
+    public String getCurrentMajor() {
+        return this.currentMajor;
+    }
+    public void setCurrentMajor(String currentMajor) {
+        this.currentMajor = currentMajor;
     }
 
 
