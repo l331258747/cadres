@@ -324,6 +324,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 if (item == null) return;
 
                 tv_right_btn.setText(item.getYearStr());
+                tv_right_content.setText(item.getOrgExplain());
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;

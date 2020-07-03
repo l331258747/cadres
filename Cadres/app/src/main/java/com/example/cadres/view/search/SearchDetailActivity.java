@@ -85,8 +85,7 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.whereOr(
-                DBGbBeanDao.Properties.Name.like("%"+key + "%"),
+        queryBuilder.where(
                 DBGbBeanDao.Properties.Name.like("%"+key + "%")
         );
         dbList = queryBuilder.list();
