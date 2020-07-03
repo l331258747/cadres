@@ -266,8 +266,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/sp_12"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_5"
         android:text="技术支持：宁乡市数据资源中心"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
