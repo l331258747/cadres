@@ -8,6 +8,7 @@ import com.example.cadres.utils.StringUtils;
 
 public class ZcfgDetailActivity extends BaseActivity {
     TextView tv_content;
+    TextView tv_title;
 
     String content;
 
@@ -24,10 +25,12 @@ public class ZcfgDetailActivity extends BaseActivity {
         showLLRightGoHome();
 
         tv_content = findViewById(R.id.tv_content);
+        tv_title = findViewById(R.id.tv_title);
     }
 
     @Override
     public void initData() {
+        tv_title.setText(intent.getStringExtra("title"));
         content = intent.getStringExtra("content");
         StringUtils.setHtml(tv_content, content);
     }

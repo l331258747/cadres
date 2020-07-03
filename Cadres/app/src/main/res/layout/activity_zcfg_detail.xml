@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -11,16 +12,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_content"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/dp_20"
-            android:paddingTop="@dimen/dp_30"
-            android:paddingEnd="@dimen/dp_20"
-            android:paddingBottom="@dimen/dp_30" />
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_20"
+                android:gravity="center"
+                android:textSize="@dimen/sp_24"
+                android:textStyle="bold"
+                android:paddingTop="@dimen/dp_30"
+                tools:text="标题"
+                android:paddingEnd="@dimen/dp_20" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_30"
+                android:paddingEnd="@dimen/dp_20"
+                tools:text="内容"
+                android:paddingBottom="@dimen/dp_30" />
+        </LinearLayout>
+
+
 
     </androidx.core.widget.NestedScrollView>
 

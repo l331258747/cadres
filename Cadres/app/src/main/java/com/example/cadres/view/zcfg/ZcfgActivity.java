@@ -154,6 +154,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
                 }
                 Intent intent = new Intent(context, ZcfgDetailActivity.class);
                 intent.putExtra("content", content);
+                intent.putExtra("title",datas.get(pos).getNoticeTitleStr());
                 startActivity(intent);
             }
         });
