@@ -83,6 +83,7 @@
                 android:id="@+id/fl_history"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
@@ -337,6 +338,26 @@
                 app:layout_goneMarginTop="@dimen/dp_50"
                 android:text="开始选人"/>
 
+
+            <TextView
+                android:id="@+id/tv_cy_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="常用搜索"
+                android:textSize="@dimen/sp_24"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/tv_btn" />
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_cy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cy_title"
+                app:max_select="-1"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

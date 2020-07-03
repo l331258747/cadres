@@ -166,7 +166,6 @@ public class GbBean {
         private String fullTimeMajor;
         private String currentMajor;
 
-
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
         private List<GbCadreHistoryPositionListBean> cadreHistoryPositionList;//干部曾任职信息

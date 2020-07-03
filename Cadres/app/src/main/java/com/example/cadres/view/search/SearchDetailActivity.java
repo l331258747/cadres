@@ -16,6 +16,7 @@ import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.bean.common.SearchBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
+import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -74,6 +75,8 @@ public class SearchDetailActivity extends BaseActivity {
         searchBean = (SearchBean) intent.getSerializableExtra("data");
         if(!TextUtils.isEmpty(searchBean.getSearch())){
             getDbList(searchBean.getSearch());
+        }else if(!TextUtils.isEmpty(searchBean.getCyss())){
+            getDbCyssList(searchBean.getCyss());
         }else{
             getDbList();
         }
@@ -82,6 +85,26 @@ public class SearchDetailActivity extends BaseActivity {
 
 
     List<DBGbBean> dbList;
+
+    public void getDbCyssList(String key){
+        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+
+        if(TextUtils.equals(key,"35岁及以下年轻干部")){
+            queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchBean.getCurrentYear() - 35,searchBean.getCurrentYear()));
+        }else{
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class,DBGbCadreNowPositionListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.eq(key));
+            queryBuilder.distinct();
+        }
+        LogUtil.e("部门类型 数据条数："+queryBuilder.count());
+
+        dbList = queryBuilder.list();
+
+        tv_search_content.setText(searchBean.getCyss());
+        tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
+    }
+
     public void getDbList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
@@ -125,7 +148,7 @@ public class SearchDetailActivity extends BaseActivity {
         }
         if(searchBean.getBmlxLists().size() > 0){
             queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreDeptListBean.class,DBGbCadreDeptListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.in(searchBean.getBmlxLists()));
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptType.in(searchBean.getBmlxLists()));
             queryBuilder.distinct();
             LogUtil.e("部门类型 数据条数："+queryBuilder.count());
         }

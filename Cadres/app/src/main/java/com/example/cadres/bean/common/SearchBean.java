@@ -17,6 +17,7 @@ public class SearchBean implements Serializable {
     List<String> xrzjnxLists;
     List<String> xbLists;
     List<String> dpLists;
+    String cyss;
 
     public SearchBean() {
         gblxLists = new ArrayList<>();
@@ -33,6 +34,7 @@ public class SearchBean implements Serializable {
 
     public void clean(){
         search = "";
+        cyss = "";
         gblxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
@@ -53,11 +55,19 @@ public class SearchBean implements Serializable {
         this.search = search;
     }
 
+    public void setCyss(String cyss) {
+        this.cyss = cyss;
+    }
+
     public List<String> getGblxLists() {
         for (String str : gblxLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
         return gblxLists;
+    }
+
+    public String getCyss() {
+        return cyss;
     }
 
     public void setGblxLists(List<String> gblxLists) {

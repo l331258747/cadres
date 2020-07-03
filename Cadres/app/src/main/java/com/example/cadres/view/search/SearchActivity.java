@@ -29,7 +29,7 @@ public class SearchActivity extends BaseActivity {
     EditText et_search;
 
     private TagFlowLayout fl_history;
-    private TagFlowLayout fl_gblx, fl_bmlx, fl_zwjb,fl_xl,fl_xxlx,fl_gzjl,fl_xb,fl_dp;
+    private TagFlowLayout fl_gblx, fl_bmlx, fl_zwjb,fl_xl,fl_xxlx,fl_gzjl,fl_xb,fl_dp,fl_cy;
 
     RangeSeekBar seekbar2;
     TextView progress2_tv;
@@ -40,7 +40,6 @@ public class SearchActivity extends BaseActivity {
     SearchBean searchBean;
 
     Group group_history;
-
 
     private DecimalFormat df = new DecimalFormat("0");
 
@@ -68,6 +67,7 @@ public class SearchActivity extends BaseActivity {
         initXrzjnx();
         initFLXb();
         initFLDp();
+        initCyss();
 
         tv_btn = findViewById(R.id.tv_btn);
         tv_btn.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,37 @@ public class SearchActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    String[] mVals_cyss = new String[]{
+            "35岁及以下年轻干部", "党外干部", "党委书记", "乡镇长",
+            "人大主席", "政协联络负责人", "纪委书记", "组织委员",
+            "武装部长","宣传委员", "党委副书记", "副镇长",
+            "人大副主席", "市直部门单位负责人", "市直部门单位派驻纪检组长", "市直部门单位副职",
+            "部办委班子成员", "人大政协委室班子", "政府工作部门负责人", "党委工作部门负责人"};
+    private void initCyss() {
+        fl_cy = findViewById(R.id.fl_cy);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<String>(mVals_cyss) {
+            @Override
+            public View getView(FlowLayout parent, int position, String s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_cyss, fl_cy, false);
+                tv.setText(s);
+                return tv;
+            }
+        };
+        fl_cy.setAdapter(adapter1);
+        fl_cy.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                searchBean.clean();
+                searchBean.setCyss(mVals_cyss[position]);
+                Intent intent = new Intent(context,SearchDetailActivity.class);
+                intent.putExtra("data",searchBean);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     String[] mVals_dp = new String[]{"全部", "中共党员", "非中共党员", "民革", "民盟", "民建", "民进", "农工员", "致工党", "九三学社", "台盟", "无党派"};
@@ -336,6 +366,7 @@ public class SearchActivity extends BaseActivity {
                 et_search.setSelection(et_search.getText().toString().length());
                 MySelfInfo.getInstance().addSearch(lists.get(position));
 
+                searchBean.clean();
                 searchBean.setSearch(lists.get(position));
 
                 Intent intent = new Intent(context,SearchDetailActivity.class);
