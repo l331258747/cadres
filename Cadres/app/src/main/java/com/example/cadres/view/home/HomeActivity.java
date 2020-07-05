@@ -10,6 +10,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreAwardPunishListDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
@@ -53,9 +56,11 @@ import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
+import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
@@ -68,6 +73,8 @@ import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -274,13 +281,75 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data) {
         setDBYjjc(data);
-        progress.dismiss();
+        mPresenter.getFiles();
     }
 
     @Override
     public void getYjjcListFailed(String msg) {
         progress.setProgress(90);
+        mPresenter.getFiles();
+    }
+
+    @Override
+    public void getFilesSuccess(List<String> data) {
+//        for (int i=0;i<data.size();i++){
+//            loadImages(data.get(i),90 + (10 / data.size() * i));
+//        }
+        pos = 0;
+        files = data;
+        loadImages();
+
         progress.dismiss();
+    }
+
+    @Override
+    public void getFilesFailed(String msg) {
+        progress.setProgress(90);
+        progress.dismiss();
+    }
+
+    private void deleteAll() {
+        FileUtil.delAllFile(FileUtil.getFolder(Constant.IMAGE_PATH));
+    }
+
+    String informationId;
+    File dir;
+    List<String> files;
+    int pos = 0;
+
+    private void loadImages() {
+        if(pos  == files.size()) return;
+        String url = files.get(pos);
+
+        dir = FileUtil.getFolder(Constant.IMAGE_PATH);
+        //取得最后一个/的下标
+        int index = url.lastIndexOf("/");
+        //将字符串转为字符数组
+        char[] ch = url.toCharArray();
+        //根据 copyValueOf(char[] data, int offset, int count) 取得最后一个字符串
+        informationId = String.copyValueOf(ch, index + 1, ch.length - index - 1);
+
+        Glide.with(context).load(url).asBitmap().toBytes().into(new SimpleTarget<byte[]>() {
+            @Override
+            public void onResourceReady(byte[] bytes, GlideAnimation<? super byte[]> glideAnimation) {
+                try {
+                    String fileName = dir + File.separator + informationId;
+                    FileOutputStream fos = new FileOutputStream(fileName, true);
+                    fos.write(bytes);
+                    fos.flush();
+                    fos.close();
+
+                    pos ++;
+                    loadImages();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                progress.setProgress(90 + (10 / files.size() * pos));
+                LogUtil.e("图片 下载完成");
+            }
+        });
     }
 
     //第一次
@@ -333,12 +402,14 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcDaoUtils.deleteAll();
         dBYjjcCadreDaoUtils.deleteAll();
         dBYjjcMeetingDaoUtils.deleteAll();
+
+        deleteAll();
     }
 
     private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
         List<DBZcfgBean> dbList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(10 + (20/data.size() * i));
+            progress.setProgress(10 + (20 / data.size() * i));
             ZcfgBean.ZcfgBean2 item = data.get(i);
             dbList.add(new DBZcfgBean(
                     null,
@@ -367,7 +438,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBBmExplainBean> dbList_explain = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(30 + (20/data.size() * i));
+            progress.setProgress(30 + (20 / data.size() * i));
             BmBean.BmBean2 item = data.get(i);
             dbList.add(new DBBmBean(
                     null,
@@ -427,7 +498,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBGbCadreTrainListBean> dbList_train = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(50 + (20/data.size() * i));
+            progress.setProgress(50 + (20 / data.size() * i));
             GbBean.GbBean2 item = data.get(i);
             dbList.add(new DBGbBean(
                     null,
@@ -627,13 +698,13 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBGbTrainDaoUtils.insertMulti(dbList_train);
     }
 
-    public void setDBYjjc(List<YjjcBean.YjjcBean2> data){
+    public void setDBYjjc(List<YjjcBean.YjjcBean2> data) {
         List<DbYjjcBean> dbList = new ArrayList<>();
         List<DBYjjcCadre> dbList_cadre = new ArrayList<>();
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(70 + (20/data.size() * i));
+            progress.setProgress(70 + (20 / data.size() * i));
             YjjcBean.YjjcBean2 item = data.get(i);
             dbList.add(new DbYjjcBean(
                     null,

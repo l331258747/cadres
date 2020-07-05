@@ -16,6 +16,7 @@ public interface HomeContract {
         void getBmList();
         void getGbList();
         void getYjjcList();
+        void getFiles();
     }
 
     interface View {
@@ -34,6 +35,9 @@ public interface HomeContract {
 
         void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data);
         void getYjjcListFailed(String msg);
+
+        void getFilesSuccess(List<String> data);
+        void getFilesFailed(String msg);
     }
 
 }

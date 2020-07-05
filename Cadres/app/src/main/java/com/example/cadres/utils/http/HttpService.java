@@ -5,6 +5,7 @@ import com.example.cadres.bean.BaseResponse;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.file.FileBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.yjjc.YjjcVoteCheckBean;
@@ -21,7 +22,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 /**
  * Created by LGQ
@@ -67,4 +67,6 @@ public interface HttpService {
 
 
 
+    @GET("fileUrl/findFileUrlList")
+    Observable<BaseResponse<FileBean>> getFiles();
 }

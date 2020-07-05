@@ -8,11 +8,14 @@ import com.example.cadres.R;
 import com.example.cadres.base.BaseFragment;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.beanDB.DBGbBean;
+import com.example.cadres.constant.Constant;
+import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.glide.GlideUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -192,7 +195,9 @@ public class GbInfoFragment extends BaseFragment {
 
     private void setView() {
         if(data != null){
-            GlideUtil.LoadDefaultImage(context, data.getPhotoFileName(), iv_head,R.mipmap.default_head);
+            GlideUtil.LoadDefaultImage(context,
+                    FileUtil.getFOlderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
+                    iv_head,R.mipmap.default_head);
             tv_qrzxl.setText(data.getFullTimeEducation());
             tv_zzjyxl.setText(data.getCurrentEducation());
             tv_xrzw.setText(data.getCurrentPosition());

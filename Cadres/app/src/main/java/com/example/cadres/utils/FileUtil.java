@@ -81,6 +81,10 @@ public class FileUtil {
         return dir;
     }
 
+    public static String getFOlderPath(String filename){
+        return AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
+    }
+
     /**
      * 删除文件目录，或指定文件
      */
@@ -90,6 +94,7 @@ public class FileUtil {
             LogUtil.e("文件夹图片数量：" + files.length);
             for (int i = 0; i < files.length; i++) {
                 File f = files[i];
+                LogUtil.e("删除文件：：" + f.getAbsolutePath());
                 delAllFile(f);
             }
         } else if (file.exists()) {

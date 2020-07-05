@@ -65,4 +65,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().sendYjjcVote(params); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取 file
+    public static void getFiles(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getFiles(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }
