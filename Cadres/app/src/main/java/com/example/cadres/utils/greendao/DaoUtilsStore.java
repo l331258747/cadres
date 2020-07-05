@@ -12,10 +12,13 @@ import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
+import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBUserListBeanDao;
 import com.cadres.greendao.gen.DBYjjcCadreDao;
 import com.cadres.greendao.gen.DBYjjcMeetingDao;
 import com.cadres.greendao.gen.DBZcfgBeanDao;
+import com.cadres.greendao.gen.DbTyJgDao;
+import com.cadres.greendao.gen.DbTyZsDao;
 import com.cadres.greendao.gen.DbYjjcBeanDao;
 import com.cadres.greendao.gen.MeiziDao;
 import com.example.cadres.beanDB.DBBmBean;
@@ -29,10 +32,13 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBUserListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
+import com.example.cadres.beanDB.DbTyJg;
+import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
 import com.example.cadres.beanDB.Meizi;
 
@@ -65,6 +71,10 @@ public class DaoUtilsStore {
     private CommonDaoUtils<DBYjjcCadre> yjjcCadreDaoUtils;
     private CommonDaoUtils<DBYjjcMeeting> yjjcMeetingDaoUtils;
 
+    private CommonDaoUtils<DBTyHj> tyHjDaoUtils;
+    private CommonDaoUtils<DbTyJg> tyJgDaoUtils;
+    private CommonDaoUtils<DbTyZs> tyZsDaoUtils;
+
 
     public static DaoUtilsStore getInstance() {
         return instance;
@@ -72,6 +82,13 @@ public class DaoUtilsStore {
 
     private DaoUtilsStore() {
         DaoManager mManager = DaoManager.getInstance();
+
+        DBTyHjDao _DBTyHjDao = mManager.getDaoSession().getDBTyHjDao();
+        tyHjDaoUtils = new CommonDaoUtils(DBTyHj.class, _DBTyHjDao);
+        DbTyJgDao _DbTyJgDao = mManager.getDaoSession().getDbTyJgDao();
+        tyJgDaoUtils = new CommonDaoUtils(DbTyJg.class, _DbTyJgDao);
+        DbTyZsDao _DbTyZsDao = mManager.getDaoSession().getDbTyZsDao();
+        tyZsDaoUtils = new CommonDaoUtils(DbTyZs.class, _DbTyZsDao);
 
         MeiziDao _MeiziDao = mManager.getDaoSession().getMeiziDao();
         meiziDaoUtils = new CommonDaoUtils(Meizi.class, _MeiziDao);
@@ -183,5 +200,17 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBYjjcMeeting> getYjjcMeetingDaoUtils() {
         return yjjcMeetingDaoUtils;
+    }
+
+    public CommonDaoUtils<DBTyHj> getTyHjDaoUtils() {
+        return tyHjDaoUtils;
+    }
+
+    public CommonDaoUtils<DbTyJg> getTyJgDaoUtils() {
+        return tyJgDaoUtils;
+    }
+
+    public CommonDaoUtils<DbTyZs> getTyZsDaoUtils() {
+        return tyZsDaoUtils;
     }
 }

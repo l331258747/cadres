@@ -2,6 +2,9 @@ package com.example.cadres.mvp;
 
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.JgtyBean;
+import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
@@ -17,9 +20,20 @@ public interface HomeContract {
         void getGbList();
         void getYjjcList();
         void getFiles();
+
+        void getJgty();
+        void getZsty();
+        void getHjty();
     }
 
     interface View {
+
+        void getJgtySuccess(List<JgtyBean.jgtyBean2> data);
+        void getJgtyFailed(String msg);
+        void getZstySuccess(List<ZstyBean.ZstyBean2> data);
+        void getZstyFailed(String msg);
+        void getHjtySuccess(HjtyBean.HjtyBean2 data);
+        void getHjtyFailed(String msg);
 
         void findUserInfoSuccess(LoginBean.LoginBean2 data);
         void findUserInfoFailed(String msg);

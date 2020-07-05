@@ -71,4 +71,22 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getFiles(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取 file
+    public static void getJgty(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getJgty(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    //获取 file
+    public static void getZsty(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getZsty(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    //获取 file
+    public static void getHjty(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getHjty(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

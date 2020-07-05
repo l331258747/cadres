@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.JgtyBean;
+import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -128,5 +131,53 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getFiles(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getJgty() {
+        ResponseCallback listener = new ResponseCallback<JgtyBean>() {
+            @Override
+            public void onSuccess(JgtyBean data) {
+                iView.getJgtySuccess(data.getOrgdeductionList());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getJgtyFailed(errorMsg);
+            }
+        };
+        MethodApi.getJgty(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getZsty() {
+        ResponseCallback listener = new ResponseCallback<ZstyBean>() {
+            @Override
+            public void onSuccess(ZstyBean data) {
+                iView.getZstySuccess(data.getRankDeductionList());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getZstyFailed(errorMsg);
+            }
+        };
+        MethodApi.getZsty(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getHjty() {
+        ResponseCallback listener = new ResponseCallback<HjtyBean>() {
+            @Override
+            public void onSuccess(HjtyBean data) {
+                iView.getHjtySuccess(data.getNewTerm());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getHjtyFailed(errorMsg);
+            }
+        };
+        MethodApi.getHjty(new OnSuccessAndFaultSub(listener, context,false));
     }
 }

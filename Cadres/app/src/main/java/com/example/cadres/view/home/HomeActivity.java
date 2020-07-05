@@ -4,24 +4,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.cadres.greendao.gen.DBGbBeanDao;
-import com.cadres.greendao.gen.DBGbCadreAwardPunishListDao;
-import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreFamilyMemberListDao;
-import com.cadres.greendao.gen.DBGbCadreHistoryPositionListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.Gb.GbBean;
@@ -35,6 +23,9 @@ import com.example.cadres.bean.Gb.GbCadreResumeListBean;
 import com.example.cadres.bean.Gb.GbCadreTrainListBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmExplainBean;
+import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.JgtyBean;
+import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
@@ -52,9 +43,12 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
+import com.example.cadres.beanDB.DbTyJg;
+import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DialogUtil;
@@ -105,6 +99,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     CommonDaoUtils<DbYjjcBean> dBYjjcDaoUtils;
     CommonDaoUtils<DBYjjcCadre> dBYjjcCadreDaoUtils;
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
+
+    CommonDaoUtils<DBTyHj> dBTyHjDaoUtils;
+    CommonDaoUtils<DbTyJg> dBTyJgDaoUtils;
+    CommonDaoUtils<DbTyZs> dBTyZsDaoUtils;
 
     @Override
     public int getLayoutId() {
@@ -158,6 +156,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcDaoUtils = _Store.getYjjcDaoUtils();
         dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
+
+        dBTyHjDaoUtils = _Store.getTyHjDaoUtils();
+        dBTyJgDaoUtils = _Store.getTyJgDaoUtils();
+        dBTyZsDaoUtils = _Store.getTyZsDaoUtils();
 
         fistOne();
         initProgress();
@@ -269,12 +271,45 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getGbListSuccess(List<GbBean.GbBean2> data) {
         setDBGb(data);
-        mPresenter.getYjjcList();
+        mPresenter.getJgty();
     }
 
     @Override
     public void getGbListFailed(String msg) {
         progress.setProgress(70);
+        mPresenter.getJgty();
+    }
+
+    @Override
+    public void getJgtySuccess(List<JgtyBean.jgtyBean2> data) {
+        setDBJgty(data);
+        mPresenter.getZsty();
+    }
+
+    @Override
+    public void getJgtyFailed(String msg) {
+        mPresenter.getZsty();
+    }
+
+    @Override
+    public void getZstySuccess(List<ZstyBean.ZstyBean2> data) {
+        setDBZsty(data);
+        mPresenter.getHjty();
+    }
+
+    @Override
+    public void getZstyFailed(String msg) {
+        mPresenter.getHjty();
+    }
+
+    @Override
+    public void getHjtySuccess(HjtyBean.HjtyBean2 data) {
+        setDBHjty(data);
+        mPresenter.getYjjcList();
+    }
+
+    @Override
+    public void getHjtyFailed(String msg) {
         mPresenter.getYjjcList();
     }
 
@@ -304,7 +339,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getFilesFailed(String msg) {
-        progress.setProgress(90);
+        progress.setProgress(100);
         progress.dismiss();
     }
 
@@ -383,6 +418,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("研究决策 任免会议信息 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
         LogUtil.e("研究决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
 
+        LogUtil.e("推演 换届 条数：" + dBTyHjDaoUtils.queryAll().size());
+        LogUtil.e("推演 结构 条数：" + dBTyJgDaoUtils.queryAll().size());
+        LogUtil.e("推演 职数 条数：" + dBTyZsDaoUtils.queryAll().size());
+
 
         dBZcfgDaoUtils.deleteAll();
         dBBmDaoUtils.deleteAll();
@@ -401,6 +440,10 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcDaoUtils.deleteAll();
         dBYjjcCadreDaoUtils.deleteAll();
         dBYjjcMeetingDaoUtils.deleteAll();
+
+        dBTyHjDaoUtils.deleteAll();
+        dBTyJgDaoUtils.deleteAll();
+        dBTyZsDaoUtils.deleteAll();
 
         deleteAll();
     }
@@ -796,6 +839,58 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcDaoUtils.insertMulti(dbList);
         dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
         dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
+    }
+
+
+    private void setDBJgty(List<JgtyBean.jgtyBean2> data) {
+        List<DbTyJg> dbList = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            JgtyBean.jgtyBean2 item = data.get(i);
+            dbList.add(new DbTyJg(
+                    null,
+                    item.getDeptId(),
+                    item.getSexListStr(),
+                    item.getNationListStr(),
+                    item.getOutlookListStr(),
+                    item.getAgeListStr()
+            ));
+        }
+
+        dBTyJgDaoUtils.insertMulti(dbList);
+    }
+
+    private void setDBZsty(List<ZstyBean.ZstyBean2> data) {
+        List<DbTyZs> dbList = new ArrayList<>();
+
+        for (int i = 0; i < data.size(); i++) {
+
+            ZstyBean.ZstyBean2 item = data.get(i);
+            dbList.add(new DbTyZs(
+                    null,
+                    item.getDeptid(),
+                    item.getOvermatchInt(),
+                    item.getParallelInt(),
+                    item.getVacancyInt(),
+                    item.getToVacancyInt(),
+                    item.getRankAgeListStr()
+            ));
+        }
+        dBTyZsDaoUtils.insertMulti(dbList);
+    }
+
+    private void setDBHjty(HjtyBean.HjtyBean2 data) {
+        DBTyHj db = new DBTyHj(
+                null,
+                data.getSwbzcount(),
+                data.getInconformityswbz(),
+                data.getSzfbzcount(),
+                data.getInconformityszfbz(),
+                data.getSrdbzcount(),
+                data.getInconformitysrdbz(),
+                data.getSzxzcount(),
+                data.getInconformityszx()
+        );
+        dBTyHjDaoUtils.insert(db);
     }
 
 }

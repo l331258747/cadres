@@ -32,10 +32,13 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreRankListBeanDao.createTable(db, ifNotExists);
         DBGbCadreResumeListBeanDao.createTable(db, ifNotExists);
         DBGbCadreTrainListBeanDao.createTable(db, ifNotExists);
+        DBTyHjDao.createTable(db, ifNotExists);
         DBUserListBeanDao.createTable(db, ifNotExists);
         DBYjjcCadreDao.createTable(db, ifNotExists);
         DBYjjcMeetingDao.createTable(db, ifNotExists);
         DBZcfgBeanDao.createTable(db, ifNotExists);
+        DbTyJgDao.createTable(db, ifNotExists);
+        DbTyZsDao.createTable(db, ifNotExists);
         DbYjjcBeanDao.createTable(db, ifNotExists);
         MeiziDao.createTable(db, ifNotExists);
     }
@@ -53,10 +56,13 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreRankListBeanDao.dropTable(db, ifExists);
         DBGbCadreResumeListBeanDao.dropTable(db, ifExists);
         DBGbCadreTrainListBeanDao.dropTable(db, ifExists);
+        DBTyHjDao.dropTable(db, ifExists);
         DBUserListBeanDao.dropTable(db, ifExists);
         DBYjjcCadreDao.dropTable(db, ifExists);
         DBYjjcMeetingDao.dropTable(db, ifExists);
         DBZcfgBeanDao.dropTable(db, ifExists);
+        DbTyJgDao.dropTable(db, ifExists);
+        DbTyZsDao.dropTable(db, ifExists);
         DbYjjcBeanDao.dropTable(db, ifExists);
         MeiziDao.dropTable(db, ifExists);
     }
@@ -88,10 +94,13 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(DBGbCadreRankListBeanDao.class);
         registerDaoClass(DBGbCadreResumeListBeanDao.class);
         registerDaoClass(DBGbCadreTrainListBeanDao.class);
+        registerDaoClass(DBTyHjDao.class);
         registerDaoClass(DBUserListBeanDao.class);
         registerDaoClass(DBYjjcCadreDao.class);
         registerDaoClass(DBYjjcMeetingDao.class);
         registerDaoClass(DBZcfgBeanDao.class);
+        registerDaoClass(DbTyJgDao.class);
+        registerDaoClass(DbTyZsDao.class);
         registerDaoClass(DbYjjcBeanDao.class);
         registerDaoClass(MeiziDao.class);
     }

@@ -5,6 +5,9 @@ import com.example.cadres.bean.BaseResponse;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.JgtyBean;
+import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -65,8 +68,17 @@ public interface HttpService {
     @POST("appointDismissScheme/appointDismissVoteAdd")
     Observable<BaseResponse<EmptyModel>> sendYjjcVote(@FieldMap Map<String,String> params);
 
-
-
     @GET("fileUrl/findFileUrlList")
     Observable<BaseResponse<FileBean>> getFiles();
+
+    @POST("deduction/orgdeductionList")
+    Observable<BaseResponse<JgtyBean>> getJgty();
+
+    @POST("rank/rankDeuctionList")
+    Observable<BaseResponse<ZstyBean>> getZsty();
+
+    @POST("newTerm/newTermDedectionList")
+    Observable<BaseResponse<HjtyBean>> getHjty();
+
+
 }
