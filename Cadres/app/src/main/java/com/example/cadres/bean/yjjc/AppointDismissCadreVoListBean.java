@@ -5,37 +5,58 @@ import com.example.cadres.utils.GsonUtil;
 import java.util.List;
 
 public class AppointDismissCadreVoListBean {
+
+
     /**
      * searchValue : null
      * createBy :
-     * createTime : 2020-06-26 21:19:47
+     * createTime : 2020-06-29 14:14:45
      * updateBy :
-     * updateTime : null
+     * updateTime : 2020-07-01 18:00:08
      * remark :
      * deptCode : null
      * params : {}
-     * dismissCadreId : 200
-     * schemeId : 200
-     * schemeName : 方案1
-     * baseId : 218
-     * cadreName : 张三
+     * dismissCadreId : 206
+     * schemeId : 203
+     * schemeName : 关于环保局局长任免决策
+     * baseId : 228
+     * cadreName : 林泉
      * gender : 男
-     * birthday : 1979-01-01
-     * age : 41
-     * joinPartyDate : 1994-02-02
-     * currentPosition : 乡镇1副书记,国税局副主任,乡镇1书记
-     * currentPositionTime : 2020-06-10
-     * nativePlace : 中国湖南
-     * fullTimeEducation : 小学
-     * currentEducation : 中学
+     * nation : 汉族
+     * nativePlace : 湖北
+     * currentEducation : 大学本科
+     * fullTimeEducation : 大学本科
+     * currentMajor : 经济管理学
+     * fullTimeMajor : 经济管理学
+     * currentDegreeName : 经济学硕士
+     * fullTimeDegreeName : 经济学学士
+     * technicalTitle : 行政管理
+     * birthday : 1980-07
+     * age : 40
+     * workTime : 1991-04
+     * joinPartyDate : 1989-04
+     * currentPositionTime : 2015-08
+     * currentRankTime : 2015-05
+     * talkNumber : 10
+     * talkGainNumber : 9
+     * recommendNumber : 10
+     * recommendGainNumber : 8
+     * currentPosition : 环保局局长,农业局职务待定
+     * aspiringPosition : 拟任环保局局长职务
+     * jwOpinion : 纪委意见同意
+     * zzbOpinion : 组织部意见同意
+     * validTicket : 5
+     * gainVotes : 5
+     * cwhOpinion : 通过
+     * appointDismissResult : 1
      * appointDismissType : 拟任职
-     * appointPosition : 200
-     * appointPositionName : 书记
-     * appointDeptId : 207
-     * appointDeptName : 乡镇1
-     * positionTime : 2020-06-09 00:00:00
-     * positionReason : 公选
-     * positionFileNumber : 1111
+     * appointPosition : 211
+     * appointPositionName : 局长
+     * appointDeptId : 217
+     * appointDeptName : 环保局
+     * positionTime : 2020-06-29 00:00:00
+     * positionReason :
+     * positionFileNumber :
      * dismissPosition : null
      * dismissPositionName : null
      * dismissDeptId : null
@@ -43,32 +64,48 @@ public class AppointDismissCadreVoListBean {
      * leaveTime : null
      * leaveReason :
      * leaveFileNumber :
-     * currentRank : 正处
-     * appointDismissResult : 待审核
-     * meetingDescribe : 任免说明测试
-     * inspectFileName : ["b06526ab47b62b1c6acb730532faa434.jpg","68da4d311d70c45ec97b02b0e5b1f8be.jpg"]
-     * talkNumber : 10
-     * recommendNumber : 9
+     * currentRank : 乡科级正职
+     * meetingDescribe : null
+     * inspectFileName : ["14b71ef32bf0ed69c72e11e3fce0faf0.doc"]
      * ranking : 1
      * vacantPosition : 是
-     * validTicket : 0
-     * gainVotes : 0
      */
 
+    private String remark;
+    private String deptCode;
     private int dismissCadreId;
     private int schemeId;
     private String schemeName;
     private int baseId;
     private String cadreName;
     private String gender;
+    private String nation;
+    private String nativePlace;
+    private String currentEducation;
+    private String fullTimeEducation;
+    private String currentMajor;
+    private String fullTimeMajor;
+    private String currentDegreeName;
+    private String fullTimeDegreeName;
+    private String technicalTitle;
     private String birthday;
     private int age;
+    private String workTime;
     private String joinPartyDate;
-    private String currentPosition;
     private String currentPositionTime;
-    private String nativePlace;
-    private String fullTimeEducation;
-    private String currentEducation;
+    private String currentRankTime;
+    private int talkNumber;
+    private int talkGainNumber;
+    private int recommendNumber;
+    private int recommendGainNumber;
+    private String currentPosition;
+    private String aspiringPosition;
+    private String jwOpinion;
+    private String zzbOpinion;
+    private int validTicket;
+    private int gainVotes;
+    private String cwhOpinion;
+    private String appointDismissResult;
     private String appointDismissType;
     private int appointPosition;
     private String appointPositionName;
@@ -85,15 +122,24 @@ public class AppointDismissCadreVoListBean {
     private String leaveReason;
     private String leaveFileNumber;
     private String currentRank;
-    private String appointDismissResult;
     private String meetingDescribe;
-    private int talkNumber;
-    private int recommendNumber;
     private int ranking;
     private String vacantPosition;
-    private int validTicket;
-    private int gainVotes;
     private List<String> inspectFileName;
+
+    public String getInspectFileName() {
+        if(inspectFileName == null || inspectFileName.size() == 0)
+            return "";
+        return GsonUtil.convertVO2String(inspectFileName);
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public String getDeptCode() {
+        return deptCode;
+    }
 
     public int getDismissCadreId() {
         return dismissCadreId;
@@ -119,6 +165,42 @@ public class AppointDismissCadreVoListBean {
         return gender;
     }
 
+    public String getNation() {
+        return nation;
+    }
+
+    public String getNativePlace() {
+        return nativePlace;
+    }
+
+    public String getCurrentEducation() {
+        return currentEducation;
+    }
+
+    public String getFullTimeEducation() {
+        return fullTimeEducation;
+    }
+
+    public String getCurrentMajor() {
+        return currentMajor;
+    }
+
+    public String getFullTimeMajor() {
+        return fullTimeMajor;
+    }
+
+    public String getCurrentDegreeName() {
+        return currentDegreeName;
+    }
+
+    public String getFullTimeDegreeName() {
+        return fullTimeDegreeName;
+    }
+
+    public String getTechnicalTitle() {
+        return technicalTitle;
+    }
+
     public String getBirthday() {
         return birthday;
     }
@@ -127,28 +209,68 @@ public class AppointDismissCadreVoListBean {
         return age;
     }
 
-    public String getJoinPartyDate() {
-        return joinPartyDate;
+    public String getWorkTime() {
+        return workTime;
     }
 
-    public String getCurrentPosition() {
-        return currentPosition;
+    public String getJoinPartyDate() {
+        return joinPartyDate;
     }
 
     public String getCurrentPositionTime() {
         return currentPositionTime;
     }
 
-    public String getNativePlace() {
-        return nativePlace;
+    public String getCurrentRankTime() {
+        return currentRankTime;
     }
 
-    public String getFullTimeEducation() {
-        return fullTimeEducation;
+    public int getTalkNumber() {
+        return talkNumber;
     }
 
-    public String getCurrentEducation() {
-        return currentEducation;
+    public int getTalkGainNumber() {
+        return talkGainNumber;
+    }
+
+    public int getRecommendNumber() {
+        return recommendNumber;
+    }
+
+    public int getRecommendGainNumber() {
+        return recommendGainNumber;
+    }
+
+    public String getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public String getAspiringPosition() {
+        return aspiringPosition;
+    }
+
+    public String getJwOpinion() {
+        return jwOpinion;
+    }
+
+    public String getZzbOpinion() {
+        return zzbOpinion;
+    }
+
+    public int getValidTicket() {
+        return validTicket;
+    }
+
+    public int getGainVotes() {
+        return gainVotes;
+    }
+
+    public String getCwhOpinion() {
+        return cwhOpinion;
+    }
+
+    public String getAppointDismissResult() {
+        return appointDismissResult;
     }
 
     public String getAppointDismissType() {
@@ -215,20 +337,8 @@ public class AppointDismissCadreVoListBean {
         return currentRank;
     }
 
-    public String getAppointDismissResult() {
-        return appointDismissResult;
-    }
-
     public String getMeetingDescribe() {
         return meetingDescribe;
-    }
-
-    public int getTalkNumber() {
-        return talkNumber;
-    }
-
-    public int getRecommendNumber() {
-        return recommendNumber;
     }
 
     public int getRanking() {
@@ -237,19 +347,5 @@ public class AppointDismissCadreVoListBean {
 
     public String getVacantPosition() {
         return vacantPosition;
-    }
-
-    public int getValidTicket() {
-        return validTicket;
-    }
-
-    public int getGainVotes() {
-        return gainVotes;
-    }
-
-    public String getInspectFileName() {
-        if(inspectFileName == null || inspectFileName.size() == 0)
-            return "";
-        return GsonUtil.convertVO2String(inspectFileName);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cadres.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,24 +40,46 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
         final DBYjjcCadre data = datas.get(position);
         if (data == null) return;
 
+        //TextView tv_tip2,tv_name,tv_sex,tv_mz,tv_jg,tv_zzxl;
         holder.tv_tip2.setText("");
         holder.tv_name.setText(data.getCadreName());
-        holder.tv_csny.setText(data.getBirthday());
-        holder.tv_rdsj.setText(data.getJoinPartyDate());
-        holder.tv_xrzw.setText(data.getCurrentPosition());
-        holder.tv_nrzw.setText(data.getAppointPositionName());
-
-        holder.tv_nmzw.setText(data.getDismissPositionName());
-        holder.tv_xrzsj.setText(data.getCurrentPositionTime());
+        holder.tv_sex.setText(data.getGender());
+        holder.tv_mz.setText(data.getNation());
         holder.tv_jg.setText(data.getNativePlace());
-        holder.tv_whcd_qrz.setText(data.getFullTimeEducation());
-        holder.tv_whcd_zz.setText(data.getCurrentEducation());
-        holder.tv_thrs.setText(data.getTalkNumber() + "");
+        holder.tv_zzxl.setText(data.getCurrentEducation());
 
-        holder.tv_tjrs.setText(data.getRecommendNumber() + "");
-        holder.tv_pm.setText(data.getRanking() + "");
-        holder.tv_yxp.setText(data.getValidTicket() + "");
-        holder.tv_dp.setText(data.getGainVotes() + "");
+        //TextView tv_qrzxl,tv_zzzy,tv_qrzzy,tv_zzxw,tv_qrzxw,tv_zyjszw;
+        holder.tv_qrzxl.setText(data.getFullTimeEducation());
+        holder.tv_zzzy.setText(data.getCurrentMajor());
+        holder.tv_qrzzy.setText(data.getFullTimeMajor());
+        holder.tv_zzxw.setText(data.getCurrentDegreeName());
+        holder.tv_qrzxw.setText(data.getFullTimeDegreeName());
+        holder.tv_zyjszw.setText(data.getTechnicalTitle());
+
+        //        TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
+        holder.tv_csny.setText(data.getBirthday() + (data.getAge() == 0?"":data.getAge()));
+        holder.tv_gzsj.setText(data.getWorkTime());
+        holder.tv_rdsj.setText(data.getJoinPartyDate());
+        holder.tv_rxzsj.setText(data.getCurrentPositionTime());
+        holder.tv_rxzjsj.setText(data.getCurrentRankTime());
+
+        //        TextView tv_thdytj_yxp,tv_thdytj_dps,tv_hytj_yxp,tv_hytj_dps;
+        holder.tv_thdytj_yxp.setText(data.getTalkNumber() + "");
+        holder.tv_thdytj_dps.setText(data.getTalkGainNumber() + "");
+        holder.tv_hytj_yxp.setText(data.getRecommendNumber() + "");
+        holder.tv_hytj_dps.setText(data.getRecommendGainNumber() + "");
+
+        //        TextView tv_xrzw,tv_nrmzw,tv_jwyj,tv_zzbyj;
+        holder.tv_xrzw.setText(data.getCurrentPosition());
+        holder.tv_nrmzw.setText(data.getAspiringPosition());
+        holder.tv_jwyj.setText(data.getJwOpinion());
+        holder.tv_zzbyj.setText(data.getZzbOpinion());
+
+        //        TextView tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg,tv_bz;
+        holder.tv_cwhyj_yxp.setText(data.getValidTicket() + "");
+        holder.tv_cwhyj_dps.setText(data.getGainVotes() + "");
+        holder.tv_cwhyj_jg.setText(data.getCwhOpinion());
+        holder.tv_bz.setText(data.getRemark());
 
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
@@ -80,31 +103,52 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_tip2,tv_name,tv_csny,tv_rdsj,tv_xrzw,tv_nrzw;
-        TextView tv_nmzw,tv_xrzsj,tv_jg,tv_whcd_qrz,tv_whcd_zz,tv_thrs;
-        TextView tv_tjrs,tv_pm,tv_yxp,tv_dp;
+        TextView tv_tip2,tv_name,tv_sex,tv_mz,tv_jg,tv_zzxl;
+        TextView tv_qrzxl,tv_zzzy,tv_qrzzy,tv_zzxw,tv_qrzxw,tv_zyjszw;
+        TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
+        TextView tv_thdytj_yxp,tv_thdytj_dps,tv_hytj_yxp,tv_hytj_dps;
+        TextView tv_xrzw,tv_nrmzw,tv_jwyj,tv_zzbyj;
+        TextView tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg,tv_bz;
         ConstraintLayout cl_parent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_cwhyj_yxp = itemView.findViewById(R.id.tv_cwhyj_yxp);
+            tv_cwhyj_dps = itemView.findViewById(R.id.tv_cwhyj_dps);
+            tv_cwhyj_jg = itemView.findViewById(R.id.tv_cwhyj_jg);
+            tv_bz = itemView.findViewById(R.id.tv_bz);
+
+            tv_xrzw = itemView.findViewById(R.id.tv_xrzw);
+            tv_nrmzw = itemView.findViewById(R.id.tv_nrmzw);
+            tv_jwyj = itemView.findViewById(R.id.tv_jwyj);
+            tv_zzbyj = itemView.findViewById(R.id.tv_zzbyj);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
+
             tv_tip2 = itemView.findViewById(R.id.tv_tip2);
             tv_name = itemView.findViewById(R.id.tv_name);
-            tv_csny = itemView.findViewById(R.id.tv_csny);
-            tv_rdsj = itemView.findViewById(R.id.tv_rdsj);
-            tv_xrzw = itemView.findViewById(R.id.tv_xrzw);
-            tv_nrzw = itemView.findViewById(R.id.tv_nrzw);
-            tv_nmzw = itemView.findViewById(R.id.tv_nmzw);
-            tv_xrzsj = itemView.findViewById(R.id.tv_xrzsj);
+            tv_sex = itemView.findViewById(R.id.tv_sex);
+            tv_mz = itemView.findViewById(R.id.tv_mz);
             tv_jg = itemView.findViewById(R.id.tv_jg);
-            tv_whcd_qrz = itemView.findViewById(R.id.tv_whcd_qrz);
-            tv_whcd_zz = itemView.findViewById(R.id.tv_whcd_zz);
-            tv_thrs = itemView.findViewById(R.id.tv_thrs);
-            tv_tjrs = itemView.findViewById(R.id.tv_tjrs);
-            tv_pm = itemView.findViewById(R.id.tv_pm);
-            tv_yxp = itemView.findViewById(R.id.tv_yxp);
-            tv_dp = itemView.findViewById(R.id.tv_dp);
+            tv_zzxl = itemView.findViewById(R.id.tv_zzxl);
+
+            tv_qrzxl = itemView.findViewById(R.id.tv_qrzxl);
+            tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
+            tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);
+            tv_zzxw = itemView.findViewById(R.id.tv_zzxw);
+            tv_qrzxw = itemView.findViewById(R.id.tv_qrzxw);
+            tv_zyjszw = itemView.findViewById(R.id.tv_zyjszw);
+
+            tv_csny = itemView.findViewById(R.id.tv_csny);
+            tv_gzsj = itemView.findViewById(R.id.tv_gzsj);
+            tv_rdsj = itemView.findViewById(R.id.tv_rdsj);
+            tv_rxzsj = itemView.findViewById(R.id.tv_rxzsj);
+            tv_rxzjsj = itemView.findViewById(R.id.tv_rxzjsj);
+
+            tv_thdytj_yxp = itemView.findViewById(R.id.tv_thdytj_yxp);
+            tv_thdytj_dps = itemView.findViewById(R.id.tv_thdytj_dps);
+            tv_hytj_yxp = itemView.findViewById(R.id.tv_hytj_yxp);
+            tv_hytj_dps = itemView.findViewById(R.id.tv_hytj_dps);
         }
     }
 

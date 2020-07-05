@@ -18,6 +18,7 @@ public class URLConstant {
 //            return "http://192.168.100.101:8099";
         }else{
             return "http://2r12l01488.iask.in:25445";
+//            return "http://192.168.100.101:8099";
 
         }
     }

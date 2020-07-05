@@ -25,45 +25,61 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
      */
     public static class Properties {
         public final static Property _id = new Property(0, Long.class, "_id", true, "_id");
-        public final static Property DismissCadreId = new Property(1, int.class, "dismissCadreId", false, "DISMISS_CADRE_ID");
-        public final static Property SchemeId = new Property(2, int.class, "schemeId", false, "SCHEME_ID");
-        public final static Property SchemeName = new Property(3, String.class, "schemeName", false, "SCHEME_NAME");
-        public final static Property BaseId = new Property(4, int.class, "baseId", false, "BASE_ID");
-        public final static Property CadreName = new Property(5, String.class, "cadreName", false, "CADRE_NAME");
-        public final static Property Gender = new Property(6, String.class, "gender", false, "GENDER");
-        public final static Property Birthday = new Property(7, String.class, "birthday", false, "BIRTHDAY");
-        public final static Property Age = new Property(8, int.class, "age", false, "AGE");
-        public final static Property JoinPartyDate = new Property(9, String.class, "joinPartyDate", false, "JOIN_PARTY_DATE");
-        public final static Property CurrentPosition = new Property(10, String.class, "currentPosition", false, "CURRENT_POSITION");
-        public final static Property CurrentPositionTime = new Property(11, String.class, "currentPositionTime", false, "CURRENT_POSITION_TIME");
-        public final static Property NativePlace = new Property(12, String.class, "nativePlace", false, "NATIVE_PLACE");
-        public final static Property FullTimeEducation = new Property(13, String.class, "fullTimeEducation", false, "FULL_TIME_EDUCATION");
-        public final static Property CurrentEducation = new Property(14, String.class, "currentEducation", false, "CURRENT_EDUCATION");
-        public final static Property AppointDismissType = new Property(15, String.class, "appointDismissType", false, "APPOINT_DISMISS_TYPE");
-        public final static Property AppointPosition = new Property(16, int.class, "appointPosition", false, "APPOINT_POSITION");
-        public final static Property AppointPositionName = new Property(17, String.class, "appointPositionName", false, "APPOINT_POSITION_NAME");
-        public final static Property AppointDeptId = new Property(18, int.class, "appointDeptId", false, "APPOINT_DEPT_ID");
-        public final static Property AppointDeptName = new Property(19, String.class, "appointDeptName", false, "APPOINT_DEPT_NAME");
-        public final static Property PositionTime = new Property(20, String.class, "positionTime", false, "POSITION_TIME");
-        public final static Property PositionReason = new Property(21, String.class, "positionReason", false, "POSITION_REASON");
-        public final static Property PositionFileNumber = new Property(22, String.class, "positionFileNumber", false, "POSITION_FILE_NUMBER");
-        public final static Property DismissPosition = new Property(23, String.class, "dismissPosition", false, "DISMISS_POSITION");
-        public final static Property DismissPositionName = new Property(24, String.class, "dismissPositionName", false, "DISMISS_POSITION_NAME");
-        public final static Property DismissDeptId = new Property(25, String.class, "dismissDeptId", false, "DISMISS_DEPT_ID");
-        public final static Property DismissDeptName = new Property(26, String.class, "dismissDeptName", false, "DISMISS_DEPT_NAME");
-        public final static Property LeaveTime = new Property(27, String.class, "leaveTime", false, "LEAVE_TIME");
-        public final static Property LeaveReason = new Property(28, String.class, "leaveReason", false, "LEAVE_REASON");
-        public final static Property LeaveFileNumber = new Property(29, String.class, "leaveFileNumber", false, "LEAVE_FILE_NUMBER");
-        public final static Property CurrentRank = new Property(30, String.class, "currentRank", false, "CURRENT_RANK");
-        public final static Property AppointDismissResult = new Property(31, String.class, "appointDismissResult", false, "APPOINT_DISMISS_RESULT");
-        public final static Property MeetingDescribe = new Property(32, String.class, "meetingDescribe", false, "MEETING_DESCRIBE");
-        public final static Property TalkNumber = new Property(33, int.class, "talkNumber", false, "TALK_NUMBER");
-        public final static Property RecommendNumber = new Property(34, int.class, "recommendNumber", false, "RECOMMEND_NUMBER");
-        public final static Property Ranking = new Property(35, int.class, "ranking", false, "RANKING");
-        public final static Property VacantPosition = new Property(36, String.class, "vacantPosition", false, "VACANT_POSITION");
-        public final static Property ValidTicket = new Property(37, int.class, "validTicket", false, "VALID_TICKET");
-        public final static Property GainVotes = new Property(38, int.class, "gainVotes", false, "GAIN_VOTES");
-        public final static Property InspectFileName = new Property(39, String.class, "inspectFileName", false, "INSPECT_FILE_NAME");
+        public final static Property Remark = new Property(1, String.class, "remark", false, "REMARK");
+        public final static Property DeptCode = new Property(2, String.class, "deptCode", false, "DEPT_CODE");
+        public final static Property DismissCadreId = new Property(3, int.class, "dismissCadreId", false, "DISMISS_CADRE_ID");
+        public final static Property SchemeId = new Property(4, int.class, "schemeId", false, "SCHEME_ID");
+        public final static Property SchemeName = new Property(5, String.class, "schemeName", false, "SCHEME_NAME");
+        public final static Property BaseId = new Property(6, int.class, "baseId", false, "BASE_ID");
+        public final static Property CadreName = new Property(7, String.class, "cadreName", false, "CADRE_NAME");
+        public final static Property Gender = new Property(8, String.class, "gender", false, "GENDER");
+        public final static Property Nation = new Property(9, String.class, "nation", false, "NATION");
+        public final static Property NativePlace = new Property(10, String.class, "nativePlace", false, "NATIVE_PLACE");
+        public final static Property CurrentEducation = new Property(11, String.class, "currentEducation", false, "CURRENT_EDUCATION");
+        public final static Property FullTimeEducation = new Property(12, String.class, "fullTimeEducation", false, "FULL_TIME_EDUCATION");
+        public final static Property CurrentMajor = new Property(13, String.class, "currentMajor", false, "CURRENT_MAJOR");
+        public final static Property FullTimeMajor = new Property(14, String.class, "fullTimeMajor", false, "FULL_TIME_MAJOR");
+        public final static Property CurrentDegreeName = new Property(15, String.class, "currentDegreeName", false, "CURRENT_DEGREE_NAME");
+        public final static Property FullTimeDegreeName = new Property(16, String.class, "fullTimeDegreeName", false, "FULL_TIME_DEGREE_NAME");
+        public final static Property TechnicalTitle = new Property(17, String.class, "technicalTitle", false, "TECHNICAL_TITLE");
+        public final static Property Birthday = new Property(18, String.class, "birthday", false, "BIRTHDAY");
+        public final static Property Age = new Property(19, int.class, "age", false, "AGE");
+        public final static Property WorkTime = new Property(20, String.class, "workTime", false, "WORK_TIME");
+        public final static Property JoinPartyDate = new Property(21, String.class, "joinPartyDate", false, "JOIN_PARTY_DATE");
+        public final static Property CurrentPositionTime = new Property(22, String.class, "currentPositionTime", false, "CURRENT_POSITION_TIME");
+        public final static Property CurrentRankTime = new Property(23, String.class, "currentRankTime", false, "CURRENT_RANK_TIME");
+        public final static Property TalkNumber = new Property(24, int.class, "talkNumber", false, "TALK_NUMBER");
+        public final static Property TalkGainNumber = new Property(25, int.class, "talkGainNumber", false, "TALK_GAIN_NUMBER");
+        public final static Property RecommendNumber = new Property(26, int.class, "recommendNumber", false, "RECOMMEND_NUMBER");
+        public final static Property RecommendGainNumber = new Property(27, int.class, "recommendGainNumber", false, "RECOMMEND_GAIN_NUMBER");
+        public final static Property CurrentPosition = new Property(28, String.class, "currentPosition", false, "CURRENT_POSITION");
+        public final static Property AspiringPosition = new Property(29, String.class, "aspiringPosition", false, "ASPIRING_POSITION");
+        public final static Property JwOpinion = new Property(30, String.class, "jwOpinion", false, "JW_OPINION");
+        public final static Property ZzbOpinion = new Property(31, String.class, "zzbOpinion", false, "ZZB_OPINION");
+        public final static Property ValidTicket = new Property(32, int.class, "validTicket", false, "VALID_TICKET");
+        public final static Property GainVotes = new Property(33, int.class, "gainVotes", false, "GAIN_VOTES");
+        public final static Property CwhOpinion = new Property(34, String.class, "cwhOpinion", false, "CWH_OPINION");
+        public final static Property AppointDismissResult = new Property(35, String.class, "appointDismissResult", false, "APPOINT_DISMISS_RESULT");
+        public final static Property AppointDismissType = new Property(36, String.class, "appointDismissType", false, "APPOINT_DISMISS_TYPE");
+        public final static Property AppointPosition = new Property(37, int.class, "appointPosition", false, "APPOINT_POSITION");
+        public final static Property AppointPositionName = new Property(38, String.class, "appointPositionName", false, "APPOINT_POSITION_NAME");
+        public final static Property AppointDeptId = new Property(39, int.class, "appointDeptId", false, "APPOINT_DEPT_ID");
+        public final static Property AppointDeptName = new Property(40, String.class, "appointDeptName", false, "APPOINT_DEPT_NAME");
+        public final static Property PositionTime = new Property(41, String.class, "positionTime", false, "POSITION_TIME");
+        public final static Property PositionReason = new Property(42, String.class, "positionReason", false, "POSITION_REASON");
+        public final static Property PositionFileNumber = new Property(43, String.class, "positionFileNumber", false, "POSITION_FILE_NUMBER");
+        public final static Property DismissPosition = new Property(44, String.class, "dismissPosition", false, "DISMISS_POSITION");
+        public final static Property DismissPositionName = new Property(45, String.class, "dismissPositionName", false, "DISMISS_POSITION_NAME");
+        public final static Property DismissDeptId = new Property(46, String.class, "dismissDeptId", false, "DISMISS_DEPT_ID");
+        public final static Property DismissDeptName = new Property(47, String.class, "dismissDeptName", false, "DISMISS_DEPT_NAME");
+        public final static Property LeaveTime = new Property(48, String.class, "leaveTime", false, "LEAVE_TIME");
+        public final static Property LeaveReason = new Property(49, String.class, "leaveReason", false, "LEAVE_REASON");
+        public final static Property LeaveFileNumber = new Property(50, String.class, "leaveFileNumber", false, "LEAVE_FILE_NUMBER");
+        public final static Property CurrentRank = new Property(51, String.class, "currentRank", false, "CURRENT_RANK");
+        public final static Property MeetingDescribe = new Property(52, String.class, "meetingDescribe", false, "MEETING_DESCRIBE");
+        public final static Property Ranking = new Property(53, int.class, "ranking", false, "RANKING");
+        public final static Property VacantPosition = new Property(54, String.class, "vacantPosition", false, "VACANT_POSITION");
+        public final static Property InspectFileName = new Property(55, String.class, "inspectFileName", false, "INSPECT_FILE_NAME");
     }
 
 
@@ -80,45 +96,61 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"DBYJJC_CADRE\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: _id
-                "\"DISMISS_CADRE_ID\" INTEGER NOT NULL ," + // 1: dismissCadreId
-                "\"SCHEME_ID\" INTEGER NOT NULL ," + // 2: schemeId
-                "\"SCHEME_NAME\" TEXT," + // 3: schemeName
-                "\"BASE_ID\" INTEGER NOT NULL ," + // 4: baseId
-                "\"CADRE_NAME\" TEXT," + // 5: cadreName
-                "\"GENDER\" TEXT," + // 6: gender
-                "\"BIRTHDAY\" TEXT," + // 7: birthday
-                "\"AGE\" INTEGER NOT NULL ," + // 8: age
-                "\"JOIN_PARTY_DATE\" TEXT," + // 9: joinPartyDate
-                "\"CURRENT_POSITION\" TEXT," + // 10: currentPosition
-                "\"CURRENT_POSITION_TIME\" TEXT," + // 11: currentPositionTime
-                "\"NATIVE_PLACE\" TEXT," + // 12: nativePlace
-                "\"FULL_TIME_EDUCATION\" TEXT," + // 13: fullTimeEducation
-                "\"CURRENT_EDUCATION\" TEXT," + // 14: currentEducation
-                "\"APPOINT_DISMISS_TYPE\" TEXT," + // 15: appointDismissType
-                "\"APPOINT_POSITION\" INTEGER NOT NULL ," + // 16: appointPosition
-                "\"APPOINT_POSITION_NAME\" TEXT," + // 17: appointPositionName
-                "\"APPOINT_DEPT_ID\" INTEGER NOT NULL ," + // 18: appointDeptId
-                "\"APPOINT_DEPT_NAME\" TEXT," + // 19: appointDeptName
-                "\"POSITION_TIME\" TEXT," + // 20: positionTime
-                "\"POSITION_REASON\" TEXT," + // 21: positionReason
-                "\"POSITION_FILE_NUMBER\" TEXT," + // 22: positionFileNumber
-                "\"DISMISS_POSITION\" TEXT," + // 23: dismissPosition
-                "\"DISMISS_POSITION_NAME\" TEXT," + // 24: dismissPositionName
-                "\"DISMISS_DEPT_ID\" TEXT," + // 25: dismissDeptId
-                "\"DISMISS_DEPT_NAME\" TEXT," + // 26: dismissDeptName
-                "\"LEAVE_TIME\" TEXT," + // 27: leaveTime
-                "\"LEAVE_REASON\" TEXT," + // 28: leaveReason
-                "\"LEAVE_FILE_NUMBER\" TEXT," + // 29: leaveFileNumber
-                "\"CURRENT_RANK\" TEXT," + // 30: currentRank
-                "\"APPOINT_DISMISS_RESULT\" TEXT," + // 31: appointDismissResult
-                "\"MEETING_DESCRIBE\" TEXT," + // 32: meetingDescribe
-                "\"TALK_NUMBER\" INTEGER NOT NULL ," + // 33: talkNumber
-                "\"RECOMMEND_NUMBER\" INTEGER NOT NULL ," + // 34: recommendNumber
-                "\"RANKING\" INTEGER NOT NULL ," + // 35: ranking
-                "\"VACANT_POSITION\" TEXT," + // 36: vacantPosition
-                "\"VALID_TICKET\" INTEGER NOT NULL ," + // 37: validTicket
-                "\"GAIN_VOTES\" INTEGER NOT NULL ," + // 38: gainVotes
-                "\"INSPECT_FILE_NAME\" TEXT);"); // 39: inspectFileName
+                "\"REMARK\" TEXT," + // 1: remark
+                "\"DEPT_CODE\" TEXT," + // 2: deptCode
+                "\"DISMISS_CADRE_ID\" INTEGER NOT NULL ," + // 3: dismissCadreId
+                "\"SCHEME_ID\" INTEGER NOT NULL ," + // 4: schemeId
+                "\"SCHEME_NAME\" TEXT," + // 5: schemeName
+                "\"BASE_ID\" INTEGER NOT NULL ," + // 6: baseId
+                "\"CADRE_NAME\" TEXT," + // 7: cadreName
+                "\"GENDER\" TEXT," + // 8: gender
+                "\"NATION\" TEXT," + // 9: nation
+                "\"NATIVE_PLACE\" TEXT," + // 10: nativePlace
+                "\"CURRENT_EDUCATION\" TEXT," + // 11: currentEducation
+                "\"FULL_TIME_EDUCATION\" TEXT," + // 12: fullTimeEducation
+                "\"CURRENT_MAJOR\" TEXT," + // 13: currentMajor
+                "\"FULL_TIME_MAJOR\" TEXT," + // 14: fullTimeMajor
+                "\"CURRENT_DEGREE_NAME\" TEXT," + // 15: currentDegreeName
+                "\"FULL_TIME_DEGREE_NAME\" TEXT," + // 16: fullTimeDegreeName
+                "\"TECHNICAL_TITLE\" TEXT," + // 17: technicalTitle
+                "\"BIRTHDAY\" TEXT," + // 18: birthday
+                "\"AGE\" INTEGER NOT NULL ," + // 19: age
+                "\"WORK_TIME\" TEXT," + // 20: workTime
+                "\"JOIN_PARTY_DATE\" TEXT," + // 21: joinPartyDate
+                "\"CURRENT_POSITION_TIME\" TEXT," + // 22: currentPositionTime
+                "\"CURRENT_RANK_TIME\" TEXT," + // 23: currentRankTime
+                "\"TALK_NUMBER\" INTEGER NOT NULL ," + // 24: talkNumber
+                "\"TALK_GAIN_NUMBER\" INTEGER NOT NULL ," + // 25: talkGainNumber
+                "\"RECOMMEND_NUMBER\" INTEGER NOT NULL ," + // 26: recommendNumber
+                "\"RECOMMEND_GAIN_NUMBER\" INTEGER NOT NULL ," + // 27: recommendGainNumber
+                "\"CURRENT_POSITION\" TEXT," + // 28: currentPosition
+                "\"ASPIRING_POSITION\" TEXT," + // 29: aspiringPosition
+                "\"JW_OPINION\" TEXT," + // 30: jwOpinion
+                "\"ZZB_OPINION\" TEXT," + // 31: zzbOpinion
+                "\"VALID_TICKET\" INTEGER NOT NULL ," + // 32: validTicket
+                "\"GAIN_VOTES\" INTEGER NOT NULL ," + // 33: gainVotes
+                "\"CWH_OPINION\" TEXT," + // 34: cwhOpinion
+                "\"APPOINT_DISMISS_RESULT\" TEXT," + // 35: appointDismissResult
+                "\"APPOINT_DISMISS_TYPE\" TEXT," + // 36: appointDismissType
+                "\"APPOINT_POSITION\" INTEGER NOT NULL ," + // 37: appointPosition
+                "\"APPOINT_POSITION_NAME\" TEXT," + // 38: appointPositionName
+                "\"APPOINT_DEPT_ID\" INTEGER NOT NULL ," + // 39: appointDeptId
+                "\"APPOINT_DEPT_NAME\" TEXT," + // 40: appointDeptName
+                "\"POSITION_TIME\" TEXT," + // 41: positionTime
+                "\"POSITION_REASON\" TEXT," + // 42: positionReason
+                "\"POSITION_FILE_NUMBER\" TEXT," + // 43: positionFileNumber
+                "\"DISMISS_POSITION\" TEXT," + // 44: dismissPosition
+                "\"DISMISS_POSITION_NAME\" TEXT," + // 45: dismissPositionName
+                "\"DISMISS_DEPT_ID\" TEXT," + // 46: dismissDeptId
+                "\"DISMISS_DEPT_NAME\" TEXT," + // 47: dismissDeptName
+                "\"LEAVE_TIME\" TEXT," + // 48: leaveTime
+                "\"LEAVE_REASON\" TEXT," + // 49: leaveReason
+                "\"LEAVE_FILE_NUMBER\" TEXT," + // 50: leaveFileNumber
+                "\"CURRENT_RANK\" TEXT," + // 51: currentRank
+                "\"MEETING_DESCRIBE\" TEXT," + // 52: meetingDescribe
+                "\"RANKING\" INTEGER NOT NULL ," + // 53: ranking
+                "\"VACANT_POSITION\" TEXT," + // 54: vacantPosition
+                "\"INSPECT_FILE_NAME\" TEXT);"); // 55: inspectFileName
     }
 
     /** Drops the underlying database table. */
@@ -135,156 +167,228 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         if (_id != null) {
             stmt.bindLong(1, _id);
         }
-        stmt.bindLong(2, entity.getDismissCadreId());
-        stmt.bindLong(3, entity.getSchemeId());
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(2, remark);
+        }
+ 
+        String deptCode = entity.getDeptCode();
+        if (deptCode != null) {
+            stmt.bindString(3, deptCode);
+        }
+        stmt.bindLong(4, entity.getDismissCadreId());
+        stmt.bindLong(5, entity.getSchemeId());
  
         String schemeName = entity.getSchemeName();
         if (schemeName != null) {
-            stmt.bindString(4, schemeName);
+            stmt.bindString(6, schemeName);
         }
-        stmt.bindLong(5, entity.getBaseId());
+        stmt.bindLong(7, entity.getBaseId());
  
         String cadreName = entity.getCadreName();
         if (cadreName != null) {
-            stmt.bindString(6, cadreName);
+            stmt.bindString(8, cadreName);
         }
  
         String gender = entity.getGender();
         if (gender != null) {
-            stmt.bindString(7, gender);
+            stmt.bindString(9, gender);
         }
  
-        String birthday = entity.getBirthday();
-        if (birthday != null) {
-            stmt.bindString(8, birthday);
-        }
-        stmt.bindLong(9, entity.getAge());
- 
-        String joinPartyDate = entity.getJoinPartyDate();
-        if (joinPartyDate != null) {
-            stmt.bindString(10, joinPartyDate);
-        }
- 
-        String currentPosition = entity.getCurrentPosition();
-        if (currentPosition != null) {
-            stmt.bindString(11, currentPosition);
-        }
- 
-        String currentPositionTime = entity.getCurrentPositionTime();
-        if (currentPositionTime != null) {
-            stmt.bindString(12, currentPositionTime);
+        String nation = entity.getNation();
+        if (nation != null) {
+            stmt.bindString(10, nation);
         }
  
         String nativePlace = entity.getNativePlace();
         if (nativePlace != null) {
-            stmt.bindString(13, nativePlace);
-        }
- 
-        String fullTimeEducation = entity.getFullTimeEducation();
-        if (fullTimeEducation != null) {
-            stmt.bindString(14, fullTimeEducation);
+            stmt.bindString(11, nativePlace);
         }
  
         String currentEducation = entity.getCurrentEducation();
         if (currentEducation != null) {
-            stmt.bindString(15, currentEducation);
+            stmt.bindString(12, currentEducation);
         }
  
-        String appointDismissType = entity.getAppointDismissType();
-        if (appointDismissType != null) {
-            stmt.bindString(16, appointDismissType);
-        }
-        stmt.bindLong(17, entity.getAppointPosition());
- 
-        String appointPositionName = entity.getAppointPositionName();
-        if (appointPositionName != null) {
-            stmt.bindString(18, appointPositionName);
-        }
-        stmt.bindLong(19, entity.getAppointDeptId());
- 
-        String appointDeptName = entity.getAppointDeptName();
-        if (appointDeptName != null) {
-            stmt.bindString(20, appointDeptName);
+        String fullTimeEducation = entity.getFullTimeEducation();
+        if (fullTimeEducation != null) {
+            stmt.bindString(13, fullTimeEducation);
         }
  
-        String positionTime = entity.getPositionTime();
-        if (positionTime != null) {
-            stmt.bindString(21, positionTime);
+        String currentMajor = entity.getCurrentMajor();
+        if (currentMajor != null) {
+            stmt.bindString(14, currentMajor);
         }
  
-        String positionReason = entity.getPositionReason();
-        if (positionReason != null) {
-            stmt.bindString(22, positionReason);
+        String fullTimeMajor = entity.getFullTimeMajor();
+        if (fullTimeMajor != null) {
+            stmt.bindString(15, fullTimeMajor);
         }
  
-        String positionFileNumber = entity.getPositionFileNumber();
-        if (positionFileNumber != null) {
-            stmt.bindString(23, positionFileNumber);
+        String currentDegreeName = entity.getCurrentDegreeName();
+        if (currentDegreeName != null) {
+            stmt.bindString(16, currentDegreeName);
         }
  
-        String dismissPosition = entity.getDismissPosition();
-        if (dismissPosition != null) {
-            stmt.bindString(24, dismissPosition);
+        String fullTimeDegreeName = entity.getFullTimeDegreeName();
+        if (fullTimeDegreeName != null) {
+            stmt.bindString(17, fullTimeDegreeName);
         }
  
-        String dismissPositionName = entity.getDismissPositionName();
-        if (dismissPositionName != null) {
-            stmt.bindString(25, dismissPositionName);
+        String technicalTitle = entity.getTechnicalTitle();
+        if (technicalTitle != null) {
+            stmt.bindString(18, technicalTitle);
         }
  
-        String dismissDeptId = entity.getDismissDeptId();
-        if (dismissDeptId != null) {
-            stmt.bindString(26, dismissDeptId);
+        String birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindString(19, birthday);
+        }
+        stmt.bindLong(20, entity.getAge());
+ 
+        String workTime = entity.getWorkTime();
+        if (workTime != null) {
+            stmt.bindString(21, workTime);
         }
  
-        String dismissDeptName = entity.getDismissDeptName();
-        if (dismissDeptName != null) {
-            stmt.bindString(27, dismissDeptName);
+        String joinPartyDate = entity.getJoinPartyDate();
+        if (joinPartyDate != null) {
+            stmt.bindString(22, joinPartyDate);
         }
  
-        String leaveTime = entity.getLeaveTime();
-        if (leaveTime != null) {
-            stmt.bindString(28, leaveTime);
+        String currentPositionTime = entity.getCurrentPositionTime();
+        if (currentPositionTime != null) {
+            stmt.bindString(23, currentPositionTime);
         }
  
-        String leaveReason = entity.getLeaveReason();
-        if (leaveReason != null) {
-            stmt.bindString(29, leaveReason);
+        String currentRankTime = entity.getCurrentRankTime();
+        if (currentRankTime != null) {
+            stmt.bindString(24, currentRankTime);
+        }
+        stmt.bindLong(25, entity.getTalkNumber());
+        stmt.bindLong(26, entity.getTalkGainNumber());
+        stmt.bindLong(27, entity.getRecommendNumber());
+        stmt.bindLong(28, entity.getRecommendGainNumber());
+ 
+        String currentPosition = entity.getCurrentPosition();
+        if (currentPosition != null) {
+            stmt.bindString(29, currentPosition);
         }
  
-        String leaveFileNumber = entity.getLeaveFileNumber();
-        if (leaveFileNumber != null) {
-            stmt.bindString(30, leaveFileNumber);
+        String aspiringPosition = entity.getAspiringPosition();
+        if (aspiringPosition != null) {
+            stmt.bindString(30, aspiringPosition);
         }
  
-        String currentRank = entity.getCurrentRank();
-        if (currentRank != null) {
-            stmt.bindString(31, currentRank);
+        String jwOpinion = entity.getJwOpinion();
+        if (jwOpinion != null) {
+            stmt.bindString(31, jwOpinion);
+        }
+ 
+        String zzbOpinion = entity.getZzbOpinion();
+        if (zzbOpinion != null) {
+            stmt.bindString(32, zzbOpinion);
+        }
+        stmt.bindLong(33, entity.getValidTicket());
+        stmt.bindLong(34, entity.getGainVotes());
+ 
+        String cwhOpinion = entity.getCwhOpinion();
+        if (cwhOpinion != null) {
+            stmt.bindString(35, cwhOpinion);
         }
  
         String appointDismissResult = entity.getAppointDismissResult();
         if (appointDismissResult != null) {
-            stmt.bindString(32, appointDismissResult);
+            stmt.bindString(36, appointDismissResult);
+        }
+ 
+        String appointDismissType = entity.getAppointDismissType();
+        if (appointDismissType != null) {
+            stmt.bindString(37, appointDismissType);
+        }
+        stmt.bindLong(38, entity.getAppointPosition());
+ 
+        String appointPositionName = entity.getAppointPositionName();
+        if (appointPositionName != null) {
+            stmt.bindString(39, appointPositionName);
+        }
+        stmt.bindLong(40, entity.getAppointDeptId());
+ 
+        String appointDeptName = entity.getAppointDeptName();
+        if (appointDeptName != null) {
+            stmt.bindString(41, appointDeptName);
+        }
+ 
+        String positionTime = entity.getPositionTime();
+        if (positionTime != null) {
+            stmt.bindString(42, positionTime);
+        }
+ 
+        String positionReason = entity.getPositionReason();
+        if (positionReason != null) {
+            stmt.bindString(43, positionReason);
+        }
+ 
+        String positionFileNumber = entity.getPositionFileNumber();
+        if (positionFileNumber != null) {
+            stmt.bindString(44, positionFileNumber);
+        }
+ 
+        String dismissPosition = entity.getDismissPosition();
+        if (dismissPosition != null) {
+            stmt.bindString(45, dismissPosition);
+        }
+ 
+        String dismissPositionName = entity.getDismissPositionName();
+        if (dismissPositionName != null) {
+            stmt.bindString(46, dismissPositionName);
+        }
+ 
+        String dismissDeptId = entity.getDismissDeptId();
+        if (dismissDeptId != null) {
+            stmt.bindString(47, dismissDeptId);
+        }
+ 
+        String dismissDeptName = entity.getDismissDeptName();
+        if (dismissDeptName != null) {
+            stmt.bindString(48, dismissDeptName);
+        }
+ 
+        String leaveTime = entity.getLeaveTime();
+        if (leaveTime != null) {
+            stmt.bindString(49, leaveTime);
+        }
+ 
+        String leaveReason = entity.getLeaveReason();
+        if (leaveReason != null) {
+            stmt.bindString(50, leaveReason);
+        }
+ 
+        String leaveFileNumber = entity.getLeaveFileNumber();
+        if (leaveFileNumber != null) {
+            stmt.bindString(51, leaveFileNumber);
+        }
+ 
+        String currentRank = entity.getCurrentRank();
+        if (currentRank != null) {
+            stmt.bindString(52, currentRank);
         }
  
         String meetingDescribe = entity.getMeetingDescribe();
         if (meetingDescribe != null) {
-            stmt.bindString(33, meetingDescribe);
+            stmt.bindString(53, meetingDescribe);
         }
-        stmt.bindLong(34, entity.getTalkNumber());
-        stmt.bindLong(35, entity.getRecommendNumber());
-        stmt.bindLong(36, entity.getRanking());
+        stmt.bindLong(54, entity.getRanking());
  
         String vacantPosition = entity.getVacantPosition();
         if (vacantPosition != null) {
-            stmt.bindString(37, vacantPosition);
+            stmt.bindString(55, vacantPosition);
         }
-        stmt.bindLong(38, entity.getValidTicket());
-        stmt.bindLong(39, entity.getGainVotes());
  
         String inspectFileName = entity.getInspectFileName();
         if (inspectFileName != null) {
-            stmt.bindString(40, inspectFileName);
+            stmt.bindString(56, inspectFileName);
         }
     }
 
@@ -296,156 +400,228 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         if (_id != null) {
             stmt.bindLong(1, _id);
         }
-        stmt.bindLong(2, entity.getDismissCadreId());
-        stmt.bindLong(3, entity.getSchemeId());
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(2, remark);
+        }
+ 
+        String deptCode = entity.getDeptCode();
+        if (deptCode != null) {
+            stmt.bindString(3, deptCode);
+        }
+        stmt.bindLong(4, entity.getDismissCadreId());
+        stmt.bindLong(5, entity.getSchemeId());
  
         String schemeName = entity.getSchemeName();
         if (schemeName != null) {
-            stmt.bindString(4, schemeName);
+            stmt.bindString(6, schemeName);
         }
-        stmt.bindLong(5, entity.getBaseId());
+        stmt.bindLong(7, entity.getBaseId());
  
         String cadreName = entity.getCadreName();
         if (cadreName != null) {
-            stmt.bindString(6, cadreName);
+            stmt.bindString(8, cadreName);
         }
  
         String gender = entity.getGender();
         if (gender != null) {
-            stmt.bindString(7, gender);
+            stmt.bindString(9, gender);
         }
  
-        String birthday = entity.getBirthday();
-        if (birthday != null) {
-            stmt.bindString(8, birthday);
-        }
-        stmt.bindLong(9, entity.getAge());
- 
-        String joinPartyDate = entity.getJoinPartyDate();
-        if (joinPartyDate != null) {
-            stmt.bindString(10, joinPartyDate);
-        }
- 
-        String currentPosition = entity.getCurrentPosition();
-        if (currentPosition != null) {
-            stmt.bindString(11, currentPosition);
-        }
- 
-        String currentPositionTime = entity.getCurrentPositionTime();
-        if (currentPositionTime != null) {
-            stmt.bindString(12, currentPositionTime);
+        String nation = entity.getNation();
+        if (nation != null) {
+            stmt.bindString(10, nation);
         }
  
         String nativePlace = entity.getNativePlace();
         if (nativePlace != null) {
-            stmt.bindString(13, nativePlace);
-        }
- 
-        String fullTimeEducation = entity.getFullTimeEducation();
-        if (fullTimeEducation != null) {
-            stmt.bindString(14, fullTimeEducation);
+            stmt.bindString(11, nativePlace);
         }
  
         String currentEducation = entity.getCurrentEducation();
         if (currentEducation != null) {
-            stmt.bindString(15, currentEducation);
+            stmt.bindString(12, currentEducation);
         }
  
-        String appointDismissType = entity.getAppointDismissType();
-        if (appointDismissType != null) {
-            stmt.bindString(16, appointDismissType);
-        }
-        stmt.bindLong(17, entity.getAppointPosition());
- 
-        String appointPositionName = entity.getAppointPositionName();
-        if (appointPositionName != null) {
-            stmt.bindString(18, appointPositionName);
-        }
-        stmt.bindLong(19, entity.getAppointDeptId());
- 
-        String appointDeptName = entity.getAppointDeptName();
-        if (appointDeptName != null) {
-            stmt.bindString(20, appointDeptName);
+        String fullTimeEducation = entity.getFullTimeEducation();
+        if (fullTimeEducation != null) {
+            stmt.bindString(13, fullTimeEducation);
         }
  
-        String positionTime = entity.getPositionTime();
-        if (positionTime != null) {
-            stmt.bindString(21, positionTime);
+        String currentMajor = entity.getCurrentMajor();
+        if (currentMajor != null) {
+            stmt.bindString(14, currentMajor);
         }
  
-        String positionReason = entity.getPositionReason();
-        if (positionReason != null) {
-            stmt.bindString(22, positionReason);
+        String fullTimeMajor = entity.getFullTimeMajor();
+        if (fullTimeMajor != null) {
+            stmt.bindString(15, fullTimeMajor);
         }
  
-        String positionFileNumber = entity.getPositionFileNumber();
-        if (positionFileNumber != null) {
-            stmt.bindString(23, positionFileNumber);
+        String currentDegreeName = entity.getCurrentDegreeName();
+        if (currentDegreeName != null) {
+            stmt.bindString(16, currentDegreeName);
         }
  
-        String dismissPosition = entity.getDismissPosition();
-        if (dismissPosition != null) {
-            stmt.bindString(24, dismissPosition);
+        String fullTimeDegreeName = entity.getFullTimeDegreeName();
+        if (fullTimeDegreeName != null) {
+            stmt.bindString(17, fullTimeDegreeName);
         }
  
-        String dismissPositionName = entity.getDismissPositionName();
-        if (dismissPositionName != null) {
-            stmt.bindString(25, dismissPositionName);
+        String technicalTitle = entity.getTechnicalTitle();
+        if (technicalTitle != null) {
+            stmt.bindString(18, technicalTitle);
         }
  
-        String dismissDeptId = entity.getDismissDeptId();
-        if (dismissDeptId != null) {
-            stmt.bindString(26, dismissDeptId);
+        String birthday = entity.getBirthday();
+        if (birthday != null) {
+            stmt.bindString(19, birthday);
+        }
+        stmt.bindLong(20, entity.getAge());
+ 
+        String workTime = entity.getWorkTime();
+        if (workTime != null) {
+            stmt.bindString(21, workTime);
         }
  
-        String dismissDeptName = entity.getDismissDeptName();
-        if (dismissDeptName != null) {
-            stmt.bindString(27, dismissDeptName);
+        String joinPartyDate = entity.getJoinPartyDate();
+        if (joinPartyDate != null) {
+            stmt.bindString(22, joinPartyDate);
         }
  
-        String leaveTime = entity.getLeaveTime();
-        if (leaveTime != null) {
-            stmt.bindString(28, leaveTime);
+        String currentPositionTime = entity.getCurrentPositionTime();
+        if (currentPositionTime != null) {
+            stmt.bindString(23, currentPositionTime);
         }
  
-        String leaveReason = entity.getLeaveReason();
-        if (leaveReason != null) {
-            stmt.bindString(29, leaveReason);
+        String currentRankTime = entity.getCurrentRankTime();
+        if (currentRankTime != null) {
+            stmt.bindString(24, currentRankTime);
+        }
+        stmt.bindLong(25, entity.getTalkNumber());
+        stmt.bindLong(26, entity.getTalkGainNumber());
+        stmt.bindLong(27, entity.getRecommendNumber());
+        stmt.bindLong(28, entity.getRecommendGainNumber());
+ 
+        String currentPosition = entity.getCurrentPosition();
+        if (currentPosition != null) {
+            stmt.bindString(29, currentPosition);
         }
  
-        String leaveFileNumber = entity.getLeaveFileNumber();
-        if (leaveFileNumber != null) {
-            stmt.bindString(30, leaveFileNumber);
+        String aspiringPosition = entity.getAspiringPosition();
+        if (aspiringPosition != null) {
+            stmt.bindString(30, aspiringPosition);
         }
  
-        String currentRank = entity.getCurrentRank();
-        if (currentRank != null) {
-            stmt.bindString(31, currentRank);
+        String jwOpinion = entity.getJwOpinion();
+        if (jwOpinion != null) {
+            stmt.bindString(31, jwOpinion);
+        }
+ 
+        String zzbOpinion = entity.getZzbOpinion();
+        if (zzbOpinion != null) {
+            stmt.bindString(32, zzbOpinion);
+        }
+        stmt.bindLong(33, entity.getValidTicket());
+        stmt.bindLong(34, entity.getGainVotes());
+ 
+        String cwhOpinion = entity.getCwhOpinion();
+        if (cwhOpinion != null) {
+            stmt.bindString(35, cwhOpinion);
         }
  
         String appointDismissResult = entity.getAppointDismissResult();
         if (appointDismissResult != null) {
-            stmt.bindString(32, appointDismissResult);
+            stmt.bindString(36, appointDismissResult);
+        }
+ 
+        String appointDismissType = entity.getAppointDismissType();
+        if (appointDismissType != null) {
+            stmt.bindString(37, appointDismissType);
+        }
+        stmt.bindLong(38, entity.getAppointPosition());
+ 
+        String appointPositionName = entity.getAppointPositionName();
+        if (appointPositionName != null) {
+            stmt.bindString(39, appointPositionName);
+        }
+        stmt.bindLong(40, entity.getAppointDeptId());
+ 
+        String appointDeptName = entity.getAppointDeptName();
+        if (appointDeptName != null) {
+            stmt.bindString(41, appointDeptName);
+        }
+ 
+        String positionTime = entity.getPositionTime();
+        if (positionTime != null) {
+            stmt.bindString(42, positionTime);
+        }
+ 
+        String positionReason = entity.getPositionReason();
+        if (positionReason != null) {
+            stmt.bindString(43, positionReason);
+        }
+ 
+        String positionFileNumber = entity.getPositionFileNumber();
+        if (positionFileNumber != null) {
+            stmt.bindString(44, positionFileNumber);
+        }
+ 
+        String dismissPosition = entity.getDismissPosition();
+        if (dismissPosition != null) {
+            stmt.bindString(45, dismissPosition);
+        }
+ 
+        String dismissPositionName = entity.getDismissPositionName();
+        if (dismissPositionName != null) {
+            stmt.bindString(46, dismissPositionName);
+        }
+ 
+        String dismissDeptId = entity.getDismissDeptId();
+        if (dismissDeptId != null) {
+            stmt.bindString(47, dismissDeptId);
+        }
+ 
+        String dismissDeptName = entity.getDismissDeptName();
+        if (dismissDeptName != null) {
+            stmt.bindString(48, dismissDeptName);
+        }
+ 
+        String leaveTime = entity.getLeaveTime();
+        if (leaveTime != null) {
+            stmt.bindString(49, leaveTime);
+        }
+ 
+        String leaveReason = entity.getLeaveReason();
+        if (leaveReason != null) {
+            stmt.bindString(50, leaveReason);
+        }
+ 
+        String leaveFileNumber = entity.getLeaveFileNumber();
+        if (leaveFileNumber != null) {
+            stmt.bindString(51, leaveFileNumber);
+        }
+ 
+        String currentRank = entity.getCurrentRank();
+        if (currentRank != null) {
+            stmt.bindString(52, currentRank);
         }
  
         String meetingDescribe = entity.getMeetingDescribe();
         if (meetingDescribe != null) {
-            stmt.bindString(33, meetingDescribe);
+            stmt.bindString(53, meetingDescribe);
         }
-        stmt.bindLong(34, entity.getTalkNumber());
-        stmt.bindLong(35, entity.getRecommendNumber());
-        stmt.bindLong(36, entity.getRanking());
+        stmt.bindLong(54, entity.getRanking());
  
         String vacantPosition = entity.getVacantPosition();
         if (vacantPosition != null) {
-            stmt.bindString(37, vacantPosition);
+            stmt.bindString(55, vacantPosition);
         }
-        stmt.bindLong(38, entity.getValidTicket());
-        stmt.bindLong(39, entity.getGainVotes());
  
         String inspectFileName = entity.getInspectFileName();
         if (inspectFileName != null) {
-            stmt.bindString(40, inspectFileName);
+            stmt.bindString(56, inspectFileName);
         }
     }
 
@@ -458,45 +634,61 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
     public DBYjjcCadre readEntity(Cursor cursor, int offset) {
         DBYjjcCadre entity = new DBYjjcCadre( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // _id
-            cursor.getInt(offset + 1), // dismissCadreId
-            cursor.getInt(offset + 2), // schemeId
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // schemeName
-            cursor.getInt(offset + 4), // baseId
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // cadreName
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // gender
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // birthday
-            cursor.getInt(offset + 8), // age
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // joinPartyDate
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // currentPosition
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // currentPositionTime
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // nativePlace
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // fullTimeEducation
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // currentEducation
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // appointDismissType
-            cursor.getInt(offset + 16), // appointPosition
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // appointPositionName
-            cursor.getInt(offset + 18), // appointDeptId
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // appointDeptName
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // positionTime
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // positionReason
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // positionFileNumber
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // dismissPosition
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // dismissPositionName
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // dismissDeptId
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // dismissDeptName
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // leaveTime
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // leaveReason
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // leaveFileNumber
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // currentRank
-            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // appointDismissResult
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // meetingDescribe
-            cursor.getInt(offset + 33), // talkNumber
-            cursor.getInt(offset + 34), // recommendNumber
-            cursor.getInt(offset + 35), // ranking
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // vacantPosition
-            cursor.getInt(offset + 37), // validTicket
-            cursor.getInt(offset + 38), // gainVotes
-            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39) // inspectFileName
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // remark
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // deptCode
+            cursor.getInt(offset + 3), // dismissCadreId
+            cursor.getInt(offset + 4), // schemeId
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // schemeName
+            cursor.getInt(offset + 6), // baseId
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // cadreName
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // gender
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // nation
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // nativePlace
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // currentEducation
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // fullTimeEducation
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // currentMajor
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // fullTimeMajor
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // currentDegreeName
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // fullTimeDegreeName
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // technicalTitle
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // birthday
+            cursor.getInt(offset + 19), // age
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // workTime
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // joinPartyDate
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // currentPositionTime
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // currentRankTime
+            cursor.getInt(offset + 24), // talkNumber
+            cursor.getInt(offset + 25), // talkGainNumber
+            cursor.getInt(offset + 26), // recommendNumber
+            cursor.getInt(offset + 27), // recommendGainNumber
+            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // currentPosition
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // aspiringPosition
+            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // jwOpinion
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // zzbOpinion
+            cursor.getInt(offset + 32), // validTicket
+            cursor.getInt(offset + 33), // gainVotes
+            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // cwhOpinion
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // appointDismissResult
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // appointDismissType
+            cursor.getInt(offset + 37), // appointPosition
+            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // appointPositionName
+            cursor.getInt(offset + 39), // appointDeptId
+            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // appointDeptName
+            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // positionTime
+            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // positionReason
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // positionFileNumber
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // dismissPosition
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // dismissPositionName
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // dismissDeptId
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // dismissDeptName
+            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // leaveTime
+            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // leaveReason
+            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // leaveFileNumber
+            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // currentRank
+            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // meetingDescribe
+            cursor.getInt(offset + 53), // ranking
+            cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54), // vacantPosition
+            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55) // inspectFileName
         );
         return entity;
     }
@@ -504,45 +696,61 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
     @Override
     public void readEntity(Cursor cursor, DBYjjcCadre entity, int offset) {
         entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setDismissCadreId(cursor.getInt(offset + 1));
-        entity.setSchemeId(cursor.getInt(offset + 2));
-        entity.setSchemeName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setBaseId(cursor.getInt(offset + 4));
-        entity.setCadreName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setGender(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setBirthday(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setAge(cursor.getInt(offset + 8));
-        entity.setJoinPartyDate(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setCurrentPosition(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setCurrentPositionTime(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setNativePlace(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setFullTimeEducation(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setCurrentEducation(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setAppointDismissType(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setAppointPosition(cursor.getInt(offset + 16));
-        entity.setAppointPositionName(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setAppointDeptId(cursor.getInt(offset + 18));
-        entity.setAppointDeptName(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setPositionTime(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setPositionReason(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setPositionFileNumber(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setDismissPosition(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setDismissPositionName(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setDismissDeptId(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
-        entity.setDismissDeptName(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
-        entity.setLeaveTime(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
-        entity.setLeaveReason(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setLeaveFileNumber(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setCurrentRank(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setAppointDismissResult(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
-        entity.setMeetingDescribe(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setTalkNumber(cursor.getInt(offset + 33));
-        entity.setRecommendNumber(cursor.getInt(offset + 34));
-        entity.setRanking(cursor.getInt(offset + 35));
-        entity.setVacantPosition(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setValidTicket(cursor.getInt(offset + 37));
-        entity.setGainVotes(cursor.getInt(offset + 38));
-        entity.setInspectFileName(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
+        entity.setRemark(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setDeptCode(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDismissCadreId(cursor.getInt(offset + 3));
+        entity.setSchemeId(cursor.getInt(offset + 4));
+        entity.setSchemeName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setBaseId(cursor.getInt(offset + 6));
+        entity.setCadreName(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setGender(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setNation(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setNativePlace(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setCurrentEducation(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setFullTimeEducation(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setCurrentMajor(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setFullTimeMajor(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setCurrentDegreeName(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setFullTimeDegreeName(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setTechnicalTitle(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setBirthday(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setAge(cursor.getInt(offset + 19));
+        entity.setWorkTime(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setJoinPartyDate(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setCurrentPositionTime(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setCurrentRankTime(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setTalkNumber(cursor.getInt(offset + 24));
+        entity.setTalkGainNumber(cursor.getInt(offset + 25));
+        entity.setRecommendNumber(cursor.getInt(offset + 26));
+        entity.setRecommendGainNumber(cursor.getInt(offset + 27));
+        entity.setCurrentPosition(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
+        entity.setAspiringPosition(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
+        entity.setJwOpinion(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
+        entity.setZzbOpinion(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setValidTicket(cursor.getInt(offset + 32));
+        entity.setGainVotes(cursor.getInt(offset + 33));
+        entity.setCwhOpinion(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
+        entity.setAppointDismissResult(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setAppointDismissType(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setAppointPosition(cursor.getInt(offset + 37));
+        entity.setAppointPositionName(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
+        entity.setAppointDeptId(cursor.getInt(offset + 39));
+        entity.setAppointDeptName(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
+        entity.setPositionTime(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
+        entity.setPositionReason(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
+        entity.setPositionFileNumber(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
+        entity.setDismissPosition(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setDismissPositionName(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setDismissDeptId(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setDismissDeptName(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
+        entity.setLeaveTime(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
+        entity.setLeaveReason(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
+        entity.setLeaveFileNumber(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
+        entity.setCurrentRank(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
+        entity.setMeetingDescribe(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
+        entity.setRanking(cursor.getInt(offset + 53));
+        entity.setVacantPosition(cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54));
+        entity.setInspectFileName(cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55));
      }
     
     @Override

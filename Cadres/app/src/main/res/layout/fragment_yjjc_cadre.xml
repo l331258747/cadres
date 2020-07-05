@@ -5,6 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_tip"
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids="tv_tip,tv_tip_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/tv_tip"
@@ -16,18 +22,17 @@
         android:gravity="center"
         android:layout_marginStart="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_5"
-        android:visibility="gone"
         android:textSize="@dimen/sp_12"
         android:textColor="@color/white"
         android:background="@drawable/shape_cff0000_r40"/>
 
     <TextView
+        android:id="@+id/tv_tip_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/tv_tip"
         android:layout_marginStart="@dimen/dp_8"
         android:textSize="@dimen/sp_12"
-        android:visibility="gone"
         app:layout_constraintTop_toTopOf="@+id/tv_tip"
         app:layout_constraintBottom_toBottomOf="@+id/tv_tip"
         android:text="注：姓名前标有“△”为提拔乡科级正职任用，“▲”为乡科级副职人员。"/>
@@ -39,8 +44,10 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         android:fillViewport="true"
+        app:layout_goneMarginTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_btn"
+        android:layout_marginTop="@dimen/dp_5"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,24 +57,31 @@
             <View
                 android:id="@+id/view_title"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dp_120"
+                android:layout_height="@dimen/dp_80"
                 android:background="@color/color_ffe5ce"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_tip2"
+                android:layout_width="wrap_content"
+                app:constraint_referenced_ids="tv_tip2,line_tip2"
+                android:visibility="gone"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tv_tip2"
                 android:layout_width="@dimen/dp_40"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/view_title"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 tools:text="三角"/>
 
             <View
+                android:id="@+id/line_tip2"
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
@@ -91,120 +105,45 @@
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_name"
-                app:layout_constraintEnd_toStartOf="@+id/tv_csny"
+                app:layout_constraintEnd_toStartOf="@+id/tv_sex"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
             <TextView
-                android:id="@+id/tv_csny"
+                android:id="@+id/tv_sex"
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
                 app:layout_constraintStart_toEndOf="@+id/tv_name"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="出生年月"/>
+                android:text="性别"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_csny"
-                app:layout_constraintEnd_toStartOf="@+id/tv_rdsj"
+                app:layout_constraintStart_toEndOf="@+id/tv_sex"
+                app:layout_constraintEnd_toStartOf="@+id/tv_mz"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
+
             <TextView
-                android:id="@+id/tv_rdsj"
+                android:id="@+id/tv_mz"
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_csny"
+                app:layout_constraintStart_toEndOf="@+id/tv_sex"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="入党时间"/>
+                android:text="民族"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_rdsj"
-                app:layout_constraintEnd_toStartOf="@+id/tv_xrzw"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_xrzw"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_rdsj"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="现任职务"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
-                app:layout_constraintEnd_toStartOf="@+id/tv_nrzw"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_nrzw"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="拟任职务"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_nrzw"
-                app:layout_constraintEnd_toStartOf="@+id/tv_nmzw"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_nmzw"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_nrzw"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="拟免职务"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_nmzw"
-                app:layout_constraintEnd_toStartOf="@+id/tv_xrzsj"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_xrzsj"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_nmzw"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="现任职时间"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
+                app:layout_constraintStart_toEndOf="@+id/tv_mz"
                 app:layout_constraintEnd_toStartOf="@+id/tv_jg"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
@@ -214,7 +153,7 @@
                 android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
+                app:layout_constraintStart_toEndOf="@+id/tv_mz"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:text="籍贯"/>
@@ -224,184 +163,322 @@
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_jg"
-                app:layout_constraintEnd_toStartOf="@+id/tv_whcd"
+                app:layout_constraintEnd_toStartOf="@+id/tv_zzxl"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
             <TextView
-                android:id="@+id/tv_whcd"
-                android:layout_width="@dimen/dp_160"
+                android:id="@+id/tv_zzxl"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
                 app:layout_constraintStart_toEndOf="@+id/tv_jg"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toTopOf="@+id/tv_whcd_qrz"
-                android:text="文化程度"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_whcd"
-                app:layout_constraintStart_toStartOf="@+id/tv_whcd"
-                app:layout_constraintEnd_toEndOf="@+id/tv_whcd"
-                app:layout_constraintBottom_toTopOf="@+id/tv_whcd_qrz"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_whcd_qrz"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="@+id/tv_whcd"
-                app:layout_constraintTop_toBottomOf="@+id/tv_whcd"
-                app:layout_constraintEnd_toStartOf="@+id/tv_whcd_zz"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="全日制文化程度"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_whcd_qrz"
-                app:layout_constraintStart_toEndOf="@+id/tv_whcd_qrz"
-                app:layout_constraintEnd_toStartOf="@+id/tv_whcd_zz"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_whcd_zz"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_whcd_qrz"
-                app:layout_constraintTop_toBottomOf="@+id/tv_whcd"
-                app:layout_constraintEnd_toEndOf="@+id/tv_whcd"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="在职文化程度"/>
+                android:text="在职学历"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintStart_toEndOf="@+id/tv_whcd_zz"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mztjqk"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzxl"
+                app:layout_constraintEnd_toStartOf="@+id/tv_qrzxl"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
             <TextView
-                android:id="@+id/tv_mztjqk"
-                android:layout_width="@dimen/dp_380"
+                android:id="@+id/tv_qrzxl"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_whcd"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzxl"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
-                app:layout_constraintBottom_toTopOf="@+id/tv_thyjtj"
-                android:text="民主推荐情况"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mztjqk"
-                app:layout_constraintStart_toStartOf="@+id/tv_mztjqk"
-                app:layout_constraintEnd_toEndOf="@+id/tv_mztjqk"
-                app:layout_constraintBottom_toTopOf="@+id/tv_thyjtj"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_thyjtj"
-                android:layout_width="@dimen/dp_230"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="@+id/tv_mztjqk"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mztjqk"
-                app:layout_constraintBottom_toTopOf="@+id/tv_thrs"
-                android:text="谈话研究推荐"/>
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="全日制学历"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_thyjtj"
-                app:layout_constraintStart_toEndOf="@+id/tv_thyjtj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzxl"
+                app:layout_constraintEnd_toStartOf="@+id/tv_zzzy"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_zzzy"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzxl"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="在职专业"/>
+
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzzy"
+                app:layout_constraintEnd_toStartOf="@+id/tv_qrzzy"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_qrzzy"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzzy"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="全日制专业"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzzy"
+                app:layout_constraintEnd_toStartOf="@+id/tv_zzxw"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_zzxw"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzzy"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="在职学位"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzxw"
+                app:layout_constraintEnd_toStartOf="@+id/tv_qrzxw"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_qrzxw"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzxw"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="全日制学位"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzxw"
+                app:layout_constraintEnd_toStartOf="@+id/tv_zyjszw"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_zyjszw"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_qrzxw"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="专业技术职务"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_zyjszw"
+                app:layout_constraintEnd_toStartOf="@+id/tv_csny"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_csny"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_zyjszw"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="出生年月"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_csny"
+                app:layout_constraintEnd_toStartOf="@+id/tv_gzsj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_gzsj"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_csny"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="工作时间"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_gzsj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rdsj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_rdsj"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_gzsj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="入党时间"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_rdsj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rxzsj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_rxzsj"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_rdsj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="任现职时间"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_rxzsj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_rxzjsj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_rxzjsj"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_rxzsj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="任现职级时间"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_rxzjsj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_thdytj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_thdytj"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_rxzjsj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toTopOf="@+id/tv_thdytj_yxp"
+                android:text="谈话调研推荐"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_thdytj"
+                app:layout_constraintStart_toStartOf="@+id/tv_thdytj"
+                app:layout_constraintEnd_toEndOf="@+id/tv_thdytj"
+                app:layout_constraintBottom_toTopOf="@+id/tv_thdytj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_thdytj_yxp"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_rxzjsj"
+                app:layout_constraintTop_toBottomOf="@+id/tv_thdytj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="有效票"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_thdytj_yxp"
+                app:layout_constraintStart_toEndOf="@+id/tv_thdytj_yxp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_thdytj_dps"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_thdytj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+
+            <TextView
+                android:id="@+id/tv_thdytj_dps"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_thdytj_yxp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_thdytj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="得票数"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_thdytj"
                 app:layout_constraintEnd_toStartOf="@+id/tv_hytj"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
             <TextView
                 android:id="@+id/tv_hytj"
-                android:layout_width="@dimen/dp_150"
+                android:layout_width="@dimen/dp_120"
                 android:layout_height="0dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_thyjtj"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mztjqk"
-                app:layout_constraintBottom_toTopOf="@+id/tv_yxp"
+                app:layout_constraintStart_toEndOf="@+id/tv_thdytj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toTopOf="@+id/tv_hytj_yxp"
                 android:text="会议推荐"/>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_thyjtj"
-                app:layout_constraintStart_toStartOf="@+id/tv_thyjtj"
-                app:layout_constraintEnd_toEndOf="@+id/tv_hytj"
-                app:layout_constraintBottom_toTopOf="@+id/tv_thrs"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_thrs"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="@+id/tv_mztjqk"
-                app:layout_constraintEnd_toStartOf="@+id/tv_tjrs"
-                app:layout_constraintTop_toBottomOf="@+id/tv_thyjtj"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="谈话人数"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_tjrs"
-                app:layout_constraintStart_toEndOf="@+id/tv_thrs"
-                app:layout_constraintEnd_toStartOf="@+id/tv_tjrs"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_tjrs"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_thrs"
-                app:layout_constraintEnd_toStartOf="@+id/tv_pm"
-                app:layout_constraintTop_toBottomOf="@+id/tv_thyjtj"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="推荐人数"/>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_tjrs"
-                app:layout_constraintStart_toEndOf="@+id/tv_tjrs"
-                app:layout_constraintEnd_toStartOf="@+id/tv_pm"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:background="@color/color_ffd7b4"/>
-
-            <TextView
-                android:id="@+id/tv_pm"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_tjrs"
-                app:layout_constraintEnd_toEndOf="@+id/tv_thyjtj"
-                app:layout_constraintTop_toBottomOf="@+id/tv_thyjtj"
-                app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="排名"/>
-
-            <TextView
-                android:id="@+id/tv_yxp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hytj"
                 app:layout_constraintStart_toStartOf="@+id/tv_hytj"
-                app:layout_constraintEnd_toStartOf="@+id/tv_dp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hytj"
+                app:layout_constraintBottom_toTopOf="@+id/tv_hytj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_hytj_yxp"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_thdytj"
                 app:layout_constraintTop_toBottomOf="@+id/tv_hytj"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:text="有效票"/>
@@ -409,22 +486,195 @@
             <View
                 android:layout_width="@dimen/dp_1"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_yxp"
-                app:layout_constraintStart_toEndOf="@+id/tv_yxp"
-                app:layout_constraintEnd_toStartOf="@+id/tv_dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_hytj_yxp"
+                app:layout_constraintStart_toStartOf="@+id/tv_hytj_yxp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hytj_dps"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_hytj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_hytj_dps"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_hytj_yxp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hytj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="得票数"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_hytj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_xrzw"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+
+            <TextView
+                android:id="@+id/tv_xrzw"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_hytj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="现任职务"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
+                app:layout_constraintEnd_toStartOf="@+id/tv_nrmzw"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+
+            <TextView
+                android:id="@+id/tv_nrmzw"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="拟任免(提名)职务"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_nrmzw"
+                app:layout_constraintEnd_toStartOf="@+id/tv_jwyj"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
                 android:background="@color/color_ffd7b4"/>
 
             <TextView
-                android:id="@+id/tv_dp"
-                android:layout_width="0dp"
+                android:id="@+id/tv_jwyj"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="0dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_yxp"
-                app:layout_constraintEnd_toEndOf="@+id/tv_hytj"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hytj"
+                app:layout_constraintStart_toEndOf="@+id/tv_nrmzw"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="得票"/>
+                android:text="纪委意见"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_jwyj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_zzbyj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_zzbyj"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_jwyj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="组织部意见"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzbyj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_cwhyj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_cwhyj"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzbyj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toTopOf="@+id/tv_cwhyj_yxp"
+                android:text="常委会意见"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cwhyj"
+                app:layout_constraintStart_toStartOf="@+id/tv_cwhyj"
+                app:layout_constraintEnd_toEndOf="@+id/tv_cwhyj"
+                app:layout_constraintBottom_toTopOf="@+id/tv_cwhyj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_cwhyj_yxp"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_zzbyj"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cwhyj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="有效票"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_cwhyj_yxp"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj_yxp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_cwhyj_dps"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cwhyj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_cwhyj_dps"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj_yxp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cwhyj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="得票数"/>
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_cwhyj_yxp"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj_dps"
+                app:layout_constraintEnd_toStartOf="@+id/tv_cwhyj_jg"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cwhyj_yxp"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_cwhyj_jg"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj_dps"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cwhyj"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="结果"/>
+
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj"
+                app:layout_constraintEnd_toStartOf="@+id/tv_bz"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:background="@color/color_ffd7b4"/>
+
+            <TextView
+                android:id="@+id/tv_bz"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/tv_cwhyj"
+                app:layout_constraintTop_toTopOf="@+id/view_title"
+                app:layout_constraintBottom_toBottomOf="@+id/view_title"
+                android:text="备注"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -440,4 +690,22 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/tv_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_40"
+        android:layout_marginEnd="@dimen/dp_40"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
+        android:background="@drawable/shape_b31f23_r40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="开始票决"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

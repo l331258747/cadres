@@ -1,5 +1,7 @@
 package com.example.cadres.utils.http;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
 
@@ -42,6 +44,25 @@ public class MethodApi {
     //获取 研究决策 列表
     public static void getYjjcList(DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcList(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    //获取 研究票决验证 列表
+    public static void getYjjcVoteCheck(int schemeId,int voteUserId,DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getYjjcVoteCheck(schemeId,voteUserId); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+
+    //获取 研究票决列表
+    public static void getYjjcVoteList(int schemeId,int voteUserId,DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getYjjcVoteList(schemeId,voteUserId); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
+    //获取 研究票决
+    public static void sendYjjcVote(Map<String, String> params, DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().sendYjjcVote(params); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 }
