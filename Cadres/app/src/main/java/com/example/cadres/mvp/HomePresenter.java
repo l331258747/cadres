@@ -110,19 +110,14 @@ public class HomePresenter implements HomeContract.Presenter {
             @Override
             public void onSuccess(FileBean data) {
                 List<String> files = new ArrayList<>();
-//                if (data != null && data.getFileUrlList() != null) {
-//                    for (int i = 0; i < data.getFileUrlList().size(); i++) {
-//                        String str = data.getFileUrlList().get(i);
-//                        if (str.startsWith("http") && (str.endsWith("jpg") || str.endsWith("png") || str.endsWith("jpeg"))) {
-//                            files.add(str);
-//                        }
-//                    }
-//                }
-                files.add("http://img1.imgtn.bdimg.com/it/u=1320272459,772040234&fm=26&gp=0.jpg");
-                files.add("http://192.168.100.103:8099/profile/upload/2020/06/29/8c4bfc6ca81b86b2a952fce9ac7daaa5.png");
-                files.add("http://img3.imgtn.bdimg.com/it/u=226419046,487093019&fm=26&gp=0.jpg");
-                files.add("http://img0.imgtn.bdimg.com/it/u=2238904677,3640117141&fm=26&gp=0.jpg");
-                files.add("http://img2.imgtn.bdimg.com/it/u=3087705303,1740657087&fm=26&gp=0.jpg");
+                if (data != null && data.getFileUrlList() != null) {
+                    for (int i = 0; i < data.getFileUrlList().size(); i++) {
+                        String str = data.getFileUrlList().get(i);
+                        if (str.startsWith("http") && (str.endsWith("jpg") || str.endsWith("png") || str.endsWith("jpeg"))) {
+                            files.add(str);
+                        }
+                    }
+                }
                 iView.getFilesSuccess(files);
 
             }

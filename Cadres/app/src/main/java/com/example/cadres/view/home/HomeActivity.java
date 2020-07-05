@@ -338,6 +338,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     fos.write(bytes);
                     fos.flush();
                     fos.close();
+                    LogUtil.e("下载完成： " +fileName);
 
                     pos ++;
                     loadImages();
@@ -345,9 +346,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 progress.setProgress(90 + (10 / files.size() * pos));
-                LogUtil.e("图片 下载完成");
             }
         });
     }
