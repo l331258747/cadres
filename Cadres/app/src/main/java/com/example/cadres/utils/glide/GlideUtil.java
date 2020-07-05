@@ -51,9 +51,9 @@ public class GlideUtil {
     }
 
     public static void LoadImageFitCenter(Context mContext, String path,
-                                 ImageView imageview) {
+                                 ImageView imageview,int defultImg) {
         if(TextUtils.isEmpty(path)) path = "";
-        Glide.with(mContext).load(path).fitCenter()
+        Glide.with(mContext).load(path).fitCenter().error(defultImg)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
     }
 

@@ -20,10 +20,10 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="@dimen/dp_120"
+        android:layout_width="@dimen/dp_80"
         android:layout_height="0dp"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:text="姓名"/>
@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/tv_xrzw"
-        android:layout_width="@dimen/dp_200"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
@@ -59,7 +59,7 @@
 
     <TextView
         android:id="@+id/tv_nrzw"
-        android:layout_width="@dimen/dp_200"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/tv_nmzw"
-        android:layout_width="@dimen/dp_200"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_nrzw"

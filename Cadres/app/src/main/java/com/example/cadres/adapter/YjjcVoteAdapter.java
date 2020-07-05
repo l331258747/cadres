@@ -13,6 +13,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHolder> {
@@ -45,24 +46,27 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
         holder.tv_nmzw.setText(data.getDismissPositionName());
 
 
+        holder.tv_ty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
+        holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
+
         if(isOver){
             holder.group_tpjg.setVisibility(View.GONE);
             holder.tv_tpjg.setVisibility(View.VISIBLE);
 
-            if(data.getVoteResult() == 1){
+            if(data.getVoteResultInt() == 1){
                 holder.tv_tpjg.setText("同意");
-            } else if(data.getVoteResult() == 2){
+            } else if(data.getVoteResultInt() == 2){
                 holder.tv_tpjg.setText("不同意");
-            } else if(data.getVoteResult() == 3){
+            } else if(data.getVoteResultInt() == 3){
                 holder.tv_tpjg.setText("弃权");
             } else{
                 holder.tv_tpjg.setText("");
             }
 
         }else{
+            clean(holder);
             holder.group_tpjg.setVisibility(View.VISIBLE);
             holder.tv_tpjg.setVisibility(View.GONE);
-
 
             holder.tv_ty.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,6 +74,7 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
                     data.setMyVote(1);
                     clean(holder);
                     holder.tv_ty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
+                    holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
                 }
             });
 
@@ -79,6 +84,7 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
                     data.setMyVote(2);
                     clean(holder);
                     holder.tv_bty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
+                    holder.tv_bty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
                 }
             });
 
@@ -88,6 +94,7 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
                     data.setMyVote(3);
                     clean(holder);
                     holder.tv_qq.setBackgroundResource(R.drawable.shape_eb8b49_r40);
+                    holder.tv_qq.setTextColor(ContextCompat.getColor(mContext,R.color.white));
                 }
             });
 
@@ -98,13 +105,12 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
         holder.tv_ty.setBackgroundResource(R.drawable.shape_00_eb8b49_r40);
         holder.tv_bty.setBackgroundResource(R.drawable.shape_00_eb8b49_r40);
         holder.tv_qq.setBackgroundResource(R.drawable.shape_00_eb8b49_r40);
+        holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.color_eb8b49));
+        holder.tv_bty.setTextColor(ContextCompat.getColor(mContext,R.color.color_eb8b49));
+        holder.tv_qq.setTextColor(ContextCompat.getColor(mContext,R.color.color_eb8b49));
     }
 
     boolean isOver;
-    public void setOver(){
-        isOver = true;
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {

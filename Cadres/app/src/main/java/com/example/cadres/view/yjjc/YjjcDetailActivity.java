@@ -91,7 +91,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
                             getDbMeetingList(schemeId,type);
                             getDbCadreingList(schemeId);
                             yjjcMettingFragment.setData(dbYjjcMeeting);
-                            yjjcCadreFragment.setData(schemeId,dbYjjcCadres);
+                            yjjcCadreFragment.setData(schemeId,dbYjjcCadres,type);
                             listDialog.dismiss();
                         }
                     });
@@ -134,7 +134,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
             getDbMeetingList(schemeId,type);
             getDbCadreingList(schemeId);
             yjjcMettingFragment.setData(dbYjjcMeeting);
-            yjjcCadreFragment.setData(schemeId, dbYjjcCadres);
+            yjjcCadreFragment.setData(schemeId, dbYjjcCadres,type);
         }
 
         if(dbYjjcMeeting != null)
@@ -210,7 +210,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         getDbCadreingList(schemeId);
 
         if(dbYjjcBeans !=null && dbYjjcBeans.size() > 0)
-            yjjcCadreFragment.setData(schemeId, dbYjjcCadres);
+            yjjcCadreFragment.setData(schemeId, dbYjjcCadres,type);
     }
 
     @Override

@@ -1,10 +1,14 @@
 package com.example.cadres.beanDB;
 
+import com.example.cadres.bean.dsjty.RankAgeList;
 import com.example.cadres.bean.dsjty.ZstyBean;
+import com.example.cadres.utils.GsonUtil;
+import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 
@@ -72,6 +76,22 @@ public class DbTyZs {
     public String getRankAgeList() {
         return this.rankAgeList;
     }
+
+    public int getRankAgeListNum(){
+        List<RankAgeList> lists = GsonUtil.convertString2Collection(rankAgeList, new TypeToken<List<RankAgeList>>(){});
+        if(lists == null) return 0;
+
+        int num = 0;
+        for (RankAgeList item : lists) num = num + item.getNum();
+        return num;
+    }
+
+    public List<RankAgeList> getMyRankAgeList(){
+        List<RankAgeList> lists = GsonUtil.convertString2Collection(rankAgeList, new TypeToken<List<RankAgeList>>(){});
+        if(lists == null) return new ArrayList<>();
+        return lists;
+    }
+
     public void setRankAgeList(String rankAgeList) {
         this.rankAgeList = rankAgeList;
     }

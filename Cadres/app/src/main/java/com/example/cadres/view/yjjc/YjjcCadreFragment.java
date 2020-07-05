@@ -2,6 +2,7 @@ package com.example.cadres.view.yjjc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
 
     List<DBYjjcCadre> datas;
     int schemeId;
+    String type;
 
     boolean isViewLoad;
 
@@ -79,7 +81,11 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
             tv_btn.setVisibility(View.GONE);
             return;
         }
-        tv_btn.setVisibility(View.VISIBLE);
+        if(TextUtils.equals(type,"市委常委会议")){
+            tv_btn.setVisibility(View.VISIBLE);
+        }else{
+            tv_btn.setVisibility(View.GONE);
+        }
         setViewData();
     }
 
@@ -87,15 +93,22 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         mAdapter.setData(datas);
     }
 
-    public void setData(int schemeId, List<DBYjjcCadre> datas){
+    public void setData(int schemeId, List<DBYjjcCadre> datas,String type){
         this.schemeId = schemeId;
         this.datas = datas;
+        this.type = type;
         if(isViewLoad){
             if(datas == null || datas.size() == 0){
                 tv_btn.setVisibility(View.GONE);
                 return;
             }
-            tv_btn.setVisibility(View.VISIBLE);
+
+            if(TextUtils.equals(type,"市委常委会议")){
+                tv_btn.setVisibility(View.VISIBLE);
+            }else{
+                tv_btn.setVisibility(View.GONE);
+            }
+
             setViewData();
         }
     }

@@ -1,9 +1,13 @@
 package com.example.cadres.utils.http;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * Created by LGQ
@@ -62,7 +66,10 @@ public class MethodApi {
 
     //获取 研究票决
     public static void sendYjjcVote(Map<String, String> params, DisposableObserver subscriber) {
-        Observable observable = HttpMethods.getInstance().getHttpService().sendYjjcVote(params); //在HttpServer中
+        RequestBody requestBody = RequestBody.create(MediaType.parse("Content-Type, application/json"),
+                new JSONObject(params).toString());
+
+        Observable observable = HttpMethods.getInstance().getHttpService().sendYjjcVote(requestBody); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 

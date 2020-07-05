@@ -47,6 +47,8 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
         state = intent.getIntExtra("state",0);
         schemeId = intent.getIntExtra("schemeId",0);
 
+        tv_btn = findViewById(R.id.tv_btn);
+
         if(state == 1)
             tv_btn.setVisibility(View.GONE);
 
@@ -95,9 +97,10 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
 
     @Override
     public void sendYjjcVoteSuccess(EmptyModel data) {
-        mAdapter.setOver();
         tv_btn.setVisibility(View.GONE);
         RxBus2.getInstance().post(new VoteEvent());
+
+        mPresenter.getYjjcVoteList(schemeId,MySelfInfo.getInstance().getUserId());
     }
 
     @Override

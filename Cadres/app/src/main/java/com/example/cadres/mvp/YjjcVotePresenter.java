@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.yjjc.YjjcVoteListBean;
+import com.example.cadres.bean.yjjc.YjjcVoteListParent;
 import com.example.cadres.utils.http.MethodApi;
 import com.example.cadres.utils.http.OnSuccessAndFaultSub;
 import com.example.cadres.utils.http.ResponseCallback;
@@ -23,10 +24,10 @@ public class YjjcVotePresenter implements YjjcVoteContract.Presenter {
 
     @Override
     public void getYjjcVoteList(int schemeId, int voteUserId) {
-        ResponseCallback listener = new ResponseCallback<List<YjjcVoteListBean>>() {
+        ResponseCallback listener = new ResponseCallback<YjjcVoteListParent>() {
             @Override
-            public void onSuccess(List<YjjcVoteListBean> data) {
-                iView.getYjjcVoteListSuccess(data);
+            public void onSuccess(YjjcVoteListParent data) {
+                iView.getYjjcVoteListSuccess(data.getZzbAppointDismissVoteList());
             }
 
             @Override

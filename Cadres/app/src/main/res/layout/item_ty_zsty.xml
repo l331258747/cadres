@@ -58,6 +58,7 @@
             android:text="调整到空缺职位任职(人)"/>
 
         <TextView
+            android:id="@+id/tv_1_zs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_eac71c"
@@ -99,6 +100,7 @@
             android:text="职务与职级并行(人)"/>
 
         <TextView
+            android:id="@+id/tv_2_zs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_eac71c"
@@ -140,6 +142,7 @@
             android:text="超配数"/>
 
         <TextView
+            android:id="@+id/tv_3_zs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_eac71c"
@@ -181,6 +184,7 @@
             android:text="可用空缺职位数(人)"/>
 
         <TextView
+            android:id="@+id/tv_4_zs_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_eac71c"
@@ -234,6 +238,7 @@
 
 
         <TextView
+            android:id="@+id/tv_zs_tx"
             android:layout_width="@dimen/dp_200"
             android:layout_height="@dimen/dp_40"
             app:layout_constraintEnd_toEndOf="@+id/iv_bottom_zs"
@@ -258,6 +263,20 @@
             android:paddingBottom="@dimen/dp_20"
             android:layout_marginEnd="@dimen/dp_30"
             app:layout_constraintTop_toBottomOf="@+id/iv_zs_tx"/>
+
+<!--        <com.github.mikephil.charting.charts.LineChart-->
+<!--            android:id="@+id/lineChart"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/dp_240"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/iv_bottom_zs"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/iv_bottom_zs"-->
+<!--            android:layout_marginTop="@dimen/dp_30"-->
+<!--            android:layout_marginStart="@dimen/dp_30"-->
+<!--            android:layout_marginBottom="@dimen/dp_30"-->
+<!--            android:paddingBottom="@dimen/dp_20"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:layout_marginEnd="@dimen/dp_30"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/iv_zs_tx"/>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

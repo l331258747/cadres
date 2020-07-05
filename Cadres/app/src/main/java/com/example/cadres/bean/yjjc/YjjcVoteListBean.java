@@ -1,5 +1,8 @@
 package com.example.cadres.bean.yjjc;
 
+import android.content.Intent;
+import android.text.TextUtils;
+
 public class YjjcVoteListBean {
 
     int voteId;
@@ -19,7 +22,7 @@ public class YjjcVoteListBean {
     String voteUserName;
     String voteTime;
     int voteState;
-    int voteResult;
+    String voteResult;
 
     int myVote;
 
@@ -91,7 +94,20 @@ public class YjjcVoteListBean {
         return voteState;
     }
 
-    public int getVoteResult() {
+    public String getVoteResult() {
         return voteResult;
+    }
+
+    public int getVoteResultInt() {
+        if(TextUtils.isEmpty(voteResult))
+            return 0;
+        int result = 0;
+        try {
+            result = Integer.parseInt(voteResult);
+        } catch (Exception e){
+            return 0;
+        }
+
+        return result;
     }
 }

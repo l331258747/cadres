@@ -46,7 +46,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         final GbBean.GbBean2 data = datas.get(position);
         if (data == null) return;
 
-        GlideUtil.LoadDefaultImage(mContext,
+        GlideUtil.LoadImageFitCenter(mContext,
                 FileUtil.getFOlderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
                 holder.iv_head,R.mipmap.default_head);
         holder.tv_name.setText(data.getName());

@@ -195,7 +195,7 @@ public class GbInfoFragment extends BaseFragment {
 
     private void setView() {
         if(data != null){
-            GlideUtil.LoadDefaultImage(context,
+            GlideUtil.LoadImageFitCenter(context,
                     FileUtil.getFOlderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
                     iv_head,R.mipmap.default_head);
             tv_qrzxl.setText(data.getFullTimeEducation());

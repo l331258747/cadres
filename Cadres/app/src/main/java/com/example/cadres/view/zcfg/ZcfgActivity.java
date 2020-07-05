@@ -37,7 +37,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
     CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
     List<ZcfgBean.ZcfgBean2> datas;
 
-    int type = 0;//0全部，4重要文件，5付律法规
+    int type = 0;//0全部，4重要文件，5法律法规
     String key = "";
 
     List<ListDialogBean> dialogDatas;
@@ -84,7 +84,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
         dialogDatas = new ArrayList<>();
         dialogDatas.add(new ListDialogBean(0,"全部"));
         dialogDatas.add(new ListDialogBean(4,"重要文件"));
-        dialogDatas.add(new ListDialogBean(5,"付律法规"));
+        dialogDatas.add(new ListDialogBean(5,"法律法规"));
 
         mAdapter.setData(getData());
     }
