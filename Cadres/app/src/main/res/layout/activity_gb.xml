@@ -390,7 +390,7 @@
         android:layout_marginEnd="@dimen/dp_40"
         app:layout_constraintEnd_toEndOf="@+id/view_bottom"
         app:layout_constraintTop_toTopOf="@+id/view_bottom"
-        android:hint="请输入干部姓名进行搜索"
+        android:hint="请输入关键字进行搜索"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLength="15"

@@ -40,45 +40,45 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
-        app:layout_constraintEnd_toStartOf="@+id/tv_nrzw"
+        app:layout_constraintEnd_toStartOf="@+id/tv_xrzsj"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/color_ffd7b4"/>
 
 
     <TextView
-        android:id="@+id/tv_nrzw"
+        android:id="@+id/tv_xrzsj"
         android:layout_width="@dimen/dp_160"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="拟任职务"/>
+        tools:text="现任职时间"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_nrzw"
-        app:layout_constraintEnd_toStartOf="@+id/tv_nmzw"
+        app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
+        app:layout_constraintEnd_toStartOf="@+id/tv_nmtmzw"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/color_ffd7b4"/>
 
     <TextView
-        android:id="@+id/tv_nmzw"
+        android:id="@+id/tv_nmtmzw"
         android:layout_width="@dimen/dp_160"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_nrzw"
+        app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="拟免职务"/>
+        tools:text="拟任免(提名)职务"/>
 
     <View
         android:layout_width="@dimen/dp_1"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_nmzw"
+        app:layout_constraintStart_toEndOf="@+id/tv_nmtmzw"
         app:layout_constraintEnd_toStartOf="@+id/view_tpjg"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/color_ffd7b4"/>
@@ -88,7 +88,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_nmzw"
+        app:layout_constraintStart_toEndOf="@+id/tv_nmtmzw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

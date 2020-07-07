@@ -42,9 +42,8 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
 
         holder.tv_name.setText(data.getCadreName());
         holder.tv_xrzw.setText(data.getCurrentPosition());
-        holder.tv_nrzw.setText(data.getAppointPositionName());
-        holder.tv_nmzw.setText(data.getDismissPositionName());
-
+        holder.tv_xrzsj.setText(data.getCurrentPositionTime());
+        holder.tv_nmtmzw.setText(data.getAspiringPosition());
 
         holder.tv_ty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
         holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
@@ -129,7 +128,7 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_name,tv_xrzw,tv_nrzw,tv_nmzw,tv_ty,tv_bty,tv_qq,tv_tpjg;
+        TextView tv_name,tv_xrzw,tv_nrzw,tv_ty,tv_bty,tv_qq,tv_tpjg,tv_xrzsj,tv_nmtmzw;
         Group group_tpjg;
 
         public ViewHolder(@NonNull View itemView) {
@@ -137,8 +136,8 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
 
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_xrzw = itemView.findViewById(R.id.tv_xrzw);
-            tv_nrzw = itemView.findViewById(R.id.tv_nrzw);
-            tv_nmzw = itemView.findViewById(R.id.tv_nmzw);
+            tv_xrzsj = itemView.findViewById(R.id.tv_xrzsj);
+            tv_nmtmzw = itemView.findViewById(R.id.tv_nmtmzw);
             tv_ty = itemView.findViewById(R.id.tv_ty);
             tv_bty = itemView.findViewById(R.id.tv_bty);
             tv_qq = itemView.findViewById(R.id.tv_qq);
