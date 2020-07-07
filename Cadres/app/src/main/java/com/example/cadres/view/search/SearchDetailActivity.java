@@ -167,9 +167,17 @@ public class SearchDetailActivity extends BaseActivity {
         }
 
         if(searchBean.getXlLists().size() > 0){
-            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeEducation.in(searchBean.getXlLists())
-                    ,DBGbBeanDao.Properties.CurrentEducation.in(searchBean.getXlLists()));
-            LogUtil.e("学历 数据条数："+queryBuilder.count());
+            if(searchBean.getXllxType() == 1){
+                queryBuilder.where(DBGbBeanDao.Properties.FullTimeEducation.in(searchBean.getXlLists()));
+                LogUtil.e("全日制学历 数据条数："+queryBuilder.count());
+            }else if(searchBean.getXllxType() == 2){
+                queryBuilder.where(DBGbBeanDao.Properties.CurrentEducation.in(searchBean.getXlLists()));
+                LogUtil.e("在职教育学历 数据条数："+queryBuilder.count());
+            }else{
+                queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeEducation.in(searchBean.getXlLists())
+                        ,DBGbBeanDao.Properties.CurrentEducation.in(searchBean.getXlLists()));
+                LogUtil.e("学历 数据条数："+queryBuilder.count());
+            }
         }
 
         if(searchBean.getXxlxLists().size() > 0){
@@ -186,7 +194,8 @@ public class SearchDetailActivity extends BaseActivity {
         }
 
         if(searchBean.getXrzjnxLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(searchBean.getXrzjnxLists2().get(0),searchBean.getXrzjnxLists2().get(1)));
+            List<String> lists = searchBean.getXrzjnxLists2();
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)));
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 
@@ -196,8 +205,14 @@ public class SearchDetailActivity extends BaseActivity {
         }
 
         if(searchBean.getDpLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
-            LogUtil.e("党派 数据条数："+queryBuilder.count());
+            if(searchBean.isDpFzgdn()){
+                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
+                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
+                LogUtil.e("党派 数据条数："+queryBuilder.count());
+            }else{
+                queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
+                LogUtil.e("党派 数据条数："+queryBuilder.count());
+            }
         }
 
         dbList = queryBuilder.list();

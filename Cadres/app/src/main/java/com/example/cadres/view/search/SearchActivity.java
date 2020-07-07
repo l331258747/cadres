@@ -29,7 +29,7 @@ public class SearchActivity extends BaseActivity {
     EditText et_search;
 
     private TagFlowLayout fl_history;
-    private TagFlowLayout fl_gblx, fl_bmlx, fl_zwjb,fl_xl,fl_xxlx,fl_gzjl,fl_xb,fl_dp,fl_cy;
+    private TagFlowLayout fl_gblx, fl_bmlx, fl_zwjb,fl_xl,fl_xxlx,fl_gzjl,fl_xb,fl_dp,fl_cy,fl_xllx;
 
     RangeSeekBar seekbar2;
     TextView progress2_tv;
@@ -68,6 +68,7 @@ public class SearchActivity extends BaseActivity {
         initFLXb();
         initFLDp();
         initCyss();
+        initFLXllx();
 
         tv_btn = findViewById(R.id.tv_btn);
         tv_btn.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +100,9 @@ public class SearchActivity extends BaseActivity {
                 for (int index : fl_dp.getSelectedList()) {
                     searchBean.getDpLists().add(mVals_dp[index]);
                 }
+                for (int index : fl_xllx.getSelectedList()) {
+                    searchBean.getXllxLists().add(mVals_xllx[index]);
+                }
                 List<String> listNl = new ArrayList<>();
                 listNl.add(csnMin + "");
                 listNl.add(csnMax + "");
@@ -113,6 +117,21 @@ public class SearchActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    String[] mVals_xllx = new String[]{"全部", "全日制", "在职教育"};
+    private void initFLXllx() {
+        fl_xllx = findViewById(R.id.fl_xllx);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<String>(mVals_xllx) {
+            @Override
+            public View getView(FlowLayout parent, int position, String s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xllx, false);
+                tv.setText(s);
+                return tv;
+            }
+        };
+        fl_xllx.setAdapter(adapter1);
     }
 
     String[] mVals_cyss = new String[]{
@@ -198,7 +217,7 @@ public class SearchActivity extends BaseActivity {
         });
     }
 
-    String[] mVals_gzjl = new String[]{"全部", "乡（街）党政正职经历", "区县（市）班子成员经历", "企业管理经历", "高校管理经历", "政法工作经历", "纪检监察经历"};
+    String[] mVals_gzjl = new String[]{"全部", "乡（街）党政正职经历", "市直部门单位班子成员经历", "企业管理经历", "高校管理经历", "政法工作经历", "纪检监察经历"};
     private void initFLGzjl() {
         fl_gzjl = findViewById(R.id.fl_gzjl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -228,7 +247,7 @@ public class SearchActivity extends BaseActivity {
         fl_xxlx.setAdapter(adapter1);
     }
 
-    String[] mVals_xl = new String[]{"全部", "小学", "初中", "中专/高中", "大专", "大学本科", "硕士研究生", "博士研究生"};
+    String[] mVals_xl = new String[]{"全部", "中专/高中", "大专", "大学本科", "硕士研究生", "博士研究生"};
     private void initFLXl() {
         fl_xl = findViewById(R.id.fl_xl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -258,7 +277,7 @@ public class SearchActivity extends BaseActivity {
         fl_zwjb.setAdapter(adapter1);
     }
 
-    String[] mVals_bmlx = new String[]{"全部", "党委班子", "党的纪律班子", "市委班子", "人大班子", "政协班子", "法检班子", "市政府班子", "企业", "其他"};
+    String[] mVals_bmlx = new String[]{"全部", "党委", "政府", "人大", "政协", "市直部门单位", "乡镇", "街道", "党委工作部门", "政府工作部门","人民团体","企业","其他"};
     private void initFLBmlx() {
         fl_bmlx = findViewById(R.id.fl_bmlx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -273,7 +292,7 @@ public class SearchActivity extends BaseActivity {
         fl_bmlx.setAdapter(adapter1);
     }
 
-    String[] mVals_gblx = new String[]{"全部", "市管干部", "市管后备干部", "县管领导干部", "县管非领导干部", "县管后备干部", "其他"};
+    String[] mVals_gblx = new String[]{"全部", "长沙市管干部", "宁乡市管干部", "宁乡市管后备干部", "其他"};
     private void initFLGblx() {
         fl_gblx = findViewById(R.id.fl_gblx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);

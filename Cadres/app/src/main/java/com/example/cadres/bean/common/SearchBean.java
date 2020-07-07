@@ -1,5 +1,7 @@
 package com.example.cadres.bean.common;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +19,7 @@ public class SearchBean implements Serializable {
     List<String> xrzjnxLists;
     List<String> xbLists;
     List<String> dpLists;
+    List<String> xllxLists;
     String cyss;
 
     public SearchBean() {
@@ -30,6 +33,7 @@ public class SearchBean implements Serializable {
         xrzjnxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
+        xllxLists = new ArrayList<>();
     }
 
     public void clean(){
@@ -45,6 +49,7 @@ public class SearchBean implements Serializable {
         xrzjnxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
+        xllxLists = new ArrayList<>();
     }
 
     public String getSearch() {
@@ -119,6 +124,25 @@ public class SearchBean implements Serializable {
         this.xlLists = xlLists;
     }
 
+    public List<String> getXllxLists(){
+        for (String str : xllxLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return xllxLists;
+    }
+
+    public int getXllxType(){
+        if(xllxLists == null) return 0;
+        if(xllxLists.size() == 1){
+            if(TextUtils.equals(xllxLists.get(0),"全日制"))
+                return 1;
+            if(TextUtils.equals(xllxLists.get(0),"在职教育"))
+                return 2;
+
+        }
+        return 0;
+    }
+
     public List<String> getXxlxLists() {
         for (String str : xxlxLists)
             if(str.equals("全部"))
@@ -190,6 +214,14 @@ public class SearchBean implements Serializable {
         return dpLists;
     }
 
+    //是否存在非共党员
+    public boolean isDpFzgdn(){
+        for (String str : dpLists)
+            if(str.equals("非中共党员"))
+                return true;
+            return false;
+    }
+
     public void setDpLists(List<String> dpLists) {
         this.dpLists = dpLists;
     }
@@ -211,6 +243,9 @@ public class SearchBean implements Serializable {
             sb.append(str + "/");
         }
         for (String str : getXlLists()){
+            sb.append(str + "/");
+        }
+        for (String str : getXllxLists()){
             sb.append(str + "/");
         }
         for (String str : getXxlxLists()){
