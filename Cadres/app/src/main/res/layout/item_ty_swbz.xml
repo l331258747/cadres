@@ -203,7 +203,7 @@
            android:layout_marginTop="@dimen/dp_10"
            android:textColor="@color/white"
            android:gravity="center"
-           android:text="符合市人大常委会班子提名条件"
+           android:text="符合市人大常委会班子提名条件人选"
            />
 
         <View
@@ -266,7 +266,7 @@
            android:layout_marginTop="@dimen/dp_10"
            android:textColor="@color/white"
            android:gravity="center"
-           android:text="符合市政协班子提名条件"
+           android:text="符合市政协班子提名条件人选"
            />
 
 

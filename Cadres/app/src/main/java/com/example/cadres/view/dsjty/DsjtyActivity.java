@@ -1,5 +1,6 @@
 package com.example.cadres.view.dsjty;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
@@ -630,7 +631,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     private void getDbHjTyData() {
         DBTyHjDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBTyHjDao();
         QueryBuilder<DBTyHj> queryBuilder = dbGbBeanDao.queryBuilder();
-        dbTyHj = queryBuilder.unique();
+        if(queryBuilder.count() != 0)
+            dbTyHj = queryBuilder.unique();
     }
 
 
@@ -640,7 +642,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         DbTyJgDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDbTyJgDao();
         QueryBuilder<DbTyJg> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DbTyJgDao.Properties.DeptId.eq(deptId));
-        dbTyJg = queryBuilder.unique();
+        if(queryBuilder.count() != 0)
+            dbTyJg = queryBuilder.unique();
     }
 
 
@@ -695,6 +698,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.tv_dialog:
                 if (listDialog == null) {
@@ -735,6 +739,30 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.iv_title_right:
                 setType(3);
+                break;
+            case R.id.btn_swbz:
+                intent.putExtra("title","符合市委班子提名条件人选");
+                intent.putExtra("type",0);
+                intent.setClass(context,TyListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_szfbz:
+                intent.putExtra("title","符合市政府班子提名条件人选");
+                intent.putExtra("type",1);
+                intent.setClass(context,TyListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_srdcwhbz:
+                intent.putExtra("title","符合市人大常委会班子提名条件人选");
+                intent.putExtra("type",2);
+                intent.setClass(context,TyListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_szxbz:
+                intent.putExtra("title","符合市政协班子提名条件人选");
+                intent.putExtra("type",3);
+                intent.setClass(context,TyListActivity.class);
+                startActivity(intent);
                 break;
 
         }

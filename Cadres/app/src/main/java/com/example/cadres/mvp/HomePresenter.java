@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
@@ -179,5 +180,21 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getHjty(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getHjtyList() {
+        ResponseCallback listener = new ResponseCallback<HjtyListBean>() {
+            @Override
+            public void onSuccess(HjtyListBean data) {
+                iView.getHjtyListSuccess(data.getMeetRequirements());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getHjtyListFailed(errorMsg);
+            }
+        };
+        MethodApi.getHjtyList(new OnSuccessAndFaultSub(listener, context,false));
     }
 }

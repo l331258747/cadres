@@ -24,6 +24,7 @@ import com.example.cadres.bean.Gb.GbCadreTrainListBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
@@ -44,6 +45,7 @@ import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 import com.example.cadres.beanDB.DBTyHj;
+import com.example.cadres.beanDB.DBTyHjList;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
@@ -101,6 +103,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
 
     CommonDaoUtils<DBTyHj> dBTyHjDaoUtils;
+    CommonDaoUtils<DBTyHjList> dBTyHjListDaoUtils;
     CommonDaoUtils<DbTyJg> dBTyJgDaoUtils;
     CommonDaoUtils<DbTyZs> dBTyZsDaoUtils;
 
@@ -158,6 +161,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
 
         dBTyHjDaoUtils = _Store.getTyHjDaoUtils();
+        dBTyHjListDaoUtils = _Store.getTyHjListDaoUtils();
         dBTyJgDaoUtils = _Store.getTyJgDaoUtils();
         dBTyZsDaoUtils = _Store.getTyZsDaoUtils();
 
@@ -305,11 +309,22 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getHjtySuccess(HjtyBean.HjtyBean2 data) {
         setDBHjty(data);
-        mPresenter.getYjjcList();
+        mPresenter.getHjtyList();
     }
 
     @Override
     public void getHjtyFailed(String msg) {
+        mPresenter.getHjtyList();
+    }
+
+    @Override
+    public void getHjtyListSuccess(HjtyListBean.HjtyListBean2 data) {
+        setDBHjtyList(data);
+        mPresenter.getYjjcList();
+    }
+
+    @Override
+    public void getHjtyListFailed(String msg) {
         mPresenter.getYjjcList();
     }
 
@@ -419,6 +434,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("研究决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
 
         LogUtil.e("推演 换届 条数：" + dBTyHjDaoUtils.queryAll().size());
+        LogUtil.e("推演 换届 列表 条数：" + dBTyHjListDaoUtils.queryAll().size());
         LogUtil.e("推演 结构 条数：" + dBTyJgDaoUtils.queryAll().size());
         LogUtil.e("推演 职数 条数：" + dBTyZsDaoUtils.queryAll().size());
 
@@ -442,6 +458,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBYjjcMeetingDaoUtils.deleteAll();
 
         dBTyHjDaoUtils.deleteAll();
+        dBTyHjListDaoUtils.deleteAll();
         dBTyJgDaoUtils.deleteAll();
         dBTyZsDaoUtils.deleteAll();
 
@@ -891,6 +908,17 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 data.getInconformityszx()
         );
         dBTyHjDaoUtils.insert(db);
+    }
+
+    private void setDBHjtyList(HjtyListBean.HjtyListBean2 data) {
+        DBTyHjList db = new DBTyHjList(
+                null,
+                data.getScwStr(),
+                data.getSzfStr(),
+                data.getSrdStr(),
+                data.getSzxStr()
+        );
+        dBTyHjListDaoUtils.insert(db);
     }
 
 }

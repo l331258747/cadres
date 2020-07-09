@@ -59,6 +59,8 @@
             android:name=".view.search.SearchDetailActivity"/>
         <activity
             android:name=".view.dsjty.DsjtyActivity"/>
+        <activity
+            android:name=".view.dsjty.TyListActivity"/>
 
     </application>
 

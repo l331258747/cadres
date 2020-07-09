@@ -19,11 +19,11 @@ public class XYMarkerView extends MarkerView {
     public static final int ARROW_SIZE = 40; // 箭头的大小
     private static final float CIRCLE_OFFSET = 10;//因为我这里的折点是圆圈，所以要偏移，防止直接指向了圆心
     private static final float STOKE_WIDTH = 5;//这里对于stroke_width的宽度也要做一定偏移
-    private final TextView tv_xhrs;
-    private final TextView tv_kq;
-    private final TextView tv_bx;
-    private final TextView tv_tx;
-    private final List<DbTyZs> stepListModels;
+    private TextView tv_xhrs;
+    private TextView tv_kq;
+    private TextView tv_bx;
+    private TextView tv_tx;
+    private List<DbTyZs> stepListModels;
     private int index;
     private int oldIndex = -1;
 
@@ -41,13 +41,15 @@ public class XYMarkerView extends MarkerView {
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        super.refreshContent(e, highlight);
+
         index = (int)highlight.getX();//这个方法用于获得折线是哪根
         DbTyZs stepListModel = stepListModels.get(index);
         tv_xhrs.setText(stepListModel.getDigestion() + "");
         tv_kq.setText(stepListModel.getToVacancy() + "");
         tv_bx.setText(stepListModel.getParallel() + "");
         tv_tx.setText(stepListModel.getRankAge() + "");
+
+        super.refreshContent(e, highlight);
     }
 
     @Override

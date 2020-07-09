@@ -20,6 +20,7 @@ import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 import com.example.cadres.beanDB.DBTyHj;
+import com.example.cadres.beanDB.DBTyHjList;
 import com.example.cadres.beanDB.DBUserListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
@@ -41,6 +42,7 @@ import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
+import com.cadres.greendao.gen.DBTyHjListDao;
 import com.cadres.greendao.gen.DBUserListBeanDao;
 import com.cadres.greendao.gen.DBYjjcCadreDao;
 import com.cadres.greendao.gen.DBYjjcMeetingDao;
@@ -71,6 +73,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig dBGbCadreResumeListBeanDaoConfig;
     private final DaoConfig dBGbCadreTrainListBeanDaoConfig;
     private final DaoConfig dBTyHjDaoConfig;
+    private final DaoConfig dBTyHjListDaoConfig;
     private final DaoConfig dBUserListBeanDaoConfig;
     private final DaoConfig dBYjjcCadreDaoConfig;
     private final DaoConfig dBYjjcMeetingDaoConfig;
@@ -92,6 +95,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DBGbCadreResumeListBeanDao dBGbCadreResumeListBeanDao;
     private final DBGbCadreTrainListBeanDao dBGbCadreTrainListBeanDao;
     private final DBTyHjDao dBTyHjDao;
+    private final DBTyHjListDao dBTyHjListDao;
     private final DBUserListBeanDao dBUserListBeanDao;
     private final DBYjjcCadreDao dBYjjcCadreDao;
     private final DBYjjcMeetingDao dBYjjcMeetingDao;
@@ -141,6 +145,9 @@ public class DaoSession extends AbstractDaoSession {
         dBTyHjDaoConfig = daoConfigMap.get(DBTyHjDao.class).clone();
         dBTyHjDaoConfig.initIdentityScope(type);
 
+        dBTyHjListDaoConfig = daoConfigMap.get(DBTyHjListDao.class).clone();
+        dBTyHjListDaoConfig.initIdentityScope(type);
+
         dBUserListBeanDaoConfig = daoConfigMap.get(DBUserListBeanDao.class).clone();
         dBUserListBeanDaoConfig.initIdentityScope(type);
 
@@ -177,6 +184,7 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreResumeListBeanDao = new DBGbCadreResumeListBeanDao(dBGbCadreResumeListBeanDaoConfig, this);
         dBGbCadreTrainListBeanDao = new DBGbCadreTrainListBeanDao(dBGbCadreTrainListBeanDaoConfig, this);
         dBTyHjDao = new DBTyHjDao(dBTyHjDaoConfig, this);
+        dBTyHjListDao = new DBTyHjListDao(dBTyHjListDaoConfig, this);
         dBUserListBeanDao = new DBUserListBeanDao(dBUserListBeanDaoConfig, this);
         dBYjjcCadreDao = new DBYjjcCadreDao(dBYjjcCadreDaoConfig, this);
         dBYjjcMeetingDao = new DBYjjcMeetingDao(dBYjjcMeetingDaoConfig, this);
@@ -198,6 +206,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(DBGbCadreResumeListBean.class, dBGbCadreResumeListBeanDao);
         registerDao(DBGbCadreTrainListBean.class, dBGbCadreTrainListBeanDao);
         registerDao(DBTyHj.class, dBTyHjDao);
+        registerDao(DBTyHjList.class, dBTyHjListDao);
         registerDao(DBUserListBean.class, dBUserListBeanDao);
         registerDao(DBYjjcCadre.class, dBYjjcCadreDao);
         registerDao(DBYjjcMeeting.class, dBYjjcMeetingDao);
@@ -221,6 +230,7 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreResumeListBeanDaoConfig.clearIdentityScope();
         dBGbCadreTrainListBeanDaoConfig.clearIdentityScope();
         dBTyHjDaoConfig.clearIdentityScope();
+        dBTyHjListDaoConfig.clearIdentityScope();
         dBUserListBeanDaoConfig.clearIdentityScope();
         dBYjjcCadreDaoConfig.clearIdentityScope();
         dBYjjcMeetingDaoConfig.clearIdentityScope();
@@ -277,6 +287,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public DBTyHjDao getDBTyHjDao() {
         return dBTyHjDao;
+    }
+
+    public DBTyHjListDao getDBTyHjListDao() {
+        return dBTyHjListDao;
     }
 
     public DBUserListBeanDao getDBUserListBeanDao() {

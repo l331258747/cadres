@@ -6,6 +6,7 @@ import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
+import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
@@ -83,6 +84,9 @@ public interface HttpService {
 
     @POST("newTerm/newTermDedectionList")
     Observable<BaseResponse<HjtyBean>> getHjty();
+
+    @POST("newTerm/meetRequirementsData")
+    Observable<BaseResponse<HjtyListBean>> getHjtyList();
 
 
 }
