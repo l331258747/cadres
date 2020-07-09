@@ -17,22 +17,24 @@ public class DbTyZs {
 
     @Id(autoincrement = true)
     private Long _id;
-    private int deptid;
-    private int overmatch;
-    private int parallel;
-    private int vacancy;
+    private String year;
+    private int rankAge;
     private int toVacancy;
-    private String rankAgeList;
-    @Generated(hash = 1918383528)
-    public DbTyZs(Long _id, int deptid, int overmatch, int parallel, int vacancy,
-                  int toVacancy, String rankAgeList) {
+    private int parallel;
+    private int overmatch;
+    private int vacancy;
+    private int digestion;
+    @Generated(hash = 1231644486)
+    public DbTyZs(Long _id, String year, int rankAge, int toVacancy, int parallel,
+            int overmatch, int vacancy, int digestion) {
         this._id = _id;
-        this.deptid = deptid;
-        this.overmatch = overmatch;
-        this.parallel = parallel;
-        this.vacancy = vacancy;
+        this.year = year;
+        this.rankAge = rankAge;
         this.toVacancy = toVacancy;
-        this.rankAgeList = rankAgeList;
+        this.parallel = parallel;
+        this.overmatch = overmatch;
+        this.vacancy = vacancy;
+        this.digestion = digestion;
     }
     @Generated(hash = 1978947415)
     public DbTyZs() {
@@ -43,29 +45,17 @@ public class DbTyZs {
     public void set_id(Long _id) {
         this._id = _id;
     }
-    public int getDeptid() {
-        return this.deptid;
+    public String getYear() {
+        return this.year;
     }
-    public void setDeptid(int deptid) {
-        this.deptid = deptid;
+    public void setYear(String year) {
+        this.year = year;
     }
-    public int getOvermatch() {
-        return this.overmatch;
+    public int getRankAge() {
+        return this.rankAge;
     }
-    public void setOvermatch(int overmatch) {
-        this.overmatch = overmatch;
-    }
-    public int getParallel() {
-        return this.parallel;
-    }
-    public void setParallel(int parallel) {
-        this.parallel = parallel;
-    }
-    public int getVacancy() {
-        return this.vacancy;
-    }
-    public void setVacancy(int vacancy) {
-        this.vacancy = vacancy;
+    public void setRankAge(int rankAge) {
+        this.rankAge = rankAge;
     }
     public int getToVacancy() {
         return this.toVacancy;
@@ -73,26 +63,29 @@ public class DbTyZs {
     public void setToVacancy(int toVacancy) {
         this.toVacancy = toVacancy;
     }
-    public String getRankAgeList() {
-        return this.rankAgeList;
+    public int getParallel() {
+        return this.parallel;
     }
-
-    public int getRankAgeListNum(){
-        List<RankAgeList> lists = GsonUtil.convertString2Collection(rankAgeList, new TypeToken<List<RankAgeList>>(){});
-        if(lists == null) return 0;
-
-        int num = 0;
-        for (RankAgeList item : lists) num = num + item.getNum();
-        return num;
+    public void setParallel(int parallel) {
+        this.parallel = parallel;
     }
-
-    public List<RankAgeList> getMyRankAgeList(){
-        List<RankAgeList> lists = GsonUtil.convertString2Collection(rankAgeList, new TypeToken<List<RankAgeList>>(){});
-        if(lists == null) return new ArrayList<>();
-        return lists;
+    public int getOvermatch() {
+        return this.overmatch;
     }
-
-    public void setRankAgeList(String rankAgeList) {
-        this.rankAgeList = rankAgeList;
+    public void setOvermatch(int overmatch) {
+        this.overmatch = overmatch;
     }
+    public int getVacancy() {
+        return this.vacancy;
+    }
+    public void setVacancy(int vacancy) {
+        this.vacancy = vacancy;
+    }
+    public int getDigestion() {
+        return this.digestion;
+    }
+    public void setDigestion(int digestion) {
+        this.digestion = digestion;
+    }
+    
 }

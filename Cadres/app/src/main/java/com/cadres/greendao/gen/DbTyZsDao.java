@@ -25,12 +25,13 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
      */
     public static class Properties {
         public final static Property _id = new Property(0, Long.class, "_id", true, "_id");
-        public final static Property Deptid = new Property(1, int.class, "deptid", false, "DEPTID");
-        public final static Property Overmatch = new Property(2, int.class, "overmatch", false, "OVERMATCH");
-        public final static Property Parallel = new Property(3, int.class, "parallel", false, "PARALLEL");
-        public final static Property Vacancy = new Property(4, int.class, "vacancy", false, "VACANCY");
-        public final static Property ToVacancy = new Property(5, int.class, "toVacancy", false, "TO_VACANCY");
-        public final static Property RankAgeList = new Property(6, String.class, "rankAgeList", false, "RANK_AGE_LIST");
+        public final static Property Year = new Property(1, String.class, "year", false, "YEAR");
+        public final static Property RankAge = new Property(2, int.class, "rankAge", false, "RANK_AGE");
+        public final static Property ToVacancy = new Property(3, int.class, "toVacancy", false, "TO_VACANCY");
+        public final static Property Parallel = new Property(4, int.class, "parallel", false, "PARALLEL");
+        public final static Property Overmatch = new Property(5, int.class, "overmatch", false, "OVERMATCH");
+        public final static Property Vacancy = new Property(6, int.class, "vacancy", false, "VACANCY");
+        public final static Property Digestion = new Property(7, int.class, "digestion", false, "DIGESTION");
     }
 
 
@@ -47,12 +48,13 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"DB_TY_ZS\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: _id
-                "\"DEPTID\" INTEGER NOT NULL ," + // 1: deptid
-                "\"OVERMATCH\" INTEGER NOT NULL ," + // 2: overmatch
-                "\"PARALLEL\" INTEGER NOT NULL ," + // 3: parallel
-                "\"VACANCY\" INTEGER NOT NULL ," + // 4: vacancy
-                "\"TO_VACANCY\" INTEGER NOT NULL ," + // 5: toVacancy
-                "\"RANK_AGE_LIST\" TEXT);"); // 6: rankAgeList
+                "\"YEAR\" TEXT," + // 1: year
+                "\"RANK_AGE\" INTEGER NOT NULL ," + // 2: rankAge
+                "\"TO_VACANCY\" INTEGER NOT NULL ," + // 3: toVacancy
+                "\"PARALLEL\" INTEGER NOT NULL ," + // 4: parallel
+                "\"OVERMATCH\" INTEGER NOT NULL ," + // 5: overmatch
+                "\"VACANCY\" INTEGER NOT NULL ," + // 6: vacancy
+                "\"DIGESTION\" INTEGER NOT NULL );"); // 7: digestion
     }
 
     /** Drops the underlying database table. */
@@ -69,16 +71,17 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         if (_id != null) {
             stmt.bindLong(1, _id);
         }
-        stmt.bindLong(2, entity.getDeptid());
-        stmt.bindLong(3, entity.getOvermatch());
-        stmt.bindLong(4, entity.getParallel());
-        stmt.bindLong(5, entity.getVacancy());
-        stmt.bindLong(6, entity.getToVacancy());
  
-        String rankAgeList = entity.getRankAgeList();
-        if (rankAgeList != null) {
-            stmt.bindString(7, rankAgeList);
+        String year = entity.getYear();
+        if (year != null) {
+            stmt.bindString(2, year);
         }
+        stmt.bindLong(3, entity.getRankAge());
+        stmt.bindLong(4, entity.getToVacancy());
+        stmt.bindLong(5, entity.getParallel());
+        stmt.bindLong(6, entity.getOvermatch());
+        stmt.bindLong(7, entity.getVacancy());
+        stmt.bindLong(8, entity.getDigestion());
     }
 
     @Override
@@ -89,16 +92,17 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         if (_id != null) {
             stmt.bindLong(1, _id);
         }
-        stmt.bindLong(2, entity.getDeptid());
-        stmt.bindLong(3, entity.getOvermatch());
-        stmt.bindLong(4, entity.getParallel());
-        stmt.bindLong(5, entity.getVacancy());
-        stmt.bindLong(6, entity.getToVacancy());
  
-        String rankAgeList = entity.getRankAgeList();
-        if (rankAgeList != null) {
-            stmt.bindString(7, rankAgeList);
+        String year = entity.getYear();
+        if (year != null) {
+            stmt.bindString(2, year);
         }
+        stmt.bindLong(3, entity.getRankAge());
+        stmt.bindLong(4, entity.getToVacancy());
+        stmt.bindLong(5, entity.getParallel());
+        stmt.bindLong(6, entity.getOvermatch());
+        stmt.bindLong(7, entity.getVacancy());
+        stmt.bindLong(8, entity.getDigestion());
     }
 
     @Override
@@ -110,12 +114,13 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
     public DbTyZs readEntity(Cursor cursor, int offset) {
         DbTyZs entity = new DbTyZs( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // _id
-            cursor.getInt(offset + 1), // deptid
-            cursor.getInt(offset + 2), // overmatch
-            cursor.getInt(offset + 3), // parallel
-            cursor.getInt(offset + 4), // vacancy
-            cursor.getInt(offset + 5), // toVacancy
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // rankAgeList
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // year
+            cursor.getInt(offset + 2), // rankAge
+            cursor.getInt(offset + 3), // toVacancy
+            cursor.getInt(offset + 4), // parallel
+            cursor.getInt(offset + 5), // overmatch
+            cursor.getInt(offset + 6), // vacancy
+            cursor.getInt(offset + 7) // digestion
         );
         return entity;
     }
@@ -123,12 +128,13 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
     @Override
     public void readEntity(Cursor cursor, DbTyZs entity, int offset) {
         entity.set_id(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setDeptid(cursor.getInt(offset + 1));
-        entity.setOvermatch(cursor.getInt(offset + 2));
-        entity.setParallel(cursor.getInt(offset + 3));
-        entity.setVacancy(cursor.getInt(offset + 4));
-        entity.setToVacancy(cursor.getInt(offset + 5));
-        entity.setRankAgeList(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setYear(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setRankAge(cursor.getInt(offset + 2));
+        entity.setToVacancy(cursor.getInt(offset + 3));
+        entity.setParallel(cursor.getInt(offset + 4));
+        entity.setOvermatch(cursor.getInt(offset + 5));
+        entity.setVacancy(cursor.getInt(offset + 6));
+        entity.setDigestion(cursor.getInt(offset + 7));
      }
     
     @Override

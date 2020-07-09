@@ -1,8 +1,13 @@
 package com.example.cadres.beanDB;
 
+import com.example.cadres.bean.ChartBean;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class DBTyHj {
@@ -87,6 +92,34 @@ public class DBTyHj {
     }
     public void setInconformityszx(int inconformityszx) {
         this.inconformityszx = inconformityszx;
+    }
+
+    public List<ChartBean> getSwbz(){
+        List<ChartBean> list = new ArrayList<>();
+        list.add(new ChartBean(null,swbzcount - inconformityswbz));
+        list.add(new ChartBean("下次换届时不符合"+System.getProperty("line.separator")+"继续提名条件人数",inconformityswbz));
+        return list;
+    }
+
+    public List<ChartBean> getSzfbz(){
+        List<ChartBean> list = new ArrayList<>();
+        list.add(new ChartBean(null,szfbzcount - inconformityszfbz));
+        list.add(new ChartBean("下次换届时不符合"+System.getProperty("line.separator")+"继续提名条件人数",inconformityszfbz));
+        return list;
+    }
+
+    public List<ChartBean> getSrdcwz(){
+        List<ChartBean> list = new ArrayList<>();
+        list.add(new ChartBean(null,srdbzcount - inconformitysrdbz));
+        list.add(new ChartBean("下次换届时不符合"+System.getProperty("line.separator")+"继续提名条件人数",inconformitysrdbz));
+        return list;
+    }
+
+    public List<ChartBean> getSzxbz(){
+        List<ChartBean> list = new ArrayList<>();
+        list.add(new ChartBean(null,szxzcount - inconformityszx));
+        list.add(new ChartBean("下次换届时不符合"+System.getProperty("line.separator")+"继续提名条件人数",inconformityszx));
+        return list;
     }
 
 }

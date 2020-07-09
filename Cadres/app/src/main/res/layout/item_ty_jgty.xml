@@ -118,14 +118,23 @@
             android:layout_marginStart="@dimen/dp_60"
             android:layout_height="@dimen/dp_260"/>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:src="@mipmap/ic_jg_zzmm"
-            app:layout_constraintStart_toStartOf="@+id/view_2_jg"
-            app:layout_constraintEnd_toEndOf="@+id/view_2_jg"
-            app:layout_constraintTop_toTopOf="@+id/view_2_jg"
-            app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"
-            android:layout_height="0dp"/>
+     <com.github.mikephil.charting.charts.PieChart
+         android:id="@+id/chart_jg_zzmm"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintStart_toStartOf="@+id/view_2_jg"
+         app:layout_constraintEnd_toEndOf="@+id/view_2_jg"
+         app:layout_constraintTop_toTopOf="@+id/view_2_jg"
+         app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"/>
+
+<!--        <ImageView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:src="@mipmap/ic_jg_zzmm"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/view_2_jg"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/view_2_jg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/view_2_jg"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"-->
+<!--            android:layout_height="0dp"/>-->
 
         <ImageView
             android:id="@+id/iv_jg_zzmm"
@@ -157,14 +166,24 @@
             app:layout_constraintEnd_toStartOf="@+id/view_4_jg"
             android:layout_height="@dimen/dp_260"/>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:src="@mipmap/ic_jg_mz"
-            app:layout_constraintStart_toStartOf="@+id/view_3_jg"
-            app:layout_constraintEnd_toEndOf="@+id/view_3_jg"
-            app:layout_constraintTop_toTopOf="@+id/view_3_jg"
-            app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"
-            android:layout_height="0dp"/>
+
+     <com.github.mikephil.charting.charts.PieChart
+         android:id="@+id/chart_jg_mz"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintStart_toStartOf="@+id/view_3_jg"
+         app:layout_constraintEnd_toEndOf="@+id/view_3_jg"
+         app:layout_constraintTop_toTopOf="@+id/view_3_jg"
+         app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"/>
+
+<!--        <ImageView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:src="@mipmap/ic_jg_mz"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/view_3_jg"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/view_3_jg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/view_3_jg"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"-->
+<!--            android:layout_height="0dp"/>-->
 
         <ImageView
             android:id="@+id/iv_jg_mz"
@@ -197,14 +216,23 @@
             android:layout_marginStart="@dimen/dp_60"
             android:layout_height="@dimen/dp_260"/>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:src="@mipmap/ic_jg_nljg"
-            app:layout_constraintStart_toStartOf="@+id/view_4_jg"
-            app:layout_constraintEnd_toEndOf="@+id/view_4_jg"
-            app:layout_constraintTop_toTopOf="@+id/view_4_jg"
-            app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"
-            android:layout_height="0dp"/>
+     <com.github.mikephil.charting.charts.PieChart
+         android:id="@+id/chart_jg_nljg"
+         android:layout_width="0dp"
+         android:layout_height="0dp"
+         app:layout_constraintStart_toStartOf="@+id/view_4_jg"
+         app:layout_constraintEnd_toEndOf="@+id/view_4_jg"
+         app:layout_constraintTop_toTopOf="@+id/view_4_jg"
+         app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"/>
+
+<!--        <ImageView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:src="@mipmap/ic_jg_nljg"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/view_4_jg"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/view_4_jg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/view_4_jg"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"-->
+<!--            android:layout_height="0dp"/>-->
 
         <ImageView
             android:id="@+id/iv_jg_nljg"

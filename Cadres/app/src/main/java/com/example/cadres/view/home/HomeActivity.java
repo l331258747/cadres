@@ -863,16 +863,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DbTyZs> dbList = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-
             ZstyBean.ZstyBean2 item = data.get(i);
             dbList.add(new DbTyZs(
                     null,
-                    item.getDeptid(),
-                    item.getOvermatchInt(),
-                    item.getParallelInt(),
-                    item.getVacancyInt(),
-                    item.getToVacancyInt(),
-                    item.getRankAgeListStr()
+                    item.getYear(),
+                    item.getRankAge(),
+                    item.getToVacancy(),
+                    item.getParallel(),
+                    item.getOvermatch(),
+                    item.getVacancy(),
+                    item.getDigestion()
             ));
         }
         dBTyZsDaoUtils.insertMulti(dbList);

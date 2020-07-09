@@ -1,7 +1,5 @@
 package com.example.cadres.bean.dsjty;
 
-import com.example.cadres.utils.GsonUtil;
-
 import java.util.List;
 
 public class ZstyBean {
@@ -12,225 +10,80 @@ public class ZstyBean {
         return rankDeductionList;
     }
 
-    public static class ZstyBean2{
+    public static class ZstyBean2 {
 
         /**
-         * deptid : 205
-         * rankAgeList : [{"name":"2019","num":0},{"name":"2020","num":1},{"name":"2021","num":1},{"name":"2022","num":0},{"name":"2023","num":0}]
-         * overmatch : {"name":"超配数","num":1}
-         * parallel : {"name":"职务与职级并行(人)","num":4}
-         * vacancy : {"name":"可用空缺职位数(人)","num":5}
-         * toVacancy : {"name":"调整到空缺职位","num":7}
+         * year : 2020
+         * rankAge : 0
+         * toVacancy : 0
+         * parallel : 0
+         * overmatch : 15
+         * vacancy : 5
+         * digestion : 0
          */
 
-        private int deptid;
-        private OvermatchBean overmatch;
-        private ParallelBean parallel;
-        private VacancyBean vacancy;
-        private ToVacancyBean toVacancy;
-        private List<RankAgeListBean> rankAgeList;
+        private String year;
+        private int rankAge;
+        private int toVacancy;
+        private int parallel;
+        private int overmatch;
+        private int vacancy;
+        private int digestion;
 
-        public int getDeptid() {
-            return deptid;
+        public String getYear() {
+            return year;
         }
 
-        public void setDeptid(int deptid) {
-            this.deptid = deptid;
+        public void setYear(String year) {
+            this.year = year;
         }
 
-        public OvermatchBean getOvermatch() {
-            return overmatch;
+        public int getRankAge() {
+            return rankAge;
         }
 
-        public int getOvermatchInt() {
-            if(overmatch == null) return 0;
-            return overmatch.getNum();
+        public void setRankAge(int rankAge) {
+            this.rankAge = rankAge;
         }
 
-        public void setOvermatch(OvermatchBean overmatch) {
-            this.overmatch = overmatch;
-        }
-
-        public ParallelBean getParallel() {
-            return parallel;
-        }
-
-        public int getParallelInt() {
-            if(parallel == null) return 0;
-            return parallel.getNum();
-        }
-
-        public void setParallel(ParallelBean parallel) {
-            this.parallel = parallel;
-        }
-
-        public VacancyBean getVacancy() {
-            return vacancy;
-        }
-
-        public int getVacancyInt() {
-            if(vacancy == null) return 0;
-            return vacancy.getNum();
-        }
-
-        public void setVacancy(VacancyBean vacancy) {
-            this.vacancy = vacancy;
-        }
-
-        public ToVacancyBean getToVacancy() {
+        public int getToVacancy() {
             return toVacancy;
         }
 
-        public int getToVacancyInt() {
-            if(toVacancy == null) return 0;
-            return toVacancy.getNum();
-        }
-
-        public void setToVacancy(ToVacancyBean toVacancy) {
+        public void setToVacancy(int toVacancy) {
             this.toVacancy = toVacancy;
         }
 
-        public List<RankAgeListBean> getRankAgeList() {
-            return rankAgeList;
+        public int getParallel() {
+            return parallel;
         }
 
-        public String getRankAgeListStr() {
-            if(rankAgeList == null) return "";
-            return GsonUtil.convertVO2String(rankAgeList);
+        public void setParallel(int parallel) {
+            this.parallel = parallel;
         }
 
-        public void setRankAgeList(List<RankAgeListBean> rankAgeList) {
-            this.rankAgeList = rankAgeList;
+        public int getOvermatch() {
+            return overmatch;
         }
 
-        public static class OvermatchBean {
-            /**
-             * name : 超配数
-             * num : 1
-             */
-
-            private String name;
-            private int num;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
+        public void setOvermatch(int overmatch) {
+            this.overmatch = overmatch;
         }
 
-        public static class ParallelBean {
-            /**
-             * name : 职务与职级并行(人)
-             * num : 4
-             */
-
-            private String name;
-            private int num;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
+        public int getVacancy() {
+            return vacancy;
         }
 
-        public static class VacancyBean {
-            /**
-             * name : 可用空缺职位数(人)
-             * num : 5
-             */
-
-            private String name;
-            private int num;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
+        public void setVacancy(int vacancy) {
+            this.vacancy = vacancy;
         }
 
-        public static class ToVacancyBean {
-            /**
-             * name : 调整到空缺职位
-             * num : 7
-             */
-
-            private String name;
-            private int num;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
+        public int getDigestion() {
+            return digestion;
         }
 
-        public static class RankAgeListBean {
-            /**
-             * name : 2019
-             * num : 0
-             */
-
-            private String name;
-            private int num;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getNum() {
-                return num;
-            }
-
-            public void setNum(int num) {
-                this.num = num;
-            }
+        public void setDigestion(int digestion) {
+            this.digestion = digestion;
         }
     }
 }

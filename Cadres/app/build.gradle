@@ -84,6 +84,6 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.3.0' // 添加依赖
     implementation 'com.github.Jay-Goo:RangeSeekBar:v1.1.0'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }
