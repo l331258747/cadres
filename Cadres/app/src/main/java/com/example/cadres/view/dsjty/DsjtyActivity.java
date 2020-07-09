@@ -199,6 +199,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         xAxis.setTextColor(ContextCompat.getColor(context,R.color.white));
         xAxis.setAxisMinimum(-0.2f);
         xAxis.setAxisMaximum(dbTyZs.size() - 0.8f);
+        xAxis.setTextSize(12f);
 
         //传入X轴的值，所以自定义X轴的值可以 写在该方法内
         xAxis.setValueFormatter(new ValueFormatter() {

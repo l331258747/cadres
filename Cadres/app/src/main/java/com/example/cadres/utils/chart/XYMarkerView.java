@@ -21,6 +21,8 @@ public class XYMarkerView extends MarkerView {
     private static final float STOKE_WIDTH = 5;//这里对于stroke_width的宽度也要做一定偏移
     private final TextView tv_xhrs;
     private final TextView tv_kq;
+    private final TextView tv_bx;
+    private final TextView tv_tx;
     private final List<DbTyZs> stepListModels;
     private int index;
     private int oldIndex = -1;
@@ -30,8 +32,10 @@ public class XYMarkerView extends MarkerView {
     public XYMarkerView(Context context, List<DbTyZs> stepListModels) {
         super(context, R.layout.custom_marker_view);
         this.context = context;
-        tv_xhrs = (TextView) findViewById(R.id.tv_xhrs);//content
-        tv_kq = (TextView) findViewById(R.id.tv_kq);//name
+        tv_xhrs = (TextView) findViewById(R.id.tv_xhrs);//
+        tv_kq = (TextView) findViewById(R.id.tv_kq);//
+        tv_bx = (TextView) findViewById(R.id.tv_bx);//
+        tv_tx = (TextView) findViewById(R.id.tv_tx);//
         this.stepListModels = stepListModels;
     }
 
@@ -39,12 +43,11 @@ public class XYMarkerView extends MarkerView {
     public void refreshContent(Entry e, Highlight highlight) {
         super.refreshContent(e, highlight);
         index = (int)highlight.getX();//这个方法用于获得折线是哪根
-//        tv_xhrs.setText((int) e.getY() + "");
-//        tv_kq.setText(highlight.getDataSetIndex() + "");
-
         DbTyZs stepListModel = stepListModels.get(index);
-        tv_xhrs.setText(stepListModel.getToVacancy() + "");
+        tv_xhrs.setText(stepListModel.getDigestion() + "");
         tv_kq.setText(stepListModel.getToVacancy() + "");
+        tv_bx.setText(stepListModel.getParallel() + "");
+        tv_tx.setText(stepListModel.getRankAge() + "");
     }
 
     @Override
