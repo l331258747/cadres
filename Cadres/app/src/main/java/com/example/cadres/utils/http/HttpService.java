@@ -4,6 +4,7 @@ package com.example.cadres.utils.http;
 import com.example.cadres.bean.BaseResponse;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
@@ -87,6 +88,9 @@ public interface HttpService {
 
     @POST("newTerm/meetRequirementsData")
     Observable<BaseResponse<HjtyListBean>> getHjtyList();
+
+    @POST("appstore/selectNewAppVersion")
+    Observable<BaseResponse<ApkBean>> getApk();
 
 
 }

@@ -4,10 +4,12 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -17,10 +19,13 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
+
+import androidx.core.content.FileProvider;
 
 /**
  * Created by LGQ
@@ -216,4 +221,21 @@ public class AppUtils {
         return null;
     }
 
+    public static  void installApk(Context context,String downloadApk) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        File file = new File(downloadApk);
+        LogUtil.e("安装路径=="+downloadApk);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            LogUtil.e("AppUtils.getPakgeName():"+AppUtils.getPakgeName());
+            Uri apkUri = FileProvider.getUriForFile(context, AppUtils.getPakgeName()+".fileprovider", file);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Uri uri = Uri.fromFile(file);
+            intent.setDataAndType(uri, "application/vnd.android.package-archive");
+        }
+        context.startActivity(intent);
+
+    }
 }

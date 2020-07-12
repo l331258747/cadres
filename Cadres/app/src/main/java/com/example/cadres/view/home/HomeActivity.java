@@ -177,6 +177,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progress.setIndeterminate(false);//设置为fase等待进度更新，设置为true则左右循环滚动
         progress.setMax(100);
+        progress.setCancelable(false);
     }
 
     public String getTitleName() {
