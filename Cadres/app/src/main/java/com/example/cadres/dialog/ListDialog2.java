@@ -1,14 +1,23 @@
 package com.example.cadres.dialog;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.ListDialogAdapter;
@@ -25,17 +34,21 @@ import androidx.recyclerview.widget.RecyclerView;
  * Created by jinty on 2020/6/23.
  */
 
-public class ListDialog2 extends AlertDialog {
+public class ListDialog2 extends Dialog {
 
     Context mContext;
-    RelativeLayout layoutParent;
     RecyclerView recyclerView;
     List<ListDialogBean> lists;
+    LinearLayout layout_parent;
     ListDialogAdapter2.OnItemClickListener onItemClickListener;
+
+    ListDialogAdapter2 adapter;
+
+    EditText et_left_search;
 
     public ListDialog2(Context context, List<ListDialogBean> lists) {
 
-        super(context);
+        super(context,R.style.mdialog);
 
         mContext = context;
 
@@ -57,11 +70,13 @@ public class ListDialog2 extends AlertDialog {
         View layout = inflater.inflate(R.layout.dialog_list2, null);
         this.setContentView(layout);
 
-        layoutParent = layout.findViewById(R.id.layout_parent);
         recyclerView = layout.findViewById(R.id.recycle_view);
+        layout_parent = layout.findViewById(R.id.layout_parent);
+        et_left_search = layout.findViewById(R.id.et_left_search);
+        initLeftSearch();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        ListDialogAdapter2 adapter = new ListDialogAdapter2(mContext, lists);
+        adapter = new ListDialogAdapter2(mContext, lists);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
@@ -72,4 +87,33 @@ public class ListDialog2 extends AlertDialog {
 
     }
 
+    TextView.OnEditorActionListener onEditorActionListener;
+    public ListDialog2 setOnEditorActionListener(TextView.OnEditorActionListener onEditorActionListener){
+        this.onEditorActionListener = onEditorActionListener;
+        return this;
+    }
+
+    TextWatcher textWatcher;
+    public ListDialog2 addTextChangedListener(TextWatcher textWatcher){
+        this.textWatcher = textWatcher;
+        return this;
+    }
+
+    private void initLeftSearch() {
+        et_left_search.setOnEditorActionListener(onEditorActionListener);
+
+        et_left_search.addTextChangedListener(textWatcher);
+    }
+
+    public ListDialogAdapter2 getAdapter(){
+        return adapter;
+    }
+
+    public EditText getEt_left_search() {
+        return et_left_search;
+    }
+
+    public void show(){
+        super.show();
+    }
 }

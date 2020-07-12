@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cadres.R;
+import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
 
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -50,11 +52,27 @@ public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.
                 }
             });
         }
+
+        holder.tv_text.setBackgroundColor(ContextCompat.getColor(mContext, R.color.transparent));
+        if (item.getId() == selectDeptDd){
+            holder.tv_text.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_01B7FF));
+        }
     }
 
     @Override
     public int getItemCount() {
         return lists.size();
+    }
+
+    private int selectDeptDd = 0;// 选中的位置
+    public void setItemData(int selectDeptDd){
+        this.selectDeptDd = selectDeptDd;
+        notifyDataSetChanged();
+    }
+
+    public void setData(List<ListDialogBean> datas) {
+        this.lists = datas;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,4 +93,6 @@ public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
+
+
 }

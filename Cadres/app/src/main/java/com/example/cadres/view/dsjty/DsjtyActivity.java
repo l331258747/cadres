@@ -2,7 +2,12 @@ package com.example.cadres.view.dsjty;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +25,7 @@ import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.dialog.ListDialog2;
+import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.StatusBarUtil;
 import com.example.cadres.utils.chart.HjPercentFormatter;
@@ -115,7 +121,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBBmDaoUtils = _Store.getBmDaoUtils();
 
-        getDbBmList();
+        getDbBmList("");
 
         if (dbBmList != null && dbBmList.size() > 0) {
             tv_dialog.setText(dbBmList.get(0).getDeptName());
@@ -694,7 +700,16 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     //------------------------点击事件
     ListDialog2 listDialog;
-    List<ListDialogBean> dialogDatas = new ArrayList<>();
+    List<ListDialogBean> dialogDatas;
+
+    public List<ListDialogBean> getDialogDatas(){
+        dialogDatas = new ArrayList<>();
+        for (int i = 0; i < bmLeftBeans.size(); i++) {
+            ListDialogBean item = new ListDialogBean(bmLeftBeans.get(i).getId(), bmLeftBeans.get(i).getName());
+            dialogDatas.add(item);
+        }
+        return dialogDatas;
+    }
 
     @Override
     public void onClick(View view) {
@@ -702,12 +717,40 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.tv_dialog:
                 if (listDialog == null) {
-                    dialogDatas = new ArrayList<>();
-                    for (int i = 0; i < bmLeftBeans.size(); i++) {
-                        ListDialogBean item = new ListDialogBean(bmLeftBeans.get(i).getId(), bmLeftBeans.get(i).getName());
-                        dialogDatas.add(item);
-                    }
-                    listDialog = new ListDialog2(context, dialogDatas);
+                    listDialog = new ListDialog2(context, getDialogDatas());
+                    listDialog.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            /*判断是否是“搜索”键*/
+                            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                                String key = listDialog.getEt_left_search().getText().toString().trim();
+                                if(!TextUtils.isEmpty(key)){
+                                    getDbBmList(key);
+                                    listDialog.getAdapter().setData(getDialogDatas());
+                                    AppUtils.HideKeyboard(listDialog.getEt_left_search());
+                                }
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                    listDialog.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            if(TextUtils.isEmpty(listDialog.getEt_left_search().getText().toString())){
+                                getDbBmList("");
+                                listDialog.getAdapter().setData(getDialogDatas());
+                            }
+                        }
+                    });
                     listDialog.setItemClickListener(new ListDialogAdapter2.OnItemClickListener() {
                         @Override
                         public void onClick(int position) {
@@ -715,6 +758,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                             tv_dialog.setText(dialogDatas.get(position).getName());
 
                             deptId = dialogDatas.get(position).getId();
+                            listDialog.getAdapter().setItemData(dialogDatas.get(position).getId());
 
                             //TODO 切换结构推演数据
                             getDbJgTyData();
@@ -774,13 +818,18 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     List<DBBmBean> dbBmList;
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
 
-    public List<DBBmBean> getDbBmList() {
+    public List<DBBmBean> getDbBmList(String key) {
         dbBmList = new ArrayList<>();
-        dbBmList = dBBmDaoUtils.queryAll();
-        LogUtil.e("数据库条数：" + dbBmList.size());
-
-        setBmLeftBean();
-
+        if(TextUtils.isEmpty(key)){
+            dbBmList = dBBmDaoUtils.queryAll();
+            LogUtil.e("数据库条数：" + dbBmList.size());
+            setBmLeftBean();
+        }else{
+            String sql = "where DEPT_NAME like ?";
+            String[] condition = new String[]{"%" + key + "%"};
+            dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
+            setBmLeftBean2();
+        }
         return dbBmList;
     }
 
@@ -809,6 +858,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                 }
             }
         }
+        this.bmLeftBeans = new ArrayList<>();
         sysout(rootTrees, "");
     }
 
@@ -821,6 +871,15 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                 bmLeftBeans.add(tree);
                 sysout(tree.getLists(), str + "   ");
             }
+        }
+    }
+
+    public void setBmLeftBean2(){
+        bmLeftBeans = new ArrayList<>();
+        for (int i = 0; i < dbBmList.size(); i++) {
+            DBBmBean dbItem = dbBmList.get(i);
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
+            bmLeftBeans.add(item);
         }
     }
 
