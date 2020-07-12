@@ -1,7 +1,14 @@
 package com.example.cadres.view.login;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +28,10 @@ import com.example.cadres.view.home.HomeActivity;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener, LoginContract.View {
 
     TextView tv_btn;
@@ -28,7 +39,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     LoginPresenter mPresenter;
 
     String username, password;
-//    CommonDaoUtils<DBUserListBean> userListDaoUtils;
 
     @Override
     public int getLayoutId() {
@@ -54,9 +64,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             startActivity(new Intent(context, HomeActivity.class));
             finish();
         }
-
-//        DaoUtilsStore _Store = DaoUtilsStore.getInstance();
-//        userListDaoUtils = _Store.getUserListDaoUtils();
     }
 
     @Override
@@ -76,75 +83,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 }
                 mPresenter.login(username,password);
                 break;
-//            case R.id.tv_btn:
-//                if (userListDaoUtils.queryAll() != null) {
-//                    userListDaoUtils.queryAll().size();
-//                    LogUtil.e("数据库条数：" + userListDaoUtils.queryAll().size());
-//                } else {
-//                    LogUtil.e("没有数据");
-//                }
-//
-//                userListDaoUtils.deleteAll();
-//                LogUtil.e("记录删除 完成");
-//
-//                mPresenter.findUserList();
-//                break;
-//            case R.id.tv_btn2:
-//                deleteAll();
-//                LogUtil.e("图片删除 完成");
-//
-//                loadImages();
-//                break;
         }
     }
-//    private void deleteAll() {
-//        FileUtil.delAllFile(FileUtil.getFolder(Constant.IMAGE_PATH));
-//    }
-//    @Override
-//    public void findUserListSuccess(List<UserListBean> list) {
-//        List<DBUserListBean> dbList = new ArrayList<>();
-//        for (int i = 0; i < 1000; i++) {
-//            progress.setProgress((int) (20 * i / 1000));
-//            LogUtil.e("数据：" + progress.getProgress());
-//            UserListBean item = list.get(0);
-//            dbList.add(new DBUserListBean(null, item.getUserId(), item.getDeptId(), item.getLoginName(), item.getPassword(), item.getSalt()));
-//        }
-//        userListDaoUtils.insertMulti(dbList);
-//        LogUtil.e("dbuserlist 下载完成");
-//    }
-//    String informationId;
-//    File dir;
-
-//    private void loadImages() {
-//        dir = FileUtil.getFolder(Constant.IMAGE_PATH);
-//        String url = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1767601834,3862647392&fm=11&gp=0.jpg";
-//        //取得最后一个/的下标
-//        int index = url.lastIndexOf("/");
-//        //将字符串转为字符数组
-//        char[] ch = url.toCharArray();
-//        //根据 copyValueOf(char[] data, int offset, int count) 取得最后一个字符串
-//        informationId = String.copyValueOf(ch, index + 1, ch.length - index - 1);
-//
-//        Glide.with(context).load(url).asBitmap().toBytes().into(new SimpleTarget<byte[]>() {
-//            @Override
-//            public void onResourceReady(byte[] bytes, GlideAnimation<? super byte[]> glideAnimation) {
-//                try {
-//                    String fileName = dir + File.separator + informationId;
-//                    FileOutputStream fos = new FileOutputStream(fileName, true);
-//                    fos.write(bytes);
-//                    fos.flush();
-//                    fos.close();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        LogUtil.e("图片 下载完成");
-//    }
-//    @Override
-//    public void findUserListFailed(String msg) {
-//        LogUtil.e(msg);
-//    }
 
     @Override
     public void loginSuccess(LoginBean.LoginBean2 data) {
@@ -181,5 +121,123 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public String encryptPassword(String username, String password, String salt) {
         return new Md5Hash(username + password + salt).toHex().toString();
     }
+
+    //---------------start权限-----------------
+    public static final int BASE_VALUE_PERMISSION = 0X0001;
+    public static final int PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE = BASE_VALUE_PERMISSION + 2;
+
+    private boolean isPermissions;
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isFinishing()) {
+                    return;
+                }
+
+                boolean checkPermissionResult = checkSelfPermissions();
+                LogUtil.e("checkPermissionResult: " + checkPermissionResult);
+
+                if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M)) {
+                    // so far we do not use OnRequestPermissionsResultCallback
+                }
+            }
+        }, 500);
+    }
+
+    /**
+     * RECORD_AUDIO 录音
+     * WRITE_EXTERNAL_STORAGE sd写权限
+     * ACCESS_COARSE_LOCATION 定位
+     */
+    private boolean checkSelfPermissions() {
+        return checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
+    }
+
+    public boolean checkSelfPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager
+                .PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+            return false;
+        }
+        if (permission == android.Manifest.permission.WRITE_EXTERNAL_STORAGE) {
+            isPermissions = true;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {//选择了不再提示按钮
+                    showAccreditDialog();
+                    return;
+                }
+                if (grantResults.length > 0) {
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        isPermissions = true;
+                    } else {
+                        checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    //----------------end权限--------------
+
+    //----------start 权限不再询问处理-------------
+
+    private void showAccreditDialog() {
+        new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setMessage("温馨提示\n" +
+                        "您需要同意系统使用【储存】权限才能正常使用系统，" +
+                        "由于您选择了【禁止（不再提示）】，将导致无法使用系统，" +
+                        "需要到设置页面手动授权开启【存储】权限，才能继续使用。")
+                .setPositiveButton("去授权", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //引导用户至设置页手动授权
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName
+                                (), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //引导用户手动授权，权限请求失败
+                        finish();
+                    }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                //引导用户手动授权，权限请求失败
+            }
+        }).show();
+    }
+
+    public static final int REQUEST_PERMISSION_SETTING = 6;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_PERMISSION_SETTING) {
+            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
+        }
+    }
+    //----------end 权限不再询问处理-------------
 
 }
