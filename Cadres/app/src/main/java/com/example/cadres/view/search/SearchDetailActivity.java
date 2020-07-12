@@ -92,9 +92,11 @@ public class SearchDetailActivity extends BaseActivity {
 
         if(TextUtils.equals(key,"35岁及以下年轻干部")){
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchBean.getCurrentYear() - 35,searchBean.getCurrentYear()));
-        }else{
+        }else if(TextUtils.equals(key,"党外干部")){
+            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
+        } else{
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class,DBGbCadreNowPositionListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.eq(key));
+                    .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like( "%" + key + "%"));
             queryBuilder.distinct();
         }
         LogUtil.e("部门类型 数据条数："+queryBuilder.count());
