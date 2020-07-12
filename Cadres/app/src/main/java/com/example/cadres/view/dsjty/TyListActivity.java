@@ -99,6 +99,7 @@ public class TyListActivity extends BaseActivity {
 
     List<DBGbBean> dbList;
     public void getDbList() {
+        if(ids == null || ids.size() == 0) return;
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.BaseId.in(ids));

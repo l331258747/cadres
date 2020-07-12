@@ -81,6 +81,16 @@ public class FileUtil {
         return dir;
     }
 
+    //获取文件夹 filename:log
+    public static File getFile(String filename){
+        String filePath;
+//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
+//            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
+//        } else  // 系统下载缓存根目录的hello.text
+        File dir = new File(filename);
+        return dir;
+    }
+
     public static String getFOlderPath(String filename){
         return AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
     }

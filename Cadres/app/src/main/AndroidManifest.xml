@@ -61,6 +61,8 @@
             android:name=".view.dsjty.DsjtyActivity"/>
         <activity
             android:name=".view.dsjty.TyListActivity"/>
+        <activity
+            android:name=".view.other.PhotoImageActivity"/>
 
     </application>
 

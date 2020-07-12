@@ -3,6 +3,7 @@ package com.example.cadres.view.home;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -342,14 +343,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void getFilesSuccess(List<String> data) {
-//        for (int i=0;i<data.size();i++){
-//            loadImages(data.get(i),90 + (10 / data.size() * i));
-//        }
         pos = 0;
         files = data;
         loadImages();
-
-        progress.dismiss();
     }
 
     @Override
@@ -358,17 +354,30 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         progress.dismiss();
     }
 
-    private void deleteAll() {
-        FileUtil.delAllFile(FileUtil.getFolder(Constant.IMAGE_PATH));
+    //图片数量
+    private void printImgAll() {
+        File file = FileUtil.getFolder(Constant.IMAGE_PATH);
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            LogUtil.e("文件夹图片数量：" + files.length);
+            for (int i = 0; i < files.length; i++) {
+                File f = files[i];
+                LogUtil.e("文件：：" + f.getAbsolutePath());
+            }
+        }
     }
 
     String informationId;
     File dir;
     List<String> files;
     int pos = 0;
+    String fileName;
 
     private void loadImages() {
-        if(pos  == files.size()) return;
+        if(pos  == files.size()) {
+            progress.dismiss();
+            return;
+        }
         String url = files.get(pos);
 
         dir = FileUtil.getFolder(Constant.IMAGE_PATH);
@@ -378,24 +387,40 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         char[] ch = url.toCharArray();
         //根据 copyValueOf(char[] data, int offset, int count) 取得最后一个字符串
         informationId = String.copyValueOf(ch, index + 1, ch.length - index - 1);
+        fileName = dir + File.separator + informationId;
+
+        if(FileUtil.isFileExist(FileUtil.getFile(fileName))){
+            LogUtil.e("已存在： " + fileName);
+            pos ++;
+            loadImages();
+            progress.setProgress(90 + (10 / files.size() * pos));
+            return;
+        }
+
 
         Glide.with(context).load(url).asBitmap().toBytes().into(new SimpleTarget<byte[]>() {
             @Override
             public void onResourceReady(byte[] bytes, GlideAnimation<? super byte[]> glideAnimation) {
                 try {
-                    String fileName = dir + File.separator + informationId;
                     FileOutputStream fos = new FileOutputStream(fileName, true);
                     fos.write(bytes);
                     fos.flush();
                     fos.close();
                     LogUtil.e("下载完成： " +fileName);
-
-                    pos ++;
-                    loadImages();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                pos ++;
+                loadImages();
+                progress.setProgress(90 + (10 / files.size() * pos));
+            }
+
+            @Override
+            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                super.onLoadFailed(e, errorDrawable);
+                LogUtil.e("下载失败： " +fileName);
+                pos ++;
+                loadImages();
                 progress.setProgress(90 + (10 / files.size() * pos));
             }
         });
@@ -462,7 +487,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyJgDaoUtils.deleteAll();
         dBTyZsDaoUtils.deleteAll();
 
-        deleteAll();
+        printImgAll();
     }
 
     private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
