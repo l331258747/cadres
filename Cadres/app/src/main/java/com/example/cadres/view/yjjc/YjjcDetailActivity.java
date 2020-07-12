@@ -182,7 +182,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
             sql = "where SCHEME_ID = ? and APPOINT_DISMISS_RESULT <> ?";
             condition = new String[]{schemeId + "", 2 + ""};
         }else if(TextUtils.equals("市委常委会议",type)){
-            sql = "where SCHEME_ID = ? and (APPOINT_DISMISS_RESULT <> ? or APPOINT_DISMISS_RESULT <> ?)";
+            sql = "where SCHEME_ID = ? and (APPOINT_DISMISS_RESULT <> ? and APPOINT_DISMISS_RESULT <> ?)";
             condition = new String[]{schemeId + "", 2 + "",3 + ""};
         }else{
             sql = "where SCHEME_ID = ?";
