@@ -15,6 +15,8 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="开始时间"/>
 
@@ -33,6 +35,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="14sp"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
         app:layout_constraintStart_toEndOf="@+id/tv_start_time"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,6 +57,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="14sp"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
         android:maxLines="3"
         app:layout_constraintStart_toEndOf="@+id/tv_end_time"
         app:layout_constraintTop_toTopOf="parent"
@@ -76,6 +82,8 @@
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_lx"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="内容"/>
