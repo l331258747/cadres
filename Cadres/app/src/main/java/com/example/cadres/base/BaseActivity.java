@@ -25,6 +25,7 @@ import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.StatusBarUtil;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.view.home.HomeActivity;
+import com.example.cadres.view.login.LoginActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -205,6 +206,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     public void exectEvent(DialogInterface alterDialog) {
                         SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, false);
                         ActivityCollect.getAppCollect().finishAllActivity();
+                        startActivity(new Intent(context, LoginActivity.class));
                     }
                 }).show();
             }
