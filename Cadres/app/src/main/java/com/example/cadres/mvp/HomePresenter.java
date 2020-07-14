@@ -3,6 +3,7 @@ package com.example.cadres.mvp;
 import android.content.Context;
 
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
@@ -196,5 +197,21 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getHjtyList(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getApk() {
+        ResponseCallback listener = new ResponseCallback<ApkBean>() {
+            @Override
+            public void onSuccess(ApkBean data) {
+                iView.getApkSuccess(data.getAppVersion());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getApkFailed(errorMsg);
+            }
+        };
+        MethodApi.getApk(new OnSuccessAndFaultSub(listener, context,false));
     }
 }

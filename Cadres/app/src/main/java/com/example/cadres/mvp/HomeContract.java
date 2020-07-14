@@ -1,6 +1,7 @@
 package com.example.cadres.mvp;
 
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
@@ -26,9 +27,14 @@ public interface HomeContract {
         void getZsty();
         void getHjty();
         void getHjtyList();
+
+        void getApk();
     }
 
     interface View {
+        void getApkSuccess(ApkBean.ApkBean2 data);
+        void getApkFailed(String msg);
+
         void getHjtyListSuccess(HjtyListBean.HjtyListBean2 data);
         void getHjtyListFailed(String msg);
 

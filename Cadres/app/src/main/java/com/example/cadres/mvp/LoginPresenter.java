@@ -39,20 +39,4 @@ public class LoginPresenter implements LoginContract.Presenter {
         };
         MethodApi.login(username,password, new OnSuccessAndFaultSub(listener, context));
     }
-
-    @Override
-    public void getApk() {
-        ResponseCallback listener = new ResponseCallback<ApkBean>() {
-            @Override
-            public void onSuccess(ApkBean data) {
-                iView.getApkSuccess(data.getAppVersion());
-            }
-
-            @Override
-            public void onFault(String errorMsg) {
-                iView.getApkFailed(errorMsg);
-            }
-        };
-        MethodApi.getApk(new OnSuccessAndFaultSub(listener, context,false));
-    }
 }
