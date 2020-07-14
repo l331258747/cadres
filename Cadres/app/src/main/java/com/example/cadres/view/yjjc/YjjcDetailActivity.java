@@ -70,7 +70,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     public void initView() {
         showLeftIcon();
         showLLRightGoHome();
-        showTitleTv("研究决策详情");
+        showTitleTv("任免决策详情");
 
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);

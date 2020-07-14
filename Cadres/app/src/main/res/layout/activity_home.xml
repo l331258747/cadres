@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="市管职务名册表"
+            android:text="市管职务名称表"
             android:textSize="@dimen/sp_20"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/dp_10"/>
@@ -149,7 +149,7 @@
 
     </LinearLayout>
 
-<!--研究决策-->
+<!--任免决策-->
     <View
         android:id="@+id/view_yjjc"
         android:layout_width="0dp"
@@ -179,7 +179,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="研究决策"
+            android:text="任免决策"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_20"
             android:layout_marginTop="@dimen/dp_10"/>

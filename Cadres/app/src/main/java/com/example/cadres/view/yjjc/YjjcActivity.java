@@ -20,7 +20,7 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener {
     public void initView() {
         showLeftIcon();
         showLLRightGoHome();
-        showTitleTv("研究决策");
+        showTitleTv("任免决策");
 
         iv_bw_bg = $(R.id.iv_bw_bg);
         iv_sjzt_bg = $(R.id.iv_sjzt_bg);

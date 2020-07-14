@@ -476,9 +476,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("干部简历 条数：" + dBGbResumeDaoUtils.queryAll().size());
         LogUtil.e("干部培训情况 条数：" + dBGbTrainDaoUtils.queryAll().size());
 
-        LogUtil.e("研究决策 条数：" + dBYjjcDaoUtils.queryAll().size());
-        LogUtil.e("研究决策 任免会议信息 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
-        LogUtil.e("研究决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 条数：" + dBYjjcDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 任免会议信息 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
 
         LogUtil.e("推演 换届 条数：" + dBTyHjDaoUtils.queryAll().size());
         LogUtil.e("推演 换届 列表 条数：" + dBTyHjListDaoUtils.queryAll().size());

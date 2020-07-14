@@ -45,26 +45,26 @@ public class MethodApi {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
-    //获取 研究决策 列表
+    //获取 任免决策 列表
     public static void getYjjcList(DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcList(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
-    //获取 研究票决验证 列表
+    //获取 任免决策 票决验证 列表
     public static void getYjjcVoteCheck(int schemeId,int voteUserId,DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcVoteCheck(schemeId,voteUserId); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
 
-    //获取 研究票决列表
+    //获取 任免决策 票决列表
     public static void getYjjcVoteList(int schemeId,int voteUserId,DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcVoteList(schemeId,voteUserId); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
-    //获取 研究票决
+    //获取 任免决策票决
     public static void sendYjjcVote(Map<String, String> params, DisposableObserver subscriber) {
         RequestBody requestBody = RequestBody.create(MediaType.parse("Content-Type, application/json"),
                 new JSONObject(params).toString());
