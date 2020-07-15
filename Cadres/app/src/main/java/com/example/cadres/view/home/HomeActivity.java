@@ -415,7 +415,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
             LogUtil.e("已存在： " + fileName);
             pos ++;
             loadImages();
-            progress.setProgress(90 + (10 / files.size() * pos));
+            progress.setProgress((int) (90 + (10f / files.size() * pos)));
             return;
         }
 
@@ -434,7 +434,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 }
                 pos ++;
                 loadImages();
-                progress.setProgress(90 + (10 / files.size() * pos));
+                progress.setProgress((int) (90 + (10f / files.size() * pos)));
             }
 
             @Override
@@ -443,7 +443,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 LogUtil.e("下载失败： " +fileName);
                 pos ++;
                 loadImages();
-                progress.setProgress(90 + (10 / files.size() * pos));
+                progress.setProgress((int) (90 + (10f / files.size() * pos)));
             }
         });
     }
@@ -515,7 +515,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
         List<DBZcfgBean> dbList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(10 + (20 / data.size() * i));
+            progress.setProgress((int) (10 + (20f / data.size() * i)));
             ZcfgBean.ZcfgBean2 item = data.get(i);
             dbList.add(new DBZcfgBean(
                     null,
@@ -544,7 +544,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBBmExplainBean> dbList_explain = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(30 + (20 / data.size() * i));
+            progress.setProgress((int) (30 + (20f / data.size() * i)));
             BmBean.BmBean2 item = data.get(i);
             dbList.add(new DBBmBean(
                     null,
@@ -604,7 +604,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBGbCadreTrainListBean> dbList_train = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(50 + (20 / data.size() * i));
+            progress.setProgress((int) (50 + (20f / data.size() * i)));
             GbBean.GbBean2 item = data.get(i);
             dbList.add(new DBGbBean(
                     null,
@@ -810,7 +810,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            progress.setProgress(70 + (20 / data.size() * i));
+            progress.setProgress((int) (70 + (20f / data.size() * i)));
             YjjcBean.YjjcBean2 item = data.get(i);
             dbList.add(new DbYjjcBean(
                     null,
@@ -1102,7 +1102,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 //    String apkName;
     @Override
     public void getApkSuccess(ApkBean.ApkBean2 data) {
-        LogUtil.e("版本下载错误：" + data.toString());
+        LogUtil.e("版本下载成功：" + data.toString());
 //        int cVersionCode = AppUtils.getVersionCodeInt();
 //        int sVersionCode = data.getVersion();
 //        String apkUrl = data.getUrl();
