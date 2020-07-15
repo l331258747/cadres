@@ -8,18 +8,12 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.FjAdapter;
-import com.example.cadres.adapter.YjjcCadreAdapter;
-import com.example.cadres.adapter.ZcfgAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
-import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.GsonUtil;
 import com.example.cadres.utils.StringUtils;
-import com.example.cadres.utils.greendao.CommonDaoUtils;
-import com.example.cadres.view.Gb.GbDetailActivity;
 import com.example.cadres.view.other.PhotoImageActivity;
 
 import java.io.File;
@@ -121,7 +115,7 @@ public class YjjcMettingFragment extends BaseFragment {
             public void onClick(int pos) {
                 if(TextUtils.isEmpty(datas.get(pos))) return;
                 Intent intent = new Intent(context, PhotoImageActivity.class);
-                String imgUrl = FileUtil.getFOlderPath(Constant.IMAGE_PATH + File.separator) + datas.get(pos);
+                String imgUrl = FileUtil.getFolderPath(Constant.IMAGE_PATH + File.separator) + datas.get(pos);
                 intent.putExtra("imgUrl", imgUrl);
                 startActivity(intent);
             }

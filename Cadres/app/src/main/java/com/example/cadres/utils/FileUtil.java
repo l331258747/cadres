@@ -69,9 +69,9 @@ public class FileUtil {
     //获取文件夹 filename:log
     public static File getFolder(String filename){
         String filePath;
-//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
-//            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
-//        } else  // 系统下载缓存根目录的hello.text
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
+            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
+        } else  // 系统下载缓存根目录的hello.text
             filePath = AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
         File dir = new File(filePath);
 
@@ -83,16 +83,17 @@ public class FileUtil {
 
     //获取文件夹 filename:log
     public static File getFile(String filename){
-        String filePath;
-//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
-//            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
-//        } else  // 系统下载缓存根目录的hello.text
         File dir = new File(filename);
         return dir;
     }
 
-    public static String getFOlderPath(String filename){
-        return AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
+    public static String getFolderPath(String filename){
+        String filePath;
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) { // SD卡根目录的hello.text
+            filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
+        } else  // 系统下载缓存根目录的hello.text
+            filePath = AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
+        return filePath;
     }
 
     /**

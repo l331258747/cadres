@@ -47,7 +47,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         if (data == null) return;
 
         GlideUtil.LoadImageFitCenter(mContext,
-                FileUtil.getFOlderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
+                FileUtil.getFolderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
                 holder.iv_head,R.mipmap.default_head);
         holder.tv_name.setText(data.getName());
         holder.tv_xrzw.setText(data.getCurrentPosition());
