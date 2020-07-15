@@ -51,7 +51,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
                 holder.iv_head,R.mipmap.default_head);
         holder.tv_name.setText(data.getName());
         holder.tv_xrzw.setText(data.getCurrentPosition());
-        holder.tv_xrzsj.setText(data.getCurrentPositionTime());
+        holder.tv_xrzsj.setText(data.getCurrentRankTime());
 
         holder.tv_zwjb.setText(data.getCurrentRank());
         holder.tv_rzjsj.setText(data.getFunctionaryRankTime());
