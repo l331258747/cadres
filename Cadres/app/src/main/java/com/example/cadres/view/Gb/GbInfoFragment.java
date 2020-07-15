@@ -219,7 +219,7 @@ public class GbInfoFragment extends BaseFragment {
             tv_jg.setText(data.getNativePlace());
             tv_cjgzsj.setText(data.getWorkTime());
             tv_sxzyjzc.setText(data.getExpertise());
-            tv_xrzsj.setText(data.getCurrentPositionTime());
+            tv_xrzsj.setText(data.getCurrentRankTime());
             tv_gwyzj.setText(data.getFunctionaryRankName());
             tv_zzmm.setText(data.getPoliticalOutlook());
 
