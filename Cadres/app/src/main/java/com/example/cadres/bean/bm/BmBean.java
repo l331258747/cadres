@@ -15,35 +15,6 @@ public class BmBean {
 
     public static class BmBean2 {
 
-        public BmBean2(int deptId, int parentId, String deptName, String dzzName, String orgCode, String orgType, String orgTypeName, String financeType, String financeTypeName, String simpleName, int orderNum, String deptType, String deptTypeName, String delFlag, String parentName, String verification, String actual, String overmatch, String mismatch, int approvedPosition, int approvedDeputy, int approvedOther, int actualPosition, int actualDeputy, int actualOther,String orgLevelName) {
-            this.deptId = deptId;
-            this.parentId = parentId;
-            this.deptName = deptName;
-            this.dzzName = dzzName;
-            this.orgCode = orgCode;
-            this.orgType = orgType;
-            this.orgTypeName = orgTypeName;
-            this.financeType = financeType;
-            this.financeTypeName = financeTypeName;
-            this.simpleName = simpleName;
-            this.orderNum = orderNum;
-            this.deptType = deptType;
-            this.deptTypeName = deptTypeName;
-            this.delFlag = delFlag;
-            this.parentName = parentName;
-            this.verification = verification;
-            this.actual = actual;
-            this.overmatch = overmatch;
-            this.mismatch = mismatch;
-            this.approvedPosition = approvedPosition;
-            this.approvedDeputy = approvedDeputy;
-            this.approvedOther = approvedOther;
-            this.actualPosition = actualPosition;
-            this.actualDeputy = actualDeputy;
-            this.actualOther = actualOther;
-            this.orgLevelName = orgLevelName;
-        }
-
         /**
          * searchValue : null
          * createBy :
