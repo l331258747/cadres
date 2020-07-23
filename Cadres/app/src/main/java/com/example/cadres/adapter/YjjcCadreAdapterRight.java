@@ -1,7 +1,6 @@
 package com.example.cadres.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.ViewHolder> {
+public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapterRight.ViewHolder> {
 
     Context mContext;
     List<DBYjjcCadre> datas;
 
-    public YjjcCadreAdapter(Context mContext, List<DBYjjcCadre> datas) {
+    public YjjcCadreAdapterRight(Context mContext, List<DBYjjcCadre> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -41,8 +40,6 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
         if (data == null) return;
 
         //TextView tv_tip2,tv_name,tv_sex,tv_mz,tv_jg,tv_zzxl;
-        holder.tv_tip2.setText("");
-        holder.tv_name.setText(data.getCadreName());
         holder.tv_sex.setText(data.getGender());
         holder.tv_mz.setText(data.getNation());
         holder.tv_jg.setText(data.getNativePlace());
@@ -70,8 +67,6 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
         holder.tv_hytj_dps.setText(data.getRecommendGainNumber() + "");
 
         //        TextView tv_xrzw,tv_nrmzw,tv_jwyj,tv_zzbyj;
-        holder.tv_xrzw.setText(data.getCurrentPosition());
-        holder.tv_nrmzw.setText(data.getAspiringPosition());
         holder.tv_jwyj.setText(data.getJwOpinion());
         holder.tv_zzbyj.setText(data.getZzbOpinion());
 
@@ -103,11 +98,11 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_tip2,tv_name,tv_sex,tv_mz,tv_jg,tv_zzxl;
+        TextView tv_sex,tv_mz,tv_jg,tv_zzxl;
         TextView tv_qrzxl,tv_zzzy,tv_qrzzy,tv_zzxw,tv_qrzxw,tv_zyjszw;
         TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
         TextView tv_thdytj_yxp,tv_thdytj_dps,tv_hytj_yxp,tv_hytj_dps;
-        TextView tv_xrzw,tv_nrmzw,tv_jwyj,tv_zzbyj;
+        TextView tv_jwyj,tv_zzbyj;
         TextView tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg,tv_bz;
         ConstraintLayout cl_parent;
 
@@ -118,15 +113,11 @@ public class YjjcCadreAdapter extends RecyclerView.Adapter<YjjcCadreAdapter.View
             tv_cwhyj_jg = itemView.findViewById(R.id.tv_cwhyj_jg);
             tv_bz = itemView.findViewById(R.id.tv_bz);
 
-            tv_xrzw = itemView.findViewById(R.id.tv_xrzw);
-            tv_nrmzw = itemView.findViewById(R.id.tv_nrmzw);
             tv_jwyj = itemView.findViewById(R.id.tv_jwyj);
             tv_zzbyj = itemView.findViewById(R.id.tv_zzbyj);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
 
-            tv_tip2 = itemView.findViewById(R.id.tv_tip2);
-            tv_name = itemView.findViewById(R.id.tv_name);
             tv_sex = itemView.findViewById(R.id.tv_sex);
             tv_mz = itemView.findViewById(R.id.tv_mz);
             tv_jg = itemView.findViewById(R.id.tv_jg);

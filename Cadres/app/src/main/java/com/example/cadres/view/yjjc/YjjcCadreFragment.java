@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.cadres.R;
-import com.example.cadres.adapter.YjjcCadreAdapter;
+import com.example.cadres.adapter.YjjcCadreAdapterRight;
+import com.example.cadres.adapter.YjjcCadreLeftAdapter;
 import com.example.cadres.base.BaseFragment;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.yjjc.YjjcVoteCheckBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
-import com.example.cadres.mvp.LoginPresenter;
 import com.example.cadres.mvp.YjjcCadreContract;
 import com.example.cadres.mvp.YjjcCadrePresenter;
 import com.example.cadres.view.Gb.GbDetailActivity;
@@ -27,10 +27,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract.View {
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewRight;
+    RecyclerView recyclerViewLeft;
     TextView tv_btn;
 
-    YjjcCadreAdapter mAdapter;
+    YjjcCadreAdapterRight mAdapterRight;
+    YjjcCadreLeftAdapter mAdapterLeft;
 
     List<DBYjjcCadre> datas;
     int schemeId;
@@ -50,7 +52,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_yjjc_cadre;
+        return R.layout.fragment_yjjc_cadre2;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         initBtn();
 
         initRecycler();
+        initRecyclerLeft();
         isViewLoad= true;
 
         mPresenter = new YjjcCadrePresenter(context,this);
@@ -90,7 +93,8 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
     }
 
     private void setViewData() {
-        mAdapter.setData(datas);
+        mAdapterRight.setData(datas);
+        mAdapterLeft.setData(datas);
     }
 
     public void setData(int schemeId, List<DBYjjcCadre> datas,String type){
@@ -116,13 +120,61 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
 
     //初始化recyclerview
     public void initRecycler() {
-        recyclerView = $(R.id.recycler_view);
+        recyclerViewRight = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new YjjcCadreAdapter(activity, new ArrayList<DBYjjcCadre>());
-        recyclerView.setAdapter(mAdapter);
+        recyclerViewRight.setLayoutManager(linearLayoutManager);
+        mAdapterRight = new YjjcCadreAdapterRight(activity, new ArrayList<DBYjjcCadre>());
+        recyclerViewRight.setAdapter(mAdapterRight);
 
-        mAdapter.setOnItemClickListener(new YjjcCadreAdapter.OnItemClickListener() {
+        recyclerViewRight.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (RecyclerView.SCROLL_STATE_IDLE != recyclerView.getScrollState()) {
+                    recyclerViewLeft.scrollBy(dx, dy);
+                }
+
+            }
+        });
+
+        mAdapterRight.setOnItemClickListener(new YjjcCadreAdapterRight.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                Intent intent = new Intent(context, GbDetailActivity.class);
+                intent.putExtra("ID", datas.get(pos).getBaseId());
+                startActivity(intent);
+            }
+        });
+    }
+
+    //初始化recyclerview
+    public void initRecyclerLeft() {
+        recyclerViewLeft = $(R.id.recycler_view_left);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recyclerViewLeft.setLayoutManager(linearLayoutManager);
+        mAdapterLeft = new YjjcCadreLeftAdapter(activity, new ArrayList<DBYjjcCadre>());
+        recyclerViewLeft.setAdapter(mAdapterLeft);
+
+        recyclerViewLeft.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (RecyclerView.SCROLL_STATE_IDLE != recyclerView.getScrollState()) {
+                    recyclerViewRight.scrollBy(dx, dy);
+                }
+
+            }
+        });
+
+        mAdapterLeft.setOnItemClickListener(new YjjcCadreLeftAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
                 Intent intent = new Intent(context, GbDetailActivity.class);
