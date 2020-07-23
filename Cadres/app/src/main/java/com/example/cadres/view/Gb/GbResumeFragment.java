@@ -26,7 +26,7 @@ public class GbResumeFragment extends BaseFragment {
     GbResumeAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreResumeListBean> dBGbDaoUtils;
-    List<GbCadreResumeListBean> datas;
+    List<DBGbCadreResumeListBean> datas;
 
     int baseId;
 
@@ -95,18 +95,7 @@ public class GbResumeFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreResumeListBean> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreResumeListBean item = dbList.get(i);
-                datas.add(new GbCadreResumeListBean(
-                        item.getResumeId(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getWorkType(),
-                        item.getWorkStartTime(),
-                        item.getWorkEndTime(),
-                        item.getWorkDescribe()
-                ));
-            }
+            datas = dbList;
         }
 
         mAdapter.setData(datas);
@@ -118,7 +107,7 @@ public class GbResumeFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbResumeAdapter(activity, new ArrayList<GbCadreResumeListBean>());
+        mAdapter = new GbResumeAdapter(activity, new ArrayList<DBGbCadreResumeListBean>());
         recyclerView.setAdapter(mAdapter);
     }
 }

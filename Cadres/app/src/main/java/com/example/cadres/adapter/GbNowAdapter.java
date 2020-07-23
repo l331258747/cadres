@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cadres.R;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
+import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbNowAdapter extends RecyclerView.Adapter<GbNowAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreNowPositionListBean> datas;
+    List<DBGbCadreNowPositionListBean> datas;
 
-    public GbNowAdapter(Context mContext, List<GbCadreNowPositionListBean> datas) {
+    public GbNowAdapter(Context mContext, List<DBGbCadreNowPositionListBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +36,7 @@ public class GbNowAdapter extends RecyclerView.Adapter<GbNowAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreNowPositionListBean data = datas.get(position);
+        final DBGbCadreNowPositionListBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_zwdw.setText(data.getDeptName());
@@ -53,7 +53,7 @@ public class GbNowAdapter extends RecyclerView.Adapter<GbNowAdapter.ViewHolder> 
         return datas.size();
     }
 
-    public void setData(List<GbCadreNowPositionListBean> datas) {
+    public void setData(List<DBGbCadreNowPositionListBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

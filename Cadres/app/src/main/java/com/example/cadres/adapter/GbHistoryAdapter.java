@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreHistoryPositionListBean;
+import com.example.cadres.beanDB.DBGbCadreHistoryPositionListBean;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbHistoryAdapter extends RecyclerView.Adapter<GbHistoryAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreHistoryPositionListBean> datas;
+    List<DBGbCadreHistoryPositionListBean> datas;
 
-    public GbHistoryAdapter(Context mContext, List<GbCadreHistoryPositionListBean> datas) {
+    public GbHistoryAdapter(Context mContext, List<DBGbCadreHistoryPositionListBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +37,7 @@ public class GbHistoryAdapter extends RecyclerView.Adapter<GbHistoryAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreHistoryPositionListBean data = datas.get(position);
+        final DBGbCadreHistoryPositionListBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_zwdw.setText(data.getDeptName());
@@ -53,7 +54,7 @@ public class GbHistoryAdapter extends RecyclerView.Adapter<GbHistoryAdapter.View
         return datas.size();
     }
 
-    public void setData(List<GbCadreHistoryPositionListBean> datas) {
+    public void setData(List<DBGbCadreHistoryPositionListBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

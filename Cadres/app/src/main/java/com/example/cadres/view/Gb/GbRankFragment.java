@@ -3,12 +3,8 @@ package com.example.cadres.view.Gb;
 import android.os.Bundle;
 
 import com.example.cadres.R;
-import com.example.cadres.adapter.GbNowAdapter;
 import com.example.cadres.adapter.GbRankAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
-import com.example.cadres.bean.Gb.GbCadreRankListBean;
-import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -29,7 +25,7 @@ public class GbRankFragment extends BaseFragment {
     GbRankAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreRankListBean> dBGbDaoUtils;
-    List<GbCadreRankListBean> datas;
+    List<DBGbCadreRankListBean> datas;
 
     int baseId;
 
@@ -99,19 +95,7 @@ public class GbRankFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreRankListBean> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreRankListBean item = dbList.get(i);
-                datas.add(new GbCadreRankListBean(
-                        item.getRankId(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getState(),
-                        item.getDutiesRank(),
-                        item.getDutiesRankTime(),
-                        item.getTreatmentRank(),
-                        item.getTreatmentRankTime()
-                ));
-            }
+            datas = dbList;
         }
 
         mAdapter.setData(datas);
@@ -123,7 +107,7 @@ public class GbRankFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbRankAdapter(activity, new ArrayList<GbCadreRankListBean>());
+        mAdapter = new GbRankAdapter(activity, new ArrayList<DBGbCadreRankListBean>());
         recyclerView.setAdapter(mAdapter);
     }
 }

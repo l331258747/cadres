@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreRankListBean;
+import com.example.cadres.beanDB.DBGbCadreRankListBean;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbRankAdapter extends RecyclerView.Adapter<GbRankAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreRankListBean> datas;
+    List<DBGbCadreRankListBean> datas;
 
-    public GbRankAdapter(Context mContext, List<GbCadreRankListBean> datas) {
+    public GbRankAdapter(Context mContext, List<DBGbCadreRankListBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +37,7 @@ public class GbRankAdapter extends RecyclerView.Adapter<GbRankAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreRankListBean data = datas.get(position);
+        final DBGbCadreRankListBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_zt.setText(data.getState());
@@ -52,7 +53,7 @@ public class GbRankAdapter extends RecyclerView.Adapter<GbRankAdapter.ViewHolder
         return datas.size();
     }
 
-    public void setData(List<GbCadreRankListBean> datas) {
+    public void setData(List<DBGbCadreRankListBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

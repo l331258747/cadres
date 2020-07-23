@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
+import com.example.cadres.beanDB.DBGbCadreFamilyMemberList;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbFamilyAdapter extends RecyclerView.Adapter<GbFamilyAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreFamilyMemberList> datas;
+    List<DBGbCadreFamilyMemberList> datas;
 
-    public GbFamilyAdapter(Context mContext, List<GbCadreFamilyMemberList> datas) {
+    public GbFamilyAdapter(Context mContext, List<DBGbCadreFamilyMemberList> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +37,7 @@ public class GbFamilyAdapter extends RecyclerView.Adapter<GbFamilyAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreFamilyMemberList data = datas.get(position);
+        final DBGbCadreFamilyMemberList data = datas.get(position);
         if (data == null) return;
 
         holder.tv_cw.setText(data.getAppellation());
@@ -52,7 +53,7 @@ public class GbFamilyAdapter extends RecyclerView.Adapter<GbFamilyAdapter.ViewHo
         return datas.size();
     }
 
-    public void setData(List<GbCadreFamilyMemberList> datas) {
+    public void setData(List<DBGbCadreFamilyMemberList> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

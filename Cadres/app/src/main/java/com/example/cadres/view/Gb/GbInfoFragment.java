@@ -37,7 +37,7 @@ public class GbInfoFragment extends BaseFragment {
 
     int baseId;
 
-    GbBean.GbBean2 data;
+    DBGbBean data;
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
 
     public static Fragment newInstance(int baseId) {
@@ -140,58 +140,10 @@ public class GbInfoFragment extends BaseFragment {
 
         DBGbBean item = getDbBean(id);
         if (item != null) {
-            data = new GbBean.GbBean2(item.getBaseId(),
-                    item.getName(),
-                    item.getPhotoFileName(),
-                    item.getGender(),
-                    item.getIdCard(),
-                    item.getBirthday(),
-                    item.getAge(),
-                    item.getNation(),
-                    item.getPoliticalOutlook(),
-                    item.getJoinPartyDate(),
-                    item.getNativePlace(),
-                    item.getBirthplace(),
-                    item.getWorkTime(),
-                    item.getPersonnelRelationsDeptId(),
-                    item.getPersonnelRelationsDeptName(),
-                    item.getEnterUnitTime(),
-                    item.getCurrentRank(),
-                    item.getCurrentRankTime(),
-                    item.getHealth(),
-                    item.getFunctionaryRankId(),
-                    item.getFunctionaryRankName(),
-                    item.getFunctionaryRankTime(),
-                    item.getCadreType(),
-                    item.getCurrentPosition(),
-                    item.getCurrentPositionTime(),
-                    item.getPersonnelType(),
-                    item.getTechnicalTitle(),
-                    item.getExpertise(),
-                    item.getFullTimeEducation(),
-                    item.getFullTimeSchool(),
-                    item.getFullTimeDegreeId(),
-                    item.getFullTimeDegreeName(),
-                    item.getFullTimeSchoolType(),
-                    item.getCurrentEducation(),
-                    item.getCurrentDegreeId(),
-                    item.getCurrentDegreeName(),
-                    item.getCurrentSchool(),
-                    item.getCurrentSchoolType(),
-                    item.getWorkPhone(),
-                    item.getPhoneNumber(),
-                    item.getHomeAddress(),
-                    item.getResponsibilities(),
-                    item.getAffectedState()
-            );
+            data = item;
         }
-
-
-            setView();
+        setView();
     }
-
-
-
 
     private void setView() {
         if(data != null){

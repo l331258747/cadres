@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.example.cadres.R;
 import com.example.cadres.adapter.GbNowAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -26,7 +25,7 @@ public class GbNowFragment extends BaseFragment {
     GbNowAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreNowPositionListBean> dBGbDaoUtils;
-    List<GbCadreNowPositionListBean> datas;
+    List<DBGbCadreNowPositionListBean> datas;
 
     int baseId;
 
@@ -96,26 +95,8 @@ public class GbNowFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreNowPositionListBean> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreNowPositionListBean item = dbList.get(i);
-                datas.add(new GbCadreNowPositionListBean(
-                        item.getPositionId(),
-                        item.getDeptId(),
-                        item.getDeptName(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getPositionTime(),
-                        item.getPosition(),
-                        item.getPositionTitle(),
-                        item.getPositionTitleName(),
-                        item.getPositionReason(),
-                        item.getPositionFileNumber(),
-                        item.getDutiesRank(),
-                        item.getVacantPosition()
-                ));
-            }
+            datas = dbList;
         }
-
         mAdapter.setData(datas);
     }
 
@@ -125,7 +106,7 @@ public class GbNowFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbNowAdapter(activity, new ArrayList<GbCadreNowPositionListBean>());
+        mAdapter = new GbNowAdapter(activity, new ArrayList<DBGbCadreNowPositionListBean>());
         recyclerView.setAdapter(mAdapter);
     }
 }

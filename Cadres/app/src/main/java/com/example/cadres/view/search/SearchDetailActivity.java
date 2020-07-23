@@ -11,8 +11,6 @@ import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.GbAdapter;
 import com.example.cadres.base.BaseActivity;
-import com.example.cadres.bean.Gb.GbBean;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.bean.common.SearchBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
@@ -24,10 +22,7 @@ import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Gb.GbDetailActivity;
 
-import org.greenrobot.greendao.Property;
-import org.greenrobot.greendao.query.Join;
 import org.greenrobot.greendao.query.QueryBuilder;
-import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +37,7 @@ public class SearchDetailActivity extends BaseActivity {
     GbAdapter mAdapter;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
-    List<GbBean.GbBean2> datas;
+    List<DBGbBean> datas;
 
     TextView tv_search_content,tv_search_count;
 
@@ -224,57 +219,10 @@ public class SearchDetailActivity extends BaseActivity {
     }
 
 
-    public List<GbBean.GbBean2> getData() {
+    public List<DBGbBean> getData() {
         datas = new ArrayList<>();
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbBean item = dbList.get(i);
-                datas.add(new GbBean.GbBean2(
-                        item.getBaseId(),
-                        item.getName(),
-                        item.getPhotoFileName(),
-                        item.getGender(),
-                        item.getIdCard(),
-                        item.getBirthday(),
-                        item.getAge(),
-                        item.getNation(),
-                        item.getPoliticalOutlook(),
-                        item.getJoinPartyDate(),
-                        item.getNativePlace(),
-                        item.getBirthplace(),
-                        item.getWorkTime(),
-                        item.getPersonnelRelationsDeptId(),
-                        item.getPersonnelRelationsDeptName(),
-                        item.getEnterUnitTime(),
-                        item.getCurrentRank(),
-                        item.getCurrentRankTime(),
-                        item.getHealth(),
-                        item.getFunctionaryRankId(),
-                        item.getFunctionaryRankName(),
-                        item.getFunctionaryRankTime(),
-                        item.getCadreType(),
-                        item.getCurrentPosition(),
-                        item.getCurrentPositionTime(),
-                        item.getPersonnelType(),
-                        item.getTechnicalTitle(),
-                        item.getExpertise(),
-                        item.getFullTimeEducation(),
-                        item.getFullTimeSchool(),
-                        item.getFullTimeDegreeId(),
-                        item.getFullTimeDegreeName(),
-                        item.getFullTimeSchoolType(),
-                        item.getCurrentEducation(),
-                        item.getCurrentDegreeId(),
-                        item.getCurrentDegreeName(),
-                        item.getCurrentSchool(),
-                        item.getCurrentSchoolType(),
-                        item.getWorkPhone(),
-                        item.getPhoneNumber(),
-                        item.getHomeAddress(),
-                        item.getResponsibilities(),
-                        item.getAffectedState()
-                ));
-            }
+            datas = dbList;
         }
         return datas;
     }
@@ -285,7 +233,7 @@ public class SearchDetailActivity extends BaseActivity {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAdapter(activity, new ArrayList<GbBean.GbBean2>());
+        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>());
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {

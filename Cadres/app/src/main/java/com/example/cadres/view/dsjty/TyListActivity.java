@@ -37,7 +37,7 @@ public class TyListActivity extends BaseActivity {
     String title;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
-    List<GbBean.GbBean2> datas;
+    List<DBGbBean> datas;
 
     CommonDaoUtils<DBTyHjList> dBTyhjListDaoUtils;
     List<String> ids;
@@ -109,57 +109,10 @@ public class TyListActivity extends BaseActivity {
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-    public List<GbBean.GbBean2> getData() {
+    public List<DBGbBean> getData() {
         datas = new ArrayList<>();
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbBean item = dbList.get(i);
-                datas.add(new GbBean.GbBean2(
-                        item.getBaseId(),
-                        item.getName(),
-                        item.getPhotoFileName(),
-                        item.getGender(),
-                        item.getIdCard(),
-                        item.getBirthday(),
-                        item.getAge(),
-                        item.getNation(),
-                        item.getPoliticalOutlook(),
-                        item.getJoinPartyDate(),
-                        item.getNativePlace(),
-                        item.getBirthplace(),
-                        item.getWorkTime(),
-                        item.getPersonnelRelationsDeptId(),
-                        item.getPersonnelRelationsDeptName(),
-                        item.getEnterUnitTime(),
-                        item.getCurrentRank(),
-                        item.getCurrentRankTime(),
-                        item.getHealth(),
-                        item.getFunctionaryRankId(),
-                        item.getFunctionaryRankName(),
-                        item.getFunctionaryRankTime(),
-                        item.getCadreType(),
-                        item.getCurrentPosition(),
-                        item.getCurrentPositionTime(),
-                        item.getPersonnelType(),
-                        item.getTechnicalTitle(),
-                        item.getExpertise(),
-                        item.getFullTimeEducation(),
-                        item.getFullTimeSchool(),
-                        item.getFullTimeDegreeId(),
-                        item.getFullTimeDegreeName(),
-                        item.getFullTimeSchoolType(),
-                        item.getCurrentEducation(),
-                        item.getCurrentDegreeId(),
-                        item.getCurrentDegreeName(),
-                        item.getCurrentSchool(),
-                        item.getCurrentSchoolType(),
-                        item.getWorkPhone(),
-                        item.getPhoneNumber(),
-                        item.getHomeAddress(),
-                        item.getResponsibilities(),
-                        item.getAffectedState()
-                ));
-            }
+            datas = dbList;
         }
         return datas;
     }
@@ -169,7 +122,7 @@ public class TyListActivity extends BaseActivity {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAdapter(activity, new ArrayList<GbBean.GbBean2>());
+        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>());
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {

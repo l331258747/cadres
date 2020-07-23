@@ -1,5 +1,7 @@
 package com.example.cadres.beanDB;
 
+import android.text.TextUtils;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
@@ -397,6 +399,16 @@ public class DBGbBean {
     }
     public void setCurrentMajor(String currentMajor) {
         this.currentMajor = currentMajor;
+    }
+
+    public String getBirthdayAge() {
+        if(!TextUtils.isEmpty(birthday) && age != 0)
+            return birthday + "(" + age + ")";
+        if(!TextUtils.isEmpty(birthday))
+            return birthday;
+        if(age != 0)
+            return age+"";
+        return "";
     }
 
 

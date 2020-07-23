@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreTrainListBean;
+import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbTrainAdapter extends RecyclerView.Adapter<GbTrainAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreTrainListBean> datas;
+    List<DBGbCadreTrainListBean> datas;
 
-    public GbTrainAdapter(Context mContext, List<GbCadreTrainListBean> datas) {
+    public GbTrainAdapter(Context mContext, List<DBGbCadreTrainListBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +37,7 @@ public class GbTrainAdapter extends RecyclerView.Adapter<GbTrainAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreTrainListBean data = datas.get(position);
+        final DBGbCadreTrainListBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_kssj.setText(data.getStartTime());
@@ -56,7 +57,7 @@ public class GbTrainAdapter extends RecyclerView.Adapter<GbTrainAdapter.ViewHold
         return datas.size();
     }
 
-    public void setData(List<GbCadreTrainListBean> datas) {
+    public void setData(List<DBGbCadreTrainListBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

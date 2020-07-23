@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreResumeListBean;
+import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbResumeAdapter extends RecyclerView.Adapter<GbResumeAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreResumeListBean> datas;
+    List<DBGbCadreResumeListBean> datas;
 
-    public GbResumeAdapter(Context mContext, List<GbCadreResumeListBean> datas) {
+    public GbResumeAdapter(Context mContext, List<DBGbCadreResumeListBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -35,7 +36,7 @@ public class GbResumeAdapter extends RecyclerView.Adapter<GbResumeAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (holder == null) return;
-        final GbCadreResumeListBean data = datas.get(position);
+        final DBGbCadreResumeListBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_start_time.setText(data.getWorkStartTime());
@@ -50,7 +51,7 @@ public class GbResumeAdapter extends RecyclerView.Adapter<GbResumeAdapter.ViewHo
         return datas.size();
     }
 
-    public void setData(List<GbCadreResumeListBean> datas) {
+    public void setData(List<DBGbCadreResumeListBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

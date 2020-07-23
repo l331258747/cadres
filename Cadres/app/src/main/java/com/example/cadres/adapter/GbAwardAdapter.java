@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbCadreAwardPunishList;
+import com.example.cadres.beanDB.DBGbCadreAwardPunishList;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbAwardAdapter extends RecyclerView.Adapter<GbAwardAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbCadreAwardPunishList> datas;
+    List<DBGbCadreAwardPunishList> datas;
 
-    public GbAwardAdapter(Context mContext, List<GbCadreAwardPunishList> datas) {
+    public GbAwardAdapter(Context mContext, List<DBGbCadreAwardPunishList> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,7 +37,7 @@ public class GbAwardAdapter extends RecyclerView.Adapter<GbAwardAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (holder == null) return;
-        final GbCadreAwardPunishList data = datas.get(position);
+        final DBGbCadreAwardPunishList data = datas.get(position);
         if (data == null) return;
 
         holder.tv_jclx.setText(data.getAwardPunishType());
@@ -54,7 +55,7 @@ public class GbAwardAdapter extends RecyclerView.Adapter<GbAwardAdapter.ViewHold
         return datas.size();
     }
 
-    public void setData(List<GbCadreAwardPunishList> datas) {
+    public void setData(List<DBGbCadreAwardPunishList> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

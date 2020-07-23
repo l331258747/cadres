@@ -26,7 +26,7 @@ public class GbFamilyFragment extends BaseFragment {
     GbFamilyAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreFamilyMemberList> dBGbDaoUtils;
-    List<GbCadreFamilyMemberList> datas;
+    List<DBGbCadreFamilyMemberList> datas;
 
     int baseId;
 
@@ -96,21 +96,8 @@ public class GbFamilyFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreFamilyMemberList> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreFamilyMemberList item = dbList.get(i);
-                datas.add(new GbCadreFamilyMemberList(
-                        item.getMemberId(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getAppellation(),
-                        item.getName(),
-                        item.getBirthday(),
-                        item.getPoliticalOutlook(),
-                        item.getWorkUnit()
-                ));
-            }
+            datas = dbList;
         }
-
         mAdapter.setData(datas);
     }
 
@@ -120,7 +107,7 @@ public class GbFamilyFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbFamilyAdapter(activity, new ArrayList<GbCadreFamilyMemberList>());
+        mAdapter = new GbFamilyAdapter(activity, new ArrayList<DBGbCadreFamilyMemberList>());
         recyclerView.setAdapter(mAdapter);
     }
 }

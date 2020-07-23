@@ -4,12 +4,8 @@ import android.os.Bundle;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.GbAwardAdapter;
-import com.example.cadres.adapter.GbNowAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.bean.Gb.GbCadreAwardPunishList;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreAwardPunishList;
-import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
@@ -29,7 +25,7 @@ public class GbAwardFragment extends BaseFragment {
     GbAwardAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreAwardPunishList> dBGbDaoUtils;
-    List<GbCadreAwardPunishList> datas;
+    List<DBGbCadreAwardPunishList> datas;
 
     int baseId;
 
@@ -99,23 +95,7 @@ public class GbAwardFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreAwardPunishList> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreAwardPunishList item = dbList.get(i);
-                datas.add(new GbCadreAwardPunishList(
-                        item.getAwardPunishId(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getAwardPunishType(),
-                        item.getAwardType(),
-                        item.getAwardLevel(),
-                        item.getAwardPunishType(),
-                        item.getAwardPunishName(),
-                        item.getRatifyTime(),
-                        item.getRatifyDept(),
-                        item.getAwardPunishReason(),
-                        item.getAwardPunishExplain()
-                ));
-            }
+            datas = dbList;
         }
 
         mAdapter.setData(datas);
@@ -127,7 +107,7 @@ public class GbAwardFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAwardAdapter(activity, new ArrayList<GbCadreAwardPunishList>());
+        mAdapter = new GbAwardAdapter(activity, new ArrayList<DBGbCadreAwardPunishList>());
         recyclerView.setAdapter(mAdapter);
     }
 }

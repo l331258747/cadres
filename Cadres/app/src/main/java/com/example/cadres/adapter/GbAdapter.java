@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.glide.GlideUtil;
@@ -25,9 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
 
     Context mContext;
-    List<GbBean.GbBean2> datas;
+    List<DBGbBean> datas;
 
-    public GbAdapter(Context mContext, List<GbBean.GbBean2> datas) {
+    public GbAdapter(Context mContext, List<DBGbBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -43,7 +44,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if (holder == null) return;
-        final GbBean.GbBean2 data = datas.get(position);
+        final DBGbBean data = datas.get(position);
         if (data == null) return;
 
         GlideUtil.LoadImageFitCenter(mContext,
@@ -92,7 +93,7 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         return datas.size();
     }
 
-    public void setData(List<GbBean.GbBean2> datas) {
+    public void setData(List<DBGbBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

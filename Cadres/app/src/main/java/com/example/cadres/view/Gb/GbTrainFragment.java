@@ -3,12 +3,9 @@ package com.example.cadres.view.Gb;
 import android.os.Bundle;
 
 import com.example.cadres.R;
-import com.example.cadres.adapter.GbNowAdapter;
 import com.example.cadres.adapter.GbTrainAdapter;
 import com.example.cadres.base.BaseFragment;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
 import com.example.cadres.bean.Gb.GbCadreTrainListBean;
-import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -29,7 +26,7 @@ public class GbTrainFragment extends BaseFragment {
     GbTrainAdapter mAdapter;
 
     CommonDaoUtils<DBGbCadreTrainListBean> dBGbDaoUtils;
-    List<GbCadreTrainListBean> datas;
+    List<DBGbCadreTrainListBean> datas;
 
     int baseId;
 
@@ -99,22 +96,7 @@ public class GbTrainFragment extends BaseFragment {
         datas = new ArrayList<>();
         List<DBGbCadreTrainListBean> dbList = getDbList(id);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBGbCadreTrainListBean item = dbList.get(i);
-                datas.add(new GbCadreTrainListBean(
-                        item.getTrainId(),
-                        item.getBaseId(),
-                        item.getCadreName(),
-                        item.getStartTime(),
-                        item.getEndTime(),
-                        item.getTrainingCourse(),
-                        item.getTrainLevel(),
-                        item.getTrainType(),
-                        item.getTrainOrganization(),
-                        item.getTrainMode(),
-                        item.getTrainContent()
-                ));
-            }
+            datas = dbList;
         }
 
         mAdapter.setData(datas);
@@ -126,7 +108,7 @@ public class GbTrainFragment extends BaseFragment {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbTrainAdapter(activity, new ArrayList<GbCadreTrainListBean>());
+        mAdapter = new GbTrainAdapter(activity, new ArrayList<DBGbCadreTrainListBean>());
         recyclerView.setAdapter(mAdapter);
     }
 }

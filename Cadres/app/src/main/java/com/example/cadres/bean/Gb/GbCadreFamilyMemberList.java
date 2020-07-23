@@ -10,17 +10,6 @@ public class GbCadreFamilyMemberList {
     String politicalOutlook;
     String workUnit;
 
-    public GbCadreFamilyMemberList(int memberId, int baseId, String cadreName, String appellation, String name, String birthday, String politicalOutlook, String workUnit) {
-        this.memberId = memberId;
-        this.baseId = baseId;
-        this.cadreName = cadreName;
-        this.appellation = appellation;
-        this.name = name;
-        this.birthday = birthday;
-        this.politicalOutlook = politicalOutlook;
-        this.workUnit = workUnit;
-    }
-
     public int getMemberId() {
         return memberId;
     }

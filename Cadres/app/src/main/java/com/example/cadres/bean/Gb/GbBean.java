@@ -15,52 +15,6 @@ public class GbBean {
 
     public static class GbBean2 {
 
-        public GbBean2(int baseId, String name, String photoFileName, String gender, String idCard, String birthday, int age, String nation, String politicalOutlook, String joinPartyDate, String nativePlace, String birthplace, String workTime, int personnelRelationsDeptId, String personnelRelationsDeptName, String enterUnitTime, String currentRank, String currentRankTime, String health, int functionaryRankId, String functionaryRankName, String functionaryRankTime, String cadreType, String currentPosition, String currentPositionTime, String personnelType, String technicalTitle, String expertise, String fullTimeEducation, String fullTimeSchool, int fullTimeDegreeId, String fullTimeDegreeName, String fullTimeSchoolType, String currentEducation, int currentDegreeId, String currentDegreeName, String currentSchool, String currentSchoolType, String workPhone, String phoneNumber, String homeAddress, String responsibilities,String affectedState) {
-            this.baseId = baseId;
-            this.name = name;
-            this.photoFileName = photoFileName;
-            this.gender = gender;
-            this.idCard = idCard;
-            this.birthday = birthday;
-            this.age = age;
-            this.nation = nation;
-            this.politicalOutlook = politicalOutlook;
-            this.joinPartyDate = joinPartyDate;
-            this.nativePlace = nativePlace;
-            this.birthplace = birthplace;
-            this.workTime = workTime;
-            this.personnelRelationsDeptId = personnelRelationsDeptId;
-            this.personnelRelationsDeptName = personnelRelationsDeptName;
-            this.enterUnitTime = enterUnitTime;
-            this.currentRank = currentRank;
-            this.currentRankTime = currentRankTime;
-            this.health = health;
-            this.functionaryRankId = functionaryRankId;
-            this.functionaryRankName = functionaryRankName;
-            this.functionaryRankTime = functionaryRankTime;
-            this.cadreType = cadreType;
-            this.currentPosition = currentPosition;
-            this.currentPositionTime = currentPositionTime;
-            this.personnelType = personnelType;
-            this.technicalTitle = technicalTitle;
-            this.expertise = expertise;
-            this.fullTimeEducation = fullTimeEducation;
-            this.fullTimeSchool = fullTimeSchool;
-            this.fullTimeDegreeId = fullTimeDegreeId;
-            this.fullTimeDegreeName = fullTimeDegreeName;
-            this.fullTimeSchoolType = fullTimeSchoolType;
-            this.currentEducation = currentEducation;
-            this.currentDegreeId = currentDegreeId;
-            this.currentDegreeName = currentDegreeName;
-            this.currentSchool = currentSchool;
-            this.currentSchoolType = currentSchoolType;
-            this.workPhone = workPhone;
-            this.phoneNumber = phoneNumber;
-            this.homeAddress = homeAddress;
-            this.responsibilities = responsibilities;
-            this.affectedState = affectedState;
-        }
-
         /**
          * baseId : 218
          * name : 张三
@@ -209,16 +163,6 @@ public class GbBean {
 
         public String getBirthday() {
             return birthday;
-        }
-
-        public String getBirthdayAge() {
-            if(!TextUtils.isEmpty(birthday) && age != 0)
-                return birthday + "(" + age + ")";
-            if(!TextUtils.isEmpty(birthday))
-                return birthday;
-            if(age != 0)
-                return age+"";
-            return "";
         }
 
         public int getAge() {
