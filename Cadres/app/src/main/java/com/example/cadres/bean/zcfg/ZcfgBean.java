@@ -14,25 +14,6 @@ public class ZcfgBean {
 
     public static class ZcfgBean2 {
 
-
-        public ZcfgBean2(String searchValue, String createBy, String createTime, String updateBy, String updateTime, String remark, String deptCode, int noticeId, String noticeTitle, String noticeType, String noticeTypeName, String noticeContent, String status, String statusName, String titleFileUrl) {
-            this.searchValue = searchValue;
-            this.createBy = createBy;
-            this.createTime = createTime;
-            this.updateBy = updateBy;
-            this.updateTime = updateTime;
-            this.remark = remark;
-            this.deptCode = deptCode;
-            this.noticeId = noticeId;
-            this.noticeTitle = noticeTitle;
-            this.noticeType = noticeType;
-            this.noticeTypeName = noticeTypeName;
-            this.noticeContent = noticeContent;
-            this.status = status;
-            this.statusName = statusName;
-            this.titleFileUrl = titleFileUrl;
-        }
-
         /**
          * searchValue : null
          * createBy : admin
@@ -104,22 +85,12 @@ public class ZcfgBean {
             return noticeTitle;
         }
 
-        public String getNoticeTitleStr() {
-            if(TextUtils.isEmpty(noticeTitle))
-                return "";
-            return noticeTitle;
-        }
-
         public String getNoticeType() {
             return noticeType;
         }
 
+
         public String getNoticeTypeName() {
-            return noticeTypeName;
-        }
-        public String getNoticeTypeNameStr() {
-            if(TextUtils.isEmpty(noticeTypeName))
-                return "";
             return noticeTypeName;
         }
 

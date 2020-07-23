@@ -1,5 +1,7 @@
 package com.example.cadres.beanDB;
 
+import android.text.TextUtils;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
@@ -193,5 +195,16 @@ public class DBZcfgBean {
 
     public void setTitleFileUrl(String titleFileUrl) {
         this.titleFileUrl = titleFileUrl;
+    }
+
+    public String getNoticeTitleStr() {
+        if(TextUtils.isEmpty(noticeTitle))
+            return "";
+        return noticeTitle;
+    }
+    public String getNoticeTypeNameStr() {
+        if(TextUtils.isEmpty(noticeTypeName))
+            return "";
+        return noticeTypeName;
     }
 }

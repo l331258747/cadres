@@ -35,7 +35,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
 
     ZcfgAdapter mAdapter;
     CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
-    List<ZcfgBean.ZcfgBean2> datas;
+    List<DBZcfgBean> datas;
 
     int type = 0;//0全部，4重要文件，5法律法规
     String key = "";
@@ -108,30 +108,11 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
         return dbList;
     }
 
-    public List<ZcfgBean.ZcfgBean2> getData() {
+    public List<DBZcfgBean> getData() {
         datas = new ArrayList<>();
         List<DBZcfgBean> dbList = getDbListByType();
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBZcfgBean item = dbList.get(i);
-                datas.add(new ZcfgBean.ZcfgBean2(
-                        item.getSearchValue(),
-                        item.getCreateBy(),
-                        item.getCreateTime(),
-                        item.getUpdateBy(),
-                        item.getUpdateTime(),
-                        item.getRemark(),
-                        item.getDeptCode(),
-                        item.getNoticeId(),
-                        item.getNoticeTitle(),
-                        item.getNoticeType(),
-                        item.getNoticeTypeName(),
-                        item.getNoticeContent(),
-                        item.getStatus(),
-                        item.getStatusName(),
-                        item.getTitleFileUrl()
-                ));
-            }
+            datas = dbList;
         }
         return datas;
     }
@@ -141,7 +122,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
         recyclerView = $(R.id.recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(activity, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new ZcfgAdapter(activity, new ArrayList<ZcfgBean.ZcfgBean2>());
+        mAdapter = new ZcfgAdapter(activity, new ArrayList<DBZcfgBean>());
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new ZcfgAdapter.OnItemClickListener() {

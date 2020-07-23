@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.zcfg.ZcfgBean;
+import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.utils.glide.GlideUtil;
 
 import java.util.List;
@@ -20,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ZcfgAdapter extends RecyclerView.Adapter<ZcfgAdapter.ViewHolder> {
 
     Context mContext;
-    List<ZcfgBean.ZcfgBean2> datas;
+    List<DBZcfgBean> datas;
 
-    public ZcfgAdapter(Context mContext, List<ZcfgBean.ZcfgBean2> datas) {
+    public ZcfgAdapter(Context mContext, List<DBZcfgBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -38,7 +39,7 @@ public class ZcfgAdapter extends RecyclerView.Adapter<ZcfgAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if (holder == null) return;
-        final ZcfgBean.ZcfgBean2 data = datas.get(position);
+        final DBZcfgBean data = datas.get(position);
         if (data == null) return;
 
         holder.tv_type.setText(data.getNoticeTypeNameStr());
@@ -57,7 +58,7 @@ public class ZcfgAdapter extends RecyclerView.Adapter<ZcfgAdapter.ViewHolder> {
 
     }
 
-    public void setData(List<ZcfgBean.ZcfgBean2> datas) {
+    public void setData(List<DBZcfgBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
