@@ -22,9 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.ViewHolder> {
 
     Context mContext;
-    List<ListDialogBean> lists;
+    List<BmLeftBean> lists;
 
-    public ListDialogAdapter2(Context context, List<ListDialogBean> lists) {
+    public ListDialogAdapter2(Context context, List<BmLeftBean> lists) {
         mContext = context;
         this.lists = lists;
     }
@@ -39,7 +39,7 @@ public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         if (holder == null) return;
-        final ListDialogBean item = lists.get(position);
+        final BmLeftBean item = lists.get(position);
         if (item == null) return;
 
         holder.tv_text.setText(item.getName());
@@ -70,7 +70,7 @@ public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.
         notifyDataSetChanged();
     }
 
-    public void setData(List<ListDialogBean> datas) {
+    public void setData(List<BmLeftBean> datas) {
         this.lists = datas;
         notifyDataSetChanged();
     }

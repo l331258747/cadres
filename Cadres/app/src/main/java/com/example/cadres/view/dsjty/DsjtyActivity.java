@@ -35,6 +35,7 @@ import com.example.cadres.utils.chart.ZsPercentFormatter;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.utils.myData.DialogBmData;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -75,6 +76,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     int deptId;
 
+    DialogBmData dialogBmData;
+    List<BmLeftBean> bmLeftBeans2 = new ArrayList<BmLeftBean>();
 
     @Override
     public int getLayoutId() {
@@ -117,6 +120,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void initData() {
         setType(1);
+
+        dialogBmData = new DialogBmData();
 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBBmDaoUtils = _Store.getBmDaoUtils();
@@ -700,16 +705,6 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     //------------------------点击事件
     ListDialog2 listDialog;
-    List<ListDialogBean> dialogDatas;
-
-    public List<ListDialogBean> getDialogDatas(){
-        dialogDatas = new ArrayList<>();
-        for (int i = 0; i < bmLeftBeans.size(); i++) {
-            ListDialogBean item = new ListDialogBean(bmLeftBeans.get(i).getId(), bmLeftBeans.get(i).getName());
-            dialogDatas.add(item);
-        }
-        return dialogDatas;
-    }
 
     @Override
     public void onClick(View view) {
@@ -717,7 +712,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.tv_dialog:
                 if (listDialog == null) {
-                    listDialog = new ListDialog2(context, getDialogDatas());
+                    listDialog = new ListDialog2(context, bmLeftBeans2);
                     listDialog.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -726,7 +721,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                                 String key = listDialog.getEt_left_search().getText().toString().trim();
                                 if(!TextUtils.isEmpty(key)){
                                     getDbBmList(key);
-                                    listDialog.getAdapter().setData(getDialogDatas());
+                                    listDialog.getAdapter().setData(bmLeftBeans2);
                                     AppUtils.HideKeyboard(listDialog.getEt_left_search());
                                 }
                                 return true;
@@ -747,7 +742,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                         public void afterTextChanged(Editable editable) {
                             if(TextUtils.isEmpty(listDialog.getEt_left_search().getText().toString())){
                                 getDbBmList("");
-                                listDialog.getAdapter().setData(getDialogDatas());
+                                listDialog.getAdapter().setData(bmLeftBeans2);
                             }
                         }
                     });
@@ -755,10 +750,9 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                         @Override
                         public void onClick(int position) {
                             listDialog.dismiss();
-                            tv_dialog.setText(dialogDatas.get(position).getName());
-
-                            deptId = dialogDatas.get(position).getId();
-                            listDialog.getAdapter().setItemData(dialogDatas.get(position).getId());
+                            tv_dialog.setText(bmLeftBeans2.get(position).getName());
+                            deptId = bmLeftBeans2.get(position).getId();
+                            listDialog.getAdapter().setItemData(bmLeftBeans2.get(position).getId());
 
                             // 切换结构推演数据
                             getDbJgTyData();
@@ -823,64 +817,64 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         if(TextUtils.isEmpty(key)){
             dbBmList = dBBmDaoUtils.queryAll();
             LogUtil.e("数据库条数：" + dbBmList.size());
-            setBmLeftBean();
+            bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
         }else{
             String sql = "where DEPT_NAME like ?";
             String[] condition = new String[]{"%" + key + "%"};
             dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
-            setBmLeftBean2();
+            bmLeftBeans2 = dialogBmData.getBmLeftBean2(dbBmList);
         }
         return dbBmList;
     }
 
-    public void setBmLeftBean() {
-        List<BmLeftBean> bmLeftBeans = new ArrayList<>();
-        for (int i = 0; i < dbBmList.size(); i++) {
-            DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(), dbItem.getDeptType());
-            bmLeftBeans.add(item);
-        }
-
-        List<BmLeftBean> rootTrees = new ArrayList<BmLeftBean>();
-        for (BmLeftBean tree : bmLeftBeans) {
-            if (tree.getParentId() == 0) {
-                rootTrees.add(tree);
-            }
-            for (BmLeftBean t : bmLeftBeans) {
-                if (t.getParentId() == tree.getId()) {
-                    if (tree.getLists() == null) {
-                        List<BmLeftBean> myChildrens = new ArrayList<BmLeftBean>();
-                        myChildrens.add(t);
-                        tree.setLists(myChildrens);
-                    } else {
-                        tree.getLists().add(t);
-                    }
-                }
-            }
-        }
-        this.bmLeftBeans = new ArrayList<>();
-        sysout(rootTrees, "");
-    }
-
-    List<BmLeftBean> bmLeftBeans = new ArrayList<BmLeftBean>();
-
-    public void sysout(List<BmLeftBean> trees, String str) {
-        if (trees != null && trees.size() > 0) {
-            for (BmLeftBean tree : trees) {
-                tree.setName(str + tree.getName());
-                bmLeftBeans.add(tree);
-                sysout(tree.getLists(), str + "   ");
-            }
-        }
-    }
-
-    public void setBmLeftBean2(){
-        bmLeftBeans = new ArrayList<>();
-        for (int i = 0; i < dbBmList.size(); i++) {
-            DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
-            bmLeftBeans.add(item);
-        }
-    }
+//    public void setBmLeftBean() {
+//        List<BmLeftBean> bmLeftBeans = new ArrayList<>();
+//        for (int i = 0; i < dbBmList.size(); i++) {
+//            DBBmBean dbItem = dbBmList.get(i);
+//            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(), dbItem.getDeptType());
+//            bmLeftBeans.add(item);
+//        }
+//
+//        List<BmLeftBean> rootTrees = new ArrayList<BmLeftBean>();
+//        for (BmLeftBean tree : bmLeftBeans) {
+//            if (tree.getParentId() == 0) {
+//                rootTrees.add(tree);
+//            }
+//            for (BmLeftBean t : bmLeftBeans) {
+//                if (t.getParentId() == tree.getId()) {
+//                    if (tree.getLists() == null) {
+//                        List<BmLeftBean> myChildrens = new ArrayList<BmLeftBean>();
+//                        myChildrens.add(t);
+//                        tree.setLists(myChildrens);
+//                    } else {
+//                        tree.getLists().add(t);
+//                    }
+//                }
+//            }
+//        }
+//        this.bmLeftBeans = new ArrayList<>();
+//        sysout(rootTrees, "");
+//    }
+//
+//    List<BmLeftBean> bmLeftBeans = new ArrayList<BmLeftBean>();
+//
+//    public void sysout(List<BmLeftBean> trees, String str) {
+//        if (trees != null && trees.size() > 0) {
+//            for (BmLeftBean tree : trees) {
+//                tree.setName(str + tree.getName());
+//                bmLeftBeans.add(tree);
+//                sysout(tree.getLists(), str + "   ");
+//            }
+//        }
+//    }
+//
+//    public void setBmLeftBean2(){
+//        bmLeftBeans = new ArrayList<>();
+//        for (int i = 0; i < dbBmList.size(); i++) {
+//            DBBmBean dbItem = dbBmList.get(i);
+//            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
+//            bmLeftBeans.add(item);
+//        }
+//    }
 
 }

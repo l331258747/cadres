@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.cadres.R;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.adapter.ListDialogAdapter2;
+import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.utils.AppUtils;
 
@@ -38,7 +39,7 @@ public class ListDialog2 extends Dialog {
 
     Context mContext;
     RecyclerView recyclerView;
-    List<ListDialogBean> lists;
+    List<BmLeftBean> bmLeftBeans2;
     LinearLayout layout_parent;
     ListDialogAdapter2.OnItemClickListener onItemClickListener;
 
@@ -46,13 +47,13 @@ public class ListDialog2 extends Dialog {
 
     EditText et_left_search;
 
-    public ListDialog2(Context context, List<ListDialogBean> lists) {
+    public ListDialog2(Context context,  List<BmLeftBean> bmLeftBeans2) {
 
         super(context,R.style.mdialog);
 
         mContext = context;
 
-        this.lists = lists;
+        this.bmLeftBeans2 = bmLeftBeans2;
     }
 
     public ListDialog2 setItemClickListener(ListDialogAdapter2.OnItemClickListener onItemClickListener){
@@ -76,7 +77,7 @@ public class ListDialog2 extends Dialog {
         initLeftSearch();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        adapter = new ListDialogAdapter2(mContext, lists);
+        adapter = new ListDialogAdapter2(mContext, bmLeftBeans2);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 

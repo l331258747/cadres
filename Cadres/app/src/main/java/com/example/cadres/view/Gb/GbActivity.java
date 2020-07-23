@@ -18,7 +18,6 @@ import com.example.cadres.adapter.GbAdapter;
 import com.example.cadres.adapter.GbLeftAdapter;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
-import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.beanDB.DBBmBean;
@@ -31,6 +30,7 @@ import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.utils.myData.DialogBmData;
 import com.example.cadres.view.search.SearchActivity;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -59,6 +59,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     List<DBGbBean> datas;
 
     DrawerLayout drawer_layout;
+
+    DialogBmData dialogBmData;
+    List<BmLeftBean> bmLeftBeans2 = new ArrayList<BmLeftBean>();
 
     @Override
     public int getLayoutId() {
@@ -129,7 +132,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                     String key = et_left_search.getText().toString().trim();
                     if(!TextUtils.isEmpty(key)){
                         getDbBmList(key);
-                        leftAdapter.setData(bmLeftBeans);
+                        leftAdapter.setData(bmLeftBeans2);
                         AppUtils.HideKeyboard(et_left_search);
                     }
                     return true;
@@ -151,7 +154,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             public void afterTextChanged(Editable editable) {
                 if(TextUtils.isEmpty(et_left_search.getText().toString())){
                     getDbBmList("");
-                    leftAdapter.setData(bmLeftBeans);
+                    leftAdapter.setData(bmLeftBeans2);
                 }
             }
         });
@@ -159,6 +162,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initData() {
+        dialogBmData = new DialogBmData();
 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBGbDaoUtils = _Store.getGbDaoUtils();
@@ -167,7 +171,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
         mAdapter.setData(getGbBmData(0));
         getDbBmList("");
-        leftAdapter.setData(bmLeftBeans);
+        leftAdapter.setData(bmLeftBeans2);
     }
 
     //初始化recyclerview
@@ -196,12 +200,12 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         if(TextUtils.isEmpty(key)){
             dbBmList = dBBmDaoUtils.queryAll();
             LogUtil.e("数据库条数：" + dbBmList.size());
-            setBmLeftBean();
+            bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
         }else{
             String sql = "where DEPT_NAME like ?";
             String[] condition = new String[]{"%" + key + "%"};
             dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
-            setBmLeftBean2();
+            bmLeftBeans2 = dialogBmData.getBmLeftBean2(dbBmList);
         }
         return dbBmList;
     }
@@ -252,7 +256,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     public DBBmBean getDBBmBean(int pos){
         for (int i=0;i<dbBmList.size();i++){
-            if(bmLeftBeans.get(pos).getId() == dbBmList.get(i).getDeptId()){
+            if(bmLeftBeans2.get(pos).getId() == dbBmList.get(i).getDeptId()){
                 return dbBmList.get(i);
             }
         }
@@ -328,10 +332,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;
-//            case R.id.tv_all:
-//                mAdapter.setData(getData(""));
-//                group_View_top.setVisibility(View.GONE);
-//                    break;
             case R.id.et_search:
                 startActivity(new Intent(context, SearchActivity.class));
                 break;
@@ -365,53 +365,4 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         return datas;
     }
 
-
-    public void setBmLeftBean() {
-        List<BmLeftBean> bmLeftBeans = new ArrayList<>();
-        for (int i = 0; i < dbBmList.size(); i++) {
-            DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
-            bmLeftBeans.add(item);
-        }
-
-        List<BmLeftBean> rootTrees = new ArrayList<BmLeftBean>();
-        for (BmLeftBean tree : bmLeftBeans) {
-            if (tree.getParentId() == 0) {
-                rootTrees.add(tree);
-            }
-            for (BmLeftBean t : bmLeftBeans) {
-                if (t.getParentId() == tree.getId()) {
-                    if (tree.getLists() == null) {
-                        List<BmLeftBean> myChildrens = new ArrayList<BmLeftBean>();
-                        myChildrens.add(t);
-                        tree.setLists(myChildrens);
-                    } else {
-                        tree.getLists().add(t);
-                    }
-                }
-            }
-        }
-        this.bmLeftBeans = new ArrayList<>();
-        sysout(rootTrees,"");
-    }
-
-    List<BmLeftBean> bmLeftBeans = new ArrayList<BmLeftBean>();
-    public void sysout(List<BmLeftBean> trees, String str) {
-        if (trees != null && trees.size() > 0) {
-            for (BmLeftBean tree : trees) {
-                tree.setName(str + tree.getName());
-                bmLeftBeans.add(tree);
-                sysout(tree.getLists(), str + "   ");
-            }
-        }
-    }
-
-    public void setBmLeftBean2(){
-        bmLeftBeans = new ArrayList<>();
-        for (int i = 0; i < dbBmList.size(); i++) {
-            DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType());
-            bmLeftBeans.add(item);
-        }
-    }
 }
