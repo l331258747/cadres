@@ -459,6 +459,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:background="@color/color_ffd7b4"/>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_cwhyj"
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids=
+            "tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/tv_cwhyj_yxp"
         android:layout_width="@dimen/dp_60"

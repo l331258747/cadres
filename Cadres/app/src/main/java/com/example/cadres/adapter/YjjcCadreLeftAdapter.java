@@ -44,6 +44,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
         holder.tv_name.setText(data.getCadreName());
         holder.tv_xrzw.setText(data.getCurrentPosition());
         holder.tv_nrmzw.setText(data.getAspiringPosition());
+        holder.tv_xh.setText((position + 1) + "");
 
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +68,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_tip2,tv_name,tv_xrzw,tv_nrmzw;
+        TextView tv_tip2,tv_name,tv_xrzw,tv_nrmzw,tv_xh;
         ConstraintLayout cl_parent;
 
         public ViewHolder(@NonNull View itemView) {
@@ -80,6 +81,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
             tv_tip2 = itemView.findViewById(R.id.tv_tip2);
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_xrzw = itemView.findViewById(R.id.tv_xrzw);
+            tv_xh = itemView.findViewById(R.id.tv_xh);
 
         }
     }

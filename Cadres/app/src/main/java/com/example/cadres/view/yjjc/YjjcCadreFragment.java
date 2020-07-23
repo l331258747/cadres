@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
     YjjcCadreAdapterRight mAdapterRight;
     YjjcCadreLeftAdapter mAdapterLeft;
 
+    Group group_cwhyj;
     List<DBYjjcCadre> datas;
     int schemeId;
     String type;
@@ -58,7 +60,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
     @Override
     public void initView() {
         initBtn();
-
+        group_cwhyj = $(R.id.group_cwhyj);
         initRecycler();
         initRecyclerLeft();
         isViewLoad= true;
@@ -86,8 +88,10 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         }
         if(TextUtils.equals(type,"市委常委会议")){
             tv_btn.setVisibility(View.VISIBLE);
+            group_cwhyj.setVisibility(View.VISIBLE);
         }else{
             tv_btn.setVisibility(View.GONE);
+            group_cwhyj.setVisibility(View.GONE);
         }
         setViewData();
     }
@@ -123,7 +127,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         recyclerViewRight = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerViewRight.setLayoutManager(linearLayoutManager);
-        mAdapterRight = new YjjcCadreAdapterRight(activity, new ArrayList<DBYjjcCadre>());
+        mAdapterRight = new YjjcCadreAdapterRight(activity, type, new ArrayList<DBYjjcCadre>());
         recyclerViewRight.setAdapter(mAdapterRight);
 
         recyclerViewRight.addOnScrollListener(new RecyclerView.OnScrollListener() {

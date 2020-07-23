@@ -1,6 +1,7 @@
 package com.example.cadres.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,19 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapterRight.ViewHolder> {
 
     Context mContext;
     List<DBYjjcCadre> datas;
+    String type;
 
-    public YjjcCadreAdapterRight(Context mContext, List<DBYjjcCadre> datas) {
+    public YjjcCadreAdapterRight(Context mContext,String type,List<DBYjjcCadre> datas) {
         this.mContext = mContext;
         this.datas = datas;
+        this.type = type;
     }
 
     @NonNull
@@ -76,6 +80,11 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
         holder.tv_cwhyj_jg.setText(data.getCwhOpinion());
         holder.tv_bz.setText(data.getRemark());
 
+        holder.group_cwhyj.setVisibility(View.GONE);
+        if(TextUtils.equals(type,"市委常委会议")){
+            holder.group_cwhyj.setVisibility(View.VISIBLE);
+        }
+
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,9 +114,12 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
         TextView tv_jwyj,tv_zzbyj;
         TextView tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg,tv_bz;
         ConstraintLayout cl_parent;
+        Group group_cwhyj;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            group_cwhyj = itemView.findViewById(R.id.group_cwhyj);
+
             tv_cwhyj_yxp = itemView.findViewById(R.id.tv_cwhyj_yxp);
             tv_cwhyj_dps = itemView.findViewById(R.id.tv_cwhyj_dps);
             tv_cwhyj_jg = itemView.findViewById(R.id.tv_cwhyj_jg);
