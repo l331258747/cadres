@@ -93,6 +93,10 @@ public class FileUtil {
             filePath = Environment.getExternalStorageDirectory().getPath() + File.separator + Constant.BASE_PATH + File.separator + filename;
         } else  // 系统下载缓存根目录的hello.text
             filePath = AppUtils.getContext().getFilesDir().getPath() + File.separator + filename;
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         return filePath;
     }
 

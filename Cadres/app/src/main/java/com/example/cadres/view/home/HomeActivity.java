@@ -2,7 +2,6 @@ package com.example.cadres.view.home;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -66,7 +65,6 @@ import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
-import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
@@ -88,12 +86,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import zlc.season.rxdownload.RxDownload;
-import zlc.season.rxdownload.entity.DownloadStatus;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View, View.OnClickListener {
 
@@ -214,7 +206,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void onClick(View view) {
-        if(!isPermissions) return;
+        if (!isPermissions) return;
 
         switch (view.getId()) {
             case R.id.et_search:
@@ -396,7 +388,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     String fileName;
 
     private void loadImages() {
-        if(pos  >= files.size()) {
+        if (pos >= files.size()) {
             progress.dismiss();
             return;
         }
@@ -411,9 +403,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         informationId = String.copyValueOf(ch, index + 1, ch.length - index - 1);
         fileName = dir + File.separator + informationId;
 
-        if(FileUtil.isFileExist(FileUtil.getFile(fileName))){
+        if (FileUtil.isFileExist(FileUtil.getFile(fileName))) {
             LogUtil.e("已存在： " + fileName);
-            pos ++;
+            pos++;
             loadImages();
             progress.setProgress((int) (90 + (10f / files.size() * pos)));
             return;
@@ -428,11 +420,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     fos.write(bytes);
                     fos.flush();
                     fos.close();
-                    LogUtil.e("下载完成： " +fileName);
+                    LogUtil.e("下载完成： " + fileName);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                pos ++;
+                pos++;
                 loadImages();
                 progress.setProgress((int) (90 + (10f / files.size() * pos)));
             }
@@ -440,8 +432,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
             @Override
             public void onLoadFailed(Exception e, Drawable errorDrawable) {
                 super.onLoadFailed(e, errorDrawable);
-                LogUtil.e("下载失败： " +fileName);
-                pos ++;
+                LogUtil.e("下载失败： " + fileName);
+                pos++;
                 loadImages();
                 progress.setProgress((int) (90 + (10f / files.size() * pos)));
             }
@@ -1086,23 +1078,31 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         //TODO 升级
 //        else if (requestCode == 10086) {
 //            LogUtil.e("设置了安装未知应用后的回调。。。");
-//            String successDownloadApkPath = FileUtil.getFOlderPath(Constant.APK_PATH) + File.separator + apkName;
+//            String successDownloadApkPath = FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName;
 //            installApkO(context, successDownloadApkPath);
 //        }
     }
-    //----------end 权限不再询问处理-------------
 
-//    //------------------start 下载
-//
-//    //TODO 升级
+    //----------end 权限不再询问处理-------------
+    @Override
+    public void getApkSuccess(ApkBean.ApkBean2 data) {
+    }
+
+    @Override
+    public void getApkFailed(String msg) {
+    }
+
+////    //------------------start 下载
+////
+////    //TODO 升级
 //    public void getApk() {
 //        mPresenter.getApk();
 //    }
-//
+////
 //    String apkName;
-    @Override
-    public void getApkSuccess(ApkBean.ApkBean2 data) {
-        LogUtil.e("版本下载成功：" + data.toString());
+//    @Override
+//    public void getApkSuccess(ApkBean.ApkBean2 data) {
+//        LogUtil.e("版本下载成功：" + data.toString());
 //        int cVersionCode = AppUtils.getVersionCodeInt();
 //        int sVersionCode = data.getVersion();
 //        String apkUrl = data.getUrl();
@@ -1113,19 +1113,20 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 //        if (sVersionCode > cVersionCode) {
 //            //TODO 下载
 //            initProgress(content);
-//            progress.show();
-//            goDownload(apkUrl, sVersionCode);
+//            downLoadProgress.show();
+//            goDownload(apkUrl);
 //
 //        } else {
-//            goHome();
+////            goHome();
+//            LogUtil.e("最新版本");
 //        }
-    }
+//    }
 //
 //    Subscription subscription;
 //
-//    private void goDownload(String url, int sVersionCode) {
+//    private void goDownload(String url) {
 //        subscription = RxDownload.getInstance()
-//                .download(url, apkName, FileUtil.getFOlderPath(Constant.APK_PATH))
+//                .download(url, apkName, FileUtil.getFolderPath(Constant.APK_PATH))
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(new Subscriber<DownloadStatus>() {
@@ -1133,14 +1134,15 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 //                    @Override
 //                    public void onCompleted() {
 //                        //下载完成
-//                        progress.dismiss();
-//                        installApkO(context,FileUtil.getFOlderPath(Constant.APK_PATH) + File.separator + apkName);
+//                        downLoadProgress.dismiss();
+//                        installApkO(context,FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName);
 //                    }
 //
 //                    @Override
 //                    public void onError(Throwable e) {
 //                        //下载出错
-//                        goHome();
+////                        goHome();
+//                        LogUtil.e("版本下载错误：" + e);
 //                    }
 //
 //                    @Override
@@ -1150,16 +1152,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 //
 //                        LogUtil.e("s :" + num);
 //                        //下载状态
-//                        progress.setProgress((int) num);
+//                        downLoadProgress.setProgress((int) num);
 //                    }
 //                });
 //    }
 //
-    @Override
-    public void getApkFailed(String msg) {
-        LogUtil.e("版本下载错误：" + msg);
-//        goHome();
-    }
+//    @Override
+//    public void getApkFailed(String msg) {
+//        LogUtil.e("版本下载错误：" + msg);
+////        goHome();
+//    }
 //
 //    // 3.下载成功，开始安装,兼容8.0安装位置来源的权限
 //    private void installApkO(Context context, String downloadApkPath) {
