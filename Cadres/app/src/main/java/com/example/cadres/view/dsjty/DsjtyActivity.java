@@ -127,12 +127,12 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
             tv_dialog.setText(dbBmList.get(0).getDeptName());
             deptId = dbBmList.get(0).getDeptId();
 
-            //TODO 获取三个推演的数据
+            // 获取三个推演的数据
             getDbZsTyData();
             getDbJgTyData();
             getDbHjTyData();
 
-            //TODO 设置三个推演的界面
+            // 设置三个推演的界面
             if(dbTyJg != null){
                 initJgtyChart(chart_jg_zzmm);
                 initJgtyChart(chart_jg_mz);
@@ -760,9 +760,9 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                             deptId = dialogDatas.get(position).getId();
                             listDialog.getAdapter().setItemData(dialogDatas.get(position).getId());
 
-                            //TODO 切换结构推演数据
+                            // 切换结构推演数据
                             getDbJgTyData();
-                            //TODO 设置结构推演的界面
+                            // 设置结构推演的界面
                             if(dbTyJg != null){
                                 setJgtyData();
                             }

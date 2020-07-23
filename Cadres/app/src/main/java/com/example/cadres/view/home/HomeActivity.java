@@ -1111,7 +1111,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 //        apkName = "宁乡市干部大数据管理系统" + sVersionCode + ".apk";
 //
 //        if (sVersionCode > cVersionCode) {
-//            //TODO 下载
 //            initProgress(content);
 //            downLoadProgress.show();
 //            goDownload(apkUrl);
