@@ -135,6 +135,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     String[] mVals_cyss = new String[]{
+            "90后干部",
             "35岁及以下年轻干部", "党外干部", "党委书记", "乡镇长",
             "人大主任", "政协联络负责人", "纪委书记", "组织委员",
             "武装部长","宣传委员", "党委副书记", "副镇长",

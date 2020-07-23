@@ -84,8 +84,9 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbCyssList(String key){
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-
-        if(TextUtils.equals(key,"35岁及以下年轻干部")){
+        if(TextUtils.equals(key,"90后干部")){
+            queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(1990, searchBean.getCurrentYear()));
+        }else if(TextUtils.equals(key,"35岁及以下年轻干部")){
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchBean.getCurrentYear() - 35,searchBean.getCurrentYear()));
         }else if(TextUtils.equals(key,"党外干部")){
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
