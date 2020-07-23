@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.beanDB.DBBmBean;
 
 import java.util.List;
 
@@ -18,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BmAdapter extends RecyclerView.Adapter<BmAdapter.ViewHolder> {
 
     Context mContext;
-    List<BmBean.BmBean2> datas;
+    List<DBBmBean> datas;
 
-    public BmAdapter(Context mContext, List<BmBean.BmBean2> datas) {
+    public BmAdapter(Context mContext, List<DBBmBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }
@@ -36,10 +37,10 @@ public class BmAdapter extends RecyclerView.Adapter<BmAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         if (holder == null) return;
-        final BmBean.BmBean2 data = datas.get(position);
+        final DBBmBean data = datas.get(position);
         if (data == null) return;
 
-        holder.tv_dwmc.setText(data.getDeptNameStr());
+        holder.tv_dwmc.setText(data.getDeptName());
         holder.tv_hdzs_zz.setText(data.getApprovedPositionStr());
         holder.tv_hdzs_fz.setText(data.getApprovedDeputyStr());
         holder.tv_hdzs_qt.setText(data.getApprovedOtherStr());
@@ -59,7 +60,7 @@ public class BmAdapter extends RecyclerView.Adapter<BmAdapter.ViewHolder> {
         }
     }
 
-    public void setData(List<BmBean.BmBean2> datas) {
+    public void setData(List<DBBmBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }

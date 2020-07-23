@@ -1,5 +1,7 @@
 package com.example.cadres.beanDB;
 
+import android.text.TextUtils;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
@@ -232,11 +234,79 @@ public class DBBmBean {
     public void setActualOther(int actualOther) {
         this.actualOther = actualOther;
     }
-    public String getOrgLevelName() {
-        return this.orgLevelName;
-    }
     public void setOrgLevelName(String orgLevelName) {
         this.orgLevelName = orgLevelName;
     }
 
+    public String getOrgLevelName() {
+        if(TextUtils.isEmpty(orgLevelName))
+            return "";
+        return orgLevelName;
+    }
+
+    public String getFinanceTypeNameStr() {
+        if(TextUtils.isEmpty(financeTypeName))
+            return "无";
+        return financeTypeName;
+    }
+
+    public String getOrgTypeNameStr() {
+        if(TextUtils.isEmpty(orgTypeName))
+            return "";
+        return orgTypeName;
+    }
+
+    public String getDeptTypeNameStr() {
+        if(TextUtils.isEmpty(deptTypeName))
+            return "";
+        return deptTypeName;
+    }
+
+    public String getVerificationStr() {
+        if(TextUtils.isEmpty(verification))
+            return "无";
+        return verification;
+    }
+
+    public String getActualStr() {
+        if(TextUtils.isEmpty(actual))
+            return "无";
+        return actual;
+    }
+    public String getOvermatchStr() {
+        if(TextUtils.isEmpty(overmatch))
+            return "无";
+        return overmatch;
+    }
+
+    public String getMismatchStr() {
+        if(TextUtils.isEmpty(mismatch))
+            return "无";
+        return mismatch;
+    }
+
+    public String getApprovedPositionStr() {
+        return approvedPosition + "";
+    }
+
+    public String getApprovedDeputyStr() {
+        return approvedDeputy + "";
+    }
+    public String getApprovedOtherStr() {
+        return approvedOther + "";
+    }
+    public String getActualPositionStr() {
+        return actualPosition + "";
+    }
+    public String getActualDeputyStr() {
+        return actualDeputy + "";
+    }
+    public String getActualOtherStr() {
+        return actualOther + "";
+    }
+    public String getDeptNameStr() {
+        if(TextUtils.isEmpty(deptName))
+            return "";
+        return deptName;
+    }
 }

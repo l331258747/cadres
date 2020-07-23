@@ -120,8 +120,6 @@ public class BmBean {
         private List<BmExplainBean> organizationExplain;
 
         public String getOrgLevelName() {
-            if(TextUtils.isEmpty(orgLevelName))
-                return "";
             return orgLevelName;
         }
 
@@ -164,11 +162,7 @@ public class BmBean {
         public String getDeptName() {
             return deptName;
         }
-        public String getDeptNameStr() {
-            if(TextUtils.isEmpty(deptName))
-                return "";
-            return deptName;
-        }
+
 
         public String getDzzName() {
             return dzzName;
@@ -186,23 +180,11 @@ public class BmBean {
             return orgTypeName;
         }
 
-        public String getOrgTypeNameStr() {
-            if(TextUtils.isEmpty(orgTypeName))
-                return "";
-            return orgTypeName;
-        }
-
         public String getFinanceType() {
             return financeType;
         }
 
         public String getFinanceTypeName() {
-            return financeTypeName;
-        }
-
-        public String getFinanceTypeNameStr() {
-            if(TextUtils.isEmpty(financeTypeName))
-                return "无";
             return financeTypeName;
         }
 
@@ -222,12 +204,6 @@ public class BmBean {
             return deptTypeName;
         }
 
-        public String getDeptTypeNameStr() {
-            if(TextUtils.isEmpty(deptTypeName))
-                return "";
-            return deptTypeName;
-        }
-
         public String getDelFlag() {
             return delFlag;
         }
@@ -240,82 +216,53 @@ public class BmBean {
             return verification;
         }
 
-        public String getVerificationStr() {
-            if(TextUtils.isEmpty(verification))
-                return "无";
-            return verification;
-        }
+
 
         public String getActual() {
             return actual;
         }
-        public String getActualStr() {
-            if(TextUtils.isEmpty(actual))
-                return "无";
-            return actual;
-        }
+
 
         public String getOvermatch() {
             return overmatch;
         }
-        public String getOvermatchStr() {
-            if(TextUtils.isEmpty(overmatch))
-                return "无";
-            return overmatch;
-        }
+
 
         public String getMismatch() {
             return mismatch;
         }
 
-        public String getMismatchStr() {
-            if(TextUtils.isEmpty(mismatch))
-                return "无";
-            return mismatch;
-        }
+
 
         public int getApprovedPosition() {
             return approvedPosition;
-        }
-        public String getApprovedPositionStr() {
-            return approvedPosition + "";
         }
 
         public int getApprovedDeputy() {
             return approvedDeputy;
         }
 
-        public String getApprovedDeputyStr() {
-            return approvedDeputy + "";
-        }
+
 
         public int getApprovedOther() {
             return approvedOther;
         }
-        public String getApprovedOtherStr() {
-            return approvedOther + "";
-        }
+
 
         public int getActualPosition() {
             return actualPosition;
         }
-        public String getActualPositionStr() {
-            return actualPosition + "";
-        }
+
 
         public int getActualDeputy() {
             return actualDeputy;
         }
-        public String getActualDeputyStr() {
-            return actualDeputy + "";
-        }
+
 
         public int getActualOther() {
             return actualOther;
         }
-        public String getActualOtherStr() {
-            return actualOther + "";
-        }
+
 
         public List<BmExplainBean> getOrganizationExplain() {
             if(organizationExplain == null)

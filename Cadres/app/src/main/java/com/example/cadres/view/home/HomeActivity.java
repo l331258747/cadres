@@ -396,7 +396,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     String fileName;
 
     private void loadImages() {
-        if(pos  == files.size()) {
+        if(pos  >= files.size()) {
             progress.dismiss();
             return;
         }

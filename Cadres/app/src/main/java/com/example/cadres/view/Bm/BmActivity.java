@@ -38,7 +38,7 @@ public class BmActivity extends BaseActivity {
     BmAdapter mAdapter;
 
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
-    List<BmBean.BmBean2> datas;
+    List<DBBmBean> datas;
 
     TextView tv_dw_title,tv_dr_dwjb2,tv_dr_dwxz2,tv_dr_hdzs2,tv_dr_sjpb2,tv_dr_cpqk2,tv_dr_kqqk2,tv_dr_cz2;
     DrawerLayout drawer_layout;
@@ -125,41 +125,11 @@ public class BmActivity extends BaseActivity {
         return dbList;
     }
 
-    public List<BmBean.BmBean2> getData(String key) {
+    public List<DBBmBean> getData(String key) {
         datas = new ArrayList<>();
         List<DBBmBean> dbList = getDbList(key);
         if (dbList != null) {
-            for (int i = 0; i < dbList.size(); i++) {
-                DBBmBean item = dbList.get(i);
-                datas.add(new BmBean.BmBean2(
-                        item.getDeptId(),
-                        item.getParentId(),
-                        item.getDeptName(),
-                        item.getDzzName(),
-                        item.getOrgCode(),
-                        item.getOrgType(),
-                        item.getOrgTypeName(),
-                        item.getFinanceType(),
-                        item.getFinanceTypeName(),
-                        item.getSimpleName(),
-                        item.getOrderNum(),
-                        item.getDeptType(),
-                        item.getDeptTypeName(),
-                        item.getDelFlag(),
-                        item.getParentName(),
-                        item.getVerification(),
-                        item.getActual(),
-                        item.getOvermatch(),
-                        item.getMismatch(),
-                        item.getApprovedPosition(),
-                        item.getApprovedDeputy(),
-                        item.getApprovedOther(),
-                        item.getActualPosition(),
-                        item.getActualDeputy(),
-                        item.getActualOther(),
-                        item.getOrgLevelName()
-                ));
-            }
+            datas = dbList;
         }
         return datas;
     }
@@ -170,13 +140,13 @@ public class BmActivity extends BaseActivity {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new BmAdapter(activity, new ArrayList<BmBean.BmBean2>());
+        mAdapter = new BmAdapter(activity, new ArrayList<DBBmBean>());
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new BmAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                BmBean.BmBean2 item = datas.get(pos);
+                DBBmBean item = datas.get(pos);
                 tv_dw_title.setText(item.getDeptNameStr());
                 tv_dr_dwjb2.setText(item.getOrgLevelName());
                 tv_dr_dwxz2.setText(item.getOrgTypeNameStr());
