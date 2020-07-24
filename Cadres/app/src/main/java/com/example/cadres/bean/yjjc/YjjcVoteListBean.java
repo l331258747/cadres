@@ -1,6 +1,5 @@
 package com.example.cadres.bean.yjjc;
 
-import android.content.Intent;
 import android.text.TextUtils;
 
 public class YjjcVoteListBean {

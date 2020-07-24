@@ -64,6 +64,12 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
 
         }else{
             clean(holder);
+
+            //默认同意
+            data.setMyVote(1);
+            holder.tv_ty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
+            holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
+
             holder.group_tpjg.setVisibility(View.VISIBLE);
             holder.tv_tpjg.setVisibility(View.GONE);
 
@@ -128,7 +134,7 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_name,tv_xrzw,tv_nrzw,tv_ty,tv_bty,tv_qq,tv_tpjg,tv_xrzsj,tv_nmtmzw;
+        TextView tv_name,tv_xrzw,tv_ty,tv_bty,tv_qq,tv_tpjg,tv_xrzsj,tv_nmtmzw;
         Group group_tpjg;
 
         public ViewHolder(@NonNull View itemView) {

@@ -1,18 +1,24 @@
 package com.example.cadres.view.yjjc;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.YjjcVoteAdapter;
+import com.example.cadres.base.ActivityCollect;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.yjjc.YjjcVoteListBean;
+import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.YjjcVoteContract;
 import com.example.cadres.mvp.YjjcVotePresenter;
+import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.rxbus.RxBus2;
 import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
+import com.example.cadres.view.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +69,12 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
         tv_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, String> params = new HashMap<>();
+                final Map<String, String> params = new HashMap<>();
+                int numYes = 0;
+                int numNo = 0;
+                StringBuffer namesNo = new StringBuffer("");
+                int numNone = 0;
+                StringBuffer namesNone = new StringBuffer("");
                 for (int i = 0; i< mAdapter.getData().size();i++){
                     YjjcVoteListBean item =  mAdapter.getData().get(i);
                     if(item.getMyVote() == 0){
@@ -71,10 +82,32 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
                         return;
                     }
                     params.put(item.getVoteId() + "",item.getMyVote() + "");
+
+                    if(item.getMyVote() == 1) numYes++;
+                    if(item.getMyVote() == 2) {numNo++; namesNo.append(item.getCadreName() + "，");}
+                    if(item.getMyVote() == 3) {numNone++; namesNone.append(item.getCadreName() + "，");}
                 }
-                mPresenter.sendYjjcVote(params);
+
+                String content = getDialogContent(numYes,numNo,numNone,namesNo,namesNone);
+                DialogUtil.getInstance().getDefaultDialog(context, content, new DialogUtil.DialogCallBack() {
+                    @Override
+                    public void exectEvent(DialogInterface alterDialog) {
+                        mPresenter.sendYjjcVote(params);
+                    }
+                }).show();
             }
         });
+    }
+
+    public String getDialogContent(int numYes,int numNo,int numNone,StringBuffer namesNo,StringBuffer namesNone){
+        if(numNo == 0 && numNone == 0)
+            return "同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
+        String content = "同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
+        if(numNo > 0)
+            content = content + "\n" +"不同意人员：" + "\n" + namesNo.toString().substring(0,namesNo.toString().length() - 1);
+        if(numNone > 0)
+            content = content + "\n" +"弃权人员：" + "\n" + namesNone.toString().substring(0,namesNone.toString().length() - 1);
+        return content;
     }
 
     @Override
