@@ -361,6 +361,10 @@ public class DBYjjcCadre {
     public int getRanking() {
         return this.ranking;
     }
+
+    public String getRankingStr() {
+        return this.ranking + "";
+    }
     public void setRanking(int ranking) {
         this.ranking = ranking;
     }

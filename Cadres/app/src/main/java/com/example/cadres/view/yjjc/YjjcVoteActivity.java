@@ -133,6 +133,7 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
         tv_btn.setVisibility(View.GONE);
         RxBus2.getInstance().post(new VoteEvent());
 
+        state = 1;
         mPresenter.getYjjcVoteList(schemeId,MySelfInfo.getInstance().getUserId());
     }
 

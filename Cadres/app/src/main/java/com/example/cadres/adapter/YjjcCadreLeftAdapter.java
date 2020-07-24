@@ -44,7 +44,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
         holder.tv_name.setText(data.getCadreName());
         holder.tv_xrzw.setText(data.getCurrentPosition());
         holder.tv_nrmzw.setText(data.getAspiringPosition());
-        holder.tv_xh.setText((position + 1) + "");
+        holder.tv_xh.setText(data.getRankingStr());
 
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
