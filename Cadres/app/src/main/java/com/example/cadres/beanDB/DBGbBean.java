@@ -403,7 +403,7 @@ public class DBGbBean {
 
     public String getBirthdayAge() {
         if(!TextUtils.isEmpty(birthday) && age != 0)
-            return birthday + "(" + age + ")";
+            return birthday + "\n(" + age + ")";
         if(!TextUtils.isEmpty(birthday))
             return birthday;
         if(age != 0)

@@ -54,15 +54,19 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         holder.tv_xrzw.setText(data.getCurrentPosition());
         holder.tv_xrzsj.setText(data.getCurrentRankTime());
 
-        holder.tv_zwjb.setText(data.getCurrentRank());
+        holder.tv_zwjb.setText(data.getFunctionaryRankName());
         holder.tv_rzjsj.setText(data.getFunctionaryRankTime());
 
         holder.tv_sex.setText(data.getGender());
         holder.tv_place.setText(data.getNativePlace());
-        holder.tv_csny.setText(data.getBirthday());
+        holder.tv_csny.setText(data.getBirthdayAge());
 
         holder.tv_qrzwhcd.setText(data.getFullTimeEducation());
         holder.tv_zzwhcd.setText(data.getCurrentEducation());
+
+        holder.tv_xrzwcc.setText(data.getCurrentRank());
+        holder.tv_xrzwccsj.setText(data.getCurrentRankTime());
+        holder.tv_qrzzy.setText(data.getFullTimeMajor());
 
         holder.tv_head_tag.setVisibility(View.GONE);
         holder.iv_head_tag.setVisibility(View.GONE);
@@ -102,10 +106,14 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
 
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
-        TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag;
+        TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_xrzwcc = itemView.findViewById(R.id.tv_xrzwcc);
+            tv_xrzwccsj = itemView.findViewById(R.id.tv_xrzwccsj);
+            tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);
+
             cl_parent = itemView.findViewById(R.id.cl_parent);
             iv_head = itemView.findViewById(R.id.iv_head);
             iv_head_tag = itemView.findViewById(R.id.iv_head_tag);
