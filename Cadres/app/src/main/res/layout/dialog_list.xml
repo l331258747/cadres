@@ -10,7 +10,6 @@
         android:id="@+id/recycle_view"
         android:layout_width="match_parent"
         android:overScrollMode="never"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/dp_20"/>
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

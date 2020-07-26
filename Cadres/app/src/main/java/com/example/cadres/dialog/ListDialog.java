@@ -62,10 +62,10 @@ public class ListDialog extends AlertDialog {
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
-        layoutParent.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
-                                       int oldRight, int oldBottom) {
+//        layoutParent.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+//            @Override
+//            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
+//                                       int oldRight, int oldBottom) {
                 int contentHeight = layoutParent.getHeight();
                 int needHeight = 500;
                 if (contentHeight > needHeight) {
@@ -73,8 +73,8 @@ public class ListDialog extends AlertDialog {
                     layoutParent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                             needHeight));
                 }
-            }
-        });
+//            }
+//        });
 
     }
 
