@@ -486,8 +486,22 @@ public class DBGbBean {
         this.remark = remark;
     }
     public String getType() {
+        if(TextUtils.isEmpty(this.type))
+            return "1";
         return this.type;
     }
+
+    //类型（1领导干部，2职级公务员，3后备干部）
+    public String getTypeStr() {
+        if(TextUtils.equals(type,"1"))
+            return "领导干部";
+        if(TextUtils.equals(type,"2"))
+            return "职级公务员";
+        if(TextUtils.equals(type,"3"))
+            return "后备干部";
+        return "领导干部";
+    }
+
     public void setType(String type) {
         this.type = type;
     }

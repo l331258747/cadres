@@ -144,7 +144,7 @@ public class GbDrawerData {
         tv_rylb.setText(data.getPersonnelType());
         tv_gllb.setText(data.getCadreType());
         tv_zwlb.setText(data.getPositionType());
-        tv_lx.setText(data.getType());
+        tv_lx.setText(data.getTypeStr());
         tv_jtzz.setText(data.getHomeAddress());
         tv_bz.setText(data.getRemark());
 

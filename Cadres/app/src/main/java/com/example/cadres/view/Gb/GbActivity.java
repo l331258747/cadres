@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.example.cadres.R;
@@ -70,6 +71,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     DialogBmData dialogBmData;
     List<BmLeftBean> bmLeftBeans2 = new ArrayList<>();
 
+    String type;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_gb_drawer;
@@ -77,9 +80,13 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
+        type = intent.getStringExtra("type");
+        if(TextUtils.isEmpty(type)) type = "1";
+
         showLeftIcon();
         showLLRightGoHome();
-        showTitleTv("干部名册");
+
+        showTitleTv(TextUtils.equals(type,"2")?"公务员职级表相关信息":"干部名册");
 
         et_search = findViewById(R.id.et_search);
 
@@ -381,10 +388,14 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     public List<DBGbBean> getDbGbBmList(int deptId) {
         List<DBGbBean> dbList = new ArrayList<>();
         if(deptId == 0){
-            dbList = dBGbDaoUtils.queryAll();
+            DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+            QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+            queryBuilder.where(DBGbBeanDao.Properties.Type.eq(type));
+            dbList = queryBuilder.list();
         }else{
             DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
             QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+            queryBuilder.where(DBGbBeanDao.Properties.Type.eq(type));
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
                     .where(DBGbCadreDeptListBeanDao.Properties.DeptCode.like("%" + deptId + "%"));
             queryBuilder.distinct();
