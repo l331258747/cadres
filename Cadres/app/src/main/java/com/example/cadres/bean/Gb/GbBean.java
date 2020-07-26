@@ -119,6 +119,20 @@ public class GbBean {
 
         private String fullTimeMajor;
         private String currentMajor;
+        private String fullTimeSchoolMajor;
+        private String currentSchoolMajor;
+
+        private String nativePlaceReplenish;
+        private String functionaryRegisterTime;
+        private String positionType;
+        private String establishmentType;
+        private String remark;
+        private String type;
+        private String cadreResume;
+        private String cadreAward;
+        private String cadrePunish;
+        private String cadreTrain;
+        private String politicalConstruction;
 
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
@@ -128,6 +142,65 @@ public class GbBean {
         private List<GbCadreAwardPunishList> cadreAwardPunishList;//干部奖惩记录信息
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
+
+        //类型（1领导干部，2职级公务员，3后备干部）
+        public String getType() {
+            if(TextUtils.equals(type,"1"))
+                return "领导干部";
+            if(TextUtils.equals(type,"2"))
+                return "职级公务员";
+            if(TextUtils.equals(type,"3"))
+                return "后备干部";
+            return "";
+        }
+
+        public String getCadreResume() {
+            return cadreResume;
+        }
+
+        public String getCadreAward() {
+            return cadreAward;
+        }
+
+        public String getCadrePunish() {
+            return cadrePunish;
+        }
+
+        public String getCadreTrain() {
+            return cadreTrain;
+        }
+
+        public String getPoliticalConstruction() {
+            return politicalConstruction;
+        }
+
+        public String getNativePlaceReplenish() {
+            return nativePlaceReplenish;
+        }
+
+        public String getFunctionaryRegisterTime() {
+            return functionaryRegisterTime;
+        }
+
+        public String getPositionType() {
+            return positionType;
+        }
+
+        public String getEstablishmentType() {
+            return establishmentType;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public String getFullTimeSchoolMajor() {
+            return fullTimeSchoolMajor;
+        }
+
+        public String getCurrentSchoolMajor() {
+            return currentSchoolMajor;
+        }
 
         public String getFullTimeMajor() {
             return fullTimeMajor;

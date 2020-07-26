@@ -1,7 +1,9 @@
 package com.example.cadres.view.search;
 
-import android.content.Intent;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBGbBeanDao;
@@ -20,13 +22,15 @@ import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
-import com.example.cadres.view.Gb.GbDetailActivity;
+import com.example.cadres.utils.myData.GbDrawerData;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.widget.NestedScrollView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,9 +47,14 @@ public class SearchDetailActivity extends BaseActivity {
 
     SearchBean searchBean;
 
+    DrawerLayout drawer_layout;
+    NestedScrollView scrollView;
+    LinearLayout layout_info;
+    GbDrawerData gbDrawerData;
+
     @Override
     public int getLayoutId() {
-        return R.layout.activity_search_detail;
+        return R.layout.activity_search_detail_drawer;
     }
 
     @Override
@@ -59,6 +68,8 @@ public class SearchDetailActivity extends BaseActivity {
 
         initRecycler();
 
+        initDrawer();
+        initDrawerGbInfo();
 
     }
 
@@ -240,14 +251,47 @@ public class SearchDetailActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Intent intent = new Intent(context, GbDetailActivity.class);
-                intent.putExtra("ID", datas.get(pos).getBaseId());
-                startActivity(intent);
+//                Intent intent = new Intent(context, GbDetailActivity.class);
+//                intent.putExtra("ID", datas.get(pos).getBaseId());
+//                startActivity(intent);
+
+                gbDrawerData.getData(datas.get(pos).getBaseId());
+                scrollView.scrollTo(0,0);
+                drawer_layout.openDrawer(Gravity.RIGHT);
             }
         });
     }
 
+    private void initDrawer(){
+        drawer_layout = findViewById(R.id.drawer_layout);
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
+        drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
 
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);//关闭手势滑动
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //打开手势滑动
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
+    }
+
+    private void initDrawerGbInfo(){
+        scrollView = findViewById(R.id.scrollView);
+        layout_info = findViewById(R.id.layout_info);
+        gbDrawerData = new GbDrawerData(context, layout_info);
+        gbDrawerData.initView();
+    }
 
 
 

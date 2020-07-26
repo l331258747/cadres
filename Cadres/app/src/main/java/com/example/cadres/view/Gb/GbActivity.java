@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBGbBeanDao;
@@ -31,6 +32,7 @@ import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.utils.myData.DialogBmData;
+import com.example.cadres.utils.myData.GbDrawerData;
 import com.example.cadres.view.search.SearchActivity;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -38,7 +40,9 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,18 +54,21 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     TextView tv_right_btn,tv_right_content;
     View view_menu;
     EditText et_search,et_left_search;
-
     RecyclerView recyclerView;
+
+    DrawerLayout drawer_layout;
+    NestedScrollView scrollView;
+    ConstraintLayout layout_bm;
+    LinearLayout layout_info;
+    GbDrawerData gbDrawerData;
 
     GbAdapter mAdapter;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     List<DBGbBean> datas;
 
-    DrawerLayout drawer_layout;
-
     DialogBmData dialogBmData;
-    List<BmLeftBean> bmLeftBeans2 = new ArrayList<BmLeftBean>();
+    List<BmLeftBean> bmLeftBeans2 = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -85,17 +92,39 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         tv_top_kqqk2 = findViewById(R.id.tv_top_kqqk2);
         view_menu = findViewById(R.id.view_menu);
 
-        et_left_search = findViewById(R.id.et_left_search);
-        initLeftSearch();
-
-        tv_right_btn = findViewById(R.id.tv_right_btn);
-        tv_right_content = findViewById(R.id.tv_right_content);
-        tv_right_btn.setOnClickListener(this);
         view_menu.setOnClickListener(this);
         tv_top_btn.setOnClickListener(this);
 
         et_search.setOnClickListener(this);
 
+        initRecycler();
+
+        initDrawer();
+        initDrawerLeft();
+        initDrawerRight();
+        initDrawerGbInfo();
+    }
+
+    private void initDrawerLeft() {
+        initLeftSearch();
+        initRecyclerLeft();
+    }
+
+    private void initDrawerRight(){
+        layout_bm = findViewById(R.id.layout_bm);
+        tv_right_btn = findViewById(R.id.tv_right_btn);
+        tv_right_content = findViewById(R.id.tv_right_content);
+        tv_right_btn.setOnClickListener(this);
+    }
+
+    private void initDrawerGbInfo(){
+        scrollView = findViewById(R.id.scrollView);
+        layout_info = findViewById(R.id.layout_info);
+        gbDrawerData = new GbDrawerData(context, layout_info);
+        gbDrawerData.initView();
+    }
+
+    private void initDrawer(){
         drawer_layout = findViewById(R.id.drawer_layout);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -118,12 +147,10 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        initRecycler();
-        initRecyclerLeft();
-
     }
 
     private void initLeftSearch() {
+        et_left_search = findViewById(R.id.et_left_search);
         et_left_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -185,9 +212,16 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Intent intent = new Intent(context, GbDetailActivity.class);
-                intent.putExtra("ID", datas.get(pos).getBaseId());
-                startActivity(intent);
+//                Intent intent = new Intent(context, GbDetailActivity.class);
+//                intent.putExtra("ID", datas.get(pos).getBaseId());
+//                startActivity(intent);
+                gbDrawerData.getData(datas.get(pos).getBaseId());
+
+                layout_bm.setVisibility(View.GONE);
+                layout_info.setVisibility(View.VISIBLE);
+                scrollView.scrollTo(0,0);
+
+                drawer_layout.openDrawer(Gravity.RIGHT);
             }
         });
     }
@@ -329,6 +363,10 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
                 tv_right_btn.setText(item.getYearStr());
                 tv_right_content.setText(item.getOrgExplain());
+
+                layout_bm.setVisibility(View.VISIBLE);
+                layout_info.setVisibility(View.GONE);
+                scrollView.scrollTo(0,0);
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;

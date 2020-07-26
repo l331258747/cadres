@@ -70,6 +70,19 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property AffectedState = new Property(43, String.class, "affectedState", false, "AFFECTED_STATE");
         public final static Property FullTimeMajor = new Property(44, String.class, "fullTimeMajor", false, "FULL_TIME_MAJOR");
         public final static Property CurrentMajor = new Property(45, String.class, "currentMajor", false, "CURRENT_MAJOR");
+        public final static Property FullTimeSchoolMajor = new Property(46, String.class, "fullTimeSchoolMajor", false, "FULL_TIME_SCHOOL_MAJOR");
+        public final static Property CurrentSchoolMajor = new Property(47, String.class, "currentSchoolMajor", false, "CURRENT_SCHOOL_MAJOR");
+        public final static Property NativePlaceReplenish = new Property(48, String.class, "nativePlaceReplenish", false, "NATIVE_PLACE_REPLENISH");
+        public final static Property FunctionaryRegisterTime = new Property(49, String.class, "functionaryRegisterTime", false, "FUNCTIONARY_REGISTER_TIME");
+        public final static Property PositionType = new Property(50, String.class, "positionType", false, "POSITION_TYPE");
+        public final static Property EstablishmentType = new Property(51, String.class, "establishmentType", false, "ESTABLISHMENT_TYPE");
+        public final static Property Remark = new Property(52, String.class, "remark", false, "REMARK");
+        public final static Property Type = new Property(53, String.class, "type", false, "TYPE");
+        public final static Property CadreResume = new Property(54, String.class, "cadreResume", false, "CADRE_RESUME");
+        public final static Property CadreAward = new Property(55, String.class, "cadreAward", false, "CADRE_AWARD");
+        public final static Property CadrePunish = new Property(56, String.class, "cadrePunish", false, "CADRE_PUNISH");
+        public final static Property CadreTrain = new Property(57, String.class, "cadreTrain", false, "CADRE_TRAIN");
+        public final static Property PoliticalConstruction = new Property(58, String.class, "politicalConstruction", false, "POLITICAL_CONSTRUCTION");
     }
 
 
@@ -130,7 +143,20 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"RESPONSIBILITIES\" TEXT," + // 42: responsibilities
                 "\"AFFECTED_STATE\" TEXT," + // 43: affectedState
                 "\"FULL_TIME_MAJOR\" TEXT," + // 44: fullTimeMajor
-                "\"CURRENT_MAJOR\" TEXT);"); // 45: currentMajor
+                "\"CURRENT_MAJOR\" TEXT," + // 45: currentMajor
+                "\"FULL_TIME_SCHOOL_MAJOR\" TEXT," + // 46: fullTimeSchoolMajor
+                "\"CURRENT_SCHOOL_MAJOR\" TEXT," + // 47: currentSchoolMajor
+                "\"NATIVE_PLACE_REPLENISH\" TEXT," + // 48: nativePlaceReplenish
+                "\"FUNCTIONARY_REGISTER_TIME\" TEXT," + // 49: functionaryRegisterTime
+                "\"POSITION_TYPE\" TEXT," + // 50: positionType
+                "\"ESTABLISHMENT_TYPE\" TEXT," + // 51: establishmentType
+                "\"REMARK\" TEXT," + // 52: remark
+                "\"TYPE\" TEXT," + // 53: type
+                "\"CADRE_RESUME\" TEXT," + // 54: cadreResume
+                "\"CADRE_AWARD\" TEXT," + // 55: cadreAward
+                "\"CADRE_PUNISH\" TEXT," + // 56: cadrePunish
+                "\"CADRE_TRAIN\" TEXT," + // 57: cadreTrain
+                "\"POLITICAL_CONSTRUCTION\" TEXT);"); // 58: politicalConstruction
     }
 
     /** Drops the underlying database table. */
@@ -348,6 +374,71 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (currentMajor != null) {
             stmt.bindString(46, currentMajor);
         }
+ 
+        String fullTimeSchoolMajor = entity.getFullTimeSchoolMajor();
+        if (fullTimeSchoolMajor != null) {
+            stmt.bindString(47, fullTimeSchoolMajor);
+        }
+ 
+        String currentSchoolMajor = entity.getCurrentSchoolMajor();
+        if (currentSchoolMajor != null) {
+            stmt.bindString(48, currentSchoolMajor);
+        }
+ 
+        String nativePlaceReplenish = entity.getNativePlaceReplenish();
+        if (nativePlaceReplenish != null) {
+            stmt.bindString(49, nativePlaceReplenish);
+        }
+ 
+        String functionaryRegisterTime = entity.getFunctionaryRegisterTime();
+        if (functionaryRegisterTime != null) {
+            stmt.bindString(50, functionaryRegisterTime);
+        }
+ 
+        String positionType = entity.getPositionType();
+        if (positionType != null) {
+            stmt.bindString(51, positionType);
+        }
+ 
+        String establishmentType = entity.getEstablishmentType();
+        if (establishmentType != null) {
+            stmt.bindString(52, establishmentType);
+        }
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(53, remark);
+        }
+ 
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(54, type);
+        }
+ 
+        String cadreResume = entity.getCadreResume();
+        if (cadreResume != null) {
+            stmt.bindString(55, cadreResume);
+        }
+ 
+        String cadreAward = entity.getCadreAward();
+        if (cadreAward != null) {
+            stmt.bindString(56, cadreAward);
+        }
+ 
+        String cadrePunish = entity.getCadrePunish();
+        if (cadrePunish != null) {
+            stmt.bindString(57, cadrePunish);
+        }
+ 
+        String cadreTrain = entity.getCadreTrain();
+        if (cadreTrain != null) {
+            stmt.bindString(58, cadreTrain);
+        }
+ 
+        String politicalConstruction = entity.getPoliticalConstruction();
+        if (politicalConstruction != null) {
+            stmt.bindString(59, politicalConstruction);
+        }
     }
 
     @Override
@@ -559,6 +650,71 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (currentMajor != null) {
             stmt.bindString(46, currentMajor);
         }
+ 
+        String fullTimeSchoolMajor = entity.getFullTimeSchoolMajor();
+        if (fullTimeSchoolMajor != null) {
+            stmt.bindString(47, fullTimeSchoolMajor);
+        }
+ 
+        String currentSchoolMajor = entity.getCurrentSchoolMajor();
+        if (currentSchoolMajor != null) {
+            stmt.bindString(48, currentSchoolMajor);
+        }
+ 
+        String nativePlaceReplenish = entity.getNativePlaceReplenish();
+        if (nativePlaceReplenish != null) {
+            stmt.bindString(49, nativePlaceReplenish);
+        }
+ 
+        String functionaryRegisterTime = entity.getFunctionaryRegisterTime();
+        if (functionaryRegisterTime != null) {
+            stmt.bindString(50, functionaryRegisterTime);
+        }
+ 
+        String positionType = entity.getPositionType();
+        if (positionType != null) {
+            stmt.bindString(51, positionType);
+        }
+ 
+        String establishmentType = entity.getEstablishmentType();
+        if (establishmentType != null) {
+            stmt.bindString(52, establishmentType);
+        }
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(53, remark);
+        }
+ 
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(54, type);
+        }
+ 
+        String cadreResume = entity.getCadreResume();
+        if (cadreResume != null) {
+            stmt.bindString(55, cadreResume);
+        }
+ 
+        String cadreAward = entity.getCadreAward();
+        if (cadreAward != null) {
+            stmt.bindString(56, cadreAward);
+        }
+ 
+        String cadrePunish = entity.getCadrePunish();
+        if (cadrePunish != null) {
+            stmt.bindString(57, cadrePunish);
+        }
+ 
+        String cadreTrain = entity.getCadreTrain();
+        if (cadreTrain != null) {
+            stmt.bindString(58, cadreTrain);
+        }
+ 
+        String politicalConstruction = entity.getPoliticalConstruction();
+        if (politicalConstruction != null) {
+            stmt.bindString(59, politicalConstruction);
+        }
     }
 
     @Override
@@ -614,7 +770,20 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // responsibilities
             cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // affectedState
             cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // fullTimeMajor
-            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45) // currentMajor
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // currentMajor
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // fullTimeSchoolMajor
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // currentSchoolMajor
+            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // nativePlaceReplenish
+            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // functionaryRegisterTime
+            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // positionType
+            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // establishmentType
+            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // remark
+            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53), // type
+            cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54), // cadreResume
+            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55), // cadreAward
+            cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56), // cadrePunish
+            cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57), // cadreTrain
+            cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58) // politicalConstruction
         );
         return entity;
     }
@@ -667,6 +836,19 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setAffectedState(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
         entity.setFullTimeMajor(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
         entity.setCurrentMajor(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setFullTimeSchoolMajor(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setCurrentSchoolMajor(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
+        entity.setNativePlaceReplenish(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
+        entity.setFunctionaryRegisterTime(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
+        entity.setPositionType(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
+        entity.setEstablishmentType(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
+        entity.setRemark(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
+        entity.setType(cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53));
+        entity.setCadreResume(cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54));
+        entity.setCadreAward(cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55));
+        entity.setCadrePunish(cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56));
+        entity.setCadreTrain(cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57));
+        entity.setPoliticalConstruction(cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58));
      }
     
     @Override

@@ -15,7 +15,6 @@ import com.example.cadres.bean.yjjc.YjjcVoteCheckBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.mvp.YjjcCadreContract;
 import com.example.cadres.mvp.YjjcCadrePresenter;
-import com.example.cadres.view.Gb.GbDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,9 +147,10 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         mAdapterRight.setOnItemClickListener(new YjjcCadreAdapterRight.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Intent intent = new Intent(context, GbDetailActivity.class);
-                intent.putExtra("ID", datas.get(pos).getBaseId());
-                startActivity(intent);
+//                Intent intent = new Intent(context, GbDetailActivity.class);
+//                intent.putExtra("ID", datas.get(pos).getBaseId());
+//                startActivity(intent);
+                ((YjjcDetailActivity)getActivity()).showGbinfo(datas.get(pos).getBaseId());
             }
         });
     }
@@ -181,9 +181,11 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         mAdapterLeft.setOnItemClickListener(new YjjcCadreLeftAdapter.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
-                Intent intent = new Intent(context, GbDetailActivity.class);
-                intent.putExtra("ID", datas.get(pos).getBaseId());
-                startActivity(intent);
+//                Intent intent = new Intent(context, GbDetailActivity.class);
+//                intent.putExtra("ID", datas.get(pos).getBaseId());
+//                startActivity(intent);
+
+                ((YjjcDetailActivity)getActivity()).showGbinfo(datas.get(pos).getBaseId());
             }
         });
     }

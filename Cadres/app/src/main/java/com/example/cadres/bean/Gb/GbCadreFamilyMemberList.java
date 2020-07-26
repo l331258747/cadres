@@ -9,6 +9,7 @@ public class GbCadreFamilyMemberList {
     String birthday;
     String politicalOutlook;
     String workUnit;
+    int age;
 
     public int getMemberId() {
         return memberId;
@@ -40,5 +41,9 @@ public class GbCadreFamilyMemberList {
 
     public String getWorkUnit() {
         return workUnit;
+    }
+
+    public int getAge() {
+        return age;
     }
 }

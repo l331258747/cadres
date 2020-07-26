@@ -644,7 +644,20 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getResponsibilities(),
                     item.getAffectedState(),
                     item.getFullTimeMajor(),
-                    item.getCurrentMajor()
+                    item.getCurrentMajor(),
+                    item.getFullTimeSchoolMajor(),
+                    item.getCurrentSchoolMajor(),
+                    item.getNativePlaceReplenish(),
+                    item.getFunctionaryRegisterTime(),
+                    item.getPositionType(),
+                    item.getEstablishmentType(),
+                    item.getRemark(),
+                    item.getType(),
+                    item.getCadreResume(),
+                    item.getCadreAward(),
+                    item.getCadrePunish(),
+                    item.getCadreTrain(),
+                    item.getPoliticalConstruction()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {
@@ -704,7 +717,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item_family.getName(),
                         item_family.getBirthday(),
                         item_family.getPoliticalOutlook(),
-                        item_family.getWorkUnit()
+                        item_family.getWorkUnit(),
+                        item_family.getAge()
                 ));
             }
 

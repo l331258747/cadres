@@ -33,6 +33,7 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
         public final static Property Birthday = new Property(6, String.class, "birthday", false, "BIRTHDAY");
         public final static Property PoliticalOutlook = new Property(7, String.class, "politicalOutlook", false, "POLITICAL_OUTLOOK");
         public final static Property WorkUnit = new Property(8, String.class, "workUnit", false, "WORK_UNIT");
+        public final static Property Age = new Property(9, int.class, "age", false, "AGE");
     }
 
 
@@ -56,7 +57,8 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
                 "\"NAME\" TEXT," + // 5: name
                 "\"BIRTHDAY\" TEXT," + // 6: birthday
                 "\"POLITICAL_OUTLOOK\" TEXT," + // 7: politicalOutlook
-                "\"WORK_UNIT\" TEXT);"); // 8: workUnit
+                "\"WORK_UNIT\" TEXT," + // 8: workUnit
+                "\"AGE\" INTEGER NOT NULL );"); // 9: age
     }
 
     /** Drops the underlying database table. */
@@ -105,6 +107,7 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
         if (workUnit != null) {
             stmt.bindString(9, workUnit);
         }
+        stmt.bindLong(10, entity.getAge());
     }
 
     @Override
@@ -147,6 +150,7 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
         if (workUnit != null) {
             stmt.bindString(9, workUnit);
         }
+        stmt.bindLong(10, entity.getAge());
     }
 
     @Override
@@ -165,7 +169,8 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // name
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // birthday
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // politicalOutlook
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // workUnit
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // workUnit
+            cursor.getInt(offset + 9) // age
         );
         return entity;
     }
@@ -181,6 +186,7 @@ public class DBGbCadreFamilyMemberListDao extends AbstractDao<DBGbCadreFamilyMem
         entity.setBirthday(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setPoliticalOutlook(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setWorkUnit(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setAge(cursor.getInt(offset + 9));
      }
     
     @Override

@@ -56,8 +56,23 @@ public class DBGbBean {
     private String affectedState;
     private String fullTimeMajor;
     private String currentMajor;
+
+    private String fullTimeSchoolMajor;
+    private String currentSchoolMajor;
+
+    private String nativePlaceReplenish;
+    private String functionaryRegisterTime;
+    private String positionType;
+    private String establishmentType;
+    private String remark;
+    private String type;
+    private String cadreResume;
+    private String cadreAward;
+    private String cadrePunish;
+    private String cadreTrain;
+    private String politicalConstruction;
     
-    @Generated(hash = 1791136848)
+    @Generated(hash = 1805865064)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -73,7 +88,12 @@ public class DBGbBean {
             String currentDegreeName, String currentSchool,
             String currentSchoolType, String workPhone, String phoneNumber,
             String homeAddress, String responsibilities, String affectedState,
-            String fullTimeMajor, String currentMajor) {
+            String fullTimeMajor, String currentMajor, String fullTimeSchoolMajor,
+            String currentSchoolMajor, String nativePlaceReplenish,
+            String functionaryRegisterTime, String positionType,
+            String establishmentType, String remark, String type,
+            String cadreResume, String cadreAward, String cadrePunish,
+            String cadreTrain, String politicalConstruction) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -120,6 +140,19 @@ public class DBGbBean {
         this.affectedState = affectedState;
         this.fullTimeMajor = fullTimeMajor;
         this.currentMajor = currentMajor;
+        this.fullTimeSchoolMajor = fullTimeSchoolMajor;
+        this.currentSchoolMajor = currentSchoolMajor;
+        this.nativePlaceReplenish = nativePlaceReplenish;
+        this.functionaryRegisterTime = functionaryRegisterTime;
+        this.positionType = positionType;
+        this.establishmentType = establishmentType;
+        this.remark = remark;
+        this.type = type;
+        this.cadreResume = cadreResume;
+        this.cadreAward = cadreAward;
+        this.cadrePunish = cadrePunish;
+        this.cadreTrain = cadreTrain;
+        this.politicalConstruction = politicalConstruction;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -409,6 +442,84 @@ public class DBGbBean {
         if(age != 0)
             return age+"";
         return "";
+    }
+    public String getFullTimeSchoolMajor() {
+        return this.fullTimeSchoolMajor;
+    }
+    public void setFullTimeSchoolMajor(String fullTimeSchoolMajor) {
+        this.fullTimeSchoolMajor = fullTimeSchoolMajor;
+    }
+    public String getCurrentSchoolMajor() {
+        return this.currentSchoolMajor;
+    }
+    public void setCurrentSchoolMajor(String currentSchoolMajor) {
+        this.currentSchoolMajor = currentSchoolMajor;
+    }
+    public String getNativePlaceReplenish() {
+        return this.nativePlaceReplenish;
+    }
+    public void setNativePlaceReplenish(String nativePlaceReplenish) {
+        this.nativePlaceReplenish = nativePlaceReplenish;
+    }
+    public String getFunctionaryRegisterTime() {
+        return this.functionaryRegisterTime;
+    }
+    public void setFunctionaryRegisterTime(String functionaryRegisterTime) {
+        this.functionaryRegisterTime = functionaryRegisterTime;
+    }
+    public String getPositionType() {
+        return this.positionType;
+    }
+    public void setPositionType(String positionType) {
+        this.positionType = positionType;
+    }
+    public String getEstablishmentType() {
+        return this.establishmentType;
+    }
+    public void setEstablishmentType(String establishmentType) {
+        this.establishmentType = establishmentType;
+    }
+    public String getRemark() {
+        return this.remark;
+    }
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    public String getType() {
+        return this.type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getCadreResume() {
+        return this.cadreResume;
+    }
+    public void setCadreResume(String cadreResume) {
+        this.cadreResume = cadreResume;
+    }
+    public String getCadreAward() {
+        return this.cadreAward;
+    }
+    public void setCadreAward(String cadreAward) {
+        this.cadreAward = cadreAward;
+    }
+    public String getCadrePunish() {
+        return this.cadrePunish;
+    }
+    public void setCadrePunish(String cadrePunish) {
+        this.cadrePunish = cadrePunish;
+    }
+    public String getCadreTrain() {
+        return this.cadreTrain;
+    }
+    public void setCadreTrain(String cadreTrain) {
+        this.cadreTrain = cadreTrain;
+    }
+    public String getPoliticalConstruction() {
+        return this.politicalConstruction;
+    }
+    public void setPoliticalConstruction(String politicalConstruction) {
+        this.politicalConstruction = politicalConstruction;
     }
 
 

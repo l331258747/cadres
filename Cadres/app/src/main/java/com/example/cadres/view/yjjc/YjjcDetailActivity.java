@@ -1,7 +1,9 @@
 package com.example.cadres.view.yjjc;
 
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cadres.R;
@@ -21,6 +23,7 @@ import com.example.cadres.mvp.YjjcDetailPresenter;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.utils.myData.GbDrawerData;
 import com.example.cadres.utils.rxbus.RxBus2;
 import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
 import com.google.android.material.tabs.TabLayout;
@@ -28,6 +31,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.widget.NestedScrollView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import io.reactivex.disposables.Disposable;
@@ -61,9 +66,14 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     YjjcDetailPresenter mPresenter;
     int schemeId;
 
+    DrawerLayout drawer_layout;
+    NestedScrollView scrollView;
+    LinearLayout layout_info;
+    GbDrawerData gbDrawerData;
+
     @Override
     public int getLayoutId() {
-        return R.layout.activity_yjjc_detail;
+        return R.layout.activity_yjjc_detail_drawer;
     }
 
     @Override
@@ -110,6 +120,8 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         mViewPager.setOffscreenPageLimit(titles.length - 1);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        initDrawer();
+        initDrawerGbInfo();
     }
 
     @Override
@@ -320,7 +332,42 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         dBYjjcDaoUtils.insertMulti(dbList);
         dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
         dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
+    }
 
+    private void initDrawer(){
+        drawer_layout = findViewById(R.id.drawer_layout);
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
+        drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
 
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);//关闭手势滑动
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //打开手势滑动
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
+    }
+
+    private void initDrawerGbInfo(){
+        scrollView = findViewById(R.id.scrollView);
+        layout_info = findViewById(R.id.layout_info);
+        gbDrawerData = new GbDrawerData(context, layout_info);
+        gbDrawerData.initView();
+    }
+
+    public void showGbinfo(int baseId){
+        gbDrawerData.getData(baseId);
+        scrollView.scrollTo(0,0);
+        drawer_layout.openDrawer(Gravity.RIGHT);
     }
 }
