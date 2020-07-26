@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cl_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    核定职数-->
+    <View
+        android:id="@+id/view_hdzs"
+        android:layout_width="@dimen/dp_240"
+        app:layout_constraintTop_toTopOf="parent"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_zz"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_zz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_zz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_fz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_fz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:maxLines="3"
+        android:padding="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_hdzs"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_qt"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_qt"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--实配情况-->
+    <View
+        android:id="@+id/view_spqk"
+        android:layout_width="@dimen/dp_240"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_zz"
+        app:layout_constraintStart_toEndOf="@+id/view_hdzs"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_zz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_zz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:maxLines="3"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_fz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_spqk"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_qt"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_qt"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--超配情况-->
+    <View
+        android:id="@+id/view_cpqk"
+        android:layout_width="@dimen/dp_460"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_zz"
+        app:layout_constraintStart_toEndOf="@+id/view_spqk"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_cpqk_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_zz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_zz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_cpqk_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_fz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_cpqk_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_cpqk"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_qt"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_qt"
+        android:background="@color/color_ffd7b4"/>
+
+    <!--   空缺情况 -->
+    <View
+        android:id="@+id/view_kqqk"
+        android:layout_width="@dimen/dp_460"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_zz"
+        app:layout_constraintStart_toEndOf="@+id/view_cpqk"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_kqqk_zz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_fz"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级正职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_zz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_zz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_zz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_kqqk_fz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:gravity="center"
+        android:minLines="3"
+        android:maxLines="3"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintStart_toEndOf="@+id/tv_kqqk_zz"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_qt"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="乡科级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_fz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_fz"
+        android:background="@color/color_ffd7b4"/>
+
+    <TextView
+        android:id="@+id/tv_kqqk_qt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:minLines="3"
+        android:maxLines="3"
+        app:layout_constraintStart_toEndOf="@+id/tv_kqqk_fz"
+        app:layout_constraintEnd_toEndOf="@+id/view_kqqk"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="其他"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_qt"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_qt"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_qt"
+        android:background="@color/color_ffd7b4"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/view_hdzs"
+        android:background="@color/color_ffd7b4"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
