@@ -72,6 +72,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     List<BmLeftBean> bmLeftBeans2 = new ArrayList<>();
 
     String type;
+    String title;
 
     @Override
     public int getLayoutId() {
@@ -80,13 +81,14 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
+        title = intent.getStringExtra("title");
         type = intent.getStringExtra("type");
         if(TextUtils.isEmpty(type)) type = "1";
 
         showLeftIcon();
         showLLRightGoHome();
 
-        showTitleTv(TextUtils.equals(type,"2")?"公务员职级表相关信息":"干部名册");
+        showTitleTv(title);
 
         et_search = findViewById(R.id.et_search);
 

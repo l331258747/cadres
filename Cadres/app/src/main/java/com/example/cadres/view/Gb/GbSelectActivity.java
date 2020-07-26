@@ -44,14 +44,17 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
         switch (view.getId()){
             case R.id.iv_ldgb_bg:
                 intent.putExtra("type","1");
+                intent.putExtra("title","领导干部名册");
                 startActivity(intent);
                 break;
             case R.id.iv_zjgwy_bg:
                 intent.putExtra("type","2");
+                intent.putExtra("title","职级公务员名册");
                 startActivity(intent);
                 break;
             case R.id.iv_hbgb_bg:
                 intent.putExtra("type","3");
+                intent.putExtra("title","后备干部名册");
                 startActivity(intent);
                 break;
         }
