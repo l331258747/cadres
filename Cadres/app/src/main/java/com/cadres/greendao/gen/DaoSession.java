@@ -10,6 +10,8 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
+import com.example.cadres.beanDB.DBBmFinanceTypeBean;
+import com.example.cadres.beanDB.DBBmOrgTypeBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreAwardPunishList;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
@@ -32,6 +34,8 @@ import com.example.cadres.beanDB.Meizi;
 
 import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBBmExplainBeanDao;
+import com.cadres.greendao.gen.DBBmFinanceTypeBeanDao;
+import com.cadres.greendao.gen.DBBmOrgTypeBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreAwardPunishListDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
@@ -63,6 +67,8 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig dBBmBeanDaoConfig;
     private final DaoConfig dBBmExplainBeanDaoConfig;
+    private final DaoConfig dBBmFinanceTypeBeanDaoConfig;
+    private final DaoConfig dBBmOrgTypeBeanDaoConfig;
     private final DaoConfig dBGbBeanDaoConfig;
     private final DaoConfig dBGbCadreAwardPunishListDaoConfig;
     private final DaoConfig dBGbCadreDeptListBeanDaoConfig;
@@ -85,6 +91,8 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DBBmBeanDao dBBmBeanDao;
     private final DBBmExplainBeanDao dBBmExplainBeanDao;
+    private final DBBmFinanceTypeBeanDao dBBmFinanceTypeBeanDao;
+    private final DBBmOrgTypeBeanDao dBBmOrgTypeBeanDao;
     private final DBGbBeanDao dBGbBeanDao;
     private final DBGbCadreAwardPunishListDao dBGbCadreAwardPunishListDao;
     private final DBGbCadreDeptListBeanDao dBGbCadreDeptListBeanDao;
@@ -114,6 +122,12 @@ public class DaoSession extends AbstractDaoSession {
 
         dBBmExplainBeanDaoConfig = daoConfigMap.get(DBBmExplainBeanDao.class).clone();
         dBBmExplainBeanDaoConfig.initIdentityScope(type);
+
+        dBBmFinanceTypeBeanDaoConfig = daoConfigMap.get(DBBmFinanceTypeBeanDao.class).clone();
+        dBBmFinanceTypeBeanDaoConfig.initIdentityScope(type);
+
+        dBBmOrgTypeBeanDaoConfig = daoConfigMap.get(DBBmOrgTypeBeanDao.class).clone();
+        dBBmOrgTypeBeanDaoConfig.initIdentityScope(type);
 
         dBGbBeanDaoConfig = daoConfigMap.get(DBGbBeanDao.class).clone();
         dBGbBeanDaoConfig.initIdentityScope(type);
@@ -174,6 +188,8 @@ public class DaoSession extends AbstractDaoSession {
 
         dBBmBeanDao = new DBBmBeanDao(dBBmBeanDaoConfig, this);
         dBBmExplainBeanDao = new DBBmExplainBeanDao(dBBmExplainBeanDaoConfig, this);
+        dBBmFinanceTypeBeanDao = new DBBmFinanceTypeBeanDao(dBBmFinanceTypeBeanDaoConfig, this);
+        dBBmOrgTypeBeanDao = new DBBmOrgTypeBeanDao(dBBmOrgTypeBeanDaoConfig, this);
         dBGbBeanDao = new DBGbBeanDao(dBGbBeanDaoConfig, this);
         dBGbCadreAwardPunishListDao = new DBGbCadreAwardPunishListDao(dBGbCadreAwardPunishListDaoConfig, this);
         dBGbCadreDeptListBeanDao = new DBGbCadreDeptListBeanDao(dBGbCadreDeptListBeanDaoConfig, this);
@@ -196,6 +212,8 @@ public class DaoSession extends AbstractDaoSession {
 
         registerDao(DBBmBean.class, dBBmBeanDao);
         registerDao(DBBmExplainBean.class, dBBmExplainBeanDao);
+        registerDao(DBBmFinanceTypeBean.class, dBBmFinanceTypeBeanDao);
+        registerDao(DBBmOrgTypeBean.class, dBBmOrgTypeBeanDao);
         registerDao(DBGbBean.class, dBGbBeanDao);
         registerDao(DBGbCadreAwardPunishList.class, dBGbCadreAwardPunishListDao);
         registerDao(DBGbCadreDeptListBean.class, dBGbCadreDeptListBeanDao);
@@ -220,6 +238,8 @@ public class DaoSession extends AbstractDaoSession {
     public void clear() {
         dBBmBeanDaoConfig.clearIdentityScope();
         dBBmExplainBeanDaoConfig.clearIdentityScope();
+        dBBmFinanceTypeBeanDaoConfig.clearIdentityScope();
+        dBBmOrgTypeBeanDaoConfig.clearIdentityScope();
         dBGbBeanDaoConfig.clearIdentityScope();
         dBGbCadreAwardPunishListDaoConfig.clearIdentityScope();
         dBGbCadreDeptListBeanDaoConfig.clearIdentityScope();
@@ -247,6 +267,14 @@ public class DaoSession extends AbstractDaoSession {
 
     public DBBmExplainBeanDao getDBBmExplainBeanDao() {
         return dBBmExplainBeanDao;
+    }
+
+    public DBBmFinanceTypeBeanDao getDBBmFinanceTypeBeanDao() {
+        return dBBmFinanceTypeBeanDao;
+    }
+
+    public DBBmOrgTypeBeanDao getDBBmOrgTypeBeanDao() {
+        return dBBmOrgTypeBeanDao;
     }
 
     public DBGbBeanDao getDBGbBeanDao() {

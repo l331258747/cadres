@@ -46,13 +46,13 @@ public class BmRightAdapter extends RecyclerView.Adapter<BmRightAdapter.ViewHold
         holder.tv_spqk_fz.setText(data.getActualDeputyStr());
         holder.tv_spqk_qt.setText(data.getActualOtherStr());
 
-        holder.tv_cpqk_zz.setText(data.getOvermatchStr());
-        holder.tv_cpqk_fz.setText(data.getOvermatchStr());
-        holder.tv_cpqk_qt.setText(data.getOvermatchStr());
+        holder.tv_cpqk_zz.setText(data.getOvermatchPositionStr());
+        holder.tv_cpqk_fz.setText(data.getOvermatchDeputyStr());
+        holder.tv_cpqk_qt.setText(data.getOvermatchOtherStr());
 
-        holder.tv_kqqk_zz.setText(data.getMismatchStr());
-        holder.tv_kqqk_fz.setText(data.getMismatchStr());
-        holder.tv_kqqk_qt.setText(data.getMismatchStr());
+        holder.tv_kqqk_zz.setText(data.getMismatchPositionStr());
+        holder.tv_kqqk_fz.setText(data.getMismatchDeputyStr());
+        holder.tv_kqqk_qt.setText(data.getMismatchOtherStr());
 
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {

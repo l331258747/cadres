@@ -23,6 +23,8 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         DBBmBeanDao.createTable(db, ifNotExists);
         DBBmExplainBeanDao.createTable(db, ifNotExists);
+        DBBmFinanceTypeBeanDao.createTable(db, ifNotExists);
+        DBBmOrgTypeBeanDao.createTable(db, ifNotExists);
         DBGbBeanDao.createTable(db, ifNotExists);
         DBGbCadreAwardPunishListDao.createTable(db, ifNotExists);
         DBGbCadreDeptListBeanDao.createTable(db, ifNotExists);
@@ -48,6 +50,8 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void dropAllTables(Database db, boolean ifExists) {
         DBBmBeanDao.dropTable(db, ifExists);
         DBBmExplainBeanDao.dropTable(db, ifExists);
+        DBBmFinanceTypeBeanDao.dropTable(db, ifExists);
+        DBBmOrgTypeBeanDao.dropTable(db, ifExists);
         DBGbBeanDao.dropTable(db, ifExists);
         DBGbCadreAwardPunishListDao.dropTable(db, ifExists);
         DBGbCadreDeptListBeanDao.dropTable(db, ifExists);
@@ -87,6 +91,8 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(DBBmBeanDao.class);
         registerDaoClass(DBBmExplainBeanDao.class);
+        registerDaoClass(DBBmFinanceTypeBeanDao.class);
+        registerDaoClass(DBBmOrgTypeBeanDao.class);
         registerDaoClass(DBGbBeanDao.class);
         registerDaoClass(DBGbCadreAwardPunishListDao.class);
         registerDaoClass(DBGbCadreDeptListBeanDao.class);

@@ -3,6 +3,8 @@ package com.example.cadres.utils.greendao;
 
 import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBBmExplainBeanDao;
+import com.cadres.greendao.gen.DBBmFinanceTypeBeanDao;
+import com.cadres.greendao.gen.DBBmOrgTypeBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreAwardPunishListDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
@@ -24,6 +26,8 @@ import com.cadres.greendao.gen.DbYjjcBeanDao;
 import com.cadres.greendao.gen.MeiziDao;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
+import com.example.cadres.beanDB.DBBmFinanceTypeBean;
+import com.example.cadres.beanDB.DBBmOrgTypeBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreAwardPunishList;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
@@ -57,6 +61,8 @@ public class DaoUtilsStore {
 
     private CommonDaoUtils<DBBmBean> bmDaoUtils;
     private CommonDaoUtils<DBBmExplainBean> bmExplainDaoUtils;
+    private CommonDaoUtils<DBBmOrgTypeBean> bmOrgDaoUtils;
+    private CommonDaoUtils<DBBmFinanceTypeBean> bmFinanceDaoUtils;
 
     private CommonDaoUtils<DBGbBean> gbDaoUtils;
     private CommonDaoUtils<DBGbCadreAwardPunishList> gbAwardDaoUtils;
@@ -111,6 +117,10 @@ public class DaoUtilsStore {
         DBBmExplainBeanDao _DBBmExplainBeanDao = mManager.getDaoSession().getDBBmExplainBeanDao();
         bmExplainDaoUtils = new CommonDaoUtils(DBBmExplainBean.class, _DBBmExplainBeanDao);
 
+        DBBmOrgTypeBeanDao _DBBmOrgTypeBeanDao = mManager.getDaoSession().getDBBmOrgTypeBeanDao();
+        bmOrgDaoUtils = new CommonDaoUtils(DBBmOrgTypeBean.class, _DBBmOrgTypeBeanDao);
+        DBBmFinanceTypeBeanDao _DBBmFinanceTypeBeanDao = mManager.getDaoSession().getDBBmFinanceTypeBeanDao();
+        bmFinanceDaoUtils = new CommonDaoUtils(DBBmFinanceTypeBean.class, _DBBmFinanceTypeBeanDao);
 
         DBGbBeanDao _DBGbBeanDao = mManager.getDaoSession().getDBGbBeanDao();
         gbDaoUtils = new CommonDaoUtils(DBGbBean.class, _DBGbBeanDao);
@@ -153,6 +163,14 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBBmBean> getBmDaoUtils() {
         return bmDaoUtils;
+    }
+
+    public CommonDaoUtils<DBBmOrgTypeBean> getBmOrgDaoUtils() {
+        return bmOrgDaoUtils;
+    }
+
+    public CommonDaoUtils<DBBmFinanceTypeBean> getBmFinanceDaoUtils() {
+        return bmFinanceDaoUtils;
     }
 
     public CommonDaoUtils<DBBmExplainBean> getBmExplainDaoUtils() {

@@ -40,8 +40,6 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
     int type = 0;//0全部，4重要文件，5法律法规
     String key = "";
 
-    List<ListDialogBean> dialogDatas;
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_zcfg;
@@ -143,6 +141,7 @@ public class ZcfgActivity extends BaseActivity implements View.OnClickListener {
     }
 
     ListDialog listDialog;
+    List<ListDialogBean> dialogDatas;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

@@ -51,6 +51,18 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property ActualDeputy = new Property(24, int.class, "actualDeputy", false, "ACTUAL_DEPUTY");
         public final static Property ActualOther = new Property(25, int.class, "actualOther", false, "ACTUAL_OTHER");
         public final static Property OrgLevelName = new Property(26, String.class, "orgLevelName", false, "ORG_LEVEL_NAME");
+        public final static Property SurpassPosition = new Property(27, int.class, "surpassPosition", false, "SURPASS_POSITION");
+        public final static Property SurpassDeputy = new Property(28, int.class, "surpassDeputy", false, "SURPASS_DEPUTY");
+        public final static Property SurpassOther = new Property(29, int.class, "surpassOther", false, "SURPASS_OTHER");
+        public final static Property LackPosition = new Property(30, int.class, "lackPosition", false, "LACK_POSITION");
+        public final static Property LackDeputy = new Property(31, int.class, "lackDeputy", false, "LACK_DEPUTY");
+        public final static Property LackOther = new Property(32, int.class, "lackOther", false, "LACK_OTHER");
+        public final static Property OvermatchPosition = new Property(33, String.class, "overmatchPosition", false, "OVERMATCH_POSITION");
+        public final static Property OvermatchDeputy = new Property(34, String.class, "overmatchDeputy", false, "OVERMATCH_DEPUTY");
+        public final static Property OvermatchOther = new Property(35, String.class, "overmatchOther", false, "OVERMATCH_OTHER");
+        public final static Property MismatchPosition = new Property(36, String.class, "mismatchPosition", false, "MISMATCH_POSITION");
+        public final static Property MismatchDeputy = new Property(37, String.class, "mismatchDeputy", false, "MISMATCH_DEPUTY");
+        public final static Property MismatchOther = new Property(38, String.class, "mismatchOther", false, "MISMATCH_OTHER");
     }
 
 
@@ -92,7 +104,19 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"ACTUAL_POSITION\" INTEGER NOT NULL ," + // 23: actualPosition
                 "\"ACTUAL_DEPUTY\" INTEGER NOT NULL ," + // 24: actualDeputy
                 "\"ACTUAL_OTHER\" INTEGER NOT NULL ," + // 25: actualOther
-                "\"ORG_LEVEL_NAME\" TEXT);"); // 26: orgLevelName
+                "\"ORG_LEVEL_NAME\" TEXT," + // 26: orgLevelName
+                "\"SURPASS_POSITION\" INTEGER NOT NULL ," + // 27: surpassPosition
+                "\"SURPASS_DEPUTY\" INTEGER NOT NULL ," + // 28: surpassDeputy
+                "\"SURPASS_OTHER\" INTEGER NOT NULL ," + // 29: surpassOther
+                "\"LACK_POSITION\" INTEGER NOT NULL ," + // 30: lackPosition
+                "\"LACK_DEPUTY\" INTEGER NOT NULL ," + // 31: lackDeputy
+                "\"LACK_OTHER\" INTEGER NOT NULL ," + // 32: lackOther
+                "\"OVERMATCH_POSITION\" TEXT," + // 33: overmatchPosition
+                "\"OVERMATCH_DEPUTY\" TEXT," + // 34: overmatchDeputy
+                "\"OVERMATCH_OTHER\" TEXT," + // 35: overmatchOther
+                "\"MISMATCH_POSITION\" TEXT," + // 36: mismatchPosition
+                "\"MISMATCH_DEPUTY\" TEXT," + // 37: mismatchDeputy
+                "\"MISMATCH_OTHER\" TEXT);"); // 38: mismatchOther
     }
 
     /** Drops the underlying database table. */
@@ -203,6 +227,42 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (orgLevelName != null) {
             stmt.bindString(27, orgLevelName);
         }
+        stmt.bindLong(28, entity.getSurpassPosition());
+        stmt.bindLong(29, entity.getSurpassDeputy());
+        stmt.bindLong(30, entity.getSurpassOther());
+        stmt.bindLong(31, entity.getLackPosition());
+        stmt.bindLong(32, entity.getLackDeputy());
+        stmt.bindLong(33, entity.getLackOther());
+ 
+        String overmatchPosition = entity.getOvermatchPosition();
+        if (overmatchPosition != null) {
+            stmt.bindString(34, overmatchPosition);
+        }
+ 
+        String overmatchDeputy = entity.getOvermatchDeputy();
+        if (overmatchDeputy != null) {
+            stmt.bindString(35, overmatchDeputy);
+        }
+ 
+        String overmatchOther = entity.getOvermatchOther();
+        if (overmatchOther != null) {
+            stmt.bindString(36, overmatchOther);
+        }
+ 
+        String mismatchPosition = entity.getMismatchPosition();
+        if (mismatchPosition != null) {
+            stmt.bindString(37, mismatchPosition);
+        }
+ 
+        String mismatchDeputy = entity.getMismatchDeputy();
+        if (mismatchDeputy != null) {
+            stmt.bindString(38, mismatchDeputy);
+        }
+ 
+        String mismatchOther = entity.getMismatchOther();
+        if (mismatchOther != null) {
+            stmt.bindString(39, mismatchOther);
+        }
     }
 
     @Override
@@ -307,6 +367,42 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (orgLevelName != null) {
             stmt.bindString(27, orgLevelName);
         }
+        stmt.bindLong(28, entity.getSurpassPosition());
+        stmt.bindLong(29, entity.getSurpassDeputy());
+        stmt.bindLong(30, entity.getSurpassOther());
+        stmt.bindLong(31, entity.getLackPosition());
+        stmt.bindLong(32, entity.getLackDeputy());
+        stmt.bindLong(33, entity.getLackOther());
+ 
+        String overmatchPosition = entity.getOvermatchPosition();
+        if (overmatchPosition != null) {
+            stmt.bindString(34, overmatchPosition);
+        }
+ 
+        String overmatchDeputy = entity.getOvermatchDeputy();
+        if (overmatchDeputy != null) {
+            stmt.bindString(35, overmatchDeputy);
+        }
+ 
+        String overmatchOther = entity.getOvermatchOther();
+        if (overmatchOther != null) {
+            stmt.bindString(36, overmatchOther);
+        }
+ 
+        String mismatchPosition = entity.getMismatchPosition();
+        if (mismatchPosition != null) {
+            stmt.bindString(37, mismatchPosition);
+        }
+ 
+        String mismatchDeputy = entity.getMismatchDeputy();
+        if (mismatchDeputy != null) {
+            stmt.bindString(38, mismatchDeputy);
+        }
+ 
+        String mismatchOther = entity.getMismatchOther();
+        if (mismatchOther != null) {
+            stmt.bindString(39, mismatchOther);
+        }
     }
 
     @Override
@@ -343,7 +439,19 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.getInt(offset + 23), // actualPosition
             cursor.getInt(offset + 24), // actualDeputy
             cursor.getInt(offset + 25), // actualOther
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26) // orgLevelName
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // orgLevelName
+            cursor.getInt(offset + 27), // surpassPosition
+            cursor.getInt(offset + 28), // surpassDeputy
+            cursor.getInt(offset + 29), // surpassOther
+            cursor.getInt(offset + 30), // lackPosition
+            cursor.getInt(offset + 31), // lackDeputy
+            cursor.getInt(offset + 32), // lackOther
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // overmatchPosition
+            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // overmatchDeputy
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // overmatchOther
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // mismatchPosition
+            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // mismatchDeputy
+            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38) // mismatchOther
         );
         return entity;
     }
@@ -377,6 +485,18 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setActualDeputy(cursor.getInt(offset + 24));
         entity.setActualOther(cursor.getInt(offset + 25));
         entity.setOrgLevelName(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
+        entity.setSurpassPosition(cursor.getInt(offset + 27));
+        entity.setSurpassDeputy(cursor.getInt(offset + 28));
+        entity.setSurpassOther(cursor.getInt(offset + 29));
+        entity.setLackPosition(cursor.getInt(offset + 30));
+        entity.setLackDeputy(cursor.getInt(offset + 31));
+        entity.setLackOther(cursor.getInt(offset + 32));
+        entity.setOvermatchPosition(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
+        entity.setOvermatchDeputy(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
+        entity.setOvermatchOther(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setMismatchPosition(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setMismatchDeputy(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
+        entity.setMismatchOther(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
      }
     
     @Override

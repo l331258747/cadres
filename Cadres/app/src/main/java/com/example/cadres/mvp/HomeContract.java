@@ -3,6 +3,8 @@ package com.example.cadres.mvp;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.bm.BmBean1;
+import com.example.cadres.bean.bm.BmBean2;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -51,7 +53,7 @@ public interface HomeContract {
         void getZcfgListSuccess(List<ZcfgBean.ZcfgBean2> data);
         void getZcfgListFailed(String msg);
 
-        void getBmListSuccess(List<BmBean.BmBean2> data);
+        void getBmListSuccess(BmBean1 data);
         void getBmListFailed(String msg);
 
         void getGbListSuccess(List<GbBean.GbBean2> data);

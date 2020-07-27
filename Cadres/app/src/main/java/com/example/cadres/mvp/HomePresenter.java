@@ -66,7 +66,7 @@ public class HomePresenter implements HomeContract.Presenter {
         ResponseCallback listener = new ResponseCallback<BmBean>() {
             @Override
             public void onSuccess(BmBean data) {
-                iView.getBmListSuccess(data.getZzbOrganization());
+                iView.getBmListSuccess(data.getOrganization());
             }
 
             @Override

@@ -6,12 +6,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.bean.common.ListDialogBean;
+import com.example.cadres.utils.AppUtils;
 
 import java.util.List;
 
@@ -62,12 +64,15 @@ public class ListDialog extends AlertDialog {
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
 
+        
 //        layoutParent.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
 //            @Override
 //            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
 //                                       int oldRight, int oldBottom) {
+
                 int contentHeight = layoutParent.getHeight();
                 int needHeight = 500;
+
                 if (contentHeight > needHeight) {
                     //注意：这里的 LayoutParams 必须是 FrameLayout的！！
                     layoutParent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,

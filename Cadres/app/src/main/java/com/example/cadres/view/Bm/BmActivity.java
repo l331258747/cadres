@@ -9,11 +9,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBBmBeanDao;
+import com.cadres.greendao.gen.DBBmFinanceTypeBeanDao;
+import com.cadres.greendao.gen.DBBmOrgTypeBeanDao;
+import com.cadres.greendao.gen.DbTyZsDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.BmLeftAdapter;
 import com.example.cadres.adapter.BmRightAdapter;
+import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.beanDB.DBBmBean;
+import com.example.cadres.beanDB.DBBmFinanceTypeBean;
+import com.example.cadres.beanDB.DBBmOrgTypeBean;
+import com.example.cadres.beanDB.DbTyZs;
+import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
@@ -28,7 +37,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BmActivity extends BaseActivity {
+public class BmActivity extends BaseActivity implements View.OnClickListener {
 
     EditText et_search;
     RecyclerView recyclerViewRight;
@@ -44,6 +53,8 @@ public class BmActivity extends BaseActivity {
     DrawerLayout drawer_layout;
 
     TextView num_hdzs_zz,num_hdzs_fz,num_hdzs_qt,num_spqk_zz,num_spqk_fz,num_spqk_qt,num_cpqk_zz,num_cpqk_fz,num_cpqk_qt,num_kqqk_zz,num_kqqk_fz,num_kqqk_qt;
+
+    TextView tv_screen_dwlb,tv_screen_dwxz;
 
     @Override
     public int getLayoutId() {
@@ -81,6 +92,11 @@ public class BmActivity extends BaseActivity {
         num_kqqk_fz = findViewById(R.id.num_kqqk_fz);
         num_kqqk_qt = findViewById(R.id.num_kqqk_qt);
 
+        tv_screen_dwlb = findViewById(R.id.tv_screen_dwlb);
+        tv_screen_dwxz = findViewById(R.id.tv_screen_dwxz);
+        tv_screen_dwlb.setOnClickListener(this);
+        tv_screen_dwxz.setOnClickListener(this);
+
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -104,8 +120,12 @@ public class BmActivity extends BaseActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 /*判断是否是“搜索”键*/
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    String key = et_search.getText().toString().trim();
-                    getData(key);
+                    orgId = "";
+                    tv_screen_dwlb.setText("单位类别");
+                    FinanceId = "";
+                    tv_screen_dwxz.setText("单位性质");
+                    key = et_search.getText().toString().trim();
+                    getData();
                     return true;
                 }
                 return false;
@@ -121,7 +141,10 @@ public class BmActivity extends BaseActivity {
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBBmDaoUtils = _Store.getBmDaoUtils();
 
-        getData("");
+        getData();
+
+        getDbOrgData();
+        getDbFinanceData();
     }
 
     public List<DBBmBean> getDbList(String key) {
@@ -135,13 +158,17 @@ public class BmActivity extends BaseActivity {
             dbList = queryBuilder.list();
         }else{
             queryBuilder.where(DBBmBeanDao.Properties.DeptType.eq(1));
+            if(!TextUtils.isEmpty(orgId))
+                queryBuilder.where(DBBmBeanDao.Properties.OrgType.eq(orgId));
+            if(!TextUtils.isEmpty(FinanceId))
+                queryBuilder.where(DBBmBeanDao.Properties.FinanceType.eq(FinanceId));
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
         return dbList;
     }
 
-    public void getData(String key) {
+    public void getData() {
         datas = new ArrayList<>();
         List<DBBmBean> dbList = getDbList(key);
         if (dbList != null) {
@@ -163,8 +190,15 @@ public class BmActivity extends BaseActivity {
             spqk_zz = spqk_zz + datas.get(i).getActualPosition();
             spqk_fz = spqk_fz + datas.get(i).getActualDeputy();
             spqk_qt = spqk_qt + datas.get(i).getActualOther();
-        }
 
+            cpqk_zz = cpqk_zz + datas.get(i).getSurpassPosition();
+            cpqk_fz = cpqk_fz + datas.get(i).getSurpassDeputy();
+            cpqk_qt = cpqk_qt + datas.get(i).getSurpassOther();
+
+            kqqk_zz = kqqk_zz + datas.get(i).getLackPosition();
+            kqqk_fz = kqqk_fz + datas.get(i).getLackDeputy();
+            kqqk_qt = kqqk_qt + datas.get(i).getLackOther();
+        }
         num_hdzs_zz.setText("（" + hdzs_zz + "）");
         num_hdzs_fz.setText("（" + hdzs_fz + "）");
         num_hdzs_qt.setText("（" + hdzs_qt + "）");
@@ -177,7 +211,6 @@ public class BmActivity extends BaseActivity {
         num_kqqk_zz.setText("（" + kqqk_zz + "）");
         num_kqqk_fz.setText("（" + kqqk_fz + "）");
         num_kqqk_qt.setText("（" + kqqk_qt + "）");
-
 
     }
 
@@ -252,5 +285,77 @@ public class BmActivity extends BaseActivity {
                 showDrawer(datas.get(pos));
             }
         });
+    }
+
+
+    ListDialog listDialogOrg;
+    List<ListDialogBean> dialogDatasOrg;
+    ListDialog listDialogFinance;
+    List<ListDialogBean> dialogDatasFinance;
+    String orgId,FinanceId;
+    String key;
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_screen_dwlb:
+                if(listDialogOrg == null){
+                    listDialogOrg = new ListDialog(context, dialogDatasOrg);
+                    listDialogOrg.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            orgId = dialogDatasOrg.get(position).getsId();
+                            tv_screen_dwlb.setText(TextUtils.isEmpty(orgId)?"单位类别":dialogDatasOrg.get(position).getName());
+                            getData();
+                            key = "";
+                            et_search.setText("");
+                            listDialogOrg.dismiss();
+                        }
+                    });
+                }
+                listDialogOrg.show();
+                break;
+            case R.id.tv_screen_dwxz:
+                if(listDialogFinance == null){
+                    listDialogFinance = new ListDialog(context, dialogDatasFinance);
+                    listDialogFinance.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            FinanceId = dialogDatasFinance.get(position).getsId();
+                            tv_screen_dwxz.setText(TextUtils.isEmpty(FinanceId)?"单位类别":dialogDatasFinance.get(position).getName());
+                            getData();
+                            key = "";
+                            et_search.setText("");
+                            listDialogFinance.dismiss();
+                        }
+                    });
+                }
+                listDialogFinance.show();
+                break;
+        }
+    }
+
+    public void getDbOrgData(){
+        DBBmOrgTypeBeanDao dbBmOrgTypeBeanDao = DaoManager.getInstance().getDaoSession().getDBBmOrgTypeBeanDao();
+        QueryBuilder<DBBmOrgTypeBean> queryBuilder = dbBmOrgTypeBeanDao.queryBuilder();
+        List<DBBmOrgTypeBean> orgs = queryBuilder.list();
+
+        dialogDatasOrg = new ArrayList<>();
+        dialogDatasOrg.add(new ListDialogBean("","全部"));
+        for (int i=0;i<orgs.size();i++){
+            dialogDatasOrg.add(new ListDialogBean(orgs.get(i).getDictValue(),orgs.get(i).getDictLabel()));
+        }
+    }
+
+    public void getDbFinanceData(){
+        DBBmFinanceTypeBeanDao dbBmFinanceTypeBeanDao = DaoManager.getInstance().getDaoSession().getDBBmFinanceTypeBeanDao();
+        QueryBuilder<DBBmFinanceTypeBean> queryBuilder = dbBmFinanceTypeBeanDao.queryBuilder();
+        List<DBBmFinanceTypeBean> finances = queryBuilder.list();
+
+        dialogDatasFinance = new ArrayList<>();
+        dialogDatasFinance.add(new ListDialogBean("","全部"));
+        for (int i=0;i<finances.size();i++){
+            dialogDatasFinance.add(new ListDialogBean(finances.get(i).getDictValue(),finances.get(i).getDictLabel()));
+        }
     }
 }

@@ -37,8 +37,21 @@ public class DBBmBean {
     private int actualDeputy;
     private int actualOther;
     private String orgLevelName;
+
+    private int surpassPosition;//超配乡科正职数量
+    private int surpassDeputy;//超配乡科副职数量
+    private int surpassOther;//超配其他数量
+    private int lackPosition;//缺配配乡科正职数量
+    private int lackDeputy;//缺配乡科副职数量
+    private int lackOther;//缺配其他数量
+    private String overmatchPosition;//超配乡科正职
+    private String overmatchDeputy;//超配乡科副职
+    private String overmatchOther;//超配其他
+    private String mismatchPosition;//缺配配乡科正职
+    private String mismatchDeputy;//缺配乡科副职
+    private String mismatchOther;//缺配其他
     
-    @Generated(hash = 1229488510)
+    @Generated(hash = 2102889352)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -46,7 +59,11 @@ public class DBBmBean {
             String parentName, String verification, String actual, String overmatch,
             String mismatch, int approvedPosition, int approvedDeputy,
             int approvedOther, int actualPosition, int actualDeputy,
-            int actualOther, String orgLevelName) {
+            int actualOther, String orgLevelName, int surpassPosition,
+            int surpassDeputy, int surpassOther, int lackPosition, int lackDeputy,
+            int lackOther, String overmatchPosition, String overmatchDeputy,
+            String overmatchOther, String mismatchPosition, String mismatchDeputy,
+            String mismatchOther) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -74,6 +91,18 @@ public class DBBmBean {
         this.actualDeputy = actualDeputy;
         this.actualOther = actualOther;
         this.orgLevelName = orgLevelName;
+        this.surpassPosition = surpassPosition;
+        this.surpassDeputy = surpassDeputy;
+        this.surpassOther = surpassOther;
+        this.lackPosition = lackPosition;
+        this.lackDeputy = lackDeputy;
+        this.lackOther = lackOther;
+        this.overmatchPosition = overmatchPosition;
+        this.overmatchDeputy = overmatchDeputy;
+        this.overmatchOther = overmatchOther;
+        this.mismatchPosition = mismatchPosition;
+        this.mismatchDeputy = mismatchDeputy;
+        this.mismatchOther = mismatchOther;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -308,5 +337,113 @@ public class DBBmBean {
         if(TextUtils.isEmpty(deptName))
             return "";
         return deptName;
+    }
+    public int getSurpassPosition() {
+        return this.surpassPosition;
+    }
+    public void setSurpassPosition(int surpassPosition) {
+        this.surpassPosition = surpassPosition;
+    }
+    public int getSurpassDeputy() {
+        return this.surpassDeputy;
+    }
+    public void setSurpassDeputy(int surpassDeputy) {
+        this.surpassDeputy = surpassDeputy;
+    }
+    public int getSurpassOther() {
+        return this.surpassOther;
+    }
+    public void setSurpassOther(int surpassOther) {
+        this.surpassOther = surpassOther;
+    }
+    public int getLackPosition() {
+        return this.lackPosition;
+    }
+    public void setLackPosition(int lackPosition) {
+        this.lackPosition = lackPosition;
+    }
+    public int getLackDeputy() {
+        return this.lackDeputy;
+    }
+    public void setLackDeputy(int lackDeputy) {
+        this.lackDeputy = lackDeputy;
+    }
+    public int getLackOther() {
+        return this.lackOther;
+    }
+    public void setLackOther(int lackOther) {
+        this.lackOther = lackOther;
+    }
+    public String getOvermatchPosition() {
+        return this.overmatchPosition;
+    }
+    public String getOvermatchPositionStr() {
+        if(TextUtils.isEmpty(overmatchPosition))
+            return "无";
+        return overmatchPosition;
+    }
+    public void setOvermatchPosition(String overmatchPosition) {
+        this.overmatchPosition = overmatchPosition;
+    }
+    public String getOvermatchDeputy() {
+        return this.overmatchDeputy;
+    }
+
+    public String getOvermatchDeputyStr() {
+        if(TextUtils.isEmpty(overmatchDeputy))
+            return "无";
+        return overmatchDeputy;
+    }
+    public void setOvermatchDeputy(String overmatchDeputy) {
+        this.overmatchDeputy = overmatchDeputy;
+    }
+    public String getOvermatchOther() {
+        return this.overmatchOther;
+    }
+
+    public String getOvermatchOtherStr() {
+        if(TextUtils.isEmpty(overmatchOther))
+            return "无";
+        return overmatchOther;
+    }
+
+    public void setOvermatchOther(String overmatchOther) {
+        this.overmatchOther = overmatchOther;
+    }
+    public String getMismatchPosition() {
+        return this.mismatchPosition;
+    }
+    public String getMismatchPositionStr() {
+        if(TextUtils.isEmpty(mismatchPosition))
+            return "无";
+        return mismatchPosition;
+    }
+
+    public void setMismatchPosition(String mismatchPosition) {
+        this.mismatchPosition = mismatchPosition;
+    }
+    public String getMismatchDeputy() {
+        return this.mismatchDeputy;
+    }
+    public String getMismatchDeputyStr() {
+        if(TextUtils.isEmpty(mismatchDeputy))
+            return "无";
+        return mismatchDeputy;
+    }
+
+    public void setMismatchDeputy(String mismatchDeputy) {
+        this.mismatchDeputy = mismatchDeputy;
+    }
+    public String getMismatchOther() {
+        return this.mismatchOther;
+    }
+    public String getMismatchOtherStr() {
+        if(TextUtils.isEmpty(mismatchOther))
+            return "无";
+        return mismatchOther;
+    }
+
+    public void setMismatchOther(String mismatchOther) {
+        this.mismatchOther = mismatchOther;
     }
 }

@@ -31,7 +31,11 @@ import com.example.cadres.bean.Gb.GbCadreResumeListBean;
 import com.example.cadres.bean.Gb.GbCadreTrainListBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.bm.BmBean1;
+import com.example.cadres.bean.bm.BmBean2;
 import com.example.cadres.bean.bm.BmExplainBean;
+import com.example.cadres.bean.bm.BmFinanceTypeBean;
+import com.example.cadres.bean.bm.BmOrgTypeBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -44,6 +48,8 @@ import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
+import com.example.cadres.beanDB.DBBmFinanceTypeBean;
+import com.example.cadres.beanDB.DBBmOrgTypeBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreAwardPunishList;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
@@ -101,6 +107,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
     CommonDaoUtils<DBBmExplainBean> dBBmExplainDaoUtils;
+    CommonDaoUtils<DBBmOrgTypeBean> dBBmOrgDaoUtils;
+    CommonDaoUtils<DBBmFinanceTypeBean> dBBmFinanceDaoUtils;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     CommonDaoUtils<DBGbCadreAwardPunishList> dBGbAwardDaoUtils;
@@ -159,6 +167,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBZcfgDaoUtils = _Store.getZcfgDaoUtils();
         dBBmDaoUtils = _Store.getBmDaoUtils();
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
+        dBBmOrgDaoUtils = _Store.getBmOrgDaoUtils();
+        dBBmFinanceDaoUtils = _Store.getBmFinanceDaoUtils();
 
         dBGbDaoUtils = _Store.getGbDaoUtils();
         dBGbAwardDaoUtils = _Store.getGbAwardDaoUtils();
@@ -277,7 +287,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
     @Override
-    public void getBmListSuccess(List<BmBean.BmBean2> data) {
+    public void getBmListSuccess(BmBean1 data) {
         setDBBm(data);
         mPresenter.getGbList();
     }
@@ -458,6 +468,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("政策法规 条数：" + dBZcfgDaoUtils.queryAll().size());
         LogUtil.e("部门 条数：" + dBBmDaoUtils.queryAll().size());
         LogUtil.e("部门描述 条数：" + dBBmExplainDaoUtils.queryAll().size());
+        LogUtil.e("部门类别 条数：" + dBBmOrgDaoUtils.queryAll().size());
+        LogUtil.e("部门性质 条数：" + dBBmFinanceDaoUtils.queryAll().size());
 
         LogUtil.e("干部 条数：" + dBGbDaoUtils.queryAll().size());
         LogUtil.e("干部奖惩记录信息 条数：" + dBGbAwardDaoUtils.queryAll().size());
@@ -482,6 +494,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBZcfgDaoUtils.deleteAll();
         dBBmDaoUtils.deleteAll();
         dBBmExplainDaoUtils.deleteAll();
+        dBBmOrgDaoUtils.deleteAll();
+        dBBmFinanceDaoUtils.deleteAll();
 
         dBGbDaoUtils.deleteAll();
         dBGbAwardDaoUtils.deleteAll();
@@ -532,57 +546,101 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBZcfgDaoUtils.insertMulti(dbList);
     }
 
-    private void setDBBm(List<BmBean.BmBean2> data) {
+    private void setDBBm(BmBean1 bean) {
         List<DBBmBean> dbList = new ArrayList<>();
         List<DBBmExplainBean> dbList_explain = new ArrayList<>();
-
-        for (int i = 0; i < data.size(); i++) {
-            progress.setProgress((int) (30 + (20f / data.size() * i)));
-            BmBean.BmBean2 item = data.get(i);
-            dbList.add(new DBBmBean(
-                    null,
-                    item.getDeptId(),
-                    item.getParentId(),
-                    item.getDeptName(),
-                    item.getDzzName(),
-                    item.getOrgCode(),
-                    item.getOrgType(),
-                    item.getOrgTypeName(),
-                    item.getFinanceType(),
-                    item.getFinanceTypeName(),
-                    item.getSimpleName(),
-                    item.getOrderNum(),
-                    item.getDeptType(),
-                    item.getDeptTypeName(),
-                    item.getDelFlag(),
-                    item.getParentName(),
-                    item.getVerification(),
-                    item.getActual(),
-                    item.getOvermatch(),
-                    item.getMismatch(),
-                    item.getApprovedPosition(),
-                    item.getApprovedDeputy(),
-                    item.getApprovedOther(),
-                    item.getActualPosition(),
-                    item.getActualDeputy(),
-                    item.getActualOther(),
-                    item.getOrgLevelName()
-            ));
-
-            for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {
-                BmExplainBean item_a = data.get(i).getOrganizationExplain().get(i_explain);
-                dbList_explain.add(new DBBmExplainBean(
+        List<BmBean2> data = bean.getZzbOrganization();
+        if(data != null){
+            for (int i = 0; i < data.size(); i++) {
+                progress.setProgress((int) (30 + (20f / data.size() * i)));
+                BmBean2 item = data.get(i);
+                dbList.add(new DBBmBean(
                         null,
-                        item_a.getExplainId(),
-                        item_a.getDeptId(),
-                        item_a.getOrgExplain(),
-                        item_a.getYear()
+                        item.getDeptId(),
+                        item.getParentId(),
+                        item.getDeptName(),
+                        item.getDzzName(),
+                        item.getOrgCode(),
+                        item.getOrgType(),
+                        item.getOrgTypeName(),
+                        item.getFinanceType(),
+                        item.getFinanceTypeName(),
+                        item.getSimpleName(),
+                        item.getOrderNum(),
+                        item.getDeptType(),
+                        item.getDeptTypeName(),
+                        item.getDelFlag(),
+                        item.getParentName(),
+                        item.getVerification(),
+                        item.getActual(),
+                        item.getOvermatch(),
+                        item.getMismatch(),
+                        item.getApprovedPosition(),
+                        item.getApprovedDeputy(),
+                        item.getApprovedOther(),
+                        item.getActualPosition(),
+                        item.getActualDeputy(),
+                        item.getActualOther(),
+                        item.getOrgLevelName(),
+                        item.getSurpassPosition(),
+                        item.getSurpassDeputy(),
+                        item.getSurpassOther(),
+                        item.getLackPosition(),
+                        item.getLackDeputy(),
+                        item.getLackOther(),
+                        item.getOvermatchPosition(),
+                        item.getOvermatchDeputy(),
+                        item.getOvermatchOther(),
+                        item.getMismatchPosition(),
+                        item.getMismatchDeputy(),
+                        item.getMismatchOther()
                 ));
+
+                for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {
+                    BmExplainBean item_a = data.get(i).getOrganizationExplain().get(i_explain);
+                    dbList_explain.add(new DBBmExplainBean(
+                            null,
+                            item_a.getExplainId(),
+                            item_a.getDeptId(),
+                            item_a.getOrgExplain(),
+                            item_a.getYear()
+                    ));
+                }
             }
         }
 
         dBBmDaoUtils.insertMulti(dbList);
         dBBmExplainDaoUtils.insertMulti(dbList_explain);
+
+        List<DBBmOrgTypeBean> dbOrgList = new ArrayList<>();
+        List<BmOrgTypeBean> dataOrg = bean.getOrgType();
+        if(dataOrg != null){
+            for (int i = 0; i < dataOrg.size(); i++) {
+                BmOrgTypeBean item = dataOrg.get(i);
+                dbOrgList.add(new DBBmOrgTypeBean(
+                        null,
+                        item.getDictLabel(),
+                        item.getDictValue()
+                ));
+            }
+        }
+        dBBmOrgDaoUtils.insertMulti(dbOrgList);
+
+        List<DBBmFinanceTypeBean> dbFinanceList = new ArrayList<>();
+        List<BmFinanceTypeBean> dataFinance = bean.getFinanceType();
+        if(dataFinance != null){
+            for (int i = 0; i < dataFinance.size(); i++) {
+                BmFinanceTypeBean item = dataFinance.get(i);
+                dbFinanceList.add(new DBBmFinanceTypeBean(
+                        null,
+                        item.getDictValue(),
+                        item.getDictLabel()
+                ));
+            }
+        }
+
+        dBBmFinanceDaoUtils.insertMulti(dbFinanceList);
+
     }
 
     private void setDBGb(List<GbBean.GbBean2> data) {
