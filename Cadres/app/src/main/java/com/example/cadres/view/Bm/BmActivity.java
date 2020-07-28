@@ -154,7 +154,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
         if(!TextUtils.isEmpty(key)){
             queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%")
-                    ,DBBmBeanDao.Properties.DeptType.eq(1));
+                    ,DBBmBeanDao.Properties.DeptType.eq(1));//1：只显示子部门
             dbList = queryBuilder.list();
         }else{
             queryBuilder.where(DBBmBeanDao.Properties.DeptType.eq(1));
@@ -306,9 +306,9 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
                         public void onClick(int position) {
                             orgId = dialogDatasOrg.get(position).getsId();
                             tv_screen_dwlb.setText(TextUtils.isEmpty(orgId)?"单位类别":dialogDatasOrg.get(position).getName());
-                            getData();
                             key = "";
                             et_search.setText("");
+                            getData();
                             listDialogOrg.dismiss();
                         }
                     });
@@ -323,9 +323,9 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
                         public void onClick(int position) {
                             FinanceId = dialogDatasFinance.get(position).getsId();
                             tv_screen_dwxz.setText(TextUtils.isEmpty(FinanceId)?"单位类别":dialogDatasFinance.get(position).getName());
-                            getData();
                             key = "";
                             et_search.setText("");
+                            getData();
                             listDialogFinance.dismiss();
                         }
                     });

@@ -46,6 +46,8 @@ import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
+import com.example.cadres.bean.zcfg.ZcfgBean2;
+import com.example.cadres.bean.zcfg.ZcfgNoticeTypeBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
 import com.example.cadres.beanDB.DBBmFinanceTypeBean;
@@ -67,6 +69,7 @@ import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
@@ -104,6 +107,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     ProgressDialog progress;
 
     CommonDaoUtils<DBZcfgBean> dBZcfgDaoUtils;
+    CommonDaoUtils<DbZcfgNoticeTypeBean> dBZcfgNoticeDaoUtils;
 
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
     CommonDaoUtils<DBBmExplainBean> dBBmExplainDaoUtils;
@@ -165,6 +169,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBZcfgDaoUtils = _Store.getZcfgDaoUtils();
+        dBZcfgNoticeDaoUtils = _Store.getZcfgNoticeDaoUtils();
         dBBmDaoUtils = _Store.getBmDaoUtils();
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
         dBBmOrgDaoUtils = _Store.getBmOrgDaoUtils();
@@ -275,7 +280,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
 
     @Override
-    public void getZcfgListSuccess(List<ZcfgBean.ZcfgBean2> data) {
+    public void getZcfgListSuccess(ZcfgBean data) {
         setDBZcfg(data);
         mPresenter.getBmList();
     }
@@ -466,6 +471,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     public void cleanDBData() {
         LogUtil.e("政策法规 条数：" + dBZcfgDaoUtils.queryAll().size());
+        LogUtil.e("政策法规 分类 条数：" + dBZcfgNoticeDaoUtils.queryAll().size());
+
         LogUtil.e("部门 条数：" + dBBmDaoUtils.queryAll().size());
         LogUtil.e("部门描述 条数：" + dBBmExplainDaoUtils.queryAll().size());
         LogUtil.e("部门类别 条数：" + dBBmOrgDaoUtils.queryAll().size());
@@ -492,6 +499,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
 
         dBZcfgDaoUtils.deleteAll();
+        dBZcfgNoticeDaoUtils.deleteAll();
+
         dBBmDaoUtils.deleteAll();
         dBBmExplainDaoUtils.deleteAll();
         dBBmOrgDaoUtils.deleteAll();
@@ -519,31 +528,50 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         printImgAll();
     }
 
-    private void setDBZcfg(List<ZcfgBean.ZcfgBean2> data) {
+    private void setDBZcfg(ZcfgBean bean) {
         List<DBZcfgBean> dbList = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            progress.setProgress((int) (10 + (20f / data.size() * i)));
-            ZcfgBean.ZcfgBean2 item = data.get(i);
-            dbList.add(new DBZcfgBean(
-                    null,
-                    item.getSearchValue(),
-                    item.getCreateBy(),
-                    item.getCreateTime(),
-                    item.getUpdateBy(),
-                    item.getUpdateTime(),
-                    item.getRemark(),
-                    item.getDeptCode(),
-                    item.getNoticeId(),
-                    item.getNoticeTitle(),
-                    item.getNoticeType(),
-                    item.getNoticeTypeName(),
-                    item.getNoticeContent(),
-                    item.getStatus(),
-                    item.getStatusName(),
-                    item.getTitleFileUrl()
-            ));
+        List<ZcfgBean2> data = bean.getZzbNotice();
+        if(data != null){
+            for (int i = 0; i < data.size(); i++) {
+                progress.setProgress((int) (10 + (20f / data.size() * i)));
+                ZcfgBean2 item = data.get(i);
+                dbList.add(new DBZcfgBean(
+                        null,
+                        item.getSearchValue(),
+                        item.getCreateBy(),
+                        item.getCreateTime(),
+                        item.getUpdateBy(),
+                        item.getUpdateTime(),
+                        item.getRemark(),
+                        item.getDeptCode(),
+                        item.getNoticeId(),
+                        item.getNoticeTitle(),
+                        item.getNoticeType(),
+                        item.getNoticeTypeName(),
+                        item.getNoticeContent(),
+                        item.getStatus(),
+                        item.getStatusName(),
+                        item.getTitleFileUrl()
+                ));
+            }
         }
         dBZcfgDaoUtils.insertMulti(dbList);
+
+
+        List<DbZcfgNoticeTypeBean> dbListNotice = new ArrayList<>();
+        List<ZcfgNoticeTypeBean> dataNotice = bean.getNoticeType();
+        if(dataNotice != null){
+            for (int i = 0; i < dataNotice.size(); i++) {
+                ZcfgNoticeTypeBean item = dataNotice.get(i);
+                dbListNotice.add(new DbZcfgNoticeTypeBean(
+                        null,
+                        item.getDictLabel(),
+                        item.getDictValue()
+                ));
+            }
+        }
+        dBZcfgNoticeDaoUtils.insertMulti(dbListNotice);
+
     }
 
     private void setDBBm(BmBean1 bean) {

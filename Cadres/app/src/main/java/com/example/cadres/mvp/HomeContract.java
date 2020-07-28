@@ -50,7 +50,7 @@ public interface HomeContract {
         void findUserInfoSuccess(LoginBean.LoginBean2 data);
         void findUserInfoFailed(String msg);
 
-        void getZcfgListSuccess(List<ZcfgBean.ZcfgBean2> data);
+        void getZcfgListSuccess(ZcfgBean data);
         void getZcfgListFailed(String msg);
 
         void getBmListSuccess(BmBean1 data);

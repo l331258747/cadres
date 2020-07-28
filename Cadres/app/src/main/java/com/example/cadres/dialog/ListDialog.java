@@ -71,7 +71,7 @@ public class ListDialog extends AlertDialog {
 //                                       int oldRight, int oldBottom) {
 
                 int contentHeight = layoutParent.getHeight();
-                int needHeight = 500;
+                int needHeight = 400;
 
                 if (contentHeight > needHeight) {
                     //注意：这里的 LayoutParams 必须是 FrameLayout的！！

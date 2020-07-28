@@ -50,7 +50,7 @@ public class HomePresenter implements HomeContract.Presenter {
         ResponseCallback listener = new ResponseCallback<ZcfgBean>() {
             @Override
             public void onSuccess(ZcfgBean data) {
-                iView.getZcfgListSuccess(data.getZzbNotice());
+                iView.getZcfgListSuccess(data);
             }
 
             @Override

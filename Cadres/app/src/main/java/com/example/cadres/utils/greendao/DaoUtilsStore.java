@@ -23,6 +23,7 @@ import com.cadres.greendao.gen.DBZcfgBeanDao;
 import com.cadres.greendao.gen.DbTyJgDao;
 import com.cadres.greendao.gen.DbTyZsDao;
 import com.cadres.greendao.gen.DbYjjcBeanDao;
+import com.cadres.greendao.gen.DbZcfgNoticeTypeBeanDao;
 import com.cadres.greendao.gen.MeiziDao;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
@@ -46,6 +47,7 @@ import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.beanDB.Meizi;
 
 /**
@@ -58,6 +60,7 @@ public class DaoUtilsStore {
     private CommonDaoUtils<DBUserListBean> userListDaoUtils;
 
     private CommonDaoUtils<DBZcfgBean> zcfgDaoUtils;
+    private CommonDaoUtils<DbZcfgNoticeTypeBean> zcfgNoticeDaoUtils;
 
     private CommonDaoUtils<DBBmBean> bmDaoUtils;
     private CommonDaoUtils<DBBmExplainBean> bmExplainDaoUtils;
@@ -110,7 +113,8 @@ public class DaoUtilsStore {
 
         DBZcfgBeanDao _DBZcfgBeanDao = mManager.getDaoSession().getDBZcfgBeanDao();
         zcfgDaoUtils = new CommonDaoUtils(DBZcfgBean.class, _DBZcfgBeanDao);
-
+        DbZcfgNoticeTypeBeanDao _DbZcfgNoticeTypeBeanDao = mManager.getDaoSession().getDbZcfgNoticeTypeBeanDao();
+        zcfgNoticeDaoUtils = new CommonDaoUtils(DbZcfgNoticeTypeBean.class, _DbZcfgNoticeTypeBeanDao);
 
         DBBmBeanDao _DBBmBeanDao = mManager.getDaoSession().getDBBmBeanDao();
         bmDaoUtils = new CommonDaoUtils(DBBmBean.class, _DBBmBeanDao);
@@ -159,6 +163,10 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBZcfgBean> getZcfgDaoUtils() {
         return zcfgDaoUtils;
+    }
+
+    public CommonDaoUtils<DbZcfgNoticeTypeBean> getZcfgNoticeDaoUtils() {
+        return zcfgNoticeDaoUtils;
     }
 
     public CommonDaoUtils<DBBmBean> getBmDaoUtils() {

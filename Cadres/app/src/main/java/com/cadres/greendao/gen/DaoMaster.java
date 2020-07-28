@@ -43,6 +43,7 @@ public class DaoMaster extends AbstractDaoMaster {
         DbTyJgDao.createTable(db, ifNotExists);
         DbTyZsDao.createTable(db, ifNotExists);
         DbYjjcBeanDao.createTable(db, ifNotExists);
+        DbZcfgNoticeTypeBeanDao.createTable(db, ifNotExists);
         MeiziDao.createTable(db, ifNotExists);
     }
 
@@ -70,6 +71,7 @@ public class DaoMaster extends AbstractDaoMaster {
         DbTyJgDao.dropTable(db, ifExists);
         DbTyZsDao.dropTable(db, ifExists);
         DbYjjcBeanDao.dropTable(db, ifExists);
+        DbZcfgNoticeTypeBeanDao.dropTable(db, ifExists);
         MeiziDao.dropTable(db, ifExists);
     }
 
@@ -111,6 +113,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(DbTyJgDao.class);
         registerDaoClass(DbTyZsDao.class);
         registerDaoClass(DbYjjcBeanDao.class);
+        registerDaoClass(DbZcfgNoticeTypeBeanDao.class);
         registerDaoClass(MeiziDao.class);
     }
 
