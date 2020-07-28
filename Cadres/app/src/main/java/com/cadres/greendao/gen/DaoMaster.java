@@ -36,6 +36,7 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreTrainListBeanDao.createTable(db, ifNotExists);
         DBTyHjDao.createTable(db, ifNotExists);
         DBTyHjListDao.createTable(db, ifNotExists);
+        DBTyZsNqgbDao.createTable(db, ifNotExists);
         DBUserListBeanDao.createTable(db, ifNotExists);
         DBYjjcCadreDao.createTable(db, ifNotExists);
         DBYjjcMeetingDao.createTable(db, ifNotExists);
@@ -64,6 +65,7 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreTrainListBeanDao.dropTable(db, ifExists);
         DBTyHjDao.dropTable(db, ifExists);
         DBTyHjListDao.dropTable(db, ifExists);
+        DBTyZsNqgbDao.dropTable(db, ifExists);
         DBUserListBeanDao.dropTable(db, ifExists);
         DBYjjcCadreDao.dropTable(db, ifExists);
         DBYjjcMeetingDao.dropTable(db, ifExists);
@@ -106,6 +108,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(DBGbCadreTrainListBeanDao.class);
         registerDaoClass(DBTyHjDao.class);
         registerDaoClass(DBTyHjListDao.class);
+        registerDaoClass(DBTyZsNqgbDao.class);
         registerDaoClass(DBUserListBeanDao.class);
         registerDaoClass(DBYjjcCadreDao.class);
         registerDaoClass(DBYjjcMeetingDao.class);

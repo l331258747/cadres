@@ -156,7 +156,7 @@ public class HomePresenter implements HomeContract.Presenter {
         ResponseCallback listener = new ResponseCallback<ZstyBean>() {
             @Override
             public void onSuccess(ZstyBean data) {
-                iView.getZstySuccess(data.getRankDeductionList());
+                iView.getZstySuccess(data);
             }
 
             @Override

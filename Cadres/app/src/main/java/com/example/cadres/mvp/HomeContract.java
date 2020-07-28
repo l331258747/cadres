@@ -42,7 +42,7 @@ public interface HomeContract {
 
         void getJgtySuccess(List<JgtyBean.jgtyBean2> data);
         void getJgtyFailed(String msg);
-        void getZstySuccess(List<ZstyBean.ZstyBean2> data);
+        void getZstySuccess(ZstyBean data);
         void getZstyFailed(String msg);
         void getHjtySuccess(HjtyBean.HjtyBean2 data);
         void getHjtyFailed(String msg);

@@ -5,9 +5,32 @@ import java.util.List;
 public class ZstyBean {
 
     List<ZstyBean2> rankDeductionList;
+    List<ZstyBean3> nqgbStatisList;
+
+    public List<ZstyBean3> getNqgbStatisList() {
+        return nqgbStatisList;
+    }
 
     public List<ZstyBean2> getRankDeductionList() {
         return rankDeductionList;
+    }
+
+    public static class ZstyBean3{
+        private String year;
+        private int principal;
+        private int deputy;
+
+        public String getYear() {
+            return year;
+        }
+
+        public int getPrincipal() {
+            return principal;
+        }
+
+        public int getDeputy() {
+            return deputy;
+        }
     }
 
     public static class ZstyBean2 {

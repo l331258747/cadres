@@ -16,6 +16,7 @@ import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyHjListDao;
+import com.cadres.greendao.gen.DBTyZsNqgbDao;
 import com.cadres.greendao.gen.DBUserListBeanDao;
 import com.cadres.greendao.gen.DBYjjcCadreDao;
 import com.cadres.greendao.gen.DBYjjcMeetingDao;
@@ -40,6 +41,7 @@ import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
+import com.example.cadres.beanDB.DBTyZsNqgb;
 import com.example.cadres.beanDB.DBUserListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
@@ -85,6 +87,7 @@ public class DaoUtilsStore {
     private CommonDaoUtils<DBTyHj> tyHjDaoUtils;
     private CommonDaoUtils<DbTyJg> tyJgDaoUtils;
     private CommonDaoUtils<DbTyZs> tyZsDaoUtils;
+    private CommonDaoUtils<DBTyZsNqgb> tyZsQngbDaoUtils;
     private CommonDaoUtils<DBTyHjList> tyHjListDaoUtils;
 
 
@@ -103,6 +106,8 @@ public class DaoUtilsStore {
         tyJgDaoUtils = new CommonDaoUtils(DbTyJg.class, _DbTyJgDao);
         DbTyZsDao _DbTyZsDao = mManager.getDaoSession().getDbTyZsDao();
         tyZsDaoUtils = new CommonDaoUtils(DbTyZs.class, _DbTyZsDao);
+        DBTyZsNqgbDao _DBTyZsNqgbDao = mManager.getDaoSession().getDBTyZsNqgbDao();
+        tyZsQngbDaoUtils = new CommonDaoUtils(DBTyZsNqgb.class, _DBTyZsNqgbDao);
 
         MeiziDao _MeiziDao = mManager.getDaoSession().getMeiziDao();
         meiziDaoUtils = new CommonDaoUtils(Meizi.class, _MeiziDao);
@@ -243,6 +248,10 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DbTyZs> getTyZsDaoUtils() {
         return tyZsDaoUtils;
+    }
+
+    public CommonDaoUtils<DBTyZsNqgb> getTyZsQngbDaoUtils() {
+        return tyZsQngbDaoUtils;
     }
 
     public CommonDaoUtils<DBTyHjList> getTyHjListDaoUtils() {

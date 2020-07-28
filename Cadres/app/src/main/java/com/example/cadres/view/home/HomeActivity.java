@@ -63,6 +63,7 @@ import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
+import com.example.cadres.beanDB.DBTyZsNqgb;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DBZcfgBean;
@@ -133,6 +134,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     CommonDaoUtils<DBTyHjList> dBTyHjListDaoUtils;
     CommonDaoUtils<DbTyJg> dBTyJgDaoUtils;
     CommonDaoUtils<DbTyZs> dBTyZsDaoUtils;
+    CommonDaoUtils<DBTyZsNqgb> dBTyZsNqgbDaoUtils;
 
     @Override
     public int getLayoutId() {
@@ -194,6 +196,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyHjListDaoUtils = _Store.getTyHjListDaoUtils();
         dBTyJgDaoUtils = _Store.getTyJgDaoUtils();
         dBTyZsDaoUtils = _Store.getTyZsDaoUtils();
+        dBTyZsNqgbDaoUtils = _Store.getTyZsQngbDaoUtils();
 
         initProgress();
     }
@@ -328,7 +331,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
     @Override
-    public void getZstySuccess(List<ZstyBean.ZstyBean2> data) {
+    public void getZstySuccess(ZstyBean data) {
         setDBZsty(data);
         mPresenter.getHjty();
     }
@@ -498,6 +501,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("推演 换届 列表 条数：" + dBTyHjListDaoUtils.queryAll().size());
         LogUtil.e("推演 结构 条数：" + dBTyJgDaoUtils.queryAll().size());
         LogUtil.e("推演 职数 条数：" + dBTyZsDaoUtils.queryAll().size());
+        LogUtil.e("推演 职数 年轻干部 条数：" + dBTyZsNqgbDaoUtils.queryAll().size());
 
 
         dBZcfgDaoUtils.deleteAll();
@@ -526,6 +530,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyHjListDaoUtils.deleteAll();
         dBTyJgDaoUtils.deleteAll();
         dBTyZsDaoUtils.deleteAll();
+        dBTyZsNqgbDaoUtils.deleteAll();
 
         printImgAll();
     }
@@ -1020,23 +1025,43 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyJgDaoUtils.insertMulti(dbList);
     }
 
-    private void setDBZsty(List<ZstyBean.ZstyBean2> data) {
+    private void setDBZsty(ZstyBean bean) {
         List<DbTyZs> dbList = new ArrayList<>();
-
-        for (int i = 0; i < data.size(); i++) {
-            ZstyBean.ZstyBean2 item = data.get(i);
-            dbList.add(new DbTyZs(
-                    null,
-                    item.getYear(),
-                    item.getRankAge(),
-                    item.getToVacancy(),
-                    item.getParallel(),
-                    item.getOvermatch(),
-                    item.getVacancy(),
-                    item.getDigestion()
-            ));
+        List<ZstyBean.ZstyBean2> data = bean.getRankDeductionList();
+        if(data != null){
+            for (int i = 0; i < data.size(); i++) {
+                ZstyBean.ZstyBean2 item = data.get(i);
+                dbList.add(new DbTyZs(
+                        null,
+                        item.getYear(),
+                        item.getRankAge(),
+                        item.getToVacancy(),
+                        item.getParallel(),
+                        item.getOvermatch(),
+                        item.getVacancy(),
+                        item.getDigestion()
+                ));
+            }
         }
         dBTyZsDaoUtils.insertMulti(dbList);
+
+
+        List<DBTyZsNqgb> dbListNqgb = new ArrayList<>();
+        List<ZstyBean.ZstyBean3> dataNqgb = bean.getNqgbStatisList();
+        if(dataNqgb != null){
+            for (int i = 0; i < dataNqgb.size(); i++) {
+                ZstyBean.ZstyBean3 item = dataNqgb.get(i);
+                dbListNqgb.add(new DBTyZsNqgb(
+                        null,
+                        item.getYear(),
+                        item.getPrincipal(),
+                        item.getDeputy()
+                ));
+            }
+        }
+        dBTyZsNqgbDaoUtils.insertMulti(dbListNqgb);
+
+
     }
 
     private void setDBHjty(HjtyBean.HjtyBean2 data) {

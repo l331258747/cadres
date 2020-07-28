@@ -15,26 +15,44 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/view_bottom_zs"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/dp_400"
             android:layout_margin="@dimen/dp_30"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@mipmap/ic_zs_line_bg"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_zs_ldgb"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_bottom_zs"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="领导干部职数推演"
+            app:layout_constraintTop_toTopOf="@+id/iv_zs_ldgb"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_zs_ldgb"
+            app:layout_constraintStart_toStartOf="@+id/iv_zs_ldgb"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_20"/>
+
         <LinearLayout
             android:id="@+id/view_legend"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/view_bottom_zs"
+            app:layout_constraintTop_toBottomOf="@+id/iv_zs_ldgb"
             app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"
             app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs"
-            android:layout_marginTop="@dimen/dp_30"
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginBottom="@dimen/dp_30"
@@ -116,9 +134,6 @@
 
         </LinearLayout>
 
-
-        
-
         <com.github.mikephil.charting.charts.CombinedChart
             android:id="@+id/chart_zs"
             android:layout_width="0dp"
@@ -133,16 +148,99 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_bottom_zs"
             app:layout_constraintTop_toBottomOf="@+id/view_legend"/>
 
-<!--        <View-->
-<!--            android:id="@+id/view_bottom_zs_line"-->
-<!--            android:layout_width="0dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/view_bottom_zs"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs"-->
-<!--            android:layout_marginTop="@dimen/dp_30"-->
-<!--            android:layout_marginStart="@dimen/dp_30"-->
-<!--            android:layout_marginBottom="@dimen/dp_30"-->
-<!--            android:layout_height="@dimen/dp_20"/>-->
+        <View
+            android:id="@+id/view_bottom_zs_nqgb"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_400"
+            android:layout_margin="@dimen/dp_30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_bottom_zs" />
+
+        <ImageView
+            android:id="@+id/iv_zs_nqgb"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_bottom_zs_nqgb"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs_nqgb"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年轻干部配备推演"
+            app:layout_constraintTop_toTopOf="@+id/iv_zs_nqgb"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_zs_nqgb"
+            app:layout_constraintStart_toStartOf="@+id/iv_zs_nqgb"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_20"/>
+
+        <LinearLayout
+            android:id="@+id/view_legend_nqgb"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/iv_zs_nqgb"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs_nqgb"
+            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs_nqgb"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:layout_height="@dimen/dp_40">
+
+            <View
+                android:background="@mipmap/ic_legend_blue"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="乡科级正职"
+                android:textColor="@color/color_23cefd"/>
+
+            <View
+                android:background="@mipmap/ic_legend_red"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginStart="@dimen/dp_30"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_10"
+                android:text="乡科级副职"
+                android:textColor="@color/color_23cefd"/>
+
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_zs_nqgb"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs_nqgb"
+            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs_nqgb"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:paddingBottom="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_30"
+            app:layout_constraintBottom_toBottomOf="@+id/view_bottom_zs_nqgb"
+            app:layout_constraintTop_toBottomOf="@+id/view_legend_nqgb"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_zs_nqgb"
+            android:layout_width="wrap_content"
+            app:constraint_referenced_ids="chart_zs_nqgb,view_legend_nqgb,view_bottom_zs_nqgb"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
