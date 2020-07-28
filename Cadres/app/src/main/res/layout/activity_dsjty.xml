@@ -45,17 +45,21 @@
         app:layout_constraintEnd_toStartOf="@+id/iv_title_center"
         app:layout_constraintTop_toTopOf="@+id/view_table"
         app:layout_constraintBottom_toBottomOf="@+id/view_table"
+        android:layout_marginBottom="@dimen/dp_2"
         android:background="@mipmap/ic_tab_left_un"
         android:layout_height="0dp"/>
 
     <TextView
         android:id="@+id/tv_title_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/iv_title_left"
-        app:layout_constraintTop_toTopOf="@+id/view_table"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/view_left_margin"
+        app:layout_constraintStart_toStartOf="@+id/iv_title_left"
+        app:layout_constraintTop_toTopOf="@+id/iv_title_left"
+        android:gravity="right|center_vertical"
         android:layout_marginEnd="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="@+id/view_table"
+        app:layout_goneMarginEnd="@dimen/dp_30"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_title_left"
         android:textColor="@color/color_23cffd"
         android:text="职数推演"/>
 
@@ -74,14 +78,39 @@
 
     <TextView
         android:id="@+id/tv_title_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="@+id/iv_title_center"
-        app:layout_constraintTop_toTopOf="@+id/view_table"
-        app:layout_constraintBottom_toBottomOf="@+id/view_table"
-        app:layout_constraintStart_toStartOf="@+id/iv_title_center"
+        app:layout_constraintTop_toTopOf="@+id/iv_title_center"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_title_center"
+        app:layout_constraintStart_toStartOf="@+id/view_center_margin"
+        android:gravity="center"
+        android:layout_marginStart="0dp"
+        app:layout_goneMarginStart="@dimen/dp_30"
         android:textColor="@color/color_23cffd"
         android:text="结构推演"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_title_right"
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids="iv_title_right,tv_title_right,view_left_margin,view_center_margin"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/view_left_margin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_title_left"
+        app:layout_constraintEnd_toEndOf="@+id/iv_title_left"/>
+
+    <View
+        android:id="@+id/view_center_margin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_title_center"
+        app:layout_constraintStart_toStartOf="@+id/iv_title_center"/>
+
 
     <ImageView
         android:id="@+id/iv_title_right"
@@ -95,13 +124,15 @@
 
     <TextView
         android:id="@+id/tv_title_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/view_table"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_title_right"
         android:layout_marginStart="@dimen/dp_10"
-        app:layout_constraintBottom_toBottomOf="@+id/view_table"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_title_right"
         app:layout_constraintStart_toStartOf="@+id/iv_title_right"
+        app:layout_constraintEnd_toEndOf="@+id/iv_title_right"
         android:textColor="@color/color_23cffd"
+        android:gravity="left|center_vertical"
         android:text="换届推演"/>
 
     <View

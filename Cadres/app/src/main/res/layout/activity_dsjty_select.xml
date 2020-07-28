@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_ldgb_bg"
+        android:layout_width="@dimen/dp_280"
+        android:layout_height="@dimen/dp_180"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_zjgwy_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/dp_100"
+        android:background="@mipmap/ic_yjjc_bw_bg"/>
+
+    <ImageView
+        android:id="@+id/iv_ldgb"
+        android:layout_width="@dimen/dp_80"
+        android:src="@mipmap/ic_gb_ldgb"
+        app:layout_constraintBottom_toTopOf="@+id/tv_ldgb"
+        app:layout_constraintStart_toStartOf="@+id/iv_ldgb_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_ldgb_bg"
+        app:layout_constraintTop_toTopOf="@+id/iv_ldgb_bg"
+        android:layout_height="@dimen/dp_80"/>
+
+    <TextView
+        android:id="@+id/tv_ldgb"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/iv_ldgb_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_ldgb_bg"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ldgb"
+        android:text="领导干部"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_22"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_ldgb_bg"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:id="@+id/iv_zjgwy_bg"
+        android:layout_width="@dimen/dp_280"
+        android:layout_height="@dimen/dp_180"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_ldgb_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/dp_100"
+        android:background="@mipmap/ic_yjjc_sjzt_bg"/>
+
+    <ImageView
+        android:id="@+id/iv_zjgwy"
+        android:layout_width="@dimen/dp_80"
+        android:src="@mipmap/ic_gb_zjgwy"
+        app:layout_constraintBottom_toTopOf="@+id/tv_zjgwy"
+        app:layout_constraintStart_toStartOf="@+id/iv_zjgwy_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_zjgwy_bg"
+        app:layout_constraintTop_toTopOf="@+id/iv_zjgwy_bg"
+        android:layout_height="@dimen/dp_80"/>
+
+    <TextView
+        android:id="@+id/tv_zjgwy"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/iv_zjgwy_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_zjgwy_bg"
+        app:layout_constraintTop_toBottomOf="@+id/iv_zjgwy"
+        android:text="职级公务员"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_22"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_zjgwy_bg"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

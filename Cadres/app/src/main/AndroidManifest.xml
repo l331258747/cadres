@@ -77,6 +77,8 @@
             android:name=".view.other.PhotoImageActivity"/>
         <activity
             android:name=".view.Gb.GbSelectActivity"/>
+        <activity
+            android:name=".view.dsjty.DsjtySelectActivity"/>
 
     </application>
 

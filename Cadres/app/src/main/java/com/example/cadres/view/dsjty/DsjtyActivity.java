@@ -5,10 +5,13 @@ import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBTyHjDao;
@@ -60,6 +63,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
@@ -71,6 +75,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     TextView tv_title_left, tv_title_center, tv_title_right;
     View view_back, view_home;
 
+    Group group_title_right;
+
     TextView tv_dialog;
     Group group_dialog;
 
@@ -79,6 +85,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     DialogBmData dialogBmData;
     List<BmLeftBean> bmLeftBeans2 = new ArrayList<BmLeftBean>();
 
+    String type;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_dsjty;
@@ -86,6 +94,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initView() {
+        type = intent.getStringExtra("type");
+
         hideTitleLayout();
 
         StatusBarUtil.setStatusBar(this, getResources().getColor(R.color.color_0b1342));
@@ -100,12 +110,13 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         tv_title_left = findViewById(R.id.tv_title_left);
         tv_title_center = findViewById(R.id.tv_title_center);
         tv_title_right = findViewById(R.id.tv_title_right);
+        group_title_right = findViewById(R.id.group_title_right);
+
         view_back = findViewById(R.id.view_back);
         view_home = findViewById(R.id.view_home);
         tv_dialog = findViewById(R.id.tv_dialog);
 
         tv_dialog.setOnClickListener(this);
-
         view_home.setOnClickListener(this);
         view_back.setOnClickListener(this);
         iv_title_left.setOnClickListener(this);
@@ -696,9 +707,13 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
             tv_title_left.setTextColor(ContextCompat.getColor(context, R.color.white));
         } else if (type == 2) {
             id_ty_jg_layout.setVisibility(View.VISIBLE);
-            iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center));
-            tv_title_center.setTextColor(ContextCompat.getColor(context, R.color.white));
             group_dialog.setVisibility(View.VISIBLE);
+            if(TextUtils.equals(this.type,"2")){
+                iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
+            }else{
+                iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center));
+            }
+            tv_title_center.setTextColor(ContextCompat.getColor(context, R.color.white));
         } else if (type == 3) {
             id_ty_swbz_layout.setVisibility(View.VISIBLE);
             iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
@@ -711,9 +726,17 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         id_ty_jg_layout.setVisibility(View.GONE);
         id_ty_swbz_layout.setVisibility(View.GONE);
 
-        iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
-        iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center_un));
-        iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+        if(TextUtils.equals(type,"2")){
+            iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
+            iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+            group_title_right.setVisibility(View.GONE);
+            tv_title_center.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+
+        }else{
+            iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
+            iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center_un));
+            iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+        }
 
         tv_title_left.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
         tv_title_center.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));

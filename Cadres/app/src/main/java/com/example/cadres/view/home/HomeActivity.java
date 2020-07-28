@@ -84,6 +84,7 @@ import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbActivity;
 import com.example.cadres.view.Gb.GbSelectActivity;
 import com.example.cadres.view.dsjty.DsjtyActivity;
+import com.example.cadres.view.dsjty.DsjtySelectActivity;
 import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
@@ -241,7 +242,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, ZcfgActivity.class));
                 break;
             case R.id.view_dsj:
-                startActivity(new Intent(context, DsjtyActivity.class));
+                startActivity(new Intent(context, DsjtySelectActivity.class));
                 break;
             case R.id.ll_right1:
                 DialogUtil.getInstance().getDefaultDialog(context, "同步数据需要时间较长，您是否确认同步数据？", new DialogUtil.DialogCallBack() {
