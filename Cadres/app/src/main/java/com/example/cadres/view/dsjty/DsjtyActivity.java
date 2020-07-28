@@ -142,6 +142,8 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                 initJgtyChart(chart_jg_zzmm);
                 initJgtyChart(chart_jg_mz);
                 initJgtyChart(chart_jg_nljg);
+                initJgtyChart(chart_jg_xl);
+                initJgtyChart(chart_jg_zy);
                 setJgtyData();
             }
 
@@ -481,13 +483,15 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     //---------------结构推演界面 start
 
     TextView tv_jg_nan,tv_gj_nv;
-    PieChart chart_jg_zzmm,chart_jg_nljg,chart_jg_mz;
+    PieChart chart_jg_zzmm,chart_jg_nljg,chart_jg_mz,chart_jg_xl,chart_jg_zy;
     public void initJgtyView(){
         tv_jg_nan = findViewById(R.id.tv_jg_nan);
         tv_gj_nv = findViewById(R.id.tv_gj_nv);
         chart_jg_zzmm = findViewById(R.id.chart_jg_zzmm);
         chart_jg_nljg = findViewById(R.id.chart_jg_nljg);
         chart_jg_mz = findViewById(R.id.chart_jg_mz);
+        chart_jg_xl = findViewById(R.id.chart_jg_xl);
+        chart_jg_zy = findViewById(R.id.chart_jg_zy);
     }
 
     public void setJgtyData(){
@@ -533,6 +537,22 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         colors3.add(Color.rgb(255,137,85));
         colors3.add(Color.rgb(0,234,203));
         showJgtyChart(chart_jg_nljg, entries3 , colors3,"");
+
+        List<PieEntry> entries4 = new ArrayList<>();
+        for (int i = 0; i < dbTyJg.getChartBeanEducationList().size(); i++) {
+            ChartBean data = dbTyJg.getChartBeanEducationList().get(i);
+            PieEntry entry = new PieEntry((float) data.getNum(), data.getName(), data);
+            entries4.add(entry);
+        }
+        showJgtyChart(chart_jg_xl, entries4 , colors3,"");
+
+        List<PieEntry> entries5 = new ArrayList<>();
+        for (int i = 0; i < dbTyJg.getChartBeanMajorList().size(); i++) {
+            ChartBean data = dbTyJg.getChartBeanMajorList().get(i);
+            PieEntry entry = new PieEntry((float) data.getNum(), data.getName(), data);
+            entries5.add(entry);
+        }
+        showJgtyChart(chart_jg_zy, entries5 , colors3,"");
     }
 
     private void initJgtyChart(PieChart chart_jg_zzmm) {

@@ -25,16 +25,20 @@ public class DbTyJg {
     private String nationList;
     private String outlookList;
     private String ageList;
+    private String educationList;
+    private String majorList;
 
-    @Generated(hash = 87656881)
-    public DbTyJg(Long _id, int deptId, String sexList, String nationList,
-                  String outlookList, String ageList) {
+    @Generated(hash = 960872994)
+    public DbTyJg(Long _id, int deptId, String sexList, String nationList, String outlookList, String ageList,
+            String educationList, String majorList) {
         this._id = _id;
         this.deptId = deptId;
         this.sexList = sexList;
         this.nationList = nationList;
         this.outlookList = outlookList;
         this.ageList = ageList;
+        this.educationList = educationList;
+        this.majorList = majorList;
     }
 
     @Generated(hash = 48086157)
@@ -150,4 +154,33 @@ public class DbTyJg {
         return list;
     }
 
+    public String getEducationList() {
+        return this.educationList;
+    }
+
+    public void setEducationList(String educationList) {
+        this.educationList = educationList;
+    }
+
+    public String getMajorList() {
+        return this.majorList;
+    }
+
+    public void setMajorList(String majorList) {
+        this.majorList = majorList;
+    }
+
+    public List<ChartBean> getChartBeanEducationList() {
+        List<ChartBean> list = GsonUtil.convertString2Collection(educationList, new TypeToken<List<ChartBean>>() {
+        });
+        if (list == null) return new ArrayList<>();
+        return list;
+    }
+
+    public List<ChartBean> getChartBeanMajorList() {
+        List<ChartBean> list = GsonUtil.convertString2Collection(majorList, new TypeToken<List<ChartBean>>() {
+        });
+        if (list == null) return new ArrayList<>();
+        return list;
+    }
 }

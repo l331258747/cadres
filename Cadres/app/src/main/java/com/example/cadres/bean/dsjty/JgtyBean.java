@@ -13,7 +13,7 @@ public class JgtyBean {
         return orgdeductionList;
     }
 
-    public static class jgtyBean2{
+    public static class jgtyBean2 {
 
 
         /**
@@ -25,10 +25,30 @@ public class JgtyBean {
          */
 
         private int deptId;
-        private List<SexListBean> sexList;
-        private List<NationListBean> nationList;
-        private List<OutlookListBean> outlookList;
-        private List<AgeListBean> ageList;
+        private List<RankAgeList> sexList;
+        private List<RankAgeList> nationList;
+        private List<RankAgeList> outlookList;
+        private List<RankAgeList> ageList;
+        private List<RankAgeList> educationList;
+        private List<RankAgeList> majorList;
+
+        public List<RankAgeList> getEducationList() {
+            return educationList;
+        }
+
+        public String getEducationListStr() {
+            if (educationList == null) return "";
+            return GsonUtil.convertVO2String(educationList);
+        }
+
+        public List<RankAgeList> getMajorList() {
+            return majorList;
+        }
+
+        public String getMajorListStr() {
+            if (majorList == null) return "";
+            return GsonUtil.convertVO2String(majorList);
+        }
 
         public int getDeptId() {
             return deptId;
@@ -38,161 +58,57 @@ public class JgtyBean {
             this.deptId = deptId;
         }
 
-        public List<SexListBean> getSexList() {
+        public List<RankAgeList> getSexList() {
             return sexList;
         }
 
         public String getSexListStr() {
-            if(sexList == null) return "";
+            if (sexList == null) return "";
             return GsonUtil.convertVO2String(sexList);
         }
 
-        public void setSexList(List<SexListBean> sexList) {
+        public void setSexList(List<RankAgeList> sexList) {
             this.sexList = sexList;
         }
 
-        public List<NationListBean> getNationList() {
+        public List<RankAgeList> getNationList() {
             return nationList;
         }
 
         public String getNationListStr() {
-            if(nationList == null) return "";
+            if (nationList == null) return "";
             return GsonUtil.convertVO2String(nationList);
         }
 
-        public void setNationList(List<NationListBean> nationList) {
+        public void setNationList(List<RankAgeList> nationList) {
             this.nationList = nationList;
         }
 
-        public List<OutlookListBean> getOutlookList() {
+        public List<RankAgeList> getOutlookList() {
             return outlookList;
         }
 
         public String getOutlookListStr() {
-            if(outlookList == null) return "";
+            if (outlookList == null) return "";
             return GsonUtil.convertVO2String(outlookList);
         }
 
-        public void setOutlookList(List<OutlookListBean> outlookList) {
+        public void setOutlookList(List<RankAgeList> outlookList) {
             this.outlookList = outlookList;
         }
 
-        public List<AgeListBean> getAgeList() {
+        public List<RankAgeList> getAgeList() {
             return ageList;
         }
 
         public String getAgeListStr() {
-            if(ageList == null) return "";
+            if (ageList == null) return "";
             return GsonUtil.convertVO2String(ageList);
         }
 
-        public void setAgeList(List<AgeListBean> ageList) {
+        public void setAgeList(List<RankAgeList> ageList) {
             this.ageList = ageList;
         }
 
-        public static class SexListBean {
-            /**
-             * name : 男
-             * amount : 4
-             */
-
-            private String name;
-            private int amount;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getAmount() {
-                return amount;
-            }
-
-            public void setAmount(int amount) {
-                this.amount = amount;
-            }
-        }
-
-        public static class NationListBean {
-            /**
-             * name : 汉族
-             * amount : 4
-             */
-
-            private String name;
-            private int amount;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getAmount() {
-                return amount;
-            }
-
-            public void setAmount(int amount) {
-                this.amount = amount;
-            }
-        }
-
-        public static class OutlookListBean {
-            /**
-             * name : 中共党员
-             * amount : 4
-             */
-
-            private String name;
-            private int amount;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getAmount() {
-                return amount;
-            }
-
-            public void setAmount(int amount) {
-                this.amount = amount;
-            }
-        }
-
-        public static class AgeListBean {
-            /**
-             * name : 34岁以下
-             * amount : 1
-             */
-
-            private String name;
-            private int amount;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getAmount() {
-                return amount;
-            }
-
-            public void setAmount(int amount) {
-                this.amount = amount;
-            }
-        }
     }
-
 }

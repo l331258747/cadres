@@ -1,16 +1,8 @@
 package com.example.cadres.beanDB;
 
-import com.example.cadres.bean.dsjty.RankAgeList;
-import com.example.cadres.bean.dsjty.ZstyBean;
-import com.example.cadres.utils.GsonUtil;
-import com.google.gson.reflect.TypeToken;
-
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-
-import java.util.ArrayList;
-import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 @Entity
 public class DbTyZs {

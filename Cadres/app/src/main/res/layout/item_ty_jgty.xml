@@ -127,15 +127,6 @@
          app:layout_constraintTop_toTopOf="@+id/view_2_jg"
          app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"/>
 
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:src="@mipmap/ic_jg_zzmm"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/view_2_jg"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/view_2_jg"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/view_2_jg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"-->
-<!--            android:layout_height="0dp"/>-->
-
         <ImageView
             android:id="@+id/iv_jg_zzmm"
             android:layout_width="@dimen/dp_260"
@@ -175,15 +166,6 @@
          app:layout_constraintEnd_toEndOf="@+id/view_3_jg"
          app:layout_constraintTop_toTopOf="@+id/view_3_jg"
          app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"/>
-
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:src="@mipmap/ic_jg_mz"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/view_3_jg"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/view_3_jg"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/view_3_jg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"-->
-<!--            android:layout_height="0dp"/>-->
 
         <ImageView
             android:id="@+id/iv_jg_mz"
@@ -225,15 +207,6 @@
          app:layout_constraintTop_toTopOf="@+id/view_4_jg"
          app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"/>
 
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:src="@mipmap/ic_jg_nljg"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/view_4_jg"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/view_4_jg"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/view_4_jg"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"-->
-<!--            android:layout_height="0dp"/>-->
-
         <ImageView
             android:id="@+id/iv_jg_nljg"
             android:layout_width="@dimen/dp_260"
@@ -254,6 +227,87 @@
             android:textColor="@color/color_23cffd"
             android:layout_marginStart="@dimen/dp_60"/>
 
+
+        <View
+            android:id="@+id/view_5_jg"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_3_jg"
+            app:layout_constraintEnd_toStartOf="@+id/view_6_jg"
+            android:layout_height="@dimen/dp_260"/>
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_jg_xl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@+id/view_5_jg"
+            app:layout_constraintEnd_toEndOf="@+id/view_5_jg"
+            app:layout_constraintTop_toTopOf="@+id/view_5_jg"
+            app:layout_constraintBottom_toBottomOf="@+id/view_5_jg"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_xl"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_5_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_5_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全日制学历"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_xl"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_xl"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_xl"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
+
+
+        <View
+            android:id="@+id/view_6_jg"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@+id/view_5_jg"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@mipmap/ic_zs_line_bg"
+            app:layout_constraintTop_toBottomOf="@+id/view_4_jg"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_height="@dimen/dp_260"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_jg_zy"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@+id/view_6_jg"
+            app:layout_constraintEnd_toEndOf="@+id/view_6_jg"
+            app:layout_constraintTop_toTopOf="@+id/view_6_jg"
+            app:layout_constraintBottom_toBottomOf="@+id/view_6_jg"/>
+
+        <ImageView
+            android:id="@+id/iv_jg_zy"
+            android:layout_width="@dimen/dp_260"
+            android:layout_height="@dimen/dp_40"
+            android:src="@mipmap/ic_zs_tx_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_6_jg"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_5"
+            app:layout_constraintStart_toStartOf="@+id/view_6_jg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专业"
+            app:layout_constraintTop_toTopOf="@+id/iv_jg_zy"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_jg_zy"
+            app:layout_constraintStart_toStartOf="@+id/iv_jg_zy"
+            android:textColor="@color/color_23cffd"
+            android:layout_marginStart="@dimen/dp_60"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -30,6 +30,8 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         public final static Property NationList = new Property(3, String.class, "nationList", false, "NATION_LIST");
         public final static Property OutlookList = new Property(4, String.class, "outlookList", false, "OUTLOOK_LIST");
         public final static Property AgeList = new Property(5, String.class, "ageList", false, "AGE_LIST");
+        public final static Property EducationList = new Property(6, String.class, "educationList", false, "EDUCATION_LIST");
+        public final static Property MajorList = new Property(7, String.class, "majorList", false, "MAJOR_LIST");
     }
 
 
@@ -50,7 +52,9 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
                 "\"SEX_LIST\" TEXT," + // 2: sexList
                 "\"NATION_LIST\" TEXT," + // 3: nationList
                 "\"OUTLOOK_LIST\" TEXT," + // 4: outlookList
-                "\"AGE_LIST\" TEXT);"); // 5: ageList
+                "\"AGE_LIST\" TEXT," + // 5: ageList
+                "\"EDUCATION_LIST\" TEXT," + // 6: educationList
+                "\"MAJOR_LIST\" TEXT);"); // 7: majorList
     }
 
     /** Drops the underlying database table. */
@@ -88,6 +92,16 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         if (ageList != null) {
             stmt.bindString(6, ageList);
         }
+ 
+        String educationList = entity.getEducationList();
+        if (educationList != null) {
+            stmt.bindString(7, educationList);
+        }
+ 
+        String majorList = entity.getMajorList();
+        if (majorList != null) {
+            stmt.bindString(8, majorList);
+        }
     }
 
     @Override
@@ -119,6 +133,16 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         if (ageList != null) {
             stmt.bindString(6, ageList);
         }
+ 
+        String educationList = entity.getEducationList();
+        if (educationList != null) {
+            stmt.bindString(7, educationList);
+        }
+ 
+        String majorList = entity.getMajorList();
+        if (majorList != null) {
+            stmt.bindString(8, majorList);
+        }
     }
 
     @Override
@@ -134,7 +158,9 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // sexList
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // nationList
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // outlookList
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // ageList
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // ageList
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // educationList
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // majorList
         );
         return entity;
     }
@@ -147,6 +173,8 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         entity.setNationList(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setOutlookList(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAgeList(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setEducationList(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setMajorList(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override
