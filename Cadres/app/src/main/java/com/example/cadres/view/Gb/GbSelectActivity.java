@@ -6,10 +6,13 @@ import android.widget.ImageView;
 
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.view.search.SearchActivity;
 
 public class GbSelectActivity extends BaseActivity implements View.OnClickListener {
 
     ImageView iv_ldgb_bg,iv_zjgwy_bg,iv_hbgb_bg;
+
+    int upActivity;
 
     @Override
     public int getLayoutId() {
@@ -21,6 +24,8 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
         showLeftIcon();
         showLLRightGoHome();
         showTitleTv("干部名册");
+
+        upActivity = intent.getIntExtra("upActivity",0);
 
         iv_ldgb_bg = $(R.id.iv_ldgb_bg);
         iv_zjgwy_bg = $(R.id.iv_zjgwy_bg);
@@ -39,7 +44,13 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(context, GbActivity.class);
+        Intent intent;
+        if(upActivity == 1){
+            intent = new Intent(context, SearchActivity.class);
+        }else{
+            intent = new Intent(context, GbActivity.class);
+        }
+
         //类型（1领导干部，2职级公务员，3后备干部）
         switch (view.getId()){
             case R.id.iv_ldgb_bg:

@@ -380,7 +380,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.et_search:
-                startActivity(new Intent(context, SearchActivity.class));
+                Intent intent = new Intent(context, SearchActivity.class);
+                intent.putExtra("type",type);
+                startActivity(intent);
                 break;
         }
     }
@@ -392,12 +394,12 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         if(deptId == 0){
             DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
             QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-            queryBuilder.where(DBGbBeanDao.Properties.Type.eq(type));
+            queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
             dbList = queryBuilder.list();
         }else{
             DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
             QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-            queryBuilder.where(DBGbBeanDao.Properties.Type.eq(type));
+            queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
                     .where(DBGbCadreDeptListBeanDao.Properties.DeptCode.like("%" + deptId + "%"));
             queryBuilder.distinct();

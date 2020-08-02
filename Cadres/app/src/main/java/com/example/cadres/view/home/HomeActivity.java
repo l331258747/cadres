@@ -230,13 +230,17 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         switch (view.getId()) {
             case R.id.et_search:
-                startActivity(new Intent(context, SearchActivity.class));
+                Intent intent1 = new Intent(context, GbSelectActivity.class);
+                intent1.putExtra("upActivity", 1);
+                startActivity(intent1);
                 break;
             case R.id.view_mcb:
                 startActivity(new Intent(context, BmActivity.class));
                 break;
             case R.id.view_gbmc:
-                startActivity(new Intent(context, GbSelectActivity.class));
+                Intent intent0= new Intent(context, GbSelectActivity.class);
+                intent0.putExtra("upActivity", 0);
+                startActivity(intent0);
                 break;
             case R.id.view_yjjc:
                 startActivity(new Intent(context, YjjcActivity.class));

@@ -41,6 +41,8 @@ public class SearchActivity extends BaseActivity {
 
     Group group_history;
 
+    String type;
+
     private DecimalFormat df = new DecimalFormat("0");
 
     @Override
@@ -54,6 +56,8 @@ public class SearchActivity extends BaseActivity {
         showLeftIcon();
         showLLRightGoHome();
         showTitleTv("大数据选人");
+
+        type = intent.getStringExtra("type");
 
         initEdit();
         initFLHistory();
@@ -112,9 +116,7 @@ public class SearchActivity extends BaseActivity {
                 listRz.add(xrzjnxMax + "");
                 searchBean.getXrzjnxLists().addAll(listRz);
 
-                Intent intent = new Intent(context,SearchDetailActivity.class);
-                intent.putExtra("data",searchBean);
-                startActivity(intent);
+                goDetailActivity(searchBean);
             }
         });
     }
@@ -158,9 +160,8 @@ public class SearchActivity extends BaseActivity {
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 searchBean.clean();
                 searchBean.setCyss(mVals_cyss[position]);
-                Intent intent = new Intent(context,SearchDetailActivity.class);
-                intent.putExtra("data",searchBean);
-                startActivity(intent);
+
+                goDetailActivity(searchBean);
                 return false;
             }
         });
@@ -345,11 +346,10 @@ public class SearchActivity extends BaseActivity {
 
                 MySelfInfo.getInstance().addSearch(v.getText().toString());
 
+                searchBean.clean();
                 searchBean.setSearch(v.getText().toString());
 
-                Intent intent = new Intent(context,SearchDetailActivity.class);
-                intent.putExtra("data",searchBean);
-                startActivity(intent);
+                goDetailActivity(searchBean);
 
 
                 return false;
@@ -389,13 +389,18 @@ public class SearchActivity extends BaseActivity {
                 searchBean.clean();
                 searchBean.setSearch(lists.get(position));
 
-                Intent intent = new Intent(context,SearchDetailActivity.class);
-                intent.putExtra("data",searchBean);
-                startActivity(intent);
+                goDetailActivity(searchBean);
 
                 return false;
             }
         });
+    }
+
+    private void goDetailActivity(SearchBean searchBean){
+        Intent intent = new Intent(context,SearchDetailActivity.class);
+        intent.putExtra("data",searchBean);
+        intent.putExtra("type",type);
+        startActivity(intent);
     }
 
     @Override

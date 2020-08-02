@@ -52,6 +52,8 @@ public class SearchDetailActivity extends BaseActivity {
     LinearLayout layout_info;
     GbDrawerData gbDrawerData;
 
+    String type;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_search_detail_drawer;
@@ -79,6 +81,7 @@ public class SearchDetailActivity extends BaseActivity {
         dBGbDaoUtils = _Store.getGbDaoUtils();
 
         searchBean = (SearchBean) intent.getSerializableExtra("data");
+        type = intent.getStringExtra("type");
         if(!TextUtils.isEmpty(searchBean.getSearch())){
             getDbList(searchBean.getSearch());
         }else if(!TextUtils.isEmpty(searchBean.getCyss())){
@@ -95,6 +98,9 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbCyssList(String key){
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+
         if(TextUtils.equals(key,"90后干部")){
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(1990, searchBean.getCurrentYear()));
         }else if(TextUtils.equals(key,"35岁及以下年轻干部")){
@@ -117,6 +123,9 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+
         queryBuilder.whereOr(
                 DBGbBeanDao.Properties.Name.like("%"+key + "%"),
                 DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),
@@ -155,6 +164,8 @@ public class SearchDetailActivity extends BaseActivity {
     public void getDbList(){
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+        LogUtil.e("干部type 数据条数："+queryBuilder.count());
 
         if(searchBean.getGblxLists().size() > 0){
             queryBuilder.where(DBGbBeanDao.Properties.CadreType.in(searchBean.getGblxLists()));
