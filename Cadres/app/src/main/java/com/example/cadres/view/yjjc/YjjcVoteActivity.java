@@ -1,24 +1,20 @@
 package com.example.cadres.view.yjjc;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.adapter.YjjcVoteAdapter;
-import com.example.cadres.base.ActivityCollect;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.yjjc.YjjcVoteListBean;
-import com.example.cadres.dialog.DialogUtil;
+import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.mvp.YjjcVoteContract;
 import com.example.cadres.mvp.YjjcVotePresenter;
-import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.rxbus.RxBus2;
 import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
-import com.example.cadres.view.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,14 +80,15 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
                     params.put(item.getVoteId() + "",item.getMyVote() + "");
 
                     if(item.getMyVote() == 1) numYes++;
-                    if(item.getMyVote() == 2) {numNo++; namesNo.append(item.getCadreName() + "，");}
-                    if(item.getMyVote() == 3) {numNone++; namesNone.append(item.getCadreName() + "，");}
+                    if(item.getMyVote() == 2) {numNo++; namesNo.append(item.getCadreName() + " - " + item.getAspiringPosition() + "，");}
+                    if(item.getMyVote() == 3) {numNone++; namesNone.append(item.getCadreName() + " - " + item.getAspiringPosition() + "，");}
                 }
 
                 String content = getDialogContent(numYes,numNo,numNone,namesNo,namesNone);
-                DialogUtil.getInstance().getDefaultDialog(context, content, new DialogUtil.DialogCallBack() {
+
+                new DefaultDialog(context).setContentHtml(content).setContentGravity(Gravity.LEFT).setSubmitListener(new View.OnClickListener() {
                     @Override
-                    public void exectEvent(DialogInterface alterDialog) {
+                    public void onClick(View view) {
                         mPresenter.sendYjjcVote(params);
                     }
                 }).show();
@@ -101,12 +98,12 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
 
     public String getDialogContent(int numYes,int numNo,int numNone,StringBuffer namesNo,StringBuffer namesNone){
         if(numNo == 0 && numNone == 0)
-            return "同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
-        String content = "同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
+            return "<b>票决结果：</b>同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
+        String content = "<b>票决结果：</b>同意"+numYes+"人、不同意"+numNo+"人、弃权"+numNone+"人";
         if(numNo > 0)
-            content = content + "\n" +"不同意人员：" + "\n" + namesNo.toString().substring(0,namesNo.toString().length() - 1);
+            content = content + "<br>" +"<b>其中不同意：</b>" + namesNo.toString().substring(0,namesNo.toString().length() - 1);
         if(numNone > 0)
-            content = content + "\n" +"弃权人员：" + "\n" + namesNone.toString().substring(0,namesNone.toString().length() - 1);
+            content = content + "<br>" +"<b>弃权：</b>" + namesNone.toString().substring(0,namesNone.toString().length() - 1);
         return content;
     }
 

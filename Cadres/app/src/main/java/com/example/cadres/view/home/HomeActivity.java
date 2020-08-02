@@ -30,7 +30,6 @@ import com.example.cadres.bean.Gb.GbCadreRankListBean;
 import com.example.cadres.bean.Gb.GbCadreResumeListBean;
 import com.example.cadres.bean.Gb.GbCadreTrainListBean;
 import com.example.cadres.bean.apk.ApkBean;
-import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmBean1;
 import com.example.cadres.bean.bm.BmBean2;
 import com.example.cadres.bean.bm.BmExplainBean;
@@ -72,7 +71,7 @@ import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
 import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
-import com.example.cadres.dialog.DialogUtil;
+import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
 import com.example.cadres.utils.FileUtil;
@@ -82,11 +81,8 @@ import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
-import com.example.cadres.view.Gb.GbActivity;
 import com.example.cadres.view.Gb.GbSelectActivity;
-import com.example.cadres.view.dsjty.DsjtyActivity;
 import com.example.cadres.view.dsjty.DsjtySelectActivity;
-import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
@@ -252,9 +248,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, DsjtySelectActivity.class));
                 break;
             case R.id.ll_right1:
-                DialogUtil.getInstance().getDefaultDialog(context, "同步数据需要时间较长，您是否确认同步数据？", new DialogUtil.DialogCallBack() {
+                new DefaultDialog(context).setContent("同步数据需要时间较长，您是否确认同步数据？").setSubmitListener(new View.OnClickListener() {
                     @Override
-                    public void exectEvent(DialogInterface alterDialog) {
+                    public void onClick(View view) {
                         getUserInfoData();
                     }
                 }).show();
@@ -468,9 +464,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     //第一次
     public void fistOne() {
         if (SPUtils.getInstance().getBoolean(SPUtils.FIRST_OPENED, true)) {
-            DialogUtil.getInstance().getDefaultDialog(context, "是否需要同步数据", new DialogUtil.DialogCallBack() {
+            new DefaultDialog(context).setContent("是否需要同步数据").setSubmitListener(new View.OnClickListener() {
                 @Override
-                public void exectEvent(DialogInterface alterDialog) {
+                public void onClick(View view) {
                     getUserInfoData();
                 }
             }).show();
