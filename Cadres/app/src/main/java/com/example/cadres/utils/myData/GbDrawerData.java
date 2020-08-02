@@ -129,8 +129,8 @@ public class GbDrawerData {
         tv_jkzk.setText(data.getHealth());
         tv_zyjszw.setText(data.getTechnicalTitle());
         tv_sxzyjzc.setText(data.getExpertise());
-        tv_xlxw_qrz.setText(data.getFullTimeEducation());
-        tv_xlxw_zz.setText(data.getCurrentEducation());
+        tv_xlxw_qrz.setText(data.getFullTime());
+        tv_xlxw_zz.setText(data.getCurrent());
         tv_byyxxjzy_qrz.setText(data.getFullTimeSchoolMajor());
         tv_byyxxjzy_zz.setText(data.getCurrentSchoolMajor());
 

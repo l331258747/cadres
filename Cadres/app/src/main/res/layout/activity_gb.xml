@@ -229,7 +229,7 @@
 
             <TextView
                 android:id="@+id/tv_xrzw"
-                android:layout_width="@dimen/dp_70"
+                android:layout_width="@dimen/dp_120"
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:textSize="@dimen/sp_12"
@@ -278,7 +278,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_xrzwcc"
                 app:layout_constraintTop_toTopOf="@+id/view_title"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title"
-                android:text="现任职务\n层次时间"/>
+                android:text="任现职务\n层次时间"/>
 
             <TextView
                 android:id="@+id/tv_zwjb"

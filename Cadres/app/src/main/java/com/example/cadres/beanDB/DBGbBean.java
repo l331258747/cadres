@@ -39,11 +39,13 @@ public class DBGbBean {
     private String personnelType;
     private String technicalTitle;
     private String expertise;
+    private String fullTime;
     private String fullTimeEducation;
     private String fullTimeSchool;
     private int fullTimeDegreeId;
     private String fullTimeDegreeName;
     private String fullTimeSchoolType;
+    private String current;
     private String currentEducation;
     private int currentDegreeId;
     private String currentDegreeName;
@@ -72,7 +74,7 @@ public class DBGbBean {
     private String cadreTrain;
     private String politicalConstruction;
     
-    @Generated(hash = 1805865064)
+    @Generated(hash = 1798438967)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -82,10 +84,10 @@ public class DBGbBean {
             int functionaryRankId, String functionaryRankName,
             String functionaryRankTime, String cadreType, String currentPosition,
             String currentPositionTime, String personnelType, String technicalTitle,
-            String expertise, String fullTimeEducation, String fullTimeSchool,
-            int fullTimeDegreeId, String fullTimeDegreeName,
-            String fullTimeSchoolType, String currentEducation, int currentDegreeId,
-            String currentDegreeName, String currentSchool,
+            String expertise, String fullTime, String fullTimeEducation,
+            String fullTimeSchool, int fullTimeDegreeId, String fullTimeDegreeName,
+            String fullTimeSchoolType, String current, String currentEducation,
+            int currentDegreeId, String currentDegreeName, String currentSchool,
             String currentSchoolType, String workPhone, String phoneNumber,
             String homeAddress, String responsibilities, String affectedState,
             String fullTimeMajor, String currentMajor, String fullTimeSchoolMajor,
@@ -123,11 +125,13 @@ public class DBGbBean {
         this.personnelType = personnelType;
         this.technicalTitle = technicalTitle;
         this.expertise = expertise;
+        this.fullTime = fullTime;
         this.fullTimeEducation = fullTimeEducation;
         this.fullTimeSchool = fullTimeSchool;
         this.fullTimeDegreeId = fullTimeDegreeId;
         this.fullTimeDegreeName = fullTimeDegreeName;
         this.fullTimeSchoolType = fullTimeSchoolType;
+        this.current = current;
         this.currentEducation = currentEducation;
         this.currentDegreeId = currentDegreeId;
         this.currentDegreeName = currentDegreeName;
@@ -534,6 +538,18 @@ public class DBGbBean {
     }
     public void setPoliticalConstruction(String politicalConstruction) {
         this.politicalConstruction = politicalConstruction;
+    }
+    public String getFullTime() {
+        return this.fullTime;
+    }
+    public void setFullTime(String fullTime) {
+        this.fullTime = fullTime;
+    }
+    public String getCurrent() {
+        return this.current;
+    }
+    public void setCurrent(String current) {
+        this.current = current;
     }
 
 

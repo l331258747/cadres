@@ -53,36 +53,38 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property PersonnelType = new Property(26, String.class, "personnelType", false, "PERSONNEL_TYPE");
         public final static Property TechnicalTitle = new Property(27, String.class, "technicalTitle", false, "TECHNICAL_TITLE");
         public final static Property Expertise = new Property(28, String.class, "expertise", false, "EXPERTISE");
-        public final static Property FullTimeEducation = new Property(29, String.class, "fullTimeEducation", false, "FULL_TIME_EDUCATION");
-        public final static Property FullTimeSchool = new Property(30, String.class, "fullTimeSchool", false, "FULL_TIME_SCHOOL");
-        public final static Property FullTimeDegreeId = new Property(31, int.class, "fullTimeDegreeId", false, "FULL_TIME_DEGREE_ID");
-        public final static Property FullTimeDegreeName = new Property(32, String.class, "fullTimeDegreeName", false, "FULL_TIME_DEGREE_NAME");
-        public final static Property FullTimeSchoolType = new Property(33, String.class, "fullTimeSchoolType", false, "FULL_TIME_SCHOOL_TYPE");
-        public final static Property CurrentEducation = new Property(34, String.class, "currentEducation", false, "CURRENT_EDUCATION");
-        public final static Property CurrentDegreeId = new Property(35, int.class, "currentDegreeId", false, "CURRENT_DEGREE_ID");
-        public final static Property CurrentDegreeName = new Property(36, String.class, "currentDegreeName", false, "CURRENT_DEGREE_NAME");
-        public final static Property CurrentSchool = new Property(37, String.class, "currentSchool", false, "CURRENT_SCHOOL");
-        public final static Property CurrentSchoolType = new Property(38, String.class, "currentSchoolType", false, "CURRENT_SCHOOL_TYPE");
-        public final static Property WorkPhone = new Property(39, String.class, "workPhone", false, "WORK_PHONE");
-        public final static Property PhoneNumber = new Property(40, String.class, "phoneNumber", false, "PHONE_NUMBER");
-        public final static Property HomeAddress = new Property(41, String.class, "homeAddress", false, "HOME_ADDRESS");
-        public final static Property Responsibilities = new Property(42, String.class, "responsibilities", false, "RESPONSIBILITIES");
-        public final static Property AffectedState = new Property(43, String.class, "affectedState", false, "AFFECTED_STATE");
-        public final static Property FullTimeMajor = new Property(44, String.class, "fullTimeMajor", false, "FULL_TIME_MAJOR");
-        public final static Property CurrentMajor = new Property(45, String.class, "currentMajor", false, "CURRENT_MAJOR");
-        public final static Property FullTimeSchoolMajor = new Property(46, String.class, "fullTimeSchoolMajor", false, "FULL_TIME_SCHOOL_MAJOR");
-        public final static Property CurrentSchoolMajor = new Property(47, String.class, "currentSchoolMajor", false, "CURRENT_SCHOOL_MAJOR");
-        public final static Property NativePlaceReplenish = new Property(48, String.class, "nativePlaceReplenish", false, "NATIVE_PLACE_REPLENISH");
-        public final static Property FunctionaryRegisterTime = new Property(49, String.class, "functionaryRegisterTime", false, "FUNCTIONARY_REGISTER_TIME");
-        public final static Property PositionType = new Property(50, String.class, "positionType", false, "POSITION_TYPE");
-        public final static Property EstablishmentType = new Property(51, String.class, "establishmentType", false, "ESTABLISHMENT_TYPE");
-        public final static Property Remark = new Property(52, String.class, "remark", false, "REMARK");
-        public final static Property Type = new Property(53, String.class, "type", false, "TYPE");
-        public final static Property CadreResume = new Property(54, String.class, "cadreResume", false, "CADRE_RESUME");
-        public final static Property CadreAward = new Property(55, String.class, "cadreAward", false, "CADRE_AWARD");
-        public final static Property CadrePunish = new Property(56, String.class, "cadrePunish", false, "CADRE_PUNISH");
-        public final static Property CadreTrain = new Property(57, String.class, "cadreTrain", false, "CADRE_TRAIN");
-        public final static Property PoliticalConstruction = new Property(58, String.class, "politicalConstruction", false, "POLITICAL_CONSTRUCTION");
+        public final static Property FullTime = new Property(29, String.class, "fullTime", false, "FULL_TIME");
+        public final static Property FullTimeEducation = new Property(30, String.class, "fullTimeEducation", false, "FULL_TIME_EDUCATION");
+        public final static Property FullTimeSchool = new Property(31, String.class, "fullTimeSchool", false, "FULL_TIME_SCHOOL");
+        public final static Property FullTimeDegreeId = new Property(32, int.class, "fullTimeDegreeId", false, "FULL_TIME_DEGREE_ID");
+        public final static Property FullTimeDegreeName = new Property(33, String.class, "fullTimeDegreeName", false, "FULL_TIME_DEGREE_NAME");
+        public final static Property FullTimeSchoolType = new Property(34, String.class, "fullTimeSchoolType", false, "FULL_TIME_SCHOOL_TYPE");
+        public final static Property Current = new Property(35, String.class, "current", false, "CURRENT");
+        public final static Property CurrentEducation = new Property(36, String.class, "currentEducation", false, "CURRENT_EDUCATION");
+        public final static Property CurrentDegreeId = new Property(37, int.class, "currentDegreeId", false, "CURRENT_DEGREE_ID");
+        public final static Property CurrentDegreeName = new Property(38, String.class, "currentDegreeName", false, "CURRENT_DEGREE_NAME");
+        public final static Property CurrentSchool = new Property(39, String.class, "currentSchool", false, "CURRENT_SCHOOL");
+        public final static Property CurrentSchoolType = new Property(40, String.class, "currentSchoolType", false, "CURRENT_SCHOOL_TYPE");
+        public final static Property WorkPhone = new Property(41, String.class, "workPhone", false, "WORK_PHONE");
+        public final static Property PhoneNumber = new Property(42, String.class, "phoneNumber", false, "PHONE_NUMBER");
+        public final static Property HomeAddress = new Property(43, String.class, "homeAddress", false, "HOME_ADDRESS");
+        public final static Property Responsibilities = new Property(44, String.class, "responsibilities", false, "RESPONSIBILITIES");
+        public final static Property AffectedState = new Property(45, String.class, "affectedState", false, "AFFECTED_STATE");
+        public final static Property FullTimeMajor = new Property(46, String.class, "fullTimeMajor", false, "FULL_TIME_MAJOR");
+        public final static Property CurrentMajor = new Property(47, String.class, "currentMajor", false, "CURRENT_MAJOR");
+        public final static Property FullTimeSchoolMajor = new Property(48, String.class, "fullTimeSchoolMajor", false, "FULL_TIME_SCHOOL_MAJOR");
+        public final static Property CurrentSchoolMajor = new Property(49, String.class, "currentSchoolMajor", false, "CURRENT_SCHOOL_MAJOR");
+        public final static Property NativePlaceReplenish = new Property(50, String.class, "nativePlaceReplenish", false, "NATIVE_PLACE_REPLENISH");
+        public final static Property FunctionaryRegisterTime = new Property(51, String.class, "functionaryRegisterTime", false, "FUNCTIONARY_REGISTER_TIME");
+        public final static Property PositionType = new Property(52, String.class, "positionType", false, "POSITION_TYPE");
+        public final static Property EstablishmentType = new Property(53, String.class, "establishmentType", false, "ESTABLISHMENT_TYPE");
+        public final static Property Remark = new Property(54, String.class, "remark", false, "REMARK");
+        public final static Property Type = new Property(55, String.class, "type", false, "TYPE");
+        public final static Property CadreResume = new Property(56, String.class, "cadreResume", false, "CADRE_RESUME");
+        public final static Property CadreAward = new Property(57, String.class, "cadreAward", false, "CADRE_AWARD");
+        public final static Property CadrePunish = new Property(58, String.class, "cadrePunish", false, "CADRE_PUNISH");
+        public final static Property CadreTrain = new Property(59, String.class, "cadreTrain", false, "CADRE_TRAIN");
+        public final static Property PoliticalConstruction = new Property(60, String.class, "politicalConstruction", false, "POLITICAL_CONSTRUCTION");
     }
 
 
@@ -127,36 +129,38 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"PERSONNEL_TYPE\" TEXT," + // 26: personnelType
                 "\"TECHNICAL_TITLE\" TEXT," + // 27: technicalTitle
                 "\"EXPERTISE\" TEXT," + // 28: expertise
-                "\"FULL_TIME_EDUCATION\" TEXT," + // 29: fullTimeEducation
-                "\"FULL_TIME_SCHOOL\" TEXT," + // 30: fullTimeSchool
-                "\"FULL_TIME_DEGREE_ID\" INTEGER NOT NULL ," + // 31: fullTimeDegreeId
-                "\"FULL_TIME_DEGREE_NAME\" TEXT," + // 32: fullTimeDegreeName
-                "\"FULL_TIME_SCHOOL_TYPE\" TEXT," + // 33: fullTimeSchoolType
-                "\"CURRENT_EDUCATION\" TEXT," + // 34: currentEducation
-                "\"CURRENT_DEGREE_ID\" INTEGER NOT NULL ," + // 35: currentDegreeId
-                "\"CURRENT_DEGREE_NAME\" TEXT," + // 36: currentDegreeName
-                "\"CURRENT_SCHOOL\" TEXT," + // 37: currentSchool
-                "\"CURRENT_SCHOOL_TYPE\" TEXT," + // 38: currentSchoolType
-                "\"WORK_PHONE\" TEXT," + // 39: workPhone
-                "\"PHONE_NUMBER\" TEXT," + // 40: phoneNumber
-                "\"HOME_ADDRESS\" TEXT," + // 41: homeAddress
-                "\"RESPONSIBILITIES\" TEXT," + // 42: responsibilities
-                "\"AFFECTED_STATE\" TEXT," + // 43: affectedState
-                "\"FULL_TIME_MAJOR\" TEXT," + // 44: fullTimeMajor
-                "\"CURRENT_MAJOR\" TEXT," + // 45: currentMajor
-                "\"FULL_TIME_SCHOOL_MAJOR\" TEXT," + // 46: fullTimeSchoolMajor
-                "\"CURRENT_SCHOOL_MAJOR\" TEXT," + // 47: currentSchoolMajor
-                "\"NATIVE_PLACE_REPLENISH\" TEXT," + // 48: nativePlaceReplenish
-                "\"FUNCTIONARY_REGISTER_TIME\" TEXT," + // 49: functionaryRegisterTime
-                "\"POSITION_TYPE\" TEXT," + // 50: positionType
-                "\"ESTABLISHMENT_TYPE\" TEXT," + // 51: establishmentType
-                "\"REMARK\" TEXT," + // 52: remark
-                "\"TYPE\" TEXT," + // 53: type
-                "\"CADRE_RESUME\" TEXT," + // 54: cadreResume
-                "\"CADRE_AWARD\" TEXT," + // 55: cadreAward
-                "\"CADRE_PUNISH\" TEXT," + // 56: cadrePunish
-                "\"CADRE_TRAIN\" TEXT," + // 57: cadreTrain
-                "\"POLITICAL_CONSTRUCTION\" TEXT);"); // 58: politicalConstruction
+                "\"FULL_TIME\" TEXT," + // 29: fullTime
+                "\"FULL_TIME_EDUCATION\" TEXT," + // 30: fullTimeEducation
+                "\"FULL_TIME_SCHOOL\" TEXT," + // 31: fullTimeSchool
+                "\"FULL_TIME_DEGREE_ID\" INTEGER NOT NULL ," + // 32: fullTimeDegreeId
+                "\"FULL_TIME_DEGREE_NAME\" TEXT," + // 33: fullTimeDegreeName
+                "\"FULL_TIME_SCHOOL_TYPE\" TEXT," + // 34: fullTimeSchoolType
+                "\"CURRENT\" TEXT," + // 35: current
+                "\"CURRENT_EDUCATION\" TEXT," + // 36: currentEducation
+                "\"CURRENT_DEGREE_ID\" INTEGER NOT NULL ," + // 37: currentDegreeId
+                "\"CURRENT_DEGREE_NAME\" TEXT," + // 38: currentDegreeName
+                "\"CURRENT_SCHOOL\" TEXT," + // 39: currentSchool
+                "\"CURRENT_SCHOOL_TYPE\" TEXT," + // 40: currentSchoolType
+                "\"WORK_PHONE\" TEXT," + // 41: workPhone
+                "\"PHONE_NUMBER\" TEXT," + // 42: phoneNumber
+                "\"HOME_ADDRESS\" TEXT," + // 43: homeAddress
+                "\"RESPONSIBILITIES\" TEXT," + // 44: responsibilities
+                "\"AFFECTED_STATE\" TEXT," + // 45: affectedState
+                "\"FULL_TIME_MAJOR\" TEXT," + // 46: fullTimeMajor
+                "\"CURRENT_MAJOR\" TEXT," + // 47: currentMajor
+                "\"FULL_TIME_SCHOOL_MAJOR\" TEXT," + // 48: fullTimeSchoolMajor
+                "\"CURRENT_SCHOOL_MAJOR\" TEXT," + // 49: currentSchoolMajor
+                "\"NATIVE_PLACE_REPLENISH\" TEXT," + // 50: nativePlaceReplenish
+                "\"FUNCTIONARY_REGISTER_TIME\" TEXT," + // 51: functionaryRegisterTime
+                "\"POSITION_TYPE\" TEXT," + // 52: positionType
+                "\"ESTABLISHMENT_TYPE\" TEXT," + // 53: establishmentType
+                "\"REMARK\" TEXT," + // 54: remark
+                "\"TYPE\" TEXT," + // 55: type
+                "\"CADRE_RESUME\" TEXT," + // 56: cadreResume
+                "\"CADRE_AWARD\" TEXT," + // 57: cadreAward
+                "\"CADRE_PUNISH\" TEXT," + // 58: cadrePunish
+                "\"CADRE_TRAIN\" TEXT," + // 59: cadreTrain
+                "\"POLITICAL_CONSTRUCTION\" TEXT);"); // 60: politicalConstruction
     }
 
     /** Drops the underlying database table. */
@@ -298,146 +302,156 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             stmt.bindString(29, expertise);
         }
  
+        String fullTime = entity.getFullTime();
+        if (fullTime != null) {
+            stmt.bindString(30, fullTime);
+        }
+ 
         String fullTimeEducation = entity.getFullTimeEducation();
         if (fullTimeEducation != null) {
-            stmt.bindString(30, fullTimeEducation);
+            stmt.bindString(31, fullTimeEducation);
         }
  
         String fullTimeSchool = entity.getFullTimeSchool();
         if (fullTimeSchool != null) {
-            stmt.bindString(31, fullTimeSchool);
+            stmt.bindString(32, fullTimeSchool);
         }
-        stmt.bindLong(32, entity.getFullTimeDegreeId());
+        stmt.bindLong(33, entity.getFullTimeDegreeId());
  
         String fullTimeDegreeName = entity.getFullTimeDegreeName();
         if (fullTimeDegreeName != null) {
-            stmt.bindString(33, fullTimeDegreeName);
+            stmt.bindString(34, fullTimeDegreeName);
         }
  
         String fullTimeSchoolType = entity.getFullTimeSchoolType();
         if (fullTimeSchoolType != null) {
-            stmt.bindString(34, fullTimeSchoolType);
+            stmt.bindString(35, fullTimeSchoolType);
+        }
+ 
+        String current = entity.getCurrent();
+        if (current != null) {
+            stmt.bindString(36, current);
         }
  
         String currentEducation = entity.getCurrentEducation();
         if (currentEducation != null) {
-            stmt.bindString(35, currentEducation);
+            stmt.bindString(37, currentEducation);
         }
-        stmt.bindLong(36, entity.getCurrentDegreeId());
+        stmt.bindLong(38, entity.getCurrentDegreeId());
  
         String currentDegreeName = entity.getCurrentDegreeName();
         if (currentDegreeName != null) {
-            stmt.bindString(37, currentDegreeName);
+            stmt.bindString(39, currentDegreeName);
         }
  
         String currentSchool = entity.getCurrentSchool();
         if (currentSchool != null) {
-            stmt.bindString(38, currentSchool);
+            stmt.bindString(40, currentSchool);
         }
  
         String currentSchoolType = entity.getCurrentSchoolType();
         if (currentSchoolType != null) {
-            stmt.bindString(39, currentSchoolType);
+            stmt.bindString(41, currentSchoolType);
         }
  
         String workPhone = entity.getWorkPhone();
         if (workPhone != null) {
-            stmt.bindString(40, workPhone);
+            stmt.bindString(42, workPhone);
         }
  
         String phoneNumber = entity.getPhoneNumber();
         if (phoneNumber != null) {
-            stmt.bindString(41, phoneNumber);
+            stmt.bindString(43, phoneNumber);
         }
  
         String homeAddress = entity.getHomeAddress();
         if (homeAddress != null) {
-            stmt.bindString(42, homeAddress);
+            stmt.bindString(44, homeAddress);
         }
  
         String responsibilities = entity.getResponsibilities();
         if (responsibilities != null) {
-            stmt.bindString(43, responsibilities);
+            stmt.bindString(45, responsibilities);
         }
  
         String affectedState = entity.getAffectedState();
         if (affectedState != null) {
-            stmt.bindString(44, affectedState);
+            stmt.bindString(46, affectedState);
         }
  
         String fullTimeMajor = entity.getFullTimeMajor();
         if (fullTimeMajor != null) {
-            stmt.bindString(45, fullTimeMajor);
+            stmt.bindString(47, fullTimeMajor);
         }
  
         String currentMajor = entity.getCurrentMajor();
         if (currentMajor != null) {
-            stmt.bindString(46, currentMajor);
+            stmt.bindString(48, currentMajor);
         }
  
         String fullTimeSchoolMajor = entity.getFullTimeSchoolMajor();
         if (fullTimeSchoolMajor != null) {
-            stmt.bindString(47, fullTimeSchoolMajor);
+            stmt.bindString(49, fullTimeSchoolMajor);
         }
  
         String currentSchoolMajor = entity.getCurrentSchoolMajor();
         if (currentSchoolMajor != null) {
-            stmt.bindString(48, currentSchoolMajor);
+            stmt.bindString(50, currentSchoolMajor);
         }
  
         String nativePlaceReplenish = entity.getNativePlaceReplenish();
         if (nativePlaceReplenish != null) {
-            stmt.bindString(49, nativePlaceReplenish);
+            stmt.bindString(51, nativePlaceReplenish);
         }
  
         String functionaryRegisterTime = entity.getFunctionaryRegisterTime();
         if (functionaryRegisterTime != null) {
-            stmt.bindString(50, functionaryRegisterTime);
+            stmt.bindString(52, functionaryRegisterTime);
         }
  
         String positionType = entity.getPositionType();
         if (positionType != null) {
-            stmt.bindString(51, positionType);
+            stmt.bindString(53, positionType);
         }
  
         String establishmentType = entity.getEstablishmentType();
         if (establishmentType != null) {
-            stmt.bindString(52, establishmentType);
+            stmt.bindString(54, establishmentType);
         }
  
         String remark = entity.getRemark();
         if (remark != null) {
-            stmt.bindString(53, remark);
+            stmt.bindString(55, remark);
         }
  
         String type = entity.getType();
         if (type != null) {
-            stmt.bindString(54, type);
+            stmt.bindString(56, type);
         }
  
         String cadreResume = entity.getCadreResume();
         if (cadreResume != null) {
-            stmt.bindString(55, cadreResume);
+            stmt.bindString(57, cadreResume);
         }
  
         String cadreAward = entity.getCadreAward();
         if (cadreAward != null) {
-            stmt.bindString(56, cadreAward);
+            stmt.bindString(58, cadreAward);
         }
  
         String cadrePunish = entity.getCadrePunish();
         if (cadrePunish != null) {
-            stmt.bindString(57, cadrePunish);
+            stmt.bindString(59, cadrePunish);
         }
  
         String cadreTrain = entity.getCadreTrain();
         if (cadreTrain != null) {
-            stmt.bindString(58, cadreTrain);
+            stmt.bindString(60, cadreTrain);
         }
  
         String politicalConstruction = entity.getPoliticalConstruction();
         if (politicalConstruction != null) {
-            stmt.bindString(59, politicalConstruction);
+            stmt.bindString(61, politicalConstruction);
         }
     }
 
@@ -574,146 +588,156 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             stmt.bindString(29, expertise);
         }
  
+        String fullTime = entity.getFullTime();
+        if (fullTime != null) {
+            stmt.bindString(30, fullTime);
+        }
+ 
         String fullTimeEducation = entity.getFullTimeEducation();
         if (fullTimeEducation != null) {
-            stmt.bindString(30, fullTimeEducation);
+            stmt.bindString(31, fullTimeEducation);
         }
  
         String fullTimeSchool = entity.getFullTimeSchool();
         if (fullTimeSchool != null) {
-            stmt.bindString(31, fullTimeSchool);
+            stmt.bindString(32, fullTimeSchool);
         }
-        stmt.bindLong(32, entity.getFullTimeDegreeId());
+        stmt.bindLong(33, entity.getFullTimeDegreeId());
  
         String fullTimeDegreeName = entity.getFullTimeDegreeName();
         if (fullTimeDegreeName != null) {
-            stmt.bindString(33, fullTimeDegreeName);
+            stmt.bindString(34, fullTimeDegreeName);
         }
  
         String fullTimeSchoolType = entity.getFullTimeSchoolType();
         if (fullTimeSchoolType != null) {
-            stmt.bindString(34, fullTimeSchoolType);
+            stmt.bindString(35, fullTimeSchoolType);
+        }
+ 
+        String current = entity.getCurrent();
+        if (current != null) {
+            stmt.bindString(36, current);
         }
  
         String currentEducation = entity.getCurrentEducation();
         if (currentEducation != null) {
-            stmt.bindString(35, currentEducation);
+            stmt.bindString(37, currentEducation);
         }
-        stmt.bindLong(36, entity.getCurrentDegreeId());
+        stmt.bindLong(38, entity.getCurrentDegreeId());
  
         String currentDegreeName = entity.getCurrentDegreeName();
         if (currentDegreeName != null) {
-            stmt.bindString(37, currentDegreeName);
+            stmt.bindString(39, currentDegreeName);
         }
  
         String currentSchool = entity.getCurrentSchool();
         if (currentSchool != null) {
-            stmt.bindString(38, currentSchool);
+            stmt.bindString(40, currentSchool);
         }
  
         String currentSchoolType = entity.getCurrentSchoolType();
         if (currentSchoolType != null) {
-            stmt.bindString(39, currentSchoolType);
+            stmt.bindString(41, currentSchoolType);
         }
  
         String workPhone = entity.getWorkPhone();
         if (workPhone != null) {
-            stmt.bindString(40, workPhone);
+            stmt.bindString(42, workPhone);
         }
  
         String phoneNumber = entity.getPhoneNumber();
         if (phoneNumber != null) {
-            stmt.bindString(41, phoneNumber);
+            stmt.bindString(43, phoneNumber);
         }
  
         String homeAddress = entity.getHomeAddress();
         if (homeAddress != null) {
-            stmt.bindString(42, homeAddress);
+            stmt.bindString(44, homeAddress);
         }
  
         String responsibilities = entity.getResponsibilities();
         if (responsibilities != null) {
-            stmt.bindString(43, responsibilities);
+            stmt.bindString(45, responsibilities);
         }
  
         String affectedState = entity.getAffectedState();
         if (affectedState != null) {
-            stmt.bindString(44, affectedState);
+            stmt.bindString(46, affectedState);
         }
  
         String fullTimeMajor = entity.getFullTimeMajor();
         if (fullTimeMajor != null) {
-            stmt.bindString(45, fullTimeMajor);
+            stmt.bindString(47, fullTimeMajor);
         }
  
         String currentMajor = entity.getCurrentMajor();
         if (currentMajor != null) {
-            stmt.bindString(46, currentMajor);
+            stmt.bindString(48, currentMajor);
         }
  
         String fullTimeSchoolMajor = entity.getFullTimeSchoolMajor();
         if (fullTimeSchoolMajor != null) {
-            stmt.bindString(47, fullTimeSchoolMajor);
+            stmt.bindString(49, fullTimeSchoolMajor);
         }
  
         String currentSchoolMajor = entity.getCurrentSchoolMajor();
         if (currentSchoolMajor != null) {
-            stmt.bindString(48, currentSchoolMajor);
+            stmt.bindString(50, currentSchoolMajor);
         }
  
         String nativePlaceReplenish = entity.getNativePlaceReplenish();
         if (nativePlaceReplenish != null) {
-            stmt.bindString(49, nativePlaceReplenish);
+            stmt.bindString(51, nativePlaceReplenish);
         }
  
         String functionaryRegisterTime = entity.getFunctionaryRegisterTime();
         if (functionaryRegisterTime != null) {
-            stmt.bindString(50, functionaryRegisterTime);
+            stmt.bindString(52, functionaryRegisterTime);
         }
  
         String positionType = entity.getPositionType();
         if (positionType != null) {
-            stmt.bindString(51, positionType);
+            stmt.bindString(53, positionType);
         }
  
         String establishmentType = entity.getEstablishmentType();
         if (establishmentType != null) {
-            stmt.bindString(52, establishmentType);
+            stmt.bindString(54, establishmentType);
         }
  
         String remark = entity.getRemark();
         if (remark != null) {
-            stmt.bindString(53, remark);
+            stmt.bindString(55, remark);
         }
  
         String type = entity.getType();
         if (type != null) {
-            stmt.bindString(54, type);
+            stmt.bindString(56, type);
         }
  
         String cadreResume = entity.getCadreResume();
         if (cadreResume != null) {
-            stmt.bindString(55, cadreResume);
+            stmt.bindString(57, cadreResume);
         }
  
         String cadreAward = entity.getCadreAward();
         if (cadreAward != null) {
-            stmt.bindString(56, cadreAward);
+            stmt.bindString(58, cadreAward);
         }
  
         String cadrePunish = entity.getCadrePunish();
         if (cadrePunish != null) {
-            stmt.bindString(57, cadrePunish);
+            stmt.bindString(59, cadrePunish);
         }
  
         String cadreTrain = entity.getCadreTrain();
         if (cadreTrain != null) {
-            stmt.bindString(58, cadreTrain);
+            stmt.bindString(60, cadreTrain);
         }
  
         String politicalConstruction = entity.getPoliticalConstruction();
         if (politicalConstruction != null) {
-            stmt.bindString(59, politicalConstruction);
+            stmt.bindString(61, politicalConstruction);
         }
     }
 
@@ -754,36 +778,38 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // personnelType
             cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // technicalTitle
             cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // expertise
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // fullTimeEducation
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // fullTimeSchool
-            cursor.getInt(offset + 31), // fullTimeDegreeId
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // fullTimeDegreeName
-            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // fullTimeSchoolType
-            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // currentEducation
-            cursor.getInt(offset + 35), // currentDegreeId
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // currentDegreeName
-            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // currentSchool
-            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // currentSchoolType
-            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // workPhone
-            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // phoneNumber
-            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // homeAddress
-            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // responsibilities
-            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // affectedState
-            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // fullTimeMajor
-            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // currentMajor
-            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // fullTimeSchoolMajor
-            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // currentSchoolMajor
-            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // nativePlaceReplenish
-            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // functionaryRegisterTime
-            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // positionType
-            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // establishmentType
-            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // remark
-            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53), // type
-            cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54), // cadreResume
-            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55), // cadreAward
-            cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56), // cadrePunish
-            cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57), // cadreTrain
-            cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58) // politicalConstruction
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // fullTime
+            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // fullTimeEducation
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // fullTimeSchool
+            cursor.getInt(offset + 32), // fullTimeDegreeId
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // fullTimeDegreeName
+            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // fullTimeSchoolType
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // current
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // currentEducation
+            cursor.getInt(offset + 37), // currentDegreeId
+            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // currentDegreeName
+            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // currentSchool
+            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // currentSchoolType
+            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // workPhone
+            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // phoneNumber
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // homeAddress
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // responsibilities
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // affectedState
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // fullTimeMajor
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // currentMajor
+            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // fullTimeSchoolMajor
+            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // currentSchoolMajor
+            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // nativePlaceReplenish
+            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // functionaryRegisterTime
+            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // positionType
+            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53), // establishmentType
+            cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54), // remark
+            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55), // type
+            cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56), // cadreResume
+            cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57), // cadreAward
+            cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58), // cadrePunish
+            cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59), // cadreTrain
+            cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60) // politicalConstruction
         );
         return entity;
     }
@@ -819,36 +845,38 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setPersonnelType(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
         entity.setTechnicalTitle(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
         entity.setExpertise(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setFullTimeEducation(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setFullTimeSchool(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setFullTimeDegreeId(cursor.getInt(offset + 31));
-        entity.setFullTimeDegreeName(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setFullTimeSchoolType(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
-        entity.setCurrentEducation(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
-        entity.setCurrentDegreeId(cursor.getInt(offset + 35));
-        entity.setCurrentDegreeName(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setCurrentSchool(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
-        entity.setCurrentSchoolType(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
-        entity.setWorkPhone(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
-        entity.setPhoneNumber(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
-        entity.setHomeAddress(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
-        entity.setResponsibilities(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
-        entity.setAffectedState(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
-        entity.setFullTimeMajor(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
-        entity.setCurrentMajor(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
-        entity.setFullTimeSchoolMajor(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
-        entity.setCurrentSchoolMajor(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
-        entity.setNativePlaceReplenish(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
-        entity.setFunctionaryRegisterTime(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
-        entity.setPositionType(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
-        entity.setEstablishmentType(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
-        entity.setRemark(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
-        entity.setType(cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53));
-        entity.setCadreResume(cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54));
-        entity.setCadreAward(cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55));
-        entity.setCadrePunish(cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56));
-        entity.setCadreTrain(cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57));
-        entity.setPoliticalConstruction(cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58));
+        entity.setFullTime(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
+        entity.setFullTimeEducation(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
+        entity.setFullTimeSchool(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setFullTimeDegreeId(cursor.getInt(offset + 32));
+        entity.setFullTimeDegreeName(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
+        entity.setFullTimeSchoolType(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
+        entity.setCurrent(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setCurrentEducation(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setCurrentDegreeId(cursor.getInt(offset + 37));
+        entity.setCurrentDegreeName(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
+        entity.setCurrentSchool(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
+        entity.setCurrentSchoolType(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
+        entity.setWorkPhone(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
+        entity.setPhoneNumber(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
+        entity.setHomeAddress(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
+        entity.setResponsibilities(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setAffectedState(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setFullTimeMajor(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setCurrentMajor(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
+        entity.setFullTimeSchoolMajor(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
+        entity.setCurrentSchoolMajor(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
+        entity.setNativePlaceReplenish(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
+        entity.setFunctionaryRegisterTime(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
+        entity.setPositionType(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
+        entity.setEstablishmentType(cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53));
+        entity.setRemark(cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54));
+        entity.setType(cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55));
+        entity.setCadreResume(cursor.isNull(offset + 56) ? null : cursor.getString(offset + 56));
+        entity.setCadreAward(cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57));
+        entity.setCadrePunish(cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58));
+        entity.setCadreTrain(cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59));
+        entity.setPoliticalConstruction(cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60));
      }
     
     @Override

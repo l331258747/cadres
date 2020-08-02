@@ -383,7 +383,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     public void getFilesSuccess(List<String> data) {
         pos = 0;
         files = data;
-        loadImages();
+//        loadImages(); //TODO
+        progress.dismiss();
     }
 
     @Override
@@ -725,11 +726,13 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getPersonnelType(),
                     item.getTechnicalTitle(),
                     item.getExpertise(),
+                    item.getFullTime(),
                     item.getFullTimeEducation(),
                     item.getFullTimeSchool(),
                     item.getFullTimeDegreeId(),
                     item.getFullTimeDegreeName(),
                     item.getFullTimeSchoolType(),
+                    item.getCurrent(),
                     item.getCurrentEducation(),
                     item.getCurrentDegreeId(),
                     item.getCurrentDegreeName(),

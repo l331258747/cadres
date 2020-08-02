@@ -101,11 +101,13 @@ public class GbBean {
         private String personnelType;
         private String technicalTitle;
         private String expertise;
+        private String fullTime;
         private String fullTimeEducation;
         private String fullTimeSchool;
         private int fullTimeDegreeId;
         private String fullTimeDegreeName;
         private String fullTimeSchoolType;
+        private String current;
         private String currentEducation;
         private int currentDegreeId;
         private String currentDegreeName;
@@ -414,6 +416,14 @@ public class GbBean {
         public List<GbCadreDeptListBean> getCadreDeptList() {
             if(cadreDeptList == null) return new ArrayList<>();
             return cadreDeptList;
+        }
+
+        public String getFullTime() {
+            return fullTime;
+        }
+
+        public String getCurrent() {
+            return current;
         }
     }
 }
