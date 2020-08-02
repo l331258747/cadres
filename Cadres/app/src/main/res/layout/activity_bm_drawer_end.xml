@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/tv_dr_dwjb2"
         android:layout_marginTop="@dimen/dp_30"
-        android:text="单位性质："/>
+        android:text="单位类别："/>
 
     <TextView
         android:id="@+id/tv_dr_dwxz2"
@@ -152,10 +152,10 @@
         android:id="@+id/tv_dr_cz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
         app:layout_constraintTop_toBottomOf="@+id/tv_dr_kqqk2"
         android:layout_marginTop="@dimen/dp_30"
-        android:text="财政供养类型："/>
+        android:text="单位性质："/>
 
     <TextView
         android:id="@+id/tv_dr_cz2"
