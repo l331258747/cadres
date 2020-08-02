@@ -85,6 +85,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property CadrePunish = new Property(58, String.class, "cadrePunish", false, "CADRE_PUNISH");
         public final static Property CadreTrain = new Property(59, String.class, "cadreTrain", false, "CADRE_TRAIN");
         public final static Property PoliticalConstruction = new Property(60, String.class, "politicalConstruction", false, "POLITICAL_CONSTRUCTION");
+        public final static Property CadreAssessment = new Property(61, String.class, "cadreAssessment", false, "CADRE_ASSESSMENT");
+        public final static Property FunctionaryRankStartTime = new Property(62, String.class, "functionaryRankStartTime", false, "FUNCTIONARY_RANK_START_TIME");
     }
 
 
@@ -160,7 +162,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"CADRE_AWARD\" TEXT," + // 57: cadreAward
                 "\"CADRE_PUNISH\" TEXT," + // 58: cadrePunish
                 "\"CADRE_TRAIN\" TEXT," + // 59: cadreTrain
-                "\"POLITICAL_CONSTRUCTION\" TEXT);"); // 60: politicalConstruction
+                "\"POLITICAL_CONSTRUCTION\" TEXT," + // 60: politicalConstruction
+                "\"CADRE_ASSESSMENT\" TEXT," + // 61: cadreAssessment
+                "\"FUNCTIONARY_RANK_START_TIME\" TEXT);"); // 62: functionaryRankStartTime
     }
 
     /** Drops the underlying database table. */
@@ -453,6 +457,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (politicalConstruction != null) {
             stmt.bindString(61, politicalConstruction);
         }
+ 
+        String cadreAssessment = entity.getCadreAssessment();
+        if (cadreAssessment != null) {
+            stmt.bindString(62, cadreAssessment);
+        }
+ 
+        String functionaryRankStartTime = entity.getFunctionaryRankStartTime();
+        if (functionaryRankStartTime != null) {
+            stmt.bindString(63, functionaryRankStartTime);
+        }
     }
 
     @Override
@@ -739,6 +753,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (politicalConstruction != null) {
             stmt.bindString(61, politicalConstruction);
         }
+ 
+        String cadreAssessment = entity.getCadreAssessment();
+        if (cadreAssessment != null) {
+            stmt.bindString(62, cadreAssessment);
+        }
+ 
+        String functionaryRankStartTime = entity.getFunctionaryRankStartTime();
+        if (functionaryRankStartTime != null) {
+            stmt.bindString(63, functionaryRankStartTime);
+        }
     }
 
     @Override
@@ -809,7 +833,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57), // cadreAward
             cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58), // cadrePunish
             cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59), // cadreTrain
-            cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60) // politicalConstruction
+            cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60), // politicalConstruction
+            cursor.isNull(offset + 61) ? null : cursor.getString(offset + 61), // cadreAssessment
+            cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62) // functionaryRankStartTime
         );
         return entity;
     }
@@ -877,6 +903,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setCadrePunish(cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58));
         entity.setCadreTrain(cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59));
         entity.setPoliticalConstruction(cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60));
+        entity.setCadreAssessment(cursor.isNull(offset + 61) ? null : cursor.getString(offset + 61));
+        entity.setFunctionaryRankStartTime(cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62));
      }
     
     @Override

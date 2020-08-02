@@ -20,6 +20,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,10 +28,12 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
 
     Context mContext;
     List<DBGbBean> datas;
+    String type;
 
-    public GbAdapter(Context mContext, List<DBGbBean> datas) {
+    public GbAdapter(Context mContext, List<DBGbBean> datas,String type) {
         this.mContext = mContext;
         this.datas = datas;
+        this.type = type;
     }
 
     @NonNull
@@ -68,6 +71,9 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         holder.tv_xrzwccsj.setText(data.getCurrentRankTime());
         holder.tv_qrzzy.setText(data.getFullTimeMajor());
 
+        holder.tv_rzjqssj.setText(data.getFunctionaryRankStartTime());
+        holder.tv_cjgzsj.setText(data.getWorkTime());
+
         holder.tv_head_tag.setVisibility(View.GONE);
         holder.iv_head_tag.setVisibility(View.GONE);
         if(TextUtils.equals(data.getAffectedState(),"1")){
@@ -80,6 +86,14 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
             holder.iv_head_tag.setVisibility(View.VISIBLE);
             holder.tv_head_tag.setText("该干部受过惩罚");
             holder.iv_head_tag.setImageDrawable(ContextCompat.getDrawable(mContext,R.mipmap.ic_punishment_yellow));
+        }
+
+        holder.group_gb.setVisibility(View.GONE);
+        holder.group_gwy.setVisibility(View.GONE);
+        if(TextUtils.equals(type,"2")){
+            holder.group_gwy.setVisibility(View.VISIBLE);
+        }else{
+            holder.group_gb.setVisibility(View.VISIBLE);
         }
 
         if(mOnItemClickListener != null){
@@ -106,7 +120,8 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
 
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
-        TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy;
+        TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy,tv_rzjqssj,tv_cjgzsj;
+        Group group_gb,group_gwy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -131,6 +146,11 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
             tv_qrzwhcd = itemView.findViewById(R.id.tv_qrzwhcd);
             tv_zzwhcd = itemView.findViewById(R.id.tv_zzwhcd);
             tv_head_tag = itemView.findViewById(R.id.tv_head_tag);
+
+            group_gb = itemView.findViewById(R.id.group_gb);
+            group_gwy = itemView.findViewById(R.id.group_gwy);
+            tv_rzjqssj = itemView.findViewById(R.id.tv_rzjqssj);
+            tv_cjgzsj = itemView.findViewById(R.id.tv_cjgzsj);
         }
     }
 

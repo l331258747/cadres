@@ -73,8 +73,11 @@ public class DBGbBean {
     private String cadrePunish;
     private String cadreTrain;
     private String politicalConstruction;
+    private String cadreAssessment;
+
+    private String functionaryRankStartTime;
     
-    @Generated(hash = 1798438967)
+    @Generated(hash = 1972861732)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -95,7 +98,8 @@ public class DBGbBean {
             String functionaryRegisterTime, String positionType,
             String establishmentType, String remark, String type,
             String cadreResume, String cadreAward, String cadrePunish,
-            String cadreTrain, String politicalConstruction) {
+            String cadreTrain, String politicalConstruction, String cadreAssessment,
+            String functionaryRankStartTime) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -157,6 +161,8 @@ public class DBGbBean {
         this.cadrePunish = cadrePunish;
         this.cadreTrain = cadreTrain;
         this.politicalConstruction = politicalConstruction;
+        this.cadreAssessment = cadreAssessment;
+        this.functionaryRankStartTime = functionaryRankStartTime;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -550,6 +556,18 @@ public class DBGbBean {
     }
     public void setCurrent(String current) {
         this.current = current;
+    }
+    public String getCadreAssessment() {
+        return this.cadreAssessment;
+    }
+    public void setCadreAssessment(String cadreAssessment) {
+        this.cadreAssessment = cadreAssessment;
+    }
+    public String getFunctionaryRankStartTime() {
+        return this.functionaryRankStartTime;
+    }
+    public void setFunctionaryRankStartTime(String functionaryRankStartTime) {
+        this.functionaryRankStartTime = functionaryRankStartTime;
     }
 
 

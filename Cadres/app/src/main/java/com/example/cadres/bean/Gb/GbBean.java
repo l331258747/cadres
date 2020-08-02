@@ -135,6 +135,8 @@ public class GbBean {
         private String cadrePunish;
         private String cadreTrain;
         private String politicalConstruction;
+        private String cadreAssessment;
+        private String functionaryRankStartTime;
 
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
@@ -424,6 +426,14 @@ public class GbBean {
 
         public String getCurrent() {
             return current;
+        }
+
+        public String getCadreAssessment() {
+            return cadreAssessment;
+        }
+
+        public String getFunctionaryRankStartTime() {
+            return functionaryRankStartTime;
         }
     }
 }

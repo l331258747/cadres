@@ -133,7 +133,7 @@ public class TyListActivity extends BaseActivity {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>());
+        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>(),"1");
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {

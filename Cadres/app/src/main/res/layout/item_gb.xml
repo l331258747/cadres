@@ -6,6 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_gb"
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids="
+                tv_xrzw,tv_xrzsj,tv_xrzwcc,tv_xrzwccsj"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_gwy"
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids="
+                tv_rzjqssj,tv_cjgzsj"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_height="wrap_content"/>
+
+
     <View
         android:id="@+id/view_head"
         android:layout_width="@dimen/dp_100"
@@ -155,6 +174,33 @@
         tools:text="任职级时间"/>
 
     <TextView
+        android:id="@+id/tv_rzjqssj"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzjsj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="任现职级\n起算时间"/>
+
+
+    <TextView
+        android:id="@+id/tv_cjgzsj"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzjqssj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="参加工作\n时间"/>
+
+    <TextView
         android:id="@+id/tv_sex"
         android:layout_width="@dimen/dp_40"
         android:layout_height="0dp"
@@ -162,7 +208,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_rzjsj"
+        app:layout_constraintStart_toEndOf="@+id/tv_cjgzsj"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="性别"/>

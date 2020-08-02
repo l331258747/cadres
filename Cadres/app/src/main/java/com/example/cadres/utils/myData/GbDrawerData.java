@@ -38,7 +38,7 @@ public class GbDrawerData {
     TextView tv_name,tv_sex,tv_sfzh,tv_csny,tv_mz,tv_sjhm,tv_jg,tv_csd,tv_zzmm;
     TextView tv_cjzzrq,tv_cjgzsj,tv_jkzk,tv_zyjszw,tv_sxzyjzc,tv_xlxw_qrz,tv_xlxw_zz,tv_byyxxjzy_qrz,tv_byyxxjzy_zz;
     TextView tv_gwydjsj,tv_rxzsj,tv_xrzw,tv_xrzwcc,tv_rxzwccsj,tv_xrzj,tv_rxzjsj,tv_rylb,tv_gllb,tv_zwlb,tv_lx,tv_jtzz,tv_bz;
-    TextView tv_gzjl,tv_jlqk,tv_fmqd,tv_pxqk,tv_kcqk;
+    TextView tv_gzjl,tv_jlqk,tv_fmqd,tv_pxqk,tv_kcqk,tv_ndkc;
     ImageView iv_head,iv_head_tag;
     RecyclerView recycle_view_jtcy;
 
@@ -89,6 +89,7 @@ public class GbDrawerData {
         tv_fmqd = findViewById(R.id.tv_fmqd);
         tv_pxqk = findViewById(R.id.tv_pxqk);
         tv_kcqk = findViewById(R.id.tv_kcqk);
+        tv_ndkc = findViewById(R.id.tv_ndkc);
 
         recycle_view_jtcy = findViewById(R.id.recycle_view_jtcy);
         iv_head = findViewById(R.id.iv_head);
@@ -153,6 +154,7 @@ public class GbDrawerData {
         tv_fmqd.setText(data.getCadrePunish());
         tv_pxqk.setText(data.getCadreTrain());
         tv_kcqk.setText(data.getPoliticalConstruction());
+        tv_ndkc.setText(data.getCadreAssessment());
 
 
         GlideUtil.LoadImageFitCenter(context,

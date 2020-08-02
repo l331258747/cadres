@@ -50,7 +50,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GbActivity extends BaseActivity implements View.OnClickListener {
 
-    Group group_View_top;
+    Group group_View_top,group_gb,group_gwy;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
     TextView tv_right_btn,tv_right_content;
     View view_menu;
@@ -93,6 +93,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         et_search = findViewById(R.id.et_search);
 
         group_View_top = findViewById(R.id.group_View_top);
+        group_gb = findViewById(R.id.group_gb);
+        group_gwy = findViewById(R.id.group_gwy);
+
         tv_top_title = findViewById(R.id.tv_top_title);
         tv_top_btn = findViewById(R.id.tv_top_btn);
         tv_top_hdzs2 = findViewById(R.id.tv_top_hdzs2);
@@ -106,12 +109,24 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
         et_search.setOnClickListener(this);
 
+        initTitleTab();
+
         initRecycler();
 
         initDrawer();
         initDrawerLeft();
         initDrawerRight();
         initDrawerGbInfo();
+    }
+
+    private void initTitleTab() {
+        group_gb.setVisibility(View.GONE);
+        group_gwy.setVisibility(View.GONE);
+        if(TextUtils.equals(type,"2")){
+            group_gwy.setVisibility(View.VISIBLE);
+        }else{
+            group_gb.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initDrawerLeft() {
@@ -215,7 +230,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>());
+        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>(),type);
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {

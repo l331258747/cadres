@@ -757,7 +757,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getCadreAward(),
                     item.getCadrePunish(),
                     item.getCadreTrain(),
-                    item.getPoliticalConstruction()
+                    item.getPoliticalConstruction(),
+                    item.getCadreAssessment(),
+                    item.getFunctionaryRankStartTime()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {
