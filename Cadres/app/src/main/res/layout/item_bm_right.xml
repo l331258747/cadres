@@ -12,8 +12,6 @@
         android:id="@+id/view_hdzs"
         android:layout_width="@dimen/dp_240"
         app:layout_constraintTop_toTopOf="parent"
-        android:minLines="3"
-        android:maxLines="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_zz"
         android:layout_height="0dp"/>
@@ -21,7 +19,7 @@
     <TextView
         android:id="@+id/tv_hdzs_zz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:minLines="3"
         android:textSize="@dimen/sp_12"
@@ -43,7 +41,7 @@
     <TextView
         android:id="@+id/tv_hdzs_fz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:padding="@dimen/dp_5"
         android:minLines="3"
@@ -65,7 +63,7 @@
     <TextView
         android:id="@+id/tv_hdzs_qt"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:minLines="3"
         android:maxLines="3"
         android:padding="@dimen/dp_5"
@@ -98,7 +96,7 @@
     <TextView
         android:id="@+id/tv_spqk_zz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -120,7 +118,7 @@
     <TextView
         android:id="@+id/tv_spqk_fz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -142,7 +140,7 @@
     <TextView
         android:id="@+id/tv_spqk_qt"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:padding="@dimen/dp_5"
         android:textSize="@dimen/sp_12"
@@ -175,7 +173,7 @@
     <TextView
         android:id="@+id/tv_cpqk_zz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -197,7 +195,7 @@
     <TextView
         android:id="@+id/tv_cpqk_fz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -219,7 +217,7 @@
     <TextView
         android:id="@+id/tv_cpqk_qt"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:padding="@dimen/dp_5"
         android:minLines="3"
@@ -252,7 +250,7 @@
     <TextView
         android:id="@+id/tv_kqqk_zz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -274,7 +272,7 @@
     <TextView
         android:id="@+id/tv_kqqk_fz"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:padding="@dimen/dp_5"
         android:gravity="center"
         android:minLines="3"
@@ -296,7 +294,7 @@
     <TextView
         android:id="@+id/tv_kqqk_qt"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:padding="@dimen/dp_5"
         android:textSize="@dimen/sp_12"

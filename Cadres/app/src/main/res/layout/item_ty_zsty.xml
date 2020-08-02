@@ -169,6 +169,7 @@
             app:layout_constraintStart_toStartOf="@+id/view_bottom_zs_nqgb"/>
 
         <TextView
+            android:id="@+id/tv_zs_nqgb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="年轻干部配备推演"
@@ -237,7 +238,8 @@
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_zs_nqgb"
             android:layout_width="wrap_content"
-            app:constraint_referenced_ids="chart_zs_nqgb,view_legend_nqgb,view_bottom_zs_nqgb"
+            app:constraint_referenced_ids="chart_zs_nqgb,
+            view_legend_nqgb,view_bottom_zs_nqgb,iv_zs_nqgb,tv_zs_nqgb"
             android:visibility="gone"
             tools:visibility="visible"
             android:layout_height="wrap_content"/>
