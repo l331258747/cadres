@@ -167,7 +167,7 @@ public class SearchActivity extends BaseActivity {
         });
     }
 
-    String[] mVals_dp = new String[]{"全部", "中共党员", "非中共党员", "民革", "民盟", "民建", "民进", "农工员", "致工党", "九三学社", "台盟", "无党派"};
+    String[] mVals_dp = new String[]{"全部", "中共党员", "民革", "民盟", "民建", "民进", "农工员", "致工党", "九三学社", "台盟", "无党派"};
     private void initFLDp() {
         fl_dp = findViewById(R.id.fl_dp);
         final LayoutInflater mInflater = LayoutInflater.from(activity);

@@ -215,12 +215,12 @@ public class SearchBean implements Serializable {
     }
 
     //是否存在非共党员
-    public boolean isDpFzgdn(){
-        for (String str : dpLists)
-            if(str.equals("非中共党员"))
-                return true;
-            return false;
-    }
+//    public boolean isDpFzgdn(){
+//        for (String str : dpLists)
+//            if(str.equals("非中共党员"))
+//                return true;
+//            return false;
+//    }
 
     public void setDpLists(List<String> dpLists) {
         this.dpLists = dpLists;

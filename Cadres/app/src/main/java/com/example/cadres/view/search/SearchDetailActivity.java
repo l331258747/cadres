@@ -225,14 +225,16 @@ public class SearchDetailActivity extends BaseActivity {
         }
 
         if(searchBean.getDpLists().size() > 0){
-            if(searchBean.isDpFzgdn()){
-                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
-                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
-                LogUtil.e("党派 数据条数："+queryBuilder.count());
-            }else{
-                queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
-                LogUtil.e("党派 数据条数："+queryBuilder.count());
-            }
+//            if(searchBean.isDpFzgdn()){
+//                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
+//                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
+//                LogUtil.e("党派 数据条数："+queryBuilder.count());
+//            }else{
+//                queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
+//                LogUtil.e("党派 数据条数："+queryBuilder.count());
+//            }
+            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
+            LogUtil.e("党派 数据条数："+queryBuilder.count());
         }
 
         dbList = queryBuilder.list();

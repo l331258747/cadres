@@ -138,7 +138,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         dialogDatas = new ArrayList<>();
         for (int i=0;i<dbYjjcBeans.size();i++){
             DbYjjcBean item = dbYjjcBeans.get(i);
-            dialogDatas.add(new ListDialogBean(item.getSchemeId(),item.getSchemeNameTime()));
+            dialogDatas.add(new ListDialogBean(item.getSchemeId(),item.getSchemeTime()));
         }
 
         if(dbYjjcBeans !=null && dbYjjcBeans.size() > 0){
@@ -147,11 +147,9 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
             getDbCadreingList(schemeId);
             yjjcMettingFragment.setData(dbYjjcMeeting);
             yjjcCadreFragment.setData(schemeId, dbYjjcCadres,type);
+
+            tv_dialog.setText(dbYjjcBeans.get(0).getSchemeTime());
         }
-
-        if(dbYjjcMeeting != null)
-            tv_dialog.setText(dbYjjcMeeting.getSchemeName());
-
 
         VoteDisposable = RxBus2.getInstance().toObservable(VoteEvent.class, new Consumer<VoteEvent>() {
             @Override

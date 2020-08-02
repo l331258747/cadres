@@ -108,7 +108,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/tv_zdy_title"
-                android:text="干部类型："/>
+                android:text="管理类别："/>
             
             <com.example.cadres.widget.flowlayout.TagFlowLayout
                 android:id="@+id/fl_gblx"
@@ -183,12 +183,13 @@
                 android:layout_marginTop="@dimen/dp_20"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/seekbar2"
-                android:text="职务级别："/>
+                android:text="现任职务\n层次："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout
                 android:id="@+id/fl_zwjb"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_zwjb"
@@ -274,7 +275,7 @@
                 android:layout_marginTop="@dimen/dp_40"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/fl_gzjl"
-                android:text="现任职级年限："/>
+                android:text="任现职务\n层次年限："/>
 
             <TextView
                 android:id="@+id/progress2_tv_xrzjnx"

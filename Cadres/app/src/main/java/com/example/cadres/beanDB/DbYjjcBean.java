@@ -49,9 +49,6 @@ public class DbYjjcBean {
         return this.schemeName;
     }
 
-    public String getSchemeNameTime(){
-        return this.schemeName + this.schemeTime;
-    }
     public void setSchemeName(String schemeName) {
         this.schemeName = schemeName;
     }
