@@ -85,6 +85,8 @@
                 android:id="@+id/fl_history"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 android:layout_marginTop="@dimen/dp_10"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
@@ -114,6 +116,8 @@
                 android:id="@+id/fl_gblx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_gblx"
@@ -126,15 +130,37 @@
                 android:layout_marginTop="@dimen/dp_20"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/fl_gblx"
-                android:text="部门类型："/>
+                android:text="部门类别："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout
                 android:id="@+id/fl_bmlx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_bmlx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_xb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_bmlx"
+                android:text="性别："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xb"
                 app:max_select="-1"/>
 
             <TextView
@@ -143,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_40"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_bmlx"
+                app:layout_constraintTop_toBottomOf="@+id/fl_xb"
                 android:text="出生年："/>
 
             <TextView
@@ -177,12 +203,32 @@
                 />
 
             <TextView
-                android:id="@+id/tv_zwjb"
+                android:id="@+id/tv_dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/seekbar2"
+                android:text="党派："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_dp"
+                android:layout_width="0dp"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_dp"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_zwjb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_dp"
                 android:text="现任职务\n层次："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout
@@ -190,10 +236,51 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_zwjb"
                 app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_xrzwccnx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_zwjb"
+                android:text="任现职务\n层次年限："/>
+
+            <TextView
+                android:id="@+id/progress2_tv_xrzwccnx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/seekbar2_xrzwccnx"
+                app:layout_constraintStart_toStartOf="@+id/seekbar2_xrzwccnx"
+                app:layout_constraintEnd_toEndOf="@+id/seekbar2_xrzwccnx"
+                tools:text="asdfasdf"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/seekbar2_xrzwccnx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:lineColorSelected="@color/color_b31f23"
+                app:lineColorEdge="@color/color_4b_66"
+                app:thumbSecondaryColor="@color/color_b31f23"
+                app:thumbPrimaryColor="@color/color_b31f23"
+                app:layout_constraintTop_toTopOf="@+id/tv_xrzwccnx"
+                app:thumbSize="20dp"
+                app:seekBarHeight="10dp"
+                app:cellMode="number"
+                app:seekBarMode="range"
+                app:progressHintMode="alwaysHide"
+                />
+
 
             <TextView
                 android:id="@+id/tv_xl"
@@ -201,13 +288,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_zwjb"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar2_xrzwccnx"
                 android:text="学历："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout
                 android:id="@+id/fl_xl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_xl"
@@ -226,6 +315,8 @@
                 android:id="@+id/fl_xllx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_xllx"
@@ -244,6 +335,8 @@
                 android:id="@+id/fl_xxlx"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_xxlx"
@@ -262,11 +355,52 @@
                 android:id="@+id/fl_gzjl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
                 app:layout_constraintTop_toTopOf="@+id/tv_gzjl"
                 app:max_select="-1"/>
 
+            <TextView
+                android:id="@+id/tv_xrzjlx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_gzjl"
+                android:text="现任职级\n类型："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xrzjlx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xrzjlx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_xrzj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_xrzjlx"
+                android:text="现任职级："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_xrzj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_xrzj"
+                app:max_select="-1"/>
 
             <TextView
                 android:id="@+id/tv_xrzjnx"
@@ -274,8 +408,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_40"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_gzjl"
-                android:text="任现职务\n层次年限："/>
+                app:layout_constraintTop_toBottomOf="@+id/fl_xrzj"
+                android:text="任现职级\n年限："/>
 
             <TextView
                 android:id="@+id/progress2_tv_xrzjnx"
@@ -308,47 +442,11 @@
                 />
 
             <TextView
-                android:id="@+id/tv_xb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/seekbar2_xrzjnx"
-                android:text="性别："/>
-
-            <com.example.cadres.widget.flowlayout.TagFlowLayout
-                android:id="@+id/fl_xb"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
-                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-                app:layout_constraintTop_toTopOf="@+id/tv_xb"
-                app:max_select="-1"/>
-
-            <TextView
-                android:id="@+id/tv_dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_xb"
-                android:text="党派："/>
-
-            <com.example.cadres.widget.flowlayout.TagFlowLayout
-                android:id="@+id/fl_dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
-                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-                app:layout_constraintTop_toTopOf="@+id/tv_dp"
-                app:max_select="-1"/>
-
-            <TextView
                 android:id="@+id/tv_btn"
                 android:layout_width="@dimen/dp_200"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_b31f23_r5"
-                app:layout_constraintTop_toBottomOf="@+id/fl_dp"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar2_xrzjnx"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/white"
@@ -374,6 +472,8 @@
                 android:id="@+id/fl_cy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
                 android:layout_marginTop="@dimen/dp_10"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
