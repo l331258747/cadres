@@ -76,8 +76,10 @@ public class DBGbBean {
     private String cadreAssessment;
 
     private String functionaryRankStartTime;
+    private String functionaryRankParentName;
+    private String postLabel;
     
-    @Generated(hash = 1972861732)
+    @Generated(hash = 90864209)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -99,7 +101,8 @@ public class DBGbBean {
             String establishmentType, String remark, String type,
             String cadreResume, String cadreAward, String cadrePunish,
             String cadreTrain, String politicalConstruction, String cadreAssessment,
-            String functionaryRankStartTime) {
+            String functionaryRankStartTime, String functionaryRankParentName,
+            String postLabel) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -163,6 +166,8 @@ public class DBGbBean {
         this.politicalConstruction = politicalConstruction;
         this.cadreAssessment = cadreAssessment;
         this.functionaryRankStartTime = functionaryRankStartTime;
+        this.functionaryRankParentName = functionaryRankParentName;
+        this.postLabel = postLabel;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -568,6 +573,18 @@ public class DBGbBean {
     }
     public void setFunctionaryRankStartTime(String functionaryRankStartTime) {
         this.functionaryRankStartTime = functionaryRankStartTime;
+    }
+    public String getFunctionaryRankParentName() {
+        return this.functionaryRankParentName;
+    }
+    public void setFunctionaryRankParentName(String functionaryRankParentName) {
+        this.functionaryRankParentName = functionaryRankParentName;
+    }
+    public String getPostLabel() {
+        return this.postLabel;
+    }
+    public void setPostLabel(String postLabel) {
+        this.postLabel = postLabel;
     }
 
 

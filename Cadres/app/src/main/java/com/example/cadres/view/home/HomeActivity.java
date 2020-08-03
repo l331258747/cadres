@@ -41,6 +41,9 @@ import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.bean.search.SearchBean;
+import com.example.cadres.bean.search.SysDictDataBean;
+import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -60,6 +63,7 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
 import com.example.cadres.beanDB.DBTyZsNqgb;
@@ -132,6 +136,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     CommonDaoUtils<DbTyZs> dBTyZsDaoUtils;
     CommonDaoUtils<DBTyZsNqgb> dBTyZsNqgbDaoUtils;
 
+    CommonDaoUtils<DBSearchBean> dBSearchDaoUtils;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_home;
@@ -193,6 +199,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyJgDaoUtils = _Store.getTyJgDaoUtils();
         dBTyZsDaoUtils = _Store.getTyZsDaoUtils();
         dBTyZsNqgbDaoUtils = _Store.getTyZsQngbDaoUtils();
+        dBSearchDaoUtils = _Store.getSaerchDaoUtils();
 
         initProgress();
     }
@@ -366,12 +373,24 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data) {
         setDBYjjc(data);
-        mPresenter.getFiles();
+        mPresenter.getSearchData();
+
     }
 
     @Override
     public void getYjjcListFailed(String msg) {
         progress.setProgress(90);
+        mPresenter.getSearchData();
+    }
+
+    @Override
+    public void getSearchDataSuccess(SearchBean.SearchParamBean data) {
+        setDBSearch(data);
+        mPresenter.getFiles();
+    }
+
+    @Override
+    public void getSearchDataFailed(String msg) {
         mPresenter.getFiles();
     }
 
@@ -503,6 +522,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("推演 职数 条数：" + dBTyZsDaoUtils.queryAll().size());
         LogUtil.e("推演 职数 年轻干部 条数：" + dBTyZsNqgbDaoUtils.queryAll().size());
 
+        LogUtil.e("搜索 条数：" + dBSearchDaoUtils.queryAll().size());
+
 
         dBZcfgDaoUtils.deleteAll();
         dBZcfgNoticeDaoUtils.deleteAll();
@@ -531,6 +552,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyJgDaoUtils.deleteAll();
         dBTyZsDaoUtils.deleteAll();
         dBTyZsNqgbDaoUtils.deleteAll();
+        dBSearchDaoUtils.deleteAll();
 
         printImgAll();
     }
@@ -755,7 +777,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getCadreTrain(),
                     item.getPoliticalConstruction(),
                     item.getCadreAssessment(),
-                    item.getFunctionaryRankStartTime()
+                    item.getFunctionaryRankStartTime(),
+                    item.getFunctionaryRankParentName(),
+                    item.getPostLabel()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {
@@ -1092,6 +1116,25 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 data.getSzxStr()
         );
         dBTyHjListDaoUtils.insert(db);
+    }
+
+    private void setDBSearch(SearchBean.SearchParamBean data){
+        DBSearchBean db = new DBSearchBean(
+                null,
+                data.getCadreTypes(),
+                data.getOrgTypes(),
+                data.getCurrenRankTypes(),
+                data.getEducationTypes(),
+                data.getSchoolTypes(),
+                data.getWorkExperienceTypes(),
+                data.getPoliticalOutlookTypes(),
+                data.getUserSexTypes(),
+                data.getFunctionaryRankParentTypes(),
+                data.getFunctionaryRankTypes(),
+                data.getOftenSearchPostTypes(),
+                data.getOftenSearchPostLabelTypes()
+        );
+        dBSearchDaoUtils.insert(db);
     }
 
 

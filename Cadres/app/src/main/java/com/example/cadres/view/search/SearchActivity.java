@@ -9,14 +9,23 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.example.cadres.R;
+import com.example.cadres.base.ActivityCollect;
 import com.example.cadres.base.BaseActivity;
-import com.example.cadres.bean.common.SearchBean;
+import com.example.cadres.bean.common.SearchDetailBean;
 import com.example.cadres.bean.login.MySelfInfo;
+import com.example.cadres.bean.search.SysDictDataBean;
+import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
+import com.example.cadres.beanDB.DBSearchBean;
+import com.example.cadres.dialog.DefaultDialog;
+import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.widget.flowlayout.FlowLayout;
 import com.example.cadres.widget.flowlayout.TagAdapter;
 import com.example.cadres.widget.flowlayout.TagFlowLayout;
 import com.jaygoo.widget.RangeSeekBar;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -28,16 +37,22 @@ public class SearchActivity extends BaseActivity {
 
     EditText et_search;
 
-    private TagFlowLayout fl_history;
-    private TagFlowLayout fl_gblx, fl_bmlx, fl_zwjb,fl_xl,fl_xxlx,fl_gzjl,fl_xb,fl_dp,fl_cy,fl_xllx;
+    private TagFlowLayout fl_history,fl_cy;
+    private TagFlowLayout fl_gllb, fl_bmlb, fl_xb,
+            fl_dp,fl_xrzwcc,
+            fl_xl,fl_xllx,fl_xxlx,
+            fl_gzjl,fl_xrzjlx, fl_xrzj;
+    TextView tv_xrzj;
 
     RangeSeekBar seekbar2;
     TextView progress2_tv;
     RangeSeekBar seekbar2_xrzjnx;
     TextView progress2_tv_xrzjnx;
+    RangeSeekBar seekbar2_xrzwccnx;
+    TextView progress2_tv_xrzwccnx;
     TextView tv_btn;
 
-    SearchBean searchBean;
+    SearchDetailBean searchDetailBean;
 
     Group group_history;
 
@@ -59,69 +74,101 @@ public class SearchActivity extends BaseActivity {
 
         type = intent.getStringExtra("type");
 
+        getDbData();
+        if(dbSearchBean == null){
+            new DefaultDialog(context).setContent("未获取到搜索数据，请重新下载数据").setSubmitListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ActivityCollect.getAppCollect().finishAllNotHome();
+                }
+            }).show();
+            return;
+        }
+
+        initSearchData();
+
         initEdit();
         initFLHistory();
-        initFLGblx();
-        initFLBmlx();
-        initCsn();
-        initFLZwjb();
-        initFLXl();
-        initFLXxlx();
-        initFLGzjl();
-        initXrzjnx();
+        initFLCyss();
+
+        initFLGllb();
+        initFLBmlb();
         initFLXb();
+        initCsn();
+
         initFLDp();
-        initCyss();
+        initFLXrzwcc();
+        initXrzwccnx();
+
+        initFLXl();
         initFLXllx();
+        initFLXxlx();
+
+        initFLGzjl();
+        initFLXrzjlx();
+        initFLXrzj();
+        initXrzjnx();
 
         tv_btn = findViewById(R.id.tv_btn);
         tv_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                searchBean.clean();
-                for (int index : fl_gblx.getSelectedList()) {
-                    searchBean.getGblxLists().add(mVals_gblx[index]);
+                searchDetailBean.clean();
+                for (int index : fl_gllb.getSelectedList()) {
+                    searchDetailBean.getGllbLists().add(mVals_gllb.get(index).getDictLabel());
                 }
-                for (int index : fl_bmlx.getSelectedList()) {
-                    searchBean.getBmlxLists().add(mVals_bmlx[index]);
-                }
-                for (int index : fl_zwjb.getSelectedList()) {
-                    searchBean.getZwjbLists().add(mVals_zwjb[index]);
-                }
-                for (int index : fl_xl.getSelectedList()) {
-                    searchBean.getXlLists().add(mVals_xl[index]);
-                }
-                for (int index : fl_xxlx.getSelectedList()) {
-                    searchBean.getXxlxLists().add(mVals_xxlx[index]);
-                }
-                for (int index : fl_gzjl.getSelectedList()) {
-                    searchBean.getGzjlLists().add(mVals_gzjl[index]);
+                for (int index : fl_bmlb.getSelectedList()) {
+                    searchDetailBean.getBmlbLists().add(mVals_bmlb.get(index).getDictLabel());
                 }
                 for (int index : fl_xb.getSelectedList()) {
-                    searchBean.getXbLists().add(mVals_xb[index]);
+                    searchDetailBean.getXbLists().add(mVals_xb.get(index).getDictLabel());
                 }
                 for (int index : fl_dp.getSelectedList()) {
-                    searchBean.getDpLists().add(mVals_dp[index]);
+                    searchDetailBean.getDpLists().add(mVals_dp.get(index).getDictLabel());
+                }
+                for (int index : fl_xrzwcc.getSelectedList()) {
+                    searchDetailBean.getXrzwccLists().add(mVals_xrzwcc.get(index).getDictLabel());
+                }
+                for (int index : fl_xl.getSelectedList()) {
+                    searchDetailBean.getXlLists().add(mVals_xl.get(index).getDictLabel());
                 }
                 for (int index : fl_xllx.getSelectedList()) {
-                    searchBean.getXllxLists().add(mVals_xllx[index]);
+                    searchDetailBean.getXllxLists().add(mVals_xllx[index]);
                 }
+                for (int index : fl_xxlx.getSelectedList()) {
+                    searchDetailBean.getXxlxLists().add(mVals_xxlx.get(index).getDictLabel());
+                }
+                for (int index : fl_gzjl.getSelectedList()) {
+                    searchDetailBean.getGzjlLists().add(mVals_gzjl.get(index).getDictLabel());
+                }
+
+                for (int index : fl_xrzjlx.getSelectedList()) {
+                    searchDetailBean.getXrzjlxLists().add(mVals_xrzjlx.get(index).getFunctionaryRankName());
+                }
+                for (int index : fl_xrzj.getSelectedList()) {
+                    searchDetailBean.getXrzjlxLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
+                }
+
                 List<String> listNl = new ArrayList<>();
                 listNl.add(csnMin + "");
                 listNl.add(csnMax + "");
-                searchBean.getCsnLists().addAll(listNl);
+                searchDetailBean.getCsnLists().addAll(listNl);
                 List<String> listRz = new ArrayList<>();
                 listRz.add(xrzjnxMin + "");
                 listRz.add(xrzjnxMax + "");
-                searchBean.getXrzjnxLists().addAll(listRz);
+                searchDetailBean.getXrzjnxLists().addAll(listRz);
+                List<String> listCc = new ArrayList<>();
+                listCc.add(xrzwccnxMin + "");
+                listCc.add(xrzwccnxMax + "");
+                searchDetailBean.getXrzwccnxLists().addAll(listCc);
 
-                goDetailActivity(searchBean);
+                goDetailActivity(searchDetailBean);
             }
         });
     }
 
-    String[] mVals_xllx = new String[]{"全部", "全日制", "在职教育"};
+    String[] mVals_xllx;
     private void initFLXllx() {
         fl_xllx = findViewById(R.id.fl_xllx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -136,21 +183,15 @@ public class SearchActivity extends BaseActivity {
         fl_xllx.setAdapter(adapter1);
     }
 
-    String[] mVals_cyss = new String[]{
-            "90后干部",
-            "35岁及以下年轻干部", "党外干部", "党委书记", "乡镇长",
-            "人大主任", "政协联络负责人", "纪委书记", "组织委员",
-            "武装部长","宣传委员", "党委副书记", "副镇长",
-            "人大副主任", "市直部门单位负责人", "市直部门单位派驻纪检组长", "市直部门单位副职",
-            "部办委班子成员", "人大政协委室班子", "政府工作部门负责人", "党委工作部门负责人"};
-    private void initCyss() {
+    List<SysDictDataBean> mVals_cyss;
+    private void initFLCyss() {
         fl_cy = findViewById(R.id.fl_cy);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_cyss) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_cyss) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_cyss, fl_cy, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
@@ -158,156 +199,186 @@ public class SearchActivity extends BaseActivity {
         fl_cy.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                searchBean.clean();
-                searchBean.setCyss(mVals_cyss[position]);
-
-                goDetailActivity(searchBean);
+                searchDetailBean.clean();
+                if(mVals_cyss.get(position).getType() == 0){
+                    searchDetailBean.setCyssGd(mVals_cyss.get(position).getDictLabel());
+                }else if(mVals_cyss.get(position).getType() == 1){
+                    searchDetailBean.setCyssZwlx(mVals_cyss.get(position).getDictLabel());
+                }else if(mVals_cyss.get(position).getType() == 2){
+                    searchDetailBean.setCyssZwbqlx(mVals_cyss.get(position).getDictLabel());
+                }
+                goDetailActivity(searchDetailBean);
                 return false;
             }
         });
     }
 
-    String[] mVals_dp = new String[]{"全部", "中共党员", "民革", "民盟", "民建", "民进", "农工员", "致工党", "九三学社", "台盟", "无党派"};
+    List<SysDictDataBean> mVals_dp;
     private void initFLDp() {
         fl_dp = findViewById(R.id.fl_dp);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_dp) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_dp) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_dp, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
         fl_dp.setAdapter(adapter1);
     }
 
-    String[] mVals_xb = new String[]{"全部", "男", "女"};
+
+    List<SysDictDataBean> mVals_xrzwcc;
+    private void initFLXrzwcc(){
+        fl_xrzwcc = findViewById(R.id.fl_xrzwcc);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_xrzwcc) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xrzwcc, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_xrzwcc.setAdapter(adapter1);
+    }
+
+    List<SysDictDataBean> mVals_xb;
     private void initFLXb() {
         fl_xb = findViewById(R.id.fl_xb);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_xb) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_xb) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xb, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
         fl_xb.setAdapter(adapter1);
     }
 
-    int xrzjnxMin = 0;
-    int xrzjnxMax = 20;
-    private void initXrzjnx() {
-        seekbar2_xrzjnx = findViewById(R.id.seekbar2_xrzjnx);
-        progress2_tv_xrzjnx = findViewById(R.id.progress2_tv_xrzjnx);
-        seekbar2_xrzjnx.setRange(xrzjnxMin, xrzjnxMax);//设置范围
-        seekbar2_xrzjnx.setValue(xrzjnxMin, xrzjnxMax);//设置初始值
-        progress2_tv_xrzjnx.setText(df.format(xrzjnxMin) + "年 - " + df.format(xrzjnxMax) + "年");
-        seekbar2_xrzjnx.setOnRangeChangedListener(new RangeSeekBar.OnRangeChangedListener() {
-            @Override
-            public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
-                if (isFromUser) {
-                    xrzjnxMin = (int) min;
-                    xrzjnxMax = (int) max;
-                    progress2_tv_xrzjnx.setText(df.format(xrzjnxMin) + "年 - " + df.format(xrzjnxMax) + "年");
-                    seekbar2_xrzjnx.setLeftProgressDescription(df.format(xrzjnxMin));
-                    seekbar2_xrzjnx.setRightProgressDescription(df.format(xrzjnxMax));
-                }
-            }
-        });
-    }
-
-    String[] mVals_gzjl = new String[]{"全部", "乡（街）党政正职经历", "市直部门单位班子成员经历", "企业管理经历", "高校管理经历", "政法工作经历", "纪检监察经历"};
+    List<SysDictDataBean> mVals_gzjl;
     private void initFLGzjl() {
         fl_gzjl = findViewById(R.id.fl_gzjl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_gzjl) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_gzjl) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_gzjl, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
         fl_gzjl.setAdapter(adapter1);
     }
 
-    String[] mVals_xxlx = new String[]{"全部", "211", "985", "双一流"};
+    List<SysDictDataBean> mVals_xxlx;
     private void initFLXxlx() {
         fl_xxlx = findViewById(R.id.fl_xxlx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_xxlx) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_xxlx) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xxlx, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
         fl_xxlx.setAdapter(adapter1);
     }
 
-    String[] mVals_xl = new String[]{"全部", "中专/高中", "大专", "大学本科", "硕士研究生", "博士研究生"};
+    List<SysDictDataBean> mVals_xl;
     private void initFLXl() {
         fl_xl = findViewById(R.id.fl_xl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_xl) {
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_xl) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xl, false);
-                tv.setText(s);
+                tv.setText(s.getDictLabel());
                 return tv;
             }
         };
         fl_xl.setAdapter(adapter1);
     }
 
-    String[] mVals_zwjb = new String[]{"全部", "县处级正级", "县处级副级", "乡科级正职", "乡科级副职"};
-    private void initFLZwjb() {
-        fl_zwjb = findViewById(R.id.fl_zwjb);
-        final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_zwjb) {
-            @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_zwjb, false);
-                tv.setText(s);
-                return tv;
-            }
-        };
-        fl_zwjb.setAdapter(adapter1);
+    private void initFLXrzj() {
+        tv_xrzj = findViewById(R.id.tv_xrzj);
+        tv_xrzj.setVisibility(View.GONE);
+        fl_xrzj = findViewById(R.id.fl_xrzj);
+        fl_xrzj.setVisibility(View.GONE);
     }
 
-    String[] mVals_bmlx = new String[]{"全部", "党委", "政府", "人大", "政协", "市直部门单位", "乡镇", "街道", "党委工作部门", "政府工作部门","人民团体","企业","其他"};
-    private void initFLBmlx() {
-        fl_bmlx = findViewById(R.id.fl_bmlx);
+    private void setFLXrzj(List<ZzbFunctionaryRankBean> mVals_xrzj) {
+        tv_xrzj = findViewById(R.id.tv_xrzj);
+        tv_xrzj.setVisibility(View.VISIBLE);
+        fl_xrzj = findViewById(R.id.fl_xrzj);
+        fl_xrzj.setVisibility(View.VISIBLE);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_bmlx) {
+        TagAdapter adapter1 = new TagAdapter<ZzbFunctionaryRankBean>(mVals_xrzj) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_bmlx, false);
-                tv.setText(s);
+            public View getView(FlowLayout parent, int position, ZzbFunctionaryRankBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xrzj, false);
+                tv.setText(s.getFunctionaryRankName());
                 return tv;
             }
         };
-        fl_bmlx.setAdapter(adapter1);
+        fl_xrzj.setAdapter(adapter1);
     }
 
-    String[] mVals_gblx = new String[]{"全部", "长沙市管干部", "宁乡市管干部", "宁乡市管后备干部", "其他"};
-    private void initFLGblx() {
-        fl_gblx = findViewById(R.id.fl_gblx);
+    List<ZzbFunctionaryRankBean> mVals_xrzjlx;
+    private void initFLXrzjlx(){
+        fl_xrzjlx = findViewById(R.id.fl_xrzjlx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
-        TagAdapter adapter1 = new TagAdapter<String>(mVals_gblx) {
+        TagAdapter adapter1 = new TagAdapter<ZzbFunctionaryRankBean>(mVals_xrzjlx) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_gblx, false);
-                tv.setText(s);
+            public View getView(FlowLayout parent, int position, ZzbFunctionaryRankBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_xrzjlx, false);
+                tv.setText(s.getFunctionaryRankName());
                 return tv;
             }
         };
-        fl_gblx.setAdapter(adapter1);
+        fl_xrzjlx.setAdapter(adapter1);
+        fl_xrzjlx.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                setFLXrzj(getXrzjData(mVals_xrzjlx.get(position).getFunctionaryRankId()));
+                return false;
+            }
+        });
+    }
 
+
+    List<SysDictDataBean> mVals_bmlb;
+    private void initFLBmlb() {
+        fl_bmlb = findViewById(R.id.fl_bmlb);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_bmlb) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_bmlb, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_bmlb.setAdapter(adapter1);
+    }
+
+    List<SysDictDataBean> mVals_gllb;
+    private void initFLGllb() {
+        fl_gllb = findViewById(R.id.fl_gllb);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_gllb) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_gllb, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_gllb.setAdapter(adapter1);
     }
 
     int csnMin = 1950;
@@ -332,6 +403,50 @@ public class SearchActivity extends BaseActivity {
         });
     }
 
+    int xrzjnxMin = 0;
+    int xrzjnxMax = 20;
+    private void initXrzjnx() {
+        seekbar2_xrzjnx = findViewById(R.id.seekbar2_xrzjnx);
+        progress2_tv_xrzjnx = findViewById(R.id.progress2_tv_xrzjnx);
+        seekbar2_xrzjnx.setRange(xrzjnxMin, xrzjnxMax);//设置范围
+        seekbar2_xrzjnx.setValue(xrzjnxMin, xrzjnxMax);//设置初始值
+        progress2_tv_xrzjnx.setText(df.format(xrzjnxMin) + "年 - " + df.format(xrzjnxMax) + "年");
+        seekbar2_xrzjnx.setOnRangeChangedListener(new RangeSeekBar.OnRangeChangedListener() {
+            @Override
+            public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
+                if (isFromUser) {
+                    xrzjnxMin = (int) min;
+                    xrzjnxMax = (int) max;
+                    progress2_tv_xrzjnx.setText(df.format(xrzjnxMin) + "年 - " + df.format(xrzjnxMax) + "年");
+                    seekbar2_xrzjnx.setLeftProgressDescription(df.format(xrzjnxMin));
+                    seekbar2_xrzjnx.setRightProgressDescription(df.format(xrzjnxMax));
+                }
+            }
+        });
+    }
+
+    int xrzwccnxMin = 0;
+    int xrzwccnxMax = 20;
+    private void initXrzwccnx(){
+        seekbar2_xrzwccnx = findViewById(R.id.seekbar2_xrzwccnx);
+        progress2_tv_xrzwccnx = findViewById(R.id.progress2_tv_xrzwccnx);
+        seekbar2_xrzwccnx.setRange(xrzwccnxMin, xrzwccnxMax);//设置范围
+        seekbar2_xrzwccnx.setValue(xrzwccnxMin, xrzwccnxMax);//设置初始值
+        progress2_tv_xrzwccnx.setText(df.format(xrzwccnxMin) + "年 - " + df.format(xrzwccnxMax) + "年");
+        seekbar2_xrzwccnx.setOnRangeChangedListener(new RangeSeekBar.OnRangeChangedListener() {
+            @Override
+            public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
+                if (isFromUser) {
+                    xrzwccnxMin = (int) min;
+                    xrzwccnxMax = (int) max;
+                    progress2_tv_xrzwccnx.setText(df.format(xrzwccnxMin) + "年 - " + df.format(xrzwccnxMax) + "年");
+                    seekbar2_xrzwccnx.setLeftProgressDescription(df.format(xrzwccnxMin));
+                    seekbar2_xrzwccnx.setRightProgressDescription(df.format(xrzwccnxMax));
+                }
+            }
+        });
+    }
+
     private void initEdit() {
         et_search = findViewById(R.id.et_search);
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -346,10 +461,10 @@ public class SearchActivity extends BaseActivity {
 
                 MySelfInfo.getInstance().addSearch(v.getText().toString());
 
-                searchBean.clean();
-                searchBean.setSearch(v.getText().toString());
+                searchDetailBean.clean();
+                searchDetailBean.setSearch(v.getText().toString());
 
-                goDetailActivity(searchBean);
+                goDetailActivity(searchDetailBean);
 
 
                 return false;
@@ -386,31 +501,78 @@ public class SearchActivity extends BaseActivity {
                 et_search.setSelection(et_search.getText().toString().length());
                 MySelfInfo.getInstance().addSearch(lists.get(position));
 
-                searchBean.clean();
-                searchBean.setSearch(lists.get(position));
+                searchDetailBean.clean();
+                searchDetailBean.setSearch(lists.get(position));
 
-                goDetailActivity(searchBean);
+                goDetailActivity(searchDetailBean);
 
                 return false;
             }
         });
     }
 
-    private void goDetailActivity(SearchBean searchBean){
+    private void goDetailActivity(SearchDetailBean searchDetailBean){
         Intent intent = new Intent(context,SearchDetailActivity.class);
-        intent.putExtra("data",searchBean);
+        intent.putExtra("data", searchDetailBean);
         intent.putExtra("type",type);
         startActivity(intent);
     }
 
     @Override
     public void initData() {
-        searchBean = new SearchBean();
+        searchDetailBean = new SearchDetailBean();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         initFLHistory();
+    }
+
+    DBSearchBean dbSearchBean;
+    public void getDbData(){
+        DBSearchBeanDao dbDao = DaoManager.getInstance().getDaoSession().getDBSearchBeanDao();
+        QueryBuilder<DBSearchBean> queryBuilder = dbDao.queryBuilder();
+        if(queryBuilder.count() != 0)
+            dbSearchBean = queryBuilder.unique();
+    }
+
+    private void initSearchData() {
+        mVals_gllb = dbSearchBean.getCadreTypesList();
+        mVals_bmlb = dbSearchBean.getOrgTypesList();
+        mVals_xb = dbSearchBean.getUserSexTypesList();
+        mVals_dp = dbSearchBean.getPoliticalOutlookTypesList();
+        mVals_xrzwcc = dbSearchBean.getCurrenRankTypesList();
+        mVals_xl = dbSearchBean.getEducationTypesList();
+        mVals_xllx = new String[]{"全部", "全日制", "在职教育"};
+        mVals_xxlx = dbSearchBean.getSchoolTypesList();
+        mVals_gzjl = dbSearchBean.getWorkExperienceTypesList();
+        mVals_xrzjlx = dbSearchBean.getFunctionaryRankParentTypesList();
+        initSearchCyssData();
+    }
+
+    private void initSearchCyssData() {
+        mVals_cyss = new ArrayList<>();
+        List<SysDictDataBean> cyss_gd = dbSearchBean.getCyssGdList();//固定类型
+        List<SysDictDataBean> cyss_zwlx = dbSearchBean.getOftenSearchPostTypesList();//职务类型
+        for (SysDictDataBean item : cyss_zwlx)
+            item.setType(1);
+        List<SysDictDataBean> cyss_zwbqlx = dbSearchBean.getOftenSearchPostLabelTypesList();//职务标签类型
+        for (SysDictDataBean item : cyss_zwbqlx)
+            item.setType(2);
+        mVals_cyss.addAll(cyss_gd);
+        mVals_cyss.addAll(cyss_zwlx);
+        mVals_cyss.addAll(cyss_zwbqlx);
+    }
+
+    List<ZzbFunctionaryRankBean> mVals_xrzj;
+    private List<ZzbFunctionaryRankBean> getXrzjData(int id){
+        mVals_xrzj = new ArrayList<>();
+        for (int i=0;i<dbSearchBean.getFunctionaryRankTypesList().size();i++){
+            ZzbFunctionaryRankBean item = dbSearchBean.getFunctionaryRankTypesList().get(i);
+            if(item.getParentId() == id)
+                mVals_xrzj.add(item);
+        }
+        return mVals_xrzj;
     }
 }

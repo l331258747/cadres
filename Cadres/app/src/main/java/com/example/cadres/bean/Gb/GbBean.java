@@ -137,6 +137,8 @@ public class GbBean {
         private String politicalConstruction;
         private String cadreAssessment;
         private String functionaryRankStartTime;
+        private String functionaryRankParentName;
+        private String postLabel;
 
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
@@ -434,6 +436,14 @@ public class GbBean {
 
         public String getFunctionaryRankStartTime() {
             return functionaryRankStartTime;
+        }
+
+        public String getFunctionaryRankParentName() {
+            return functionaryRankParentName;
+        }
+
+        public String getPostLabel() {
+            return postLabel;
         }
     }
 }

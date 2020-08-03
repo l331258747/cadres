@@ -87,6 +87,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property PoliticalConstruction = new Property(60, String.class, "politicalConstruction", false, "POLITICAL_CONSTRUCTION");
         public final static Property CadreAssessment = new Property(61, String.class, "cadreAssessment", false, "CADRE_ASSESSMENT");
         public final static Property FunctionaryRankStartTime = new Property(62, String.class, "functionaryRankStartTime", false, "FUNCTIONARY_RANK_START_TIME");
+        public final static Property FunctionaryRankParentName = new Property(63, String.class, "functionaryRankParentName", false, "FUNCTIONARY_RANK_PARENT_NAME");
+        public final static Property PostLabel = new Property(64, String.class, "postLabel", false, "POST_LABEL");
     }
 
 
@@ -164,7 +166,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"CADRE_TRAIN\" TEXT," + // 59: cadreTrain
                 "\"POLITICAL_CONSTRUCTION\" TEXT," + // 60: politicalConstruction
                 "\"CADRE_ASSESSMENT\" TEXT," + // 61: cadreAssessment
-                "\"FUNCTIONARY_RANK_START_TIME\" TEXT);"); // 62: functionaryRankStartTime
+                "\"FUNCTIONARY_RANK_START_TIME\" TEXT," + // 62: functionaryRankStartTime
+                "\"FUNCTIONARY_RANK_PARENT_NAME\" TEXT," + // 63: functionaryRankParentName
+                "\"POST_LABEL\" TEXT);"); // 64: postLabel
     }
 
     /** Drops the underlying database table. */
@@ -467,6 +471,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (functionaryRankStartTime != null) {
             stmt.bindString(63, functionaryRankStartTime);
         }
+ 
+        String functionaryRankParentName = entity.getFunctionaryRankParentName();
+        if (functionaryRankParentName != null) {
+            stmt.bindString(64, functionaryRankParentName);
+        }
+ 
+        String postLabel = entity.getPostLabel();
+        if (postLabel != null) {
+            stmt.bindString(65, postLabel);
+        }
     }
 
     @Override
@@ -763,6 +777,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (functionaryRankStartTime != null) {
             stmt.bindString(63, functionaryRankStartTime);
         }
+ 
+        String functionaryRankParentName = entity.getFunctionaryRankParentName();
+        if (functionaryRankParentName != null) {
+            stmt.bindString(64, functionaryRankParentName);
+        }
+ 
+        String postLabel = entity.getPostLabel();
+        if (postLabel != null) {
+            stmt.bindString(65, postLabel);
+        }
     }
 
     @Override
@@ -835,7 +859,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59), // cadreTrain
             cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60), // politicalConstruction
             cursor.isNull(offset + 61) ? null : cursor.getString(offset + 61), // cadreAssessment
-            cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62) // functionaryRankStartTime
+            cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62), // functionaryRankStartTime
+            cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63), // functionaryRankParentName
+            cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64) // postLabel
         );
         return entity;
     }
@@ -905,6 +931,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setPoliticalConstruction(cursor.isNull(offset + 60) ? null : cursor.getString(offset + 60));
         entity.setCadreAssessment(cursor.isNull(offset + 61) ? null : cursor.getString(offset + 61));
         entity.setFunctionaryRankStartTime(cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62));
+        entity.setFunctionaryRankParentName(cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63));
+        entity.setPostLabel(cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64));
      }
     
     @Override

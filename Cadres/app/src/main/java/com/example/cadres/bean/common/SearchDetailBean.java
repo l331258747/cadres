@@ -7,49 +7,62 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class SearchBean implements Serializable {
+public class SearchDetailBean implements Serializable {
     String search;
     List<String> gblxLists;
     List<String> bmlxLists;
     List<String> csnLists;
-    List<String> zwjbLists;
     List<String> xlLists;
     List<String> xxlxLists;
     List<String> gzjlLists;
     List<String> xrzjnxLists;
+    List<String> xrzwccnxLists;
     List<String> xbLists;
     List<String> dpLists;
+    List<String> xrzwccLists;
     List<String> xllxLists;
-    String cyss;
+    List<String> xrzjlxLists;
+    List<String> xrzjLists;
+    String cyssGd;
+    String cyssZwlx;
+    String cyssZwbqlx;
 
-    public SearchBean() {
+    public SearchDetailBean() {
         gblxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
-        zwjbLists = new ArrayList<>();
+        xrzjLists = new ArrayList<>();
         xlLists = new ArrayList<>();
         xxlxLists = new ArrayList<>();
         gzjlLists = new ArrayList<>();
         xrzjnxLists = new ArrayList<>();
+        xrzwccnxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
+        xrzwccLists = new ArrayList<>();
         xllxLists = new ArrayList<>();
+        xrzjlxLists = new ArrayList<>();
     }
 
     public void clean(){
         search = "";
-        cyss = "";
+        cyssGd = "";
+        cyssZwlx = "";
+        cyssZwbqlx = "";
         gblxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
-        zwjbLists = new ArrayList<>();
+        xrzjLists = new ArrayList<>();
         xlLists = new ArrayList<>();
         xxlxLists = new ArrayList<>();
         gzjlLists = new ArrayList<>();
         xrzjnxLists = new ArrayList<>();
+        xrzwccnxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
+        xrzwccLists = new ArrayList<>();
         xllxLists = new ArrayList<>();
+        xrzjlxLists = new ArrayList<>();
     }
 
     public String getSearch() {
@@ -60,26 +73,26 @@ public class SearchBean implements Serializable {
         this.search = search;
     }
 
-    public void setCyss(String cyss) {
-        this.cyss = cyss;
+    public void setCyssGd(String cyssGd) {
+        this.cyssGd = cyssGd;
     }
 
-    public List<String> getGblxLists() {
+    public List<String> getGllbLists() {
         for (String str : gblxLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
         return gblxLists;
     }
 
-    public String getCyss() {
-        return cyss;
+    public String getCyssGd() {
+        return cyssGd;
     }
 
     public void setGblxLists(List<String> gblxLists) {
         this.gblxLists = gblxLists;
     }
 
-    public List<String> getBmlxLists() {
+    public List<String> getBmlbLists() {
         for (String str : bmlxLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
@@ -102,15 +115,11 @@ public class SearchBean implements Serializable {
         this.csnLists = csnLists;
     }
 
-    public List<String> getZwjbLists() {
-        for (String str : zwjbLists)
+    public List<String> getXrzjLists() {
+        for (String str : xrzjLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
-        return zwjbLists;
-    }
-
-    public void setZwjbLists(List<String> zwjbLists) {
-        this.zwjbLists = zwjbLists;
+        return xrzjLists;
     }
 
     public List<String> getXlLists() {
@@ -129,6 +138,13 @@ public class SearchBean implements Serializable {
             if(str.equals("全部"))
                 return new ArrayList<>();
         return xllxLists;
+    }
+
+    public List<String> getXrzjlxLists(){
+        for (String str : xrzjlxLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return xrzjlxLists;
     }
 
     public int getXllxType(){
@@ -163,6 +179,27 @@ public class SearchBean implements Serializable {
 
     public void setGzjlLists(List<String> gzjlLists) {
         this.gzjlLists = gzjlLists;
+    }
+
+    public List<String> getXrzwccnxLists() {
+        if(xrzwccnxLists.size() == 0)
+            return xrzwccnxLists = new ArrayList<>();
+        if(xrzwccnxLists.get(0).equals("0") && xrzwccnxLists.get(1).equals("20"))
+            return xrzwccnxLists = new ArrayList<>();
+        return xrzwccnxLists;
+    }
+
+    public List<String> getXrzwccnxLists2() {
+        if(xrzwccnxLists.size() == 0)
+            return new ArrayList<>();
+        if(xrzwccnxLists.get(0).equals("0") && xrzwccnxLists.get(1).equals("20"))
+            return new ArrayList<>();
+        int min = getCurrentYear() - Integer.parseInt(xrzwccnxLists.get(1));
+        int max = getCurrentYear() - Integer.parseInt(xrzwccnxLists.get(0));
+        xrzwccnxLists = new ArrayList<>();
+        xrzwccnxLists.add(min + "");
+        xrzwccnxLists.add(max + "");
+        return xrzwccnxLists;
     }
 
     public List<String> getXrzjnxLists() {
@@ -226,21 +263,29 @@ public class SearchBean implements Serializable {
         this.dpLists = dpLists;
     }
 
+    public List<String> getXrzwccLists() {
+        for (String str : xrzwccLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return xrzwccLists;
+    }
+
+    public void setXrzwccLists(List<String> xrzwccLists) {
+        this.xrzwccLists = xrzwccLists;
+    }
+
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        for (String str : getGblxLists()){
+        for (String str : getGllbLists()){
             sb.append(str + "/");
         }
-        for (String str : getBmlxLists()){
+        for (String str : getBmlbLists()){
             sb.append(str + "/");
         }
         if(getCsnLists().size() == 2){
             sb.append(getCsnLists().get(0) + " - " + getCsnLists().get(1) + "/");
-        }
-        for (String str : getZwjbLists()){
-            sb.append(str + "/");
         }
         for (String str : getXlLists()){
             sb.append(str + "/");
@@ -257,12 +302,43 @@ public class SearchBean implements Serializable {
         if(getXrzjnxLists().size() == 2){
             sb.append(getXrzjnxLists().get(0) + " - " + getXrzjnxLists().get(1) + "/");
         }
+        if(getXrzwccnxLists().size() == 2){
+            sb.append(getXrzwccnxLists().get(0) + " - " + getXrzwccnxLists().get(1) + "/");
+        }
         for (String str : getXbLists()){
             sb.append(str + "/");
         }
         for (String str : getDpLists()){
             sb.append(str + "/");
         }
+        for (String str : getXrzwccLists()){
+            sb.append(str + "/");
+        }
+        if(getXrzwccnxLists().size() == 2){
+            sb.append(getXrzwccnxLists().get(0) + " - " + getXrzwccnxLists().get(1) + "/");
+        }
+        for (String str : getXrzjlxLists()){
+            sb.append(str + "/");
+        }
+        for (String str : getXrzjLists()){
+            sb.append(str + "/");
+        }
         return sb.toString();
+    }
+
+    public String getCyssZwlx() {
+        return cyssZwlx;
+    }
+
+    public void setCyssZwlx(String cyssZwlx) {
+        this.cyssZwlx = cyssZwlx;
+    }
+
+    public String getCyssZwbqlx() {
+        return cyssZwbqlx;
+    }
+
+    public void setCyssZwbqlx(String cyssZwbqlx) {
+        this.cyssZwbqlx = cyssZwbqlx;
     }
 }

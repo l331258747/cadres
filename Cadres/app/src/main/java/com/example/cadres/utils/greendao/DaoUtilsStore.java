@@ -14,6 +14,7 @@ import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
+import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyHjListDao;
 import com.cadres.greendao.gen.DBTyZsNqgbDao;
@@ -39,6 +40,7 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
 import com.example.cadres.beanDB.DBTyZsNqgb;
@@ -90,6 +92,8 @@ public class DaoUtilsStore {
     private CommonDaoUtils<DBTyZsNqgb> tyZsQngbDaoUtils;
     private CommonDaoUtils<DBTyHjList> tyHjListDaoUtils;
 
+    private CommonDaoUtils<DBSearchBean> saerchDaoUtils;
+
 
     public static DaoUtilsStore getInstance() {
         return instance;
@@ -97,6 +101,9 @@ public class DaoUtilsStore {
 
     private DaoUtilsStore() {
         DaoManager mManager = DaoManager.getInstance();
+
+        DBSearchBeanDao _DBSearchBeanDao = mManager.getDaoSession().getDBSearchBeanDao();
+        saerchDaoUtils = new CommonDaoUtils(DBSearchBean.class, _DBSearchBeanDao);
 
         DBTyHjDao _DBTyHjDao = mManager.getDaoSession().getDBTyHjDao();
         tyHjDaoUtils = new CommonDaoUtils(DBTyHj.class, _DBTyHjDao);
@@ -256,5 +263,9 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBTyHjList> getTyHjListDaoUtils() {
         return tyHjListDaoUtils;
+    }
+
+    public CommonDaoUtils<DBSearchBean> getSaerchDaoUtils() {
+        return saerchDaoUtils;
     }
 }

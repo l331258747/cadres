@@ -10,6 +10,7 @@ import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
+import com.example.cadres.bean.search.SearchBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 
@@ -30,10 +31,15 @@ public interface HomeContract {
         void getHjty();
         void getHjtyList();
 
+        void getSearchData();
+
         void getApk();
     }
 
     interface View {
+        void getSearchDataSuccess(SearchBean.SearchParamBean data);
+        void getSearchDataFailed(String msg);
+
         void getApkSuccess(ApkBean.ApkBean2 data);
         void getApkFailed(String msg);
 

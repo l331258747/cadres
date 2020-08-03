@@ -21,6 +21,7 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
 import com.example.cadres.beanDB.DBTyZsNqgb;
@@ -47,6 +48,7 @@ import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
+import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyHjListDao;
 import com.cadres.greendao.gen.DBTyZsNqgbDao;
@@ -82,6 +84,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig dBGbCadreRankListBeanDaoConfig;
     private final DaoConfig dBGbCadreResumeListBeanDaoConfig;
     private final DaoConfig dBGbCadreTrainListBeanDaoConfig;
+    private final DaoConfig dBSearchBeanDaoConfig;
     private final DaoConfig dBTyHjDaoConfig;
     private final DaoConfig dBTyHjListDaoConfig;
     private final DaoConfig dBTyZsNqgbDaoConfig;
@@ -108,6 +111,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DBGbCadreRankListBeanDao dBGbCadreRankListBeanDao;
     private final DBGbCadreResumeListBeanDao dBGbCadreResumeListBeanDao;
     private final DBGbCadreTrainListBeanDao dBGbCadreTrainListBeanDao;
+    private final DBSearchBeanDao dBSearchBeanDao;
     private final DBTyHjDao dBTyHjDao;
     private final DBTyHjListDao dBTyHjListDao;
     private final DBTyZsNqgbDao dBTyZsNqgbDao;
@@ -164,6 +168,9 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreTrainListBeanDaoConfig = daoConfigMap.get(DBGbCadreTrainListBeanDao.class).clone();
         dBGbCadreTrainListBeanDaoConfig.initIdentityScope(type);
 
+        dBSearchBeanDaoConfig = daoConfigMap.get(DBSearchBeanDao.class).clone();
+        dBSearchBeanDaoConfig.initIdentityScope(type);
+
         dBTyHjDaoConfig = daoConfigMap.get(DBTyHjDao.class).clone();
         dBTyHjDaoConfig.initIdentityScope(type);
 
@@ -213,6 +220,7 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreRankListBeanDao = new DBGbCadreRankListBeanDao(dBGbCadreRankListBeanDaoConfig, this);
         dBGbCadreResumeListBeanDao = new DBGbCadreResumeListBeanDao(dBGbCadreResumeListBeanDaoConfig, this);
         dBGbCadreTrainListBeanDao = new DBGbCadreTrainListBeanDao(dBGbCadreTrainListBeanDaoConfig, this);
+        dBSearchBeanDao = new DBSearchBeanDao(dBSearchBeanDaoConfig, this);
         dBTyHjDao = new DBTyHjDao(dBTyHjDaoConfig, this);
         dBTyHjListDao = new DBTyHjListDao(dBTyHjListDaoConfig, this);
         dBTyZsNqgbDao = new DBTyZsNqgbDao(dBTyZsNqgbDaoConfig, this);
@@ -239,6 +247,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(DBGbCadreRankListBean.class, dBGbCadreRankListBeanDao);
         registerDao(DBGbCadreResumeListBean.class, dBGbCadreResumeListBeanDao);
         registerDao(DBGbCadreTrainListBean.class, dBGbCadreTrainListBeanDao);
+        registerDao(DBSearchBean.class, dBSearchBeanDao);
         registerDao(DBTyHj.class, dBTyHjDao);
         registerDao(DBTyHjList.class, dBTyHjListDao);
         registerDao(DBTyZsNqgb.class, dBTyZsNqgbDao);
@@ -267,6 +276,7 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreRankListBeanDaoConfig.clearIdentityScope();
         dBGbCadreResumeListBeanDaoConfig.clearIdentityScope();
         dBGbCadreTrainListBeanDaoConfig.clearIdentityScope();
+        dBSearchBeanDaoConfig.clearIdentityScope();
         dBTyHjDaoConfig.clearIdentityScope();
         dBTyHjListDaoConfig.clearIdentityScope();
         dBTyZsNqgbDaoConfig.clearIdentityScope();
@@ -331,6 +341,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public DBGbCadreTrainListBeanDao getDBGbCadreTrainListBeanDao() {
         return dBGbCadreTrainListBeanDao;
+    }
+
+    public DBSearchBeanDao getDBSearchBeanDao() {
+        return dBSearchBeanDao;
     }
 
     public DBTyHjDao getDBTyHjDao() {

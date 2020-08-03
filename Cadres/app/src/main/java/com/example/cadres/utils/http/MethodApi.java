@@ -108,4 +108,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getApk(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //search 数据
+    public static void getSearchData(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getSearchData(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

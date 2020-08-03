@@ -12,6 +12,7 @@ import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
 import com.example.cadres.bean.login.LoginBean;
+import com.example.cadres.bean.search.SearchBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.yjjc.YjjcVoteCheckBean;
 import com.example.cadres.bean.yjjc.YjjcVoteListBean;
@@ -91,6 +92,9 @@ public interface HttpService {
 
     @POST("appstore/selectNewAppVersion")
     Observable<BaseResponse<ApkBean>> getApk();
+
+    @GET("searchParam/findSearchParamList")
+    Observable<BaseResponse<SearchBean>> getSearchData();
 
 
 }

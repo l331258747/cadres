@@ -11,6 +11,7 @@ import com.example.cadres.bean.dsjty.JgtyBean;
 import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.file.FileBean;
 import com.example.cadres.bean.login.LoginBean;
+import com.example.cadres.bean.search.SearchBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.bean.zcfg.ZcfgBean;
 import com.example.cadres.utils.http.MethodApi;
@@ -197,6 +198,22 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getHjtyList(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getSearchData() {
+        ResponseCallback listener = new ResponseCallback<SearchBean>() {
+            @Override
+            public void onSuccess(SearchBean data) {
+                iView.getSearchDataSuccess(data.getSearchParam());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getSearchDataFailed(errorMsg);
+            }
+        };
+        MethodApi.getSearchData(new OnSuccessAndFaultSub(listener, context,false));
     }
 
     @Override
