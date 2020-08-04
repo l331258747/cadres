@@ -178,7 +178,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    //-------------职数推演 start
+    //-------------职级推演 start
     CombinedChart chart_zs;
     LineChart chart_zs_nqgb;
     Group group_zs_nqgb;
@@ -470,7 +470,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
 
 
-    //-------------职数推演 end
+    //-------------职级推演 end
 
     //----------------换届推演界面 start
     TextView btn_swbz, btn_szfbz, btn_srdcwhbz, btn_szxbz;

@@ -61,7 +61,7 @@
         app:layout_goneMarginEnd="@dimen/dp_30"
         app:layout_constraintBottom_toBottomOf="@+id/iv_title_left"
         android:textColor="@color/color_23cffd"
-        android:text="职数推演"/>
+        android:text="职级推演"/>
 
     <ImageView
         android:id="@+id/iv_title_center"

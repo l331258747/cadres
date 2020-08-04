@@ -85,7 +85,7 @@ public class MethodApi {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
-    //获取职数推演 file
+    //获取职级推演 file
     public static void getZsty(DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getZsty(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
