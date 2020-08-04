@@ -36,6 +36,7 @@ import com.example.cadres.utils.myData.DialogBmData;
 import com.example.cadres.utils.myData.GbDrawerData;
 import com.example.cadres.view.search.SearchActivity;
 
+import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
@@ -83,7 +84,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     public void initView() {
         title = intent.getStringExtra("title");
         type = intent.getStringExtra("type");
-        if(TextUtils.isEmpty(type)) type = "1";
 
         showLeftIcon();
         showLLRightGoHome();
@@ -220,7 +220,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dBBmDaoUtils = _Store.getBmDaoUtils();
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
-        mAdapter.setData(getGbBmData(0));
+        deptId = 0;
+        mAdapter.setData(getGbBmData());
         getDbBmList("");
         leftAdapter.setData(bmLeftBeans2);
     }
@@ -303,10 +304,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 AppUtils.HideKeyboard(et_left_search);
 
                 if(item.getParentId() == 0){
-                    mAdapter.setData(getGbBmData(0));
-                } else {
-                    mAdapter.setData(getGbBmData(deptId));
+                    deptId = 0;
                 }
+                mAdapter.setData(getGbBmData());
 
             }
         });
@@ -403,34 +403,37 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    //-----------------------------搜部门干部 多表查询
-    public List<DBGbBean> getDbGbBmList(int deptId) {
+    //-----------------------------搜部门干部 多表查询 orderAsc正序 orderDesc倒序
+    public List<DBGbBean> getDbGbBmList(int deptId, Property orderBy, boolean isAsc) {
         List<DBGbBean> dbList = new ArrayList<>();
-        if(deptId == 0){
-            DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-            QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-            queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-            dbList = queryBuilder.list();
-        }else{
-            DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-            QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-            queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+        if(deptId != 0){
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
                     .where(DBGbCadreDeptListBeanDao.Properties.DeptCode.like("%" + deptId + "%"));
             queryBuilder.distinct();
-            dbList = queryBuilder.list();
         }
+        if(orderBy != null){
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
+        dbList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbList.size());
         return dbList;
     }
 
-    public List<DBGbBean> getGbBmData(int deptId) {
+    Property orderBy;
+    boolean isAsc;
+    public List<DBGbBean> getGbBmData() {
         datas = new ArrayList<>();
-        List<DBGbBean> dbList = getDbGbBmList(deptId);
+        List<DBGbBean> dbList = getDbGbBmList(deptId, orderBy, isAsc);
         if (dbList != null) {
             datas = dbList;
         }
         return datas;
     }
-
 }

@@ -29,13 +29,14 @@ import org.greenrobot.greendao.query.QueryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.constraintlayout.widget.Group;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SearchDetailActivity extends BaseActivity {
-
+    Group group_gb,group_gwy;
     RecyclerView recyclerView;
 
     GbAdapter mAdapter;
@@ -61,18 +62,33 @@ public class SearchDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        type = intent.getStringExtra("type");
+
         showLeftIcon();
         showLLRightGoHome();
         showTitleTv("筛选结果");
 
+        group_gb = findViewById(R.id.group_gb);
+        group_gwy = findViewById(R.id.group_gwy);
         tv_search_content = findViewById(R.id.tv_search_content);
         tv_search_count = findViewById(R.id.tv_search_count);
 
+        initTitleTab();
         initRecycler();
 
         initDrawer();
         initDrawerGbInfo();
 
+    }
+
+    private void initTitleTab() {
+        group_gb.setVisibility(View.GONE);
+        group_gwy.setVisibility(View.GONE);
+        if(TextUtils.equals(type,"2")){
+            group_gwy.setVisibility(View.VISIBLE);
+        }else{
+            group_gb.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -208,19 +224,35 @@ public class SearchDetailActivity extends BaseActivity {
             queryBuilder.distinct();
             LogUtil.e("部门类型 数据条数："+queryBuilder.count());
         }
+        if(searchDetailBean.getXbLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.Gender.in(searchDetailBean.getXbLists()));
+            LogUtil.e("性别 数据条数："+queryBuilder.count());
+        }
         if(searchDetailBean.getCsnLists().size() > 0){
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchDetailBean.getCsnLists().get(0), searchDetailBean.getCsnLists().get(1)));
             LogUtil.e("出生年 数据条数："+queryBuilder.count());
         }
-        if(searchDetailBean.getXrzjlxLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankParentName.in(searchDetailBean.getXrzjlxLists()));
-            LogUtil.e("现任职级类型 数据条数："+queryBuilder.count());
+        if(searchDetailBean.getDpLists().size() > 0){
+//            if(searchBean.isDpFzgdn()){
+//                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
+//                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
+//                LogUtil.e("党派 数据条数："+queryBuilder.count());
+//            }else{
+//                queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
+//                LogUtil.e("党派 数据条数："+queryBuilder.count());
+//            }
+            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchDetailBean.getDpLists()));
+            LogUtil.e("党派 数据条数："+queryBuilder.count());
         }
-        if(searchDetailBean.getXrzjLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankName.in(searchDetailBean.getXrzjLists()));
-            LogUtil.e("现任职级 数据条数："+queryBuilder.count());
+        if(searchDetailBean.getXrzwccLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentRank.in(searchDetailBean.getXrzwccLists()));
+            LogUtil.e("现任职务层次 数据条数："+queryBuilder.count());
         }
-
+        if(searchDetailBean.getXrzwccnxLists().size() > 0){
+            List<String> lists = searchDetailBean.getXrzwccnxLists2();
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)));
+            LogUtil.e("现任职务层次年限 数据条数："+queryBuilder.count());
+        }
         if(searchDetailBean.getXlLists().size() > 0){
             if(searchDetailBean.getXllxType() == 1){
                 queryBuilder.where(DBGbBeanDao.Properties.FullTimeEducation.in(searchDetailBean.getXlLists()));
@@ -234,53 +266,31 @@ public class SearchDetailActivity extends BaseActivity {
                 LogUtil.e("学历 数据条数："+queryBuilder.count());
             }
         }
-
         if(searchDetailBean.getXxlxLists().size() > 0){
             queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.in(searchDetailBean.getXxlxLists())
                     ,DBGbBeanDao.Properties.CurrentSchoolType.in(searchDetailBean.getXxlxLists()));
             LogUtil.e("学校类型 数据条数："+queryBuilder.count());
         }
-
         if(searchDetailBean.getGzjlLists().size() > 0){
             queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreResumeListBean.class,DBGbCadreResumeListBeanDao.Properties.BaseId)
                     .where(DBGbCadreResumeListBeanDao.Properties.WorkType.in(searchDetailBean.getGzjlLists()));
             queryBuilder.distinct();
             LogUtil.e("工作经历 数据条数："+queryBuilder.count());
         }
-
+        if(searchDetailBean.getXrzjlxLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankParentName.in(searchDetailBean.getXrzjlxLists()));
+            LogUtil.e("现任职级类型 数据条数："+queryBuilder.count());
+        }
+        if(searchDetailBean.getXrzjLists().size() > 0){
+            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankName.in(searchDetailBean.getXrzjLists()));
+            LogUtil.e("现任职级 数据条数："+queryBuilder.count());
+        }
         if(searchDetailBean.getXrzjnxLists().size() > 0){
             List<String> lists = searchDetailBean.getXrzjnxLists2();
             queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)));
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 
-        if(searchDetailBean.getXbLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.Gender.in(searchDetailBean.getXbLists()));
-            LogUtil.e("性别 数据条数："+queryBuilder.count());
-        }
-        if(searchDetailBean.getXrzwccLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentRank.in(searchDetailBean.getXrzwccLists()));
-            LogUtil.e("现任职务层次 数据条数："+queryBuilder.count());
-        }
-
-        if(searchDetailBean.getXrzwccnxLists().size() > 0){
-            List<String> lists = searchDetailBean.getXrzwccnxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)));
-            LogUtil.e("现任职务层次年限 数据条数："+queryBuilder.count());
-        }
-
-        if(searchDetailBean.getDpLists().size() > 0){
-//            if(searchBean.isDpFzgdn()){
-//                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
-//                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
-//                LogUtil.e("党派 数据条数："+queryBuilder.count());
-//            }else{
-//                queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()));
-//                LogUtil.e("党派 数据条数："+queryBuilder.count());
-//            }
-            queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchDetailBean.getDpLists()));
-            LogUtil.e("党派 数据条数："+queryBuilder.count());
-        }
 
         dbList = queryBuilder.list();
 

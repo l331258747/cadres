@@ -398,8 +398,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     public void getFilesSuccess(List<String> data) {
         pos = 0;
         files = data;
-//        loadImages(); //TODO
-        progress.dismiss();
+        loadImages(); //TODO
+//        progress.dismiss();
     }
 
     @Override

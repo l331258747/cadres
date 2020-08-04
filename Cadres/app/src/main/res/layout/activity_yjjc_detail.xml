@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="阿斯兰达开房间阿斯兰地块2020"
+        android:text="无"
         android:textSize="@dimen/sp_22"
         android:layout_marginTop="@dimen/dp_10"
         app:layout_constraintTop_toTopOf="parent"

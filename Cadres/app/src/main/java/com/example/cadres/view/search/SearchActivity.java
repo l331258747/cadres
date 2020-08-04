@@ -147,7 +147,7 @@ public class SearchActivity extends BaseActivity {
                     searchDetailBean.getXrzjlxLists().add(mVals_xrzjlx.get(index).getFunctionaryRankName());
                 }
                 for (int index : fl_xrzj.getSelectedList()) {
-                    searchDetailBean.getXrzjlxLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
+                    searchDetailBean.getXrzjLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
                 }
 
                 List<String> listNl = new ArrayList<>();
