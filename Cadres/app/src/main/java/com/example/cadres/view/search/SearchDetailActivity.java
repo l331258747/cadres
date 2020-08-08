@@ -285,7 +285,7 @@ public class SearchDetailActivity extends BaseActivity {
         }
         if(searchDetailBean.getXrzjnxLists().size() > 0){
             List<String> lists = searchDetailBean.getXrzjnxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)));
+            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankTime.between(lists.get(0),lists.get(1)));
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 

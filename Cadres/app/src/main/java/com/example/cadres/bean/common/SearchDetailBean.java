@@ -344,9 +344,6 @@ public class SearchDetailBean implements Serializable {
         for (String str : getXrzwccLists()){
             sb.append(str + "/");
         }
-        if(getXrzwccnxLists().size() == 2){
-            sb.append(getXrzwccnxLists().get(0) + " - " + getXrzwccnxLists().get(1) + "/");
-        }
         for (String str : getXrzjlxLists()){
             sb.append(str + "/");
         }
