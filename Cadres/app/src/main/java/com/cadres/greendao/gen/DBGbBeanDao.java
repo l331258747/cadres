@@ -89,6 +89,7 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property FunctionaryRankStartTime = new Property(62, String.class, "functionaryRankStartTime", false, "FUNCTIONARY_RANK_START_TIME");
         public final static Property FunctionaryRankParentName = new Property(63, String.class, "functionaryRankParentName", false, "FUNCTIONARY_RANK_PARENT_NAME");
         public final static Property PostLabel = new Property(64, String.class, "postLabel", false, "POST_LABEL");
+        public final static Property WorkExperience = new Property(65, String.class, "workExperience", false, "WORK_EXPERIENCE");
     }
 
 
@@ -168,7 +169,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"CADRE_ASSESSMENT\" TEXT," + // 61: cadreAssessment
                 "\"FUNCTIONARY_RANK_START_TIME\" TEXT," + // 62: functionaryRankStartTime
                 "\"FUNCTIONARY_RANK_PARENT_NAME\" TEXT," + // 63: functionaryRankParentName
-                "\"POST_LABEL\" TEXT);"); // 64: postLabel
+                "\"POST_LABEL\" TEXT," + // 64: postLabel
+                "\"WORK_EXPERIENCE\" TEXT);"); // 65: workExperience
     }
 
     /** Drops the underlying database table. */
@@ -481,6 +483,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (postLabel != null) {
             stmt.bindString(65, postLabel);
         }
+ 
+        String workExperience = entity.getWorkExperience();
+        if (workExperience != null) {
+            stmt.bindString(66, workExperience);
+        }
     }
 
     @Override
@@ -787,6 +794,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (postLabel != null) {
             stmt.bindString(65, postLabel);
         }
+ 
+        String workExperience = entity.getWorkExperience();
+        if (workExperience != null) {
+            stmt.bindString(66, workExperience);
+        }
     }
 
     @Override
@@ -861,7 +873,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 61) ? null : cursor.getString(offset + 61), // cadreAssessment
             cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62), // functionaryRankStartTime
             cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63), // functionaryRankParentName
-            cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64) // postLabel
+            cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64), // postLabel
+            cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65) // workExperience
         );
         return entity;
     }
@@ -933,6 +946,7 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setFunctionaryRankStartTime(cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62));
         entity.setFunctionaryRankParentName(cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63));
         entity.setPostLabel(cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64));
+        entity.setWorkExperience(cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65));
      }
     
     @Override

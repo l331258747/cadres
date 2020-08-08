@@ -272,9 +272,7 @@ public class SearchDetailActivity extends BaseActivity {
             LogUtil.e("学校类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getGzjlLists().size() > 0){
-            queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreResumeListBean.class,DBGbCadreResumeListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreResumeListBeanDao.Properties.WorkType.in(searchDetailBean.getGzjlLists()));
-            queryBuilder.distinct();
+            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.in(searchDetailBean.getGzjlLists()));
             LogUtil.e("工作经历 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getXrzjlxLists().size() > 0){
@@ -287,7 +285,7 @@ public class SearchDetailActivity extends BaseActivity {
         }
         if(searchDetailBean.getXrzjnxLists().size() > 0){
             List<String> lists = searchDetailBean.getXrzjnxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)));
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)));
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 

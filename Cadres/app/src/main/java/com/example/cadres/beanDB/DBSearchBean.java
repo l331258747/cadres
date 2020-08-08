@@ -212,8 +212,8 @@ public class DBSearchBean {
         SysDictDataBean item1 = new SysDictDataBean();
         SysDictDataBean item2 = new SysDictDataBean();
         item0.setDictLabel("90后干部");
-        item1.setDictLabel("90后干部");
-        item2.setDictLabel("90后干部");
+        item1.setDictLabel("35岁及以下年轻干部");
+        item2.setDictLabel("党外干部");
         list.add(item0);
         list.add(item1);
         list.add(item2);

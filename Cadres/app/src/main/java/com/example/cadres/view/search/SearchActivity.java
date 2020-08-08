@@ -311,6 +311,13 @@ public class SearchActivity extends BaseActivity {
         fl_xrzj.setVisibility(View.GONE);
     }
 
+    private void setFLXrzjNone() {
+        tv_xrzj = findViewById(R.id.tv_xrzj);
+        tv_xrzj.setVisibility(View.GONE);
+        fl_xrzj = findViewById(R.id.fl_xrzj);
+        fl_xrzj.setVisibility(View.GONE);
+        mVals_xrzj = new ArrayList<>();
+    }
     private void setFLXrzj(List<ZzbFunctionaryRankBean> mVals_xrzj) {
         tv_xrzj = findViewById(R.id.tv_xrzj);
         tv_xrzj.setVisibility(View.VISIBLE);
@@ -344,10 +351,15 @@ public class SearchActivity extends BaseActivity {
         fl_xrzjlx.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                setFLXrzj(getXrzjData(mVals_xrzjlx.get(position).getFunctionaryRankId()));
+                if(fl_xrzjlx.getSelectedList().size() == 0){
+                    setFLXrzjNone();
+                }else{
+                    setFLXrzj(getXrzjData(mVals_xrzjlx.get(position).getFunctionaryRankId()));
+                }
                 return false;
             }
         });
+
     }
 
 
@@ -544,7 +556,7 @@ public class SearchActivity extends BaseActivity {
         mVals_dp = dbSearchBean.getPoliticalOutlookTypesList();
         mVals_xrzwcc = dbSearchBean.getCurrenRankTypesList();
         mVals_xl = dbSearchBean.getEducationTypesList();
-        mVals_xllx = new String[]{"全部", "全日制", "在职教育"};
+        mVals_xllx = new String[]{"全日制", "在职教育"};
         mVals_xxlx = dbSearchBean.getSchoolTypesList();
         mVals_gzjl = dbSearchBean.getWorkExperienceTypesList();
         mVals_xrzjlx = dbSearchBean.getFunctionaryRankParentTypesList();
