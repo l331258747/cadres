@@ -2,6 +2,8 @@ package com.example.cadres.bean.common;
 
 import android.text.TextUtils;
 
+import com.example.cadres.utils.GsonUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,6 +84,20 @@ public class SearchDetailBean implements Serializable {
             if(str.equals("全部"))
                 return new ArrayList<>();
         return gblxLists;
+    }
+
+    public String getGllbListsStr(){
+        String string;
+        if(getGllbLists().size() == 0){
+            string = "";
+        }else{
+            StringBuffer str = new StringBuffer();
+            for (String item : getGllbLists()){
+                str.append(item + ",");
+            }
+            string = str.substring(0,str.length() - 1);
+        }
+        return string;
     }
 
     public String getCyssGd() {
@@ -175,6 +191,20 @@ public class SearchDetailBean implements Serializable {
             if(str.equals("全部"))
                 return new ArrayList<>();
         return gzjlLists;
+    }
+
+    public String getGzjlListsStr(){
+        String string;
+        if(getGzjlLists().size() == 0){
+            string = "";
+        }else{
+            StringBuffer str = new StringBuffer();
+            for (String item : getGzjlLists()){
+                str.append(item + ",");
+            }
+            string = str.substring(0,str.length() - 1);
+        }
+        return string;
     }
 
     public void setGzjlLists(List<String> gzjlLists) {

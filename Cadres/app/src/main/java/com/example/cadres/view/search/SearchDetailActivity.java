@@ -215,7 +215,7 @@ public class SearchDetailActivity extends BaseActivity {
         LogUtil.e("干部type 数据条数："+queryBuilder.count());
 
         if(searchDetailBean.getGllbLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.CadreType.in(searchDetailBean.getGllbLists()));
+            queryBuilder.where(DBGbBeanDao.Properties.CadreType.like("%" + searchDetailBean.getGllbListsStr() + "%"));
             LogUtil.e("干部类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getBmlbLists().size() > 0){
@@ -272,7 +272,7 @@ public class SearchDetailActivity extends BaseActivity {
             LogUtil.e("学校类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getGzjlLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.in(searchDetailBean.getGzjlLists()));
+            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.like("%" + searchDetailBean.getGzjlListsStr() + "%"));
             LogUtil.e("工作经历 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getXrzjlxLists().size() > 0){

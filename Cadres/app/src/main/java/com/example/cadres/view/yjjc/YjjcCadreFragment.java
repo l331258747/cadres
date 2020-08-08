@@ -96,6 +96,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
     }
 
     private void setViewData() {
+        if(datas == null) return;
         mAdapterRight.setData(datas);
         mAdapterLeft.setData(datas);
     }

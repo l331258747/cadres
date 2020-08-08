@@ -1,5 +1,6 @@
 package com.example.cadres.view.zcfg;
 
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.example.cadres.R;
@@ -32,6 +33,7 @@ public class ZcfgDetailActivity extends BaseActivity {
     public void initData() {
         tv_title.setText(intent.getStringExtra("title"));
         content = intent.getStringExtra("content");
-        StringUtils.setHtml(tv_content, content);
+        if(!TextUtils.isEmpty(content))
+            StringUtils.setHtml(tv_content, content);
     }
 }

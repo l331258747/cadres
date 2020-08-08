@@ -78,7 +78,9 @@ public class YjjcMettingFragment extends BaseFragment {
     }
 
     private void setViewData() {
-        StringUtils.setHtml(tv_content, data.getMeetingSummary());
+        if(data == null) return;
+        if(!TextUtils.isEmpty(data.getMeetingSummary()))
+            StringUtils.setHtml(tv_content, data.getMeetingSummary());
         tv_hynr_content.setText(data.getMeetingDescribe());
         tv_shsj_content.setText(data.getMeetingTime());
         tv_hylx_content.setText(data.getMeetingType());
