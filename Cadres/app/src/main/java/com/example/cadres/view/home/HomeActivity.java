@@ -611,7 +611,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
             for (int i = 0; i < data.size(); i++) {
                 progress.setProgress((int) (30 + (20f / data.size() * i)));
                 BmBean2 item = data.get(i);
-                dbList.add(new DBBmBean(
+                dbList.add(
+                        new DBBmBean(
                         null,
                         item.getDeptId(),
                         item.getParentId(),
@@ -650,7 +651,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getOvermatchOther(),
                         item.getMismatchPosition(),
                         item.getMismatchDeputy(),
-                        item.getMismatchOther()
+                        item.getMismatchOther(),
+                        item.getSubset()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {

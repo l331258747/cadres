@@ -50,8 +50,10 @@ public class DBBmBean {
     private String mismatchPosition;//缺配配乡科正职
     private String mismatchDeputy;//缺配乡科副职
     private String mismatchOther;//缺配其他
+
+    private int subset;
     
-    @Generated(hash = 2102889352)
+    @Generated(hash = 149785918)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -63,7 +65,7 @@ public class DBBmBean {
             int surpassDeputy, int surpassOther, int lackPosition, int lackDeputy,
             int lackOther, String overmatchPosition, String overmatchDeputy,
             String overmatchOther, String mismatchPosition, String mismatchDeputy,
-            String mismatchOther) {
+            String mismatchOther, int subset) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -103,6 +105,7 @@ public class DBBmBean {
         this.mismatchPosition = mismatchPosition;
         this.mismatchDeputy = mismatchDeputy;
         this.mismatchOther = mismatchOther;
+        this.subset = subset;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -445,5 +448,11 @@ public class DBBmBean {
 
     public void setMismatchOther(String mismatchOther) {
         this.mismatchOther = mismatchOther;
+    }
+    public int getSubset() {
+        return this.subset;
+    }
+    public void setSubset(int subset) {
+        this.subset = subset;
     }
 }

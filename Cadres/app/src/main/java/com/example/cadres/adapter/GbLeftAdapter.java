@@ -44,15 +44,19 @@ public class GbLeftAdapter extends RecyclerView.Adapter<GbLeftAdapter.ViewHolder
         final BmLeftBean data = datas.get(position);
         if (data == null) return;
 
-        holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         holder.tv_title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 
         if(data.getParentId() == 0){
-            holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             holder.tv_title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        }else if(!TextUtils.equals(data.getIdType(), "1")){
-            holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        }else if(!TextUtils.equals(data.getIdType(), "1")){//真实部门
+            holder.tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             holder.tv_title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        }
+
+        if(data.getSubset() == 0){//没有子集
+            holder.tv_title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         }
 
         holder.tv_title.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));

@@ -8,13 +8,19 @@ public class BmLeftBean {
     String name;
     String idType;
     boolean isSelect;
+    int subset;
     List<BmLeftBean> lists;
 
-    public BmLeftBean(int id, int parentId, String name,String idType) {
+    public BmLeftBean(int id, int parentId, String name,String idType,int subset) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.idType = idType;
+        this.subset = subset;
+    }
+
+    public int getSubset() {
+        return subset;
     }
 
     public boolean isSelect() {

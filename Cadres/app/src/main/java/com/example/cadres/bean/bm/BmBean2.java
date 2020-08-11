@@ -1,5 +1,7 @@
 package com.example.cadres.bean.bm;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,19 @@ public class BmBean2 {
     private String mismatchDeputy;//缺配乡科副职
     private String mismatchOther;//缺配其他
     private List<BmExplainBean> organizationExplain;
+    private String subset;
+
+    public int getSubset() {
+        if(TextUtils.isEmpty(subset))
+            return 0;
+        int date;
+        try{
+            date = Integer.valueOf(subset);
+        }catch (Exception e){
+            date = 0;
+        }
+        return date;
+    }
 
     public int getSurpassPosition() {
         return surpassPosition;
