@@ -50,6 +50,8 @@ public class SearchActivity extends BaseActivity {
     TextView progress2_tv_xrzjnx;
     RangeSeekBar seekbar2_xrzwccnx;
     TextView progress2_tv_xrzwccnx;
+    RangeSeekBar seekbar2_rxznx;
+    TextView progress2_tv_rxznx;
     TextView tv_btn;
 
     SearchDetailBean searchDetailBean;
@@ -97,6 +99,7 @@ public class SearchActivity extends BaseActivity {
         initCsn();
 
         initFLDp();
+        initRxznx();
         initFLXrzwcc();
         initXrzwccnx();
 
@@ -150,18 +153,22 @@ public class SearchActivity extends BaseActivity {
                     searchDetailBean.getXrzjLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
                 }
 
-                List<String> listNl = new ArrayList<>();
+                List<String> listNl = new ArrayList<>();//出身年
                 listNl.add(csnMin + "");
                 listNl.add(csnMax + "");
                 searchDetailBean.getCsnLists().addAll(listNl);
-                List<String> listRz = new ArrayList<>();
+                List<String> listRz = new ArrayList<>();//任现职级年限
                 listRz.add(xrzjnxMin + "");
                 listRz.add(xrzjnxMax + "");
                 searchDetailBean.getXrzjnxLists().addAll(listRz);
-                List<String> listCc = new ArrayList<>();
+                List<String> listCc = new ArrayList<>();//任现职务层次年限
                 listCc.add(xrzwccnxMin + "");
                 listCc.add(xrzwccnxMax + "");
                 searchDetailBean.getXrzwccnxLists().addAll(listCc);
+                List<String> listRxz = new ArrayList<>();//任现职年限
+                listRxz.add(rxznxMin + "");
+                listRxz.add(rxznxMax + "");
+                searchDetailBean.getRxznxLists().addAll(listRxz);
 
                 goDetailActivity(searchDetailBean);
             }
@@ -454,6 +461,28 @@ public class SearchActivity extends BaseActivity {
                     progress2_tv_xrzwccnx.setText(df.format(xrzwccnxMin) + "年 - " + df.format(xrzwccnxMax) + "年");
                     seekbar2_xrzwccnx.setLeftProgressDescription(df.format(xrzwccnxMin));
                     seekbar2_xrzwccnx.setRightProgressDescription(df.format(xrzwccnxMax));
+                }
+            }
+        });
+    }
+
+    int rxznxMin = 0;
+    int rxznxMax = 20;
+    private void initRxznx() {
+        seekbar2_rxznx = findViewById(R.id.seekbar2_rxznx);
+        progress2_tv_rxznx = findViewById(R.id.progress2_tv_rxznx);
+        seekbar2_rxznx.setRange(rxznxMin, rxznxMax);//设置范围
+        seekbar2_rxznx.setValue(rxznxMin, rxznxMax);//设置初始值
+        progress2_tv_rxznx.setText(df.format(rxznxMin) + "年 - " + df.format(rxznxMax) + "年");
+        seekbar2_rxznx.setOnRangeChangedListener(new RangeSeekBar.OnRangeChangedListener() {
+            @Override
+            public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
+                if (isFromUser) {
+                    rxznxMin = (int) min;
+                    rxznxMax = (int) max;
+                    progress2_tv_rxznx.setText(df.format(rxznxMin) + "年 - " + df.format(rxznxMax) + "年");
+                    seekbar2_rxznx.setLeftProgressDescription(df.format(rxznxMin));
+                    seekbar2_rxznx.setRightProgressDescription(df.format(rxznxMax));
                 }
             }
         });

@@ -244,6 +244,13 @@ public class SearchDetailActivity extends BaseActivity {
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchDetailBean.getDpLists()));
             LogUtil.e("党派 数据条数："+queryBuilder.count());
         }
+
+        if(searchDetailBean.getRxznxLists().size() > 0){
+            List<String> lists = searchDetailBean.getRxznxLists2();
+            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)));
+            LogUtil.e("现任职年限 数据条数："+queryBuilder.count());
+        }
+
         if(searchDetailBean.getXrzwccLists().size() > 0){
             queryBuilder.where(DBGbBeanDao.Properties.CurrentRank.in(searchDetailBean.getXrzwccLists()));
             LogUtil.e("现任职务层次 数据条数："+queryBuilder.count());

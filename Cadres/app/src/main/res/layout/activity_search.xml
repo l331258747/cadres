@@ -227,13 +227,52 @@
                 app:max_select="-1"/>
 
             <TextView
+                android:id="@+id/tv_rxznx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_dp"
+                android:text="任现职\n年限："/>
+
+            <TextView
+                android:id="@+id/progress2_tv_rxznx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/seekbar2_rxznx"
+                app:layout_constraintStart_toStartOf="@+id/seekbar2_rxznx"
+                app:layout_constraintEnd_toEndOf="@+id/seekbar2_rxznx"
+                tools:text="asdfasdf"
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                />
+
+            <com.jaygoo.widget.RangeSeekBar
+                android:id="@+id/seekbar2_rxznx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:lineColorSelected="@color/color_b31f23"
+                app:lineColorEdge="@color/color_4b_66"
+                app:thumbSecondaryColor="@color/color_b31f23"
+                app:thumbPrimaryColor="@color/color_b31f23"
+                app:layout_constraintTop_toTopOf="@+id/tv_rxznx"
+                app:thumbSize="20dp"
+                app:seekBarHeight="10dp"
+                app:cellMode="number"
+                app:seekBarMode="range"
+                app:progressHintMode="alwaysHide"
+                />
+
+            <TextView
                 android:id="@+id/tv_xrzwcc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
                 android:paddingTop="@dimen/dp_5"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_dp"
+                app:layout_constraintTop_toBottomOf="@+id/seekbar2_rxznx"
                 android:text="现任职务\n层次："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout

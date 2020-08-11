@@ -19,6 +19,7 @@ public class SearchDetailBean implements Serializable {
     List<String> gzjlLists;
     List<String> xrzjnxLists;
     List<String> xrzwccnxLists;
+    List<String> rxznxLists;
     List<String> xbLists;
     List<String> dpLists;
     List<String> xrzwccLists;
@@ -39,6 +40,7 @@ public class SearchDetailBean implements Serializable {
         gzjlLists = new ArrayList<>();
         xrzjnxLists = new ArrayList<>();
         xrzwccnxLists = new ArrayList<>();
+        rxznxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
         xrzwccLists = new ArrayList<>();
@@ -60,6 +62,7 @@ public class SearchDetailBean implements Serializable {
         gzjlLists = new ArrayList<>();
         xrzjnxLists = new ArrayList<>();
         xrzwccnxLists = new ArrayList<>();
+        rxznxLists = new ArrayList<>();
         xbLists = new ArrayList<>();
         dpLists = new ArrayList<>();
         xrzwccLists = new ArrayList<>();
@@ -211,6 +214,27 @@ public class SearchDetailBean implements Serializable {
         this.gzjlLists = gzjlLists;
     }
 
+    public List<String> getRxznxLists() {
+        if(rxznxLists.size() == 0)
+            return rxznxLists = new ArrayList<>();
+        if(rxznxLists.get(0).equals("0") && rxznxLists.get(1).equals("20"))
+            return rxznxLists = new ArrayList<>();
+        return rxznxLists;
+    }
+
+    public List<String> getRxznxLists2() {
+        if(rxznxLists.size() == 0)
+            return new ArrayList<>();
+        if(rxznxLists.get(0).equals("0") && rxznxLists.get(1).equals("20"))
+            return new ArrayList<>();
+        int min = getCurrentYear() - Integer.parseInt(rxznxLists.get(1));
+        int max = getCurrentYear() - Integer.parseInt(rxznxLists.get(0));
+        rxznxLists = new ArrayList<>();
+        rxznxLists.add(min + "");
+        rxznxLists.add(max + "");
+        return rxznxLists;
+    }
+
     public List<String> getXrzwccnxLists() {
         if(xrzwccnxLists.size() == 0)
             return xrzwccnxLists = new ArrayList<>();
@@ -315,7 +339,7 @@ public class SearchDetailBean implements Serializable {
             sb.append(str + "/");
         }
         if(getCsnLists().size() == 2){
-            sb.append(getCsnLists().get(0) + " - " + getCsnLists().get(1) + "/");
+            sb.append("出生年：" + getCsnLists().get(0) + " - " + getCsnLists().get(1) + "/");
         }
         for (String str : getXlLists()){
             sb.append(str + "/");
@@ -330,10 +354,13 @@ public class SearchDetailBean implements Serializable {
             sb.append(str + "/");
         }
         if(getXrzjnxLists().size() == 2){
-            sb.append(getXrzjnxLists().get(0) + " - " + getXrzjnxLists().get(1) + "/");
+            sb.append("任现职级年限：" + getXrzjnxLists().get(0) + " - " + getXrzjnxLists().get(1) + "/");
         }
         if(getXrzwccnxLists().size() == 2){
-            sb.append(getXrzwccnxLists().get(0) + " - " + getXrzwccnxLists().get(1) + "/");
+            sb.append("任现职务层次年限：" + getXrzwccnxLists().get(0) + " - " + getXrzwccnxLists().get(1) + "/");
+        }
+        if(getRxznxLists().size() == 2){
+            sb.append("任现职年限：" + getRxznxLists().get(0) + " - " + getRxznxLists().get(1) + "/");
         }
         for (String str : getXbLists()){
             sb.append(str + "/");
