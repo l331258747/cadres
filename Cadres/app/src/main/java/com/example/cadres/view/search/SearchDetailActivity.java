@@ -229,7 +229,10 @@ public class SearchDetailActivity extends BaseActivity {
             LogUtil.e("性别 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getCsnLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchDetailBean.getCsnLists().get(0), searchDetailBean.getCsnLists().get(1)));
+            List<String> lists = searchDetailBean.getCsnLists();
+            queryBuilder.whereOr(DBGbBeanDao.Properties.Birthday.between(lists.get(0), lists.get(1)),
+                    DBGbBeanDao.Properties.Birthday.like(lists.get(0) + "%"),
+                    DBGbBeanDao.Properties.Birthday.like(lists.get(1) + "%"));
             LogUtil.e("出生年 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getDpLists().size() > 0){
@@ -247,7 +250,9 @@ public class SearchDetailActivity extends BaseActivity {
 
         if(searchDetailBean.getRxznxLists().size() > 0){
             List<String> lists = searchDetailBean.getRxznxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)));
+            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)),
+                    DBGbBeanDao.Properties.CurrentPositionTime.like(lists.get(0) + "%"),
+                    DBGbBeanDao.Properties.CurrentPositionTime.like(lists.get(1) + "%"));
             LogUtil.e("现任职年限 数据条数："+queryBuilder.count());
         }
 
@@ -257,7 +262,9 @@ public class SearchDetailActivity extends BaseActivity {
         }
         if(searchDetailBean.getXrzwccnxLists().size() > 0){
             List<String> lists = searchDetailBean.getXrzwccnxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)));
+            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)),
+                    DBGbBeanDao.Properties.CurrentRankTime.like(lists.get(0) + "%"),
+                    DBGbBeanDao.Properties.CurrentRankTime.like(lists.get(1) + "%"));
             LogUtil.e("现任职务层次年限 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getXlLists().size() > 0){
@@ -292,7 +299,9 @@ public class SearchDetailActivity extends BaseActivity {
         }
         if(searchDetailBean.getXrzjnxLists().size() > 0){
             List<String> lists = searchDetailBean.getXrzjnxLists2();
-            queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankTime.between(lists.get(0),lists.get(1)));
+            queryBuilder.whereOr(DBGbBeanDao.Properties.FunctionaryRankTime.between(lists.get(0),lists.get(1)),
+                    DBGbBeanDao.Properties.FunctionaryRankTime.like(lists.get(0) + "%"),
+                    DBGbBeanDao.Properties.FunctionaryRankTime.like(lists.get(1) + "%"));
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 
