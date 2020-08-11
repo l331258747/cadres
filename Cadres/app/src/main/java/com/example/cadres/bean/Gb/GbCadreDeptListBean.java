@@ -23,6 +23,11 @@ public class GbCadreDeptListBean {
     private String deptName;
     private String deptType;
     private String deptCode;
+    private int ranking;
+
+    public int getRanking() {
+        return ranking;
+    }
 
     public String getDeptCode() {
         return deptCode;

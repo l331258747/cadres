@@ -79,8 +79,10 @@ public class DBGbBean {
     private String functionaryRankParentName;
     private String postLabel;
     private String workExperience;
+
+    private int ranking;
     
-    @Generated(hash = 849418092)
+    @Generated(hash = 1114833875)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -103,7 +105,7 @@ public class DBGbBean {
             String cadreResume, String cadreAward, String cadrePunish,
             String cadreTrain, String politicalConstruction, String cadreAssessment,
             String functionaryRankStartTime, String functionaryRankParentName,
-            String postLabel, String workExperience) {
+            String postLabel, String workExperience, int ranking) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -170,6 +172,7 @@ public class DBGbBean {
         this.functionaryRankParentName = functionaryRankParentName;
         this.postLabel = postLabel;
         this.workExperience = workExperience;
+        this.ranking = ranking;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -593,6 +596,12 @@ public class DBGbBean {
     }
     public void setWorkExperience(String workExperience) {
         this.workExperience = workExperience;
+    }
+    public int getRanking() {
+        return this.ranking;
+    }
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
 

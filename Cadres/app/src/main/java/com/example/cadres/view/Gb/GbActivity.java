@@ -411,7 +411,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
         if(deptId != 0){
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreDeptListBeanDao.Properties.DeptCode.like("%" + deptId + "%"));
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(deptId));
+            queryBuilder.orderAsc(DBGbBeanDao.Properties.Ranking);
             queryBuilder.distinct();
         }
         if(orderBy != null){
