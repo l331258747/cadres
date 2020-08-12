@@ -185,6 +185,20 @@ public class SearchDetailBean implements Serializable {
         return xxlxLists;
     }
 
+    public String getXxlxListsStr(){
+        String string;
+        if(getXxlxLists().size() == 0){
+            string = "";
+        }else{
+            StringBuffer str = new StringBuffer();
+            for (String item : getXxlxLists()){
+                str.append(item + ",");
+            }
+            string = str.substring(0,str.length() - 1);
+        }
+        return string;
+    }
+
     public void setXxlxLists(List<String> xxlxLists) {
         this.xxlxLists = xxlxLists;
     }

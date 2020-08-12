@@ -281,8 +281,8 @@ public class SearchDetailActivity extends BaseActivity {
             }
         }
         if(searchDetailBean.getXxlxLists().size() > 0){
-            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.in(searchDetailBean.getXxlxLists())
-                    ,DBGbBeanDao.Properties.CurrentSchoolType.in(searchDetailBean.getXxlxLists()));
+            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%")
+                    ,DBGbBeanDao.Properties.CurrentSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%"));
             LogUtil.e("学校类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getGzjlLists().size() > 0){
