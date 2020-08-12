@@ -652,7 +652,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getMismatchPosition(),
                         item.getMismatchDeputy(),
                         item.getMismatchOther(),
-                        item.getSubset()
+                        item.getSubset(),
+                        item.getDefulatOrg()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {

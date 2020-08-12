@@ -94,6 +94,11 @@ public class BmBean2 {
     private String mismatchOther;//缺配其他
     private List<BmExplainBean> organizationExplain;
     private String subset;
+    private int defulatOrg;
+
+    public int getDefulatOrg() {
+        return defulatOrg;
+    }
 
     public int getSubset() {
         if(TextUtils.isEmpty(subset))

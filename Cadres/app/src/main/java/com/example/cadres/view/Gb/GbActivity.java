@@ -220,10 +220,10 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dBBmDaoUtils = _Store.getBmDaoUtils();
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
-        deptId = 0;
+        deptId = getDefaultDeptId();
         mAdapter.setData(getGbBmData());
         getDbBmList("");
-        leftAdapter.setData(bmLeftBeans2);
+        leftAdapter.setData(bmLeftBeans2,deptId);
     }
 
     //初始化recyclerview
@@ -436,5 +436,17 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             datas = dbList;
         }
         return datas;
+    }
+
+    private int getDefaultDeptId() {
+        DBBmBeanDao dbBmBeanDao = DaoManager.getInstance().getDaoSession().getDBBmBeanDao();
+        QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
+        queryBuilder.where(DBBmBeanDao.Properties.DefulatOrg.eq(1));
+        List<DBBmBean> dates = queryBuilder.list();
+        LogUtil.e("数据库条数：" + dates.size());
+        if(dates == null || dates.size() == 0)
+            return 0;
+        else
+            return dates.get(0).getDeptId();
     }
 }

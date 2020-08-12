@@ -81,6 +81,12 @@ public class GbLeftAdapter extends RecyclerView.Adapter<GbLeftAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public void setData(List<BmLeftBean> datas, int selectDeptDd) {
+        this.datas = datas;
+        this.selectDeptDd = selectDeptDd;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_title;
         public ViewHolder(@NonNull View itemView) {

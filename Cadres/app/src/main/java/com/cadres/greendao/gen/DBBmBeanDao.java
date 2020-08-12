@@ -64,6 +64,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property MismatchDeputy = new Property(37, String.class, "mismatchDeputy", false, "MISMATCH_DEPUTY");
         public final static Property MismatchOther = new Property(38, String.class, "mismatchOther", false, "MISMATCH_OTHER");
         public final static Property Subset = new Property(39, int.class, "subset", false, "SUBSET");
+        public final static Property DefulatOrg = new Property(40, int.class, "defulatOrg", false, "DEFULAT_ORG");
     }
 
 
@@ -118,7 +119,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"MISMATCH_POSITION\" TEXT," + // 36: mismatchPosition
                 "\"MISMATCH_DEPUTY\" TEXT," + // 37: mismatchDeputy
                 "\"MISMATCH_OTHER\" TEXT," + // 38: mismatchOther
-                "\"SUBSET\" INTEGER NOT NULL );"); // 39: subset
+                "\"SUBSET\" INTEGER NOT NULL ," + // 39: subset
+                "\"DEFULAT_ORG\" INTEGER NOT NULL );"); // 40: defulatOrg
     }
 
     /** Drops the underlying database table. */
@@ -266,6 +268,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             stmt.bindString(39, mismatchOther);
         }
         stmt.bindLong(40, entity.getSubset());
+        stmt.bindLong(41, entity.getDefulatOrg());
     }
 
     @Override
@@ -407,6 +410,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             stmt.bindString(39, mismatchOther);
         }
         stmt.bindLong(40, entity.getSubset());
+        stmt.bindLong(41, entity.getDefulatOrg());
     }
 
     @Override
@@ -456,7 +460,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // mismatchPosition
             cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // mismatchDeputy
             cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // mismatchOther
-            cursor.getInt(offset + 39) // subset
+            cursor.getInt(offset + 39), // subset
+            cursor.getInt(offset + 40) // defulatOrg
         );
         return entity;
     }
@@ -503,6 +508,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setMismatchDeputy(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
         entity.setMismatchOther(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
         entity.setSubset(cursor.getInt(offset + 39));
+        entity.setDefulatOrg(cursor.getInt(offset + 40));
      }
     
     @Override
