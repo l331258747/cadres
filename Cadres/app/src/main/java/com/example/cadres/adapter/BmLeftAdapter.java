@@ -1,6 +1,8 @@
 package com.example.cadres.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,9 @@ public class BmLeftAdapter extends RecyclerView.Adapter<BmLeftAdapter.ViewHolder
         if (data == null) return;
 
         holder.tv_dwmc.setText(data.getDeptName());
+        holder.tv_dwmc.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        if(data.getSubset() == 1)//有子集加租
+            holder.tv_dwmc.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {

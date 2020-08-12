@@ -1,6 +1,7 @@
 package com.example.cadres.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,10 @@ public class ListDialogAdapter2 extends RecyclerView.Adapter<ListDialogAdapter2.
         if (item == null) return;
 
         holder.tv_text.setText(item.getName());
+
+        holder.tv_text.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        if(item.getSubset() == 1)//有子集加租
+            holder.tv_text.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
         if(mOnItemClickListener != null){
             holder.tv_text.setOnClickListener(new View.OnClickListener() {
