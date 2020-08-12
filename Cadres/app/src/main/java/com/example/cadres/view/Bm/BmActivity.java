@@ -159,9 +159,9 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         }else{
             queryBuilder.where(DBBmBeanDao.Properties.DeptType.eq(1));
             if(!TextUtils.isEmpty(orgId))
-                queryBuilder.where(DBBmBeanDao.Properties.OrgType.eq(orgId));
+                queryBuilder.where(DBBmBeanDao.Properties.OrgType.eq(orgId)).orderAsc(DBBmBeanDao.Properties.OrderNum);
             if(!TextUtils.isEmpty(FinanceId))
-                queryBuilder.where(DBBmBeanDao.Properties.FinanceType.eq(FinanceId));
+                queryBuilder.where(DBBmBeanDao.Properties.FinanceType.eq(FinanceId)).orderAsc(DBBmBeanDao.Properties.OrderNum);
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
