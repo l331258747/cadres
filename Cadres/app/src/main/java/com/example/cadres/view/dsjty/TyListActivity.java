@@ -221,6 +221,10 @@ public class TyListActivity extends BaseActivity implements View.OnClickListener
     List<DBGbBean> dbList;
     public void getDbList() {
         if(ids == null || ids.size() == 0) return;
+        if(ids.size() > 900){
+            ids = ids.subList(0,998);
+        }
+
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.BaseId.in(ids));
