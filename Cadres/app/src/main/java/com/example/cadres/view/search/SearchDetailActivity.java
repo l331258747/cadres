@@ -3,6 +3,7 @@ package com.example.cadres.view.search;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,18 +25,20 @@ import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.utils.myData.GbDrawerData;
 
+import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.constraintlayout.widget.Group;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SearchDetailActivity extends BaseActivity {
+public class SearchDetailActivity extends BaseActivity implements View.OnClickListener {
     Group group_gb,group_gwy;
     RecyclerView recyclerView;
 
@@ -47,6 +50,15 @@ public class SearchDetailActivity extends BaseActivity {
     TextView tv_search_content,tv_search_count;
 
     SearchDetailBean searchDetailBean;
+
+    LinearLayout ll_xrzsj, ll_xrzwccsj, ll_rzjsj, ll_rzjqssj, ll_cjgzsj, ll_csny;
+    ImageView iv_xrzsj, iv_xrzwccsj, iv_rzjsj, iv_rzjqssj, iv_cjgzsj, iv_csny;
+    private final int order_xrzsj = 1;
+    private final int order_xrzwccsj = 2;
+    private final int order_rzjsj = 3;
+    private final int order_rzjqssj = 4;
+    private final int order_cjgzsj = 5;
+    private final int order_csny = 6;
 
     DrawerLayout drawer_layout;
     NestedScrollView scrollView;
@@ -63,6 +75,7 @@ public class SearchDetailActivity extends BaseActivity {
     @Override
     public void initView() {
         type = intent.getStringExtra("type");
+        searchDetailBean = (SearchDetailBean) intent.getSerializableExtra("data");
 
         showLeftIcon();
         showLLRightGoHome();
@@ -79,6 +92,81 @@ public class SearchDetailActivity extends BaseActivity {
         initDrawer();
         initDrawerGbInfo();
 
+        initSort();
+
+    }
+
+    private void initSort() {
+        ll_xrzsj = findViewById(R.id.ll_xrzsj);
+        ll_xrzwccsj = findViewById(R.id.ll_xrzwccsj);
+        ll_rzjsj = findViewById(R.id.ll_rzjsj);
+        ll_rzjqssj = findViewById(R.id.ll_rzjqssj);
+        ll_cjgzsj = findViewById(R.id.ll_cjgzsj);
+        ll_csny = findViewById(R.id.ll_csny);
+        iv_xrzsj = findViewById(R.id.iv_xrzsj);
+        iv_xrzwccsj = findViewById(R.id.iv_xrzwccsj);
+        iv_rzjsj = findViewById(R.id.iv_rzjsj);
+        iv_rzjqssj = findViewById(R.id.iv_rzjqssj);
+        iv_cjgzsj = findViewById(R.id.iv_cjgzsj);
+        iv_csny = findViewById(R.id.iv_csny);
+
+        ll_xrzsj.setOnClickListener(this);
+        ll_xrzwccsj.setOnClickListener(this);
+        ll_rzjsj.setOnClickListener(this);
+        ll_rzjqssj.setOnClickListener(this);
+        ll_cjgzsj.setOnClickListener(this);
+        ll_csny.setOnClickListener(this);
+    }
+
+    int mSortType;
+    Property orderBy;
+    boolean isAsc;
+
+    private void sortDate(int sortType) {
+        iv_xrzsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_xrzwccsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_rzjsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_rzjqssj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_cjgzsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_csny.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+
+        recyclerView.scrollToPosition(0);
+
+        if (sortType == 0) {
+            isAsc = true;
+            mSortType = sortType;
+            orderBy = null;
+            return;
+        }
+        isAsc = mSortType == sortType ? !isAsc : true;
+
+        if (sortType == order_xrzsj) {
+            orderBy = DBGbBeanDao.Properties.CurrentPositionTime;
+            iv_xrzsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_xrzwccsj) {
+            orderBy = DBGbBeanDao.Properties.CurrentRankTime;
+            iv_xrzwccsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_rzjsj) {
+            orderBy = DBGbBeanDao.Properties.FunctionaryRankTime;
+            iv_rzjsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_rzjqssj) {
+            orderBy = DBGbBeanDao.Properties.FunctionaryRankStartTime;
+            iv_rzjqssj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_cjgzsj) {
+            orderBy = DBGbBeanDao.Properties.WorkTime;
+            iv_cjgzsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_csny) {
+            orderBy = DBGbBeanDao.Properties.Birthday;
+            iv_csny.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else {
+            orderBy = null;
+        }
+        mSortType = sortType;
+
+        if (orderBy == null)
+            return;
+        getTypeDbList();
+        mAdapter.setData(getData());
     }
 
     private void initTitleTab() {
@@ -96,8 +184,13 @@ public class SearchDetailActivity extends BaseActivity {
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBGbDaoUtils = _Store.getGbDaoUtils();
 
-        searchDetailBean = (SearchDetailBean) intent.getSerializableExtra("data");
-        type = intent.getStringExtra("type");
+        sortDate(0);
+
+        getTypeDbList();
+        mAdapter.setData(getData());
+    }
+
+    public void getTypeDbList(){
         if(!TextUtils.isEmpty(searchDetailBean.getSearch())){
             getDbList(searchDetailBean.getSearch());
         }else if(!TextUtils.isEmpty(searchDetailBean.getCyssGd())){
@@ -109,9 +202,7 @@ public class SearchDetailActivity extends BaseActivity {
         }else{
             getDbList();
         }
-        mAdapter.setData(getData());
     }
-
 
     List<DBGbBean> dbList;
 
@@ -132,6 +223,15 @@ public class SearchDetailActivity extends BaseActivity {
                     .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like( "%" + key + "%"));
             queryBuilder.distinct();
         }
+
+        if (orderBy != null) {
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
+
         LogUtil.e("常用搜索固定条件 数据条数："+queryBuilder.count());
 
         dbList = queryBuilder.list();
@@ -147,6 +247,15 @@ public class SearchDetailActivity extends BaseActivity {
         LogUtil.e("干部type 数据条数："+queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.CurrentPosition.like("%" + key + "%"));
         LogUtil.e("常用搜索职务类型 数据条数："+queryBuilder.count());
+
+        if (orderBy != null) {
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
+
         dbList = queryBuilder.list();
 
         tv_search_content.setText(searchDetailBean.getCyssZwlx());
@@ -160,6 +269,14 @@ public class SearchDetailActivity extends BaseActivity {
         LogUtil.e("干部type 数据条数："+queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.PostLabel.like("%" + key + "%"));
         LogUtil.e("常用搜索职务标签类型 数据条数："+queryBuilder.count());
+
+        if (orderBy != null) {
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
 
         dbList = queryBuilder.list();
 
@@ -181,6 +298,15 @@ public class SearchDetailActivity extends BaseActivity {
                 DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),
                 DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%")
         );
+
+        if (orderBy != null) {
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
+
         dbList = queryBuilder.list();
 
         tv_search_content.setText(searchDetailBean.getSearch());
@@ -305,6 +431,13 @@ public class SearchDetailActivity extends BaseActivity {
             LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
         }
 
+        if (orderBy != null) {
+            if (isAsc) {
+                queryBuilder.orderAsc(orderBy);
+            } else {
+                queryBuilder.orderDesc(orderBy);
+            }
+        }
 
         dbList = queryBuilder.list();
 
@@ -376,5 +509,27 @@ public class SearchDetailActivity extends BaseActivity {
     }
 
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ll_xrzsj:
+                sortDate(order_xrzsj);
+                break;
+            case R.id.ll_xrzwccsj:
+                sortDate(order_xrzwccsj);
+                break;
+            case R.id.ll_rzjsj:
+                sortDate(order_rzjsj);
+                break;
+            case R.id.ll_rzjqssj:
+                sortDate(order_rzjqssj);
+                break;
+            case R.id.ll_cjgzsj:
+                sortDate(order_cjgzsj);
+                break;
+            case R.id.ll_csny:
+                sortDate(order_csny);
+                break;
+        }
+    }
 }

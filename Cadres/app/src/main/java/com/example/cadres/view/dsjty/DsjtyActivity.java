@@ -966,26 +966,26 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
                 setType(3);
                 break;
             case R.id.btn_swbz:
-                intent.putExtra("title","符合市委班子提名条件人选");
-                intent.putExtra("type",0);
+                intent.putExtra("tyTitle","符合市委班子提名条件人选");
+                intent.putExtra("tyType",0);
                 intent.setClass(context,TyListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_szfbz:
-                intent.putExtra("title","符合市政府班子提名条件人选");
-                intent.putExtra("type",1);
+                intent.putExtra("tyTitle","符合市政府班子提名条件人选");
+                intent.putExtra("tyType",1);
                 intent.setClass(context,TyListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_srdcwhbz:
-                intent.putExtra("title","符合市人大常委会班子提名条件人选");
-                intent.putExtra("type",2);
+                intent.putExtra("tyTitle","符合市人大常委会班子提名条件人选");
+                intent.putExtra("tyType",2);
                 intent.setClass(context,TyListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_szxbz:
-                intent.putExtra("title","符合市政协班子提名条件人选");
-                intent.putExtra("type",3);
+                intent.putExtra("tyTitle","符合市政协班子提名条件人选");
+                intent.putExtra("tyType",3);
                 intent.setClass(context,TyListActivity.class);
                 startActivity(intent);
                 break;
