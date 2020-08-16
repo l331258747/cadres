@@ -27,10 +27,11 @@ public class DbTyJg {
     private String ageList;
     private String educationList;
     private String majorList;
+    private boolean isGwy;
 
-    @Generated(hash = 960872994)
+    @Generated(hash = 739774376)
     public DbTyJg(Long _id, int deptId, String sexList, String nationList, String outlookList, String ageList,
-            String educationList, String majorList) {
+            String educationList, String majorList, boolean isGwy) {
         this._id = _id;
         this.deptId = deptId;
         this.sexList = sexList;
@@ -39,6 +40,7 @@ public class DbTyJg {
         this.ageList = ageList;
         this.educationList = educationList;
         this.majorList = majorList;
+        this.isGwy = isGwy;
     }
 
     @Generated(hash = 48086157)
@@ -182,5 +184,13 @@ public class DbTyJg {
         });
         if (list == null) return new ArrayList<>();
         return list;
+    }
+
+    public boolean getIsGwy() {
+        return this.isGwy;
+    }
+
+    public void setIsGwy(boolean isGwy) {
+        this.isGwy = isGwy;
     }
 }

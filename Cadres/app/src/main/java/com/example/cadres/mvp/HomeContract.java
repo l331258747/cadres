@@ -2,9 +2,7 @@ package com.example.cadres.mvp;
 
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.apk.ApkBean;
-import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bm.BmBean1;
-import com.example.cadres.bean.bm.BmBean2;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -46,7 +44,7 @@ public interface HomeContract {
         void getHjtyListSuccess(HjtyListBean.HjtyListBean2 data);
         void getHjtyListFailed(String msg);
 
-        void getJgtySuccess(List<JgtyBean.jgtyBean2> data);
+        void getJgtySuccess(JgtyBean data);
         void getJgtyFailed(String msg);
         void getZstySuccess(ZstyBean data);
         void getZstyFailed(String msg);

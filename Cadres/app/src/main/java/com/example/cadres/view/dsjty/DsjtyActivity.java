@@ -349,8 +349,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
 
 
-
-
+    //------------------------年轻干部 职级推演图
     public void setZstyNqgbData(){
         //设置横坐标数据
         setAxisXBottomNqgb();
@@ -823,6 +822,11 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         DbTyJgDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDbTyJgDao();
         QueryBuilder<DbTyJg> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DbTyJgDao.Properties.DeptId.eq(deptId));
+        if(TextUtils.equals(type,"1")){
+            queryBuilder.where(DbTyJgDao.Properties.IsGwy.eq(false));
+        }else{
+            queryBuilder.where(DbTyJgDao.Properties.IsGwy.eq(true));
+        }
         if(queryBuilder.count() != 0)
             dbTyJg = queryBuilder.unique();
     }
@@ -834,6 +838,11 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     public void getDbZsTyData() {
         DbTyZsDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDbTyZsDao();
         QueryBuilder<DbTyZs> queryBuilder = dbGbBeanDao.queryBuilder();
+        if(TextUtils.equals(type,"1")){
+            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq(false));
+        }else{
+            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq(true));
+        }
         dbTyZs = queryBuilder.list();
 
         DBTyZsNqgbDao dbGbBeanDao2 = DaoManager.getInstance().getDaoSession().getDBTyZsNqgbDao();

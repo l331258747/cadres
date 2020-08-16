@@ -6,6 +6,7 @@ public class ZstyBean {
 
     List<ZstyBean2> rankDeductionList;
     List<ZstyBean3> nqgbStatisList;
+    List<ZstyBean2> gwyRankDeductionList;
 
     public List<ZstyBean3> getNqgbStatisList() {
         return nqgbStatisList;
@@ -13,6 +14,10 @@ public class ZstyBean {
 
     public List<ZstyBean2> getRankDeductionList() {
         return rankDeductionList;
+    }
+
+    public List<ZstyBean2> getGwyRankDeductionList() {
+        return gwyRankDeductionList;
     }
 
     public static class ZstyBean3{

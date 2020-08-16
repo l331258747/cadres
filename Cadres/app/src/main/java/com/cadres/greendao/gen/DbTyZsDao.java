@@ -32,6 +32,7 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         public final static Property Overmatch = new Property(5, int.class, "overmatch", false, "OVERMATCH");
         public final static Property Vacancy = new Property(6, int.class, "vacancy", false, "VACANCY");
         public final static Property Digestion = new Property(7, int.class, "digestion", false, "DIGESTION");
+        public final static Property IsGwy = new Property(8, boolean.class, "isGwy", false, "IS_GWY");
     }
 
 
@@ -54,7 +55,8 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
                 "\"PARALLEL\" INTEGER NOT NULL ," + // 4: parallel
                 "\"OVERMATCH\" INTEGER NOT NULL ," + // 5: overmatch
                 "\"VACANCY\" INTEGER NOT NULL ," + // 6: vacancy
-                "\"DIGESTION\" INTEGER NOT NULL );"); // 7: digestion
+                "\"DIGESTION\" INTEGER NOT NULL ," + // 7: digestion
+                "\"IS_GWY\" INTEGER NOT NULL );"); // 8: isGwy
     }
 
     /** Drops the underlying database table. */
@@ -82,6 +84,7 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         stmt.bindLong(6, entity.getOvermatch());
         stmt.bindLong(7, entity.getVacancy());
         stmt.bindLong(8, entity.getDigestion());
+        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
     }
 
     @Override
@@ -103,6 +106,7 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         stmt.bindLong(6, entity.getOvermatch());
         stmt.bindLong(7, entity.getVacancy());
         stmt.bindLong(8, entity.getDigestion());
+        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
     }
 
     @Override
@@ -120,7 +124,8 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
             cursor.getInt(offset + 4), // parallel
             cursor.getInt(offset + 5), // overmatch
             cursor.getInt(offset + 6), // vacancy
-            cursor.getInt(offset + 7) // digestion
+            cursor.getInt(offset + 7), // digestion
+            cursor.getShort(offset + 8) != 0 // isGwy
         );
         return entity;
     }
@@ -135,6 +140,7 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         entity.setOvermatch(cursor.getInt(offset + 5));
         entity.setVacancy(cursor.getInt(offset + 6));
         entity.setDigestion(cursor.getInt(offset + 7));
+        entity.setIsGwy(cursor.getShort(offset + 8) != 0);
      }
     
     @Override

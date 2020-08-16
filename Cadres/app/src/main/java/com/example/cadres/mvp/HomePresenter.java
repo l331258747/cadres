@@ -141,7 +141,7 @@ public class HomePresenter implements HomeContract.Presenter {
         ResponseCallback listener = new ResponseCallback<JgtyBean>() {
             @Override
             public void onSuccess(JgtyBean data) {
-                iView.getJgtySuccess(data.getOrgdeductionList());
+                iView.getJgtySuccess(data);
             }
 
             @Override

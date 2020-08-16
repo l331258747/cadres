@@ -16,9 +16,12 @@ public class DbTyZs {
     private int overmatch;
     private int vacancy;
     private int digestion;
-    @Generated(hash = 1231644486)
+
+    private boolean isGwy;
+
+    @Generated(hash = 1027533699)
     public DbTyZs(Long _id, String year, int rankAge, int toVacancy, int parallel,
-            int overmatch, int vacancy, int digestion) {
+            int overmatch, int vacancy, int digestion, boolean isGwy) {
         this._id = _id;
         this.year = year;
         this.rankAge = rankAge;
@@ -27,6 +30,7 @@ public class DbTyZs {
         this.overmatch = overmatch;
         this.vacancy = vacancy;
         this.digestion = digestion;
+        this.isGwy = isGwy;
     }
     @Generated(hash = 1978947415)
     public DbTyZs() {
@@ -78,6 +82,12 @@ public class DbTyZs {
     }
     public void setDigestion(int digestion) {
         this.digestion = digestion;
+    }
+    public boolean getIsGwy() {
+        return this.isGwy;
+    }
+    public void setIsGwy(boolean isGwy) {
+        this.isGwy = isGwy;
     }
     
 }

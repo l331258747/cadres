@@ -6,14 +6,18 @@ import java.util.List;
 
 public class JgtyBean {
 
-    List<jgtyBean2> orgdeductionList;
+    List<JgtyBean2> orgdeductionList;
+    List<JgtyBean2> gwyOrgdeductionList;
 
+    public List<JgtyBean2> getGwyOrgdeductionList() {
+        return gwyOrgdeductionList;
+    }
 
-    public List<jgtyBean2> getOrgdeductionList() {
+    public List<JgtyBean2> getOrgdeductionList() {
         return orgdeductionList;
     }
 
-    public static class jgtyBean2 {
+    public static class JgtyBean2 {
 
 
         /**

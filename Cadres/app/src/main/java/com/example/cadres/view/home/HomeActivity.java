@@ -42,8 +42,6 @@ import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.search.SearchBean;
-import com.example.cadres.bean.search.SysDictDataBean;
-import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -327,7 +325,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
     @Override
-    public void getJgtySuccess(List<JgtyBean.jgtyBean2> data) {
+    public void getJgtySuccess(JgtyBean data) {
         setDBJgty(data);
         mPresenter.getZsty();
     }
@@ -1039,22 +1037,43 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     }
 
 
-    private void setDBJgty(List<JgtyBean.jgtyBean2> data) {
+    private void setDBJgty(JgtyBean bean) {
         List<DbTyJg> dbList = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            JgtyBean.jgtyBean2 item = data.get(i);
-            dbList.add(new DbTyJg(
-                    null,
-                    item.getDeptId(),
-                    item.getSexListStr(),
-                    item.getNationListStr(),
-                    item.getOutlookListStr(),
-                    item.getAgeListStr(),
-                    item.getEducationListStr(),
-                    item.getMajorListStr()
-            ));
+        List<JgtyBean.JgtyBean2> data = bean.getOrgdeductionList();
+        if(data != null){
+            for (int i = 0; i < data.size(); i++) {
+                JgtyBean.JgtyBean2 item = data.get(i);
+                dbList.add(new DbTyJg(
+                        null,
+                        item.getDeptId(),
+                        item.getSexListStr(),
+                        item.getNationListStr(),
+                        item.getOutlookListStr(),
+                        item.getAgeListStr(),
+                        item.getEducationListStr(),
+                        item.getMajorListStr(),
+                        false
+                ));
+            }
         }
 
+        List<JgtyBean.JgtyBean2> dataGwy = bean.getGwyOrgdeductionList();
+        if(dataGwy != null){
+            for (int i = 0; i < dataGwy.size(); i++) {
+                JgtyBean.JgtyBean2 itemGwy = dataGwy.get(i);
+                dbList.add(new DbTyJg(
+                        null,
+                        itemGwy.getDeptId(),
+                        itemGwy.getSexListStr(),
+                        itemGwy.getNationListStr(),
+                        itemGwy.getOutlookListStr(),
+                        itemGwy.getAgeListStr(),
+                        itemGwy.getEducationListStr(),
+                        itemGwy.getMajorListStr(),
+                        true
+                ));
+            }
+        }
         dBTyJgDaoUtils.insertMulti(dbList);
     }
 
@@ -1072,10 +1091,29 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getParallel(),
                         item.getOvermatch(),
                         item.getVacancy(),
-                        item.getDigestion()
+                        item.getDigestion(),
+                        false
                 ));
             }
         }
+        List<ZstyBean.ZstyBean2> dataGwy = bean.getGwyRankDeductionList();
+        if(dataGwy != null){
+            for (int i = 0; i < dataGwy.size(); i++) {
+                ZstyBean.ZstyBean2 itemGwy = dataGwy.get(i);
+                dbList.add(new DbTyZs(
+                        null,
+                        itemGwy.getYear(),
+                        itemGwy.getRankAge(),
+                        itemGwy.getToVacancy(),
+                        itemGwy.getParallel(),
+                        itemGwy.getOvermatch(),
+                        itemGwy.getVacancy(),
+                        itemGwy.getDigestion(),
+                        true
+                ));
+            }
+        }
+
         dBTyZsDaoUtils.insertMulti(dbList);
 
 
