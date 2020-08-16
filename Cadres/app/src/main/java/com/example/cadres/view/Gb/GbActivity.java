@@ -1,6 +1,7 @@
 package com.example.cadres.view.Gb;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,10 +42,12 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,12 +55,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GbActivity extends BaseActivity implements View.OnClickListener {
 
-    Group group_View_top,group_gb,group_gwy;
+    Group group_View_top, group_gb, group_gwy;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
-    TextView tv_right_btn,tv_right_content;
+    TextView tv_right_btn, tv_right_content;
     View view_menu;
-    EditText et_search,et_left_search;
+    EditText et_search, et_left_search;
     RecyclerView recyclerView;
+
+    LinearLayout ll_xrzsj, ll_xrzwccsj, ll_rzjsj, ll_rzjqssj, ll_cjgzsj, ll_csny;
+    ImageView iv_xrzsj, iv_xrzwccsj, iv_rzjsj, iv_rzjqssj, iv_cjgzsj, iv_csny;
+    private final int order_xrzsj = 1;
+    private final int order_xrzwccsj = 2;
+    private final int order_rzjsj = 3;
+    private final int order_rzjqssj = 4;
+    private final int order_cjgzsj = 5;
+    private final int order_csny = 6;
 
     DrawerLayout drawer_layout;
     NestedScrollView scrollView;
@@ -117,14 +130,87 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         initDrawerLeft();
         initDrawerRight();
         initDrawerGbInfo();
+
+        initSort();
+    }
+
+    private void initSort() {
+        ll_xrzsj = findViewById(R.id.ll_xrzsj);
+        ll_xrzwccsj = findViewById(R.id.ll_xrzwccsj);
+        ll_rzjsj = findViewById(R.id.ll_rzjsj);
+        ll_rzjqssj = findViewById(R.id.ll_rzjqssj);
+        ll_cjgzsj = findViewById(R.id.ll_cjgzsj);
+        ll_csny = findViewById(R.id.ll_csny);
+        iv_xrzsj = findViewById(R.id.iv_xrzsj);
+        iv_xrzwccsj = findViewById(R.id.iv_xrzwccsj);
+        iv_rzjsj = findViewById(R.id.iv_rzjsj);
+        iv_rzjqssj = findViewById(R.id.iv_rzjqssj);
+        iv_cjgzsj = findViewById(R.id.iv_cjgzsj);
+        iv_csny = findViewById(R.id.iv_csny);
+
+        ll_xrzsj.setOnClickListener(this);
+        ll_xrzwccsj.setOnClickListener(this);
+        ll_rzjsj.setOnClickListener(this);
+        ll_rzjqssj.setOnClickListener(this);
+        ll_cjgzsj.setOnClickListener(this);
+        ll_csny.setOnClickListener(this);
+
+    }
+
+    int mSortType;
+
+    private void sortDate(int sortType) {
+        iv_xrzsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_xrzwccsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_rzjsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_rzjqssj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_cjgzsj.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+        iv_csny.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_sort_defult));
+
+        recyclerView.scrollToPosition(0);
+
+        if (sortType == 0) {
+            isAsc = true;
+            mSortType = sortType;
+            orderBy = null;
+            return;
+        }
+        isAsc = mSortType == sortType ? !isAsc : true;
+
+        if (sortType == order_xrzsj) {
+            orderBy = DBGbBeanDao.Properties.CurrentPositionTime;
+            iv_xrzsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_xrzwccsj) {
+            orderBy = DBGbBeanDao.Properties.CurrentRankTime;
+            iv_xrzwccsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_rzjsj) {
+            orderBy = DBGbBeanDao.Properties.FunctionaryRankTime;
+            iv_rzjsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_rzjqssj) {
+            orderBy = DBGbBeanDao.Properties.FunctionaryRankStartTime;
+            iv_rzjqssj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_cjgzsj) {
+            orderBy = DBGbBeanDao.Properties.WorkTime;
+            iv_cjgzsj.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else if (sortType == order_csny) {
+            orderBy = DBGbBeanDao.Properties.Birthday;
+            iv_csny.setImageDrawable(ContextCompat.getDrawable(context, isAsc ? R.mipmap.ic_sort_down : R.mipmap.ic_sort_up));
+        } else {
+            orderBy = null;
+        }
+        mSortType = sortType;
+
+        if (orderBy == null)
+            return;
+        mAdapter.setData(getGbBmData());
     }
 
     private void initTitleTab() {
         group_gb.setVisibility(View.GONE);
         group_gwy.setVisibility(View.GONE);
-        if(TextUtils.equals(type,"2")){
+        if (TextUtils.equals(type, "2")) {
             group_gwy.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             group_gb.setVisibility(View.VISIBLE);
         }
     }
@@ -134,21 +220,21 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         initRecyclerLeft();
     }
 
-    private void initDrawerRight(){
+    private void initDrawerRight() {
         layout_bm = findViewById(R.id.layout_bm);
         tv_right_btn = findViewById(R.id.tv_right_btn);
         tv_right_content = findViewById(R.id.tv_right_content);
         tv_right_btn.setOnClickListener(this);
     }
 
-    private void initDrawerGbInfo(){
+    private void initDrawerGbInfo() {
         scrollView = findViewById(R.id.scrollView);
         layout_info = findViewById(R.id.layout_info);
         gbDrawerData = new GbDrawerData(context, layout_info);
         gbDrawerData.initView();
     }
 
-    private void initDrawer(){
+    private void initDrawer() {
         drawer_layout = findViewById(R.id.drawer_layout);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -181,7 +267,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 /*判断是否是“搜索”键*/
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String key = et_left_search.getText().toString().trim();
-                    if(!TextUtils.isEmpty(key)){
+                    if (!TextUtils.isEmpty(key)) {
                         getDbBmList(key);
                         leftAdapter.setData(bmLeftBeans2);
                         AppUtils.HideKeyboard(et_left_search);
@@ -203,7 +289,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(et_left_search.getText().toString())){
+                if (TextUtils.isEmpty(et_left_search.getText().toString())) {
                     getDbBmList("");
                     leftAdapter.setData(bmLeftBeans2);
                 }
@@ -221,9 +307,10 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         dBBmExplainDaoUtils = _Store.getBmExplainDaoUtils();
 
         deptId = getDefaultDeptId();
+        sortDate(0);
         mAdapter.setData(getGbBmData());
         getDbBmList("");
-        leftAdapter.setData(bmLeftBeans2,deptId);
+        leftAdapter.setData(bmLeftBeans2, deptId);
     }
 
     //初始化recyclerview
@@ -231,8 +318,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         recyclerView = $(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>(),type);
+        mAdapter = new GbAdapter(activity, new ArrayList<DBGbBean>(), type);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.getItemAnimator().setChangeDuration(0);
 
         mAdapter.setOnItemClickListener(new GbAdapter.OnItemClickListener() {
             @Override
@@ -244,7 +332,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
                 layout_bm.setVisibility(View.GONE);
                 layout_info.setVisibility(View.VISIBLE);
-                scrollView.scrollTo(0,0);
+                scrollView.scrollTo(0, 0);
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
             }
@@ -256,11 +344,11 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     public List<DBBmBean> getDbBmList(String key) {
         dbBmList = new ArrayList<>();
-        if(TextUtils.isEmpty(key)){
+        if (TextUtils.isEmpty(key)) {
             dbBmList = dBBmDaoUtils.queryAll();
             LogUtil.e("数据库条数：" + dbBmList.size());
             bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
-        }else{
+        } else {
             String sql = "where DEPT_NAME like ?";
             String[] condition = new String[]{"%" + key + "%"};
             dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
@@ -285,17 +373,17 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onClick(int pos) {
                 DBBmBean item = getDBBmBean(pos);
-                if(item == null) return;
+                if (item == null) return;
                 leftAdapter.setItemData(item.getDeptId());
 
-                if(TextUtils.equals(item.getDeptType(),"1")){
+                if (TextUtils.equals(item.getDeptType(), "1")) {
                     group_View_top.setVisibility(View.VISIBLE);
                     tv_top_title.setText(item.getDeptName());
                     tv_top_hdzs2.setText(item.getVerification());
                     tv_top_sjpb2.setText(item.getActual());
                     tv_top_cpqk2.setText(item.getOvermatch());
                     tv_top_kqqk2.setText(item.getMismatch());
-                }else{
+                } else {
                     group_View_top.setVisibility(View.GONE);
                 }
 
@@ -303,18 +391,19 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 drawer_layout.closeDrawer(Gravity.LEFT);
                 AppUtils.HideKeyboard(et_left_search);
 
-                if(item.getParentId() == 0){
+                if (item.getParentId() == 0) {
                     deptId = 0;
                 }
+                sortDate(0);
                 mAdapter.setData(getGbBmData());
 
             }
         });
     }
 
-    public DBBmBean getDBBmBean(int pos){
-        for (int i=0;i<dbBmList.size();i++){
-            if(bmLeftBeans2.get(pos).getId() == dbBmList.get(i).getDeptId()){
+    public DBBmBean getDBBmBean(int pos) {
+        for (int i = 0; i < dbBmList.size(); i++) {
+            if (bmLeftBeans2.get(pos).getId() == dbBmList.get(i).getDeptId()) {
                 return dbBmList.get(i);
             }
         }
@@ -390,14 +479,32 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
                 layout_bm.setVisibility(View.VISIBLE);
                 layout_info.setVisibility(View.GONE);
-                scrollView.scrollTo(0,0);
+                scrollView.scrollTo(0, 0);
 
                 drawer_layout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.et_search:
                 Intent intent = new Intent(context, SearchActivity.class);
-                intent.putExtra("type",type);
+                intent.putExtra("type", type);
                 startActivity(intent);
+                break;
+            case R.id.ll_xrzsj:
+                sortDate(order_xrzsj);
+                break;
+            case R.id.ll_xrzwccsj:
+                sortDate(order_xrzwccsj);
+                break;
+            case R.id.ll_rzjsj:
+                sortDate(order_rzjsj);
+                break;
+            case R.id.ll_rzjqssj:
+                sortDate(order_rzjqssj);
+                break;
+            case R.id.ll_cjgzsj:
+                sortDate(order_cjgzsj);
+                break;
+            case R.id.ll_csny:
+                sortDate(order_csny);
                 break;
         }
     }
@@ -405,30 +512,36 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
     //-----------------------------搜部门干部 多表查询 orderAsc正序 orderDesc倒序
     public List<DBGbBean> getDbGbBmList(int deptId, Property orderBy, boolean isAsc) {
-        List<DBGbBean> dbList = new ArrayList<>();
-        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        if(deptId != 0){
-            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(deptId));
-            queryBuilder.orderAsc(DBGbBeanDao.Properties.Ranking);
-            queryBuilder.distinct();
-        }
-        if(orderBy != null){
-            if (isAsc) {
-                queryBuilder.orderAsc(orderBy);
-            } else {
-                queryBuilder.orderDesc(orderBy);
+        List<DBGbBean> dbList;
+
+        if (deptId != 0 && orderBy == null) {
+            dbList = getDbGbBmListRanking(deptId);
+        } else {
+            DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+            QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+            queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+            if (deptId != 0) {
+                queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                        .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(deptId));
             }
+            if (orderBy != null) {
+                if (isAsc) {
+                    queryBuilder.orderAsc(orderBy);
+                } else {
+                    queryBuilder.orderDesc(orderBy);
+                }
+            }
+            queryBuilder.distinct();
+            dbList = queryBuilder.list();
+            LogUtil.e("2数据库条数：" + dbList.size());
         }
-        dbList = queryBuilder.list();
-        LogUtil.e("数据库条数：" + dbList.size());
+
         return dbList;
     }
 
     Property orderBy;
     boolean isAsc;
+
     public List<DBGbBean> getGbBmData() {
         datas = new ArrayList<>();
         List<DBGbBean> dbList = getDbGbBmList(deptId, orderBy, isAsc);
@@ -444,9 +557,112 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         queryBuilder.where(DBBmBeanDao.Properties.DefulatOrg.eq(1));
         List<DBBmBean> dates = queryBuilder.list();
         LogUtil.e("数据库条数：" + dates.size());
-        if(dates == null || dates.size() == 0)
+        if (dates == null || dates.size() == 0)
             return 0;
         else
             return dates.get(0).getDeptId();
+    }
+
+    private List<DBGbBean> getDbGbBmListRanking(int deptId) {
+        List<DBGbBean> dbList = new ArrayList<>();
+
+        Cursor cursor = null;
+
+        String queryString =
+                "SELECT DISTINCT "
+                        + "b.*"
+                        + ", d." + DBGbCadreDeptListBeanDao.Properties.Ranking.columnName + " AS _RANKING "
+                        + " FROM " + DBGbBeanDao.TABLENAME + " b"
+                        + " JOIN " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
+                        + " ON "
+                        + " b." + DBGbBeanDao.Properties.BaseId.columnName + " = " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
+                        + " WHERE "
+                        + " d." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName + " = " + deptId
+                        + " AND "
+                        + " b." + DBGbBeanDao.Properties.Type.columnName + " LIKE ?"
+                        + " ORDER BY _RANKING ASC";
+        try {
+            cursor = DaoManager.getInstance().getDaoSession().getDatabase().rawQuery(queryString, new String[]{"%" + type + "%"});
+            if (cursor != null) {
+                while (cursor.moveToNext()){
+                    dbList.add(new DBGbBean(
+                            null,
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.BaseId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Name.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhotoFileName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Gender.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.IdCard.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthday.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.Age.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Nation.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalOutlook.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.JoinPartyDate.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlace.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthplace.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkTime.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EnterUnitTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRank.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRankTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Health.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPosition.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPositionTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.TechnicalTitle.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Expertise.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeEducation.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchool.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Current.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentEducation.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchool.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkPhone.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhoneNumber.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.HomeAddress.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Responsibilities.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.AffectedState.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlaceReplenish.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRegisterTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PositionType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EstablishmentType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Remark.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Type.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreResume.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAward.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadrePunish.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreTrain.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalConstruction.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAssessment.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankStartTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankParentName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PostLabel.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName))
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return dbList;
     }
 }

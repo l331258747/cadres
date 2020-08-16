@@ -150,12 +150,6 @@ public class GbBean {
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
 
-        public int getRanking() {
-            if(cadreDeptList == null || cadreDeptList.size() == 0)
-                return 0;
-            return cadreDeptList.get(0).getRanking();
-        }
-
         public String getWorkExperience() {
             return workExperience;
         }
