@@ -417,27 +417,27 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     public LineData getLineDataNqgb() {
         LineData lineData = new LineData();
-        List<Entry> customCounts = new ArrayList<>();
-        //人数
-        for (int i = 0; i < dbTyZsNqgb.size(); i++) {
-            customCounts.add(new Entry(i, dbTyZsNqgb.get(i).getPrincipal()));
-        }
-        LineDataSet lineDataSet = new LineDataSet(customCounts, "乡科正职");
-        lineDataSet.setColor(Color.rgb(1,183,255));
-        lineDataSet.setCircleColor(Color.WHITE);
-        lineDataSet.setValueTextColor(Color.WHITE);
-        lineDataSet.setValueFormatter(new ZsPercentFormatter());
-        lineDataSet.setDrawValues(true);
-        lineDataSet.setLineWidth(2f);
-        lineDataSet.setCircleRadius(5f);
-        //设置曲线值的圆点是实心还是空心
-        lineDataSet.setDrawCircleHole(false);
-        lineDataSet.setValueTextSize(14f);
-        //设置折线图填充
-        lineDataSet.setDrawFilled(false);
-        lineDataSet.setFormLineWidth(1f);
-        lineDataSet.setFormSize(15.f);
-        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
+//        List<Entry> customCounts = new ArrayList<>();
+//        //人数
+//        for (int i = 0; i < dbTyZsNqgb.size(); i++) {
+//            customCounts.add(new Entry(i, dbTyZsNqgb.get(i).getPrincipal()));
+//        }
+//        LineDataSet lineDataSet = new LineDataSet(customCounts, "乡科正职");
+//        lineDataSet.setColor(Color.rgb(1,183,255));
+//        lineDataSet.setCircleColor(Color.WHITE);
+//        lineDataSet.setValueTextColor(Color.WHITE);
+//        lineDataSet.setValueFormatter(new ZsPercentFormatter());
+//        lineDataSet.setDrawValues(true);
+//        lineDataSet.setLineWidth(2f);
+//        lineDataSet.setCircleRadius(5f);
+//        //设置曲线值的圆点是实心还是空心
+//        lineDataSet.setDrawCircleHole(false);
+//        lineDataSet.setValueTextSize(14f);
+//        //设置折线图填充
+//        lineDataSet.setDrawFilled(false);
+//        lineDataSet.setFormLineWidth(1f);
+//        lineDataSet.setFormSize(15.f);
+//        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
 
         List<Entry> customCounts2 = new ArrayList<>();
         //人数
@@ -461,7 +461,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         lineDataSet2.setFormSize(15.f);
         lineDataSet2.setMode(LineDataSet.Mode.LINEAR);
 
-        lineData.addDataSet(lineDataSet);
+//        lineData.addDataSet(lineDataSet);
         lineData.addDataSet(lineDataSet2);
         return lineData;
     }
