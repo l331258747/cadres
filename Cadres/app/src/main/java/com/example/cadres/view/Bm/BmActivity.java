@@ -65,7 +65,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
     public void initView() {
         showLeftIcon();
         showLLRightGoHome();
-        showTitleTv("职务名册表");
+        showTitleTv("市管职数配备表");
 
         et_search = findViewById(R.id.et_search);
 
@@ -154,10 +154,10 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
         if(!TextUtils.isEmpty(key)){
             queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%")
-                    ,DBBmBeanDao.Properties.DeptType.eq(1));//1：只显示子部门
+                    ,DBBmBeanDao.Properties.Display.eq(0));//1：只显示子部门
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBBmBeanDao.Properties.DeptType.eq(1));
+            queryBuilder.where(DBBmBeanDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBBmBeanDao.Properties.OrgType.eq(orgId)).orderAsc(DBBmBeanDao.Properties.OrderNum);
             if(!TextUtils.isEmpty(FinanceId))

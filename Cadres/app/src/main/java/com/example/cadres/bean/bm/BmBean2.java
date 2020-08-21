@@ -95,6 +95,11 @@ public class BmBean2 {
     private List<BmExplainBean> organizationExplain;
     private String subset;
     private int defulatOrg;
+    private int display;
+
+    public int getDisplay() {
+        return display;
+    }
 
     public int getDefulatOrg() {
         return defulatOrg;

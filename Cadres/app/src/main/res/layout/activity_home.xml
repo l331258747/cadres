@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="市管职务名称表"
+            android:text="市管职数配备表"
             android:textSize="@dimen/sp_20"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/dp_10"/>
