@@ -291,12 +291,14 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         LogUtil.e("干部type 数据条数："+queryBuilder.count());
 
         queryBuilder.whereOr(
-                DBGbBeanDao.Properties.Name.like("%"+key + "%"),
-                DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),
-                DBGbBeanDao.Properties.TechnicalTitle.like("%"+key + "%"),
-                DBGbBeanDao.Properties.Expertise.like("%"+key + "%"),
-                DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),
-                DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%")
+                DBGbBeanDao.Properties.Name.like("%"+key + "%"),//姓名
+                DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),//籍贯
+                DBGbBeanDao.Properties.TechnicalTitle.like("%"+key + "%"),//专业技术职务
+                DBGbBeanDao.Properties.Expertise.like("%"+key + "%"),//熟悉专业及专长
+                DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),//全日制毕业院校系
+//                DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%"),//在职教育毕业院校系
+                DBGbBeanDao.Properties.FullTimeMajor.like("%"+key + "%"),//全日制专业
+                DBGbBeanDao.Properties.FullTimeDegreeName.like("%"+key + "%")//全日制学位
         );
 
         if (orderBy != null) {
