@@ -27,6 +27,7 @@ import com.example.cadres.utils.myData.GbDrawerData;
 
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -220,7 +221,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
         } else{
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class,DBGbCadreNowPositionListBeanDao.Properties.BaseId)
-                    .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like( "%" + key + "%"));
+                    .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like("%" + key + "%"));
             queryBuilder.distinct();
         }
 
@@ -342,8 +343,22 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
         LogUtil.e("干部type 数据条数："+queryBuilder.count());
 
+
         if(searchDetailBean.getGllbLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.CadreType.like("%" + searchDetailBean.getGllbListsStr() + "%"));
+
+            StringBuffer sql = new StringBuffer("");
+            String[] values = new String[searchDetailBean.getGllbLists().size()];
+            for (int i=0; i<searchDetailBean.getGllbLists().size(); i++){
+                values[i] = searchDetailBean.getGllbLists().get(i);
+                if(i == 0){
+                    sql.append(" "+DBGbBeanDao.Properties.CadreType.columnName + " like "+ "?");
+                }else{
+                    sql.append(" or " + DBGbBeanDao.Properties.CadreType.columnName + " like "+ " ?");
+                }
+            }
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(),values));
+
+//            queryBuilder.where(DBGbBeanDao.Properties.CadreType.like("%" + searchDetailBean.getGllbListsStr() + "%"));
             LogUtil.e("干部类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getBmlbLists().size() > 0){
@@ -409,12 +424,41 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             }
         }
         if(searchDetailBean.getXxlxLists().size() > 0){
-            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%")
-                    ,DBGbBeanDao.Properties.CurrentSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%"));
+
+            StringBuffer sql = new StringBuffer("");
+            StringBuffer sql2 = new StringBuffer("");
+            String[] values = new String[searchDetailBean.getXxlxLists().size()];
+            for (int i=0; i<searchDetailBean.getXxlxLists().size(); i++){
+                values[i] = searchDetailBean.getXxlxLists().get(i);
+                if(i == 0){
+                    sql.append(" "+DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like "+ "?");
+                    sql2.append(" "+DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like "+ "?");
+                }else{
+                    sql.append(" or " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like "+ " ?");
+                    sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like "+ " ?");
+                }
+            }
+            queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(),values),new WhereCondition.StringCondition(sql2.toString(),values));
+
+//            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%")
+//                    ,DBGbBeanDao.Properties.CurrentSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%"));
             LogUtil.e("学校类型 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getGzjlLists().size() > 0){
-            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.like("%" + searchDetailBean.getGzjlListsStr() + "%"));
+
+            StringBuffer sql = new StringBuffer("");
+            String[] values = new String[searchDetailBean.getGzjlLists().size()];
+            for (int i=0; i<searchDetailBean.getGzjlLists().size(); i++){
+                values[i] = searchDetailBean.getGzjlLists().get(i);
+                if(i == 0){
+                    sql.append(" "+DBGbBeanDao.Properties.WorkExperience.columnName + " like "+ "?");
+                }else{
+                    sql.append(" or " + DBGbBeanDao.Properties.WorkExperience.columnName + " like "+ " ?");
+                }
+            }
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(),values));
+
+//            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.like("%" + searchDetailBean.getGzjlListsStr() + "%"));
             LogUtil.e("工作经历 数据条数："+queryBuilder.count());
         }
         if(searchDetailBean.getXrzjlxLists().size() > 0){
