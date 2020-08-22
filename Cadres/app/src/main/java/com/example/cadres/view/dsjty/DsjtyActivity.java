@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyZsNqgbDao;
 import com.cadres.greendao.gen.DbTyJgDao;
@@ -1010,16 +1011,16 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     public List<DBBmBean> getDbBmList(String key) {
         dbBmList = new ArrayList<>();
-        if(TextUtils.isEmpty(key)){
-            dbBmList = dBBmDaoUtils.queryAll();
-            LogUtil.e("数据库条数：" + dbBmList.size());
-            bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
-        }else{
-            String sql = "where DEPT_NAME like ?";
-            String[] condition = new String[]{"%" + key + "%"};
-            dbBmList = dBBmDaoUtils.queryByNativeSql(sql, condition);
-            bmLeftBeans2 = dialogBmData.getBmLeftBean2(dbBmList);
+        DBBmBeanDao dbBmBeanDao = DaoManager.getInstance().getDaoSession().getDBBmBeanDao();
+        QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
+
+        if (!TextUtils.isEmpty(key)) {
+            queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%"));//1：只显示子部门
         }
+        dbBmList = queryBuilder.list();
+        LogUtil.e("数据库条数：" + dbBmList.size());
+        bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
+
         return dbBmList;
     }
 
