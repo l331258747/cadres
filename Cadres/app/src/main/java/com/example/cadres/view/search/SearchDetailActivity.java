@@ -350,7 +350,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getGllbLists().size()];
             for (int i=0; i<searchDetailBean.getGllbLists().size(); i++){
-                values[i] = searchDetailBean.getGllbLists().get(i);
+                values[i] = "%" + searchDetailBean.getGllbLists().get(i) + "%";
                 if(i == 0){
                     sql.append(" "+DBGbBeanDao.Properties.CadreType.columnName + " like "+ "?");
                 }else{
@@ -430,7 +430,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             StringBuffer sql2 = new StringBuffer("");
             String[] values = new String[searchDetailBean.getXxlxLists().size()];
             for (int i=0; i<searchDetailBean.getXxlxLists().size(); i++){
-                values[i] = searchDetailBean.getXxlxLists().get(i);
+                values[i] = "%" + searchDetailBean.getXxlxLists().get(i) + "%";
                 if(i == 0){
                     sql.append(" "+DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like "+ "?");
                     sql2.append(" "+DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like "+ "?");
@@ -450,7 +450,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getGzjlLists().size()];
             for (int i=0; i<searchDetailBean.getGzjlLists().size(); i++){
-                values[i] = searchDetailBean.getGzjlLists().get(i);
+                values[i] = "%" + searchDetailBean.getGzjlLists().get(i) + "%";
                 if(i == 0){
                     sql.append(" "+DBGbBeanDao.Properties.WorkExperience.columnName + " like "+ "?");
                 }else{

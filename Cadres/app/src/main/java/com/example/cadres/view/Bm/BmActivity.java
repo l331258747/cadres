@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBBmFinanceTypeBeanDao;
 import com.cadres.greendao.gen.DBBmOrgTypeBeanDao;
+import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DbTyZsDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.BmLeftAdapter;
@@ -29,6 +30,7 @@ import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,8 +155,15 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
 
         if(!TextUtils.isEmpty(key)){
-            queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%")
-                    ,DBBmBeanDao.Properties.Display.eq(0));//1：只显示子部门
+            String sql = " " + DBBmBeanDao.Properties.ParentId.columnName
+                    + " in ( "
+                    + " select " + DBBmBeanDao.Properties.DeptId.columnName
+                    + " from " + DBBmBeanDao.TABLENAME
+                    + " where " + DBBmBeanDao.Properties.DeptName.columnName + " like ? "
+                    + " ) "
+                    + " or " + DBBmBeanDao.Properties.DeptName.columnName + " like ? ";
+            String[] values = new String[]{"%" + key + "%","%" + key + "%"};
+            queryBuilder.where(new WhereCondition.StringCondition(sql,values),DBBmBeanDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
             queryBuilder.where(DBBmBeanDao.Properties.Display.eq(0));

@@ -63,6 +63,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1015,12 +1016,24 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
         QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
 
         if (!TextUtils.isEmpty(key)) {
-            queryBuilder.where(DBBmBeanDao.Properties.DeptName.like("%" + key + "%"));//1：只显示子部门
+            String sql = " " + DBBmBeanDao.Properties.ParentId.columnName
+                    + " in ( "
+                    + " select " + DBBmBeanDao.Properties.DeptId.columnName
+                    + " from " + DBBmBeanDao.TABLENAME
+                    + " where " + DBBmBeanDao.Properties.DeptName.columnName + " like ? "
+                    + " ) "
+                    + " or " + DBBmBeanDao.Properties.DeptName.columnName + " like ? ";
+            String[] values = new String[]{"%" + key + "%","%" + key + "%"};
+            queryBuilder.where(new WhereCondition.StringCondition(sql,values));
         }
         dbBmList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbBmList.size());
-        bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
 
+        if (!TextUtils.isEmpty(key)) {
+            bmLeftBeans2 = dialogBmData.getBmLeftBean2(dbBmList);
+        }else {
+            bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
+        }
         return dbBmList;
     }
 
