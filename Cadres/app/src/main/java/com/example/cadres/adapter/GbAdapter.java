@@ -79,12 +79,12 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         if(TextUtils.equals(data.getAffectedState(),"1")){
             holder.tv_head_tag.setVisibility(View.VISIBLE);
             holder.iv_head_tag.setVisibility(View.VISIBLE);
-            holder.tv_head_tag.setText("该干部正在惩罚影响期内");
+            holder.tv_head_tag.setText("该干部正在处分影响期内");
             holder.iv_head_tag.setImageDrawable(ContextCompat.getDrawable(mContext,R.mipmap.ic_punishment_red));
         }else if(TextUtils.equals(data.getAffectedState(),"2")){
             holder.tv_head_tag.setVisibility(View.VISIBLE);
             holder.iv_head_tag.setVisibility(View.VISIBLE);
-            holder.tv_head_tag.setText("该干部受过惩罚");
+            holder.tv_head_tag.setText("该干部受过处分");
             holder.iv_head_tag.setImageDrawable(ContextCompat.getDrawable(mContext,R.mipmap.ic_punishment_yellow));
         }
 

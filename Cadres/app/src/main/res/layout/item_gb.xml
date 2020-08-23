@@ -46,6 +46,11 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="@+id/view_head"/>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_18"
+        app:layout_constraintTop_toBottomOf="@+id/iv_head"/>
+
     <ImageView
         android:id="@+id/iv_head_tag"
         android:layout_width="@dimen/dp_18"
@@ -67,20 +72,14 @@
         android:text="affafd"
         android:textColor="@color/color_bd1b21"
         android:background="@color/color_ffe5ce"
-        android:paddingStart="@dimen/dp_15"
+        android:paddingStart="@dimen/dp_5"
         android:visibility="gone"
         android:textSize="@dimen/sp_12"
         tools:visibility="visible"
-        android:paddingEnd="@dimen/dp_15"
+        android:paddingEnd="@dimen/dp_5"
         android:layout_marginTop="@dimen/dp_5"
         app:layout_constraintStart_toStartOf="@+id/iv_head_tag"
         app:layout_constraintTop_toBottomOf="@+id/iv_head_tag"/>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_5"
-        app:layout_constraintStart_toStartOf="@+id/tv_head_tag"
-        app:layout_constraintTop_toBottomOf="@+id/tv_head_tag"/>
 
     <TextView
         android:id="@+id/tv_name"
