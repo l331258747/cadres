@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@drawable/shape_23cefd_r10">
+
+    <LinearLayout
+        android:id="@+id/ll_cprs_xkjzz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="乡科级正职："/>
+
+        <TextView
+            android:id="@+id/tv_cprs_xkjzz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="@+id/tv_xhrs_title"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/tv_xhrs_title"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cprs_xkjfz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="乡科级副职："/>
+
+        <TextView
+            android:id="@+id/tv_cprs_xkjfz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="@+id/tv_xhrs_title"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/tv_xhrs_title"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="90后干部："/>
+
+        <TextView
+            android:id="@+id/tv_gb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toTopOf="@+id/tv_xhrs_title"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/tv_xhrs_title"/>
+
+    </LinearLayout>
+
+</LinearLayout>

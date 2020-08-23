@@ -16,7 +16,7 @@ import com.github.mikephil.charting.utils.MPPointF;
 
 import java.util.List;
 
-public class XYMarkerView extends MarkerView {
+public class XYMarkerViewZjty extends MarkerView {
     public static final int ARROW_SIZE = 40; // 箭头的大小
     private static final float CIRCLE_OFFSET = 10;//因为我这里的折点是圆圈，所以要偏移，防止直接指向了圆心
     private static final float STOKE_WIDTH = 5;//这里对于stroke_width的宽度也要做一定偏移
@@ -28,8 +28,8 @@ public class XYMarkerView extends MarkerView {
 
     Context context;
 
-    public XYMarkerView(Context context, List<DbTyZs> stepListModels) {
-        super(context, R.layout.custom_marker_view2);
+    public XYMarkerViewZjty(Context context, List<DbTyZs> stepListModels) {
+        super(context, R.layout.custom_marker_view_zjty);
         this.context = context;
         ll_cprs = (LinearLayout) findViewById(R.id.ll_cprs);//
         ll_cprs_xkjzz = (LinearLayout) findViewById(R.id.ll_cprs_xkjzz);//

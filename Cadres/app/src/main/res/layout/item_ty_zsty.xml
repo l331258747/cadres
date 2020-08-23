@@ -157,7 +157,7 @@
             android:id="@+id/tv_zs_nqgb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="年轻干部配备推演"
+            android:text="35岁及以下年轻干部"
             app:layout_constraintTop_toTopOf="@+id/iv_zs_nqgb"
             app:layout_constraintBottom_toBottomOf="@+id/iv_zs_nqgb"
             app:layout_constraintStart_toStartOf="@+id/iv_zs_nqgb"

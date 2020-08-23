@@ -12,7 +12,8 @@ import com.example.cadres.base.BaseFragment;
 import com.example.cadres.beanDB.DBTyZsNqgb;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.utils.LogUtil;
-import com.example.cadres.utils.chart.XYMarkerView;
+import com.example.cadres.utils.chart.XYMarkerViewNqgb;
+import com.example.cadres.utils.chart.XYMarkerViewZjty;
 import com.example.cadres.utils.chart.ZsPercentFormatter;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -125,7 +126,7 @@ public class DsjtyZjFragment extends BaseFragment {
         //取消缩放
         chart_zs.setScaleEnabled(false);
 
-        XYMarkerView mv = new XYMarkerView(context, dbTyZs);
+        XYMarkerViewZjty mv = new XYMarkerViewZjty(context, dbTyZs);
         mv.setChartView(chart_zs);
         chart_zs.setMarker(mv);
     }
@@ -277,9 +278,10 @@ public class DsjtyZjFragment extends BaseFragment {
 
         chart_zs_nqgb.setData(getLineDataNqgb());
 
-//        XYMarkerView mv = new XYMarkerView(this, dbTyZs);
-//        mv.setChartView(chart_zs);
-//        chart_zs.setMarker(mv);
+        XYMarkerViewNqgb mv = new XYMarkerViewNqgb(context, dbTyZsNqgb);
+        mv.setChartView(chart_zs_nqgb);
+        chart_zs_nqgb.setMarker(mv);
+
     }
 
     /**
@@ -346,9 +348,10 @@ public class DsjtyZjFragment extends BaseFragment {
         List<Entry> customCounts2 = new ArrayList<>();
         //人数
         for (int i = 0; i < dbTyZsNqgb.size(); i++) {
-            customCounts2.add(new Entry(i, dbTyZsNqgb.get(i).getDeputy()));
+            customCounts2.add(new Entry(i, dbTyZsNqgb.get(i).getSum()));
         }
-        LineDataSet lineDataSet2 = new LineDataSet(customCounts2, "乡科副职");
+//        LineDataSet lineDataSet2 = new LineDataSet(customCounts2, "乡科副职");
+        LineDataSet lineDataSet2 = new LineDataSet(customCounts2, "年轻干部");
         lineDataSet2.setColor(Color.rgb(213,100,107));
         lineDataSet2.setCircleColor(Color.WHITE);
         lineDataSet2.setValueTextColor(Color.WHITE);
