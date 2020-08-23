@@ -1093,6 +1093,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getOvermatch(),
                         item.getVacancy(),
                         item.getDigestion(),
+                        item.getParallelOrOther(),
+                        item.getSkzz(),
+                        item.getSkfz(),
+                        item.getOther(),
+                        item.getType(),
                         false
                 ));
             }
@@ -1110,6 +1115,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         itemGwy.getOvermatch(),
                         itemGwy.getVacancy(),
                         itemGwy.getDigestion(),
+                        itemGwy.getParallelOrOther(),
+                        itemGwy.getSkzz(),
+                        itemGwy.getSkfz(),
+                        itemGwy.getOther(),
+                        itemGwy.getType(),
                         true
                 ));
             }
@@ -1127,7 +1137,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         null,
                         item.getYear(),
                         item.getPrincipal(),
-                        item.getDeputy()
+                        item.getDeputy(),
+                        item.getSum(),
+                        item.getJlh()
                 ));
             }
         }

@@ -13,12 +13,18 @@ public class DBTyZsNqgb {
     private int principal;
     private int deputy;
 
-    @Generated(hash = 1277321114)
-    public DBTyZsNqgb(Long _id, String year, int principal, int deputy) {
+    private int sum;
+    private int jlh;
+
+    @Generated(hash = 459132438)
+    public DBTyZsNqgb(Long _id, String year, int principal, int deputy, int sum,
+            int jlh) {
         this._id = _id;
         this.year = year;
         this.principal = principal;
         this.deputy = deputy;
+        this.sum = sum;
+        this.jlh = jlh;
     }
 
     @Generated(hash = 1288557859)
@@ -55,5 +61,21 @@ public class DBTyZsNqgb {
 
     public void setDeputy(int deputy) {
         this.deputy = deputy;
+    }
+
+    public int getSum() {
+        return this.sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+
+    public int getJlh() {
+        return this.jlh;
+    }
+
+    public void setJlh(int jlh) {
+        this.jlh = jlh;
     }
     }

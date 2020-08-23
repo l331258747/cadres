@@ -1,5 +1,7 @@
 package com.example.cadres.bean.dsjty;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 public class ZstyBean {
@@ -22,19 +24,57 @@ public class ZstyBean {
 
     public static class ZstyBean3{
         private String year;
-        private int principal;
-        private int deputy;
+        private String principal;
+        private String deputy;
+        private String sum;
+        private String jlh;
+
+        public int getSum() {
+            if(TextUtils.isEmpty(sum)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(sum);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
+
+        public int getJlh() {
+            if(TextUtils.isEmpty(jlh)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(jlh);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
 
         public String getYear() {
             return year;
         }
 
         public int getPrincipal() {
-            return principal;
+            if(TextUtils.isEmpty(principal)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(principal);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getDeputy() {
-            return deputy;
+            if(TextUtils.isEmpty(deputy)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(deputy);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
     }
 
@@ -51,67 +91,134 @@ public class ZstyBean {
          */
 
         private String year;
-        private int rankAge;
-        private int toVacancy;
-        private int parallel;
-        private int overmatch;
-        private int vacancy;
-        private int digestion;
+        private String rankAge;
+        private String toVacancy;
+        private String parallel;
+        private String overmatch;
+        private String vacancy;
+        private String digestion;
+        private String parallelOrOther;
+        private String skzz;
+        private String skfz;
+        private String other;
+        private int type;
 
         public String getYear() {
             return year;
         }
 
-        public void setYear(String year) {
-            this.year = year;
-        }
-
         public int getRankAge() {
-            return rankAge;
-        }
-
-        public void setRankAge(int rankAge) {
-            this.rankAge = rankAge;
+            if(TextUtils.isEmpty(rankAge)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(rankAge);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getToVacancy() {
-            return toVacancy;
-        }
-
-        public void setToVacancy(int toVacancy) {
-            this.toVacancy = toVacancy;
+            if(TextUtils.isEmpty(toVacancy)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(toVacancy);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getParallel() {
-            return parallel;
-        }
-
-        public void setParallel(int parallel) {
-            this.parallel = parallel;
+            if(TextUtils.isEmpty(parallel)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(parallel);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getOvermatch() {
-            return overmatch;
-        }
-
-        public void setOvermatch(int overmatch) {
-            this.overmatch = overmatch;
+            if(TextUtils.isEmpty(overmatch)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(overmatch);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getVacancy() {
-            return vacancy;
-        }
-
-        public void setVacancy(int vacancy) {
-            this.vacancy = vacancy;
+            if(TextUtils.isEmpty(vacancy)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(vacancy);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
         public int getDigestion() {
-            return digestion;
+            if(TextUtils.isEmpty(digestion)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(digestion);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
         }
 
-        public void setDigestion(int digestion) {
-            this.digestion = digestion;
+        public int getParallelOrOther() {
+            if(TextUtils.isEmpty(parallelOrOther)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(parallelOrOther);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
+
+        public int getSkzz() {
+            if(TextUtils.isEmpty(skzz)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(skzz);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
+
+        public int getSkfz() {
+            if(TextUtils.isEmpty(skfz)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(skfz);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
+
+        public int getOther() {
+            if(TextUtils.isEmpty(other)) return 0;
+            int i = 0;
+            try{
+                i = Integer.valueOf(other);
+            }catch (Exception e){
+                i = 0;
+            }
+            return i;
+        }
+
+        public int getType() {
+            return type;
         }
     }
 }

@@ -232,10 +232,10 @@ public class DsjtyZjFragment extends BaseFragment {
     public BarData getBarData() {
         List<BarEntry> yvalue=new ArrayList<>();
         for (int i = 0; i < dbTyZs.size(); i++) {
-            yvalue.add(new BarEntry(i, new float[]{dbTyZs.get(i).getRankAge(),dbTyZs.get(i).getParallel(),dbTyZs.get(i).getToVacancy()}));
+            yvalue.add(new BarEntry(i, new float[]{dbTyZs.get(i).getRankAge(),dbTyZs.get(i).getParallelOrOther()}));
         }
         BarDataSet set=new BarDataSet(yvalue,"");
-        set.setColors(new int[]{Color.rgb(222,148,109),Color.rgb(1,183,255),Color.rgb(0,231,213)});//set会循环这里的颜色进行添加
+        set.setColors(new int[]{Color.rgb(222,148,109),Color.rgb(0,231,213)});//set会循环这里的颜色进行添加
         set.setDrawValues(false);
 //        //设置平均的柱状图
         BarData barData = new BarData();
@@ -379,11 +379,12 @@ public class DsjtyZjFragment extends BaseFragment {
     public void getDbZsTyData() {
         DbTyZsDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDbTyZsDao();
         QueryBuilder<DbTyZs> queryBuilder = dbGbBeanDao.queryBuilder();
-        if(TextUtils.equals(type,"1")){
-            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq("false"));
-        }else{
-            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq("true"));
-        }
+//        if(TextUtils.equals(type,"1")){  //TODO
+//            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq("false"));
+//        }else{
+//            queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq("true"));
+//        }
+        queryBuilder.where(DbTyZsDao.Properties.IsGwy.eq("false"));
         dbTyZs = queryBuilder.list();
 
         LogUtil.e("数据库条数：" + dbTyZs.size());

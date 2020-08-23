@@ -28,6 +28,8 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
         public final static Property Year = new Property(1, String.class, "year", false, "YEAR");
         public final static Property Principal = new Property(2, int.class, "principal", false, "PRINCIPAL");
         public final static Property Deputy = new Property(3, int.class, "deputy", false, "DEPUTY");
+        public final static Property Sum = new Property(4, int.class, "sum", false, "SUM");
+        public final static Property Jlh = new Property(5, int.class, "jlh", false, "JLH");
     }
 
 
@@ -46,7 +48,9 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: _id
                 "\"YEAR\" TEXT," + // 1: year
                 "\"PRINCIPAL\" INTEGER NOT NULL ," + // 2: principal
-                "\"DEPUTY\" INTEGER NOT NULL );"); // 3: deputy
+                "\"DEPUTY\" INTEGER NOT NULL ," + // 3: deputy
+                "\"SUM\" INTEGER NOT NULL ," + // 4: sum
+                "\"JLH\" INTEGER NOT NULL );"); // 5: jlh
     }
 
     /** Drops the underlying database table. */
@@ -70,6 +74,8 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
         }
         stmt.bindLong(3, entity.getPrincipal());
         stmt.bindLong(4, entity.getDeputy());
+        stmt.bindLong(5, entity.getSum());
+        stmt.bindLong(6, entity.getJlh());
     }
 
     @Override
@@ -87,6 +93,8 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
         }
         stmt.bindLong(3, entity.getPrincipal());
         stmt.bindLong(4, entity.getDeputy());
+        stmt.bindLong(5, entity.getSum());
+        stmt.bindLong(6, entity.getJlh());
     }
 
     @Override
@@ -100,7 +108,9 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // _id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // year
             cursor.getInt(offset + 2), // principal
-            cursor.getInt(offset + 3) // deputy
+            cursor.getInt(offset + 3), // deputy
+            cursor.getInt(offset + 4), // sum
+            cursor.getInt(offset + 5) // jlh
         );
         return entity;
     }
@@ -111,6 +121,8 @@ public class DBTyZsNqgbDao extends AbstractDao<DBTyZsNqgb, Long> {
         entity.setYear(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setPrincipal(cursor.getInt(offset + 2));
         entity.setDeputy(cursor.getInt(offset + 3));
+        entity.setSum(cursor.getInt(offset + 4));
+        entity.setJlh(cursor.getInt(offset + 5));
      }
     
     @Override

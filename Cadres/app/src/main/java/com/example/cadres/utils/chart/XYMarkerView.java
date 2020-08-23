@@ -3,6 +3,7 @@ package com.example.cadres.utils.chart;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cadres.R;
@@ -19,10 +20,8 @@ public class XYMarkerView extends MarkerView {
     public static final int ARROW_SIZE = 40; // 箭头的大小
     private static final float CIRCLE_OFFSET = 10;//因为我这里的折点是圆圈，所以要偏移，防止直接指向了圆心
     private static final float STOKE_WIDTH = 5;//这里对于stroke_width的宽度也要做一定偏移
-    private TextView tv_xhrs;
-    private TextView tv_kq;
-    private TextView tv_bx;
-    private TextView tv_tx;
+    private LinearLayout ll_cprs,ll_cprs_xkjzz,ll_cprs_xkjfz,ll_other,ll_jhxc,ll_zjjs,ll_dltx;
+    private TextView tv_cprs,tv_cprs_xkjzz,tv_cprs_xkjfz,tv_other,tv_jhxc,tv_zjjs,tv_dltx;
     private List<DbTyZs> stepListModels;
     private int index;
     private int oldIndex = -1;
@@ -30,12 +29,22 @@ public class XYMarkerView extends MarkerView {
     Context context;
 
     public XYMarkerView(Context context, List<DbTyZs> stepListModels) {
-        super(context, R.layout.custom_marker_view);
+        super(context, R.layout.custom_marker_view2);
         this.context = context;
-        tv_xhrs = (TextView) findViewById(R.id.tv_xhrs);//
-        tv_kq = (TextView) findViewById(R.id.tv_kq);//
-        tv_bx = (TextView) findViewById(R.id.tv_bx);//
-        tv_tx = (TextView) findViewById(R.id.tv_tx);//
+        ll_cprs = (LinearLayout) findViewById(R.id.ll_cprs);//
+        ll_cprs_xkjzz = (LinearLayout) findViewById(R.id.ll_cprs_xkjzz);//
+        ll_cprs_xkjfz = (LinearLayout) findViewById(R.id.ll_cprs_xkjfz);//
+        ll_other = (LinearLayout) findViewById(R.id.ll_other);//
+        ll_jhxc = (LinearLayout) findViewById(R.id.ll_jhxc);//
+        ll_zjjs = (LinearLayout) findViewById(R.id.ll_zjjs);//
+        ll_dltx = (LinearLayout) findViewById(R.id.ll_dltx);//
+        tv_cprs = (TextView) findViewById(R.id.tv_cprs);//
+        tv_cprs_xkjzz = (TextView) findViewById(R.id.tv_cprs_xkjzz);//
+        tv_cprs_xkjfz = (TextView) findViewById(R.id.tv_cprs_xkjfz);//
+        tv_other = (TextView) findViewById(R.id.tv_other);//
+        tv_jhxc = (TextView) findViewById(R.id.tv_jhxc);//
+        tv_zjjs = (TextView) findViewById(R.id.tv_zjjs);//
+        tv_dltx = (TextView) findViewById(R.id.tv_dltx);//
         this.stepListModels = stepListModels;
     }
 
@@ -44,10 +53,45 @@ public class XYMarkerView extends MarkerView {
 
         index = (int)highlight.getX();//这个方法用于获得折线是哪根
         DbTyZs stepListModel = stepListModels.get(index);
-        tv_xhrs.setText(stepListModel.getDigestion() + "");
-        tv_kq.setText(stepListModel.getToVacancy() + "");
-        tv_bx.setText(stepListModel.getParallel() + "");
-        tv_tx.setText(stepListModel.getRankAge() + "");
+
+        ll_cprs.setVisibility(GONE);
+        ll_cprs_xkjzz.setVisibility(GONE);
+        ll_cprs_xkjfz.setVisibility(GONE);
+        ll_other.setVisibility(GONE);
+        ll_jhxc.setVisibility(GONE);
+        ll_zjjs.setVisibility(GONE);
+        ll_dltx.setVisibility(GONE);
+
+        if(stepListModel.getOvermatch() != 0){
+            ll_cprs.setVisibility(VISIBLE);
+            tv_cprs.setText(stepListModel.getOvermatch() + "人");
+        }
+
+        if(stepListModel.getSkzz() != 0){
+            ll_cprs_xkjzz.setVisibility(VISIBLE);
+            tv_cprs_xkjzz.setText(stepListModel.getSkzz() + "人");
+        }
+        if(stepListModel.getSkfz() != 0){
+            ll_cprs_xkjfz.setVisibility(VISIBLE);
+            tv_cprs_xkjfz.setText(stepListModel.getSkfz() + "人");
+        }
+        if(stepListModel.getOther() != 0){
+            ll_other.setVisibility(VISIBLE);
+            tv_other.setText(stepListModel.getOther() + "人");
+        }
+        if(stepListModel.getDigestion() != 0){
+            ll_jhxc.setVisibility(VISIBLE);
+            tv_jhxc.setText(stepListModel.getDigestion() + "人");
+        }
+        if(stepListModel.getParallelOrOther() != 0){
+            ll_zjjs.setVisibility(VISIBLE);
+            tv_zjjs.setText(stepListModel.getParallelOrOther() + "人");
+        }
+        if(stepListModel.getRankAge() != 0){
+            ll_dltx.setVisibility(VISIBLE);
+            tv_dltx.setText(stepListModel.getRankAge() + "人");
+        }
+
 
         super.refreshContent(e, highlight);
     }

@@ -32,7 +32,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         public final static Property Overmatch = new Property(5, int.class, "overmatch", false, "OVERMATCH");
         public final static Property Vacancy = new Property(6, int.class, "vacancy", false, "VACANCY");
         public final static Property Digestion = new Property(7, int.class, "digestion", false, "DIGESTION");
-        public final static Property IsGwy = new Property(8, boolean.class, "isGwy", false, "IS_GWY");
+        public final static Property ParallelOrOther = new Property(8, int.class, "parallelOrOther", false, "PARALLEL_OR_OTHER");
+        public final static Property Skzz = new Property(9, int.class, "skzz", false, "SKZZ");
+        public final static Property Skfz = new Property(10, int.class, "skfz", false, "SKFZ");
+        public final static Property Other = new Property(11, int.class, "other", false, "OTHER");
+        public final static Property Type = new Property(12, int.class, "type", false, "TYPE");
+        public final static Property IsGwy = new Property(13, boolean.class, "isGwy", false, "IS_GWY");
     }
 
 
@@ -56,7 +61,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
                 "\"OVERMATCH\" INTEGER NOT NULL ," + // 5: overmatch
                 "\"VACANCY\" INTEGER NOT NULL ," + // 6: vacancy
                 "\"DIGESTION\" INTEGER NOT NULL ," + // 7: digestion
-                "\"IS_GWY\" INTEGER NOT NULL );"); // 8: isGwy
+                "\"PARALLEL_OR_OTHER\" INTEGER NOT NULL ," + // 8: parallelOrOther
+                "\"SKZZ\" INTEGER NOT NULL ," + // 9: skzz
+                "\"SKFZ\" INTEGER NOT NULL ," + // 10: skfz
+                "\"OTHER\" INTEGER NOT NULL ," + // 11: other
+                "\"TYPE\" INTEGER NOT NULL ," + // 12: type
+                "\"IS_GWY\" INTEGER NOT NULL );"); // 13: isGwy
     }
 
     /** Drops the underlying database table. */
@@ -84,7 +94,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         stmt.bindLong(6, entity.getOvermatch());
         stmt.bindLong(7, entity.getVacancy());
         stmt.bindLong(8, entity.getDigestion());
-        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getParallelOrOther());
+        stmt.bindLong(10, entity.getSkzz());
+        stmt.bindLong(11, entity.getSkfz());
+        stmt.bindLong(12, entity.getOther());
+        stmt.bindLong(13, entity.getType());
+        stmt.bindLong(14, entity.getIsGwy() ? 1L: 0L);
     }
 
     @Override
@@ -106,7 +121,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         stmt.bindLong(6, entity.getOvermatch());
         stmt.bindLong(7, entity.getVacancy());
         stmt.bindLong(8, entity.getDigestion());
-        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getParallelOrOther());
+        stmt.bindLong(10, entity.getSkzz());
+        stmt.bindLong(11, entity.getSkfz());
+        stmt.bindLong(12, entity.getOther());
+        stmt.bindLong(13, entity.getType());
+        stmt.bindLong(14, entity.getIsGwy() ? 1L: 0L);
     }
 
     @Override
@@ -125,7 +145,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
             cursor.getInt(offset + 5), // overmatch
             cursor.getInt(offset + 6), // vacancy
             cursor.getInt(offset + 7), // digestion
-            cursor.getShort(offset + 8) != 0 // isGwy
+            cursor.getInt(offset + 8), // parallelOrOther
+            cursor.getInt(offset + 9), // skzz
+            cursor.getInt(offset + 10), // skfz
+            cursor.getInt(offset + 11), // other
+            cursor.getInt(offset + 12), // type
+            cursor.getShort(offset + 13) != 0 // isGwy
         );
         return entity;
     }
@@ -140,7 +165,12 @@ public class DbTyZsDao extends AbstractDao<DbTyZs, Long> {
         entity.setOvermatch(cursor.getInt(offset + 5));
         entity.setVacancy(cursor.getInt(offset + 6));
         entity.setDigestion(cursor.getInt(offset + 7));
-        entity.setIsGwy(cursor.getShort(offset + 8) != 0);
+        entity.setParallelOrOther(cursor.getInt(offset + 8));
+        entity.setSkzz(cursor.getInt(offset + 9));
+        entity.setSkfz(cursor.getInt(offset + 10));
+        entity.setOther(cursor.getInt(offset + 11));
+        entity.setType(cursor.getInt(offset + 12));
+        entity.setIsGwy(cursor.getShort(offset + 13) != 0);
      }
     
     @Override
