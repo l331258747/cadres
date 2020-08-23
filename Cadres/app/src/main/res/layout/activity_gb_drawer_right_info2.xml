@@ -1220,7 +1220,7 @@
         app:layout_constraintTop_toTopOf="@+id/view_lx"
         app:layout_constraintBottom_toBottomOf="@+id/view_lx"
         android:gravity="center"
-        android:text="类型"
+        android:text="任现职级\n起算时间"
         android:textSize="@dimen/sp_12"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
@@ -1237,7 +1237,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
-        tools:text="类型"
+        tools:text="任现职级\n起算时间"
         android:textSize="@dimen/sp_12"
         app:layout_constraintStart_toEndOf="@+id/tv_rxzjsj_title"
         android:layout_height="0dp"/>
