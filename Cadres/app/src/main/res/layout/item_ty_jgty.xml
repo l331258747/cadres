@@ -7,8 +7,6 @@
     android:id="@+id/id_ty_jg_layout"
     android:fillViewport="true"
     android:overScrollMode="never"
-    android:visibility="gone"
-    tools:visibility="visible"
     tools:background="@color/black"
     android:background="@color/transparent"
     android:layout_height="match_parent">
@@ -17,13 +15,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_dialog"
+            android:layout_width="wrap_content"
+            app:constraint_referenced_ids="tv_dialog,iv_dialog_bg"
+            android:visibility="visible"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_dialog"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="市人大常委"
+            android:textColor="@color/white"
+            android:drawableRight="@mipmap/ic_down2"
+            android:drawablePadding="@dimen/dp_10"
+            android:textSize="@dimen/sp_20"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/iv_dialog_bg"
+            app:layout_constraintEnd_toEndOf="@+id/tv_dialog"
+            app:layout_constraintStart_toStartOf="@+id/tv_dialog"
+            android:src="@mipmap/ic_ty_dialog_bg"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog"
+            android:layout_width="@dimen/dp_230"
+            android:layout_height="@dimen/dp_26"/>
+
        <View
            android:id="@+id/view_1_jg"
            android:layout_width="0dp"
            app:layout_constraintStart_toStartOf="parent"
            android:layout_marginTop="@dimen/dp_10"
            android:background="@mipmap/ic_zs_line_bg"
-           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/iv_dialog_bg"
            app:layout_constraintEnd_toStartOf="@+id/view_2_jg"
            android:layout_height="@dimen/dp_260"/>
 
@@ -112,7 +139,7 @@
             android:layout_width="0dp"
             app:layout_constraintStart_toEndOf="@+id/view_1_jg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_dialog_bg"
             android:background="@mipmap/ic_zs_line_bg"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginStart="@dimen/dp_60"

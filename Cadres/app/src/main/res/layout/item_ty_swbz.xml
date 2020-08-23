@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:id="@+id/id_ty_swbz_layout"
     android:fillViewport="true"
-    android:visibility="gone"
-    tools:visibility="visible"
     android:overScrollMode="never"
     tools:background="@color/black"
     android:background="@color/transparent"
