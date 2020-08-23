@@ -34,4 +34,12 @@ public class ChartBean {
     public int getAmount() {
         return amount;
     }
+
+    public String getNameAmout(){
+        return name + "：" + amount;
+    }
+
+    public String getNameNum(){
+        return name + "：" + num;
+    }
 }

@@ -131,7 +131,7 @@ public class DsjtyHjFragment extends BaseFragment implements View.OnClickListene
         // 设置颜色list，让不同的块显示不同颜色，下面是我觉得不错的颜色集合，比较亮
         ArrayList<Integer> colorsSrdcwhbz = new ArrayList<Integer>();
         colorsSrdcwhbz.add(Color.rgb(0,180,255));
-        colorsSrdcwhbz.add(Color.rgb(254,137,84));
+        colorsSrdcwhbz.add(Color.rgb(254, 84, 85));
         showHjtyChart(chart_srdcwhbz, entriesSrdcwhbz, colorsSrdcwhbz, "");
 
         List<PieEntry> entriesSzxbz = new ArrayList<>();

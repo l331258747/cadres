@@ -129,7 +129,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         List<PieEntry> entries1 = new ArrayList<>();
         for (int i = 0; i < dbTyJg.getChartBeanOutlookList().size(); i++) {
             ChartBean data = dbTyJg.getChartBeanOutlookList().get(i);
-            PieEntry entry = new PieEntry((float) data.getAmount(), data.getName(), data);
+            PieEntry entry = new PieEntry((float) data.getAmount(), data.getNameAmout(), data);
             entries1.add(entry);
         }
         // 设置颜色list，让不同的块显示不同颜色，下面是我觉得不错的颜色集合，比较亮
@@ -141,7 +141,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         List<PieEntry> entries2 = new ArrayList<>();
         for (int i = 0; i < dbTyJg.getChartBeanNation().size(); i++) {
             ChartBean data = dbTyJg.getChartBeanNation().get(i);
-            PieEntry entry = new PieEntry((float) data.getAmount(), data.getName(), data);
+            PieEntry entry = new PieEntry((float) data.getAmount(), data.getNameAmout(), data);
             entries2.add(entry);
         }
         // 设置颜色list，让不同的块显示不同颜色，下面是我觉得不错的颜色集合，比较亮
@@ -153,7 +153,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         List<PieEntry> entries3 = new ArrayList<>();
         for (int i = 0; i < dbTyJg.getChartBeanAgeList().size(); i++) {
             ChartBean data = dbTyJg.getChartBeanAgeList().get(i);
-            PieEntry entry = new PieEntry((float) data.getAmount(), data.getName(), data);
+            PieEntry entry = new PieEntry((float) data.getAmount(), data.getNameAmout(), data);
             entries3.add(entry);
         }
         // 设置颜色list，让不同的块显示不同颜色，下面是我觉得不错的颜色集合，比较亮
@@ -169,7 +169,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         List<PieEntry> entries4 = new ArrayList<>();
         for (int i = 0; i < dbTyJg.getChartBeanEducationList().size(); i++) {
             ChartBean data = dbTyJg.getChartBeanEducationList().get(i);
-            PieEntry entry = new PieEntry((float) data.getNum(), data.getName(), data);
+            PieEntry entry = new PieEntry((float) data.getNum(), data.getNameNum(), data);
             entries4.add(entry);
         }
         showJgtyChart(chart_jg_xl, entries4, colors3, "");
@@ -177,7 +177,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         List<PieEntry> entries5 = new ArrayList<>();
         for (int i = 0; i < dbTyJg.getChartBeanMajorList().size(); i++) {
             ChartBean data = dbTyJg.getChartBeanMajorList().get(i);
-            PieEntry entry = new PieEntry((float) data.getNum(), data.getName(), data);
+            PieEntry entry = new PieEntry((float) data.getNum(), data.getNameNum(), data);
             entries5.add(entry);
         }
         showJgtyChart(chart_jg_zy, entries5, colors3, "");
@@ -202,14 +202,12 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         // 设置pieChart图表展示动画效果，动画运行1.4秒结束
 //        chart_jg_zzmm.animateY(1400, Easing.EaseInQuad);
         //设置pieChart是否只显示饼图上百分比不显示文字
-        chart_jg_zzmm.setDrawEntryLabels(true);
-        chart_jg_zzmm.setEntryLabelTextSize(10f);
-        //是否绘制PieChart内部中心文本
-        chart_jg_zzmm.setDrawCenterText(false);
+        chart_jg_zzmm.setDrawEntryLabels(true);////设置pieChart是否只显示饼图上百分比不显示文字（true：下面属性才有效果）
+        chart_jg_zzmm.setEntryLabelTextSize(10f);////设置pieChart图表文本字体大小
         // 百分比显示
-        chart_jg_zzmm.setUsePercentValues(true);
+        chart_jg_zzmm.setUsePercentValues(true);////使用百分比显示
 
-        // 设置 pieChart 内部圆环属性
+        // 设置 pieChart 内部圆环属性   //设置了透明的中心区域
         chart_jg_zzmm.setDrawHoleEnabled(true);              //是否显示PieChart内部圆环(true:下面属性才有意义)
         chart_jg_zzmm.setHoleRadius(50f);                    //设置PieChart内部圆的半径(这里设置28.0f)
         chart_jg_zzmm.setTransparentCircleRadius(31f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
@@ -226,7 +224,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
 //        legend.setEnabled(false);
 
         Legend l = chart_jg_zzmm.getLegend();
-        l.setEnabled(true);                    //是否启用图列（true：下面属性才有意义）
+        l.setEnabled(false);                    //是否启用图列（true：下面属性才有意义）
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -273,7 +271,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         // 绘制内容value，设置字体颜色大小
         dataSet.setDrawValues(true);
         dataSet.setValueFormatter(new PercentFormatter(chart_jg_zzmm));
-        dataSet.setValueTextSize(14f);
+        dataSet.setValueTextSize(12f);//百分比大小
         dataSet.setValueTextColor(Color.WHITE);
 
         dataSet.setValueLinePart1Length(0.4f);//当值位置为外边线时，表示线的前半段长度。
