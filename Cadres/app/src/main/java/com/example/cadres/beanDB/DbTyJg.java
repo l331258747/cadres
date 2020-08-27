@@ -135,25 +135,42 @@ public class DbTyJg {
         return (int) num + "%";
     }
 
+    // 这里把0的数据去除，是因为画图的时候，MyPieChartRenderer2里面会计算0 label的距离，导致偏差
     public List<ChartBean> getChartBeanNation() {
         List<ChartBean> list = GsonUtil.convertString2Collection(nationList, new TypeToken<List<ChartBean>>() {
         });
         if (list == null) return new ArrayList<>();
-        return list;
+        List<ChartBean> list2 = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getAmount() > 0)
+                list2.add(list.get(i));
+        }
+        return list2;
     }
 
     public List<ChartBean> getChartBeanOutlookList() {
         List<ChartBean> list = GsonUtil.convertString2Collection(outlookList, new TypeToken<List<ChartBean>>() {
         });
         if (list == null) return new ArrayList<>();
-        return list;
+
+        List<ChartBean> list2 = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getAmount() > 0)
+                list2.add(list.get(i));
+        }
+        return list2;
     }
 
     public List<ChartBean> getChartBeanAgeList() {
         List<ChartBean> list = GsonUtil.convertString2Collection(ageList, new TypeToken<List<ChartBean>>() {
         });
         if (list == null) return new ArrayList<>();
-        return list;
+        List<ChartBean> list2 = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getAmount() > 0)
+                list2.add(list.get(i));
+        }
+        return list2;
     }
 
     public String getEducationList() {
@@ -176,14 +193,24 @@ public class DbTyJg {
         List<ChartBean> list = GsonUtil.convertString2Collection(educationList, new TypeToken<List<ChartBean>>() {
         });
         if (list == null) return new ArrayList<>();
-        return list;
+        List<ChartBean> list2 = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getNum() > 0)
+                list2.add(list.get(i));
+        }
+        return list2;
     }
 
     public List<ChartBean> getChartBeanMajorList() {
         List<ChartBean> list = GsonUtil.convertString2Collection(majorList, new TypeToken<List<ChartBean>>() {
         });
         if (list == null) return new ArrayList<>();
-        return list;
+        List<ChartBean> list2 = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).getNum() > 0)
+                list2.add(list.get(i));
+        }
+        return list2;
     }
 
     public boolean getIsGwy() {

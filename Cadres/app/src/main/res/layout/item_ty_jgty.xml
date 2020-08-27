@@ -151,7 +151,7 @@
          android:layout_height="0dp"
          app:layout_constraintStart_toStartOf="@+id/view_2_jg"
          app:layout_constraintEnd_toEndOf="@+id/view_2_jg"
-         app:layout_constraintTop_toTopOf="@+id/view_2_jg"
+         app:layout_constraintTop_toBottomOf="@+id/iv_jg_zzmm"
          app:layout_constraintBottom_toBottomOf="@+id/view_2_jg"/>
 
         <ImageView
@@ -191,7 +191,7 @@
          android:layout_height="0dp"
          app:layout_constraintStart_toStartOf="@+id/view_3_jg"
          app:layout_constraintEnd_toEndOf="@+id/view_3_jg"
-         app:layout_constraintTop_toTopOf="@+id/view_3_jg"
+         app:layout_constraintTop_toBottomOf="@+id/iv_jg_mz"
          app:layout_constraintBottom_toBottomOf="@+id/view_3_jg"/>
 
         <ImageView
@@ -231,7 +231,7 @@
          android:layout_height="0dp"
          app:layout_constraintStart_toStartOf="@+id/view_4_jg"
          app:layout_constraintEnd_toEndOf="@+id/view_4_jg"
-         app:layout_constraintTop_toTopOf="@+id/view_4_jg"
+         app:layout_constraintTop_toBottomOf="@+id/iv_jg_nljg"
          app:layout_constraintBottom_toBottomOf="@+id/view_4_jg"/>
 
         <ImageView
@@ -272,7 +272,7 @@
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@+id/view_5_jg"
             app:layout_constraintEnd_toEndOf="@+id/view_5_jg"
-            app:layout_constraintTop_toTopOf="@+id/view_5_jg"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_xl"
             app:layout_constraintBottom_toBottomOf="@+id/view_5_jg"/>
 
         <ImageView
@@ -313,7 +313,7 @@
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@+id/view_6_jg"
             app:layout_constraintEnd_toEndOf="@+id/view_6_jg"
-            app:layout_constraintTop_toTopOf="@+id/view_6_jg"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jg_zy"
             app:layout_constraintBottom_toBottomOf="@+id/view_6_jg"/>
 
         <ImageView

@@ -23,6 +23,7 @@ import com.example.cadres.dialog.ListDialog2;
 import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.chart.MyPieChartRenderer;
+import com.example.cadres.utils.chart.MyPieChartRenderer2;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
@@ -190,10 +191,10 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
 
         //设置半透明圆环的半径, 0为透明
         chart_jg_zzmm.setTransparentCircleRadius(0f);
-        //设置初始旋转角度
-        chart_jg_zzmm.setRotationAngle(-15);
+//        //设置初始旋转角度
+//        chart_jg_zzmm.setRotationAngle(-15);
         // 和四周相隔一段距离,显示数据
-        chart_jg_zzmm.setExtraOffsets(30, 40, 30, 20);
+        chart_jg_zzmm.setExtraOffsets(10, 10, 10, 10);
 
         // 设置pieChart图表是否可以手动旋转
         chart_jg_zzmm.setRotationEnabled(false);
@@ -239,7 +240,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         l.setTextSize(12f);                      //设置图例标签文本的大小
         l.setTextColor(Color.parseColor("#23CEFD"));//设置图例标签文本的颜色
 
-        MyPieChartRenderer customPieChartRenderer = new MyPieChartRenderer(chart_jg_zzmm, chart_jg_zzmm.getAnimator(), chart_jg_zzmm.getViewPortHandler()); //new 一个类对象
+        MyPieChartRenderer2 customPieChartRenderer = new MyPieChartRenderer2(chart_jg_zzmm, chart_jg_zzmm.getAnimator(), chart_jg_zzmm.getViewPortHandler()); //new 一个类对象
         chart_jg_zzmm.setRenderer(customPieChartRenderer); //设置给piechart。 这里的holder 就是我的pirechart对象
 
     }
