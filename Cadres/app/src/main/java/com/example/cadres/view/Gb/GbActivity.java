@@ -5,8 +5,10 @@ import android.database.Cursor;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -225,6 +227,16 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         layout_bm = findViewById(R.id.layout_bm);
         tv_right_btn = findViewById(R.id.tv_right_btn);
         tv_right_content = findViewById(R.id.tv_right_content);
+
+        tv_right_content.setMovementMethod(new ScrollingMovementMethod());//设置textview可以滑动
+        tv_right_content.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                tv_right_content.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
         tv_right_btn.setOnClickListener(this);
     }
 
