@@ -46,10 +46,22 @@ public class XYMarkerViewNqgb extends MarkerView {
         index = (int)highlight.getX();//这个方法用于获得折线是哪根
         DBTyZsNqgb stepListModel = stepListModels.get(index);
 
-        tv_cprs_xkjzz.setText(stepListModel.getPrincipal() + "人");
-        tv_cprs_xkjfz.setText(stepListModel.getDeputy() + "人");
-        tv_gb.setText(stepListModel.getJlh() + "人");
+        ll_cprs_xkjzz.setVisibility(GONE);
+        ll_cprs_xkjfz.setVisibility(GONE);
+        ll_gb.setVisibility(GONE);
 
+        if(stepListModel.getPrincipal() != 0){
+            ll_cprs_xkjzz.setVisibility(VISIBLE);
+            tv_cprs_xkjzz.setText(stepListModel.getPrincipal() + "人");
+        }
+        if(stepListModel.getDeputy() != 0){
+            ll_cprs_xkjfz.setVisibility(VISIBLE);
+            tv_cprs_xkjfz.setText(stepListModel.getDeputy() + "人");
+        }
+        if(stepListModel.getJlh() != 0){
+            ll_gb.setVisibility(VISIBLE);
+            tv_gb.setText(stepListModel.getJlh() + "人");
+        }
         super.refreshContent(e, highlight);
     }
 
