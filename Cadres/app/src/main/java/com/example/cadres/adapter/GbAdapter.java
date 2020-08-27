@@ -88,12 +88,35 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
             holder.iv_head_tag.setImageDrawable(ContextCompat.getDrawable(mContext,R.mipmap.ic_punishment_yellow));
         }
 
-        holder.group_gb.setVisibility(View.GONE);
-        holder.group_gwy.setVisibility(View.GONE);
-        if(TextUtils.equals(type,"2")){
-            holder.group_gwy.setVisibility(View.VISIBLE);
-        }else{
-            holder.group_gb.setVisibility(View.VISIBLE);
+        holder.tv_rzjqssj.setVisibility(View.VISIBLE);
+        holder.tv_cjgzsj.setVisibility(View.VISIBLE);
+        holder.tv_xrzsj.setVisibility(View.VISIBLE);
+        holder.tv_xrzwcc.setVisibility(View.VISIBLE);
+        holder.tv_xrzwccsj.setVisibility(View.VISIBLE);
+        holder.tv_zwjb.setVisibility(View.VISIBLE);
+        holder.tv_rzjsj.setVisibility(View.VISIBLE);
+        holder.tv_xrzw.setVisibility(View.VISIBLE);
+        holder.tv_rzjsj.setVisibility(View.VISIBLE);
+
+        if (TextUtils.equals(type, "3")) {
+            //tv_rzjqssj,tv_cjgzsj,tv_xrzsj,tv_xrzwcc,tv_xrzwccsj,tv_zwjb,tv_rzjsj
+            holder.tv_rzjqssj.setVisibility(View.GONE);
+            holder.tv_cjgzsj.setVisibility(View.GONE);
+            holder.tv_xrzsj.setVisibility(View.GONE);
+            holder.tv_xrzwcc.setVisibility(View.GONE);
+            holder.tv_xrzwccsj.setVisibility(View.GONE);
+            holder.tv_zwjb.setVisibility(View.GONE);
+            holder.tv_rzjsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "2")){
+            //tv_xrzw,tv_xrzsj,tv_xrzwcc,tv_xrzwccsj
+            holder.tv_xrzw.setVisibility(View.GONE);
+            holder.tv_xrzsj.setVisibility(View.GONE);
+            holder.tv_xrzwcc.setVisibility(View.GONE);
+            holder.tv_xrzwccsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "1")){
+            //tv_rzjqssj,tv_cjgzsj
+            holder.tv_rzjqssj.setVisibility(View.GONE);
+            holder.tv_cjgzsj.setVisibility(View.GONE);
         }
 
         if(mOnItemClickListener != null){
@@ -121,7 +144,6 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
         TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy,tv_rzjqssj,tv_cjgzsj;
-        Group group_gb,group_gwy;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -147,8 +169,6 @@ public class GbAdapter extends RecyclerView.Adapter<GbAdapter.ViewHolder> {
             tv_zzwhcd = itemView.findViewById(R.id.tv_zzwhcd);
             tv_head_tag = itemView.findViewById(R.id.tv_head_tag);
 
-            group_gb = itemView.findViewById(R.id.group_gb);
-            group_gwy = itemView.findViewById(R.id.group_gwy);
             tv_rzjqssj = itemView.findViewById(R.id.tv_rzjqssj);
             tv_cjgzsj = itemView.findViewById(R.id.tv_cjgzsj);
         }

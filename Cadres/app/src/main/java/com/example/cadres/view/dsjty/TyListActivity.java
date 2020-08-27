@@ -36,7 +36,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TyListActivity extends BaseActivity implements View.OnClickListener {
 
-    Group group_gb,group_gwy;
     RecyclerView recyclerView;
 
     GbAdapter mAdapter;
@@ -86,16 +85,15 @@ public class TyListActivity extends BaseActivity implements View.OnClickListener
         showTitleTv(tyTitle);
 
         tv_search_count = findViewById(R.id.tv_search_count);
-        group_gb = findViewById(R.id.group_gb);
-        group_gwy = findViewById(R.id.group_gwy);
 
-        initTitleTab();
         initRecycler();
 
         initDrawer();
         initDrawerGbInfo();
 
         initSort();
+
+        initTitleTab();
     }
 
     private void initSort() {
@@ -171,13 +169,31 @@ public class TyListActivity extends BaseActivity implements View.OnClickListener
         mAdapter.setData(getData());
     }
 
+    TextView tv_xrzwcc,tv_zwjb,tv_xrzw;
     private void initTitleTab() {
-        group_gb.setVisibility(View.GONE);
-        group_gwy.setVisibility(View.GONE);
-        if(TextUtils.equals(type,"2")){
-            group_gwy.setVisibility(View.VISIBLE);
-        }else{
-            group_gb.setVisibility(View.VISIBLE);
+        tv_xrzwcc = findViewById(R.id.tv_xrzwcc);
+        tv_zwjb = findViewById(R.id.tv_zwjb);
+        tv_xrzw = findViewById(R.id.tv_xrzw);
+
+        if (TextUtils.equals(type, "3")) {
+            //ll_rzjqssj,ll_cjgzsj,ll_xrzsj,tv_xrzwcc,ll_xrzwccsj,tv_zwjb,ll_rzjsj
+            ll_rzjqssj.setVisibility(View.GONE);
+            ll_cjgzsj.setVisibility(View.GONE);
+            ll_xrzsj.setVisibility(View.GONE);
+            tv_xrzwcc.setVisibility(View.GONE);
+            ll_xrzwccsj.setVisibility(View.GONE);
+            tv_zwjb.setVisibility(View.GONE);
+            ll_rzjsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "2")){
+            //tv_xrzw,ll_xrzsj,tv_xrzwcc,ll_xrzwccsj
+            tv_xrzw.setVisibility(View.GONE);
+            ll_xrzsj.setVisibility(View.GONE);
+            tv_xrzwcc.setVisibility(View.GONE);
+            ll_xrzwccsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "1")){
+            //ll_rzjqssj,ll_cjgzsj
+            ll_rzjqssj.setVisibility(View.GONE);
+            ll_cjgzsj.setVisibility(View.GONE);
         }
     }
 

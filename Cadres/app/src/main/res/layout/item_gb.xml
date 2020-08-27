@@ -6,25 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_gb"
-        android:layout_width="wrap_content"
-        app:constraint_referenced_ids="
-                tv_xrzw,tv_xrzsj,tv_xrzwcc,tv_xrzwccsj"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group_gwy"
-        android:layout_width="wrap_content"
-        app:constraint_referenced_ids="
-                tv_rzjqssj,tv_cjgzsj"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_height="wrap_content"/>
-
-
     <View
         android:id="@+id/view_head"
         android:layout_width="@dimen/dp_100"

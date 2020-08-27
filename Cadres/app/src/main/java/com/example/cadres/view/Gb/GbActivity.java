@@ -58,7 +58,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GbActivity extends BaseActivity implements View.OnClickListener {
 
-    Group group_View_top, group_gb, group_gwy;
+    Group group_View_top;
     TextView tv_top_title, tv_top_btn, tv_top_hdzs2, tv_top_sjpb2, tv_top_cpqk2, tv_top_kqqk2;
     TextView tv_right_btn, tv_right_content;
     View view_menu;
@@ -109,8 +109,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         et_search = findViewById(R.id.et_search);
 
         group_View_top = findViewById(R.id.group_View_top);
-        group_gb = findViewById(R.id.group_gb);
-        group_gwy = findViewById(R.id.group_gwy);
 
         tv_top_title = findViewById(R.id.tv_top_title);
         tv_top_btn = findViewById(R.id.tv_top_btn);
@@ -125,8 +123,6 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
 
         et_search.setOnClickListener(this);
 
-        initTitleTab();
-
         initRecycler();
 
         initDrawer();
@@ -135,6 +131,8 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         initDrawerGbInfo();
 
         initSort();
+
+        initTitleTab();
     }
 
     private void initSort() {
@@ -208,13 +206,31 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         mAdapter.setData(getGbBmData());
     }
 
+    TextView tv_xrzwcc,tv_zwjb,tv_xrzw;
     private void initTitleTab() {
-        group_gb.setVisibility(View.GONE);
-        group_gwy.setVisibility(View.GONE);
-        if (TextUtils.equals(type, "2")) {
-            group_gwy.setVisibility(View.VISIBLE);
-        } else {
-            group_gb.setVisibility(View.VISIBLE);
+        tv_xrzwcc = findViewById(R.id.tv_xrzwcc);
+        tv_zwjb = findViewById(R.id.tv_zwjb);
+        tv_xrzw = findViewById(R.id.tv_xrzw);
+
+        if (TextUtils.equals(type, "3")) {
+            //ll_rzjqssj,ll_cjgzsj,ll_xrzsj,tv_xrzwcc,ll_xrzwccsj,tv_zwjb,ll_rzjsj
+            ll_rzjqssj.setVisibility(View.GONE);
+            ll_cjgzsj.setVisibility(View.GONE);
+            ll_xrzsj.setVisibility(View.GONE);
+            tv_xrzwcc.setVisibility(View.GONE);
+            ll_xrzwccsj.setVisibility(View.GONE);
+            tv_zwjb.setVisibility(View.GONE);
+            ll_rzjsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "2")){
+            //tv_xrzw,ll_xrzsj,tv_xrzwcc,ll_xrzwccsj
+            tv_xrzw.setVisibility(View.GONE);
+            ll_xrzsj.setVisibility(View.GONE);
+            tv_xrzwcc.setVisibility(View.GONE);
+            ll_xrzwccsj.setVisibility(View.GONE);
+        } else if(TextUtils.equals(type, "1")){
+            //ll_rzjqssj,ll_cjgzsj
+            ll_rzjqssj.setVisibility(View.GONE);
+            ll_cjgzsj.setVisibility(View.GONE);
         }
     }
 
