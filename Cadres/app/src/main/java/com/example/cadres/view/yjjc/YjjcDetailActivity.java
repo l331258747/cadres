@@ -6,6 +6,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
+import com.cadres.greendao.gen.DBGbBeanDao;
+import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
+import com.cadres.greendao.gen.DBYjjcCadreDao;
+import com.cadres.greendao.gen.DBYjjcMeetingDao;
+import com.cadres.greendao.gen.DBZcfgBeanDao;
+import com.cadres.greendao.gen.DbYjjcBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
@@ -14,6 +21,8 @@ import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
+import com.example.cadres.beanDB.DBBmBean;
+import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DbYjjcBean;
@@ -22,11 +31,14 @@ import com.example.cadres.mvp.YjjcDetailContract;
 import com.example.cadres.mvp.YjjcDetailPresenter;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
+import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.utils.myData.GbDrawerData;
 import com.example.cadres.utils.rxbus.RxBus2;
 import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
 import com.google.android.material.tabs.TabLayout;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,7 +159,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
         dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
 
-        getDbList();
+        getDbList(type);
         dialogDatas = new ArrayList<>();
         for (int i=0;i<dbYjjcBeans.size();i++){
             DbYjjcBean item = dbYjjcBeans.get(i);
@@ -172,26 +184,46 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         });
     }
 
-    public void getDbList() {
+    public void getDbList(String meetingType) {
         List<DbYjjcBean> dbList = new ArrayList<>();
-        dbList = dBYjjcDaoUtils.queryAll();
-        LogUtil.e("数据库条数：" + dbList.size());
+
+//        dbList = dBYjjcDaoUtils.queryAll();
+//        LogUtil.e("数据库条数：" + dbList.size());
+
+        DbYjjcBeanDao dbYjjcBeanDao = DaoManager.getInstance().getDaoSession().getDbYjjcBeanDao();
+        QueryBuilder<DbYjjcBean> queryBuilder = dbYjjcBeanDao.queryBuilder();
+        queryBuilder.join(DbYjjcBeanDao.Properties.SchemeId, DBYjjcMeeting.class, DBYjjcMeetingDao.Properties.SchemeId)
+                .where(DBYjjcMeetingDao.Properties.MeetingType.eq(meetingType));
+        queryBuilder.distinct();
+        dbList = queryBuilder.list();
+
         dbYjjcBeans = dbList;
     }
 
     public void getDbMeetingList(int schemeId, String meetingType) {
         List<DBYjjcMeeting> dbList = new ArrayList<>();
-        String sql;
-        String[] condition;
+        DBYjjcMeetingDao dbYjjcMeetingDao = DaoManager.getInstance().getDaoSession().getDBYjjcMeetingDao();
+        QueryBuilder<DBYjjcMeeting> queryBuilder = dbYjjcMeetingDao.queryBuilder();
         if(schemeId == 0){
-            sql = "where MEETING_TYPE = ?";
-            condition = new String[]{meetingType};
+            queryBuilder.where(DBYjjcMeetingDao.Properties.MeetingType.eq(meetingType));
         }else{
-            sql = "where MEETING_TYPE = ? and SCHEME_ID = ?";
-            condition = new String[]{meetingType,schemeId + ""};
+            queryBuilder.where(DBYjjcMeetingDao.Properties.MeetingType.eq(meetingType),DBYjjcMeetingDao.Properties.SchemeId.eq(schemeId));
         }
-        dbList = dBYjjcMeetingDaoUtils.queryByNativeSql(sql, condition);
+        dbList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbList.size());
+
+//        String sql;
+//        String[] condition;
+//        if(schemeId == 0){
+//            queryBuilder.where(DBYjjcMeetingDao.Properties.MeetingType.eq(meetingType));
+//            sql = "where MEETING_TYPE = ?";
+//            condition = new String[]{meetingType};
+//        }else{
+//            sql = "where MEETING_TYPE = ? and SCHEME_ID = ?";
+//            condition = new String[]{meetingType,schemeId + ""};
+//        }
+//        dbList = dBYjjcMeetingDaoUtils.queryByNativeSql(sql, condition);
+//        LogUtil.e("数据库条数：" + dbList.size());
 
         if(dbList.size() > 0)
             dbYjjcMeeting =  dbList.get(0);
@@ -199,22 +231,33 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
     public void getDbCadreingList(int schemeId){
         List<DBYjjcCadre> dbList = new ArrayList<>();
-        String sql;
-        String[] condition;
+//        String sql;
+//        String[] condition;
+//        if(TextUtils.equals("书记专题会议",type)){
+//            sql = "where SCHEME_ID = ? and APPOINT_DISMISS_RESULT <> ?";
+//            condition = new String[]{schemeId + "", 2 + ""};
+//        }else if(TextUtils.equals("市委常委会议",type)){
+//            sql = "where SCHEME_ID = ? and (APPOINT_DISMISS_RESULT <> ? and APPOINT_DISMISS_RESULT <> ?)";
+//            condition = new String[]{schemeId + "", 2 + "",3 + ""};
+//        }else{
+//            sql = "where SCHEME_ID = ?";
+//            condition = new String[]{schemeId + ""};
+//        }
+//        dbList = dBYjjcCadreDaoUtils.queryByNativeSql(sql, condition);
+//        LogUtil.e("数据库条数：" + dbList.size());
+
+        DBYjjcCadreDao dbYjjcCadreDao = DaoManager.getInstance().getDaoSession().getDBYjjcCadreDao();
+        QueryBuilder<DBYjjcCadre> queryBuilder = dbYjjcCadreDao.queryBuilder();
         if(TextUtils.equals("书记专题会议",type)){
-            sql = "where SCHEME_ID = ? and APPOINT_DISMISS_RESULT <> ?";
-            condition = new String[]{schemeId + "", 2 + ""};
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2));
         }else if(TextUtils.equals("市委常委会议",type)){
-            sql = "where SCHEME_ID = ? and (APPOINT_DISMISS_RESULT <> ? and APPOINT_DISMISS_RESULT <> ?)";
-            condition = new String[]{schemeId + "", 2 + "",3 + ""};
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.AppointDismissResult.notEq(3));
         }else{
-            sql = "where SCHEME_ID = ?";
-            condition = new String[]{schemeId + ""};
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId));
         }
 
-        dbList = dBYjjcCadreDaoUtils.queryByNativeSql(sql, condition);
+        dbList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbList.size());
-
         dbYjjcCadres =  dbList;
     }
 
