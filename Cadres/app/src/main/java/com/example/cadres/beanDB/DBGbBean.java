@@ -510,13 +510,19 @@ public class DBGbBean {
 
     //类型（1领导干部，2职级公务员，3后备干部）
     public String getTypeStr() {
-        if(TextUtils.equals(type,"1"))
+        StringBuffer sb = new StringBuffer("");
+        if(type.indexOf("1") != -1)
+            sb.append("领导干部，");
+        if(type.indexOf("2") != -1)
+            sb.append("职级公务员，");
+        if(type.indexOf("3") != -1)
+            sb.append("后备干部，");
+        if(sb.lastIndexOf("，") != -1){
+            String str = sb.substring(0,sb.length()-1);
+            return str;
+        }else{
             return "领导干部";
-        if(TextUtils.equals(type,"2"))
-            return "职级公务员";
-        if(TextUtils.equals(type,"3"))
-            return "后备干部";
-        return "领导干部";
+        }
     }
 
     public void setType(String type) {

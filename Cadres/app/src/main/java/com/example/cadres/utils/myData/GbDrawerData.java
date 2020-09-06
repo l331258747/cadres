@@ -37,7 +37,7 @@ public class GbDrawerData {
 
     TextView tv_name,tv_sex,tv_sfzh,tv_csny,tv_mz,tv_sjhm,tv_jg,tv_csd,tv_zzmm;
     TextView tv_cjzzrq,tv_cjgzsj,tv_jkzk,tv_zyjszw,tv_sxzyjzc,tv_xlxw_qrz,tv_xlxw_zz,tv_byyxxjzy_qrz,tv_byyxxjzy_zz;
-    TextView tv_gwydjsj,tv_rxzsj,tv_xrzw,tv_xrzwcc,tv_rxzwccsj,tv_xrzj,tv_rxzjsj,tv_rylb,tv_gllb,tv_zwlb,tv_lx,tv_jtzz,tv_bz;
+    TextView tv_gwydjsj,tv_rxzsj,tv_xrzw,tv_xrzwcc,tv_rxzwccsj,tv_xrzj,tv_rxzjsj,tv_rylb,tv_gllb,tv_zwlb,tv_rxzjqssj,tv_jtzz,tv_bz,tv_lx;
     TextView tv_gzjl,tv_jlqk,tv_fmqd,tv_pxqk,tv_kcqk,tv_ndkc;
     ImageView iv_head,iv_head_tag;
     RecyclerView recycle_view_jtcy;
@@ -80,9 +80,10 @@ public class GbDrawerData {
         tv_rylb = findViewById(R.id.tv_rylb);
         tv_gllb = findViewById(R.id.tv_gllb);
         tv_zwlb = findViewById(R.id.tv_zwlb);
-        tv_lx = findViewById(R.id.tv_lx);
+        tv_rxzjqssj = findViewById(R.id.tv_rxzjqssj);
         tv_jtzz = findViewById(R.id.tv_jtzz);
         tv_bz = findViewById(R.id.tv_bz);
+        tv_lx = findViewById(R.id.tv_lx);
 
         tv_gzjl = findViewById(R.id.tv_gzjl);
         tv_jlqk = findViewById(R.id.tv_jlqk);
@@ -145,9 +146,10 @@ public class GbDrawerData {
         tv_rylb.setText(data.getPersonnelType());
         tv_gllb.setText(data.getCadreType());
         tv_zwlb.setText(data.getPositionType());
-        tv_lx.setText(data.getFunctionaryRankStartTime());
+        tv_rxzjqssj.setText(data.getFunctionaryRankStartTime());
         tv_jtzz.setText(data.getHomeAddress());
         tv_bz.setText(data.getRemark());
+        tv_lx.setText(data.getTypeStr());
 
         tv_gzjl.setText(data.getCadreResume());
         tv_jlqk.setText(data.getCadreAward());
