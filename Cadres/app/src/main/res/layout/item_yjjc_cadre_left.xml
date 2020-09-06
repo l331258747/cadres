@@ -48,6 +48,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
         app:layout_constraintStart_toEndOf="@+id/tv_tip2"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
@@ -68,6 +69,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_5"
         app:layout_constraintStart_toEndOf="@+id/tv_xh"
         app:layout_constraintTop_toTopOf="@+id/view_title"
@@ -85,13 +87,14 @@
 
     <TextView
         android:id="@+id/tv_xrzw"
-        android:layout_width="@dimen/dp_120"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="0dp"
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
         app:layout_constraintTop_toTopOf="@+id/view_title"
+        android:textSize="@dimen/sp_12"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         tools:text="现任职务"/>
 
@@ -106,10 +109,11 @@
 
     <TextView
         android:id="@+id/tv_nrmzw"
-        android:layout_width="@dimen/dp_120"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="0dp"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
         app:layout_constraintTop_toTopOf="@+id/view_title"

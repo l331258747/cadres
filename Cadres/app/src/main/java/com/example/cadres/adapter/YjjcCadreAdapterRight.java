@@ -58,7 +58,8 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
         holder.tv_zyjszw.setText(data.getTechnicalTitle());
 
         //        TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
-        holder.tv_csny.setText(data.getBirthday() + (data.getAge() == 0?"":data.getAge()));
+//        holder.tv_csny.setText(data.getBirthday() + (data.getAge() == 0?"":data.getAge()));
+        holder.tv_csny.setText(data.getBirthdayAge());
         holder.tv_gzsj.setText(data.getWorkTime());
         holder.tv_rdsj.setText(data.getJoinPartyDate());
         holder.tv_rxzsj.setText(data.getCurrentPositionTime());

@@ -199,6 +199,17 @@ public class DBYjjcCadre {
     public int getAge() {
         return this.age;
     }
+
+    public String getBirthdayAge() {
+        if(!TextUtils.isEmpty(birthday) && age != 0)
+            return birthday + "\n(" + age + ")";
+        if(!TextUtils.isEmpty(birthday))
+            return birthday;
+        if(age != 0)
+            return age+"";
+        return "";
+    }
+
     public void setAge(int age) {
         this.age = age;
     }

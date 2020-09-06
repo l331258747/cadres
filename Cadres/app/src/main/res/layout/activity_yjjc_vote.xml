@@ -24,6 +24,7 @@
         android:layout_height="0dp"
         android:paddingStart="@dimen/dp_3"
         android:paddingEnd="@dimen/dp_3"
+        android:textSize="@dimen/sp_12"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/view_title"
         app:layout_constraintTop_toTopOf="@+id/view_title"
@@ -41,11 +42,12 @@
 
     <TextView
         android:id="@+id/tv_xrzw"
-        android:layout_width="@dimen/dp_160"
+        android:layout_width="@dimen/dp_180"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
         android:paddingStart="@dimen/dp_3"
+        android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
@@ -63,12 +65,13 @@
 
     <TextView
         android:id="@+id/tv_xrzsj"
-        android:layout_width="@dimen/dp_160"
+        android:layout_width="@dimen/dp_120"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         android:paddingStart="@dimen/dp_3"
+        android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:text="现任职时间"/>
@@ -84,12 +87,13 @@
 
     <TextView
         android:id="@+id/tv_nmtmzw"
-        android:layout_width="@dimen/dp_160"
+        android:layout_width="@dimen/dp_180"
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         android:paddingStart="@dimen/dp_3"
+        android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
         android:text="拟任免\n（提名）职务"/>
@@ -111,6 +115,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_nmtmzw"
         app:layout_constraintEnd_toEndOf="@+id/view_title"
         android:paddingStart="@dimen/dp_3"
+        android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
