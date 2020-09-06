@@ -22,7 +22,6 @@ import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.dialog.ListDialog2;
 import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
-import com.example.cadres.utils.chart.MyPieChartRenderer;
 import com.example.cadres.utils.chart.MyPieChartRenderer2;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
@@ -194,7 +193,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
 //        //设置初始旋转角度
 //        chart_jg_zzmm.setRotationAngle(-15);
         // 和四周相隔一段距离,显示数据
-        chart_jg_zzmm.setExtraOffsets(10, 10, 10, 10);
+        chart_jg_zzmm.setExtraOffsets(20, 20, 20, 20);
 
         // 设置pieChart图表是否可以手动旋转
         chart_jg_zzmm.setRotationEnabled(false);
@@ -272,7 +271,7 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         // 绘制内容value，设置字体颜色大小
         dataSet.setDrawValues(true);
         dataSet.setValueFormatter(new PercentFormatter(chart_jg_zzmm));
-        dataSet.setValueTextSize(12f);//百分比大小
+        dataSet.setValueTextSize(10f);//百分比大小
         dataSet.setValueTextColor(Color.WHITE);
 
         dataSet.setValueLinePart1Length(0.4f);//当值位置为外边线时，表示线的前半段长度。

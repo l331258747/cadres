@@ -90,7 +90,7 @@ public class MyPieChartRenderer extends DataRenderer {
         mCenterTextPaint.setTextSize(Utils.convertDpToPixel(12f));
 
         //value 颜色
-        mValuePaint.setTextSize(Utils.convertDpToPixel(13f));
+        mValuePaint.setTextSize(Utils.convertDpToPixel(10f));
         mValuePaint.setColor(Color.WHITE);
         mValuePaint.setTextAlign(Align.CENTER);
 
@@ -98,7 +98,7 @@ public class MyPieChartRenderer extends DataRenderer {
         mEntryLabelsPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mEntryLabelsPaint.setColor(Color.WHITE);
         mEntryLabelsPaint.setTextAlign(Align.CENTER);
-        mEntryLabelsPaint.setTextSize(Utils.convertDpToPixel(12f));
+        mEntryLabelsPaint.setTextSize(Utils.convertDpToPixel(10f));
 
         mValueLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mValueLinePaint.setStyle(Style.STROKE);

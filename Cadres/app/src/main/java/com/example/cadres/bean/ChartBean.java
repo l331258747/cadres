@@ -36,10 +36,10 @@ public class ChartBean {
     }
 
     public String getNameAmout(){
-        return name + "：" + amount + "人";
+        return name + ":" + amount + "人";
     }
 
     public String getNameNum(){
-        return name + "：" + num + "人";
+        return name + ":" + num + "人";
     }
 }

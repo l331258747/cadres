@@ -220,7 +220,7 @@ public class DsjtyHjFragment extends BaseFragment implements View.OnClickListene
         // 绘制内容value，设置字体颜色大小
         dataSet.setDrawValues(true);
         dataSet.setValueFormatter(new HjPercentFormatter());
-        dataSet.setValueTextSize(14f);
+        dataSet.setValueTextSize(10f);
         dataSet.setValueTextColor(Color.WHITE);
 
         dataSet.setValueLinePart1Length(0.4f);//当值位置为外边线时，表示线的前半段长度。
