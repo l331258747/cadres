@@ -65,7 +65,7 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="@dimen/dp_50"
+        android:layout_width="@dimen/dp_100"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="@dimen/sp_12"
@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/tv_xrzw"
-        android:layout_width="@dimen/dp_120"
+        android:layout_width="@dimen/dp_180"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="@dimen/sp_12"
@@ -90,8 +90,8 @@
         tools:text="现任职务"/>
 
     <TextView
-        android:id="@+id/tv_xrzsj"
-        android:layout_width="@dimen/dp_70"
+        android:id="@+id/tv_sex"
+        android:layout_width="@dimen/dp_80"
         android:layout_height="0dp"
         android:textSize="@dimen/sp_12"
         android:gravity="center"
@@ -100,103 +100,11 @@
         app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="现任职时间"/>
-
-    <TextView
-        android:id="@+id/tv_xrzwcc"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="现任职务\n层次"/>
-
-    <TextView
-        android:id="@+id/tv_xrzwccsj"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@+id/tv_xrzwcc"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="现任职务\n层次时间"/>
-
-    <TextView
-        android:id="@+id/tv_zwjb"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_xrzwccsj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="职务级别"/>
-
-    <TextView
-        android:id="@+id/tv_rzjsj"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="任职级时间"/>
-
-    <TextView
-        android:id="@+id/tv_rzjqssj"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_rzjsj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="任现职级\n起算时间"/>
-
-
-    <TextView
-        android:id="@+id/tv_cjgzsj"
-        android:layout_width="@dimen/dp_70"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_rzjqssj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="参加工作\n时间"/>
-
-    <TextView
-        android:id="@+id/tv_sex"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="0dp"
-        android:textSize="@dimen/sp_12"
-        android:gravity="center"
-        android:paddingStart="@dimen/dp_5"
-        android:paddingEnd="@dimen/dp_5"
-        app:layout_constraintStart_toEndOf="@+id/tv_cjgzsj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="性别"/>
 
     <TextView
         android:id="@+id/tv_place"
-        android:layout_width="@dimen/dp_50"
+        android:layout_width="@dimen/dp_80"
         android:layout_height="0dp"
         android:textSize="@dimen/sp_12"
         android:gravity="center"
@@ -209,7 +117,7 @@
 
     <TextView
         android:id="@+id/tv_csny"
-        android:layout_width="@dimen/dp_70"
+        android:layout_width="@dimen/dp_120"
         android:layout_height="0dp"
         android:textSize="@dimen/sp_12"
         android:gravity="center"

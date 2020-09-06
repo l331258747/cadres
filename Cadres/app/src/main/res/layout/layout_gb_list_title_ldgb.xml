@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:id="@+id/cl_gb_list_title"
+    android:id="@+id/cl_gb_list_title_ldgb"
     android:layout_height="wrap_content"
     android:visibility="gone"
     tools:visibility="visible"
@@ -56,7 +56,7 @@
             android:text="现任职务"/>
 
         <LinearLayout
-            android:id="@+id/ll_xrzsj"
+            android:id="@+id/ll_xrzsj_ldgb"
             android:layout_width="@dimen/dp_70"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -74,7 +74,7 @@
                     android:text="任现职\n时间"/>
 
                 <ImageView
-                    android:id="@+id/iv_xrzsj"
+                    android:id="@+id/iv_xrzsj_ldgb"
                     android:layout_width="@dimen/dp_15"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_sort_defult"/>
@@ -89,13 +89,13 @@
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
-            app:layout_constraintStart_toEndOf="@+id/ll_xrzsj"
+            app:layout_constraintStart_toEndOf="@+id/ll_xrzsj_ldgb"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="现任职务\n层次"/>
 
         <LinearLayout
-            android:id="@+id/ll_xrzwccsj"
+            android:id="@+id/ll_xrzwccsj_ldgb"
             android:layout_width="@dimen/dp_70"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -113,7 +113,7 @@
                     android:text="任现职务\n层次时间"/>
 
                 <ImageView
-                    android:id="@+id/iv_xrzwccsj"
+                    android:id="@+id/iv_xrzwccsj_ldgb"
                     android:layout_width="@dimen/dp_15"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_sort_defult"/>
@@ -129,17 +129,17 @@
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
-            app:layout_constraintStart_toEndOf="@+id/ll_xrzwccsj"
+            app:layout_constraintStart_toEndOf="@+id/ll_xrzwccsj_ldgb"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="现任职级"/>
 
         <LinearLayout
-            android:id="@+id/ll_rzjsj"
+            android:id="@+id/ll_rzjsj_ldgb"
             android:layout_width="@dimen/dp_70"
             android:layout_height="0dp"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title">
@@ -153,57 +153,7 @@
                     android:text="任现职级\n时间"/>
 
                 <ImageView
-                    android:id="@+id/iv_rzjsj"
-                    android:layout_width="@dimen/dp_15"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/ic_sort_defult"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_rzjqssj"
-            android:layout_width="@dimen/dp_70"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintStart_toEndOf="@+id/ll_rzjsj"
-            app:layout_constraintTop_toTopOf="@+id/view_title"
-            app:layout_constraintBottom_toBottomOf="@+id/view_title">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/sp_12"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/dp_5"
-                    android:text="任现职级\n起算时间"/>
-
-                <ImageView
-                    android:id="@+id/iv_rzjqssj"
-                    android:layout_width="@dimen/dp_15"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/ic_sort_defult"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_cjgzsj"
-            android:layout_width="@dimen/dp_70"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintStart_toEndOf="@+id/ll_rzjqssj"
-            app:layout_constraintTop_toTopOf="@+id/view_title"
-            app:layout_constraintBottom_toBottomOf="@+id/view_title">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="@dimen/sp_12"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/dp_5"
-                    android:text="参加工作\n时间"/>
-
-                <ImageView
-                    android:id="@+id/iv_cjgzsj"
+                    android:id="@+id/iv_rzjsj_ldgb"
                     android:layout_width="@dimen/dp_15"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_sort_defult"/>
@@ -217,7 +167,7 @@
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
-            app:layout_constraintStart_toEndOf="@+id/ll_cjgzsj"
+            app:layout_constraintStart_toEndOf="@+id/ll_rzjsj_ldgb"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="性别"/>
@@ -236,11 +186,11 @@
             android:text="籍贯"/>
 
         <LinearLayout
-            android:id="@+id/ll_csny"
+            android:id="@+id/ll_csny_ldgb"
             android:layout_width="@dimen/dp_70"
             android:layout_height="0dp"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@+id/tv_place"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title">
@@ -254,7 +204,7 @@
                     android:text="出生年月\n(年龄)"/>
 
                 <ImageView
-                    android:id="@+id/iv_csny"
+                    android:id="@+id/iv_csny_ldgb"
                     android:layout_width="@dimen/dp_15"
                     android:layout_height="match_parent"
                     android:src="@mipmap/ic_sort_defult"/>
@@ -268,7 +218,7 @@
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
-            app:layout_constraintStart_toEndOf="@+id/ll_csny"
+            app:layout_constraintStart_toEndOf="@+id/ll_csny_ldgb"
             app:layout_constraintEnd_toStartOf="@+id/tv_qrzzy"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
@@ -301,7 +251,6 @@
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="在职\n文化程度"/>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
