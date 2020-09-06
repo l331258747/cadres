@@ -106,16 +106,18 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void clean() {
-        if(TextUtils.equals(type,"2")){
+        if(TextUtils.equals(type,"2")){//公务员
             iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
             iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
             group_title_right.setVisibility(View.GONE);
             tv_title_center.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+            tv_title_left.setText("职级推演");
 
         }else{
             iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
             iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center_un));
             iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+            tv_title_left.setText("职数推演");
         }
 
         tv_title_left.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));

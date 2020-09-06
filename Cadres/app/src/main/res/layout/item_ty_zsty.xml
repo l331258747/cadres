@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"/>
 
         <TextView
+            android:id="@+id/tv_zs_ldgb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="领导干部职级推演"
@@ -157,7 +158,7 @@
             android:id="@+id/tv_zs_nqgb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="35岁及以下年轻干部"
+            android:text="年轻干部配备推演"
             app:layout_constraintTop_toTopOf="@+id/iv_zs_nqgb"
             app:layout_constraintBottom_toBottomOf="@+id/iv_zs_nqgb"
             app:layout_constraintStart_toStartOf="@+id/iv_zs_nqgb"
@@ -186,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp_14"
                 android:layout_marginStart="@dimen/dp_10"
-                android:text="年轻干部"
+                android:text="35岁及以下年轻干部"
                 android:textColor="@color/color_23cefd"/>
 
         </LinearLayout>

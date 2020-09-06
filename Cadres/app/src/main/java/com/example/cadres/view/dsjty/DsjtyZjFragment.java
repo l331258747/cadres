@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBTyZsNqgbDao;
 import com.cadres.greendao.gen.DbTyZsDao;
@@ -43,6 +44,8 @@ public class DsjtyZjFragment extends BaseFragment {
 
     String type;
 
+    TextView tv_zs_ldgb;
+
     public static Fragment newInstance(String type) {
         DsjtyZjFragment fragment = new DsjtyZjFragment();
         Bundle bundle = new Bundle();
@@ -67,6 +70,9 @@ public class DsjtyZjFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        tv_zs_ldgb = $(R.id.tv_zs_ldgb);
+        tv_zs_ldgb.setText(TextUtils.equals("2", type)?"公务员职级推演":"领导干部职数推演");
+
         initZstyView();
 
     }
