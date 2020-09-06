@@ -85,7 +85,7 @@ public class YjjcMettingFragment extends BaseFragment {
         tv_shsj_content.setText(data.getMeetingTime());
         tv_hylx_content.setText(data.getMeetingType());
         tv_chry_content.setText(data.getMeetingUser());
-        tv_title_content.setText(data.getSchemeName());
+        tv_title_content.setText(data.getMeetingName());
 
         datas = GsonUtil.convertJson2Array(data.getMaterialFileName());
 
