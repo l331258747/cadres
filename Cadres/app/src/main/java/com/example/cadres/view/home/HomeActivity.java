@@ -145,6 +145,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     public void initView() {
         showLLRightUpData();
         showLLRightOutOff();
+        showLLLeftSwitch();
         showTitleTv(getTitleName());
 
         view_mcb = findViewById(R.id.view_mcb);
@@ -155,6 +156,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         et_search = findViewById(R.id.et_search);
 
         getLLRight1().setOnClickListener(this);
+        getLLLeft1().setOnClickListener(this);
         view_mcb.setOnClickListener(this);
         view_gbmc.setOnClickListener(this);
         view_yjjc.setOnClickListener(this);
@@ -257,6 +259,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     @Override
                     public void onClick(View view) {
                         getUserInfoData();
+                    }
+                }).show();
+                break;
+            case R.id.ll_left1:
+                new DefaultDialog(context).setContent("进入会议模式后，将不能返回，如果需要回到首页请杀掉进程后再进入。").setSubmitListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, YjjcActivity.class);
+                        intent.putExtra("isMeetingModel",true);
+                        startActivity(intent);
                     }
                 }).show();
                 break;

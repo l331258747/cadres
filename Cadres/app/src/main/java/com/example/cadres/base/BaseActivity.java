@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private FrameLayout contentLayout;
     public ImageView leftIv,right_iv2;
     private TextView titleTv,right_tv2;
-    private LinearLayout ll_right1,ll_right2;
+    private LinearLayout ll_right1,ll_right2,ll_left1;
     ///////////////////////////////////////////////////
 
     @Override
@@ -115,6 +115,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ll_right2 = $(R.id.ll_right2);
         right_iv2 = $(R.id.right_iv2);
         right_tv2 = $(R.id.right_tv2);
+        ll_left1 = $(R.id.ll_left1);
 
         leftIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +195,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void showLLRightUpData(){
         showView(ll_right1);
     }
+
     //显示右边iv
     public void showLLRightOutOff(){
         right_iv2.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.ic_out));
@@ -228,12 +230,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
+    public void showLLLeftSwitch(){
+        showView(ll_left1);
+    }
+
     public LinearLayout getLLRight1(){
         return ll_right1;
     }
     public LinearLayout getLLRight2(){
         return ll_right2;
     }
+    public LinearLayout getLLLeft1(){
+        return ll_left1;
+    }
+
 
     //-------------------title设置 end---------------
 

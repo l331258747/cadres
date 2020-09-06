@@ -35,6 +35,8 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
     int state;
     int schemeId;
 
+    boolean isMeetingModel;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_yjjc_vote;
@@ -42,12 +44,16 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
 
     @Override
     public void initView() {
-        showLeftIcon();
-        showLLRightGoHome();
-        showTitleTv("票决");
-
         state = intent.getIntExtra("state",0);
         schemeId = intent.getIntExtra("schemeId",0);
+        isMeetingModel = intent.getBooleanExtra("isMeetingModel",false);
+
+        if(!isMeetingModel){
+            showLLRightGoHome();
+        }
+
+        showLeftIcon();
+        showTitleTv("票决");
 
         tv_btn = findViewById(R.id.tv_btn);
 

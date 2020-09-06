@@ -41,14 +41,23 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
 
     boolean isViewLoad;
 
-    public static Fragment newInstance() {
+    boolean isMeetingModel;
+
+    public static Fragment newInstance(boolean isMeetingModel) {
         YjjcCadreFragment fragment = new YjjcCadreFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isMeetingModel", isMeetingModel);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            isMeetingModel = bundle.getBoolean("isMeetingModel");
+        }
     }
 
     @Override
@@ -200,6 +209,7 @@ public class YjjcCadreFragment extends BaseFragment implements YjjcCadreContract
         Intent intent = new Intent(context,YjjcVoteActivity.class);
         intent.putExtra("state", data.getState());
         intent.putExtra("schemeId", schemeId);
+        intent.putExtra("isMeetingModel",isMeetingModel);
         startActivity(intent);
     }
 

@@ -11,6 +11,8 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener {
 
     ImageView iv_bw_bg,iv_sjzt_bg,iv_swcw_bg;
 
+    boolean isMeetingModel;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_yjjc;
@@ -18,8 +20,13 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
-        showLeftIcon();
-        showLLRightGoHome();
+
+        isMeetingModel = intent.getBooleanExtra("isMeetingModel",false);
+
+        if(!isMeetingModel){
+            showLeftIcon();
+            showLLRightGoHome();
+        }
         showTitleTv("任免决策");
 
         iv_bw_bg = $(R.id.iv_bw_bg);
@@ -29,7 +36,13 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener {
         iv_bw_bg.setOnClickListener(this);
         iv_sjzt_bg.setOnClickListener(this);
         iv_swcw_bg.setOnClickListener(this);
+    }
 
+
+    @Override
+    public void onBackPressed() {
+        if(!isMeetingModel)
+            super.onBackPressed();
     }
 
     @Override
@@ -40,6 +53,7 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(context,YjjcDetailActivity.class);
+        intent.putExtra("isMeetingModel",isMeetingModel);
         //会议类型（1部务会议，2书记专题会议，3市委常委会议）
         switch (view.getId()){
             case R.id.iv_bw_bg:

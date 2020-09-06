@@ -71,6 +71,8 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     LinearLayout layout_info;
     GbDrawerData gbDrawerData;
 
+    boolean isMeetingModel;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_yjjc_detail_drawer;
@@ -78,15 +80,20 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
     @Override
     public void initView() {
-        showLeftIcon();
-        showLLRightGoHome();
+
+        type = intent.getStringExtra("type");
+        isMeetingModel = intent.getBooleanExtra("isMeetingModel",false);
+
+        if(!isMeetingModel){
+            showLeftIcon();
+            showLLRightGoHome();
+        }
+
         showTitleTv("任免决策详情");
 
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);
         tv_dialog = findViewById(R.id.tv_dialog);
-
-        type = intent.getStringExtra("type");
 
         tv_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +120,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
         List<Fragment> mFragments = new ArrayList<>();
         mFragments.add(yjjcMettingFragment = (YjjcMettingFragment) YjjcMettingFragment.newInstance());
-        mFragments.add(yjjcCadreFragment = (YjjcCadreFragment) YjjcCadreFragment.newInstance());
+        mFragments.add(yjjcCadreFragment = (YjjcCadreFragment) YjjcCadreFragment.newInstance(isMeetingModel));
 
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, titles);
         mViewPager.setAdapter(adapter);
@@ -122,6 +129,12 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
         initDrawer();
         initDrawerGbInfo();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!isMeetingModel)
+            super.onBackPressed();
     }
 
     @Override
