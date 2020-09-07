@@ -50,8 +50,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     RecyclerView recyclerView;
 
     GbAdapterLdgb mAdapterLdgb;
-    GbAdapterGwy mAdapterGwy;
-    GbAdapterHbgb mAdapterHbgb;
+//    GbAdapterGwy mAdapterGwy;
+//    GbAdapterHbgb mAdapterHbgb;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     List<DBGbBean> datas;
@@ -72,7 +72,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     LinearLayout layout_info;
     GbDrawerData gbDrawerData;
 
-    String type;
+//    String type;
 
     @Override
     public int getLayoutId() {
@@ -81,7 +81,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void initView() {
-        type = intent.getStringExtra("type");
+//        type = intent.getStringExtra("type");
         searchDetailBean = (SearchDetailBean) intent.getSerializableExtra("data");
 
         showLeftIcon();
@@ -120,28 +120,36 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         iv_cjgzsj = findViewById(R.id.iv_cjgzsj);
         iv_csny = findViewById(R.id.iv_csny);
 
-        if (TextUtils.equals(type, "3")) {
-            ll_csny = findViewById(R.id.ll_csny_hbgb);
-            iv_csny = findViewById(R.id.iv_csny_hbgb);
-        } else if (TextUtils.equals(type, "2")) {
-            ll_xrzsj = findViewById(R.id.ll_xrzsj_gwy);
-            ll_rzjqssj = findViewById(R.id.ll_rzjqssj_gwy);
-            ll_cjgzsj = findViewById(R.id.ll_cjgzsj_gwy);
-            ll_csny = findViewById(R.id.ll_csny_gwy);
-            iv_xrzsj = findViewById(R.id.iv_xrzsj_gwy);
-            iv_rzjqssj = findViewById(R.id.iv_rzjqssj_gwy);
-            iv_cjgzsj = findViewById(R.id.iv_cjgzsj_gwy);
-            iv_csny = findViewById(R.id.iv_csny_gwy);
-        } else {
-            ll_xrzsj = findViewById(R.id.ll_xrzsj_ldgb);
-            ll_xrzwccsj = findViewById(R.id.ll_xrzwccsj_ldgb);
-            ll_rzjsj = findViewById(R.id.ll_rzjsj_ldgb);
-            ll_csny = findViewById(R.id.ll_csny_ldgb);
-            iv_xrzsj = findViewById(R.id.iv_xrzsj_ldgb);
-            iv_xrzwccsj = findViewById(R.id.iv_xrzwccsj_ldgb);
-            iv_rzjsj = findViewById(R.id.iv_rzjsj_ldgb);
-            iv_csny = findViewById(R.id.iv_csny_ldgb);
-        }
+//        if (TextUtils.equals(type, "3")) {
+//            ll_csny = findViewById(R.id.ll_csny_hbgb);
+//            iv_csny = findViewById(R.id.iv_csny_hbgb);
+//        } else if (TextUtils.equals(type, "2")) {
+//            ll_xrzsj = findViewById(R.id.ll_xrzsj_gwy);
+//            ll_rzjqssj = findViewById(R.id.ll_rzjqssj_gwy);
+//            ll_cjgzsj = findViewById(R.id.ll_cjgzsj_gwy);
+//            ll_csny = findViewById(R.id.ll_csny_gwy);
+//            iv_xrzsj = findViewById(R.id.iv_xrzsj_gwy);
+//            iv_rzjqssj = findViewById(R.id.iv_rzjqssj_gwy);
+//            iv_cjgzsj = findViewById(R.id.iv_cjgzsj_gwy);
+//            iv_csny = findViewById(R.id.iv_csny_gwy);
+//        } else {
+//            ll_xrzsj = findViewById(R.id.ll_xrzsj_ldgb);
+//            ll_xrzwccsj = findViewById(R.id.ll_xrzwccsj_ldgb);
+//            ll_rzjsj = findViewById(R.id.ll_rzjsj_ldgb);
+//            ll_csny = findViewById(R.id.ll_csny_ldgb);
+//            iv_xrzsj = findViewById(R.id.iv_xrzsj_ldgb);
+//            iv_xrzwccsj = findViewById(R.id.iv_xrzwccsj_ldgb);
+//            iv_rzjsj = findViewById(R.id.iv_rzjsj_ldgb);
+//            iv_csny = findViewById(R.id.iv_csny_ldgb);
+//        }
+        ll_xrzsj = findViewById(R.id.ll_xrzsj_ldgb);
+        ll_xrzwccsj = findViewById(R.id.ll_xrzwccsj_ldgb);
+        ll_rzjsj = findViewById(R.id.ll_rzjsj_ldgb);
+        ll_csny = findViewById(R.id.ll_csny_ldgb);
+        iv_xrzsj = findViewById(R.id.iv_xrzsj_ldgb);
+        iv_xrzwccsj = findViewById(R.id.iv_xrzwccsj_ldgb);
+        iv_rzjsj = findViewById(R.id.iv_rzjsj_ldgb);
+        iv_csny = findViewById(R.id.iv_csny_ldgb);
 
         ll_xrzsj.setOnClickListener(this);
         ll_xrzwccsj.setOnClickListener(this);
@@ -203,13 +211,14 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void setAdapterData(List<DBGbBean> list) {
-        if (TextUtils.equals(type, "3")) {
-            mAdapterHbgb.setData(list);
-        } else if (TextUtils.equals(type, "2")) {
-            mAdapterGwy.setData(list);
-        } else {
-            mAdapterLdgb.setData(list);
-        }
+//        if (TextUtils.equals(type, "3")) {
+//            mAdapterHbgb.setData(list);
+//        } else if (TextUtils.equals(type, "2")) {
+//            mAdapterGwy.setData(list);
+//        } else {
+//            mAdapterLdgb.setData(list);
+//        }
+        mAdapterLdgb.setData(list);
     }
 
     ConstraintLayout cl_gb_list_title_ldgb, cl_gb_list_title_gwy, cl_gb_list_title_hbgb;
@@ -219,19 +228,22 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         cl_gb_list_title_gwy = findViewById(R.id.cl_gb_list_title_gwy);
         cl_gb_list_title_hbgb = findViewById(R.id.cl_gb_list_title_hbgb);
 
-        if (TextUtils.equals(type, "3")) {
-            cl_gb_list_title_ldgb.setVisibility(View.GONE);
-            cl_gb_list_title_gwy.setVisibility(View.GONE);
-            cl_gb_list_title_hbgb.setVisibility(View.VISIBLE);
-        } else if (TextUtils.equals(type, "2")) {
-            cl_gb_list_title_ldgb.setVisibility(View.GONE);
-            cl_gb_list_title_gwy.setVisibility(View.VISIBLE);
-            cl_gb_list_title_hbgb.setVisibility(View.GONE);
-        } else if (TextUtils.equals(type, "1")) {
-            cl_gb_list_title_ldgb.setVisibility(View.VISIBLE);
-            cl_gb_list_title_gwy.setVisibility(View.GONE);
-            cl_gb_list_title_hbgb.setVisibility(View.GONE);
-        }
+//        if (TextUtils.equals(type, "3")) {
+//            cl_gb_list_title_ldgb.setVisibility(View.GONE);
+//            cl_gb_list_title_gwy.setVisibility(View.GONE);
+//            cl_gb_list_title_hbgb.setVisibility(View.VISIBLE);
+//        } else if (TextUtils.equals(type, "2")) {
+//            cl_gb_list_title_ldgb.setVisibility(View.GONE);
+//            cl_gb_list_title_gwy.setVisibility(View.VISIBLE);
+//            cl_gb_list_title_hbgb.setVisibility(View.GONE);
+//        } else if (TextUtils.equals(type, "1")) {
+//            cl_gb_list_title_ldgb.setVisibility(View.VISIBLE);
+//            cl_gb_list_title_gwy.setVisibility(View.GONE);
+//            cl_gb_list_title_hbgb.setVisibility(View.GONE);
+//        }
+        cl_gb_list_title_ldgb.setVisibility(View.VISIBLE);
+        cl_gb_list_title_gwy.setVisibility(View.GONE);
+        cl_gb_list_title_hbgb.setVisibility(View.GONE);
     }
 
     @Override
@@ -264,8 +276,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     public void getDbCyssGdList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+//        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
 
         if (TextUtils.equals(key, "90后干部")) {
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(1990, searchDetailBean.getCurrentYear()));
@@ -298,8 +310,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     public void getDbCyssZwlxList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+//        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.CurrentPosition.like("%" + key + "%"));
         LogUtil.e("常用搜索职务类型 数据条数：" + queryBuilder.count());
 
@@ -320,8 +332,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     public void getDbCyssZwbqlxList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+//        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.PostLabel.like("%" + key + "%"));
         LogUtil.e("常用搜索职务标签类型 数据条数：" + queryBuilder.count());
 
@@ -527,9 +539,23 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     public void getDbList() {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+//        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
 
+        if(searchDetailBean.getLxLists().size() > 0){
+            StringBuffer sql = new StringBuffer("");
+            String[] values = new String[searchDetailBean.getLxLists().size()];
+            for (int i = 0; i < searchDetailBean.getLxLists().size(); i++) {
+                values[i] = "%" + searchDetailBean.getLxLists().get(i) + "%";
+                if (i == 0) {
+                    sql.append(" " + DBGbBeanDao.Properties.Type.columnName + " like " + "?");
+                } else {
+                    sql.append(" or " + DBGbBeanDao.Properties.Type.columnName + " like " + " ?");
+                }
+            }
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
+            LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+        }
 
         if (searchDetailBean.getGllbLists().size() > 0) {
 
@@ -716,43 +742,54 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        if (TextUtils.equals(type, "3")) {
-            mAdapterHbgb = new GbAdapterHbgb(activity, new ArrayList<DBGbBean>());
-            recyclerView.setAdapter(mAdapterHbgb);
-            recyclerView.getItemAnimator().setChangeDuration(0);
-            mAdapterHbgb.setOnItemClickListener(new GbAdapterHbgb.OnItemClickListener() {
-                @Override
-                public void onClick(int pos) {
-                    gbDrawerData.getData(datas.get(pos).getBaseId());
-                    scrollView.scrollTo(0, 0);
-                    drawer_layout.openDrawer(Gravity.RIGHT);
-                }
-            });
-        } else if (TextUtils.equals(type, "2")) {
-            mAdapterGwy = new GbAdapterGwy(activity, new ArrayList<DBGbBean>());
-            recyclerView.setAdapter(mAdapterGwy);
-            recyclerView.getItemAnimator().setChangeDuration(0);
-            mAdapterGwy.setOnItemClickListener(new GbAdapterGwy.OnItemClickListener() {
-                @Override
-                public void onClick(int pos) {
-                    gbDrawerData.getData(datas.get(pos).getBaseId());
-                    scrollView.scrollTo(0, 0);
-                    drawer_layout.openDrawer(Gravity.RIGHT);
-                }
-            });
-        } else {
-            mAdapterLdgb = new GbAdapterLdgb(activity, new ArrayList<DBGbBean>());
-            recyclerView.setAdapter(mAdapterLdgb);
-            recyclerView.getItemAnimator().setChangeDuration(0);
-            mAdapterLdgb.setOnItemClickListener(new GbAdapterLdgb.OnItemClickListener() {
-                @Override
-                public void onClick(int pos) {
-                    gbDrawerData.getData(datas.get(pos).getBaseId());
-                    scrollView.scrollTo(0, 0);
-                    drawer_layout.openDrawer(Gravity.RIGHT);
-                }
-            });
-        }
+//        if (TextUtils.equals(type, "3")) {
+//            mAdapterHbgb = new GbAdapterHbgb(activity, new ArrayList<DBGbBean>());
+//            recyclerView.setAdapter(mAdapterHbgb);
+//            recyclerView.getItemAnimator().setChangeDuration(0);
+//            mAdapterHbgb.setOnItemClickListener(new GbAdapterHbgb.OnItemClickListener() {
+//                @Override
+//                public void onClick(int pos) {
+//                    gbDrawerData.getData(datas.get(pos).getBaseId());
+//                    scrollView.scrollTo(0, 0);
+//                    drawer_layout.openDrawer(Gravity.RIGHT);
+//                }
+//            });
+//        } else if (TextUtils.equals(type, "2")) {
+//            mAdapterGwy = new GbAdapterGwy(activity, new ArrayList<DBGbBean>());
+//            recyclerView.setAdapter(mAdapterGwy);
+//            recyclerView.getItemAnimator().setChangeDuration(0);
+//            mAdapterGwy.setOnItemClickListener(new GbAdapterGwy.OnItemClickListener() {
+//                @Override
+//                public void onClick(int pos) {
+//                    gbDrawerData.getData(datas.get(pos).getBaseId());
+//                    scrollView.scrollTo(0, 0);
+//                    drawer_layout.openDrawer(Gravity.RIGHT);
+//                }
+//            });
+//        } else {
+//            mAdapterLdgb = new GbAdapterLdgb(activity, new ArrayList<DBGbBean>());
+//            recyclerView.setAdapter(mAdapterLdgb);
+//            recyclerView.getItemAnimator().setChangeDuration(0);
+//            mAdapterLdgb.setOnItemClickListener(new GbAdapterLdgb.OnItemClickListener() {
+//                @Override
+//                public void onClick(int pos) {
+//                    gbDrawerData.getData(datas.get(pos).getBaseId());
+//                    scrollView.scrollTo(0, 0);
+//                    drawer_layout.openDrawer(Gravity.RIGHT);
+//                }
+//            });
+//        }
+        mAdapterLdgb = new GbAdapterLdgb(activity, new ArrayList<DBGbBean>());
+        recyclerView.setAdapter(mAdapterLdgb);
+        recyclerView.getItemAnimator().setChangeDuration(0);
+        mAdapterLdgb.setOnItemClickListener(new GbAdapterLdgb.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                gbDrawerData.getData(datas.get(pos).getBaseId());
+                scrollView.scrollTo(0, 0);
+                drawer_layout.openDrawer(Gravity.RIGHT);
+            }
+        });
     }
 
 

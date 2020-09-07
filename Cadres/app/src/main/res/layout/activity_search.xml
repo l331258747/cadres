@@ -104,13 +104,34 @@
                 app:layout_constraintTop_toBottomOf="@+id/fl_history" />
 
             <TextView
-                android:id="@+id/tv_gllb"
+                android:id="@+id/tv_lx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
                 android:paddingTop="@dimen/dp_5"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
                 app:layout_constraintTop_toBottomOf="@+id/tv_zdy_title"
+                android:text="类型："/>
+
+            <com.example.cadres.widget.flowlayout.TagFlowLayout
+                android:id="@+id/fl_lx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_height="@dimen/dp_30"
+                tools:background="@color/color_b31f23"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_180"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toTopOf="@+id/tv_lx"
+                app:max_select="-1"/>
+
+            <TextView
+                android:id="@+id/tv_gllb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_5"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
+                app:layout_constraintTop_toBottomOf="@+id/fl_lx"
                 android:text="管理类别："/>
             
             <com.example.cadres.widget.flowlayout.TagFlowLayout

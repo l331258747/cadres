@@ -85,6 +85,7 @@ import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbSelectActivity;
 import com.example.cadres.view.dsjty.DsjtySelectActivity;
+import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
 
@@ -233,8 +234,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         switch (view.getId()) {
             case R.id.et_search:
-                Intent intent1 = new Intent(context, GbSelectActivity.class);
-                intent1.putExtra("upActivity", 1);
+                Intent intent1 = new Intent(context, SearchActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.view_mcb:

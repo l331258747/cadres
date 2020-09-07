@@ -157,6 +157,29 @@ public class DBSearchBean {
         if (list == null) return new ArrayList<>();
         return list;
     }
+
+    public List<SysDictDataBean> getLxList(){
+        List<SysDictDataBean> list = new ArrayList<>();
+        SysDictDataBean item0 = new SysDictDataBean();
+        item0.setDictLabel("全部");
+        item0.setDictValue("全部");
+        SysDictDataBean item1 = new SysDictDataBean();
+        item1.setDictLabel("领导干部");
+        item1.setDictValue("1");
+        SysDictDataBean item2 = new SysDictDataBean();
+        item2.setDictLabel("职级公务员");
+        item2.setDictValue("2");
+        SysDictDataBean item3 = new SysDictDataBean();
+        item3.setDictLabel("后备干部");
+        item3.setDictValue("3");
+        list.add(item0);
+        list.add(item1);
+        list.add(item2);
+        list.add(item3);
+        return list;
+    }
+
+
     public List<SysDictDataBean> getSchoolTypesList(){
         List<SysDictDataBean> list = GsonUtil.convertString2Collection(schoolTypes, new TypeToken<List<SysDictDataBean>>() {
         });

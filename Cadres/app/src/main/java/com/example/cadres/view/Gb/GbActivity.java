@@ -612,7 +612,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.et_search:
                 Intent intent = new Intent(context, SearchActivity.class);
-                intent.putExtra("type", type);
+//                intent.putExtra("type", type);
                 startActivity(intent);
                 break;
             case R.id.ll_xrzsj:

@@ -38,7 +38,7 @@ public class SearchActivity extends BaseActivity {
     EditText et_search;
 
     private TagFlowLayout fl_history,fl_cy;
-    private TagFlowLayout fl_gllb, fl_bmlb, fl_xb,
+    private TagFlowLayout fl_lx,fl_gllb, fl_bmlb, fl_xb,
             fl_dp,fl_xrzwcc,
             fl_xl,fl_xllx,fl_xxlx,
             fl_gzjl,fl_xrzjlx, fl_xrzj;
@@ -58,8 +58,6 @@ public class SearchActivity extends BaseActivity {
 
     Group group_history;
 
-    String type;
-
     private DecimalFormat df = new DecimalFormat("0");
 
     @Override
@@ -73,8 +71,6 @@ public class SearchActivity extends BaseActivity {
         showLeftIcon();
         showLLRightGoHome();
         showTitleTv("大数据选人");
-
-        type = intent.getStringExtra("type");
 
         getDbData();
         if(dbSearchBean == null){
@@ -93,6 +89,7 @@ public class SearchActivity extends BaseActivity {
         initFLHistory();
         initFLCyss();
 
+        initFLLx();
         initFLGllb();
         initFLBmlb();
         initFLXb();
@@ -118,6 +115,9 @@ public class SearchActivity extends BaseActivity {
             public void onClick(View view) {
 
                 searchDetailBean.clean();
+                for (int index : fl_lx.getSelectedList()) {
+                    searchDetailBean.getLxLists().add(mVals_lx.get(index).getDictValue());
+                }
                 for (int index : fl_gllb.getSelectedList()) {
                     searchDetailBean.getGllbLists().add(mVals_gllb.get(index).getDictLabel());
                 }
@@ -173,6 +173,21 @@ public class SearchActivity extends BaseActivity {
                 goDetailActivity(searchDetailBean);
             }
         });
+    }
+
+    List<SysDictDataBean> mVals_lx;
+    private void initFLLx() {
+        fl_lx= findViewById(R.id.fl_lx);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_lx) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_lx, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_lx.setAdapter(adapter1);
     }
 
     String[] mVals_xllx;
@@ -555,7 +570,6 @@ public class SearchActivity extends BaseActivity {
     private void goDetailActivity(SearchDetailBean searchDetailBean){
         Intent intent = new Intent(context,SearchDetailActivity.class);
         intent.putExtra("data", searchDetailBean);
-        intent.putExtra("type",type);
         startActivity(intent);
     }
 
@@ -586,6 +600,7 @@ public class SearchActivity extends BaseActivity {
         mVals_xrzwcc = dbSearchBean.getCurrenRankTypesList();
         mVals_xl = dbSearchBean.getEducationTypesList();
         mVals_xllx = new String[]{"全日制", "在职教育"};
+        mVals_lx = dbSearchBean.getLxList();
         mVals_xxlx = dbSearchBean.getSchoolTypesList();
         mVals_gzjl = dbSearchBean.getWorkExperienceTypesList();
         mVals_xrzjlx = dbSearchBean.getFunctionaryRankParentTypesList();

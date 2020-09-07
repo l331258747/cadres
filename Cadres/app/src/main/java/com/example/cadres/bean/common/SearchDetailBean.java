@@ -12,6 +12,7 @@ import java.util.List;
 public class SearchDetailBean implements Serializable {
     String search;
     List<String> gblxLists;
+    List<String> lxLists;
     List<String> bmlxLists;
     List<String> csnLists;
     List<String> xlLists;
@@ -32,6 +33,7 @@ public class SearchDetailBean implements Serializable {
 
     public SearchDetailBean() {
         gblxLists = new ArrayList<>();
+        lxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
         xrzjLists = new ArrayList<>();
@@ -54,6 +56,7 @@ public class SearchDetailBean implements Serializable {
         cyssZwlx = "";
         cyssZwbqlx = "";
         gblxLists = new ArrayList<>();
+        lxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
         xrzjLists = new ArrayList<>();
@@ -89,6 +92,13 @@ public class SearchDetailBean implements Serializable {
         return gblxLists;
     }
 
+    public List<String> getLxLists() {
+        for (String str : lxLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return lxLists;
+    }
+
     public String getGllbListsStr(){
         String string;
         if(getGllbLists().size() == 0){
@@ -109,6 +119,10 @@ public class SearchDetailBean implements Serializable {
 
     public void setGblxLists(List<String> gblxLists) {
         this.gblxLists = gblxLists;
+    }
+
+    public void setLxLists(List<String> lxLists) {
+        this.lxLists = lxLists;
     }
 
     public List<String> getBmlbLists() {
@@ -346,6 +360,15 @@ public class SearchDetailBean implements Serializable {
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
+        for (String str : getLxLists()){
+            if(TextUtils.equals("3",str)){
+                sb.append("后备干部/");
+            }else if(TextUtils.equals("2",str)){
+                sb.append("职级公务员/");
+            }else{
+                sb.append("领导干部/");
+            }
+        }
         for (String str : getGllbLists()){
             sb.append(str + "/");
         }
