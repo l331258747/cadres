@@ -1,5 +1,6 @@
 package com.example.cadres.view.search;
 
+import android.database.Cursor;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
@@ -18,6 +20,7 @@ import com.example.cadres.adapter.GbAdapterHbgb;
 import com.example.cadres.adapter.GbAdapterLdgb;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.common.SearchDetailBean;
+import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
 import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
@@ -53,7 +56,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     List<DBGbBean> datas;
 
-    TextView tv_search_content,tv_search_count;
+    TextView tv_search_content, tv_search_count;
 
     SearchDetailBean searchDetailBean;
 
@@ -120,7 +123,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         if (TextUtils.equals(type, "3")) {
             ll_csny = findViewById(R.id.ll_csny_hbgb);
             iv_csny = findViewById(R.id.iv_csny_hbgb);
-        } else if(TextUtils.equals(type, "2")){
+        } else if (TextUtils.equals(type, "2")) {
             ll_xrzsj = findViewById(R.id.ll_xrzsj_gwy);
             ll_rzjqssj = findViewById(R.id.ll_rzjqssj_gwy);
             ll_cjgzsj = findViewById(R.id.ll_cjgzsj_gwy);
@@ -199,17 +202,18 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         setAdapterData(getData());
     }
 
-    public void setAdapterData(List<DBGbBean> list){
-        if(TextUtils.equals(type,"3")){
+    public void setAdapterData(List<DBGbBean> list) {
+        if (TextUtils.equals(type, "3")) {
             mAdapterHbgb.setData(list);
-        }else if(TextUtils.equals(type,"2")){
+        } else if (TextUtils.equals(type, "2")) {
             mAdapterGwy.setData(list);
-        }else{
+        } else {
             mAdapterLdgb.setData(list);
         }
     }
 
-    ConstraintLayout cl_gb_list_title_ldgb,cl_gb_list_title_gwy,cl_gb_list_title_hbgb;
+    ConstraintLayout cl_gb_list_title_ldgb, cl_gb_list_title_gwy, cl_gb_list_title_hbgb;
+
     private void initTitleTab() {
         cl_gb_list_title_ldgb = findViewById(R.id.cl_gb_list_title_ldgb);
         cl_gb_list_title_gwy = findViewById(R.id.cl_gb_list_title_gwy);
@@ -219,11 +223,11 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             cl_gb_list_title_ldgb.setVisibility(View.GONE);
             cl_gb_list_title_gwy.setVisibility(View.GONE);
             cl_gb_list_title_hbgb.setVisibility(View.VISIBLE);
-        } else if(TextUtils.equals(type, "2")){
+        } else if (TextUtils.equals(type, "2")) {
             cl_gb_list_title_ldgb.setVisibility(View.GONE);
             cl_gb_list_title_gwy.setVisibility(View.VISIBLE);
             cl_gb_list_title_hbgb.setVisibility(View.GONE);
-        } else if(TextUtils.equals(type, "1")){
+        } else if (TextUtils.equals(type, "1")) {
             cl_gb_list_title_ldgb.setVisibility(View.VISIBLE);
             cl_gb_list_title_gwy.setVisibility(View.GONE);
             cl_gb_list_title_hbgb.setVisibility(View.GONE);
@@ -241,36 +245,36 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         setAdapterData(getData());
     }
 
-    public void getTypeDbList(){
-        if(!TextUtils.isEmpty(searchDetailBean.getSearch())){
+    public void getTypeDbList() {
+        if (!TextUtils.isEmpty(searchDetailBean.getSearch())) {
             getDbList(searchDetailBean.getSearch());
-        }else if(!TextUtils.isEmpty(searchDetailBean.getCyssGd())){
+        } else if (!TextUtils.isEmpty(searchDetailBean.getCyssGd())) {
             getDbCyssGdList(searchDetailBean.getCyssGd());
-        }else if(!TextUtils.isEmpty(searchDetailBean.getCyssZwlx())){
+        } else if (!TextUtils.isEmpty(searchDetailBean.getCyssZwlx())) {
             getDbCyssZwlxList(searchDetailBean.getCyssZwlx());
-        }else if(!TextUtils.isEmpty(searchDetailBean.getCyssZwbqlx())){
+        } else if (!TextUtils.isEmpty(searchDetailBean.getCyssZwbqlx())) {
             getDbCyssZwbqlxList(searchDetailBean.getCyssZwbqlx());
-        }else{
+        } else {
             getDbList();
         }
     }
 
     List<DBGbBean> dbList;
 
-    public void getDbCyssGdList(String key){
+    public void getDbCyssGdList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
 
-        if(TextUtils.equals(key,"90后干部")){
+        if (TextUtils.equals(key, "90后干部")) {
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(1990, searchDetailBean.getCurrentYear()));
-        }else if(TextUtils.equals(key,"35岁及以下年轻干部")){
+        } else if (TextUtils.equals(key, "35岁及以下年轻干部")) {
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchDetailBean.getCurrentYear() - 35, searchDetailBean.getCurrentYear()));
-        }else if(TextUtils.equals(key,"党外干部")){
+        } else if (TextUtils.equals(key, "党外干部")) {
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
-        } else{
-            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class,DBGbCadreNowPositionListBeanDao.Properties.BaseId)
+        } else {
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class, DBGbCadreNowPositionListBeanDao.Properties.BaseId)
                     .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like("%" + key + "%"));
             queryBuilder.distinct();
         }
@@ -283,7 +287,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             }
         }
 
-        LogUtil.e("常用搜索固定条件 数据条数："+queryBuilder.count());
+        LogUtil.e("常用搜索固定条件 数据条数：" + queryBuilder.count());
 
         dbList = queryBuilder.list();
 
@@ -291,13 +295,13 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-    public void getDbCyssZwlxList(String key){
+    public void getDbCyssZwlxList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.CurrentPosition.like("%" + key + "%"));
-        LogUtil.e("常用搜索职务类型 数据条数："+queryBuilder.count());
+        LogUtil.e("常用搜索职务类型 数据条数：" + queryBuilder.count());
 
         if (orderBy != null) {
             if (isAsc) {
@@ -313,13 +317,13 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-    public void getDbCyssZwbqlxList(String key){
+    public void getDbCyssZwbqlxList(String key) {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.PostLabel.like("%" + key + "%"));
-        LogUtil.e("常用搜索职务标签类型 数据条数："+queryBuilder.count());
+        LogUtil.e("常用搜索职务标签类型 数据条数：" + queryBuilder.count());
 
         if (orderBy != null) {
             if (isAsc) {
@@ -335,101 +339,233 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-    public void getDbList(String key) {
-        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+//    public void getDbList(String key) {
+//        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+//        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
+//        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+//
+//        queryBuilder.whereOr(
+//                DBGbBeanDao.Properties.Name.like("%"+key + "%"),//姓名
+//                DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),//籍贯
+//                DBGbBeanDao.Properties.TechnicalTitle.like("%"+key + "%"),//专业技术职务
+//                DBGbBeanDao.Properties.CurrentPosition.like("%"+key + "%"),//现任职务
+//                DBGbBeanDao.Properties.Expertise.like("%"+key + "%"),//熟悉专业及专长
+//                DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),//全日制毕业院校系
+////                DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%"),//在职教育毕业院校系
+//                DBGbBeanDao.Properties.FullTimeMajor.like("%"+key + "%"),//全日制专业
+//                DBGbBeanDao.Properties.FullTimeDegreeName.like("%"+key + "%")//全日制学位
+//        );
+//
+//        if (orderBy != null) {
+//            if (isAsc) {
+//                queryBuilder.orderAsc(orderBy);
+//            } else {
+//                queryBuilder.orderDesc(orderBy);
+//            }
+//        }
+//
+//        dbList = queryBuilder.list();
+//
+//        tv_search_content.setText(searchDetailBean.getSearch());
+//        tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
+//    }
 
-        queryBuilder.whereOr(
-                DBGbBeanDao.Properties.Name.like("%"+key + "%"),//姓名
-                DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),//籍贯
-                DBGbBeanDao.Properties.TechnicalTitle.like("%"+key + "%"),//专业技术职务
-                DBGbBeanDao.Properties.CurrentPosition.like("%"+key + "%"),//现任职务
-                DBGbBeanDao.Properties.Expertise.like("%"+key + "%"),//熟悉专业及专长
-                DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),//全日制毕业院校系
-//                DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%"),//在职教育毕业院校系
-                DBGbBeanDao.Properties.FullTimeMajor.like("%"+key + "%"),//全日制专业
-                DBGbBeanDao.Properties.FullTimeDegreeName.like("%"+key + "%")//全日制学位
-        );
+    public void getDbList(String key) {
+        dbList = new ArrayList<>();
+
+        Cursor cursor = null;
+        String queryString =
+                "SELECT DISTINCT "
+                        + "b.*"
+                        + " FROM " + DBGbBeanDao.TABLENAME + " b"
+                        + " WHERE " + " b." + DBGbBeanDao.Properties.BaseId.columnName
+                        + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
+                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
+                        + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
+                        + " IN ( SELECT " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName
+                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
+                        + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+                        + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+
+                        + " OR " + " b." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
+                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?";
 
         if (orderBy != null) {
             if (isAsc) {
-                queryBuilder.orderAsc(orderBy);
+                queryString = queryString + " ORDER BY "+ orderBy.columnName +" ASC ";
             } else {
-                queryBuilder.orderDesc(orderBy);
+                queryString = queryString + " ORDER BY "+ orderBy.columnName +" DESC ";
             }
         }
 
-        dbList = queryBuilder.list();
+        try {
+            cursor = DaoManager.getInstance().getDaoSession().getDatabase().rawQuery(queryString,
+                    new String[]{
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%",
+                            "%" + key + "%"
+                    });
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    dbList.add(new DBGbBean(
+                            null,
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.BaseId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Name.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhotoFileName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Gender.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.IdCard.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthday.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.Age.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Nation.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalOutlook.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.JoinPartyDate.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlace.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthplace.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkTime.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EnterUnitTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRank.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRankTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Health.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPosition.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPositionTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.TechnicalTitle.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Expertise.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeEducation.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchool.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Current.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentEducation.columnName)),
+                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeId.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchool.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkPhone.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhoneNumber.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.HomeAddress.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Responsibilities.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.AffectedState.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolMajor.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlaceReplenish.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRegisterTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PositionType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EstablishmentType.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Remark.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Type.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreResume.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAward.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadrePunish.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreTrain.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalConstruction.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAssessment.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankStartTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankParentName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PostLabel.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName))
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
 
         tv_search_content.setText(searchDetailBean.getSearch());
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
     /**
-     public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {
-     List<HistoryData> dbList = new ArrayList<>();
-
-     HistoryDataDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getHistoryDataDao();
-     QueryBuilder<HistoryData> queryBuilder = dbGbBeanDao.queryBuilder();
-     queryBuilder.where(HistoryDataDao.Properties.History.in(historys));
-     Log.e("--------------","数据库条数：" + queryBuilder.count());
-
-     queryBuilder.join(HistoryDataDao.Properties.Date,HelloData.class,HelloDataDao.Properties.Date)
-     .where(HelloDataDao.Properties.Hello.in(hellos));
-     queryBuilder.distinct();
-     Log.e("--------------","数据库条数：" + queryBuilder.list().size());
-
-     queryBuilder.whereOr(HistoryDataDao.Properties.History.in(historys),HistoryDataDao.Properties.Date.in(historys));
-     Log.e("--------------","数据库条数：" + queryBuilder.list().size());
-
-     return dbList;
-     }
+     * public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {
+     * List<HistoryData> dbList = new ArrayList<>();
+     * <p>
+     * HistoryDataDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getHistoryDataDao();
+     * QueryBuilder<HistoryData> queryBuilder = dbGbBeanDao.queryBuilder();
+     * queryBuilder.where(HistoryDataDao.Properties.History.in(historys));
+     * Log.e("--------------","数据库条数：" + queryBuilder.count());
+     * <p>
+     * queryBuilder.join(HistoryDataDao.Properties.Date,HelloData.class,HelloDataDao.Properties.Date)
+     * .where(HelloDataDao.Properties.Hello.in(hellos));
+     * queryBuilder.distinct();
+     * Log.e("--------------","数据库条数：" + queryBuilder.list().size());
+     * <p>
+     * queryBuilder.whereOr(HistoryDataDao.Properties.History.in(historys),HistoryDataDao.Properties.Date.in(historys));
+     * Log.e("--------------","数据库条数：" + queryBuilder.list().size());
+     * <p>
+     * return dbList;
+     * }
      */
 
-    public void getDbList(){
+    public void getDbList() {
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-        LogUtil.e("干部type 数据条数："+queryBuilder.count());
+        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
 
 
-        if(searchDetailBean.getGllbLists().size() > 0){
+        if (searchDetailBean.getGllbLists().size() > 0) {
 
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getGllbLists().size()];
-            for (int i=0; i<searchDetailBean.getGllbLists().size(); i++){
+            for (int i = 0; i < searchDetailBean.getGllbLists().size(); i++) {
                 values[i] = "%" + searchDetailBean.getGllbLists().get(i) + "%";
-                if(i == 0){
-                    sql.append(" "+DBGbBeanDao.Properties.CadreType.columnName + " like "+ "?");
-                }else{
-                    sql.append(" or " + DBGbBeanDao.Properties.CadreType.columnName + " like "+ " ?");
+                if (i == 0) {
+                    sql.append(" " + DBGbBeanDao.Properties.CadreType.columnName + " like " + "?");
+                } else {
+                    sql.append(" or " + DBGbBeanDao.Properties.CadreType.columnName + " like " + " ?");
                 }
             }
-            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(),values));
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
 
 //            queryBuilder.where(DBGbBeanDao.Properties.CadreType.like("%" + searchDetailBean.getGllbListsStr() + "%"));
-            LogUtil.e("干部类型 数据条数："+queryBuilder.count());
+            LogUtil.e("干部类型 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getBmlbLists().size() > 0){
-            queryBuilder.join(DBGbBeanDao.Properties.BaseId,DBGbCadreDeptListBean.class,DBGbCadreDeptListBeanDao.Properties.BaseId)
+        if (searchDetailBean.getBmlbLists().size() > 0) {
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
                     .where(DBGbCadreDeptListBeanDao.Properties.DeptType.in(searchDetailBean.getBmlbLists()));
             queryBuilder.distinct();
-            LogUtil.e("部门类型 数据条数："+queryBuilder.count());
+            LogUtil.e("部门类型 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXbLists().size() > 0){
+        if (searchDetailBean.getXbLists().size() > 0) {
             queryBuilder.where(DBGbBeanDao.Properties.Gender.in(searchDetailBean.getXbLists()));
-            LogUtil.e("性别 数据条数："+queryBuilder.count());
+            LogUtil.e("性别 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getCsnLists().size() > 0){
+        if (searchDetailBean.getCsnLists().size() > 0) {
             List<String> lists = searchDetailBean.getCsnLists();
             queryBuilder.whereOr(DBGbBeanDao.Properties.Birthday.between(lists.get(0), lists.get(1)),
                     DBGbBeanDao.Properties.Birthday.like(lists.get(0) + "%"),
                     DBGbBeanDao.Properties.Birthday.like(lists.get(1) + "%"));
-            LogUtil.e("出生年 数据条数："+queryBuilder.count());
+            LogUtil.e("出生年 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getDpLists().size() > 0){
+        if (searchDetailBean.getDpLists().size() > 0) {
 //            if(searchBean.isDpFzgdn()){
 //                queryBuilder.whereOr(DBGbBeanDao.Properties.PoliticalOutlook.in(searchBean.getDpLists()),
 //                        DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
@@ -439,93 +575,93 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
 //                LogUtil.e("党派 数据条数："+queryBuilder.count());
 //            }
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.in(searchDetailBean.getDpLists()));
-            LogUtil.e("党派 数据条数："+queryBuilder.count());
+            LogUtil.e("党派 数据条数：" + queryBuilder.count());
         }
 
-        if(searchDetailBean.getRxznxLists().size() > 0){
+        if (searchDetailBean.getRxznxLists().size() > 0) {
             List<String> lists = searchDetailBean.getRxznxLists2();
-            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0),lists.get(1)),
+            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentPositionTime.between(lists.get(0), lists.get(1)),
                     DBGbBeanDao.Properties.CurrentPositionTime.like(lists.get(0) + "%"),
                     DBGbBeanDao.Properties.CurrentPositionTime.like(lists.get(1) + "%"));
-            LogUtil.e("现任职年限 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职年限 数据条数：" + queryBuilder.count());
         }
 
-        if(searchDetailBean.getXrzwccLists().size() > 0){
+        if (searchDetailBean.getXrzwccLists().size() > 0) {
             queryBuilder.where(DBGbBeanDao.Properties.CurrentRank.in(searchDetailBean.getXrzwccLists()));
-            LogUtil.e("现任职务层次 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职务层次 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXrzwccnxLists().size() > 0){
+        if (searchDetailBean.getXrzwccnxLists().size() > 0) {
             List<String> lists = searchDetailBean.getXrzwccnxLists2();
-            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0),lists.get(1)),
+            queryBuilder.whereOr(DBGbBeanDao.Properties.CurrentRankTime.between(lists.get(0), lists.get(1)),
                     DBGbBeanDao.Properties.CurrentRankTime.like(lists.get(0) + "%"),
                     DBGbBeanDao.Properties.CurrentRankTime.like(lists.get(1) + "%"));
-            LogUtil.e("现任职务层次年限 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职务层次年限 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXlLists().size() > 0){
-            if(searchDetailBean.getXllxType() == 1){
+        if (searchDetailBean.getXlLists().size() > 0) {
+            if (searchDetailBean.getXllxType() == 1) {
                 queryBuilder.where(DBGbBeanDao.Properties.FullTimeEducation.in(searchDetailBean.getXlLists()));
-                LogUtil.e("全日制学历 数据条数："+queryBuilder.count());
-            }else if(searchDetailBean.getXllxType() == 2){
+                LogUtil.e("全日制学历 数据条数：" + queryBuilder.count());
+            } else if (searchDetailBean.getXllxType() == 2) {
                 queryBuilder.where(DBGbBeanDao.Properties.CurrentEducation.in(searchDetailBean.getXlLists()));
-                LogUtil.e("在职教育学历 数据条数："+queryBuilder.count());
-            }else{
+                LogUtil.e("在职教育学历 数据条数：" + queryBuilder.count());
+            } else {
                 queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeEducation.in(searchDetailBean.getXlLists())
-                        ,DBGbBeanDao.Properties.CurrentEducation.in(searchDetailBean.getXlLists()));
-                LogUtil.e("学历 数据条数："+queryBuilder.count());
+                        , DBGbBeanDao.Properties.CurrentEducation.in(searchDetailBean.getXlLists()));
+                LogUtil.e("学历 数据条数：" + queryBuilder.count());
             }
         }
-        if(searchDetailBean.getXxlxLists().size() > 0){
+        if (searchDetailBean.getXxlxLists().size() > 0) {
 
             StringBuffer sql = new StringBuffer("");
             StringBuffer sql2 = new StringBuffer("");
             String[] values = new String[searchDetailBean.getXxlxLists().size()];
-            for (int i=0; i<searchDetailBean.getXxlxLists().size(); i++){
+            for (int i = 0; i < searchDetailBean.getXxlxLists().size(); i++) {
                 values[i] = "%" + searchDetailBean.getXxlxLists().get(i) + "%";
-                if(i == 0){
-                    sql.append(" "+DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like "+ "?");
-                    sql2.append(" "+DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like "+ "?");
-                }else{
-                    sql.append(" or " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like "+ " ?");
-                    sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like "+ " ?");
+                if (i == 0) {
+                    sql.append(" " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + "?");
+                    sql2.append(" " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + "?");
+                } else {
+                    sql.append(" or " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + " ?");
+                    sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
                 }
             }
-            queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(),values),new WhereCondition.StringCondition(sql2.toString(),values));
+            queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(), values), new WhereCondition.StringCondition(sql2.toString(), values));
 
 //            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%")
 //                    ,DBGbBeanDao.Properties.CurrentSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%"));
-            LogUtil.e("学校类型 数据条数："+queryBuilder.count());
+            LogUtil.e("学校类型 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getGzjlLists().size() > 0){
+        if (searchDetailBean.getGzjlLists().size() > 0) {
 
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getGzjlLists().size()];
-            for (int i=0; i<searchDetailBean.getGzjlLists().size(); i++){
+            for (int i = 0; i < searchDetailBean.getGzjlLists().size(); i++) {
                 values[i] = "%" + searchDetailBean.getGzjlLists().get(i) + "%";
-                if(i == 0){
-                    sql.append(" "+DBGbBeanDao.Properties.WorkExperience.columnName + " like "+ "?");
-                }else{
-                    sql.append(" or " + DBGbBeanDao.Properties.WorkExperience.columnName + " like "+ " ?");
+                if (i == 0) {
+                    sql.append(" " + DBGbBeanDao.Properties.WorkExperience.columnName + " like " + "?");
+                } else {
+                    sql.append(" or " + DBGbBeanDao.Properties.WorkExperience.columnName + " like " + " ?");
                 }
             }
-            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(),values));
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
 
 //            queryBuilder.where(DBGbBeanDao.Properties.WorkExperience.like("%" + searchDetailBean.getGzjlListsStr() + "%"));
-            LogUtil.e("工作经历 数据条数："+queryBuilder.count());
+            LogUtil.e("工作经历 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXrzjlxLists().size() > 0){
+        if (searchDetailBean.getXrzjlxLists().size() > 0) {
             queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankParentName.in(searchDetailBean.getXrzjlxLists()));
-            LogUtil.e("现任职级类型 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职级类型 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXrzjLists().size() > 0){
+        if (searchDetailBean.getXrzjLists().size() > 0) {
             queryBuilder.where(DBGbBeanDao.Properties.FunctionaryRankName.in(searchDetailBean.getXrzjLists()));
-            LogUtil.e("现任职级 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职级 数据条数：" + queryBuilder.count());
         }
-        if(searchDetailBean.getXrzjnxLists().size() > 0){
+        if (searchDetailBean.getXrzjnxLists().size() > 0) {
             List<String> lists = searchDetailBean.getXrzjnxLists2();
-            queryBuilder.whereOr(DBGbBeanDao.Properties.FunctionaryRankTime.between(lists.get(0),lists.get(1)),
+            queryBuilder.whereOr(DBGbBeanDao.Properties.FunctionaryRankTime.between(lists.get(0), lists.get(1)),
                     DBGbBeanDao.Properties.FunctionaryRankTime.like(lists.get(0) + "%"),
                     DBGbBeanDao.Properties.FunctionaryRankTime.like(lists.get(1) + "%"));
-            LogUtil.e("现任职级年限 数据条数："+queryBuilder.count());
+            LogUtil.e("现任职级年限 数据条数：" + queryBuilder.count());
         }
 
         if (orderBy != null) {
@@ -580,7 +716,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        if(TextUtils.equals(type,"3")){
+        if (TextUtils.equals(type, "3")) {
             mAdapterHbgb = new GbAdapterHbgb(activity, new ArrayList<DBGbBean>());
             recyclerView.setAdapter(mAdapterHbgb);
             recyclerView.getItemAnimator().setChangeDuration(0);
@@ -592,7 +728,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     drawer_layout.openDrawer(Gravity.RIGHT);
                 }
             });
-        }else if(TextUtils.equals(type,"2")){
+        } else if (TextUtils.equals(type, "2")) {
             mAdapterGwy = new GbAdapterGwy(activity, new ArrayList<DBGbBean>());
             recyclerView.setAdapter(mAdapterGwy);
             recyclerView.getItemAnimator().setChangeDuration(0);
@@ -604,7 +740,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     drawer_layout.openDrawer(Gravity.RIGHT);
                 }
             });
-        }else{
+        } else {
             mAdapterLdgb = new GbAdapterLdgb(activity, new ArrayList<DBGbBean>());
             recyclerView.setAdapter(mAdapterLdgb);
             recyclerView.getItemAnimator().setChangeDuration(0);
@@ -620,7 +756,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
 
-    private void initDrawer(){
+    private void initDrawer() {
         drawer_layout = findViewById(R.id.drawer_layout);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -644,7 +780,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-    private void initDrawerGbInfo(){
+    private void initDrawerGbInfo() {
         scrollView = findViewById(R.id.scrollView);
         layout_info = findViewById(R.id.layout_info);
         gbDrawerData = new GbDrawerData(context, layout_info);
@@ -654,7 +790,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.ll_xrzsj:
             case R.id.ll_xrzsj_ldgb:
             case R.id.ll_xrzsj_gwy:

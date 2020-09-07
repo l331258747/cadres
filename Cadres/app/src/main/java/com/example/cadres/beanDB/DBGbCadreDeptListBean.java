@@ -16,10 +16,12 @@ public class DBGbCadreDeptListBean {
     private String deptType;
     private String deptCode;
     private int ranking;
+    private int parentId;
 
-    @Generated(hash = 958480957)
+    @Generated(hash = 1336384517)
     public DBGbCadreDeptListBean(Long _id, int deptId, int baseId, String state,
-            String deptName, String deptType, String deptCode, int ranking) {
+            String deptName, String deptType, String deptCode, int ranking,
+            int parentId) {
         this._id = _id;
         this.deptId = deptId;
         this.baseId = baseId;
@@ -28,6 +30,7 @@ public class DBGbCadreDeptListBean {
         this.deptType = deptType;
         this.deptCode = deptCode;
         this.ranking = ranking;
+        this.parentId = parentId;
     }
 
     @Generated(hash = 1217129680)
@@ -96,5 +99,13 @@ public class DBGbCadreDeptListBean {
 
     public void setRanking(int ranking) {
         this.ranking = ranking;
+    }
+
+    public int getParentId() {
+        return this.parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 }

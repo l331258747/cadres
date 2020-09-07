@@ -24,6 +24,11 @@ public class GbCadreDeptListBean {
     private String deptType;
     private String deptCode;
     private int ranking;
+    private int parentId;
+
+    public int getParentId() {
+        return parentId;
+    }
 
     public int getRanking() {
         return ranking;

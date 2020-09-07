@@ -840,7 +840,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item_dept.getDeptName(),
                         item_dept.getDeptType(),
                         item_dept.getDeptCode(),
-                        item_dept.getRanking()
+                        item_dept.getRanking(),
+                        item_dept.getParentId()
                 ));
             }
 
