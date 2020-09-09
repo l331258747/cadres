@@ -1115,7 +1115,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 ));
             }
         }
-        List<ZstyBean.ZstyBean2> dataGwy = bean.getGwyRankDeductionList();
+        List<ZstyBean.ZstyBean2> dataGwy = bean.getZzbGwyRankdeductionList();
         if(dataGwy != null){
             for (int i = 0; i < dataGwy.size(); i++) {
                 ZstyBean.ZstyBean2 itemGwy = dataGwy.get(i);

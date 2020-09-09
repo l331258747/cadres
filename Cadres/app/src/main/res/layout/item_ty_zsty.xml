@@ -17,15 +17,137 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:id="@+id/ll_gwy_1"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dp_40"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_gwy_qs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="全市"
+                android:layout_weight="1"
+                android:textColor="@color/color_23cffd"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_szbm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="市直部门"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_xz"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="乡镇"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_jd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="街道"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_gwy_2"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dp_40"
+            app:layout_constraintStart_toStartOf="@+id/view_bottom_zs"
+            app:layout_constraintEnd_toEndOf="@+id/view_bottom_zs"
+            app:layout_constraintTop_toBottomOf="@+id/view_bottom_zs"
+            android:layout_marginTop="@dimen/dp_5"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_gwy_2jdyy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="二级调研员"
+                android:layout_weight="1"
+                android:textColor="@color/color_23cffd"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_3jdyy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="三级调研员"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_4jdyy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="四级调研员"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_12jzrky"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="一二级主任科员"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+            <TextView
+                android:id="@+id/tv_gwy_34jzrky"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="三四级主任科员"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@mipmap/ic_tab_center"/>
+
+        </LinearLayout>
+
+<!--        职级推演-->
+
         <View
             android:id="@+id/view_bottom_zs"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_400"
-            android:layout_margin="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_30"
+            app:layout_goneMarginTop="@dimen/dp_30"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@mipmap/ic_zs_line_bg"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ll_gwy_1" />
 
         <ImageView
             android:id="@+id/iv_zs_ldgb"
@@ -134,15 +256,19 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_bottom_zs"
             app:layout_constraintTop_toBottomOf="@+id/view_legend"/>
 
+<!--        年轻干部推演-->
         <View
             android:id="@+id/view_bottom_zs_nqgb"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_400"
-            android:layout_margin="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_goneMarginTop="@dimen/dp_30"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@mipmap/ic_zs_line_bg"
-            app:layout_constraintTop_toBottomOf="@+id/view_bottom_zs" />
+            app:layout_constraintTop_toBottomOf="@+id/ll_gwy_2" />
 
         <ImageView
             android:id="@+id/iv_zs_nqgb"
