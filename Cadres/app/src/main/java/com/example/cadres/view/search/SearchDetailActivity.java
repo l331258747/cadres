@@ -550,7 +550,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                 if (i == 0) {
                     sql.append(" " + DBGbBeanDao.Properties.Type.columnName + " like " + "?");
                 } else {
-                    sql.append(" or " + DBGbBeanDao.Properties.Type.columnName + " like " + " ?");
+                    sql.append(" and " + DBGbBeanDao.Properties.Type.columnName + " like " + " ?");
                 }
             }
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
@@ -566,7 +566,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                 if (i == 0) {
                     sql.append(" " + DBGbBeanDao.Properties.CadreType.columnName + " like " + "?");
                 } else {
-                    sql.append(" or " + DBGbBeanDao.Properties.CadreType.columnName + " like " + " ?");
+                    sql.append(" and " + DBGbBeanDao.Properties.CadreType.columnName + " like " + " ?");
                 }
             }
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
@@ -647,8 +647,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     sql.append(" " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + "?");
                     sql2.append(" " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + "?");
                 } else {
-                    sql.append(" or " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + " ?");
-                    sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
+                    sql.append(" and " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + " ?");
+                    sql2.append(" and " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
                 }
             }
             queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(), values), new WhereCondition.StringCondition(sql2.toString(), values));
@@ -666,7 +666,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                 if (i == 0) {
                     sql.append(" " + DBGbBeanDao.Properties.WorkExperience.columnName + " like " + "?");
                 } else {
-                    sql.append(" or " + DBGbBeanDao.Properties.WorkExperience.columnName + " like " + " ?");
+                    sql.append(" and " + DBGbBeanDao.Properties.WorkExperience.columnName + " like " + " ?");
                 }
             }
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
