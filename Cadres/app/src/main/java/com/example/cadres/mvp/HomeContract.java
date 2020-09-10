@@ -3,6 +3,7 @@ package com.example.cadres.mvp;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean1;
+import com.example.cadres.bean.bmGwy.BmGwyBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -30,11 +31,15 @@ public interface HomeContract {
         void getHjtyList();
 
         void getSearchData();
+        void getBmListGwy();
 
         void getApk();
     }
 
     interface View {
+        void getBmListGwySuccess(BmGwyBean data);
+        void getBmListGwyFailed(String msg);
+
         void getSearchDataSuccess(SearchBean.SearchParamBean data);
         void getSearchDataFailed(String msg);
 

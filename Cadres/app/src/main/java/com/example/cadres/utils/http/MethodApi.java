@@ -114,4 +114,10 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getSearchData(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取部门列表-公务员
+    public static void getBmListGwy(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getBmListGwy(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
 }

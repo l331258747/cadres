@@ -34,6 +34,12 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreRankListBeanDao.createTable(db, ifNotExists);
         DBGbCadreResumeListBeanDao.createTable(db, ifNotExists);
         DBGbCadreTrainListBeanDao.createTable(db, ifNotExists);
+        DBGwyDWLBDao.createTable(db, ifNotExists);
+        DBGwyFGDJDao.createTable(db, ifNotExists);
+        DBGwyFGZLDJDao.createTable(db, ifNotExists);
+        DBGwyJWJSDao.createTable(db, ifNotExists);
+        DBGwyZHGLDao.createTable(db, ifNotExists);
+        DBGwyZQDao.createTable(db, ifNotExists);
         DBSearchBeanDao.createTable(db, ifNotExists);
         DBTyHjDao.createTable(db, ifNotExists);
         DBTyHjListDao.createTable(db, ifNotExists);
@@ -64,6 +70,12 @@ public class DaoMaster extends AbstractDaoMaster {
         DBGbCadreRankListBeanDao.dropTable(db, ifExists);
         DBGbCadreResumeListBeanDao.dropTable(db, ifExists);
         DBGbCadreTrainListBeanDao.dropTable(db, ifExists);
+        DBGwyDWLBDao.dropTable(db, ifExists);
+        DBGwyFGDJDao.dropTable(db, ifExists);
+        DBGwyFGZLDJDao.dropTable(db, ifExists);
+        DBGwyJWJSDao.dropTable(db, ifExists);
+        DBGwyZHGLDao.dropTable(db, ifExists);
+        DBGwyZQDao.dropTable(db, ifExists);
         DBSearchBeanDao.dropTable(db, ifExists);
         DBTyHjDao.dropTable(db, ifExists);
         DBTyHjListDao.dropTable(db, ifExists);
@@ -108,6 +120,12 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(DBGbCadreRankListBeanDao.class);
         registerDaoClass(DBGbCadreResumeListBeanDao.class);
         registerDaoClass(DBGbCadreTrainListBeanDao.class);
+        registerDaoClass(DBGwyDWLBDao.class);
+        registerDaoClass(DBGwyFGDJDao.class);
+        registerDaoClass(DBGwyFGZLDJDao.class);
+        registerDaoClass(DBGwyJWJSDao.class);
+        registerDaoClass(DBGwyZHGLDao.class);
+        registerDaoClass(DBGwyZQDao.class);
         registerDaoClass(DBSearchBeanDao.class);
         registerDaoClass(DBTyHjDao.class);
         registerDaoClass(DBTyHjListDao.class);

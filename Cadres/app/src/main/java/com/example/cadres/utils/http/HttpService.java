@@ -6,6 +6,7 @@ import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.bmGwy.BmGwyBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -95,6 +96,9 @@ public interface HttpService {
 
     @GET("searchParam/findSearchParamList")
     Observable<BaseResponse<SearchBean>> getSearchData();
+
+    @POST("gwyRank/gwyRankList")
+    Observable<BaseResponse<BmGwyBean>> getBmListGwy();
 
 
 }

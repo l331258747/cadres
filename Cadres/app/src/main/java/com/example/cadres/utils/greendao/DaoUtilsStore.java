@@ -14,6 +14,12 @@ import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
+import com.cadres.greendao.gen.DBGwyDWLBDao;
+import com.cadres.greendao.gen.DBGwyFGDJDao;
+import com.cadres.greendao.gen.DBGwyFGZLDJDao;
+import com.cadres.greendao.gen.DBGwyJWJSDao;
+import com.cadres.greendao.gen.DBGwyZHGLDao;
+import com.cadres.greendao.gen.DBGwyZQDao;
 import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyHjListDao;
@@ -40,6 +46,12 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBGwyDWLB;
+import com.example.cadres.beanDB.DBGwyFGDJ;
+import com.example.cadres.beanDB.DBGwyFGZLDJ;
+import com.example.cadres.beanDB.DBGwyJWJS;
+import com.example.cadres.beanDB.DBGwyZHGL;
+import com.example.cadres.beanDB.DBGwyZQ;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
@@ -94,6 +106,12 @@ public class DaoUtilsStore {
 
     private CommonDaoUtils<DBSearchBean> saerchDaoUtils;
 
+    private CommonDaoUtils<DBGwyDWLB> gwyDWLBDaoUtils;
+    private CommonDaoUtils<DBGwyFGDJ> gwyFGDJDaoUtils;
+    private CommonDaoUtils<DBGwyFGZLDJ> gwyFGZLDJDaoUtils;
+    private CommonDaoUtils<DBGwyJWJS> gwyJWJSDaoUtils;
+    private CommonDaoUtils<DBGwyZHGL> gwyZHGLDaoUtils;
+    private CommonDaoUtils<DBGwyZQ> gwyZQDaoUtils;
 
     public static DaoUtilsStore getInstance() {
         return instance;
@@ -101,6 +119,19 @@ public class DaoUtilsStore {
 
     private DaoUtilsStore() {
         DaoManager mManager = DaoManager.getInstance();
+
+        DBGwyDWLBDao _DBGwyDWLBDao = mManager.getDaoSession().getDBGwyDWLBDao();
+        gwyDWLBDaoUtils = new CommonDaoUtils(DBGwyDWLB.class, _DBGwyDWLBDao);
+        DBGwyFGDJDao _DBGwyFGDJDao = mManager.getDaoSession().getDBGwyFGDJDao();
+        gwyFGDJDaoUtils = new CommonDaoUtils(DBGwyFGDJ.class, _DBGwyFGDJDao);
+        DBGwyFGZLDJDao _DBGwyFGZLDJDao = mManager.getDaoSession().getDBGwyFGZLDJDao();
+        gwyFGZLDJDaoUtils = new CommonDaoUtils(DBGwyFGZLDJ.class, _DBGwyFGZLDJDao);
+        DBGwyJWJSDao _DBGwyJWJSDao = mManager.getDaoSession().getDBGwyJWJSDao();
+        gwyJWJSDaoUtils = new CommonDaoUtils(DBGwyJWJS.class, _DBGwyJWJSDao);
+        DBGwyZHGLDao _DBGwyZHGLDao = mManager.getDaoSession().getDBGwyZHGLDao();
+        gwyZHGLDaoUtils = new CommonDaoUtils(DBGwyZHGL.class, _DBGwyZHGLDao);
+        DBGwyZQDao _DBGwyZQDao = mManager.getDaoSession().getDBGwyZQDao();
+        gwyZQDaoUtils = new CommonDaoUtils(DBGwyZQ.class, _DBGwyZQDao);
 
         DBSearchBeanDao _DBSearchBeanDao = mManager.getDaoSession().getDBSearchBeanDao();
         saerchDaoUtils = new CommonDaoUtils(DBSearchBean.class, _DBSearchBeanDao);
@@ -267,5 +298,29 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBSearchBean> getSaerchDaoUtils() {
         return saerchDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyDWLB> getGwyDWLBDaoUtils() {
+        return gwyDWLBDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyFGDJ> getGwyFGDJDaoUtils() {
+        return gwyFGDJDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyFGZLDJ> getGwyFGZLDJDaoUtils() {
+        return gwyFGZLDJDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyJWJS> getGwyJWJSDaoUtils() {
+        return gwyJWJSDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyZHGL> getGwyZHGLDaoUtils() {
+        return gwyZHGLDaoUtils;
+    }
+
+    public CommonDaoUtils<DBGwyZQ> getGwyZQDaoUtils() {
+        return gwyZQDaoUtils;
     }
 }

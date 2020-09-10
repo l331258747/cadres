@@ -35,6 +35,13 @@ import com.example.cadres.bean.bm.BmBean2;
 import com.example.cadres.bean.bm.BmExplainBean;
 import com.example.cadres.bean.bm.BmFinanceTypeBean;
 import com.example.cadres.bean.bm.BmOrgTypeBean;
+import com.example.cadres.bean.bmGwy.BmGwyBean;
+import com.example.cadres.bean.bmGwy.GwyDWLB;
+import com.example.cadres.bean.bmGwy.GwyFGDJ;
+import com.example.cadres.bean.bmGwy.GwyFGZLDJ;
+import com.example.cadres.bean.bmGwy.GwyJWJS;
+import com.example.cadres.bean.bmGwy.GwyZHGL;
+import com.example.cadres.bean.bmGwy.GwyZQ;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -61,6 +68,12 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBGwyDWLB;
+import com.example.cadres.beanDB.DBGwyFGDJ;
+import com.example.cadres.beanDB.DBGwyFGZLDJ;
+import com.example.cadres.beanDB.DBGwyJWJS;
+import com.example.cadres.beanDB.DBGwyZHGL;
+import com.example.cadres.beanDB.DBGwyZQ;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
@@ -137,6 +150,14 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     CommonDaoUtils<DBSearchBean> dBSearchDaoUtils;
 
+    private CommonDaoUtils<DBGwyDWLB> dBGwyDWLBDaoUtils;
+    private CommonDaoUtils<DBGwyFGDJ> dBGwyFGDJDaoUtils;
+    private CommonDaoUtils<DBGwyFGZLDJ> dBGwyFGZLDJDaoUtils;
+    private CommonDaoUtils<DBGwyJWJS> dBGwyJWJSDaoUtils;
+    private CommonDaoUtils<DBGwyZHGL> dBGwyZHGLDaoUtils;
+    private CommonDaoUtils<DBGwyZQ> dBGwyZQDaoUtils;
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_home;
@@ -201,6 +222,13 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyZsDaoUtils = _Store.getTyZsDaoUtils();
         dBTyZsNqgbDaoUtils = _Store.getTyZsQngbDaoUtils();
         dBSearchDaoUtils = _Store.getSaerchDaoUtils();
+
+        dBGwyDWLBDaoUtils = _Store.getGwyDWLBDaoUtils();
+        dBGwyFGDJDaoUtils = _Store.getGwyFGDJDaoUtils();
+        dBGwyFGZLDJDaoUtils = _Store.getGwyFGZLDJDaoUtils();
+        dBGwyJWJSDaoUtils = _Store.getGwyJWJSDaoUtils();
+        dBGwyZHGLDaoUtils = _Store.getGwyZHGLDaoUtils();
+        dBGwyZQDaoUtils = _Store.getGwyZQDaoUtils();
 
         initProgress();
     }
@@ -299,7 +327,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         progress.dismiss();
     }
 
-
     @Override
     public void getZcfgListSuccess(ZcfgBean data) {
         setDBZcfg(data);
@@ -315,12 +342,23 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getBmListSuccess(BmBean1 data) {
         setDBBm(data);
-        mPresenter.getGbList();
+        mPresenter.getBmListGwy();
     }
 
     @Override
     public void getBmListFailed(String msg) {
         progress.setProgress(50);
+        mPresenter.getBmListGwy();
+    }
+
+    @Override
+    public void getBmListGwySuccess(BmGwyBean data) {
+        setDBBmGwy(data);
+        mPresenter.getGbList();
+    }
+
+    @Override
+    public void getBmListGwyFailed(String msg) {
         mPresenter.getGbList();
     }
 
@@ -534,6 +572,12 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         LogUtil.e("搜索 条数：" + dBSearchDaoUtils.queryAll().size());
 
+        LogUtil.e("部门 公务员 单位类别 条数：" + dBGwyDWLBDaoUtils.queryAll().size());
+        LogUtil.e("部门 公务员 法官等级 条数：" + dBGwyFGDJDaoUtils.queryAll().size());
+        LogUtil.e("部门 公务员 法官助理等级 条数：" + dBGwyFGZLDJDaoUtils.queryAll().size());
+        LogUtil.e("部门 公务员 警务技术 条数：" + dBGwyJWJSDaoUtils.queryAll().size());
+        LogUtil.e("部门 公务员 综合管理 条数：" + dBGwyZHGLDaoUtils.queryAll().size());
+        LogUtil.e("部门 公务员 执勤 条数：" + dBGwyZQDaoUtils.queryAll().size());
 
         dBZcfgDaoUtils.deleteAll();
         dBZcfgNoticeDaoUtils.deleteAll();
@@ -563,6 +607,13 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBTyZsDaoUtils.deleteAll();
         dBTyZsNqgbDaoUtils.deleteAll();
         dBSearchDaoUtils.deleteAll();
+
+        dBGwyDWLBDaoUtils.deleteAll();
+        dBGwyFGDJDaoUtils.deleteAll();
+        dBGwyFGZLDJDaoUtils.deleteAll();
+        dBGwyJWJSDaoUtils.deleteAll();
+        dBGwyZHGLDaoUtils.deleteAll();
+        dBGwyZQDaoUtils.deleteAll();
 
         printImgAll();
     }
@@ -711,6 +762,198 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         }
 
         dBBmFinanceDaoUtils.insertMulti(dbFinanceList);
+    }
+
+    private void setDBBmGwy(BmGwyBean bean) {
+
+        List<DBGwyDWLB> dbListDWLB = new ArrayList<>();
+        List<GwyDWLB> dataDWLB = bean.getZzbgwyorgList();
+        if(dataDWLB != null){
+            for (int i = 0; i < dataDWLB.size(); i++) {
+                GwyDWLB item = dataDWLB.get(i);
+                dbListDWLB.add(
+                        new DBGwyDWLB(
+                                null,
+                                item.getDictLabel(),
+                                item.getDictValue()
+                        ));
+            }
+        }
+        dBGwyDWLBDaoUtils.insertMulti(dbListDWLB);
+
+
+        List<DBGwyFGDJ> dbListFGDJ = new ArrayList<>();
+        List<GwyFGDJ> dataFGDJ = bean.getZzbJCGFGRankGridList();
+        if(dataFGDJ != null){
+            for (int i = 0; i < dataFGDJ.size(); i++) {
+                GwyFGDJ item = dataFGDJ.get(i);
+                dbListFGDJ.add(
+                        new DBGwyFGDJ(
+                                null,
+                                item.getDeptId(),
+                                item.getDeptName(),
+                                item.getSubset(),
+                                item.getDisplay(),
+                                item.getGwyType(),
+                                item.getVerificationsg(),
+                                item.getVerificationsig(),
+                                item.getActualsg(),
+                                item.getActualsig(),
+                                item.getActualyj(),
+                                item.getActualej(),
+                                item.getActualsj(),
+                                item.getActualsij(),
+                                item.getActualwuj(),
+                                item.getSurpasssg(),
+                                item.getSurpasssig(),
+                                item.getVacancysg(),
+                                item.getVacancysig()
+                        ));
+            }
+        }
+        dBGwyFGDJDaoUtils.insertMulti(dbListFGDJ);
+
+        List<DBGwyFGZLDJ> dbListFGZLDJ = new ArrayList<>();
+        List<GwyFGZLDJ> dataFGZLDJ = bean.getZzbJCGFGZLRankGridList();
+        if(dataFGZLDJ != null){
+            for (int i = 0; i < dataFGZLDJ.size(); i++) {
+                GwyFGZLDJ item = dataFGZLDJ.get(i);
+                dbListFGZLDJ.add(
+                        new DBGwyFGZLDJ(
+                                null,
+                                item.getDeptId(),
+                                item.getDeptName(),
+                                item.getSubset(),
+                                item.getDisplay(),
+                                item.getGwyType(),
+                                item.getVerificationsg(),
+                                item.getVerificationsig(),
+                                item.getVerificationyej(),
+                                item.getVerificationssj(),
+                                item.getActualsg(),
+                                item.getActualsig(),
+                                item.getActualyj(),
+                                item.getActualej(),
+                                item.getActualsj(),
+                                item.getActualsij(),
+                                item.getActualwuj(),
+                                item.getSurpasssg(),
+                                item.getSurpasssig(),
+                                item.getSurpassyej(),
+                                item.getSurpassssj(),
+                                item.getVacancysg(),
+                                item.getVacancysig(),
+                                item.getVacancyyej(),
+                                item.getVacancyssj()
+                        ));
+            }
+        }
+        dBGwyFGZLDJDaoUtils.insertMulti(dbListFGZLDJ);
+
+
+        List<DBGwyJWJS> dbListJWJS = new ArrayList<>();
+        List<GwyJWJS> dataJWJS = bean.getZzbGAJSRankGridList();
+        if(dataJWJS != null){
+            for (int i = 0; i < dataJWJS.size(); i++) {
+                GwyJWJS item = dataJWJS.get(i);
+                dbListJWJS.add(
+                        new DBGwyJWJS(
+                                null,
+                                item.getDeptId(),
+                                item.getDeptName(),
+                                item.getSubset(),
+                                item.getDisplay(),
+                                item.getVerificationez(),
+                                item.getVerificationsz(),
+                                item.getVerificationsiz(),
+                                item.getActualez(),
+                                item.getActualsz(),
+                                item.getActualsiz(),
+                                item.getActualyg(),
+                                item.getActualeg(),
+                                item.getActualsg(),
+                                item.getActualsig(),
+                                item.getActualjsy(),
+                                item.getSurpassez(),
+                                item.getSurpasssz(),
+                                item.getSurpasssiz(),
+                                item.getVacancyez(),
+                                item.getVacancysz(),
+                                item.getVacancysiz()
+                        ));
+            }
+        }
+        dBGwyJWJSDaoUtils.insertMulti(dbListJWJS);
+
+
+        List<DBGwyZHGL> dbListZHGL = new ArrayList<>();
+        List<GwyZHGL> dataZHGL = bean.getZzbGwyRankGridList();
+        if(dataZHGL != null){
+            for (int i = 0; i < dataZHGL.size(); i++) {
+                GwyZHGL item = dataZHGL.get(i);
+                dbListZHGL.add(
+                        new DBGwyZHGL(
+                                null,
+                                item.getDeptId(),
+                                item.getDeptName(),
+                                item.getSubset(),
+                                item.getDisplay(),
+                                item.getVerificationez(),
+                                item.getVerificationsz(),
+                                item.getVerificationsiz(),
+                                item.getActualez(),
+                                item.getActualsz(),
+                                item.getActualsiz(),
+                                item.getActualyg(),
+                                item.getActualeg(),
+                                item.getActualsg(),
+                                item.getActualsig(),
+                                item.getActualjsy(),
+                                item.getSurpassez(),
+                                item.getSurpasssz(),
+                                item.getSurpasssiz(),
+                                item.getVacancyez(),
+                                item.getVacancysz(),
+                                item.getVacancysiz()
+                        ));
+            }
+        }
+        dBGwyZHGLDaoUtils.insertMulti(dbListZHGL);
+
+        List<DBGwyZQ> dbListZQ = new ArrayList<>();
+        List<GwyZQ> dataZQ = bean.getZzbGAZQRankGridList();
+        if(dataZQ != null){
+            for (int i = 0; i < dataZQ.size(); i++) {
+                GwyZQ item = dataZQ.get(i);
+                dbListZQ.add(
+                        new DBGwyZQ(
+                                null,
+                                item.getDeptId(),
+                                item.getDeptName(),
+                                item.getSubset(),
+                                item.getDisplay(),
+                                item.getVerificationeg(),
+                                item.getVerificationsg(),
+                                item.getVerificationsig(),
+                                item.getActualeg(),
+                                item.getActualsg(),
+                                item.getActualsig(),
+                                item.getActualyb(),
+                                item.getActualeb(),
+                                item.getActualsb(),
+                                item.getActualsib(),
+                                item.getActualyx(),
+                                item.getActualex(),
+                                item.getSurpasseg(),
+                                item.getSurpasssg(),
+                                item.getSurpasssig(),
+                                item.getVacancyeg(),
+                                item.getVacancysg(),
+                                item.getVacancysig()
+                        ));
+            }
+        }
+        dBGwyZQDaoUtils.insertMulti(dbListZQ);
 
     }
 

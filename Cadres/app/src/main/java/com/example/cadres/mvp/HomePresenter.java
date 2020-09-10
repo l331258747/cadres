@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.cadres.bean.Gb.GbBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
+import com.example.cadres.bean.bmGwy.BmGwyBean;
 import com.example.cadres.bean.dsjty.HjtyBean;
 import com.example.cadres.bean.dsjty.HjtyListBean;
 import com.example.cadres.bean.dsjty.JgtyBean;
@@ -214,6 +215,22 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         };
         MethodApi.getSearchData(new OnSuccessAndFaultSub(listener, context,false));
+    }
+
+    @Override
+    public void getBmListGwy() {
+        ResponseCallback listener = new ResponseCallback<BmGwyBean>() {
+            @Override
+            public void onSuccess(BmGwyBean data) {
+                iView.getBmListGwySuccess(data);
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getBmListGwyFailed(errorMsg);
+            }
+        };
+        MethodApi.getBmListGwy(new OnSuccessAndFaultSub(listener, context,false));
     }
 
     @Override

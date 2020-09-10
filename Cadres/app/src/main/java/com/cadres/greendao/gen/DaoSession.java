@@ -21,6 +21,12 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBGbCadreRankListBean;
 import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.beanDB.DBGbCadreTrainListBean;
+import com.example.cadres.beanDB.DBGwyDWLB;
+import com.example.cadres.beanDB.DBGwyFGDJ;
+import com.example.cadres.beanDB.DBGwyFGZLDJ;
+import com.example.cadres.beanDB.DBGwyJWJS;
+import com.example.cadres.beanDB.DBGwyZHGL;
+import com.example.cadres.beanDB.DBGwyZQ;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.beanDB.DBTyHj;
 import com.example.cadres.beanDB.DBTyHjList;
@@ -48,6 +54,12 @@ import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreRankListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreTrainListBeanDao;
+import com.cadres.greendao.gen.DBGwyDWLBDao;
+import com.cadres.greendao.gen.DBGwyFGDJDao;
+import com.cadres.greendao.gen.DBGwyFGZLDJDao;
+import com.cadres.greendao.gen.DBGwyJWJSDao;
+import com.cadres.greendao.gen.DBGwyZHGLDao;
+import com.cadres.greendao.gen.DBGwyZQDao;
 import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.cadres.greendao.gen.DBTyHjDao;
 import com.cadres.greendao.gen.DBTyHjListDao;
@@ -84,6 +96,12 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig dBGbCadreRankListBeanDaoConfig;
     private final DaoConfig dBGbCadreResumeListBeanDaoConfig;
     private final DaoConfig dBGbCadreTrainListBeanDaoConfig;
+    private final DaoConfig dBGwyDWLBDaoConfig;
+    private final DaoConfig dBGwyFGDJDaoConfig;
+    private final DaoConfig dBGwyFGZLDJDaoConfig;
+    private final DaoConfig dBGwyJWJSDaoConfig;
+    private final DaoConfig dBGwyZHGLDaoConfig;
+    private final DaoConfig dBGwyZQDaoConfig;
     private final DaoConfig dBSearchBeanDaoConfig;
     private final DaoConfig dBTyHjDaoConfig;
     private final DaoConfig dBTyHjListDaoConfig;
@@ -111,6 +129,12 @@ public class DaoSession extends AbstractDaoSession {
     private final DBGbCadreRankListBeanDao dBGbCadreRankListBeanDao;
     private final DBGbCadreResumeListBeanDao dBGbCadreResumeListBeanDao;
     private final DBGbCadreTrainListBeanDao dBGbCadreTrainListBeanDao;
+    private final DBGwyDWLBDao dBGwyDWLBDao;
+    private final DBGwyFGDJDao dBGwyFGDJDao;
+    private final DBGwyFGZLDJDao dBGwyFGZLDJDao;
+    private final DBGwyJWJSDao dBGwyJWJSDao;
+    private final DBGwyZHGLDao dBGwyZHGLDao;
+    private final DBGwyZQDao dBGwyZQDao;
     private final DBSearchBeanDao dBSearchBeanDao;
     private final DBTyHjDao dBTyHjDao;
     private final DBTyHjListDao dBTyHjListDao;
@@ -168,6 +192,24 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreTrainListBeanDaoConfig = daoConfigMap.get(DBGbCadreTrainListBeanDao.class).clone();
         dBGbCadreTrainListBeanDaoConfig.initIdentityScope(type);
 
+        dBGwyDWLBDaoConfig = daoConfigMap.get(DBGwyDWLBDao.class).clone();
+        dBGwyDWLBDaoConfig.initIdentityScope(type);
+
+        dBGwyFGDJDaoConfig = daoConfigMap.get(DBGwyFGDJDao.class).clone();
+        dBGwyFGDJDaoConfig.initIdentityScope(type);
+
+        dBGwyFGZLDJDaoConfig = daoConfigMap.get(DBGwyFGZLDJDao.class).clone();
+        dBGwyFGZLDJDaoConfig.initIdentityScope(type);
+
+        dBGwyJWJSDaoConfig = daoConfigMap.get(DBGwyJWJSDao.class).clone();
+        dBGwyJWJSDaoConfig.initIdentityScope(type);
+
+        dBGwyZHGLDaoConfig = daoConfigMap.get(DBGwyZHGLDao.class).clone();
+        dBGwyZHGLDaoConfig.initIdentityScope(type);
+
+        dBGwyZQDaoConfig = daoConfigMap.get(DBGwyZQDao.class).clone();
+        dBGwyZQDaoConfig.initIdentityScope(type);
+
         dBSearchBeanDaoConfig = daoConfigMap.get(DBSearchBeanDao.class).clone();
         dBSearchBeanDaoConfig.initIdentityScope(type);
 
@@ -220,6 +262,12 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreRankListBeanDao = new DBGbCadreRankListBeanDao(dBGbCadreRankListBeanDaoConfig, this);
         dBGbCadreResumeListBeanDao = new DBGbCadreResumeListBeanDao(dBGbCadreResumeListBeanDaoConfig, this);
         dBGbCadreTrainListBeanDao = new DBGbCadreTrainListBeanDao(dBGbCadreTrainListBeanDaoConfig, this);
+        dBGwyDWLBDao = new DBGwyDWLBDao(dBGwyDWLBDaoConfig, this);
+        dBGwyFGDJDao = new DBGwyFGDJDao(dBGwyFGDJDaoConfig, this);
+        dBGwyFGZLDJDao = new DBGwyFGZLDJDao(dBGwyFGZLDJDaoConfig, this);
+        dBGwyJWJSDao = new DBGwyJWJSDao(dBGwyJWJSDaoConfig, this);
+        dBGwyZHGLDao = new DBGwyZHGLDao(dBGwyZHGLDaoConfig, this);
+        dBGwyZQDao = new DBGwyZQDao(dBGwyZQDaoConfig, this);
         dBSearchBeanDao = new DBSearchBeanDao(dBSearchBeanDaoConfig, this);
         dBTyHjDao = new DBTyHjDao(dBTyHjDaoConfig, this);
         dBTyHjListDao = new DBTyHjListDao(dBTyHjListDaoConfig, this);
@@ -247,6 +295,12 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(DBGbCadreRankListBean.class, dBGbCadreRankListBeanDao);
         registerDao(DBGbCadreResumeListBean.class, dBGbCadreResumeListBeanDao);
         registerDao(DBGbCadreTrainListBean.class, dBGbCadreTrainListBeanDao);
+        registerDao(DBGwyDWLB.class, dBGwyDWLBDao);
+        registerDao(DBGwyFGDJ.class, dBGwyFGDJDao);
+        registerDao(DBGwyFGZLDJ.class, dBGwyFGZLDJDao);
+        registerDao(DBGwyJWJS.class, dBGwyJWJSDao);
+        registerDao(DBGwyZHGL.class, dBGwyZHGLDao);
+        registerDao(DBGwyZQ.class, dBGwyZQDao);
         registerDao(DBSearchBean.class, dBSearchBeanDao);
         registerDao(DBTyHj.class, dBTyHjDao);
         registerDao(DBTyHjList.class, dBTyHjListDao);
@@ -276,6 +330,12 @@ public class DaoSession extends AbstractDaoSession {
         dBGbCadreRankListBeanDaoConfig.clearIdentityScope();
         dBGbCadreResumeListBeanDaoConfig.clearIdentityScope();
         dBGbCadreTrainListBeanDaoConfig.clearIdentityScope();
+        dBGwyDWLBDaoConfig.clearIdentityScope();
+        dBGwyFGDJDaoConfig.clearIdentityScope();
+        dBGwyFGZLDJDaoConfig.clearIdentityScope();
+        dBGwyJWJSDaoConfig.clearIdentityScope();
+        dBGwyZHGLDaoConfig.clearIdentityScope();
+        dBGwyZQDaoConfig.clearIdentityScope();
         dBSearchBeanDaoConfig.clearIdentityScope();
         dBTyHjDaoConfig.clearIdentityScope();
         dBTyHjListDaoConfig.clearIdentityScope();
@@ -341,6 +401,30 @@ public class DaoSession extends AbstractDaoSession {
 
     public DBGbCadreTrainListBeanDao getDBGbCadreTrainListBeanDao() {
         return dBGbCadreTrainListBeanDao;
+    }
+
+    public DBGwyDWLBDao getDBGwyDWLBDao() {
+        return dBGwyDWLBDao;
+    }
+
+    public DBGwyFGDJDao getDBGwyFGDJDao() {
+        return dBGwyFGDJDao;
+    }
+
+    public DBGwyFGZLDJDao getDBGwyFGZLDJDao() {
+        return dBGwyFGZLDJDao;
+    }
+
+    public DBGwyJWJSDao getDBGwyJWJSDao() {
+        return dBGwyJWJSDao;
+    }
+
+    public DBGwyZHGLDao getDBGwyZHGLDao() {
+        return dBGwyZHGLDao;
+    }
+
+    public DBGwyZQDao getDBGwyZQDao() {
+        return dBGwyZQDao;
     }
 
     public DBSearchBeanDao getDBSearchBeanDao() {
