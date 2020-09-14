@@ -647,8 +647,8 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     sql.append(" " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + "?");
                     sql2.append(" " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + "?");
                 } else {
-                    sql.append(" and " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + " ?");
-                    sql2.append(" and " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
+                    sql.append(" or " + DBGbBeanDao.Properties.FullTimeSchoolType.columnName + " like " + " ?");
+                    sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
                 }
             }
             queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(), values), new WhereCondition.StringCondition(sql2.toString(), values));
