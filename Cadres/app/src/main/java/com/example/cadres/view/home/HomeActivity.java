@@ -266,12 +266,14 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(intent1);
                 break;
             case R.id.view_mcb:
-                startActivity(new Intent(context, BmActivity.class));
+                Intent intent_mcb= new Intent(context, DsjtySelectActivity.class);
+                intent_mcb.putExtra("upActivity", 1);
+                startActivity(intent_mcb);
                 break;
             case R.id.view_gbmc:
-                Intent intent0= new Intent(context, GbSelectActivity.class);
-                intent0.putExtra("upActivity", 0);
-                startActivity(intent0);
+                Intent intent_gbmc= new Intent(context, GbSelectActivity.class);
+                intent_gbmc.putExtra("upActivity", 0);
+                startActivity(intent_gbmc);
                 break;
             case R.id.view_yjjc:
                 startActivity(new Intent(context, YjjcActivity.class));
@@ -898,23 +900,31 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getDeptName(),
                                 item.getSubset(),
                                 item.getDisplay(),
-                                item.getVerificationez(),
-                                item.getVerificationsz(),
-                                item.getVerificationsiz(),
+                                item.getGwyType(),
+                                item.getVerificationed(),
+                                item.getVerificationsd() ,
+                                item.getVerificationsid() ,
+                                item.getVerificationyez(),
+                                item.getVerificationssz(),
+                                item.getActualed(),
+                                item.getActualsd(),
+                                item.getActualsid(),
+                                item.getActualyz(),
                                 item.getActualez(),
                                 item.getActualsz(),
                                 item.getActualsiz(),
-                                item.getActualyg(),
-                                item.getActualeg(),
-                                item.getActualsg(),
-                                item.getActualsig(),
-                                item.getActualjsy(),
-                                item.getSurpassez(),
-                                item.getSurpasssz(),
-                                item.getSurpasssiz(),
-                                item.getVacancyez(),
-                                item.getVacancysz(),
-                                item.getVacancysiz()
+                                item.getActualyk(),
+                                item.getActualek(),
+                                item.getSurpassed(),
+                                item.getSurpasssd(),
+                                item.getSurpasssid(),
+                                item.getSurpassyez(),
+                                item.getSurpassssz(),
+                                item.getVacancyed(),
+                                item.getVacancysd(),
+                                item.getVacancysid(),
+                                item.getVacancyyez(),
+                                item.getVacancyssz()
                         ));
             }
         }

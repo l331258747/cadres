@@ -4,52 +4,69 @@ public class GwyZHGL {
 
 
     /**
-     * deptId : 294
-     * deptName : 公安局
+     * deptId : 277
+     * deptName : 人民法院
      * subset : 0
      * display : 0
-     * orgType : null
-     * financeType : null
-     * verificationez : 0
-     * verificationsz : 0
-     * verificationsiz : 0
+     * orgType : 5
+     * financeType : 1
+     * gwyType : null
+     * jurisdiction : null
+     * verificationed : 0
+     * verificationsd : 0
+     * verificationsid : 0
+     * verificationyez : 0
+     * verificationssz : 0
+     * actualed : 0
+     * actualsd : 0
+     * actualsid : 0
+     * actualyz : 0
      * actualez : 0
      * actualsz : 0
      * actualsiz : 0
-     * actualyg : 0
-     * actualeg : 0
-     * actualsg : 0
-     * actualsig : 0
-     * actualjsy : 0
-     * surpassez : 0
-     * surpasssz : 0
-     * surpasssiz : 0
-     * vacancyez : 0
-     * vacancysz : 0
-     * vacancysiz : 0
+     * actualyk : null
+     * actualek : null
+     * surpassed : 0
+     * surpasssd : 0
+     * surpasssid : 0
+     * surpassyez : 0
+     * surpassssz : 0
+     * vacancyed : 0
+     * vacancysd : 0
+     * vacancysid : 0
+     * vacancyyez : 0
+     * vacancyssz : 0
      */
 
     private int deptId;
     private String deptName;
     private int subset;
     private int display;
-    private int verificationez;
-    private int verificationsz;
-    private int verificationsiz;
+    private String gwyType;
+    private int verificationed;
+    private int verificationsd;
+    private int verificationsid;
+    private int verificationyez;
+    private int verificationssz;
+    private int actualed;
+    private int actualsd;
+    private int actualsid;
+    private int actualyz;
     private int actualez;
     private int actualsz;
     private int actualsiz;
-    private int actualyg;
-    private int actualeg;
-    private int actualsg;
-    private int actualsig;
-    private int actualjsy;
-    private int surpassez;
-    private int surpasssz;
-    private int surpasssiz;
-    private int vacancyez;
-    private int vacancysz;
-    private int vacancysiz;
+    private int actualyk;
+    private int actualek;
+    private int surpassed;
+    private int surpasssd;
+    private int surpasssid;
+    private int surpassyez;
+    private int surpassssz;
+    private int vacancyed;
+    private int vacancysd;
+    private int vacancysid;
+    private int vacancyyez;
+    private int vacancyssz;
 
     public int getDeptId() {
         return deptId;
@@ -67,16 +84,44 @@ public class GwyZHGL {
         return display;
     }
 
-    public int getVerificationez() {
-        return verificationez;
+    public String getGwyType() {
+        return gwyType;
     }
 
-    public int getVerificationsz() {
-        return verificationsz;
+    public int getVerificationed() {
+        return verificationed;
     }
 
-    public int getVerificationsiz() {
-        return verificationsiz;
+    public int getVerificationsd() {
+        return verificationsd;
+    }
+
+    public int getVerificationsid() {
+        return verificationsid;
+    }
+
+    public int getVerificationyez() {
+        return verificationyez;
+    }
+
+    public int getVerificationssz() {
+        return verificationssz;
+    }
+
+    public int getActualed() {
+        return actualed;
+    }
+
+    public int getActualsd() {
+        return actualsd;
+    }
+
+    public int getActualsid() {
+        return actualsid;
+    }
+
+    public int getActualyz() {
+        return actualyz;
     }
 
     public int getActualez() {
@@ -91,47 +136,51 @@ public class GwyZHGL {
         return actualsiz;
     }
 
-    public int getActualyg() {
-        return actualyg;
+    public int getActualyk() {
+        return actualyk;
     }
 
-    public int getActualeg() {
-        return actualeg;
+    public int getActualek() {
+        return actualek;
     }
 
-    public int getActualsg() {
-        return actualsg;
+    public int getSurpassed() {
+        return surpassed;
     }
 
-    public int getActualsig() {
-        return actualsig;
+    public int getSurpasssd() {
+        return surpasssd;
     }
 
-    public int getActualjsy() {
-        return actualjsy;
+    public int getSurpasssid() {
+        return surpasssid;
     }
 
-    public int getSurpassez() {
-        return surpassez;
+    public int getSurpassyez() {
+        return surpassyez;
     }
 
-    public int getSurpasssz() {
-        return surpasssz;
+    public int getSurpassssz() {
+        return surpassssz;
     }
 
-    public int getSurpasssiz() {
-        return surpasssiz;
+    public int getVacancyed() {
+        return vacancyed;
     }
 
-    public int getVacancyez() {
-        return vacancyez;
+    public int getVacancysd() {
+        return vacancysd;
     }
 
-    public int getVacancysz() {
-        return vacancysz;
+    public int getVacancysid() {
+        return vacancysid;
     }
 
-    public int getVacancysiz() {
-        return vacancysiz;
+    public int getVacancyyez() {
+        return vacancyyez;
+    }
+
+    public int getVacancyssz() {
+        return vacancyssz;
     }
 }

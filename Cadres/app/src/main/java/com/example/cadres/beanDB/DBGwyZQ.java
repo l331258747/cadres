@@ -61,6 +61,7 @@ public class DBGwyZQ {
     private int vacancysg;
     private int vacancysig;
 
+
     @Generated(hash = 1157781641)
     public DBGwyZQ(Long _id, int deptId, String deptName, int subset, int display,
             int verificationeg, int verificationsg, int verificationsig,

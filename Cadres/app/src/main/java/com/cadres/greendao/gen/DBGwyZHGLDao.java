@@ -29,23 +29,31 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
         public final static Property DeptName = new Property(2, String.class, "deptName", false, "DEPT_NAME");
         public final static Property Subset = new Property(3, int.class, "subset", false, "SUBSET");
         public final static Property Display = new Property(4, int.class, "display", false, "DISPLAY");
-        public final static Property Verificationez = new Property(5, int.class, "verificationez", false, "VERIFICATIONEZ");
-        public final static Property Verificationsz = new Property(6, int.class, "verificationsz", false, "VERIFICATIONSZ");
-        public final static Property Verificationsiz = new Property(7, int.class, "verificationsiz", false, "VERIFICATIONSIZ");
-        public final static Property Actualez = new Property(8, int.class, "actualez", false, "ACTUALEZ");
-        public final static Property Actualsz = new Property(9, int.class, "actualsz", false, "ACTUALSZ");
-        public final static Property Actualsiz = new Property(10, int.class, "actualsiz", false, "ACTUALSIZ");
-        public final static Property Actualyg = new Property(11, int.class, "actualyg", false, "ACTUALYG");
-        public final static Property Actualeg = new Property(12, int.class, "actualeg", false, "ACTUALEG");
-        public final static Property Actualsg = new Property(13, int.class, "actualsg", false, "ACTUALSG");
-        public final static Property Actualsig = new Property(14, int.class, "actualsig", false, "ACTUALSIG");
-        public final static Property Actualjsy = new Property(15, int.class, "actualjsy", false, "ACTUALJSY");
-        public final static Property Surpassez = new Property(16, int.class, "surpassez", false, "SURPASSEZ");
-        public final static Property Surpasssz = new Property(17, int.class, "surpasssz", false, "SURPASSSZ");
-        public final static Property Surpasssiz = new Property(18, int.class, "surpasssiz", false, "SURPASSSIZ");
-        public final static Property Vacancyez = new Property(19, int.class, "vacancyez", false, "VACANCYEZ");
-        public final static Property Vacancysz = new Property(20, int.class, "vacancysz", false, "VACANCYSZ");
-        public final static Property Vacancysiz = new Property(21, int.class, "vacancysiz", false, "VACANCYSIZ");
+        public final static Property GwyType = new Property(5, String.class, "gwyType", false, "GWY_TYPE");
+        public final static Property Verificationed = new Property(6, int.class, "verificationed", false, "VERIFICATIONED");
+        public final static Property Verificationsd = new Property(7, int.class, "verificationsd", false, "VERIFICATIONSD");
+        public final static Property Verificationsid = new Property(8, int.class, "verificationsid", false, "VERIFICATIONSID");
+        public final static Property Verificationyez = new Property(9, int.class, "verificationyez", false, "VERIFICATIONYEZ");
+        public final static Property Verificationssz = new Property(10, int.class, "verificationssz", false, "VERIFICATIONSSZ");
+        public final static Property Actualed = new Property(11, int.class, "actualed", false, "ACTUALED");
+        public final static Property Actualsd = new Property(12, int.class, "actualsd", false, "ACTUALSD");
+        public final static Property Actualsid = new Property(13, int.class, "actualsid", false, "ACTUALSID");
+        public final static Property Actualyz = new Property(14, int.class, "actualyz", false, "ACTUALYZ");
+        public final static Property Actualez = new Property(15, int.class, "actualez", false, "ACTUALEZ");
+        public final static Property Actualsz = new Property(16, int.class, "actualsz", false, "ACTUALSZ");
+        public final static Property Actualsiz = new Property(17, int.class, "actualsiz", false, "ACTUALSIZ");
+        public final static Property Actualyk = new Property(18, int.class, "actualyk", false, "ACTUALYK");
+        public final static Property Actualek = new Property(19, int.class, "actualek", false, "ACTUALEK");
+        public final static Property Surpassed = new Property(20, int.class, "surpassed", false, "SURPASSED");
+        public final static Property Surpasssd = new Property(21, int.class, "surpasssd", false, "SURPASSSD");
+        public final static Property Surpasssid = new Property(22, int.class, "surpasssid", false, "SURPASSSID");
+        public final static Property Surpassyez = new Property(23, int.class, "surpassyez", false, "SURPASSYEZ");
+        public final static Property Surpassssz = new Property(24, int.class, "surpassssz", false, "SURPASSSSZ");
+        public final static Property Vacancyed = new Property(25, int.class, "vacancyed", false, "VACANCYED");
+        public final static Property Vacancysd = new Property(26, int.class, "vacancysd", false, "VACANCYSD");
+        public final static Property Vacancysid = new Property(27, int.class, "vacancysid", false, "VACANCYSID");
+        public final static Property Vacancyyez = new Property(28, int.class, "vacancyyez", false, "VACANCYYEZ");
+        public final static Property Vacancyssz = new Property(29, int.class, "vacancyssz", false, "VACANCYSSZ");
     }
 
 
@@ -66,23 +74,31 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
                 "\"DEPT_NAME\" TEXT," + // 2: deptName
                 "\"SUBSET\" INTEGER NOT NULL ," + // 3: subset
                 "\"DISPLAY\" INTEGER NOT NULL ," + // 4: display
-                "\"VERIFICATIONEZ\" INTEGER NOT NULL ," + // 5: verificationez
-                "\"VERIFICATIONSZ\" INTEGER NOT NULL ," + // 6: verificationsz
-                "\"VERIFICATIONSIZ\" INTEGER NOT NULL ," + // 7: verificationsiz
-                "\"ACTUALEZ\" INTEGER NOT NULL ," + // 8: actualez
-                "\"ACTUALSZ\" INTEGER NOT NULL ," + // 9: actualsz
-                "\"ACTUALSIZ\" INTEGER NOT NULL ," + // 10: actualsiz
-                "\"ACTUALYG\" INTEGER NOT NULL ," + // 11: actualyg
-                "\"ACTUALEG\" INTEGER NOT NULL ," + // 12: actualeg
-                "\"ACTUALSG\" INTEGER NOT NULL ," + // 13: actualsg
-                "\"ACTUALSIG\" INTEGER NOT NULL ," + // 14: actualsig
-                "\"ACTUALJSY\" INTEGER NOT NULL ," + // 15: actualjsy
-                "\"SURPASSEZ\" INTEGER NOT NULL ," + // 16: surpassez
-                "\"SURPASSSZ\" INTEGER NOT NULL ," + // 17: surpasssz
-                "\"SURPASSSIZ\" INTEGER NOT NULL ," + // 18: surpasssiz
-                "\"VACANCYEZ\" INTEGER NOT NULL ," + // 19: vacancyez
-                "\"VACANCYSZ\" INTEGER NOT NULL ," + // 20: vacancysz
-                "\"VACANCYSIZ\" INTEGER NOT NULL );"); // 21: vacancysiz
+                "\"GWY_TYPE\" TEXT," + // 5: gwyType
+                "\"VERIFICATIONED\" INTEGER NOT NULL ," + // 6: verificationed
+                "\"VERIFICATIONSD\" INTEGER NOT NULL ," + // 7: verificationsd
+                "\"VERIFICATIONSID\" INTEGER NOT NULL ," + // 8: verificationsid
+                "\"VERIFICATIONYEZ\" INTEGER NOT NULL ," + // 9: verificationyez
+                "\"VERIFICATIONSSZ\" INTEGER NOT NULL ," + // 10: verificationssz
+                "\"ACTUALED\" INTEGER NOT NULL ," + // 11: actualed
+                "\"ACTUALSD\" INTEGER NOT NULL ," + // 12: actualsd
+                "\"ACTUALSID\" INTEGER NOT NULL ," + // 13: actualsid
+                "\"ACTUALYZ\" INTEGER NOT NULL ," + // 14: actualyz
+                "\"ACTUALEZ\" INTEGER NOT NULL ," + // 15: actualez
+                "\"ACTUALSZ\" INTEGER NOT NULL ," + // 16: actualsz
+                "\"ACTUALSIZ\" INTEGER NOT NULL ," + // 17: actualsiz
+                "\"ACTUALYK\" INTEGER NOT NULL ," + // 18: actualyk
+                "\"ACTUALEK\" INTEGER NOT NULL ," + // 19: actualek
+                "\"SURPASSED\" INTEGER NOT NULL ," + // 20: surpassed
+                "\"SURPASSSD\" INTEGER NOT NULL ," + // 21: surpasssd
+                "\"SURPASSSID\" INTEGER NOT NULL ," + // 22: surpasssid
+                "\"SURPASSYEZ\" INTEGER NOT NULL ," + // 23: surpassyez
+                "\"SURPASSSSZ\" INTEGER NOT NULL ," + // 24: surpassssz
+                "\"VACANCYED\" INTEGER NOT NULL ," + // 25: vacancyed
+                "\"VACANCYSD\" INTEGER NOT NULL ," + // 26: vacancysd
+                "\"VACANCYSID\" INTEGER NOT NULL ," + // 27: vacancysid
+                "\"VACANCYYEZ\" INTEGER NOT NULL ," + // 28: vacancyyez
+                "\"VACANCYSSZ\" INTEGER NOT NULL );"); // 29: vacancyssz
     }
 
     /** Drops the underlying database table. */
@@ -107,23 +123,35 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
         }
         stmt.bindLong(4, entity.getSubset());
         stmt.bindLong(5, entity.getDisplay());
-        stmt.bindLong(6, entity.getVerificationez());
-        stmt.bindLong(7, entity.getVerificationsz());
-        stmt.bindLong(8, entity.getVerificationsiz());
-        stmt.bindLong(9, entity.getActualez());
-        stmt.bindLong(10, entity.getActualsz());
-        stmt.bindLong(11, entity.getActualsiz());
-        stmt.bindLong(12, entity.getActualyg());
-        stmt.bindLong(13, entity.getActualeg());
-        stmt.bindLong(14, entity.getActualsg());
-        stmt.bindLong(15, entity.getActualsig());
-        stmt.bindLong(16, entity.getActualjsy());
-        stmt.bindLong(17, entity.getSurpassez());
-        stmt.bindLong(18, entity.getSurpasssz());
-        stmt.bindLong(19, entity.getSurpasssiz());
-        stmt.bindLong(20, entity.getVacancyez());
-        stmt.bindLong(21, entity.getVacancysz());
-        stmt.bindLong(22, entity.getVacancysiz());
+ 
+        String gwyType = entity.getGwyType();
+        if (gwyType != null) {
+            stmt.bindString(6, gwyType);
+        }
+        stmt.bindLong(7, entity.getVerificationed());
+        stmt.bindLong(8, entity.getVerificationsd());
+        stmt.bindLong(9, entity.getVerificationsid());
+        stmt.bindLong(10, entity.getVerificationyez());
+        stmt.bindLong(11, entity.getVerificationssz());
+        stmt.bindLong(12, entity.getActualed());
+        stmt.bindLong(13, entity.getActualsd());
+        stmt.bindLong(14, entity.getActualsid());
+        stmt.bindLong(15, entity.getActualyz());
+        stmt.bindLong(16, entity.getActualez());
+        stmt.bindLong(17, entity.getActualsz());
+        stmt.bindLong(18, entity.getActualsiz());
+        stmt.bindLong(19, entity.getActualyk());
+        stmt.bindLong(20, entity.getActualek());
+        stmt.bindLong(21, entity.getSurpassed());
+        stmt.bindLong(22, entity.getSurpasssd());
+        stmt.bindLong(23, entity.getSurpasssid());
+        stmt.bindLong(24, entity.getSurpassyez());
+        stmt.bindLong(25, entity.getSurpassssz());
+        stmt.bindLong(26, entity.getVacancyed());
+        stmt.bindLong(27, entity.getVacancysd());
+        stmt.bindLong(28, entity.getVacancysid());
+        stmt.bindLong(29, entity.getVacancyyez());
+        stmt.bindLong(30, entity.getVacancyssz());
     }
 
     @Override
@@ -142,23 +170,35 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
         }
         stmt.bindLong(4, entity.getSubset());
         stmt.bindLong(5, entity.getDisplay());
-        stmt.bindLong(6, entity.getVerificationez());
-        stmt.bindLong(7, entity.getVerificationsz());
-        stmt.bindLong(8, entity.getVerificationsiz());
-        stmt.bindLong(9, entity.getActualez());
-        stmt.bindLong(10, entity.getActualsz());
-        stmt.bindLong(11, entity.getActualsiz());
-        stmt.bindLong(12, entity.getActualyg());
-        stmt.bindLong(13, entity.getActualeg());
-        stmt.bindLong(14, entity.getActualsg());
-        stmt.bindLong(15, entity.getActualsig());
-        stmt.bindLong(16, entity.getActualjsy());
-        stmt.bindLong(17, entity.getSurpassez());
-        stmt.bindLong(18, entity.getSurpasssz());
-        stmt.bindLong(19, entity.getSurpasssiz());
-        stmt.bindLong(20, entity.getVacancyez());
-        stmt.bindLong(21, entity.getVacancysz());
-        stmt.bindLong(22, entity.getVacancysiz());
+ 
+        String gwyType = entity.getGwyType();
+        if (gwyType != null) {
+            stmt.bindString(6, gwyType);
+        }
+        stmt.bindLong(7, entity.getVerificationed());
+        stmt.bindLong(8, entity.getVerificationsd());
+        stmt.bindLong(9, entity.getVerificationsid());
+        stmt.bindLong(10, entity.getVerificationyez());
+        stmt.bindLong(11, entity.getVerificationssz());
+        stmt.bindLong(12, entity.getActualed());
+        stmt.bindLong(13, entity.getActualsd());
+        stmt.bindLong(14, entity.getActualsid());
+        stmt.bindLong(15, entity.getActualyz());
+        stmt.bindLong(16, entity.getActualez());
+        stmt.bindLong(17, entity.getActualsz());
+        stmt.bindLong(18, entity.getActualsiz());
+        stmt.bindLong(19, entity.getActualyk());
+        stmt.bindLong(20, entity.getActualek());
+        stmt.bindLong(21, entity.getSurpassed());
+        stmt.bindLong(22, entity.getSurpasssd());
+        stmt.bindLong(23, entity.getSurpasssid());
+        stmt.bindLong(24, entity.getSurpassyez());
+        stmt.bindLong(25, entity.getSurpassssz());
+        stmt.bindLong(26, entity.getVacancyed());
+        stmt.bindLong(27, entity.getVacancysd());
+        stmt.bindLong(28, entity.getVacancysid());
+        stmt.bindLong(29, entity.getVacancyyez());
+        stmt.bindLong(30, entity.getVacancyssz());
     }
 
     @Override
@@ -174,23 +214,31 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // deptName
             cursor.getInt(offset + 3), // subset
             cursor.getInt(offset + 4), // display
-            cursor.getInt(offset + 5), // verificationez
-            cursor.getInt(offset + 6), // verificationsz
-            cursor.getInt(offset + 7), // verificationsiz
-            cursor.getInt(offset + 8), // actualez
-            cursor.getInt(offset + 9), // actualsz
-            cursor.getInt(offset + 10), // actualsiz
-            cursor.getInt(offset + 11), // actualyg
-            cursor.getInt(offset + 12), // actualeg
-            cursor.getInt(offset + 13), // actualsg
-            cursor.getInt(offset + 14), // actualsig
-            cursor.getInt(offset + 15), // actualjsy
-            cursor.getInt(offset + 16), // surpassez
-            cursor.getInt(offset + 17), // surpasssz
-            cursor.getInt(offset + 18), // surpasssiz
-            cursor.getInt(offset + 19), // vacancyez
-            cursor.getInt(offset + 20), // vacancysz
-            cursor.getInt(offset + 21) // vacancysiz
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // gwyType
+            cursor.getInt(offset + 6), // verificationed
+            cursor.getInt(offset + 7), // verificationsd
+            cursor.getInt(offset + 8), // verificationsid
+            cursor.getInt(offset + 9), // verificationyez
+            cursor.getInt(offset + 10), // verificationssz
+            cursor.getInt(offset + 11), // actualed
+            cursor.getInt(offset + 12), // actualsd
+            cursor.getInt(offset + 13), // actualsid
+            cursor.getInt(offset + 14), // actualyz
+            cursor.getInt(offset + 15), // actualez
+            cursor.getInt(offset + 16), // actualsz
+            cursor.getInt(offset + 17), // actualsiz
+            cursor.getInt(offset + 18), // actualyk
+            cursor.getInt(offset + 19), // actualek
+            cursor.getInt(offset + 20), // surpassed
+            cursor.getInt(offset + 21), // surpasssd
+            cursor.getInt(offset + 22), // surpasssid
+            cursor.getInt(offset + 23), // surpassyez
+            cursor.getInt(offset + 24), // surpassssz
+            cursor.getInt(offset + 25), // vacancyed
+            cursor.getInt(offset + 26), // vacancysd
+            cursor.getInt(offset + 27), // vacancysid
+            cursor.getInt(offset + 28), // vacancyyez
+            cursor.getInt(offset + 29) // vacancyssz
         );
         return entity;
     }
@@ -202,23 +250,31 @@ public class DBGwyZHGLDao extends AbstractDao<DBGwyZHGL, Long> {
         entity.setDeptName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setSubset(cursor.getInt(offset + 3));
         entity.setDisplay(cursor.getInt(offset + 4));
-        entity.setVerificationez(cursor.getInt(offset + 5));
-        entity.setVerificationsz(cursor.getInt(offset + 6));
-        entity.setVerificationsiz(cursor.getInt(offset + 7));
-        entity.setActualez(cursor.getInt(offset + 8));
-        entity.setActualsz(cursor.getInt(offset + 9));
-        entity.setActualsiz(cursor.getInt(offset + 10));
-        entity.setActualyg(cursor.getInt(offset + 11));
-        entity.setActualeg(cursor.getInt(offset + 12));
-        entity.setActualsg(cursor.getInt(offset + 13));
-        entity.setActualsig(cursor.getInt(offset + 14));
-        entity.setActualjsy(cursor.getInt(offset + 15));
-        entity.setSurpassez(cursor.getInt(offset + 16));
-        entity.setSurpasssz(cursor.getInt(offset + 17));
-        entity.setSurpasssiz(cursor.getInt(offset + 18));
-        entity.setVacancyez(cursor.getInt(offset + 19));
-        entity.setVacancysz(cursor.getInt(offset + 20));
-        entity.setVacancysiz(cursor.getInt(offset + 21));
+        entity.setGwyType(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setVerificationed(cursor.getInt(offset + 6));
+        entity.setVerificationsd(cursor.getInt(offset + 7));
+        entity.setVerificationsid(cursor.getInt(offset + 8));
+        entity.setVerificationyez(cursor.getInt(offset + 9));
+        entity.setVerificationssz(cursor.getInt(offset + 10));
+        entity.setActualed(cursor.getInt(offset + 11));
+        entity.setActualsd(cursor.getInt(offset + 12));
+        entity.setActualsid(cursor.getInt(offset + 13));
+        entity.setActualyz(cursor.getInt(offset + 14));
+        entity.setActualez(cursor.getInt(offset + 15));
+        entity.setActualsz(cursor.getInt(offset + 16));
+        entity.setActualsiz(cursor.getInt(offset + 17));
+        entity.setActualyk(cursor.getInt(offset + 18));
+        entity.setActualek(cursor.getInt(offset + 19));
+        entity.setSurpassed(cursor.getInt(offset + 20));
+        entity.setSurpasssd(cursor.getInt(offset + 21));
+        entity.setSurpasssid(cursor.getInt(offset + 22));
+        entity.setSurpassyez(cursor.getInt(offset + 23));
+        entity.setSurpassssz(cursor.getInt(offset + 24));
+        entity.setVacancyed(cursor.getInt(offset + 25));
+        entity.setVacancysd(cursor.getInt(offset + 26));
+        entity.setVacancysid(cursor.getInt(offset + 27));
+        entity.setVacancyyez(cursor.getInt(offset + 28));
+        entity.setVacancyssz(cursor.getInt(offset + 29));
      }
     
     @Override

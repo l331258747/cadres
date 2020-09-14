@@ -77,6 +77,8 @@
             android:name=".view.Gb.GbSelectActivity"/>
         <activity
             android:name=".view.dsjty.DsjtySelectActivity"/>
+        <activity
+            android:name=".view.Bm.BmGwyActivity"/>
 
     </application>
 

@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/title_gwy_jwjs"
+    android:layout_height="wrap_content">
+
+<!--    3933 -->
+    <View
+        android:id="@+id/view_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_100"
+        android:background="@color/color_ffe5ce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    核定职数 240-->
+    <View
+        android:id="@+id/view_hdzs"
+        android:layout_width="@dimen/dp_240"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title" />
+
+    <TextView
+        android:id="@+id/tv_hdzs"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="核定职数"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="@+id/view_hdzs"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintTop_toTopOf="@+id/view_hdzs" />
+
+    <TextView
+        android:id="@+id/tv_hdzs_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:text="警务技术二级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_2"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hdzs"/>
+    
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_1" />
+
+
+    <TextView
+        android:id="@+id/tv_hdzs_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术三级主任"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hdzs"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_2" />
+
+    <TextView
+        android:id="@+id/tv_hdzs_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:text="警务技术四级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toEndOf="@+id/view_hdzs"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hdzs"/>
+
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toEndOf="@+id/view_hdzs"
+        app:layout_constraintTop_toTopOf="@+id/view_hdzs" />
+
+    <!--实配情况 720-->
+    <View
+        android:id="@+id/view_spqk"
+        android:layout_width="@dimen/dp_720"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        app:layout_constraintStart_toEndOf="@+id/view_hdzs"
+        app:layout_constraintTop_toTopOf="@+id/view_title" />
+
+    <TextView
+        android:id="@+id/tv_spqk"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="实际配备"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="@+id/view_spqk"
+        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintTop_toTopOf="@+id/view_spqk" />
+
+
+    <TextView
+        android:id="@+id/tv_spqk_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术二级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_2"
+        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_1" />
+
+    <TextView
+        android:id="@+id/tv_spqk_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术三级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_2" />
+
+    <TextView
+        android:id="@+id/tv_spqk_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术四级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_4"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_3"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_3"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_3" />
+
+    <TextView
+        android:id="@+id/tv_spqk_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术一级主管"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_4"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_4"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_4" />
+
+
+    <TextView
+        android:id="@+id/tv_spqk_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术二级主管"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_6"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_4"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_5"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_5"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_5" />
+
+    <TextView
+        android:id="@+id/tv_spqk_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术三级主管"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_7"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_5"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_6"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_6"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_6" />
+
+    <TextView
+        android:id="@+id/tv_spqk_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术四级主管"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_8"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_6"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_7"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_7"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_7" />
+
+    <TextView
+        android:id="@+id/tv_spqk_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术员"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_spqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_7"
+        app:layout_constraintTop_toBottomOf="@+id/tv_spqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/view_spqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_spqk"
+        app:layout_constraintTop_toTopOf="@+id/view_spqk" />
+
+    <!--超配情况 240 -->
+    <View
+        android:id="@+id/view_cpqk"
+        android:layout_width="@dimen/dp_240"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        app:layout_constraintStart_toEndOf="@+id/view_spqk"
+        app:layout_constraintTop_toTopOf="@+id/view_title" />
+
+    <TextView
+        android:id="@+id/tv_cpqk"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="超配情况"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="@+id/view_cpqk"
+        app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+        app:layout_constraintTop_toTopOf="@+id/view_cpqk" />
+
+    <TextView
+        android:id="@+id/tv_cpqk_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:text="警务技术二级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_2"
+        app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cpqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_1" />
+
+
+    <TextView
+        android:id="@+id/tv_cpqk_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:text="警务技术三级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cpqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_2" />
+
+    <TextView
+        android:id="@+id/tv_cpqk_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术四级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_cpqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cpqk"/>
+
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_cpqk"
+        app:layout_constraintTop_toTopOf="@+id/view_cpqk" />
+
+    <!--   空缺情况 240 -->
+    <View
+        android:id="@+id/view_kqqk"
+        android:layout_width="@dimen/dp_240"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        app:layout_constraintStart_toEndOf="@+id/view_cpqk"
+        app:layout_constraintTop_toTopOf="@+id/view_title" />
+
+    <TextView
+        android:id="@+id/tv_kqqk"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="空缺情况"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="@+id/view_kqqk"
+        app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+        app:layout_constraintTop_toTopOf="@+id/view_kqqk" />
+
+    <TextView
+        android:id="@+id/tv_kqqk_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术二级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_2"
+        app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+        app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_1" />
+
+
+    <TextView
+        android:id="@+id/tv_kqqk_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术三级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_kqqk_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_2" />
+
+    <TextView
+        android:id="@+id/tv_kqqk_3"
+        android:layout_width="0dp"
+        android:textSize="@dimen/sp_12"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:text="警务技术四级主任"
+        app:layout_constraintBottom_toBottomOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_kqqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_kqqk_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs"
+        app:layout_constraintEnd_toEndOf="@+id/view_kqqk"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
