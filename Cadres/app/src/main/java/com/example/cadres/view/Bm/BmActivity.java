@@ -155,13 +155,13 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
 
         if(!TextUtils.isEmpty(key)){
-            String sql = " " + DBBmBeanDao.Properties.ParentId.columnName
+            String sql = " (" + DBBmBeanDao.Properties.ParentId.columnName
                     + " in ( "
                     + " select " + DBBmBeanDao.Properties.DeptId.columnName
                     + " from " + DBBmBeanDao.TABLENAME
                     + " where " + DBBmBeanDao.Properties.DeptName.columnName + " like ? "
                     + " ) "
-                    + " or " + DBBmBeanDao.Properties.DeptName.columnName + " like ? ";
+                    + " or " + DBBmBeanDao.Properties.DeptName.columnName + " like ? )";
             String[] values = new String[]{"%" + key + "%","%" + key + "%"};
             queryBuilder.where(new WhereCondition.StringCondition(sql,values),DBBmBeanDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
