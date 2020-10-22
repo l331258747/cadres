@@ -2,6 +2,7 @@ package com.example.cadres.view.home;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -87,15 +88,16 @@ import com.example.cadres.beanDB.DbYjjcBean;
 import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DefaultDialog;
+import com.example.cadres.dialog.DialogUtil;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
+import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
-import com.example.cadres.view.Bm.BmActivity;
 import com.example.cadres.view.Gb.GbSelectActivity;
 import com.example.cadres.view.dsjty.DsjtySelectActivity;
 import com.example.cadres.view.search.SearchActivity;
@@ -110,6 +112,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import zlc.season.rxdownload.RxDownload;
+import zlc.season.rxdownload.entity.DownloadStatus;
 
 public class HomeActivity extends BaseActivity implements HomeContract.View, View.OnClickListener {
 
@@ -448,8 +456,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     public void getFilesSuccess(List<String> data) {
         pos = 0;
         files = data;
-//        loadImages(); //TODO
-        progress.dismiss();
+        loadImages(); //TODO
+//        progress.dismiss();
     }
 
     @Override
@@ -1501,7 +1509,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         }
         if (permission == android.Manifest.permission.WRITE_EXTERNAL_STORAGE) {
             isPermissions = true;
-            fistOne();
+            getApk();
         }
         return true;
     }
@@ -1518,7 +1526,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 if (grantResults.length > 0) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         isPermissions = true;
-                        fistOne();
+                        getApk();
                     } else {
                         checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
@@ -1575,147 +1583,145 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
         }
         //TODO 升级
-//        else if (requestCode == 10086) {
-//            LogUtil.e("设置了安装未知应用后的回调。。。");
-//            String successDownloadApkPath = FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName;
-//            installApkO(context, successDownloadApkPath);
-//        }
+        else if (requestCode == 10086) {
+            LogUtil.e("设置了安装未知应用后的回调。。。");
+            String successDownloadApkPath = FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName;
+            installApkO(context, successDownloadApkPath);
+        }
     }
 
     //----------end 权限不再询问处理-------------
+
+//    //------------------start 下载
+//
+//    //TODO 升级
+    public void getApk() {
+        mPresenter.getApk();
+    }
+//
+    String apkName;
     @Override
     public void getApkSuccess(ApkBean.ApkBean2 data) {
+        LogUtil.e("版本下载成功：" + data.toString());
+        int cVersionCode = AppUtils.getVersionCodeInt();
+        int sVersionCode = data.getVersion();
+        String apkUrl = data.getUrl();
+//        String apkUrl = "https://www.njzou.com/najiuzou.apk";
+        String content = data.getContent();
+        apkName = "宁乡市干部大数据管理系统" + sVersionCode + ".apk";
+
+        if (sVersionCode > cVersionCode) {
+            initProgress(content);
+            downLoadProgress.show();
+            goDownload(apkUrl);
+
+        } else {
+            fistOne();
+            LogUtil.e("最新版本");
+        }
+    }
+
+    Subscription subscription;
+
+    private void goDownload(String url) {
+        subscription = RxDownload.getInstance()
+                .download(url, apkName, FileUtil.getFolderPath(Constant.APK_PATH))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<DownloadStatus>() {
+
+                    @Override
+                    public void onCompleted() {
+                        //下载完成
+                        downLoadProgress.dismiss();
+                        installApkO(context,FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //下载出错
+                        fistOne();
+                        LogUtil.e("版本下载错误onError：" + e);
+                        showShortToast("apk下载中 错误");
+                        downLoadProgress.dismiss();
+                    }
+
+                    @Override
+                    public void onNext(final DownloadStatus status) {
+                        String str = status.getPercent();
+                        float num = Float.valueOf(str.substring(0, str.length() - 1));
+
+                        LogUtil.e("s :" + num);
+                        //下载状态
+                        downLoadProgress.setProgress((int) num);
+                    }
+                });
     }
 
     @Override
     public void getApkFailed(String msg) {
+        LogUtil.e("版本下载错误getApkFailed：" + msg);
+        showShortToast("下载apk接口 错误");
+        fistOne();
+        downLoadProgress.dismiss();
+
     }
 
-////    //------------------start 下载
-////
-////    //TODO 升级
-//    public void getApk() {
-//        mPresenter.getApk();
-//    }
-////
-//    String apkName;
+    // 3.下载成功，开始安装,兼容8.0安装位置来源的权限
+    private void installApkO(Context context, String downloadApkPath) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //是否有安装位置来源的权限
+            boolean haveInstallPermission = getPackageManager().canRequestPackageInstalls();
+            if (haveInstallPermission) {
+                LogUtil.e("8.0手机已经拥有安装未知来源应用的权限，直接安装！");
+                AppUtils.installApk(context, downloadApkPath);
+            } else {
+
+                DialogUtil.getInstance().getDefaultDialog(context, "安装应用需要打开安装未知来源应用权限，请去设置中开启权限", new DialogUtil.DialogCallBack() {
+                    @Override
+                    public void exectEvent(DialogInterface alterDialog) {
+                        Uri packageUri = Uri.parse("package:"+ AppUtils.getPakgeName());
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,packageUri);
+                        startActivityForResult(intent,10086);
+                    }
+                }).show();
+            }
+        } else {
+            AppUtils.installApk(context, downloadApkPath);
+        }
+    }
+    //4.开启了安装未知来源应用权限后，再次进行步骤3的安装。
 //    @Override
-//    public void getApkSuccess(ApkBean.ApkBean2 data) {
-//        LogUtil.e("版本下载成功：" + data.toString());
-//        int cVersionCode = AppUtils.getVersionCodeInt();
-//        int sVersionCode = data.getVersion();
-//        String apkUrl = data.getUrl();
-////        String apkUrl = "https://www.njzou.com/najiuzou.apk";
-//        String content = data.getContent();
-//        apkName = "宁乡市干部大数据管理系统" + sVersionCode + ".apk";
-//
-//        if (sVersionCode > cVersionCode) {
-//            initProgress(content);
-//            downLoadProgress.show();
-//            goDownload(apkUrl);
-//
-//        } else {
-////            goHome();
-//            LogUtil.e("最新版本");
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 10086) {
+//            LogUtil.e("设置了安装未知应用后的回调。。。");
+//            String successDownloadApkPath = FileUtil.getFOlderPath(Constant.APK_PATH) + File.separator + apkName;
+//            installApkO(context, successDownloadApkPath);
 //        }
 //    }
-//
-//    Subscription subscription;
-//
-//    private void goDownload(String url) {
-//        subscription = RxDownload.getInstance()
-//                .download(url, apkName, FileUtil.getFolderPath(Constant.APK_PATH))
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<DownloadStatus>() {
-//
-//                    @Override
-//                    public void onCompleted() {
-//                        //下载完成
-//                        downLoadProgress.dismiss();
-//                        installApkO(context,FileUtil.getFolderPath(Constant.APK_PATH) + File.separator + apkName);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        //下载出错
-////                        goHome();
-//                        LogUtil.e("版本下载错误：" + e);
-//                    }
-//
-//                    @Override
-//                    public void onNext(final DownloadStatus status) {
-//                        String str = status.getPercent();
-//                        float num = Float.valueOf(str.substring(0, str.length() - 1));
-//
-//                        LogUtil.e("s :" + num);
-//                        //下载状态
-//                        downLoadProgress.setProgress((int) num);
-//                    }
-//                });
-//    }
-//
-//    @Override
-//    public void getApkFailed(String msg) {
-//        LogUtil.e("版本下载错误：" + msg);
-////        goHome();
-//    }
-//
-//    // 3.下载成功，开始安装,兼容8.0安装位置来源的权限
-//    private void installApkO(Context context, String downloadApkPath) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            //是否有安装位置来源的权限
-//            boolean haveInstallPermission = getPackageManager().canRequestPackageInstalls();
-//            if (haveInstallPermission) {
-//                LogUtil.e("8.0手机已经拥有安装未知来源应用的权限，直接安装！");
-//                AppUtils.installApk(context, downloadApkPath);
-//            } else {
-//
-//                DialogUtil.getInstance().getDefaultDialog(context, "安装应用需要打开安装未知来源应用权限，请去设置中开启权限", new DialogUtil.DialogCallBack() {
-//                    @Override
-//                    public void exectEvent(DialogInterface alterDialog) {
-//                        Uri packageUri = Uri.parse("package:"+ AppUtils.getPakgeName());
-//                        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,packageUri);
-//                        startActivityForResult(intent,10086);
-//                    }
-//                }).show();
-//            }
-//        } else {
-//            AppUtils.installApk(context, downloadApkPath);
-//        }
-//    }
-//    //4.开启了安装未知来源应用权限后，再次进行步骤3的安装。
-////    @Override
-////    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-////        super.onActivityResult(requestCode, resultCode, data);
-////        if (requestCode == 10086) {
-////            LogUtil.e("设置了安装未知应用后的回调。。。");
-////            String successDownloadApkPath = FileUtil.getFOlderPath(Constant.APK_PATH) + File.separator + apkName;
-////            installApkO(context, successDownloadApkPath);
-////        }
-////    }
-//
-//
-//    //------------------end 下载
-//
-//    ProgressDialog downLoadProgress;
-//
-//    private void initProgress(String content) {
-//        downLoadProgress = new ProgressDialog(context);
-//        downLoadProgress.setTitle("下载更新");
-//        downLoadProgress.setMessage(content);
-//        downLoadProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//        downLoadProgress.setIndeterminate(false);//设置为fase等待进度更新，设置为true则左右循环滚动
-//        downLoadProgress.setMax(100);
-//        downLoadProgress.setCancelable(false);
-//    }
-//
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        if (subscription != null && !subscription.isUnsubscribed()) {
-//            subscription.unsubscribe();
-//        }
-//    }
+
+
+    //------------------end 下载
+
+    ProgressDialog downLoadProgress;
+
+    private void initProgress(String content) {
+        downLoadProgress = new ProgressDialog(context);
+        downLoadProgress.setTitle("下载更新");
+        downLoadProgress.setMessage(content);
+        downLoadProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        downLoadProgress.setIndeterminate(false);//设置为fase等待进度更新，设置为true则左右循环滚动
+        downLoadProgress.setMax(100);
+        downLoadProgress.setCancelable(false);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
 }
