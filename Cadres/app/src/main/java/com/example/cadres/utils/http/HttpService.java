@@ -76,9 +76,6 @@ public interface HttpService {
     @POST("appointDismissScheme/appointDismissVoteAdd")
     Observable<BaseResponse<EmptyModel>> sendYjjcVote(@Body RequestBody body);
 
-    @GET("fileUrl/findFileUrlList")
-    Observable<BaseResponse<FileBean>> getFiles();
-
     @POST("deduction/orgdeductionList")
     Observable<BaseResponse<JgtyBean>> getJgty();
 
@@ -100,5 +97,10 @@ public interface HttpService {
     @POST("gwyRank/gwyRankList")
     Observable<BaseResponse<BmGwyBean>> getBmListGwy();
 
+    @GET("fileUrl/findFileUrlList")
+    Observable<BaseResponse<FileBean>> getFiles();
+
+    @GET("fileUrl/findMeetingFileUrlList")
+    Observable<BaseResponse<FileBean>> getMeetingFiles();
 
 }

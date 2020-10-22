@@ -49,7 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private RelativeLayout titleLayout;
     private FrameLayout contentLayout;
     public ImageView leftIv,right_iv2;
-    private TextView titleTv,right_tv2;
+    private TextView titleTv,right_tv2,right_tv1;
     private LinearLayout ll_right1,ll_right2,ll_left1;
     ///////////////////////////////////////////////////
 
@@ -115,6 +115,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ll_right2 = $(R.id.ll_right2);
         right_iv2 = $(R.id.right_iv2);
         right_tv2 = $(R.id.right_tv2);
+        right_tv1 = $(R.id.right_tv1);
         ll_left1 = $(R.id.ll_left1);
 
         leftIv.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +241,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public LinearLayout getLLRight2(){
         return ll_right2;
     }
+    public TextView getTvRight1(){
+        return right_tv1;
+    }
+
     public LinearLayout getLLLeft1(){
         return ll_left1;
     }

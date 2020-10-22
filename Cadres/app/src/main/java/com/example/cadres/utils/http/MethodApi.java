@@ -120,4 +120,11 @@ public class MethodApi {
         Observable observable = HttpMethods.getInstance().getHttpService().getBmListGwy(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
+
+    //获取会议文件
+    public static void getMeetingFiles(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getMeetingFiles(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
 }
