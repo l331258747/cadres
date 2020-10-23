@@ -1661,7 +1661,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getApkFailed(String msg) {
         LogUtil.e("版本下载错误getApkFailed：" + msg);
-        showShortToast("下载apk接口 错误");
         fistOne();
         downLoadProgress.dismiss();
 

@@ -139,8 +139,8 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void getMeetingFilesFailed(String msg) {
-        showShortToast("同步失败 - 文件");
-        LogUtil.e("同步失败 - 文件:" + msg);
+        showShortToast("同步会议数据失败 - 文件");
+        LogUtil.e("同步会议数据失败 - 文件:" + msg);
 
         progress.dismiss();
     }
@@ -155,8 +155,8 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void getYjjcListFailed(String msg) {
-        showShortToast("同步失败");
-        LogUtil.e("同步失败:" + msg);
+        showShortToast("同步会议数据失败");
+        LogUtil.e("同步会议数据失败:" + msg);
 
         progress.dismiss();
     }

@@ -134,7 +134,7 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
     @Override
     public void sendYjjcVoteSuccess(EmptyModel data) {
         tv_btn.setVisibility(View.GONE);
-        RxBus2.getInstance().post(new VoteEvent());
+//        RxBus2.getInstance().post(new VoteEvent());
 
         state = 1;
         mPresenter.getYjjcVoteList(schemeId,MySelfInfo.getInstance().getUserId());

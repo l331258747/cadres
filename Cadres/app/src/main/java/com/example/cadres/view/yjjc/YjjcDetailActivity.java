@@ -1,5 +1,6 @@
 package com.example.cadres.view.yjjc;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.mvp.YjjcDetailContract;
 import com.example.cadres.mvp.YjjcDetailPresenter;
@@ -50,7 +52,7 @@ import androidx.viewpager.widget.ViewPager;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContract.View {
+public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContract.View, View.OnClickListener {
 
     TabLayout mTabLayout;
     ViewPager mViewPager;
@@ -74,7 +76,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     YjjcMettingFragment yjjcMettingFragment;
     YjjcCadreFragment yjjcCadreFragment;
 
-    public Disposable VoteDisposable;
+//    public Disposable VoteDisposable;
     YjjcDetailPresenter mPresenter;
     int schemeId;
 
@@ -99,6 +101,12 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         if(!isMeetingModel){
             showLeftIcon();
             showLLRightGoHome();
+        }else{
+            if(TextUtils.equals(type,"市委常委会议")){
+                showLLRightUpData();
+                getTvRight1().setText("同步票决数据");
+                getLLRight1().setOnClickListener(this);
+            }
         }
 
         showTitleTv("任免决策详情");
@@ -176,12 +184,12 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
             tv_dialog.setText(dbYjjcBeans.get(0).getSchemeTime());
         }
 
-        VoteDisposable = RxBus2.getInstance().toObservable(VoteEvent.class, new Consumer<VoteEvent>() {
-            @Override
-            public void accept(VoteEvent voteEvent) throws Exception {
-                mPresenter.getYjjcList();
-            }
-        });
+//        VoteDisposable = RxBus2.getInstance().toObservable(VoteEvent.class, new Consumer<VoteEvent>() {
+//            @Override
+//            public void accept(VoteEvent voteEvent) throws Exception {
+//                mPresenter.getYjjcList();
+//            }
+//        });
     }
 
     public void getDbList(String meetingType) {
@@ -265,8 +273,8 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(VoteDisposable !=null && !VoteDisposable.isDisposed())
-            VoteDisposable.dispose();
+//        if(VoteDisposable !=null && !VoteDisposable.isDisposed())
+//            VoteDisposable.dispose();
     }
 
     @Override
@@ -277,10 +285,13 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
         if(dbYjjcBeans !=null && dbYjjcBeans.size() > 0)
             yjjcCadreFragment.setData(schemeId, dbYjjcCadres,type);
+
+        showShortToast("同步成功");
     }
 
     @Override
     public void getYjjcListFailed(String msg) {
+        showShortToast("同步失败");
         LogUtil.e(msg);
     }
 
@@ -423,5 +434,22 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
         gbDrawerData.getData(baseId);
         scrollView.scrollTo(0,0);
         drawer_layout.openDrawer(Gravity.RIGHT);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(context, YjjcDetailActivity.class);
+        intent.putExtra("isMeetingModel", isMeetingModel);
+        //会议类型（1部务会议，2书记专题会议，3市委常委会议）
+        switch (view.getId()) {
+            case R.id.ll_right1:
+                new DefaultDialog(context).setContent("您是否确认同步票决数据？").setSubmitListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mPresenter.getYjjcList();
+                    }
+                }).show();
+                break;
+        }
     }
 }
