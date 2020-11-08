@@ -222,22 +222,22 @@
         android:layout_marginEnd="@dimen/dp_10"
         android:layout_height="@dimen/dp_1"/>
 
-    <TextView
-        android:id="@+id/tv_content_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_marginEnd="@dimen/dp_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        android:gravity="center"
-        android:textSize="@dimen/sp_24"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="有关干部调整配备情况汇报"
-        app:layout_constraintTop_toBottomOf="@+id/view_top_line"
-        app:layout_constraintVertical_bias="1.0" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_content_title"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/dp_20"-->
+<!--        android:layout_marginTop="@dimen/dp_30"-->
+<!--        android:layout_marginEnd="@dimen/dp_20"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        android:gravity="center"-->
+<!--        android:textSize="@dimen/sp_24"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:text="有关干部调整配备情况汇报"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_top_line"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
 
     <TextView
         android:id="@+id/tv_content"
@@ -248,8 +248,9 @@
         android:layout_marginEnd="@dimen/dp_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        tools:text="内容内容内容内容内容内容内容"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content_title"
+        app:layout_constraintTop_toBottomOf="@+id/view_top_line"
         app:layout_constraintVertical_bias="1.0" />
 
     <View

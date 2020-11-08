@@ -53,8 +53,8 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
         holder.tv_qrzxl.setText(data.getFullTimeEducation());
         holder.tv_zzzy.setText(data.getCurrentMajor());
         holder.tv_qrzzy.setText(data.getFullTimeMajor());
-        holder.tv_zzxw.setText(data.getCurrentDegreeName());
-        holder.tv_qrzxw.setText(data.getFullTimeDegreeName());
+//        holder.tv_zzxw.setText(data.getCurrentDegreeName());
+//        holder.tv_qrzxw.setText(data.getFullTimeDegreeName());
         holder.tv_zyjszw.setText(data.getTechnicalTitle());
 
         //        TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
@@ -109,7 +109,8 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_sex,tv_mz,tv_jg,tv_zzxl;
-        TextView tv_qrzxl,tv_zzzy,tv_qrzzy,tv_zzxw,tv_qrzxw,tv_zyjszw;
+        TextView tv_qrzxl,tv_zzzy,tv_qrzzy,tv_zyjszw;
+//        TextView tv_zzxw,tv_qrzxw;
         TextView tv_csny,tv_gzsj,tv_rdsj,tv_rxzsj,tv_rxzjsj;
         TextView tv_thdytj_yxp,tv_thdytj_dps,tv_hytj_yxp,tv_hytj_dps;
         TextView tv_jwyj,tv_zzbyj;
@@ -139,8 +140,8 @@ public class YjjcCadreAdapterRight extends RecyclerView.Adapter<YjjcCadreAdapter
             tv_qrzxl = itemView.findViewById(R.id.tv_qrzxl);
             tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
             tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);
-            tv_zzxw = itemView.findViewById(R.id.tv_zzxw);
-            tv_qrzxw = itemView.findViewById(R.id.tv_qrzxw);
+//            tv_zzxw = itemView.findViewById(R.id.tv_zzxw);
+//            tv_qrzxw = itemView.findViewById(R.id.tv_qrzxw);
             tv_zyjszw = itemView.findViewById(R.id.tv_zyjszw);
 
             tv_csny = itemView.findViewById(R.id.tv_csny);

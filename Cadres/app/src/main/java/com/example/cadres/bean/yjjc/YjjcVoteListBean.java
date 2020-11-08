@@ -22,6 +22,7 @@ public class YjjcVoteListBean {
     String voteTime;
     int voteState;
     String voteResult;
+    int ranking;
 
     int myVote;
 
@@ -108,5 +109,9 @@ public class YjjcVoteListBean {
         }
 
         return result;
+    }
+
+    public String getRankingStr() {
+        return this.ranking + "";
     }
 }
