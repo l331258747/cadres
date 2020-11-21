@@ -214,30 +214,30 @@ public class DsjtyZjFragment extends BaseFragment implements View.OnClickListene
         lineDataSet.setFormSize(15.f);
         lineDataSet.setMode(LineDataSet.Mode.LINEAR);
 
-        List<Entry> customCounts2 = new ArrayList<>();
-        //人数
-        for (int i = 0; i < dbTyZs.size(); i++) {
-            customCounts2.add(new Entry(i, dbTyZs.get(i).getVacancy()));
-        }
-        LineDataSet lineDataSet2 = new LineDataSet(customCounts2, "可用空缺");
-        lineDataSet2.setColor(Color.rgb(213,100,107));
-        lineDataSet2.setCircleColor(Color.WHITE);
-        lineDataSet2.setValueTextColor(Color.WHITE);
-        lineDataSet2.setValueFormatter(new ZsPercentFormatter());
-        lineDataSet2.setDrawValues(true);
-        lineDataSet2.setLineWidth(2f);
-        lineDataSet2.setCircleRadius(5f);
-        //设置曲线值的圆点是实心还是空心
-        lineDataSet2.setDrawCircleHole(false);
-        lineDataSet2.setValueTextSize(14f);
-        //设置折线图填充
-        lineDataSet2.setDrawFilled(false);
-        lineDataSet2.setFormLineWidth(1f);
-        lineDataSet2.setFormSize(15.f);
-        lineDataSet2.setMode(LineDataSet.Mode.LINEAR);
+//        List<Entry> customCounts2 = new ArrayList<>();
+//        //人数
+//        for (int i = 0; i < dbTyZs.size(); i++) {
+//            customCounts2.add(new Entry(i, dbTyZs.get(i).getVacancy()));
+//        }
+//        LineDataSet lineDataSet2 = new LineDataSet(customCounts2, "可用空缺");
+//        lineDataSet2.setColor(Color.rgb(213,100,107));
+//        lineDataSet2.setCircleColor(Color.WHITE);
+//        lineDataSet2.setValueTextColor(Color.WHITE);
+//        lineDataSet2.setValueFormatter(new ZsPercentFormatter());
+//        lineDataSet2.setDrawValues(true);
+//        lineDataSet2.setLineWidth(2f);
+//        lineDataSet2.setCircleRadius(5f);
+//        //设置曲线值的圆点是实心还是空心
+//        lineDataSet2.setDrawCircleHole(false);
+//        lineDataSet2.setValueTextSize(14f);
+//        //设置折线图填充
+//        lineDataSet2.setDrawFilled(false);
+//        lineDataSet2.setFormLineWidth(1f);
+//        lineDataSet2.setFormSize(15.f);
+//        lineDataSet2.setMode(LineDataSet.Mode.LINEAR);
 
         lineData.addDataSet(lineDataSet);
-        lineData.addDataSet(lineDataSet2);
+//        lineData.addDataSet(lineDataSet2);
         return lineData;
     }
 

@@ -225,20 +225,20 @@
                 android:text="超配数"
                 android:textColor="@color/color_23cefd"/>
 
-            <View
-                android:background="@mipmap/ic_legend_red"
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
-                android:layout_marginStart="@dimen/dp_30"
-                />
+<!--            <View-->
+<!--                android:background="@mipmap/ic_legend_red"-->
+<!--                android:layout_width="@dimen/dp_20"-->
+<!--                android:layout_height="@dimen/dp_20"-->
+<!--                android:layout_marginStart="@dimen/dp_30"-->
+<!--                />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_14"
-                android:layout_marginStart="@dimen/dp_10"
-                android:text="全年可用空缺职位数"
-                android:textColor="@color/color_23cefd"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="@dimen/sp_14"-->
+<!--                android:layout_marginStart="@dimen/dp_10"-->
+<!--                android:text="全年可用空缺职位数"-->
+<!--                android:textColor="@color/color_23cefd"/>-->
 
         </LinearLayout>
 
