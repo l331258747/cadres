@@ -431,6 +431,8 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     }
 
     public void showGbinfo(int baseId){
+        if(isMeetingModel) return;
+
         gbDrawerData.getData(baseId);
         scrollView.scrollTo(0,0);
         drawer_layout.openDrawer(Gravity.RIGHT);
