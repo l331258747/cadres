@@ -72,7 +72,7 @@
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintTop_toTopOf="@+id/view_title"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="现任职务"/>
+        android:text="现任\n职务/职级"/>
 
     <View
         android:layout_width="@dimen/dp_1"
@@ -117,7 +117,7 @@
         android:textSize="@dimen/sp_12"
         android:paddingEnd="@dimen/dp_3"
         app:layout_constraintBottom_toBottomOf="@+id/view_title"
-        android:text="拟任免\n（提名）职务"/>
+        android:text="拟任免（提名）\n职务/职级"/>
 
     <View
         android:layout_width="@dimen/dp_1"

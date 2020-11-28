@@ -57,7 +57,7 @@
         app:layout_constraintStart_toEndOf="@+id/tv_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="现任职务"/>
+        tools:text="现任\n职务/职级"/>
 
     <View
         android:layout_width="@dimen/dp_1"
@@ -100,7 +100,7 @@
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="拟任免(提名)职务"/>
+        tools:text="拟任免（提名）\n职务/职级"/>
 
     <View
         android:layout_width="@dimen/dp_1"

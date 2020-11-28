@@ -144,7 +144,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_name"
                 app:layout_constraintTop_toTopOf="@+id/view_title_left"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title_left"
-                android:text="现任职务"/>
+                android:text="现任\n职务/职级"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
@@ -166,7 +166,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_xrzw"
                 app:layout_constraintTop_toTopOf="@+id/view_title_left"
                 app:layout_constraintBottom_toBottomOf="@+id/view_title_left"
-                android:text="拟任免(提名)职务"/>
+                android:text="拟任免（提名）\n职务/职级"/>
 
             <View
                 android:layout_width="@dimen/dp_1"
