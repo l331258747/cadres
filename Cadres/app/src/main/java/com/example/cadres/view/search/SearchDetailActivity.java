@@ -258,9 +258,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
     public void getTypeDbList() {
-        if (!TextUtils.isEmpty(searchDetailBean.getSearch())) {
-            getDbList(searchDetailBean.getSearch());
-        } else if (!TextUtils.isEmpty(searchDetailBean.getCyssGd())) {
+        if (!TextUtils.isEmpty(searchDetailBean.getCyssGd())) {
             getDbCyssGdList(searchDetailBean.getCyssGd());
         } else if (!TextUtils.isEmpty(searchDetailBean.getCyssZwlx())) {
             getDbCyssZwlxList(searchDetailBean.getCyssZwlx());
@@ -351,170 +349,6 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-//    public void getDbList(String key) {
-//        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-//        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-//        LogUtil.e("干部type 数据条数："+queryBuilder.count());
-//
-//        queryBuilder.whereOr(
-//                DBGbBeanDao.Properties.Name.like("%"+key + "%"),//姓名
-//                DBGbBeanDao.Properties.NativePlace.like("%"+key + "%"),//籍贯
-//                DBGbBeanDao.Properties.TechnicalTitle.like("%"+key + "%"),//专业技术职务
-//                DBGbBeanDao.Properties.CurrentPosition.like("%"+key + "%"),//现任职务
-//                DBGbBeanDao.Properties.Expertise.like("%"+key + "%"),//熟悉专业及专长
-//                DBGbBeanDao.Properties.FullTimeSchool.like("%"+key + "%"),//全日制毕业院校系
-////                DBGbBeanDao.Properties.CurrentSchool.like("%"+key + "%"),//在职教育毕业院校系
-//                DBGbBeanDao.Properties.FullTimeMajor.like("%"+key + "%"),//全日制专业
-//                DBGbBeanDao.Properties.FullTimeDegreeName.like("%"+key + "%")//全日制学位
-//        );
-//
-//        if (orderBy != null) {
-//            if (isAsc) {
-//                queryBuilder.orderAsc(orderBy);
-//            } else {
-//                queryBuilder.orderDesc(orderBy);
-//            }
-//        }
-//
-//        dbList = queryBuilder.list();
-//
-//        tv_search_content.setText(searchDetailBean.getSearch());
-//        tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
-//    }
-
-    public void getDbList(String key) {
-        dbList = new ArrayList<>();
-
-        Cursor cursor = null;
-        String queryString =
-                "SELECT DISTINCT "
-                        + "b.*"
-                        + " FROM " + DBGbBeanDao.TABLENAME + " b"
-                        + " WHERE " + " b." + DBGbBeanDao.Properties.BaseId.columnName
-                        + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
-                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
-                        + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
-                        + " IN ( SELECT " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName
-                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
-                        + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
-                        + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
-
-                        + " OR " + " b." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
-                        + " OR " + " b." + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?";
-
-        if (orderBy != null) {
-            if (isAsc) {
-                queryString = queryString + " ORDER BY "+ orderBy.columnName +" ASC ";
-            } else {
-                queryString = queryString + " ORDER BY "+ orderBy.columnName +" DESC ";
-            }
-        }
-
-        try {
-            cursor = DaoManager.getInstance().getDaoSession().getDatabase().rawQuery(queryString,
-                    new String[]{
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%",
-                            "%" + key + "%"
-                    });
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    dbList.add(new DBGbBean(
-                            null,
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.BaseId.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Name.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhotoFileName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Gender.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.IdCard.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthday.columnName)),
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.Age.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Nation.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalOutlook.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.JoinPartyDate.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlace.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Birthplace.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkTime.columnName)),
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptId.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelRelationsDeptName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EnterUnitTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRank.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentRankTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Health.columnName)),
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankId.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPosition.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentPositionTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PersonnelType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.TechnicalTitle.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Expertise.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeEducation.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchool.columnName)),
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeId.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeDegreeName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Current.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentEducation.columnName)),
-                            cursor.getInt(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeId.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentDegreeName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchool.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkPhone.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PhoneNumber.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.HomeAddress.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Responsibilities.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.AffectedState.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeMajor.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentMajor.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FullTimeSchoolMajor.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CurrentSchoolMajor.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.NativePlaceReplenish.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRegisterTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PositionType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.EstablishmentType.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Remark.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.Type.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreResume.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAward.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadrePunish.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreTrain.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PoliticalConstruction.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreAssessment.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankStartTime.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankParentName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PostLabel.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName))
-                    ));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        tv_search_content.setText(searchDetailBean.getSearch());
-        tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
-    }
-
     /**
      * public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {
      * List<HistoryData> dbList = new ArrayList<>();
@@ -541,6 +375,44 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
         QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
 //        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
 //        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
+
+        if(!TextUtils.isEmpty(searchDetailBean.getSearch())){
+            String key = searchDetailBean.getSearch();
+            StringBuffer sql = new StringBuffer("");
+
+            sql.append(" (" + DBGbBeanDao.Properties.BaseId.columnName
+                    + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
+                    + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
+                    + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
+                    + " IN ( SELECT " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName
+                    + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
+                    + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+                    + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+                    + " OR " + " " + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
+                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?)");
+
+            String[] values =  new String[]{
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%",
+                    "%" + key + "%"
+            };
+
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
+            LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
+        }
 
         if(searchDetailBean.getLxLists().size() > 0){
             StringBuffer sql = new StringBuffer("");

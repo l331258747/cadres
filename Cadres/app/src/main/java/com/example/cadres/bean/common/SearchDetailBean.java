@@ -360,6 +360,11 @@ public class SearchDetailBean implements Serializable {
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
+
+        if(!TextUtils.isEmpty(getSearch())){
+            sb.append("关键字：" + getSearch() + "/");
+        }
+
         for (String str : getLxLists()){
             if(TextUtils.equals("3",str)){
                 sb.append("后备干部/");

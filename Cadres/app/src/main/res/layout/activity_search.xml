@@ -64,44 +64,43 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="@dimen/dp_30" />
 
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/group_history"
-                android:layout_width="wrap_content"
-                app:constraint_referenced_ids="tv_history_title,fl_history"
-                android:visibility="gone"
-                tools:visibility="visible"
-                android:layout_height="wrap_content"/>
+<!--            <androidx.constraintlayout.widget.Group-->
+<!--                android:id="@+id/group_history"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                app:constraint_referenced_ids="tv_history_title,fl_history"-->
+<!--                android:visibility="gone"-->
+<!--                tools:visibility="visible"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_history_title"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="历史搜索"-->
+<!--                android:textSize="@dimen/sp_24"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                android:id="@+id/tv_history_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="历史搜索"
-                android:textSize="@dimen/sp_24"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <com.example.cadres.widget.flowlayout.TagFlowLayout-->
+<!--                android:id="@+id/fl_history"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:layout_height="@dimen/dp_30"-->
+<!--                tools:background="@color/color_b31f23"-->
+<!--                android:layout_marginTop="@dimen/dp_10"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/guideline_end"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_history_title"-->
+<!--                app:max_select="-1"/>-->
 
-            <com.example.cadres.widget.flowlayout.TagFlowLayout
-                android:id="@+id/fl_history"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                tools:layout_height="@dimen/dp_30"
-                tools:background="@color/color_b31f23"
-                android:layout_marginTop="@dimen/dp_10"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
-                app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
-                app:max_select="-1"/>
-
-            <TextView
-                android:id="@+id/tv_zdy_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自定义条件搜索"
-                android:textSize="@dimen/sp_24"
-                android:layout_marginTop="@dimen/dp_20"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/fl_history" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_zdy_title"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="自定义条件搜索"-->
+<!--                android:textSize="@dimen/sp_24"-->
+<!--                android:layout_marginTop="@dimen/dp_20"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline_start_30"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/fl_history" />-->
 
             <TextView
                 android:id="@+id/tv_lx"
@@ -110,7 +109,7 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:paddingTop="@dimen/dp_5"
                 app:layout_constraintStart_toStartOf="@+id/guideline_start_30"
-                app:layout_constraintTop_toBottomOf="@+id/tv_zdy_title"
+                app:layout_constraintTop_toTopOf="parent"
                 android:text="类型："/>
 
             <com.example.cadres.widget.flowlayout.TagFlowLayout

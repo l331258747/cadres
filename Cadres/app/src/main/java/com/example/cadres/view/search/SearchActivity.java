@@ -37,7 +37,8 @@ public class SearchActivity extends BaseActivity {
 
     EditText et_search;
 
-    private TagFlowLayout fl_history,fl_cy;
+//    private TagFlowLayout fl_history;
+    private TagFlowLayout fl_cy;
     private TagFlowLayout fl_lx,fl_gllb, fl_bmlb, fl_xb,
             fl_dp,fl_xrzwcc,
             fl_xl,fl_xllx,fl_xxlx,
@@ -56,7 +57,7 @@ public class SearchActivity extends BaseActivity {
 
     SearchDetailBean searchDetailBean;
 
-    Group group_history;
+//    Group group_history;
 
     private DecimalFormat df = new DecimalFormat("0");
 
@@ -86,7 +87,7 @@ public class SearchActivity extends BaseActivity {
         initSearchData();
 
         initEdit();
-        initFLHistory();
+//        initFLHistory();
         initFLCyss();
 
         initFLLx();
@@ -113,66 +114,73 @@ public class SearchActivity extends BaseActivity {
         tv_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                searchDetailBean.clean();
-                for (int index : fl_lx.getSelectedList()) {
-                    searchDetailBean.getLxLists().add(mVals_lx.get(index).getDictValue());
-                }
-                for (int index : fl_gllb.getSelectedList()) {
-                    searchDetailBean.getGllbLists().add(mVals_gllb.get(index).getDictLabel());
-                }
-                for (int index : fl_bmlb.getSelectedList()) {
-                    searchDetailBean.getBmlbLists().add(mVals_bmlb.get(index).getDictLabel());
-                }
-                for (int index : fl_xb.getSelectedList()) {
-                    searchDetailBean.getXbLists().add(mVals_xb.get(index).getDictLabel());
-                }
-                for (int index : fl_dp.getSelectedList()) {
-                    searchDetailBean.getDpLists().add(mVals_dp.get(index).getDictLabel());
-                }
-                for (int index : fl_xrzwcc.getSelectedList()) {
-                    searchDetailBean.getXrzwccLists().add(mVals_xrzwcc.get(index).getDictLabel());
-                }
-                for (int index : fl_xl.getSelectedList()) {
-                    searchDetailBean.getXlLists().add(mVals_xl.get(index).getDictLabel());
-                }
-                for (int index : fl_xllx.getSelectedList()) {
-                    searchDetailBean.getXllxLists().add(mVals_xllx[index]);
-                }
-                for (int index : fl_xxlx.getSelectedList()) {
-                    searchDetailBean.getXxlxLists().add(mVals_xxlx.get(index).getDictLabel());
-                }
-                for (int index : fl_gzjl.getSelectedList()) {
-                    searchDetailBean.getGzjlLists().add(mVals_gzjl.get(index).getDictLabel());
-                }
-
-                for (int index : fl_xrzjlx.getSelectedList()) {
-                    searchDetailBean.getXrzjlxLists().add(mVals_xrzjlx.get(index).getFunctionaryRankName());
-                }
-                for (int index : fl_xrzj.getSelectedList()) {
-                    searchDetailBean.getXrzjLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
-                }
-
-                List<String> listNl = new ArrayList<>();//出身年
-                listNl.add(csnMin + "");
-                listNl.add(csnMax + "");
-                searchDetailBean.getCsnLists().addAll(listNl);
-                List<String> listRz = new ArrayList<>();//任现职级年限
-                listRz.add(xrzjnxMin + "");
-                listRz.add(xrzjnxMax + "");
-                searchDetailBean.getXrzjnxLists().addAll(listRz);
-                List<String> listCc = new ArrayList<>();//任现职务层次年限
-                listCc.add(xrzwccnxMin + "");
-                listCc.add(xrzwccnxMax + "");
-                searchDetailBean.getXrzwccnxLists().addAll(listCc);
-                List<String> listRxz = new ArrayList<>();//任现职年限
-                listRxz.add(rxznxMin + "");
-                listRxz.add(rxznxMax + "");
-                searchDetailBean.getRxznxLists().addAll(listRxz);
-
-                goDetailActivity(searchDetailBean);
+                goSearchDetail();
             }
         });
+    }
+
+    public void goSearchDetail(){
+        searchDetailBean.clean();
+
+        if(!TextUtils.isEmpty(et_search.getText().toString())){
+            searchDetailBean.setSearch(et_search.getText().toString());
+        }
+        for (int index : fl_lx.getSelectedList()) {
+            searchDetailBean.getLxLists().add(mVals_lx.get(index).getDictValue());
+        }
+        for (int index : fl_gllb.getSelectedList()) {
+            searchDetailBean.getGllbLists().add(mVals_gllb.get(index).getDictLabel());
+        }
+        for (int index : fl_bmlb.getSelectedList()) {
+            searchDetailBean.getBmlbLists().add(mVals_bmlb.get(index).getDictLabel());
+        }
+        for (int index : fl_xb.getSelectedList()) {
+            searchDetailBean.getXbLists().add(mVals_xb.get(index).getDictLabel());
+        }
+        for (int index : fl_dp.getSelectedList()) {
+            searchDetailBean.getDpLists().add(mVals_dp.get(index).getDictLabel());
+        }
+        for (int index : fl_xrzwcc.getSelectedList()) {
+            searchDetailBean.getXrzwccLists().add(mVals_xrzwcc.get(index).getDictLabel());
+        }
+        for (int index : fl_xl.getSelectedList()) {
+            searchDetailBean.getXlLists().add(mVals_xl.get(index).getDictLabel());
+        }
+        for (int index : fl_xllx.getSelectedList()) {
+            searchDetailBean.getXllxLists().add(mVals_xllx[index]);
+        }
+        for (int index : fl_xxlx.getSelectedList()) {
+            searchDetailBean.getXxlxLists().add(mVals_xxlx.get(index).getDictLabel());
+        }
+        for (int index : fl_gzjl.getSelectedList()) {
+            searchDetailBean.getGzjlLists().add(mVals_gzjl.get(index).getDictLabel());
+        }
+
+        for (int index : fl_xrzjlx.getSelectedList()) {
+            searchDetailBean.getXrzjlxLists().add(mVals_xrzjlx.get(index).getFunctionaryRankName());
+        }
+        for (int index : fl_xrzj.getSelectedList()) {
+            searchDetailBean.getXrzjLists().add(mVals_xrzj.get(index).getFunctionaryRankName());
+        }
+
+        List<String> listNl = new ArrayList<>();//出身年
+        listNl.add(csnMin + "");
+        listNl.add(csnMax + "");
+        searchDetailBean.getCsnLists().addAll(listNl);
+        List<String> listRz = new ArrayList<>();//任现职级年限
+        listRz.add(xrzjnxMin + "");
+        listRz.add(xrzjnxMax + "");
+        searchDetailBean.getXrzjnxLists().addAll(listRz);
+        List<String> listCc = new ArrayList<>();//任现职务层次年限
+        listCc.add(xrzwccnxMin + "");
+        listCc.add(xrzwccnxMax + "");
+        searchDetailBean.getXrzwccnxLists().addAll(listCc);
+        List<String> listRxz = new ArrayList<>();//任现职年限
+        listRxz.add(rxznxMin + "");
+        listRxz.add(rxznxMax + "");
+        searchDetailBean.getRxznxLists().addAll(listRxz);
+
+        goDetailActivity(searchDetailBean);
     }
 
     List<SysDictDataBean> mVals_lx;
@@ -517,55 +525,56 @@ public class SearchActivity extends BaseActivity {
 
                 MySelfInfo.getInstance().addSearch(v.getText().toString());
 
-                searchDetailBean.clean();
-                searchDetailBean.setSearch(v.getText().toString());
+//                searchDetailBean.clean();
+//                searchDetailBean.setSearch(v.getText().toString());
+//
+//                goDetailActivity(searchDetailBean);
 
-                goDetailActivity(searchDetailBean);
-
-
-                return false;
-            }
-        });
-    }
-
-    private void initFLHistory() {
-        group_history = $(R.id.group_history);
-
-        fl_history = $(R.id.fl_history);
-        final LayoutInflater mInflater = LayoutInflater.from(activity);
-        final List<String> lists = MySelfInfo.getInstance().getSearch();
-
-        if(lists == null || lists.size() == 0){
-            group_history.setVisibility(View.GONE);
-        }else{
-            group_history.setVisibility(View.VISIBLE);
-        }
-
-        TagAdapter adapter1 = new TagAdapter<String>(lists) {
-            @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_search, fl_history, false);
-                tv.setText(s);
-                return tv;
-            }
-        };
-        fl_history.setAdapter(adapter1);
-        fl_history.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-            @Override
-            public boolean onTagClick(View view, int position, FlowLayout parent) {
-                et_search.setText(lists.get(position));
-                et_search.setSelection(et_search.getText().toString().length());
-                MySelfInfo.getInstance().addSearch(lists.get(position));
-
-                searchDetailBean.clean();
-                searchDetailBean.setSearch(lists.get(position));
-
-                goDetailActivity(searchDetailBean);
+                goSearchDetail();
 
                 return false;
             }
         });
     }
+
+//    private void initFLHistory() {
+//        group_history = $(R.id.group_history);
+//
+//        fl_history = $(R.id.fl_history);
+//        final LayoutInflater mInflater = LayoutInflater.from(activity);
+//        final List<String> lists = MySelfInfo.getInstance().getSearch();
+//
+//        if(lists == null || lists.size() == 0){
+//            group_history.setVisibility(View.GONE);
+//        }else{
+//            group_history.setVisibility(View.VISIBLE);
+//        }
+//
+//        TagAdapter adapter1 = new TagAdapter<String>(lists) {
+//            @Override
+//            public View getView(FlowLayout parent, int position, String s) {
+//                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_search, fl_history, false);
+//                tv.setText(s);
+//                return tv;
+//            }
+//        };
+//        fl_history.setAdapter(adapter1);
+//        fl_history.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+//            @Override
+//            public boolean onTagClick(View view, int position, FlowLayout parent) {
+//                et_search.setText(lists.get(position));
+//                et_search.setSelection(et_search.getText().toString().length());
+//                MySelfInfo.getInstance().addSearch(lists.get(position));
+//
+//                searchDetailBean.clean();
+//                searchDetailBean.setSearch(lists.get(position));
+//
+//                goDetailActivity(searchDetailBean);
+//
+//                return false;
+//            }
+//        });
+//    }
 
     private void goDetailActivity(SearchDetailBean searchDetailBean){
         Intent intent = new Intent(context,SearchDetailActivity.class);
@@ -578,11 +587,11 @@ public class SearchActivity extends BaseActivity {
         searchDetailBean = new SearchDetailBean();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initFLHistory();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        initFLHistory();
+//    }
 
     DBSearchBean dbSearchBean;
     public void getDbData(){
