@@ -38,6 +38,7 @@ import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbYjjcCadreGrouping;
 import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.beanDB.Meizi;
 
@@ -71,6 +72,7 @@ import com.cadres.greendao.gen.DBZcfgBeanDao;
 import com.cadres.greendao.gen.DbTyJgDao;
 import com.cadres.greendao.gen.DbTyZsDao;
 import com.cadres.greendao.gen.DbYjjcBeanDao;
+import com.cadres.greendao.gen.DbYjjcCadreGroupingDao;
 import com.cadres.greendao.gen.DbZcfgNoticeTypeBeanDao;
 import com.cadres.greendao.gen.MeiziDao;
 
@@ -113,6 +115,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig dbTyJgDaoConfig;
     private final DaoConfig dbTyZsDaoConfig;
     private final DaoConfig dbYjjcBeanDaoConfig;
+    private final DaoConfig dbYjjcCadreGroupingDaoConfig;
     private final DaoConfig dbZcfgNoticeTypeBeanDaoConfig;
     private final DaoConfig meiziDaoConfig;
 
@@ -146,6 +149,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DbTyJgDao dbTyJgDao;
     private final DbTyZsDao dbTyZsDao;
     private final DbYjjcBeanDao dbYjjcBeanDao;
+    private final DbYjjcCadreGroupingDao dbYjjcCadreGroupingDao;
     private final DbZcfgNoticeTypeBeanDao dbZcfgNoticeTypeBeanDao;
     private final MeiziDao meiziDao;
 
@@ -243,6 +247,9 @@ public class DaoSession extends AbstractDaoSession {
         dbYjjcBeanDaoConfig = daoConfigMap.get(DbYjjcBeanDao.class).clone();
         dbYjjcBeanDaoConfig.initIdentityScope(type);
 
+        dbYjjcCadreGroupingDaoConfig = daoConfigMap.get(DbYjjcCadreGroupingDao.class).clone();
+        dbYjjcCadreGroupingDaoConfig.initIdentityScope(type);
+
         dbZcfgNoticeTypeBeanDaoConfig = daoConfigMap.get(DbZcfgNoticeTypeBeanDao.class).clone();
         dbZcfgNoticeTypeBeanDaoConfig.initIdentityScope(type);
 
@@ -279,6 +286,7 @@ public class DaoSession extends AbstractDaoSession {
         dbTyJgDao = new DbTyJgDao(dbTyJgDaoConfig, this);
         dbTyZsDao = new DbTyZsDao(dbTyZsDaoConfig, this);
         dbYjjcBeanDao = new DbYjjcBeanDao(dbYjjcBeanDaoConfig, this);
+        dbYjjcCadreGroupingDao = new DbYjjcCadreGroupingDao(dbYjjcCadreGroupingDaoConfig, this);
         dbZcfgNoticeTypeBeanDao = new DbZcfgNoticeTypeBeanDao(dbZcfgNoticeTypeBeanDaoConfig, this);
         meiziDao = new MeiziDao(meiziDaoConfig, this);
 
@@ -312,6 +320,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(DbTyJg.class, dbTyJgDao);
         registerDao(DbTyZs.class, dbTyZsDao);
         registerDao(DbYjjcBean.class, dbYjjcBeanDao);
+        registerDao(DbYjjcCadreGrouping.class, dbYjjcCadreGroupingDao);
         registerDao(DbZcfgNoticeTypeBean.class, dbZcfgNoticeTypeBeanDao);
         registerDao(Meizi.class, meiziDao);
     }
@@ -347,6 +356,7 @@ public class DaoSession extends AbstractDaoSession {
         dbTyJgDaoConfig.clearIdentityScope();
         dbTyZsDaoConfig.clearIdentityScope();
         dbYjjcBeanDaoConfig.clearIdentityScope();
+        dbYjjcCadreGroupingDaoConfig.clearIdentityScope();
         dbZcfgNoticeTypeBeanDaoConfig.clearIdentityScope();
         meiziDaoConfig.clearIdentityScope();
     }
@@ -469,6 +479,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public DbYjjcBeanDao getDbYjjcBeanDao() {
         return dbYjjcBeanDao;
+    }
+
+    public DbYjjcCadreGroupingDao getDbYjjcCadreGroupingDao() {
+        return dbYjjcCadreGroupingDao;
     }
 
     public DbZcfgNoticeTypeBeanDao getDbZcfgNoticeTypeBeanDao() {

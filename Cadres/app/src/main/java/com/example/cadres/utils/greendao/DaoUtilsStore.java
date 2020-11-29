@@ -31,6 +31,7 @@ import com.cadres.greendao.gen.DBZcfgBeanDao;
 import com.cadres.greendao.gen.DbTyJgDao;
 import com.cadres.greendao.gen.DbTyZsDao;
 import com.cadres.greendao.gen.DbYjjcBeanDao;
+import com.cadres.greendao.gen.DbYjjcCadreGroupingDao;
 import com.cadres.greendao.gen.DbZcfgNoticeTypeBeanDao;
 import com.cadres.greendao.gen.MeiziDao;
 import com.example.cadres.beanDB.DBBmBean;
@@ -63,6 +64,7 @@ import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbYjjcCadreGrouping;
 import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.beanDB.Meizi;
 
@@ -97,6 +99,7 @@ public class DaoUtilsStore {
     private CommonDaoUtils<DbYjjcBean> yjjcDaoUtils;
     private CommonDaoUtils<DBYjjcCadre> yjjcCadreDaoUtils;
     private CommonDaoUtils<DBYjjcMeeting> yjjcMeetingDaoUtils;
+    private CommonDaoUtils<DbYjjcCadreGrouping> yjjcCadreGroupingDaoUtils;
 
     private CommonDaoUtils<DBTyHj> tyHjDaoUtils;
     private CommonDaoUtils<DbTyJg> tyJgDaoUtils;
@@ -192,6 +195,8 @@ public class DaoUtilsStore {
         yjjcDaoUtils = new CommonDaoUtils(DbYjjcBean.class, _DbYjjcBeanDao);
         DBYjjcCadreDao _DBYjjcCadreDao = mManager.getDaoSession().getDBYjjcCadreDao();
         yjjcCadreDaoUtils = new CommonDaoUtils(DBYjjcCadre.class, _DBYjjcCadreDao);
+        DbYjjcCadreGroupingDao _DbYjjcCadreGroupingDao = mManager.getDaoSession().getDbYjjcCadreGroupingDao();
+        yjjcCadreGroupingDaoUtils = new CommonDaoUtils(DbYjjcCadreGrouping.class, _DbYjjcCadreGroupingDao);
         DBYjjcMeetingDao _DBYjjcMeetingDao = mManager.getDaoSession().getDBYjjcMeetingDao();
         yjjcMeetingDaoUtils = new CommonDaoUtils(DBYjjcMeeting.class, _DBYjjcMeetingDao);
     }
@@ -270,6 +275,10 @@ public class DaoUtilsStore {
 
     public CommonDaoUtils<DBYjjcCadre> getYjjcCadreDaoUtils() {
         return yjjcCadreDaoUtils;
+    }
+
+    public CommonDaoUtils<DbYjjcCadreGrouping> getYjjcCadreGroupingDaoUtils() {
+        return yjjcCadreGroupingDaoUtils;
     }
 
     public CommonDaoUtils<DBYjjcMeeting> getYjjcMeetingDaoUtils() {

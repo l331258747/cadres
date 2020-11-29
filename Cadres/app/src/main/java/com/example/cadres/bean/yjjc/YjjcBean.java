@@ -26,6 +26,7 @@ public class YjjcBean {
         private String schemeDescribe;
         private List<AppointDismissMeetingListBean> appointDismissMeetingList;
         private List<AppointDismissCadreVoListBean> appointDismissCadreVoList;
+        private List<AppointDismissCadreGroupingListBean>  appointDismissCadreGroupingList;
 
         public int getSchemeId() {
             return schemeId;
@@ -73,6 +74,10 @@ public class YjjcBean {
 
         public void setAppointDismissCadreVoList(List<AppointDismissCadreVoListBean> appointDismissCadreVoList) {
             this.appointDismissCadreVoList = appointDismissCadreVoList;
+        }
+
+        public List<AppointDismissCadreGroupingListBean> getAppointDismissCadreGroupingList() {
+            return appointDismissCadreGroupingList;
         }
     }
 }

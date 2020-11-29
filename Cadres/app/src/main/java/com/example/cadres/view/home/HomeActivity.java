@@ -50,6 +50,7 @@ import com.example.cadres.bean.dsjty.ZstyBean;
 import com.example.cadres.bean.login.LoginBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.search.SearchBean;
+import com.example.cadres.bean.yjjc.AppointDismissCadreGroupingListBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -85,6 +86,7 @@ import com.example.cadres.beanDB.DBZcfgBean;
 import com.example.cadres.beanDB.DbTyJg;
 import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbYjjcCadreGrouping;
 import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DefaultDialog;
@@ -148,6 +150,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     CommonDaoUtils<DbYjjcBean> dBYjjcDaoUtils;
     CommonDaoUtils<DBYjjcCadre> dBYjjcCadreDaoUtils;
+    CommonDaoUtils<DbYjjcCadreGrouping> dbYjjcCadreGroupingDaoUtils;
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
 
     CommonDaoUtils<DBTyHj> dBTyHjDaoUtils;
@@ -222,6 +225,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         dBYjjcDaoUtils = _Store.getYjjcDaoUtils();
         dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
+        dbYjjcCadreGroupingDaoUtils = _Store.getYjjcCadreGroupingDaoUtils();
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
 
         dBTyHjDaoUtils = _Store.getTyHjDaoUtils();
@@ -571,8 +575,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         LogUtil.e("干部培训情况 条数：" + dBGbTrainDaoUtils.queryAll().size());
 
         LogUtil.e("任免决策 条数：" + dBYjjcDaoUtils.queryAll().size());
-        LogUtil.e("任免决策 任免会议信息 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
-        LogUtil.e("任免决策 任免干部名册列表 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 任免干部名册列表 条数：" + dBYjjcCadreDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 任免干部名册列表分组 条数：" + dbYjjcCadreGroupingDaoUtils.queryAll().size());
+        LogUtil.e("任免决策 任免会议信息 条数：" + dBYjjcMeetingDaoUtils.queryAll().size());
 
         LogUtil.e("推演 换届 条数：" + dBTyHjDaoUtils.queryAll().size());
         LogUtil.e("推演 换届 列表 条数：" + dBTyHjListDaoUtils.queryAll().size());
@@ -609,6 +614,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
         dBYjjcDaoUtils.deleteAll();
         dBYjjcCadreDaoUtils.deleteAll();
+        dbYjjcCadreGroupingDaoUtils.deleteAll();
         dBYjjcMeetingDaoUtils.deleteAll();
 
         dBTyHjDaoUtils.deleteAll();
@@ -1214,6 +1220,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         List<DbYjjcBean> dbList = new ArrayList<>();
         List<DBYjjcCadre> dbList_cadre = new ArrayList<>();
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
+        List<DbYjjcCadreGrouping> dbList_grouping = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
             progress.setProgress((int) (70 + (20f / data.size() * i)));
@@ -1304,10 +1311,22 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item_meeting.getMaterialFileName()
                 ));
             }
+
+            for (int i_grouping = 0; i_grouping < data.get(i).getAppointDismissCadreGroupingList().size(); i_grouping++) {
+                AppointDismissCadreGroupingListBean item_grouping = data.get(i).getAppointDismissCadreGroupingList().get(i_grouping);
+                dbList_grouping.add(new DbYjjcCadreGrouping(
+                        null,
+                        item_grouping.getGroupingId(),
+                        item_grouping.getSchemeId(),
+                        item_grouping.getGroupingName(),
+                        item_grouping.getGroupingRanking()
+                ));
+            }
         }
 
         dBYjjcDaoUtils.insertMulti(dbList);
         dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
+        dbYjjcCadreGroupingDaoUtils.insertMulti(dbList_grouping);
         dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
     }
 
