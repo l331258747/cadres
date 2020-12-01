@@ -126,6 +126,16 @@ public class AppointDismissCadreVoListBean {
     private int ranking;
     private String vacantPosition;
     private List<String> inspectFileName;
+    private int groupingId;
+    private String groupingName;
+
+    public int getGroupingId() {
+        return groupingId;
+    }
+
+    public String getGroupingName() {
+        return groupingName;
+    }
 
     public String getInspectFileName() {
         if(inspectFileName == null || inspectFileName.size() == 0)

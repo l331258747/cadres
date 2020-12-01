@@ -1291,7 +1291,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item_cadre.getMeetingDescribe(),
                         item_cadre.getRanking(),
                         item_cadre.getVacantPosition(),
-                        item_cadre.getInspectFileName()
+                        item_cadre.getInspectFileName(),
+                        item_cadre.getGroupingId(),
+                        item_cadre.getGroupingName()
                 ));
             }
 

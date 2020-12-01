@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cadres.greendao.gen.DBBmBeanDao;
-import com.cadres.greendao.gen.DBGbBeanDao;
-import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.cadres.greendao.gen.DBYjjcCadreDao;
 import com.cadres.greendao.gen.DBYjjcMeetingDao;
-import com.cadres.greendao.gen.DBZcfgBeanDao;
 import com.cadres.greendao.gen.DbYjjcBeanDao;
+import com.cadres.greendao.gen.DbYjjcCadreGroupingDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
@@ -22,11 +19,11 @@ import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
-import com.example.cadres.beanDB.DBBmBean;
-import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
+import com.example.cadres.beanDB.DBYjjcCadre3;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbYjjcCadreGrouping;
 import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.mvp.YjjcDetailContract;
@@ -36,8 +33,6 @@ import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.utils.myData.GbDrawerData;
-import com.example.cadres.utils.rxbus.RxBus2;
-import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
 import com.google.android.material.tabs.TabLayout;
 
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -49,10 +44,8 @@ import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
-public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContract.View, View.OnClickListener {
+public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContract.View, View.OnClickListener {
 
     TabLayout mTabLayout;
     ViewPager mViewPager;
@@ -67,14 +60,14 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
 
     List<DbYjjcBean> dbYjjcBeans;
-    List<DBYjjcCadre> dbYjjcCadres;
+    List<DBYjjcCadre3> dbYjjcCadres;
     DBYjjcMeeting dbYjjcMeeting;
 
     List<ListDialogBean> dialogDatas;
     ListDialog listDialog;
 
     YjjcMettingFragment yjjcMettingFragment;
-    YjjcCadreFragment yjjcCadreFragment;
+    YjjcCadreFragment2 yjjcCadreFragment;
 
 //    public Disposable VoteDisposable;
     YjjcDetailPresenter mPresenter;
@@ -140,7 +133,7 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
 
         List<Fragment> mFragments = new ArrayList<>();
         mFragments.add(yjjcMettingFragment = (YjjcMettingFragment) YjjcMettingFragment.newInstance());
-        mFragments.add(yjjcCadreFragment = (YjjcCadreFragment) YjjcCadreFragment.newInstance(isMeetingModel));
+        mFragments.add(yjjcCadreFragment = (YjjcCadreFragment2) YjjcCadreFragment2.newInstance(isMeetingModel));
 
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, titles);
         mViewPager.setAdapter(adapter);
@@ -238,37 +231,65 @@ public class YjjcDetailActivity extends BaseActivity implements YjjcDetailContra
     }
 
     public void getDbCadreingList(int schemeId){
-        List<DBYjjcCadre> dbList = new ArrayList<>();
-//        String sql;
-//        String[] condition;
-//        if(TextUtils.equals("书记专题会议",type)){
-//            sql = "where SCHEME_ID = ? and APPOINT_DISMISS_RESULT <> ?";
-//            condition = new String[]{schemeId + "", 2 + ""};
-//        }else if(TextUtils.equals("市委常委会议",type)){
-//            sql = "where SCHEME_ID = ? and (APPOINT_DISMISS_RESULT <> ? and APPOINT_DISMISS_RESULT <> ?)";
-//            condition = new String[]{schemeId + "", 2 + "",3 + ""};
-//        }else{
-//            sql = "where SCHEME_ID = ?";
-//            condition = new String[]{schemeId + ""};
-//        }
-//        dbList = dBYjjcCadreDaoUtils.queryByNativeSql(sql, condition);
-//        LogUtil.e("数据库条数：" + dbList.size());
+        List<DBYjjcCadre3> list = new ArrayList<>();
 
+        List<DbYjjcCadreGrouping> dbListGrouping = new ArrayList<>();
+        DbYjjcCadreGroupingDao dbYjjcCadreGroupingDao = DaoManager.getInstance().getDaoSession().getDbYjjcCadreGroupingDao();
+        QueryBuilder<DbYjjcCadreGrouping> queryBuilderGrouping = dbYjjcCadreGroupingDao.queryBuilder();
+        queryBuilderGrouping.where(DbYjjcCadreGroupingDao.Properties.SchemeId.eq(schemeId));
+        dbListGrouping = queryBuilderGrouping.list();
+
+        for (int i =0;i<dbListGrouping.size();i++){
+            DBYjjcCadre3 item = new DBYjjcCadre3();
+            DbYjjcCadreGrouping itemGrouping = dbListGrouping.get(i);
+            item.setGroupingName(itemGrouping.getGroupingName());
+            item.setGroupingId(itemGrouping.getGroupingId());
+
+            List<DBYjjcCadre> dbList = new ArrayList<>();
+            DBYjjcCadreDao dbYjjcCadreDao = DaoManager.getInstance().getDaoSession().getDBYjjcCadreDao();
+            QueryBuilder<DBYjjcCadre> queryBuilder = dbYjjcCadreDao.queryBuilder();
+            if(TextUtils.equals("书记专题会议",type)){
+                queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.GroupingId.eq(itemGrouping.getGroupingId()));
+            }else if(TextUtils.equals("市委常委会议",type)){
+                queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.AppointDismissResult.notEq(3),DBYjjcCadreDao.Properties.GroupingId.eq(itemGrouping.getGroupingId()));
+            }else{
+                queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId),DBYjjcCadreDao.Properties.GroupingId.eq(itemGrouping.getGroupingId()));
+            }
+            dbList = queryBuilder.list();
+            item.setList(dbList);
+            list.add(item);
+        }
+
+        DBYjjcCadre3 item = new DBYjjcCadre3();
+        item.setGroupingName("");
+        item.setGroupingId(0);
+
+        List<DBYjjcCadre> dbList = new ArrayList<>();
         DBYjjcCadreDao dbYjjcCadreDao = DaoManager.getInstance().getDaoSession().getDBYjjcCadreDao();
         QueryBuilder<DBYjjcCadre> queryBuilder = dbYjjcCadreDao.queryBuilder();
         if(TextUtils.equals("书记专题会议",type)){
-            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2));
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.GroupingId.notIn(getGroupingId(dbListGrouping)));
         }else if(TextUtils.equals("市委常委会议",type)){
-            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.AppointDismissResult.notEq(3));
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId), DBYjjcCadreDao.Properties.AppointDismissResult.notEq(2),DBYjjcCadreDao.Properties.AppointDismissResult.notEq(3),DBYjjcCadreDao.Properties.GroupingId.notIn(getGroupingId(dbListGrouping)));
         }else{
-            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId));
+            queryBuilder.where(DBYjjcCadreDao.Properties.SchemeId.eq(schemeId),DBYjjcCadreDao.Properties.GroupingId.notIn(getGroupingId(dbListGrouping)));
         }
-
         dbList = queryBuilder.list();
-        LogUtil.e("数据库条数：" + dbList.size());
-        dbYjjcCadres =  dbList;
+        item.setList(dbList);
+        list.add(item);
+
+
+        LogUtil.e("数据库条数：" + list.size());
+        dbYjjcCadres =  list;
     }
 
+    public List<Integer> getGroupingId(List<DbYjjcCadreGrouping> list){
+        List<Integer> sList = new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            sList.add(list.get(i).getGroupingId());
+        }
+        return sList;
+    }
 
     @Override
     protected void onDestroy() {

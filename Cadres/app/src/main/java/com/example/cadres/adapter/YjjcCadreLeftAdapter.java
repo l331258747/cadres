@@ -50,7 +50,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onClick(position);
+                    mOnItemClickListener.onClick(data.getBaseId());
                 }
             });
         }
@@ -89,7 +89,7 @@ public class YjjcCadreLeftAdapter extends RecyclerView.Adapter<YjjcCadreLeftAdap
     OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(int baseId);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

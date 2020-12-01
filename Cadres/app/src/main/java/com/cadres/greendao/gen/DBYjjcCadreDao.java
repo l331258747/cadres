@@ -80,6 +80,8 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         public final static Property Ranking = new Property(53, int.class, "ranking", false, "RANKING");
         public final static Property VacantPosition = new Property(54, String.class, "vacantPosition", false, "VACANT_POSITION");
         public final static Property InspectFileName = new Property(55, String.class, "inspectFileName", false, "INSPECT_FILE_NAME");
+        public final static Property GroupingId = new Property(56, int.class, "groupingId", false, "GROUPING_ID");
+        public final static Property GroupingName = new Property(57, String.class, "groupingName", false, "GROUPING_NAME");
     }
 
 
@@ -150,7 +152,9 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
                 "\"MEETING_DESCRIBE\" TEXT," + // 52: meetingDescribe
                 "\"RANKING\" INTEGER NOT NULL ," + // 53: ranking
                 "\"VACANT_POSITION\" TEXT," + // 54: vacantPosition
-                "\"INSPECT_FILE_NAME\" TEXT);"); // 55: inspectFileName
+                "\"INSPECT_FILE_NAME\" TEXT," + // 55: inspectFileName
+                "\"GROUPING_ID\" INTEGER NOT NULL ," + // 56: groupingId
+                "\"GROUPING_NAME\" TEXT);"); // 57: groupingName
     }
 
     /** Drops the underlying database table. */
@@ -390,6 +394,12 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         if (inspectFileName != null) {
             stmt.bindString(56, inspectFileName);
         }
+        stmt.bindLong(57, entity.getGroupingId());
+ 
+        String groupingName = entity.getGroupingName();
+        if (groupingName != null) {
+            stmt.bindString(58, groupingName);
+        }
     }
 
     @Override
@@ -623,6 +633,12 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         if (inspectFileName != null) {
             stmt.bindString(56, inspectFileName);
         }
+        stmt.bindLong(57, entity.getGroupingId());
+ 
+        String groupingName = entity.getGroupingName();
+        if (groupingName != null) {
+            stmt.bindString(58, groupingName);
+        }
     }
 
     @Override
@@ -688,7 +704,9 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
             cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // meetingDescribe
             cursor.getInt(offset + 53), // ranking
             cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54), // vacantPosition
-            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55) // inspectFileName
+            cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55), // inspectFileName
+            cursor.getInt(offset + 56), // groupingId
+            cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57) // groupingName
         );
         return entity;
     }
@@ -751,6 +769,8 @@ public class DBYjjcCadreDao extends AbstractDao<DBYjjcCadre, Long> {
         entity.setRanking(cursor.getInt(offset + 53));
         entity.setVacantPosition(cursor.isNull(offset + 54) ? null : cursor.getString(offset + 54));
         entity.setInspectFileName(cursor.isNull(offset + 55) ? null : cursor.getString(offset + 55));
+        entity.setGroupingId(cursor.getInt(offset + 56));
+        entity.setGroupingName(cursor.isNull(offset + 57) ? null : cursor.getString(offset + 57));
      }
     
     @Override

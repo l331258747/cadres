@@ -62,6 +62,8 @@
         <activity
             android:name=".view.yjjc.YjjcDetailActivity"/>
         <activity
+            android:name=".view.yjjc.YjjcDetailActivity2"/>
+        <activity
             android:name=".view.yjjc.YjjcVoteActivity"/>
         <activity
             android:name=".view.search.SearchActivity"/>

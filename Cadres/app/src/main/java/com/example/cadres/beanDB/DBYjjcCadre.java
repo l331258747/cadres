@@ -68,7 +68,9 @@ public class DBYjjcCadre {
     private int ranking;
     private String vacantPosition;
     private String inspectFileName;
-    @Generated(hash = 2033363832)
+    private int groupingId;
+    private String groupingName;
+    @Generated(hash = 168774320)
     public DBYjjcCadre(Long _id, String remark, String deptCode, int dismissCadreId,
             int schemeId, String schemeName, int baseId, String cadreName,
             String gender, String nation, String nativePlace,
@@ -87,7 +89,8 @@ public class DBYjjcCadre {
             String dismissPositionName, String dismissDeptId,
             String dismissDeptName, String leaveTime, String leaveReason,
             String leaveFileNumber, String currentRank, String meetingDescribe,
-            int ranking, String vacantPosition, String inspectFileName) {
+            int ranking, String vacantPosition, String inspectFileName,
+            int groupingId, String groupingName) {
         this._id = _id;
         this.remark = remark;
         this.deptCode = deptCode;
@@ -144,6 +147,8 @@ public class DBYjjcCadre {
         this.ranking = ranking;
         this.vacantPosition = vacantPosition;
         this.inspectFileName = inspectFileName;
+        this.groupingId = groupingId;
+        this.groupingName = groupingName;
     }
     @Generated(hash = 1984640120)
     public DBYjjcCadre() {
@@ -498,5 +503,17 @@ public class DBYjjcCadre {
     }
     public void setCwhOpinion(String cwhOpinion) {
         this.cwhOpinion = cwhOpinion;
+    }
+    public int getGroupingId() {
+        return this.groupingId;
+    }
+    public void setGroupingId(int groupingId) {
+        this.groupingId = groupingId;
+    }
+    public String getGroupingName() {
+        return this.groupingName;
+    }
+    public void setGroupingName(String groupingName) {
+        this.groupingName = groupingName;
     }
 }

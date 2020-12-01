@@ -101,7 +101,7 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(context, YjjcDetailActivity.class);
+        Intent intent = new Intent(context, YjjcDetailActivity2.class);
         intent.putExtra("isMeetingModel", isMeetingModel);
         //会议类型（1部务会议，2书记专题会议，3市委常委会议）
         switch (view.getId()) {
@@ -299,7 +299,9 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
                         item_cadre.getMeetingDescribe(),
                         item_cadre.getRanking(),
                         item_cadre.getVacantPosition(),
-                        item_cadre.getInspectFileName()
+                        item_cadre.getInspectFileName(),
+                        item_cadre.getGroupingId(),
+                        item_cadre.getGroupingName()
                 ));
             }
 
