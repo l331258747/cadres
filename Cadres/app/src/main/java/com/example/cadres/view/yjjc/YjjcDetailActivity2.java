@@ -261,7 +261,7 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
         }
 
         DBYjjcCadre3 item = new DBYjjcCadre3();
-        item.setGroupingName("");
+        item.setGroupingName("无分组");
         item.setGroupingId(0);
 
         List<DBYjjcCadre> dbList = new ArrayList<>();
@@ -276,8 +276,10 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
         }
         dbList = queryBuilder.list();
         item.setList(dbList);
-        list.add(item);
 
+        if(dbList.size() > 0){
+            list.add(item);
+        }
 
         LogUtil.e("数据库条数：" + list.size());
         dbYjjcCadres =  list;

@@ -75,16 +75,16 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
                 vhImage.cl_parent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mOnItemClickListener.onClick(position);
+                        mOnItemClickListener.onClick(data.getBaseId());
                     }
                 });
             }
         }else{
             ViewHeadHolder vhImage = (ViewHeadHolder) holder;
             if(TextUtils.isEmpty(data.getGroupingName())){
-                vhImage.tv_fzName.setVisibility(View.GONE);
+                vhImage.itemView.setVisibility(View.GONE);
             }else{
-                vhImage.tv_fzName.setVisibility(View.VISIBLE);
+                vhImage.itemView.setVisibility(View.VISIBLE);
                 vhImage.tv_fzName.setText(data.getGroupingName());
             }
         }
@@ -107,9 +107,9 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
 
             for (int j=0;j<datas.get(i).getList().size();j++){
                 DBYjjcCadre item = datas.get(i).getList().get(j);
-
                 DBYjjcCadre2 listContent = new DBYjjcCadre2();
                 listContent.setType(TYPE_CONTENT);
+                listContent.setBaseId(item.getBaseId());
                 listContent.setCadreName(item.getCadreName());
                 listContent.setCurrentPosition(item.getCurrentPosition());
                 listContent.setAspiringPosition(item.getAspiringPosition());
@@ -154,7 +154,7 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
     OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(int baseId);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

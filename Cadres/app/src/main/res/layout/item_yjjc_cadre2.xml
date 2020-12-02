@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/dp_40"
     android:id="@+id/cl_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,5 +16,13 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_15"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_fzName"
+        android:background="@color/color_ffd7b4"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
