@@ -376,11 +376,11 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
 //        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
 //        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
 
-        if(!TextUtils.isEmpty(searchDetailBean.getSearch())){
+        if (!TextUtils.isEmpty(searchDetailBean.getSearch())) {
             String key = searchDetailBean.getSearch();
             StringBuffer sql = new StringBuffer("");
 
-            sql.append(" (" + DBGbBeanDao.Properties.BaseId.columnName
+            sql.append(" (T." + DBGbBeanDao.Properties.BaseId.columnName
                     + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
                     + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
                     + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
@@ -388,16 +388,16 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
                     + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
                     + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
-                    + " OR " + " " + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
-                    + " OR " + " " + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?)");
+                    + " OR " + " T." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?)");
 
-            String[] values =  new String[]{
+            String[] values = new String[]{
                     "%" + key + "%",
                     "%" + key + "%",
                     "%" + key + "%",
@@ -414,7 +414,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
         }
 
-        if(searchDetailBean.getLxLists().size() > 0){
+        if (searchDetailBean.getLxLists().size() > 0) {
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getLxLists().size()];
             for (int i = 0; i < searchDetailBean.getLxLists().size(); i++) {

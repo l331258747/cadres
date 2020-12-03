@@ -261,8 +261,11 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
         }
 
         DBYjjcCadre3 item = new DBYjjcCadre3();
-        item.setGroupingName("无分组");
-        item.setGroupingId(0);
+        if(list.size() == 0){
+            item.setGroupingName("");
+        }else{
+            item.setGroupingName("无分组");
+        }
 
         List<DBYjjcCadre> dbList = new ArrayList<>();
         DBYjjcCadreDao dbYjjcCadreDao = DaoManager.getInstance().getDaoSession().getDBYjjcCadreDao();

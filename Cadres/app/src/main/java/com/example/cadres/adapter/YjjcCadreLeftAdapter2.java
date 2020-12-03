@@ -82,9 +82,9 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
         }else{
             ViewHeadHolder vhImage = (ViewHeadHolder) holder;
             if(TextUtils.isEmpty(data.getGroupingName())){
-                vhImage.itemView.setVisibility(View.GONE);
+                vhImage.tv_fzName.setVisibility(View.GONE);
             }else{
-                vhImage.itemView.setVisibility(View.VISIBLE);
+                vhImage.tv_fzName.setVisibility(View.VISIBLE);
                 vhImage.tv_fzName.setText(data.getGroupingName());
             }
         }
