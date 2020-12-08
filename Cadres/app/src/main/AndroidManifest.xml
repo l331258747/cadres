@@ -35,6 +35,8 @@
         <activity
             android:name=".view.login.LoginActivity"
             android:theme="@style/SplashTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,41 +48,58 @@
         <activity
             android:name=".view.home.HomeActivity"
             android:launchMode="singleTask"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".view.zcfg.ZcfgActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.zcfg.ZcfgDetailActivity"/>
+            android:name=".view.zcfg.ZcfgDetailActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.Bm.BmActivity"/>
+            android:name=".view.Bm.BmActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.Gb.GbActivity"/>
+            android:name=".view.Gb.GbActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.yjjc.YjjcActivity"/>
+            android:name=".view.yjjc.YjjcActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.yjjc.YjjcDetailActivity"/>
+            android:name=".view.yjjc.YjjcDetailActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.yjjc.YjjcDetailActivity2"/>
+            android:name=".view.yjjc.YjjcDetailActivity2"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.yjjc.YjjcVoteActivity"/>
+            android:name=".view.yjjc.YjjcVoteActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.search.SearchActivity"/>
+            android:name=".view.search.SearchActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.search.SearchDetailActivity"/>
+            android:name=".view.search.SearchDetailActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.dsjty.DsjtyActivity"/>
+            android:name=".view.dsjty.DsjtyActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.dsjty.TyListActivity"/>
+            android:name=".view.dsjty.TyListActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.other.PhotoImageActivity"/>
+            android:name=".view.other.PhotoImageActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.Gb.GbSelectActivity"/>
+            android:name=".view.Gb.GbSelectActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.dsjty.DsjtySelectActivity"/>
+            android:name=".view.dsjty.DsjtySelectActivity"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.Bm.BmGwyActivity"/>
+            android:name=".view.Bm.BmGwyActivity"
+            android:screenOrientation="landscape"/>
 
     </application>
 

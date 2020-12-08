@@ -13,6 +13,7 @@
      android:textSize="@dimen/sp_12"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toTopOf="parent"
+     android:textStyle="bold"
      android:gravity="center"
      android:paddingStart="@dimen/dp_5"
      app:layout_constraintBottom_toBottomOf="parent"/>
