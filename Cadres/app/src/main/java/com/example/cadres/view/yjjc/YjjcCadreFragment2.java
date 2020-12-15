@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.cadres.R;
-import com.example.cadres.adapter.YjjcCadreAdapterRight;
 import com.example.cadres.adapter.YjjcCadreAdapterRight2;
-import com.example.cadres.adapter.YjjcCadreLeftAdapter;
 import com.example.cadres.adapter.YjjcCadreLeftAdapter2;
 import com.example.cadres.base.BaseFragment;
 import com.example.cadres.bean.login.MySelfInfo;
