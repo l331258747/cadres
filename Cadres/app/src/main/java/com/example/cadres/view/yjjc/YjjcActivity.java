@@ -11,12 +11,14 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.yjjc.AppointDismissCadreGroupingListBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
 import com.example.cadres.beanDB.DBYjjcCadre;
 import com.example.cadres.beanDB.DBYjjcMeeting;
 import com.example.cadres.beanDB.DbYjjcBean;
+import com.example.cadres.beanDB.DbYjjcCadreGrouping;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.mvp.YjjcSelContract;
@@ -85,6 +87,7 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
         dBYjjcDaoUtils = _Store.getYjjcDaoUtils();
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
         dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
+        dbYjjcCadreGroupingDaoUtils = _Store.getYjjcCadreGroupingDaoUtils();
 
         initProgress();
     }
@@ -224,11 +227,13 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
     CommonDaoUtils<DbYjjcBean> dBYjjcDaoUtils;
     CommonDaoUtils<DBYjjcCadre> dBYjjcCadreDaoUtils;
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
+    CommonDaoUtils<DbYjjcCadreGrouping> dbYjjcCadreGroupingDaoUtils;
 
     public void setDBYjjc(List<YjjcBean.YjjcBean2> data) {
         List<DbYjjcBean> dbList = new ArrayList<>();
         List<DBYjjcCadre> dbList_cadre = new ArrayList<>();
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
+        List<DbYjjcCadreGrouping> dbList_grouping = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
             progress.setProgress((int) (10 + (40f / data.size() * i)));
@@ -321,14 +326,27 @@ public class YjjcActivity extends BaseActivity implements View.OnClickListener, 
                         item_meeting.getMaterialFileName()
                 ));
             }
+
+            for (int i_grouping = 0; i_grouping < data.get(i).getAppointDismissCadreGroupingList().size(); i_grouping++) {
+                AppointDismissCadreGroupingListBean item_grouping = data.get(i).getAppointDismissCadreGroupingList().get(i_grouping);
+                dbList_grouping.add(new DbYjjcCadreGrouping(
+                        null,
+                        item_grouping.getGroupingId(),
+                        item_grouping.getSchemeId(),
+                        item_grouping.getGroupingName(),
+                        item_grouping.getGroupingRanking()
+                ));
+            }
         }
 
         dBYjjcDaoUtils.deleteAll();
         dBYjjcCadreDaoUtils.deleteAll();
         dBYjjcMeetingDaoUtils.deleteAll();
+        dbYjjcCadreGroupingDaoUtils.deleteAll();
 
         dBYjjcDaoUtils.insertMulti(dbList);
         dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
         dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
+        dbYjjcCadreGroupingDaoUtils.insertMulti(dbList_grouping);
     }
 }

@@ -16,6 +16,7 @@ import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.base.BaseFragmentAdapter;
 import com.example.cadres.bean.common.ListDialogBean;
+import com.example.cadres.bean.yjjc.AppointDismissCadreGroupingListBean;
 import com.example.cadres.bean.yjjc.AppointDismissCadreVoListBean;
 import com.example.cadres.bean.yjjc.AppointDismissMeetingListBean;
 import com.example.cadres.bean.yjjc.YjjcBean;
@@ -58,6 +59,7 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
     CommonDaoUtils<DbYjjcBean> dBYjjcDaoUtils;
     CommonDaoUtils<DBYjjcCadre> dBYjjcCadreDaoUtils;
     CommonDaoUtils<DBYjjcMeeting> dBYjjcMeetingDaoUtils;
+    CommonDaoUtils<DbYjjcCadreGrouping> dbYjjcCadreGroupingDaoUtils;
 
     List<DbYjjcBean> dbYjjcBeans;
     List<DBYjjcCadre3> dbYjjcCadres;
@@ -159,6 +161,7 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
         dBYjjcDaoUtils = _Store.getYjjcDaoUtils();
         dBYjjcMeetingDaoUtils = _Store.getYjjcMeetingDaoUtils();
         dBYjjcCadreDaoUtils = _Store.getYjjcCadreDaoUtils();
+        dbYjjcCadreGroupingDaoUtils = _Store.getYjjcCadreGroupingDaoUtils();
 
         getDbList(type);
         dialogDatas = new ArrayList<>();
@@ -325,6 +328,7 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
         List<DbYjjcBean> dbList = new ArrayList<>();
         List<DBYjjcCadre> dbList_cadre = new ArrayList<>();
         List<DBYjjcMeeting> dbList_meeting = new ArrayList<>();
+        List<DbYjjcCadreGrouping> dbList_grouping = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
             YjjcBean.YjjcBean2 item = data.get(i);
@@ -416,15 +420,28 @@ public class YjjcDetailActivity2 extends BaseActivity implements YjjcDetailContr
                         item_meeting.getMaterialFileName()
                 ));
             }
+
+            for (int i_grouping = 0; i_grouping < data.get(i).getAppointDismissCadreGroupingList().size(); i_grouping++) {
+                AppointDismissCadreGroupingListBean item_grouping = data.get(i).getAppointDismissCadreGroupingList().get(i_grouping);
+                dbList_grouping.add(new DbYjjcCadreGrouping(
+                        null,
+                        item_grouping.getGroupingId(),
+                        item_grouping.getSchemeId(),
+                        item_grouping.getGroupingName(),
+                        item_grouping.getGroupingRanking()
+                ));
+            }
         }
 
         dBYjjcDaoUtils.deleteAll();
         dBYjjcCadreDaoUtils.deleteAll();
         dBYjjcMeetingDaoUtils.deleteAll();
+        dbYjjcCadreGroupingDaoUtils.deleteAll();
 
         dBYjjcDaoUtils.insertMulti(dbList);
         dBYjjcCadreDaoUtils.insertMulti(dbList_cadre);
         dBYjjcMeetingDaoUtils.insertMulti(dbList_meeting);
+        dbYjjcCadreGroupingDaoUtils.insertMulti(dbList_grouping);
     }
 
     private void initDrawer(){
