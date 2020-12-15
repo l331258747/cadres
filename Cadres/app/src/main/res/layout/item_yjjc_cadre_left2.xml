@@ -8,16 +8,15 @@
  <TextView
      android:id="@+id/tv_fzName"
      android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     tools:text="山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格山东分公司的风格"
+     android:layout_height="@dimen/dp_42"
+     tools:text="山东分公司的风格山格山东分公司的风格\n第三方斯蒂芬"
      android:textSize="@dimen/sp_12"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toTopOf="parent"
      android:textStyle="bold"
      android:paddingStart="@dimen/dp_5"
+     android:gravity="center_vertical"
      android:paddingEnd="@dimen/dp_5"
-     android:paddingTop="@dimen/dp_8"
-     android:paddingBottom="@dimen/dp_8"
      app:layout_constraintBottom_toBottomOf="parent"/>
 
  <View
