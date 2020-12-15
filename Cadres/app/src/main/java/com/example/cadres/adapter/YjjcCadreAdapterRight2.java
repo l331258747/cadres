@@ -168,7 +168,7 @@ public class YjjcCadreAdapterRight2 extends RecyclerView.Adapter<RecyclerView.Vi
                 listContent.setTechnicalTitle(item.getTechnicalTitle());
 
                 listContent.setAge(item.getAge());
-                listContent.setBirthday(item.getBirthdayAge());
+                listContent.setBirthday(item.getBirthday());
                 listContent.setWorkTime(item.getWorkTime());
                 listContent.setJoinPartyDate(item.getJoinPartyDate());
                 listContent.setCurrentPositionTime(item.getCurrentPositionTime());

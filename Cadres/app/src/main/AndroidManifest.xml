@@ -68,9 +68,6 @@
             android:name=".view.yjjc.YjjcActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.yjjc.YjjcDetailActivity"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.yjjc.YjjcDetailActivity2"
             android:screenOrientation="landscape"/>
         <activity
