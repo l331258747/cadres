@@ -51,6 +51,11 @@ public class MethodApi {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
+    public static void getYjjcList2(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getYjjcList2(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
     //获取 任免决策 票决验证 列表
     public static void getYjjcVoteCheck(int schemeId,int voteUserId,DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcVoteCheck(schemeId,voteUserId); //在HttpServer中

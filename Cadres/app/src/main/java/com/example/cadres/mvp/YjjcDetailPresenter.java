@@ -30,6 +30,6 @@ public class YjjcDetailPresenter implements YjjcDetailContract.Presenter {
                 iView.getYjjcListFailed(errorMsg);
             }
         };
-        MethodApi.getYjjcList(new OnSuccessAndFaultSub(listener, context));
+        MethodApi.getYjjcList2(new OnSuccessAndFaultSub(listener, context));
     }
 }

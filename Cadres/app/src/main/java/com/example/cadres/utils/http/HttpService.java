@@ -64,6 +64,9 @@ public interface HttpService {
     @GET("appointDismissScheme/findAppointDismissSchemeList")
     Observable<BaseResponse<YjjcBean>> getYjjcList();
 
+    @GET("appointDismissScheme/findAppointDismissSchemeListByMeetingMode")
+    Observable<BaseResponse<YjjcBean>> getYjjcList2();
+
     @GET("appointDismissScheme/checkIsVote")
     Observable<BaseResponse<YjjcVoteCheckBean>> getYjjcVoteCheck(@Query("schemeId") int schemeId,
                                                                  @Query("voteUserId") int voteUserId);

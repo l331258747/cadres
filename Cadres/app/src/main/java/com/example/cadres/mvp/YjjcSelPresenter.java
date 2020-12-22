@@ -60,6 +60,6 @@ public class YjjcSelPresenter implements YjjcSelContract.Presenter{
                 iView.getYjjcListFailed(errorMsg);
             }
         };
-        MethodApi.getYjjcList(new OnSuccessAndFaultSub(listener, context,false));
+        MethodApi.getYjjcList2(new OnSuccessAndFaultSub(listener, context,false));
     }
 }
