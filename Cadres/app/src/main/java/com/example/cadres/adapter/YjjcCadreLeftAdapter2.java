@@ -70,6 +70,9 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
             vhImage.tv_xrzw.setText(data.getCurrentPosition());
             vhImage.tv_nrmzw.setText(data.getAspiringPosition());
             vhImage.tv_xh.setText(data.getRankingStr());
+            vhImage.line_bold.setVisibility(View.GONE);
+            if(data.getVacantPosition().equals("1"))
+                vhImage.line_bold.setVisibility(View.VISIBLE);
 
             if(mOnItemClickListener != null){
                 vhImage.cl_parent.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +117,7 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
                 listContent.setCurrentPosition(item.getCurrentPosition());
                 listContent.setAspiringPosition(item.getAspiringPosition());
                 listContent.setRanking(item.getRanking());
+                listContent.setVacantPosition(item.getVacantPosition());
                 list.add(listContent);
             }
         }
@@ -125,11 +129,13 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
 
         TextView tv_tip2,tv_name,tv_xrzw,tv_nrmzw,tv_xh;
         ConstraintLayout cl_parent;
+        View line_bold;
 
         public ViewContentHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_nrmzw = itemView.findViewById(R.id.tv_nrmzw);
+            line_bold = itemView.findViewById(R.id.line_bold);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
 

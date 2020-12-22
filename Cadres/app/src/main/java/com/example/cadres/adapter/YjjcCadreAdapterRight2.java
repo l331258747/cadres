@@ -106,6 +106,9 @@ public class YjjcCadreAdapterRight2 extends RecyclerView.Adapter<RecyclerView.Vi
             vhImage.tv_cwhyj_jg.setText(data.getCwhOpinion());
             vhImage.tv_bz.setText(data.getRemark());
 
+            if(data.getVacantPosition().equals("1"))
+                vhImage.line_bold.setVisibility(View.VISIBLE);
+
             vhImage.group_cwhyj.setVisibility(View.GONE);
             if(TextUtils.equals(type,"市委常委会议")){
                 vhImage.group_cwhyj.setVisibility(View.VISIBLE);
@@ -186,6 +189,8 @@ public class YjjcCadreAdapterRight2 extends RecyclerView.Adapter<RecyclerView.Vi
                 listContent.setCwhOpinion(item.getCwhOpinion());
                 listContent.setRemark(item.getRemark());
 
+                listContent.setVacantPosition(item.getVacantPosition());
+
                 list.add(listContent);
             }
         }
@@ -204,10 +209,12 @@ public class YjjcCadreAdapterRight2 extends RecyclerView.Adapter<RecyclerView.Vi
         TextView tv_cwhyj_yxp,tv_cwhyj_dps,tv_cwhyj_jg,tv_bz;
         ConstraintLayout cl_parent;
         Group group_cwhyj;
+        View line_bold;
 
         public ViewContentHolder(@NonNull View itemView) {
             super(itemView);
             group_cwhyj = itemView.findViewById(R.id.group_cwhyj);
+            line_bold = itemView.findViewById(R.id.line_bold);
 
             tv_cwhyj_yxp = itemView.findViewById(R.id.tv_cwhyj_yxp);
             tv_cwhyj_dps = itemView.findViewById(R.id.tv_cwhyj_dps);
