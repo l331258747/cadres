@@ -68,7 +68,6 @@ public class YjjcVoteAdapter extends RecyclerView.Adapter<YjjcVoteAdapter.ViewHo
             clean(holder);
 
             //默认同意
-            data.setMyVote(1);
             holder.tv_ty.setBackgroundResource(R.drawable.shape_eb8b49_r40);
             holder.tv_ty.setTextColor(ContextCompat.getColor(mContext,R.color.white));
 

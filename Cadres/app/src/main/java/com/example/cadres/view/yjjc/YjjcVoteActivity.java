@@ -13,8 +13,6 @@ import com.example.cadres.bean.yjjc.YjjcVoteListBean;
 import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.mvp.YjjcVoteContract;
 import com.example.cadres.mvp.YjjcVotePresenter;
-import com.example.cadres.utils.rxbus.RxBus2;
-import com.example.cadres.utils.rxbus.rxbusEvent.VoteEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,6 +121,12 @@ public class YjjcVoteActivity extends BaseActivity implements YjjcVoteContract.V
 
     @Override
     public void getYjjcVoteListSuccess(List<YjjcVoteListBean> data) {
+        if(data != null){
+            for (int i=0;i<data.size();i++){
+                data.get(i).setMyVote(1);
+            }
+        }
+
         mAdapter.setData(data,state == 1?true:false);
     }
 
