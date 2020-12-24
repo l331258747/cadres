@@ -1629,7 +1629,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         String apkUrl = data.getUrl();
 //        String apkUrl = "https://www.njzou.com/najiuzou.apk";
         String content = data.getContent();
-        apkName = "宁乡市干部大数据管理系统" + sVersionCode + ".apk";
+        apkName = "浏阳市干部大数据管理系统" + sVersionCode + ".apk";
 
         if (sVersionCode > cVersionCode) {
             initProgress(content);

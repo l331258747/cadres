@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_40"
-        android:text="宁乡市干部大数据系统"
+        android:text="浏阳市干部大数据系统"
         android:textSize="@dimen/sp_28"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,6 +33,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         android:src="@mipmap/ic_home_logo"
         android:layout_marginEnd="@dimen/dp_20"
+        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/tv_title"/>
 
     <EditText
@@ -267,8 +268,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/sp_12"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="@dimen/dp_5"
-        android:text="技术支持：宁乡市数据资源中心"/>
+        android:text="技术支持：浏阳市数据资源中心"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

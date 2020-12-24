@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_40"
-        android:text="宁乡市干部大数据管理系统"
+        android:text="浏阳市干部大数据管理系统"
         android:textColor="@color/color_c3392d"
         android:textSize="@dimen/sp_28"
         android:textStyle="bold"
