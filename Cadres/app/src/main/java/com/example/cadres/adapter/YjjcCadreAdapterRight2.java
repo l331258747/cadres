@@ -106,6 +106,7 @@ public class YjjcCadreAdapterRight2 extends RecyclerView.Adapter<RecyclerView.Vi
             vhImage.tv_cwhyj_jg.setText(data.getCwhOpinion());
             vhImage.tv_bz.setText(data.getRemark());
 
+            vhImage.line_bold.setVisibility(View.GONE);
             if(data.getVacantPosition().equals("1"))
                 vhImage.line_bold.setVisibility(View.VISIBLE);
 

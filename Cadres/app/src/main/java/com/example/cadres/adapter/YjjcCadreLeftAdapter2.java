@@ -70,6 +70,7 @@ public class YjjcCadreLeftAdapter2 extends RecyclerView.Adapter<RecyclerView.Vie
             vhImage.tv_xrzw.setText(data.getCurrentPosition());
             vhImage.tv_nrmzw.setText(data.getAspiringPosition());
             vhImage.tv_xh.setText(data.getRankingStr());
+
             vhImage.line_bold.setVisibility(View.GONE);
             if(data.getVacantPosition().equals("1"))
                 vhImage.line_bold.setVisibility(View.VISIBLE);

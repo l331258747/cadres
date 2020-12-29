@@ -534,6 +534,8 @@ public class DBYjjcCadre2 {
     }
 
     public String getVacantPosition() {
+        if(TextUtils.isEmpty(vacantPosition))
+            return "";
         return vacantPosition;
     }
 
