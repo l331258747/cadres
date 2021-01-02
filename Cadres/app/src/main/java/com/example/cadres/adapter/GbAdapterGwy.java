@@ -104,10 +104,15 @@ public class GbAdapterGwy extends RecyclerView.Adapter<GbAdapterGwy.ViewHolder> 
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
         TextView tv_name,tv_xrzw,tv_xrzsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_qrzzy,tv_rzjqssj,tv_cjgzsj;
+        TextView tv_zzzy,tv_poxm,tv_pogzdw;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);
+
+            tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
+            tv_poxm = itemView.findViewById(R.id.tv_poxm);
+            tv_pogzdw = itemView.findViewById(R.id.tv_pogzdw);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
             iv_head = itemView.findViewById(R.id.iv_head);

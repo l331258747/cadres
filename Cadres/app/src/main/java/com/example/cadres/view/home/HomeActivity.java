@@ -1061,7 +1061,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getFunctionaryRankStartTime(),
                     item.getFunctionaryRankParentName(),
                     item.getPostLabel(),
-                    item.getWorkExperience()
+                    item.getWorkExperience(),
+                    item.getSpouseName(),
+                    item.getSpouseWorkUnit()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {

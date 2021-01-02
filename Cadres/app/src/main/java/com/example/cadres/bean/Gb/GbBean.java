@@ -140,6 +140,8 @@ public class GbBean {
         private String functionaryRankParentName;
         private String postLabel;
         private String workExperience;
+        private String spouseName;
+        private String spouseWorkUnit;
 
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
@@ -149,6 +151,14 @@ public class GbBean {
         private List<GbCadreAwardPunishList> cadreAwardPunishList;//干部奖惩记录信息
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
+
+        public String getSpouseName() {
+            return spouseName;
+        }
+
+        public String getSpouseWorkUnit() {
+            return spouseWorkUnit;
+        }
 
         public String getWorkExperience() {
             return workExperience;

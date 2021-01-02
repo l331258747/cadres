@@ -80,7 +80,10 @@ public class DBGbBean {
     private String postLabel;
     private String workExperience;
 
-    @Generated(hash = 849418092)
+    private String spouseName;
+    private String spouseWorkUnit;
+
+    @Generated(hash = 1717434447)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -103,7 +106,8 @@ public class DBGbBean {
             String cadreResume, String cadreAward, String cadrePunish,
             String cadreTrain, String politicalConstruction, String cadreAssessment,
             String functionaryRankStartTime, String functionaryRankParentName,
-            String postLabel, String workExperience) {
+            String postLabel, String workExperience, String spouseName,
+            String spouseWorkUnit) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -170,6 +174,8 @@ public class DBGbBean {
         this.functionaryRankParentName = functionaryRankParentName;
         this.postLabel = postLabel;
         this.workExperience = workExperience;
+        this.spouseName = spouseName;
+        this.spouseWorkUnit = spouseWorkUnit;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -599,5 +605,17 @@ public class DBGbBean {
     }
     public void setWorkExperience(String workExperience) {
         this.workExperience = workExperience;
+    }
+    public String getSpouseName() {
+        return this.spouseName;
+    }
+    public void setSpouseName(String spouseName) {
+        this.spouseName = spouseName;
+    }
+    public String getSpouseWorkUnit() {
+        return this.spouseWorkUnit;
+    }
+    public void setSpouseWorkUnit(String spouseWorkUnit) {
+        this.spouseWorkUnit = spouseWorkUnit;
     }
 }

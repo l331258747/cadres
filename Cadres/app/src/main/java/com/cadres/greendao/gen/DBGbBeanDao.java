@@ -90,6 +90,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property FunctionaryRankParentName = new Property(63, String.class, "functionaryRankParentName", false, "FUNCTIONARY_RANK_PARENT_NAME");
         public final static Property PostLabel = new Property(64, String.class, "postLabel", false, "POST_LABEL");
         public final static Property WorkExperience = new Property(65, String.class, "workExperience", false, "WORK_EXPERIENCE");
+        public final static Property SpouseName = new Property(66, String.class, "spouseName", false, "SPOUSE_NAME");
+        public final static Property SpouseWorkUnit = new Property(67, String.class, "spouseWorkUnit", false, "SPOUSE_WORK_UNIT");
     }
 
 
@@ -170,7 +172,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"FUNCTIONARY_RANK_START_TIME\" TEXT," + // 62: functionaryRankStartTime
                 "\"FUNCTIONARY_RANK_PARENT_NAME\" TEXT," + // 63: functionaryRankParentName
                 "\"POST_LABEL\" TEXT," + // 64: postLabel
-                "\"WORK_EXPERIENCE\" TEXT);"); // 65: workExperience
+                "\"WORK_EXPERIENCE\" TEXT," + // 65: workExperience
+                "\"SPOUSE_NAME\" TEXT," + // 66: spouseName
+                "\"SPOUSE_WORK_UNIT\" TEXT);"); // 67: spouseWorkUnit
     }
 
     /** Drops the underlying database table. */
@@ -488,6 +492,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (workExperience != null) {
             stmt.bindString(66, workExperience);
         }
+ 
+        String spouseName = entity.getSpouseName();
+        if (spouseName != null) {
+            stmt.bindString(67, spouseName);
+        }
+ 
+        String spouseWorkUnit = entity.getSpouseWorkUnit();
+        if (spouseWorkUnit != null) {
+            stmt.bindString(68, spouseWorkUnit);
+        }
     }
 
     @Override
@@ -799,6 +813,16 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (workExperience != null) {
             stmt.bindString(66, workExperience);
         }
+ 
+        String spouseName = entity.getSpouseName();
+        if (spouseName != null) {
+            stmt.bindString(67, spouseName);
+        }
+ 
+        String spouseWorkUnit = entity.getSpouseWorkUnit();
+        if (spouseWorkUnit != null) {
+            stmt.bindString(68, spouseWorkUnit);
+        }
     }
 
     @Override
@@ -874,7 +898,9 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 62) ? null : cursor.getString(offset + 62), // functionaryRankStartTime
             cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63), // functionaryRankParentName
             cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64), // postLabel
-            cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65) // workExperience
+            cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65), // workExperience
+            cursor.isNull(offset + 66) ? null : cursor.getString(offset + 66), // spouseName
+            cursor.isNull(offset + 67) ? null : cursor.getString(offset + 67) // spouseWorkUnit
         );
         return entity;
     }
@@ -947,6 +973,8 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setFunctionaryRankParentName(cursor.isNull(offset + 63) ? null : cursor.getString(offset + 63));
         entity.setPostLabel(cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64));
         entity.setWorkExperience(cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65));
+        entity.setSpouseName(cursor.isNull(offset + 66) ? null : cursor.getString(offset + 66));
+        entity.setSpouseWorkUnit(cursor.isNull(offset + 67) ? null : cursor.getString(offset + 67));
      }
     
     @Override

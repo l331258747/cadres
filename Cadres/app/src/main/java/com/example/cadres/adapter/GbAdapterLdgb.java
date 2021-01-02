@@ -106,9 +106,14 @@ public class GbAdapterLdgb extends RecyclerView.Adapter<GbAdapterLdgb.ViewHolder
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
         TextView tv_name,tv_xrzw,tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy;
+        TextView tv_zzzy,tv_poxm,tv_pogzdw;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
+            tv_poxm = itemView.findViewById(R.id.tv_poxm);
+            tv_pogzdw = itemView.findViewById(R.id.tv_pogzdw);
+
             tv_xrzwcc = itemView.findViewById(R.id.tv_xrzwcc);
             tv_xrzwccsj = itemView.findViewById(R.id.tv_xrzwccsj);
             tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);

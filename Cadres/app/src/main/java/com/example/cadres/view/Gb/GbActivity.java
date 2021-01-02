@@ -154,7 +154,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         iv_cjgzsj = findViewById(R.id.iv_cjgzsj);
         iv_csny = findViewById(R.id.iv_csny);
 
-        if (TextUtils.equals(type, "3")) {
+        if (TextUtils.equals(type, "3") || TextUtils.equals(type, "4")) {
             ll_csny = findViewById(R.id.ll_csny_hbgb);
             iv_csny = findViewById(R.id.iv_csny_hbgb);
         } else if(TextUtils.equals(type, "2")){
@@ -235,7 +235,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void setAdapterData(List<DBGbBean> list){
-        if(TextUtils.equals(type,"3")){
+        if(TextUtils.equals(type,"3") || TextUtils.equals(type, "4")){
             mAdapterHbgb.setData(list);
         }else if(TextUtils.equals(type,"2")){
             mAdapterGwy.setData(list);
@@ -250,7 +250,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         cl_gb_list_title_gwy = findViewById(R.id.cl_gb_list_title_gwy);
         cl_gb_list_title_hbgb = findViewById(R.id.cl_gb_list_title_hbgb);
 
-        if (TextUtils.equals(type, "3")) {
+        if (TextUtils.equals(type, "3") || TextUtils.equals(type, "4")) {
             cl_gb_list_title_ldgb.setVisibility(View.GONE);
             cl_gb_list_title_gwy.setVisibility(View.GONE);
             cl_gb_list_title_hbgb.setVisibility(View.VISIBLE);
@@ -402,7 +402,7 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        if(TextUtils.equals(type,"3")){
+        if(TextUtils.equals(type,"3") || TextUtils.equals(type, "4")){
             mAdapterHbgb = new GbAdapterHbgb(activity, new ArrayList<DBGbBean>());
             recyclerView.setAdapter(mAdapterHbgb);
             recyclerView.getItemAnimator().setChangeDuration(0);
@@ -787,7 +787,9 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankStartTime.columnName)),
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.FunctionaryRankParentName.columnName)),
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PostLabel.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName))
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.SpouseName.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.SpouseWorkUnit.columnName))
                     ));
                 }
             }

@@ -61,6 +61,10 @@ public class GbAdapterHbgb extends RecyclerView.Adapter<GbAdapterHbgb.ViewHolder
 
         holder.tv_qrzzy.setText(data.getFullTimeMajor());
 
+        holder.tv_zzzy.setText(data.getCurrentMajor());
+        holder.tv_poxm.setText(data.getSpouseName());
+        holder.tv_pogzdw.setText(data.getSpouseWorkUnit());
+
         holder.tv_head_tag.setVisibility(View.GONE);
         holder.iv_head_tag.setVisibility(View.GONE);
         if(TextUtils.equals(data.getAffectedState(),"1")){
@@ -100,10 +104,15 @@ public class GbAdapterHbgb extends RecyclerView.Adapter<GbAdapterHbgb.ViewHolder
         ConstraintLayout cl_parent;
         ImageView iv_head,iv_head_tag;
         TextView tv_name,tv_xrzw,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_head_tag,tv_qrzzy;
+        TextView tv_zzzy,tv_poxm,tv_pogzdw;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_qrzzy = itemView.findViewById(R.id.tv_qrzzy);
+
+            tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
+            tv_poxm = itemView.findViewById(R.id.tv_poxm);
+            tv_pogzdw = itemView.findViewById(R.id.tv_pogzdw);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
             iv_head = itemView.findViewById(R.id.iv_head);
