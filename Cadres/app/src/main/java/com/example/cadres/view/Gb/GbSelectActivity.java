@@ -10,7 +10,7 @@ import com.example.cadres.view.search.SearchActivity;
 
 public class GbSelectActivity extends BaseActivity implements View.OnClickListener {
 
-    ImageView iv_ldgb_bg,iv_zjgwy_bg,iv_hbgb_bg;
+    ImageView iv_ldgb_bg,iv_zjgwy_bg,iv_hbgb_bg,iv_sygb_bg;
 
 //    int upActivity;
 
@@ -30,10 +30,12 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
         iv_ldgb_bg = $(R.id.iv_ldgb_bg);
         iv_zjgwy_bg = $(R.id.iv_zjgwy_bg);
         iv_hbgb_bg = $(R.id.iv_hbgb_bg);
+        iv_sygb_bg = $(R.id.iv_sygb_bg);
 
         iv_ldgb_bg.setOnClickListener(this);
         iv_zjgwy_bg.setOnClickListener(this);
         iv_hbgb_bg.setOnClickListener(this);
+        iv_sygb_bg.setOnClickListener(this);
 
     }
 
@@ -68,6 +70,11 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
             case R.id.iv_hbgb_bg:
                 intent.putExtra("type","3");
                 intent.putExtra("title","后备干部名册");
+                startActivity(intent);
+                break;
+            case R.id.iv_sygb_bg:
+                intent.putExtra("type","4");
+                intent.putExtra("title","事业干部名册");
                 startActivity(intent);
                 break;
         }
