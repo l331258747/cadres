@@ -95,6 +95,9 @@
             android:name=".view.dsjty.DsjtySelectActivity"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".view.Bm.BmSelectActivity"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".view.Bm.BmGwyActivity"
             android:screenOrientation="landscape"/>
 

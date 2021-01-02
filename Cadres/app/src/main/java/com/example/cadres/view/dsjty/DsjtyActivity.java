@@ -22,11 +22,14 @@ import androidx.fragment.app.Fragment;
 
 public class DsjtyActivity extends BaseActivity implements View.OnClickListener {
 
-    ImageView iv_title_left, iv_title_center, iv_title_right;
-    TextView tv_title_left, tv_title_center, tv_title_right;
-    View view_back, view_home;
+    Group group_table1,group_table2,group_table3;
+    ImageView iv_title_left1,iv_title_center1,iv_title_right1;
+    TextView tv_title_left1,tv_title_center1,tv_title_right1;
+    ImageView iv_title_left2,iv_title_center2;
+    TextView tv_title_left2,tv_title_center2;
+    TextView tv_title_center3;
 
-    Group group_title_right;
+    View view_back, view_home;
 
     String type;
 
@@ -34,7 +37,7 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_dsjty;
+        return R.layout.activity_dsjty2;
     }
 
     @Override
@@ -47,31 +50,57 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
 
         mViewPager = findViewById(R.id.viewpager);
 
-        iv_title_left = findViewById(R.id.iv_title_left);
-        iv_title_center = findViewById(R.id.iv_title_center);
-        iv_title_right = findViewById(R.id.iv_title_right);
-        tv_title_left = findViewById(R.id.tv_title_left);
-        tv_title_center = findViewById(R.id.tv_title_center);
-        tv_title_right = findViewById(R.id.tv_title_right);
-        group_title_right = findViewById(R.id.group_title_right);
+        group_table1 = findViewById(R.id.group_table1);
+        group_table2 = findViewById(R.id.group_table2);
+        group_table3 = findViewById(R.id.group_table3);
+
+        iv_title_left1 = findViewById(R.id.iv_title_left1);
+        iv_title_center1 = findViewById(R.id.iv_title_center1);
+        iv_title_right1 = findViewById(R.id.iv_title_right1);
+        tv_title_left1 = findViewById(R.id.tv_title_left1);
+        tv_title_center1 = findViewById(R.id.tv_title_center1);
+        tv_title_right1 = findViewById(R.id.tv_title_right1);
+
+        iv_title_left2 = findViewById(R.id.iv_title_left2);
+        iv_title_center2 = findViewById(R.id.iv_title_center2);
+        tv_title_left2 = findViewById(R.id.tv_title_left2);
+        tv_title_center2 = findViewById(R.id.tv_title_center2);
+
+        tv_title_center3 = findViewById(R.id.tv_title_center3);
 
         view_back = findViewById(R.id.view_back);
         view_home = findViewById(R.id.view_home);
         view_home.setOnClickListener(this);
         view_back.setOnClickListener(this);
-        iv_title_left.setOnClickListener(this);
-        iv_title_center.setOnClickListener(this);
-        iv_title_right.setOnClickListener(this);
-
+        iv_title_left1.setOnClickListener(this);
+        iv_title_center1.setOnClickListener(this);
+        iv_title_right1.setOnClickListener(this);
+        iv_title_left2.setOnClickListener(this);
+        iv_title_center2.setOnClickListener(this);
     }
 
     @Override
     public void initData() {
+        group_table1.setVisibility(View.GONE);
+        group_table2.setVisibility(View.GONE);
+        group_table3.setVisibility(View.GONE);
+
         List<Fragment> mFragments = new ArrayList<>();
-        mFragments.add(DsjtyZjFragment.newInstance(type));
-        mFragments.add(DsjtyJgFragment.newInstance(type));
         if(TextUtils.equals(this.type,"1")){
+            group_table1.setVisibility(View.VISIBLE);
+
+            mFragments.add(DsjtyZjFragment.newInstance(type));
+            mFragments.add(DsjtyJgFragment.newInstance(type));
             mFragments.add(DsjtyHjFragment.newInstance(type));
+        }else if(TextUtils.equals(this.type,"2")){
+            group_table2.setVisibility(View.VISIBLE);
+
+            mFragments.add(DsjtyZjFragment.newInstance(type));
+            mFragments.add(DsjtyJgFragment.newInstance(type));
+        }else if(TextUtils.equals(this.type,"3")){
+            group_table3.setVisibility(View.VISIBLE);
+
+            mFragments.add(DsjtyJgFragment.newInstance(type));
         }
 
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, null);
@@ -83,47 +112,59 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
     }
 
     //------------------------------父类界面设置
-    public void setType(int type) {
+    public void setType(int pos) {
         clean();
-        if (type == 1) {
-            mViewPager.setCurrentItem(0);
-            iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left));
-            tv_title_left.setTextColor(ContextCompat.getColor(context, R.color.white));
-        } else if (type == 2) {
-            mViewPager.setCurrentItem(1);
-            if(TextUtils.equals(this.type,"2")){
-                iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
-            }else{
-                iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center));
-            }
-            tv_title_center.setTextColor(ContextCompat.getColor(context, R.color.white));
-        } else if (type == 3) {
-            mViewPager.setCurrentItem(2);
-            iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
-            tv_title_right.setTextColor(ContextCompat.getColor(context, R.color.white));
-        }
 
+        if(TextUtils.equals(type,"1")) {
+            if(pos == 1){
+                mViewPager.setCurrentItem(0);
+                iv_title_left1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left));
+                tv_title_left1.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }else if(pos == 2){
+                mViewPager.setCurrentItem(1);
+                iv_title_center1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center));
+                tv_title_center1.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }else if(pos == 3){
+                mViewPager.setCurrentItem(2);
+                iv_title_right1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
+                tv_title_right1.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }
+        }else if(TextUtils.equals(type,"2")){//公务员
+            if(pos == 1){
+                mViewPager.setCurrentItem(0);
+                iv_title_left2.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left));
+                tv_title_left2.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }else if(pos == 2){
+                mViewPager.setCurrentItem(1);
+                iv_title_center2.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right));
+                tv_title_center2.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }
+        }else if(TextUtils.equals(type,"3")){
+            if(pos == 1){
+                mViewPager.setCurrentItem(0);
+                tv_title_center3.setTextColor(ContextCompat.getColor(context, R.color.white));
+            }
+        }
     }
 
     private void clean() {
-        if(TextUtils.equals(type,"2")){//公务员
-            iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
-            iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
-            group_title_right.setVisibility(View.GONE);
-            tv_title_center.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-            tv_title_left.setText("职级推演");
+        if(TextUtils.equals(type,"1")) {
+            tv_title_left1.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
+            tv_title_center1.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
+            tv_title_right1.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
 
-        }else{
-            iv_title_left.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
-            iv_title_center.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center_un));
-            iv_title_right.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
-            tv_title_left.setText("职数推演");
+            iv_title_left1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
+            iv_title_center1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_center_un));
+            iv_title_right1.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+        }else if(TextUtils.equals(type,"2")){//公务员
+            tv_title_left2.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
+            tv_title_center2.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
+
+            iv_title_left2.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_left_un));
+            iv_title_center2.setBackground(ContextCompat.getDrawable(context, R.mipmap.ic_tab_right_un));
+        }else if(TextUtils.equals(type,"3")){
+            tv_title_center3.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
         }
-
-        tv_title_left.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
-        tv_title_center.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
-        tv_title_right.setTextColor(ContextCompat.getColor(context, R.color.color_23cffd));
-
     }
 
     @Override
@@ -135,13 +176,15 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
             case R.id.view_back:
                 finish();
                 break;
-            case R.id.iv_title_left:
+            case R.id.iv_title_left1:
+            case R.id.iv_title_left2:
                 setType(1);
                 break;
-            case R.id.iv_title_center:
+            case R.id.iv_title_center1:
+            case R.id.iv_title_center2:
                 setType(2);
                 break;
-            case R.id.iv_title_right:
+            case R.id.iv_title_right1:
                 setType(3);
                 break;
         }
