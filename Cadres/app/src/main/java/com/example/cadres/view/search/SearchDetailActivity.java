@@ -283,7 +283,9 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             queryBuilder.where(DBGbBeanDao.Properties.Birthday.between(searchDetailBean.getCurrentYear() - 35, searchDetailBean.getCurrentYear()));
         } else if (TextUtils.equals(key, "党外干部")) {
             queryBuilder.where(DBGbBeanDao.Properties.PoliticalOutlook.notIn("中共党员"));
-        } else {
+        } else if(TextUtils.equals(key, "未满服务年限公务员")){
+            queryBuilder.where(DBGbBeanDao.Properties.ServiceYearsState.eq("未满"));
+        }else {
             queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreNowPositionListBean.class, DBGbCadreNowPositionListBeanDao.Properties.BaseId)
                     .where(DBGbCadreNowPositionListBeanDao.Properties.PositionTitleName.like("%" + key + "%"));
             queryBuilder.distinct();
