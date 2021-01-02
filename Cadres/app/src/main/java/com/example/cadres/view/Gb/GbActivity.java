@@ -789,7 +789,11 @@ public class GbActivity extends BaseActivity implements View.OnClickListener {
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.PostLabel.columnName)),
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.WorkExperience.columnName)),
                             cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.SpouseName.columnName)),
-                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.SpouseWorkUnit.columnName))
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.SpouseWorkUnit.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.ServiceStartTime.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.ServiceYears.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.ServiceYearsState.columnName)),
+                            cursor.getString(cursor.getColumnIndex(DBGbBeanDao.Properties.CadreQuarterAssessment.columnName))
                     ));
                 }
             }

@@ -39,6 +39,7 @@ public class GbDrawerData {
     TextView tv_cjzzrq,tv_cjgzsj,tv_jkzk,tv_zyjszw,tv_sxzyjzc,tv_xlxw_qrz,tv_xlxw_zz,tv_byyxxjzy_qrz,tv_byyxxjzy_zz;
     TextView tv_gwydjsj,tv_rxzsj,tv_xrzw,tv_xrzwcc,tv_rxzwccsj,tv_xrzj,tv_rxzjsj,tv_rylb,tv_gllb,tv_zwlb,tv_rxzjqssj,tv_jtzz,tv_bz,tv_lx;
     TextView tv_gzjl,tv_jlqk,tv_fmqd,tv_pxqk,tv_kcqk,tv_ndkc;
+    TextView tv_fwqssj,tv_fwnx,tv_pskc;
     ImageView iv_head,iv_head_tag;
     RecyclerView recycle_view_jtcy;
 
@@ -50,6 +51,10 @@ public class GbDrawerData {
     }
 
     public void initView(){
+        tv_fwqssj = findViewById(R.id.tv_fwqssj);
+        tv_fwnx = findViewById(R.id.tv_fwnx);
+        tv_pskc = findViewById(R.id.tv_pskc);
+
         tv_name = findViewById(R.id.tv_name);
         tv_sex = findViewById(R.id.tv_sex);
         tv_sfzh = findViewById(R.id.tv_sfzh);
@@ -158,6 +163,9 @@ public class GbDrawerData {
         tv_kcqk.setText(data.getPoliticalConstruction());
         tv_ndkc.setText(data.getCadreAssessment());
 
+        tv_fwqssj.setText(data.getServiceStartTime());
+        tv_fwnx.setText(data.getServiceStr());
+        tv_pskc.setText(data.getCadreQuarterAssessment());
 
         GlideUtil.LoadImageFitCenter(context,
                 FileUtil.getFolderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),

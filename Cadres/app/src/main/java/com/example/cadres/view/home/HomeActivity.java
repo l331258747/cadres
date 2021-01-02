@@ -1063,7 +1063,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getPostLabel(),
                     item.getWorkExperience(),
                     item.getSpouseName(),
-                    item.getSpouseWorkUnit()
+                    item.getSpouseWorkUnit(),
+                    item.getServiceStartTime(),
+                    item.getServiceYears(),
+                    item.getServiceYearsState(),
+                    item.getCadreQuarterAssessment()
             ));
 
             for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {

@@ -157,10 +157,46 @@
         android:layout_height="wrap_content"/>
 
     <View
-        android:id="@+id/view_jtcy"
+        android:id="@+id/view_pskc"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/view_ndkc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_pskc"/>
+
+    <TextView
+        android:id="@+id/tv_pskc_title"
+        android:layout_width="@dimen/dp_80"
+        android:gravity="center"
+        android:text="平时\n考核\n结果"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:background="@color/color_fdf5ed"
+        app:layout_constraintStart_toStartOf="@+id/view_pskc"
+        app:layout_constraintTop_toTopOf="@+id/view_pskc"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pskc"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_pskc"
+        android:layout_width="0dp"
+        app:layout_constraintTop_toTopOf="@+id/view_pskc"
+        app:layout_constraintEnd_toEndOf="@+id/view_pskc"
+        tools:text="平时\n考核\n结果"
+        android:minHeight="@dimen/dp_120"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_pskc_title"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/view_jtcy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/view_pskc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/recycle_view_jtcy"/>
@@ -398,6 +434,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_ndkc"
         app:layout_constraintStart_toStartOf="@+id/view_ndkc"
         app:layout_constraintEnd_toEndOf="@+id/view_ndkc"
+        android:background="@color/color_ffd7b4"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pskc"
+        app:layout_constraintStart_toStartOf="@+id/view_pskc"
+        app:layout_constraintEnd_toEndOf="@+id/view_pskc"
         android:background="@color/color_ffd7b4"/>
     <View
         android:layout_width="0dp"

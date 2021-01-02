@@ -92,6 +92,10 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         public final static Property WorkExperience = new Property(65, String.class, "workExperience", false, "WORK_EXPERIENCE");
         public final static Property SpouseName = new Property(66, String.class, "spouseName", false, "SPOUSE_NAME");
         public final static Property SpouseWorkUnit = new Property(67, String.class, "spouseWorkUnit", false, "SPOUSE_WORK_UNIT");
+        public final static Property ServiceStartTime = new Property(68, String.class, "serviceStartTime", false, "SERVICE_START_TIME");
+        public final static Property ServiceYears = new Property(69, String.class, "serviceYears", false, "SERVICE_YEARS");
+        public final static Property ServiceYearsState = new Property(70, String.class, "serviceYearsState", false, "SERVICE_YEARS_STATE");
+        public final static Property CadreQuarterAssessment = new Property(71, String.class, "cadreQuarterAssessment", false, "CADRE_QUARTER_ASSESSMENT");
     }
 
 
@@ -174,7 +178,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
                 "\"POST_LABEL\" TEXT," + // 64: postLabel
                 "\"WORK_EXPERIENCE\" TEXT," + // 65: workExperience
                 "\"SPOUSE_NAME\" TEXT," + // 66: spouseName
-                "\"SPOUSE_WORK_UNIT\" TEXT);"); // 67: spouseWorkUnit
+                "\"SPOUSE_WORK_UNIT\" TEXT," + // 67: spouseWorkUnit
+                "\"SERVICE_START_TIME\" TEXT," + // 68: serviceStartTime
+                "\"SERVICE_YEARS\" TEXT," + // 69: serviceYears
+                "\"SERVICE_YEARS_STATE\" TEXT," + // 70: serviceYearsState
+                "\"CADRE_QUARTER_ASSESSMENT\" TEXT);"); // 71: cadreQuarterAssessment
     }
 
     /** Drops the underlying database table. */
@@ -502,6 +510,26 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (spouseWorkUnit != null) {
             stmt.bindString(68, spouseWorkUnit);
         }
+ 
+        String serviceStartTime = entity.getServiceStartTime();
+        if (serviceStartTime != null) {
+            stmt.bindString(69, serviceStartTime);
+        }
+ 
+        String serviceYears = entity.getServiceYears();
+        if (serviceYears != null) {
+            stmt.bindString(70, serviceYears);
+        }
+ 
+        String serviceYearsState = entity.getServiceYearsState();
+        if (serviceYearsState != null) {
+            stmt.bindString(71, serviceYearsState);
+        }
+ 
+        String cadreQuarterAssessment = entity.getCadreQuarterAssessment();
+        if (cadreQuarterAssessment != null) {
+            stmt.bindString(72, cadreQuarterAssessment);
+        }
     }
 
     @Override
@@ -823,6 +851,26 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         if (spouseWorkUnit != null) {
             stmt.bindString(68, spouseWorkUnit);
         }
+ 
+        String serviceStartTime = entity.getServiceStartTime();
+        if (serviceStartTime != null) {
+            stmt.bindString(69, serviceStartTime);
+        }
+ 
+        String serviceYears = entity.getServiceYears();
+        if (serviceYears != null) {
+            stmt.bindString(70, serviceYears);
+        }
+ 
+        String serviceYearsState = entity.getServiceYearsState();
+        if (serviceYearsState != null) {
+            stmt.bindString(71, serviceYearsState);
+        }
+ 
+        String cadreQuarterAssessment = entity.getCadreQuarterAssessment();
+        if (cadreQuarterAssessment != null) {
+            stmt.bindString(72, cadreQuarterAssessment);
+        }
     }
 
     @Override
@@ -900,7 +948,11 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
             cursor.isNull(offset + 64) ? null : cursor.getString(offset + 64), // postLabel
             cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65), // workExperience
             cursor.isNull(offset + 66) ? null : cursor.getString(offset + 66), // spouseName
-            cursor.isNull(offset + 67) ? null : cursor.getString(offset + 67) // spouseWorkUnit
+            cursor.isNull(offset + 67) ? null : cursor.getString(offset + 67), // spouseWorkUnit
+            cursor.isNull(offset + 68) ? null : cursor.getString(offset + 68), // serviceStartTime
+            cursor.isNull(offset + 69) ? null : cursor.getString(offset + 69), // serviceYears
+            cursor.isNull(offset + 70) ? null : cursor.getString(offset + 70), // serviceYearsState
+            cursor.isNull(offset + 71) ? null : cursor.getString(offset + 71) // cadreQuarterAssessment
         );
         return entity;
     }
@@ -975,6 +1027,10 @@ public class DBGbBeanDao extends AbstractDao<DBGbBean, Long> {
         entity.setWorkExperience(cursor.isNull(offset + 65) ? null : cursor.getString(offset + 65));
         entity.setSpouseName(cursor.isNull(offset + 66) ? null : cursor.getString(offset + 66));
         entity.setSpouseWorkUnit(cursor.isNull(offset + 67) ? null : cursor.getString(offset + 67));
+        entity.setServiceStartTime(cursor.isNull(offset + 68) ? null : cursor.getString(offset + 68));
+        entity.setServiceYears(cursor.isNull(offset + 69) ? null : cursor.getString(offset + 69));
+        entity.setServiceYearsState(cursor.isNull(offset + 70) ? null : cursor.getString(offset + 70));
+        entity.setCadreQuarterAssessment(cursor.isNull(offset + 71) ? null : cursor.getString(offset + 71));
      }
     
     @Override

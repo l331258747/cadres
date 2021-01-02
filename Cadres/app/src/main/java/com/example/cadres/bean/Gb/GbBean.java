@@ -142,6 +142,10 @@ public class GbBean {
         private String workExperience;
         private String spouseName;
         private String spouseWorkUnit;
+        private String serviceStartTime;
+        private String serviceYears;
+        private String serviceYearsState;
+        private String cadreQuarterAssessment;
 
         private List<GbCadreResumeListBean> cadreResumeList;//干部简历
         private List<GbCadreNowPositionListBean> cadreNowPositionList;//干部现任职信息
@@ -151,6 +155,22 @@ public class GbBean {
         private List<GbCadreAwardPunishList> cadreAwardPunishList;//干部奖惩记录信息
         private List<GbCadreTrainListBean> cadreTrainList;//干部培训情况
         private List<GbCadreDeptListBean> cadreDeptList;//干部所属部门信息
+
+        public String getServiceStartTime() {
+            return serviceStartTime;
+        }
+
+        public String getServiceYears() {
+            return serviceYears;
+        }
+
+        public String getServiceYearsState() {
+            return serviceYearsState;
+        }
+
+        public String getCadreQuarterAssessment() {
+            return cadreQuarterAssessment;
+        }
 
         public String getSpouseName() {
             return spouseName;

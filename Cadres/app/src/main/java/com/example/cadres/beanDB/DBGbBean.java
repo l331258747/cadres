@@ -83,7 +83,13 @@ public class DBGbBean {
     private String spouseName;
     private String spouseWorkUnit;
 
-    @Generated(hash = 1717434447)
+    private String serviceStartTime;
+    private String serviceYears;
+    private String serviceYearsState;
+    private String cadreQuarterAssessment;
+
+
+    @Generated(hash = 1778358351)
     public DBGbBean(Long _id, int baseId, String name, String photoFileName,
             String gender, String idCard, String birthday, int age, String nation,
             String politicalOutlook, String joinPartyDate, String nativePlace,
@@ -107,7 +113,8 @@ public class DBGbBean {
             String cadreTrain, String politicalConstruction, String cadreAssessment,
             String functionaryRankStartTime, String functionaryRankParentName,
             String postLabel, String workExperience, String spouseName,
-            String spouseWorkUnit) {
+            String spouseWorkUnit, String serviceStartTime, String serviceYears,
+            String serviceYearsState, String cadreQuarterAssessment) {
         this._id = _id;
         this.baseId = baseId;
         this.name = name;
@@ -176,6 +183,10 @@ public class DBGbBean {
         this.workExperience = workExperience;
         this.spouseName = spouseName;
         this.spouseWorkUnit = spouseWorkUnit;
+        this.serviceStartTime = serviceStartTime;
+        this.serviceYears = serviceYears;
+        this.serviceYearsState = serviceYearsState;
+        this.cadreQuarterAssessment = cadreQuarterAssessment;
     }
     @Generated(hash = 54676971)
     public DBGbBean() {
@@ -617,5 +628,40 @@ public class DBGbBean {
     }
     public void setSpouseWorkUnit(String spouseWorkUnit) {
         this.spouseWorkUnit = spouseWorkUnit;
+    }
+    public String getServiceStartTime() {
+        return this.serviceStartTime;
+    }
+    public void setServiceStartTime(String serviceStartTime) {
+        this.serviceStartTime = serviceStartTime;
+    }
+    public String getServiceYears() {
+        return this.serviceYears;
+    }
+    public void setServiceYears(String serviceYears) {
+        this.serviceYears = serviceYears;
+    }
+    public String getServiceYearsState() {
+        return this.serviceYearsState;
+    }
+    public void setServiceYearsState(String serviceYearsState) {
+        this.serviceYearsState = serviceYearsState;
+    }
+    public String getCadreQuarterAssessment() {
+        return this.cadreQuarterAssessment;
+    }
+    public void setCadreQuarterAssessment(String cadreQuarterAssessment) {
+        this.cadreQuarterAssessment = cadreQuarterAssessment;
+    }
+
+    public String getServiceStr(){
+        String str = "";
+        if(!TextUtils.isEmpty(serviceYears)){
+            str = serviceYears + "年";
+        }
+        if(!TextUtils.isEmpty(serviceYearsState)){
+            str = str + "(" + serviceYearsState + ")";
+        }
+        return str;
     }
 }
