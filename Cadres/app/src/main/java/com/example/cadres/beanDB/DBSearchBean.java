@@ -172,10 +172,14 @@ public class DBSearchBean {
         SysDictDataBean item3 = new SysDictDataBean();
         item3.setDictLabel("后备干部");
         item3.setDictValue("3");
+        SysDictDataBean item4 = new SysDictDataBean();
+        item4.setDictLabel("事业干部");
+        item4.setDictValue("4");
         list.add(item0);
         list.add(item1);
         list.add(item2);
         list.add(item3);
+        list.add(item4);
         return list;
     }
 
@@ -234,12 +238,15 @@ public class DBSearchBean {
         SysDictDataBean item0 = new SysDictDataBean();
         SysDictDataBean item1 = new SysDictDataBean();
         SysDictDataBean item2 = new SysDictDataBean();
+        SysDictDataBean item3 = new SysDictDataBean();
         item0.setDictLabel("90后干部");
         item1.setDictLabel("35岁及以下年轻干部");
         item2.setDictLabel("党外干部");
+        item3.setDictLabel("未满服务年限公务员");
         list.add(item0);
         list.add(item1);
         list.add(item2);
+        list.add(item3);
         return list;
     }
 
