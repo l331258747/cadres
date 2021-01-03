@@ -46,6 +46,8 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
         public final static Property Vacancyez = new Property(19, int.class, "vacancyez", false, "VACANCYEZ");
         public final static Property Vacancysz = new Property(20, int.class, "vacancysz", false, "VACANCYSZ");
         public final static Property Vacancysiz = new Property(21, int.class, "vacancysiz", false, "VACANCYSIZ");
+        public final static Property Surpass = new Property(22, String.class, "surpass", false, "SURPASS");
+        public final static Property Lack = new Property(23, String.class, "lack", false, "LACK");
     }
 
 
@@ -82,7 +84,9 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
                 "\"SURPASSSIZ\" INTEGER NOT NULL ," + // 18: surpasssiz
                 "\"VACANCYEZ\" INTEGER NOT NULL ," + // 19: vacancyez
                 "\"VACANCYSZ\" INTEGER NOT NULL ," + // 20: vacancysz
-                "\"VACANCYSIZ\" INTEGER NOT NULL );"); // 21: vacancysiz
+                "\"VACANCYSIZ\" INTEGER NOT NULL ," + // 21: vacancysiz
+                "\"SURPASS\" TEXT," + // 22: surpass
+                "\"LACK\" TEXT);"); // 23: lack
     }
 
     /** Drops the underlying database table. */
@@ -124,6 +128,16 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
         stmt.bindLong(20, entity.getVacancyez());
         stmt.bindLong(21, entity.getVacancysz());
         stmt.bindLong(22, entity.getVacancysiz());
+ 
+        String surpass = entity.getSurpass();
+        if (surpass != null) {
+            stmt.bindString(23, surpass);
+        }
+ 
+        String lack = entity.getLack();
+        if (lack != null) {
+            stmt.bindString(24, lack);
+        }
     }
 
     @Override
@@ -159,6 +173,16 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
         stmt.bindLong(20, entity.getVacancyez());
         stmt.bindLong(21, entity.getVacancysz());
         stmt.bindLong(22, entity.getVacancysiz());
+ 
+        String surpass = entity.getSurpass();
+        if (surpass != null) {
+            stmt.bindString(23, surpass);
+        }
+ 
+        String lack = entity.getLack();
+        if (lack != null) {
+            stmt.bindString(24, lack);
+        }
     }
 
     @Override
@@ -190,7 +214,9 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
             cursor.getInt(offset + 18), // surpasssiz
             cursor.getInt(offset + 19), // vacancyez
             cursor.getInt(offset + 20), // vacancysz
-            cursor.getInt(offset + 21) // vacancysiz
+            cursor.getInt(offset + 21), // vacancysiz
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // surpass
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23) // lack
         );
         return entity;
     }
@@ -219,6 +245,8 @@ public class DBGwyJWJSDao extends AbstractDao<DBGwyJWJS, Long> {
         entity.setVacancyez(cursor.getInt(offset + 19));
         entity.setVacancysz(cursor.getInt(offset + 20));
         entity.setVacancysiz(cursor.getInt(offset + 21));
+        entity.setSurpass(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setLack(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
      }
     
     @Override

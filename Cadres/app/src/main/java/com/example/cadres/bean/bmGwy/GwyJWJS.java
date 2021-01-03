@@ -50,6 +50,16 @@ public class GwyJWJS {
     private int vacancyez;
     private int vacancysz;
     private int vacancysiz;
+    private String surpass;
+    private String lack;
+
+    public String getSurpass() {
+        return surpass;
+    }
+
+    public String getLack() {
+        return lack;
+    }
 
     public int getDeptId() {
         return deptId;

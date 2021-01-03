@@ -66,6 +66,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property Subset = new Property(39, int.class, "subset", false, "SUBSET");
         public final static Property DefulatOrg = new Property(40, int.class, "defulatOrg", false, "DEFULAT_ORG");
         public final static Property Display = new Property(41, int.class, "display", false, "DISPLAY");
+        public final static Property Surpass = new Property(42, String.class, "surpass", false, "SURPASS");
+        public final static Property Lack = new Property(43, String.class, "lack", false, "LACK");
     }
 
 
@@ -122,7 +124,9 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"MISMATCH_OTHER\" TEXT," + // 38: mismatchOther
                 "\"SUBSET\" INTEGER NOT NULL ," + // 39: subset
                 "\"DEFULAT_ORG\" INTEGER NOT NULL ," + // 40: defulatOrg
-                "\"DISPLAY\" INTEGER NOT NULL );"); // 41: display
+                "\"DISPLAY\" INTEGER NOT NULL ," + // 41: display
+                "\"SURPASS\" TEXT," + // 42: surpass
+                "\"LACK\" TEXT);"); // 43: lack
     }
 
     /** Drops the underlying database table. */
@@ -272,6 +276,16 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         stmt.bindLong(40, entity.getSubset());
         stmt.bindLong(41, entity.getDefulatOrg());
         stmt.bindLong(42, entity.getDisplay());
+ 
+        String surpass = entity.getSurpass();
+        if (surpass != null) {
+            stmt.bindString(43, surpass);
+        }
+ 
+        String lack = entity.getLack();
+        if (lack != null) {
+            stmt.bindString(44, lack);
+        }
     }
 
     @Override
@@ -415,6 +429,16 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         stmt.bindLong(40, entity.getSubset());
         stmt.bindLong(41, entity.getDefulatOrg());
         stmt.bindLong(42, entity.getDisplay());
+ 
+        String surpass = entity.getSurpass();
+        if (surpass != null) {
+            stmt.bindString(43, surpass);
+        }
+ 
+        String lack = entity.getLack();
+        if (lack != null) {
+            stmt.bindString(44, lack);
+        }
     }
 
     @Override
@@ -466,7 +490,9 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // mismatchOther
             cursor.getInt(offset + 39), // subset
             cursor.getInt(offset + 40), // defulatOrg
-            cursor.getInt(offset + 41) // display
+            cursor.getInt(offset + 41), // display
+            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // surpass
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43) // lack
         );
         return entity;
     }
@@ -515,6 +541,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setSubset(cursor.getInt(offset + 39));
         entity.setDefulatOrg(cursor.getInt(offset + 40));
         entity.setDisplay(cursor.getInt(offset + 41));
+        entity.setSurpass(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
+        entity.setLack(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
      }
     
     @Override

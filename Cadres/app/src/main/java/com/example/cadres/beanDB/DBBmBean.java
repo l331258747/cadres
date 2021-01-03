@@ -54,8 +54,11 @@ public class DBBmBean {
     private int subset;
     private int defulatOrg;
     private int display;
+
+    private String surpass;
+    private String lack;
     
-    @Generated(hash = 1285056691)
+    @Generated(hash = 2073359045)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -67,7 +70,8 @@ public class DBBmBean {
             int surpassDeputy, int surpassOther, int lackPosition, int lackDeputy,
             int lackOther, String overmatchPosition, String overmatchDeputy,
             String overmatchOther, String mismatchPosition, String mismatchDeputy,
-            String mismatchOther, int subset, int defulatOrg, int display) {
+            String mismatchOther, int subset, int defulatOrg, int display,
+            String surpass, String lack) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -110,6 +114,8 @@ public class DBBmBean {
         this.subset = subset;
         this.defulatOrg = defulatOrg;
         this.display = display;
+        this.surpass = surpass;
+        this.lack = lack;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -470,5 +476,17 @@ public class DBBmBean {
     }
     public void setDisplay(int display) {
         this.display = display;
+    }
+    public String getSurpass() {
+        return this.surpass;
+    }
+    public void setSurpass(String surpass) {
+        this.surpass = surpass;
+    }
+    public String getLack() {
+        return this.lack;
+    }
+    public void setLack(String lack) {
+        this.lack = lack;
     }
 }

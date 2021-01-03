@@ -60,15 +60,16 @@ public class DBGwyZQ {
     private int vacancyeg;
     private int vacancysg;
     private int vacancysig;
+    private String surpass;
+    private String lack;
 
-
-    @Generated(hash = 1157781641)
+    @Generated(hash = 435746281)
     public DBGwyZQ(Long _id, int deptId, String deptName, int subset, int display,
             int verificationeg, int verificationsg, int verificationsig,
             int actualeg, int actualsg, int actualsig, int actualyb, int actualeb,
             int actualsb, int actualsib, int actualyx, int actualex, int surpasseg,
             int surpasssg, int surpasssig, int vacancyeg, int vacancysg,
-            int vacancysig) {
+            int vacancysig, String surpass, String lack) {
         this._id = _id;
         this.deptId = deptId;
         this.deptName = deptName;
@@ -92,6 +93,8 @@ public class DBGwyZQ {
         this.vacancyeg = vacancyeg;
         this.vacancysg = vacancysg;
         this.vacancysig = vacancysig;
+        this.surpass = surpass;
+        this.lack = lack;
     }
 
     @Generated(hash = 2110225519)
@@ -280,5 +283,21 @@ public class DBGwyZQ {
 
     public void setVacancysig(int vacancysig) {
         this.vacancysig = vacancysig;
+    }
+
+    public String getSurpass() {
+        return this.surpass;
+    }
+
+    public void setSurpass(String surpass) {
+        this.surpass = surpass;
+    }
+
+    public String getLack() {
+        return this.lack;
+    }
+
+    public void setLack(String lack) {
+        this.lack = lack;
     }
 }

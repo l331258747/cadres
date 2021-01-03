@@ -66,7 +66,10 @@ public class DBGwyZHGL {
     private int vacancysid;
     private int vacancyyez;
     private int vacancyssz;
-    @Generated(hash = 1892988876)
+    private String surpass;
+    private String lack;
+
+    @Generated(hash = 689773519)
     public DBGwyZHGL(Long _id, int deptId, String deptName, int subset, int display,
             String gwyType, int verificationed, int verificationsd,
             int verificationsid, int verificationyez, int verificationssz,
@@ -74,7 +77,7 @@ public class DBGwyZHGL {
             int actualsz, int actualsiz, int actualyk, int actualek, int surpassed,
             int surpasssd, int surpasssid, int surpassyez, int surpassssz,
             int vacancyed, int vacancysd, int vacancysid, int vacancyyez,
-            int vacancyssz) {
+            int vacancyssz, String surpass, String lack) {
         this._id = _id;
         this.deptId = deptId;
         this.deptName = deptName;
@@ -105,6 +108,8 @@ public class DBGwyZHGL {
         this.vacancysid = vacancysid;
         this.vacancyyez = vacancyyez;
         this.vacancyssz = vacancyssz;
+        this.surpass = surpass;
+        this.lack = lack;
     }
     @Generated(hash = 453172136)
     public DBGwyZHGL() {
@@ -288,6 +293,18 @@ public class DBGwyZHGL {
     }
     public void setVacancyssz(int vacancyssz) {
         this.vacancyssz = vacancyssz;
+    }
+    public String getSurpass() {
+        return this.surpass;
+    }
+    public void setSurpass(String surpass) {
+        this.surpass = surpass;
+    }
+    public String getLack() {
+        return this.lack;
+    }
+    public void setLack(String lack) {
+        this.lack = lack;
     }
 
 }

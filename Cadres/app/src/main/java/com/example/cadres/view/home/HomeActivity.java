@@ -730,7 +730,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getMismatchOther(),
                         item.getSubset(),
                         item.getDefulatOrg(),
-                        item.getDisplay()
+                        item.getDisplay(),
+                        item.getSurpass(),
+                        item.getLack()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {
@@ -822,7 +824,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getSurpasssg(),
                                 item.getSurpasssig(),
                                 item.getVacancysg(),
-                                item.getVacancysig()
+                                item.getVacancysig(),
+                                item.getSurpass(),
+                                item.getLack()
                         ));
             }
         }
@@ -859,7 +863,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getVacancysg(),
                                 item.getVacancysig(),
                                 item.getVacancyyej(),
-                                item.getVacancyssj()
+                                item.getVacancyssj(),
+                                item.getSurpass(),
+                                item.getLack()
                         ));
             }
         }
@@ -894,7 +900,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getSurpasssiz(),
                                 item.getVacancyez(),
                                 item.getVacancysz(),
-                                item.getVacancysiz()
+                                item.getVacancysiz(),
+                                item.getSurpass(),
+                                item.getLack()
                         ));
             }
         }
@@ -937,7 +945,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getVacancysd(),
                                 item.getVacancysid(),
                                 item.getVacancyyez(),
-                                item.getVacancyssz()
+                                item.getVacancyssz(),
+                                item.getSurpass(),
+                                item.getLack()
                         ));
             }
         }
@@ -972,7 +982,9 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                                 item.getSurpasssig(),
                                 item.getVacancyeg(),
                                 item.getVacancysg(),
-                                item.getVacancysig()
+                                item.getVacancysig(),
+                                item.getSurpass(),
+                                item.getLack()
                         ));
             }
         }

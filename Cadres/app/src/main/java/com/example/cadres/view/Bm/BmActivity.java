@@ -56,7 +56,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
     TextView num_hdzs_zz,num_hdzs_fz,num_hdzs_qt,num_spqk_zz,num_spqk_fz,num_spqk_qt,num_cpqk_zz,num_cpqk_fz,num_cpqk_qt,num_kqqk_zz,num_kqqk_fz,num_kqqk_qt;
 
-    TextView tv_screen_dwlb,tv_screen_dwxz;
+    TextView tv_screen_dwlb,tv_screen_dwxz,tv_screen_cpkq;
 
     @Override
     public int getLayoutId() {
@@ -96,8 +96,10 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
         tv_screen_dwlb = findViewById(R.id.tv_screen_dwlb);
         tv_screen_dwxz = findViewById(R.id.tv_screen_dwxz);
+        tv_screen_cpkq = findViewById(R.id.tv_screen_cpkq);
         tv_screen_dwlb.setOnClickListener(this);
         tv_screen_dwxz.setOnClickListener(this);
+        tv_screen_cpkq.setOnClickListener(this);
 
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);//关闭手势滑动
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -126,6 +128,8 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
                     tv_screen_dwlb.setText("单位类别");
                     FinanceId = "";
                     tv_screen_dwxz.setText("单位性质");
+                    cpkqId = "";
+                    tv_screen_cpkq.setText("超配空缺筛选");
                     key = et_search.getText().toString().trim();
                     getData();
                     return true;
@@ -147,6 +151,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
         getDbOrgData();
         getDbFinanceData();
+        getDbCpkqData();
     }
 
     public List<DBBmBean> getDbList(String key) {
@@ -171,6 +176,13 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
                 queryBuilder.where(DBBmBeanDao.Properties.OrgType.eq(orgId)).orderAsc(DBBmBeanDao.Properties.OrderNum);
             if(!TextUtils.isEmpty(FinanceId))
                 queryBuilder.where(DBBmBeanDao.Properties.FinanceType.eq(FinanceId)).orderAsc(DBBmBeanDao.Properties.OrderNum);
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBBmBeanDao.Properties.Surpass.eq("1")).orderAsc(DBBmBeanDao.Properties.OrderNum);
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBBmBeanDao.Properties.Lack.eq("1")).orderAsc(DBBmBeanDao.Properties.OrderNum);
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -301,7 +313,9 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
     List<ListDialogBean> dialogDatasOrg;
     ListDialog listDialogFinance;
     List<ListDialogBean> dialogDatasFinance;
-    String orgId,FinanceId;
+    ListDialog listDialogCpkq;
+    List<ListDialogBean> dialogDatasCpkq;
+    String orgId,FinanceId,cpkqId;
     String key;
 
     @Override
@@ -341,6 +355,23 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
                 }
                 listDialogFinance.show();
                 break;
+            case R.id.tv_screen_cpkq:
+                if(listDialogCpkq == null){
+                    listDialogCpkq = new ListDialog(context, dialogDatasCpkq);
+                    listDialogCpkq.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            cpkqId = dialogDatasCpkq.get(position).getsId();
+                            tv_screen_cpkq.setText(TextUtils.isEmpty(cpkqId)?"超配空缺筛选":dialogDatasCpkq.get(position).getName());
+                            key = "";
+                            et_search.setText("");
+                            getData();
+                            listDialogCpkq.dismiss();
+                        }
+                    });
+                }
+                listDialogCpkq.show();
+                break;
         }
     }
 
@@ -366,5 +397,12 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         for (int i=0;i<finances.size();i++){
             dialogDatasFinance.add(new ListDialogBean(finances.get(i).getDictValue(),finances.get(i).getDictLabel()));
         }
+    }
+
+    public void getDbCpkqData(){
+        dialogDatasCpkq = new ArrayList<>();
+        dialogDatasCpkq.add(new ListDialogBean("","全部"));
+        dialogDatasCpkq.add(new ListDialogBean("1","超配单位"));
+        dialogDatasCpkq.add(new ListDialogBean("2","空缺单位"));
     }
 }

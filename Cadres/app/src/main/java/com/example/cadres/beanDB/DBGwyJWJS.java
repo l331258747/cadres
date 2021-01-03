@@ -58,14 +58,16 @@ public class DBGwyJWJS {
     private int vacancyez;
     private int vacancysz;
     private int vacancysiz;
+    private String surpass;
+    private String lack;
 
-    @Generated(hash = 227373412)
+    @Generated(hash = 1770138413)
     public DBGwyJWJS(Long _id, int deptId, String deptName, int subset, int display,
             int verificationez, int verificationsz, int verificationsiz,
             int actualez, int actualsz, int actualsiz, int actualyg, int actualeg,
             int actualsg, int actualsig, int actualjsy, int surpassez,
             int surpasssz, int surpasssiz, int vacancyez, int vacancysz,
-            int vacancysiz) {
+            int vacancysiz, String surpass, String lack) {
         this._id = _id;
         this.deptId = deptId;
         this.deptName = deptName;
@@ -88,6 +90,8 @@ public class DBGwyJWJS {
         this.vacancyez = vacancyez;
         this.vacancysz = vacancysz;
         this.vacancysiz = vacancysiz;
+        this.surpass = surpass;
+        this.lack = lack;
     }
 
     @Generated(hash = 1353522994)
@@ -268,5 +272,21 @@ public class DBGwyJWJS {
 
     public void setVacancysiz(int vacancysiz) {
         this.vacancysiz = vacancysiz;
+    }
+
+    public String getSurpass() {
+        return this.surpass;
+    }
+
+    public void setSurpass(String surpass) {
+        this.surpass = surpass;
+    }
+
+    public String getLack() {
+        return this.lack;
+    }
+
+    public void setLack(String lack) {
+        this.lack = lack;
     }
 }

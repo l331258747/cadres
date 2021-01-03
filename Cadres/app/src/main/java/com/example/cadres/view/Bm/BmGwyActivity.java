@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGwyDWLBDao;
 import com.cadres.greendao.gen.DBGwyFGDJDao;
 import com.cadres.greendao.gen.DBGwyFGZLDJDao;
@@ -71,7 +72,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
     TextView num_cpqk_1,num_cpqk_2,num_cpqk_3,num_cpqk_4,num_cpqk_5;
     TextView num_kqqk_1,num_kqqk_2,num_kqqk_3,num_kqqk_4,num_kqqk_5;
 
-    TextView tv_screen_dwlb;
+    TextView tv_screen_dwlb,tv_screen_cpkq;
 
     TextView table_zh,table_zq,table_jwjs,table_fgdj,table_fgzldj;
     ConstraintLayout title_gwy_zh,title_gwy_zq,title_gwy_jwjs,title_gwy_fgdj,title_gwy_fgzldj;
@@ -134,7 +135,9 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
         num_kqqk_5 = findViewById(R.id.num_kqqk_5);
 
         tv_screen_dwlb = findViewById(R.id.tv_screen_dwlb);
+        tv_screen_cpkq = findViewById(R.id.tv_screen_cpkq);
         tv_screen_dwlb.setOnClickListener(this);
+        tv_screen_cpkq.setOnClickListener(this);
 
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -143,6 +146,8 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     orgId = "";
                     tv_screen_dwlb.setText("单位类别");
+                    cpkqId = "";
+                    tv_screen_cpkq.setText("超配空缺筛选");
                     key = et_search.getText().toString().trim();
                     getData();
                     return true;
@@ -160,6 +165,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
     public void initData() {
         getData();
         getDbOrgData();
+        getDbCpkqData();
     }
 
     public List<DBGwyZHGL> getDbListZh(String key) {
@@ -174,6 +180,13 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyZHGLDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyZHGLDao.Properties.GwyType.eq(orgId));
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBGwyZHGLDao.Properties.Surpass.eq("1"));
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBGwyZHGLDao.Properties.Lack.eq("1"));
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -191,7 +204,14 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
         }else{
             queryBuilder.where(DBGwyZQDao.Properties.Display.eq(0));
 //            if(!TextUtils.isEmpty(orgId))
-//                queryBuilder.where(DBGwyZQDao.Properties.gwyType.eq(orgId)).orderAsc(DBGwyZQDao.Properties.OrderNum);
+//                queryBuilder.where(DBGwyZQDao.Properties.GwyType.eq(orgId));
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBGwyZQDao.Properties.Surpass.eq("1"));
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBGwyZQDao.Properties.Lack.eq("1"));
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -209,7 +229,14 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
         }else{
             queryBuilder.where(DBGwyJWJSDao.Properties.Display.eq(0));
 //            if(!TextUtils.isEmpty(orgId))
-//                queryBuilder.where(DBGwyJWJSDao.Properties.gwyType.eq(orgId)).orderAsc(DBGwyJWJSDao.Properties.OrderNum);
+//                queryBuilder.where(DBGwyJWJSDao.Properties.GwyType.eq(orgId));
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBGwyJWJSDao.Properties.Surpass.eq("1"));
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBGwyJWJSDao.Properties.Lack.eq("1"));
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -228,6 +255,13 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyFGDJDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyFGDJDao.Properties.GwyType.eq(orgId));
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBGwyFGDJDao.Properties.Surpass.eq("1"));
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBGwyFGDJDao.Properties.Lack.eq("1"));
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -246,6 +280,13 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyFGZLDJDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyFGZLDJDao.Properties.GwyType.eq(orgId));
+            if(!TextUtils.isEmpty(cpkqId)){
+                if(TextUtils.equals(cpkqId,"1")){
+                    queryBuilder.where(DBGwyFGZLDJDao.Properties.Surpass.eq("1"));
+                }else if(TextUtils.equals(cpkqId,"2")){
+                    queryBuilder.where(DBGwyFGZLDJDao.Properties.Lack.eq("1"));
+                }
+            }
             dbList = queryBuilder.list();
         }
         LogUtil.e("数据库条数：" + dbList.size());
@@ -453,7 +494,9 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
 
     ListDialog listDialogOrg;
     List<ListDialogBean> dialogDatasOrg;
-    String orgId;
+    ListDialog listDialogCpkq;
+    List<ListDialogBean> dialogDatasCpkq;
+    String orgId,cpkqId;
     String key;
 
     @Override
@@ -475,6 +518,23 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
                     });
                 }
                 listDialogOrg.show();
+                break;
+            case R.id.tv_screen_cpkq:
+                if(listDialogCpkq == null){
+                    listDialogCpkq = new ListDialog(context, dialogDatasCpkq);
+                    listDialogCpkq.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            cpkqId = dialogDatasCpkq.get(position).getsId();
+                            tv_screen_cpkq.setText(TextUtils.isEmpty(cpkqId)?"超配空缺筛选":dialogDatasCpkq.get(position).getName());
+                            key = "";
+                            et_search.setText("");
+                            getData();
+                            listDialogCpkq.dismiss();
+                        }
+                    });
+                }
+                listDialogCpkq.show();
                 break;
             case R.id.table_zh:
                 tableIndex = 1;
@@ -507,6 +567,8 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
     public void setSelectView(){
         orgId = "";
         tv_screen_dwlb.setText("单位类别");
+        cpkqId = "";
+        tv_screen_cpkq.setText("超配空缺筛选");
         key = "";
         et_search.setText("");
 
@@ -561,5 +623,12 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
         for (int i=0;i<orgs.size();i++){
             dialogDatasOrg.add(new ListDialogBean(orgs.get(i).getDictValue(),orgs.get(i).getDictLabel()));
         }
+    }
+
+    public void getDbCpkqData(){
+        dialogDatasCpkq = new ArrayList<>();
+        dialogDatasCpkq.add(new ListDialogBean("","全部"));
+        dialogDatasCpkq.add(new ListDialogBean("1","超配单位"));
+        dialogDatasCpkq.add(new ListDialogBean("2","空缺单位"));
     }
 }

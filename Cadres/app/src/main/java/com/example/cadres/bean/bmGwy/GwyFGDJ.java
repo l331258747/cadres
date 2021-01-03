@@ -45,6 +45,16 @@ public class GwyFGDJ {
     private int surpasssig;
     private int vacancysg;
     private int vacancysig;
+    private String surpass;
+    private String lack;
+
+    public String getSurpass() {
+        return surpass;
+    }
+
+    public String getLack() {
+        return lack;
+    }
 
     public int getDeptId() {
         return deptId;

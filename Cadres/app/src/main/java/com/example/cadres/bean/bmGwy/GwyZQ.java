@@ -52,6 +52,16 @@ public class GwyZQ {
     private int vacancyeg;
     private int vacancysg;
     private int vacancysig;
+    private String surpass;
+    private String lack;
+
+    public String getSurpass() {
+        return surpass;
+    }
+
+    public String getLack() {
+        return lack;
+    }
 
     public int getDeptId() {
         return deptId;

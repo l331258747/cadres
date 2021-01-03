@@ -65,14 +65,17 @@ public class DBGwyFGZLDJ {
     private int vacancysig;
     private int vacancyyej;
     private int vacancyssj;
+    private String surpass;
+    private String lack;
 
-    @Generated(hash = 730728250)
+    @Generated(hash = 420425378)
     public DBGwyFGZLDJ(Long _id, int deptId, String deptName, int subset,
             int display, String gwyType, int verificationsg, int verificationsig,
             int verificationyej, int verificationssj, int actualsg, int actualsig,
             int actualyj, int actualej, int actualsj, int actualsij, int actualwuj,
             int surpasssg, int surpasssig, int surpassyej, int surpassssj,
-            int vacancysg, int vacancysig, int vacancyyej, int vacancyssj) {
+            int vacancysg, int vacancysig, int vacancyyej, int vacancyssj,
+            String surpass, String lack) {
         this._id = _id;
         this.deptId = deptId;
         this.deptName = deptName;
@@ -98,6 +101,8 @@ public class DBGwyFGZLDJ {
         this.vacancysig = vacancysig;
         this.vacancyyej = vacancyyej;
         this.vacancyssj = vacancyssj;
+        this.surpass = surpass;
+        this.lack = lack;
     }
 
     @Generated(hash = 1180009435)
@@ -302,5 +307,21 @@ public class DBGwyFGZLDJ {
 
     public void setVacancyssj(int vacancyssj) {
         this.vacancyssj = vacancyssj;
+    }
+
+    public String getSurpass() {
+        return this.surpass;
+    }
+
+    public void setSurpass(String surpass) {
+        this.surpass = surpass;
+    }
+
+    public String getLack() {
+        return this.lack;
+    }
+
+    public void setLack(String lack) {
+        this.lack = lack;
     }
 }

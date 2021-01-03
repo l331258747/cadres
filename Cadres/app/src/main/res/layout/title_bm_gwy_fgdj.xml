@@ -390,6 +390,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"/>
 
     <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toEndOf="@+id/view_kqqk"
+        app:layout_constraintTop_toTopOf="@+id/view_kqqk" />
+
+    <View
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_1"
         android:background="@color/color_ffd7b4"

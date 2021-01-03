@@ -96,6 +96,16 @@ public class BmBean2 {
     private String subset;
     private int defulatOrg;
     private int display;
+    private String surpass;
+    private String lack;
+
+    public String getSurpass() {
+        return surpass;
+    }
+
+    public String getLack() {
+        return lack;
+    }
 
     public int getDisplay() {
         return display;
