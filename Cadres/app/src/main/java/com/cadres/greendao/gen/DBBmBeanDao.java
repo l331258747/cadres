@@ -68,6 +68,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property Display = new Property(41, int.class, "display", false, "DISPLAY");
         public final static Property Surpass = new Property(42, String.class, "surpass", false, "SURPASS");
         public final static Property Lack = new Property(43, String.class, "lack", false, "LACK");
+        public final static Property GetWomanCadre = new Property(44, String.class, "getWomanCadre", false, "GET_WOMAN_CADRE");
     }
 
 
@@ -126,7 +127,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"DEFULAT_ORG\" INTEGER NOT NULL ," + // 40: defulatOrg
                 "\"DISPLAY\" INTEGER NOT NULL ," + // 41: display
                 "\"SURPASS\" TEXT," + // 42: surpass
-                "\"LACK\" TEXT);"); // 43: lack
+                "\"LACK\" TEXT," + // 43: lack
+                "\"GET_WOMAN_CADRE\" TEXT);"); // 44: getWomanCadre
     }
 
     /** Drops the underlying database table. */
@@ -286,6 +288,11 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (lack != null) {
             stmt.bindString(44, lack);
         }
+ 
+        String getWomanCadre = entity.getGetWomanCadre();
+        if (getWomanCadre != null) {
+            stmt.bindString(45, getWomanCadre);
+        }
     }
 
     @Override
@@ -439,6 +446,11 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (lack != null) {
             stmt.bindString(44, lack);
         }
+ 
+        String getWomanCadre = entity.getGetWomanCadre();
+        if (getWomanCadre != null) {
+            stmt.bindString(45, getWomanCadre);
+        }
     }
 
     @Override
@@ -492,7 +504,8 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.getInt(offset + 40), // defulatOrg
             cursor.getInt(offset + 41), // display
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // surpass
-            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43) // lack
+            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // lack
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44) // getWomanCadre
         );
         return entity;
     }
@@ -543,6 +556,7 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setDisplay(cursor.getInt(offset + 41));
         entity.setSurpass(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
         entity.setLack(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
+        entity.setGetWomanCadre(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
      }
     
     @Override

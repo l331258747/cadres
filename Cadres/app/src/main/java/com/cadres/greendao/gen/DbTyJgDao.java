@@ -32,7 +32,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         public final static Property AgeList = new Property(5, String.class, "ageList", false, "AGE_LIST");
         public final static Property EducationList = new Property(6, String.class, "educationList", false, "EDUCATION_LIST");
         public final static Property MajorList = new Property(7, String.class, "majorList", false, "MAJOR_LIST");
-        public final static Property IsGwy = new Property(8, boolean.class, "isGwy", false, "IS_GWY");
+        public final static Property Type = new Property(8, int.class, "type", false, "TYPE");
     }
 
 
@@ -56,7 +56,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
                 "\"AGE_LIST\" TEXT," + // 5: ageList
                 "\"EDUCATION_LIST\" TEXT," + // 6: educationList
                 "\"MAJOR_LIST\" TEXT," + // 7: majorList
-                "\"IS_GWY\" INTEGER NOT NULL );"); // 8: isGwy
+                "\"TYPE\" INTEGER NOT NULL );"); // 8: type
     }
 
     /** Drops the underlying database table. */
@@ -104,7 +104,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         if (majorList != null) {
             stmt.bindString(8, majorList);
         }
-        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getType());
     }
 
     @Override
@@ -146,7 +146,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         if (majorList != null) {
             stmt.bindString(8, majorList);
         }
-        stmt.bindLong(9, entity.getIsGwy() ? 1L: 0L);
+        stmt.bindLong(9, entity.getType());
     }
 
     @Override
@@ -165,7 +165,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // ageList
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // educationList
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // majorList
-            cursor.getShort(offset + 8) != 0 // isGwy
+            cursor.getInt(offset + 8) // type
         );
         return entity;
     }
@@ -180,7 +180,7 @@ public class DbTyJgDao extends AbstractDao<DbTyJg, Long> {
         entity.setAgeList(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setEducationList(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setMajorList(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setIsGwy(cursor.getShort(offset + 8) != 0);
+        entity.setType(cursor.getInt(offset + 8));
      }
     
     @Override

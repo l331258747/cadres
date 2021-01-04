@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    android:id="@+id/tv_title"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingStart="@dimen/dp_20"
-    android:paddingEnd="@dimen/dp_20"
-    android:textSize="@dimen/sp_14"
-    android:paddingTop="@dimen/dp_10"
-    android:paddingBottom="@dimen/dp_10"
-    tools:text="标题">
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:id="@+id/ll_parent"
+    android:layout_height="wrap_content">
 
-</TextView>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_20"
+        android:textSize="@dimen/sp_14"
+        tools:text="标题">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iv_no_women"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:src="@mipmap/ic_no_women"/>
+
+</LinearLayout>

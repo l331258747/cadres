@@ -732,7 +732,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getDefulatOrg(),
                         item.getDisplay(),
                         item.getSurpass(),
-                        item.getLack()
+                        item.getLack(),
+                        item.getWomanCadre()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {
@@ -1365,7 +1366,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getAgeListStr(),
                         item.getEducationListStr(),
                         item.getMajorListStr(),
-                        false
+                        0
                 ));
             }
         }
@@ -1383,7 +1384,25 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         itemGwy.getAgeListStr(),
                         itemGwy.getEducationListStr(),
                         itemGwy.getMajorListStr(),
-                        true
+                        1
+                ));
+            }
+        }
+
+        List<JgtyBean.JgtyBean2> dataCareer = bean.getCareerOrgdeductionList();
+        if(dataCareer != null){
+            for (int i = 0; i < dataCareer.size(); i++) {
+                JgtyBean.JgtyBean2 itemCareer = dataCareer.get(i);
+                dbList.add(new DbTyJg(
+                        null,
+                        itemCareer.getDeptId(),
+                        itemCareer.getSexListStr(),
+                        itemCareer.getNationListStr(),
+                        itemCareer.getOutlookListStr(),
+                        itemCareer.getAgeListStr(),
+                        itemCareer.getEducationListStr(),
+                        itemCareer.getMajorListStr(),
+                        2
                 ));
             }
         }

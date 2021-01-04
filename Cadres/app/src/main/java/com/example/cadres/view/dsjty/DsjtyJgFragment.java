@@ -290,9 +290,11 @@ public class DsjtyJgFragment extends BaseFragment implements View.OnClickListene
         QueryBuilder<DbTyJg> queryBuilder = dbGbBeanDao.queryBuilder();
         queryBuilder.where(DbTyJgDao.Properties.DeptId.eq(deptId));
         if (TextUtils.equals(type, "1")) {
-            queryBuilder.where(DbTyJgDao.Properties.IsGwy.eq(false));
-        } else {
-            queryBuilder.where(DbTyJgDao.Properties.IsGwy.eq(true));
+            queryBuilder.where(DbTyJgDao.Properties.Type.eq(0));
+        } else if(TextUtils.equals(type, "2")){
+            queryBuilder.where(DbTyJgDao.Properties.Type.eq(1));
+        } else if(TextUtils.equals(type, "3")){
+            queryBuilder.where(DbTyJgDao.Properties.Type.eq(2));
         }
         if (queryBuilder.count() != 0)
             dbTyJg = queryBuilder.unique();

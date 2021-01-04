@@ -15,7 +15,7 @@ public class DialogBmData {
         List<BmLeftBean> bmLeftBeans = new ArrayList<>();
         for (int i = 0; i < dbBmList.size(); i++) {
             DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType(),dbItem.getSubset());
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType(),dbItem.getSubset(), dbItem.getGetWomanCadre());
             bmLeftBeans.add(item);
         }
 
@@ -58,7 +58,7 @@ public class DialogBmData {
         bmLeftBeans = new ArrayList<>();
         for (int i = 0; i < dbBmList.size(); i++) {
             DBBmBean dbItem = dbBmList.get(i);
-            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType(),dbItem.getSubset());
+            BmLeftBean item = new BmLeftBean(dbItem.getDeptId(), dbItem.getParentId(), dbItem.getDeptName(),dbItem.getDeptType(),dbItem.getSubset(),dbItem.getGetWomanCadre());
             bmLeftBeans.add(item);
         }
         return this.bmLeftBeans;

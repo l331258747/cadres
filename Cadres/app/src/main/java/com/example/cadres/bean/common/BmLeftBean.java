@@ -10,13 +10,19 @@ public class BmLeftBean {
     boolean isSelect;
     int subset;
     List<BmLeftBean> lists;
+    String isNoWomen;
 
-    public BmLeftBean(int id, int parentId, String name,String idType,int subset) {
+    public BmLeftBean(int id, int parentId, String name,String idType,int subset, String isNoWomen) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.idType = idType;
         this.subset = subset;
+        this.isNoWomen = isNoWomen;
+    }
+
+    public String getIsNoWomen() {
+        return isNoWomen;
     }
 
     public int getSubset() {

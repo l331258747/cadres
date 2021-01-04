@@ -98,6 +98,11 @@ public class BmBean2 {
     private int display;
     private String surpass;
     private String lack;
+    private String womanCadre;
+
+    public String getWomanCadre() {
+        return womanCadre;
+    }
 
     public String getSurpass() {
         return surpass;

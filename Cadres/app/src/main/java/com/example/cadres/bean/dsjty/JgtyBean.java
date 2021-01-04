@@ -8,6 +8,7 @@ public class JgtyBean {
 
     List<JgtyBean2> orgdeductionList;
     List<JgtyBean2> gwyOrgdeductionList;
+    List<JgtyBean2> careerOrgdeductionList;
 
     public List<JgtyBean2> getGwyOrgdeductionList() {
         return gwyOrgdeductionList;
@@ -15,6 +16,10 @@ public class JgtyBean {
 
     public List<JgtyBean2> getOrgdeductionList() {
         return orgdeductionList;
+    }
+
+    public List<JgtyBean2> getCareerOrgdeductionList() {
+        return careerOrgdeductionList;
     }
 
     public static class JgtyBean2 {
