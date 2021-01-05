@@ -23,8 +23,8 @@
         android:id="@+id/iv_no_women"
         android:visibility="gone"
         tools:visibility="visible"
-        android:layout_width="@dimen/dp_20"
-        android:layout_height="@dimen/dp_20"
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_10"
         android:layout_marginEnd="@dimen/dp_10"
         android:src="@mipmap/ic_no_women"/>
 
