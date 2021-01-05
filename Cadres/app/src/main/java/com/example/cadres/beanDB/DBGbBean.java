@@ -534,6 +534,8 @@ public class DBGbBean {
             sb.append("职级公务员，");
         if(type.indexOf("3") != -1)
             sb.append("后备干部，");
+        if(type.indexOf("4") != -1)
+            sb.append("事业干部，");
         if(sb.lastIndexOf("，") != -1){
             String str = sb.substring(0,sb.length()-1);
             return str;

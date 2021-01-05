@@ -366,7 +366,9 @@ public class SearchDetailBean implements Serializable {
         }
 
         for (String str : getLxLists()){
-            if(TextUtils.equals("3",str)){
+            if(TextUtils.equals("4",str)){
+                sb.append("事业干部/");
+            }else if(TextUtils.equals("3",str)){
                 sb.append("后备干部/");
             }else if(TextUtils.equals("2",str)){
                 sb.append("职级公务员/");
