@@ -30,7 +30,7 @@
         android:layout_height="@dimen/dp_180"
         android:layout_marginStart="@dimen/dp_100"
         android:layout_marginTop="@dimen/dp_50"
-        android:background="@mipmap/ic_yjjc_swcw_bg"
+        android:background="@mipmap/ic_yjjc_bw_bg"
         app:layout_constraintStart_toStartOf="@+id/view_center"
         app:layout_constraintTop_toTopOf="parent" />
 

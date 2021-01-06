@@ -15,33 +15,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <HorizontalScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/dp_15"
         android:layout_marginEnd="@dimen/dp_15"
         android:layout_marginTop="@dimen/dp_10"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fillViewport="true"
         android:layout_marginBottom="@dimen/dp_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_search_count">
 
-        <include layout="@layout/layout_gb_list_title"/>
-        <include layout="@layout/layout_gb_list_title_ldgb"/>
-        <include layout="@layout/layout_gb_list_title_gwy"/>
-        <include layout="@layout/layout_gb_list_title_hbgb"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:orientation="vertical"
-            android:overScrollMode="never" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <include layout="@layout/layout_gb_list_title"/>
+            <include layout="@layout/layout_gb_list_title_ldgb"/>
+            <include layout="@layout/layout_gb_list_title_gwy"/>
+            <include layout="@layout/layout_gb_list_title_hbgb"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:orientation="vertical"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

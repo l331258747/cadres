@@ -301,42 +301,39 @@
 
         <TextView
             android:id="@+id/tv_zzzy"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="0dp"
             android:textSize="@dimen/sp_12"
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
             app:layout_constraintStart_toEndOf="@+id/tv_zzwhcd"
-            app:layout_constraintEnd_toStartOf="@+id/tv_poxm"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="在职专业"/>
 
         <TextView
             android:id="@+id/tv_poxm"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="0dp"
             android:textSize="@dimen/sp_12"
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
             app:layout_constraintStart_toEndOf="@+id/tv_zzzy"
-            app:layout_constraintEnd_toStartOf="@+id/tv_pogzdw"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="配偶姓名"/>
 
         <TextView
             android:id="@+id/tv_pogzdw"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="0dp"
             android:textSize="@dimen/sp_12"
             android:gravity="center"
             android:paddingStart="@dimen/dp_5"
             android:paddingEnd="@dimen/dp_5"
             app:layout_constraintStart_toEndOf="@+id/tv_poxm"
-            app:layout_constraintEnd_toEndOf="@+id/view_title"
             app:layout_constraintTop_toTopOf="@+id/view_title"
             app:layout_constraintBottom_toBottomOf="@+id/view_title"
             android:text="配偶工作单位\n及职务"/>

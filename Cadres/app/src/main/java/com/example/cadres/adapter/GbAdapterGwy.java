@@ -65,6 +65,10 @@ public class GbAdapterGwy extends RecyclerView.Adapter<GbAdapterGwy.ViewHolder> 
         holder.tv_rzjqssj.setText(data.getFunctionaryRankStartTime());
         holder.tv_cjgzsj.setText(data.getWorkTime());
 
+        holder.tv_zzzy.setText(data.getCurrentMajor());
+        holder.tv_poxm.setText(data.getSpouseName());
+        holder.tv_pogzdw.setText(data.getSpouseWorkUnit());
+
         holder.tv_head_tag.setVisibility(View.GONE);
         holder.iv_head_tag.setVisibility(View.GONE);
         if(TextUtils.equals(data.getAffectedState(),"1")){

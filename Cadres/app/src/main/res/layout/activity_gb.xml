@@ -196,33 +196,43 @@
         tools:text="实际配备实际配备备实际备备实际配备："
         android:layout_height="wrap_content"/>
 
-
-    <LinearLayout
+    <HorizontalScrollView
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/dp_15"
         app:layout_goneMarginTop="@dimen/dp_20"
         android:layout_marginEnd="@dimen/dp_15"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/view_bottom"
         app:layout_constraintTop_toBottomOf="@+id/view_top"
         android:layout_height="0dp">
 
-        <include layout="@layout/layout_gb_list_title"/>
-        <include layout="@layout/layout_gb_list_title_ldgb"/>
-        <include layout="@layout/layout_gb_list_title_gwy"/>
-        <include layout="@layout/layout_gb_list_title_hbgb"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp_20"
             android:orientation="vertical"
-            android:overScrollMode="never" />
-    </LinearLayout>
+            android:layout_height="match_parent">
+
+            <include layout="@layout/layout_gb_list_title"/>
+            <include layout="@layout/layout_gb_list_title_ldgb"/>
+            <include layout="@layout/layout_gb_list_title_gwy"/>
+            <include layout="@layout/layout_gb_list_title_hbgb"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:orientation="vertical"
+                android:overScrollMode="never" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
 
     <View
         android:id="@+id/view_bottom"

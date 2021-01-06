@@ -67,6 +67,10 @@ public class GbAdapterLdgb extends RecyclerView.Adapter<GbAdapterLdgb.ViewHolder
         holder.tv_xrzwccsj.setText(data.getCurrentRankTime());
         holder.tv_qrzzy.setText(data.getFullTimeMajor());
 
+        holder.tv_zzzy.setText(data.getCurrentMajor());
+        holder.tv_poxm.setText(data.getSpouseName());
+        holder.tv_pogzdw.setText(data.getSpouseWorkUnit());
+
         holder.tv_head_tag.setVisibility(View.GONE);
         holder.iv_head_tag.setVisibility(View.GONE);
         if(TextUtils.equals(data.getAffectedState(),"1")){

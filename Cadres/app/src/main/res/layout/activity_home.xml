@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         android:src="@mipmap/ic_home_logo"
+        android:visibility="gone"
         android:layout_marginEnd="@dimen/dp_20"
         app:layout_constraintEnd_toStartOf="@+id/tv_title"/>
 
