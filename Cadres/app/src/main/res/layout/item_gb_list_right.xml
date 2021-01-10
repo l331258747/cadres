@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cl_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/view_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_xrzsj"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="现任职时间"/>
+
+    <TextView
+        android:id="@+id/tv_xrzwcc"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_xrzsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="现任职务\n层次"/>
+
+    <TextView
+        android:id="@+id/tv_xrzwccsj"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/tv_xrzwcc"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="现任职务\n层次时间"/>
+
+    <TextView
+        android:id="@+id/tv_zwjb"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_xrzwccsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="职务级别"/>
+
+    <TextView
+        android:id="@+id/tv_rzjsj"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_zwjb"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="任职级时间"/>
+
+    <TextView
+        android:id="@+id/tv_sex"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_rzjsj"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="性别"/>
+
+    <TextView
+        android:id="@+id/tv_place"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_sex"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="籍贯"/>
+
+    <TextView
+        android:id="@+id/tv_csny"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_place"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="出生年月"/>
+
+    <TextView
+        android:id="@+id/tv_qrzwhcd"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_csny"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="全日制文化程度"/>
+
+    <TextView
+        android:id="@+id/tv_qrzzy"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_qrzwhcd"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="全日制\n专业"/>
+
+    <TextView
+        android:id="@+id/tv_zzwhcd"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_qrzzy"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="在职文化程度"/>
+
+    <TextView
+        android:id="@+id/tv_zzzy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_zzwhcd"
+        app:layout_constraintEnd_toStartOf="@+id/tv_poxm"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="在职专业"/>
+
+    <TextView
+        android:id="@+id/tv_poxm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_zzzy"
+        app:layout_constraintEnd_toStartOf="@+id/tv_pogzdw"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="配偶姓名"/>
+
+    <TextView
+        android:id="@+id/tv_pogzdw"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/sp_12"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp_5"
+        android:paddingEnd="@dimen/dp_5"
+        app:layout_constraintStart_toEndOf="@+id/tv_poxm"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        app:layout_constraintTop_toTopOf="@+id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
+        tools:text="配偶工作单位\n及职务"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        app:layout_constraintStart_toStartOf="@+id/view_title"
+        app:layout_constraintEnd_toEndOf="@+id/view_title"
+        android:background="@color/color_ffd7b4"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

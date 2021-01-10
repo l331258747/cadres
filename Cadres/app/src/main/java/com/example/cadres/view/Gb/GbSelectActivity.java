@@ -53,7 +53,7 @@ public class GbSelectActivity extends BaseActivity implements View.OnClickListen
 //            intent = new Intent(context, GbActivity.class);
 //        }
 
-        intent = new Intent(context, GbActivity.class);
+        intent = new Intent(context, GbActivity2.class);
 
         //类型（1领导干部，2职级公务员，3后备干部）
         switch (view.getId()){
