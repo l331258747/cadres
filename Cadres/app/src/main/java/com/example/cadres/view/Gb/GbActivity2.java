@@ -424,10 +424,6 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
                 drawer_layout.openDrawer(Gravity.RIGHT);
             }
         });
-        if(TextUtils.equals(type,"3") || TextUtils.equals(type, "4")){
-        }else if(TextUtils.equals(type,"2")){
-        }else{
-        }
     }
 
     //--------------left

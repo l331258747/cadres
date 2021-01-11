@@ -250,25 +250,25 @@ public class DsjtyHjFragment extends BaseFragment implements View.OnClickListene
             case R.id.btn_swbz:
                 intent.putExtra("tyTitle","符合市委班子提名条件人选");
                 intent.putExtra("tyType",0);
-                intent.setClass(context,TyListActivity.class);
+                intent.setClass(context,TyListActivity2.class);
                 startActivity(intent);
                 break;
             case R.id.btn_szfbz:
                 intent.putExtra("tyTitle","符合市政府班子提名条件人选");
                 intent.putExtra("tyType",1);
-                intent.setClass(context,TyListActivity.class);
+                intent.setClass(context,TyListActivity2.class);
                 startActivity(intent);
                 break;
             case R.id.btn_srdcwhbz:
                 intent.putExtra("tyTitle","符合市人大常委会班子提名条件人选");
                 intent.putExtra("tyType",2);
-                intent.setClass(context,TyListActivity.class);
+                intent.setClass(context,TyListActivity2.class);
                 startActivity(intent);
                 break;
             case R.id.btn_szxbz:
                 intent.putExtra("tyTitle","符合市政协班子提名条件人选");
                 intent.putExtra("tyType",3);
-                intent.setClass(context,TyListActivity.class);
+                intent.setClass(context,TyListActivity2.class);
                 startActivity(intent);
                 break;
         }

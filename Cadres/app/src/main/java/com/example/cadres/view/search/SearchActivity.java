@@ -31,8 +31,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.constraintlayout.widget.Group;
-
 public class SearchActivity extends BaseActivity {
 
     EditText et_search;
@@ -577,7 +575,7 @@ public class SearchActivity extends BaseActivity {
 //    }
 
     private void goDetailActivity(SearchDetailBean searchDetailBean){
-        Intent intent = new Intent(context,SearchDetailActivity.class);
+        Intent intent = new Intent(context,SearchDetailActivity2.class);
         intent.putExtra("data", searchDetailBean);
         startActivity(intent);
     }
