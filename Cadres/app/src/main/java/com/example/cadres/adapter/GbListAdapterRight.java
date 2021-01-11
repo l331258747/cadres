@@ -5,30 +5,24 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cadres.R;
 import com.example.cadres.beanDB.DBGbBean;
-import com.example.cadres.constant.Constant;
-import com.example.cadres.utils.FileUtil;
-import com.example.cadres.utils.glide.GlideUtil;
 
-import java.io.File;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GbAdapterRight extends RecyclerView.Adapter<GbAdapterRight.ViewHolder> {
+public class GbListAdapterRight extends RecyclerView.Adapter<GbListAdapterRight.ViewHolder> {
 
     Context mContext;
     List<DBGbBean> datas;
     String type;
 
-    public GbAdapterRight(Context mContext, List<DBGbBean> datas,String type) {
+    public GbListAdapterRight(Context mContext, List<DBGbBean> datas, String type) {
         this.mContext = mContext;
         this.datas = datas;
         this.type = type;
@@ -48,13 +42,30 @@ public class GbAdapterRight extends RecyclerView.Adapter<GbAdapterRight.ViewHold
         final DBGbBean data = datas.get(position);
         if (data == null) return;
 
-        if(TextUtils.equals(type,"3") || TextUtils.equals(type,"4")){
+        holder.tv_xrzsj.setVisibility(View.GONE);
+        holder.tv_xrzwcc.setVisibility(View.GONE);
+        holder.tv_xrzwccsj.setVisibility(View.GONE);
+        holder.tv_zwjb.setVisibility(View.GONE);
+        holder.tv_rzjsj.setVisibility(View.GONE);
+        holder.tv_rzjqssj.setVisibility(View.GONE);
+        holder.tv_cjgzsj.setVisibility(View.GONE);
 
+        if(TextUtils.equals(type,"3") || TextUtils.equals(type,"4")){
+            holder.tv_xrzsj.setVisibility(View.VISIBLE);
+            holder.tv_rzjqssj.setVisibility(View.VISIBLE);
+            holder.tv_cjgzsj.setVisibility(View.VISIBLE);
         }else if(TextUtils.equals(type,"2")){
 
         }else {
-
+            holder.tv_xrzsj.setVisibility(View.VISIBLE);
+            holder.tv_xrzwcc.setVisibility(View.VISIBLE);
+            holder.tv_xrzwccsj.setVisibility(View.VISIBLE);
+            holder.tv_zwjb.setVisibility(View.VISIBLE);
+            holder.tv_rzjsj.setVisibility(View.VISIBLE);
         }
+
+        holder.tv_rzjqssj.setText(data.getFunctionaryRankStartTime());
+        holder.tv_cjgzsj.setText(data.getWorkTime());
 
         holder.tv_xrzsj.setText(data.getCurrentPositionTime());
 
@@ -100,10 +111,13 @@ public class GbAdapterRight extends RecyclerView.Adapter<GbAdapterRight.ViewHold
 
         ConstraintLayout cl_parent;
         TextView tv_xrzsj,tv_zwjb,tv_rzjsj,tv_sex,tv_place,tv_csny,tv_qrzwhcd,tv_zzwhcd,tv_xrzwcc,tv_xrzwccsj,tv_qrzzy;
-        TextView tv_zzzy,tv_poxm,tv_pogzdw;
+        TextView tv_zzzy,tv_poxm,tv_pogzdw,tv_rzjqssj,tv_cjgzsj;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_rzjqssj = itemView.findViewById(R.id.tv_rzjqssj);
+            tv_cjgzsj = itemView.findViewById(R.id.tv_cjgzsj);
+
             tv_zzzy = itemView.findViewById(R.id.tv_zzzy);
             tv_poxm = itemView.findViewById(R.id.tv_poxm);
             tv_pogzdw = itemView.findViewById(R.id.tv_pogzdw);

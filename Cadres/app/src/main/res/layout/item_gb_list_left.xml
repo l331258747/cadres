@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="@dimen/dp_50"
+        android:layout_width="@dimen/dp_80"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="@dimen/sp_12"
@@ -80,7 +80,7 @@
 
     <TextView
         android:id="@+id/tv_xrzw"
-        android:layout_width="@dimen/dp_120"
+        android:layout_width="@dimen/dp_150"
         android:layout_height="0dp"
         android:gravity="center"
         android:textSize="@dimen/sp_12"

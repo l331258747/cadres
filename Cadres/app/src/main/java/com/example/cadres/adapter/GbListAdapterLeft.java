@@ -22,12 +22,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GbAdapterLeft extends RecyclerView.Adapter<GbAdapterLeft.ViewHolder> {
+public class GbListAdapterLeft extends RecyclerView.Adapter<GbListAdapterLeft.ViewHolder> {
 
     Context mContext;
     List<DBGbBean> datas;
 
-    public GbAdapterLeft(Context mContext, List<DBGbBean> datas) {
+    public GbListAdapterLeft(Context mContext, List<DBGbBean> datas) {
         this.mContext = mContext;
         this.datas = datas;
     }

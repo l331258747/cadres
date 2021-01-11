@@ -20,15 +20,10 @@ import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.example.cadres.R;
-import com.example.cadres.adapter.GbAdapterGwy;
-import com.example.cadres.adapter.GbAdapterHbgb;
-import com.example.cadres.adapter.GbAdapterLdgb;
-import com.example.cadres.adapter.GbAdapterLeft;
-import com.example.cadres.adapter.GbAdapterRight;
+import com.example.cadres.adapter.GbListAdapterLeft;
+import com.example.cadres.adapter.GbListAdapterRight;
 import com.example.cadres.adapter.GbLeftAdapter;
 import com.example.cadres.adapter.ListDialogAdapter;
-import com.example.cadres.adapter.YjjcCadreAdapterRight2;
-import com.example.cadres.adapter.YjjcCadreLeftAdapter2;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
@@ -84,8 +79,8 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
     LinearLayout layout_info;
     GbDrawerData gbDrawerData;
 
-    GbAdapterRight mAdapterRight;
-    GbAdapterLeft mAdapterLeft;
+    GbListAdapterRight mAdapterListRight;
+    GbListAdapterLeft mAdapterListLeft;
 
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     List<DBGbBean> datas;
@@ -216,12 +211,15 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
 
     public void setAdapterData(List<DBGbBean> list){
         if(list == null) return;
-        mAdapterRight.setData(list);
-        mAdapterLeft.setData(list);
+        mAdapterListRight.setData(list);
+        mAdapterListLeft.setData(list);
     }
 
     TextView tv_xrzwcc,tv_zwjb;
     private void initTitleTab() {
+        tv_xrzwcc = $(R.id.tv_xrzwcc);
+        tv_zwjb = $(R.id.tv_zwjb);
+
         ll_xrzsj.setVisibility(View.GONE);
         tv_xrzwcc.setVisibility(View.GONE);
         ll_xrzwccsj.setVisibility(View.GONE);
@@ -373,10 +371,10 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        mAdapterLeft = new GbAdapterLeft(activity, new ArrayList<DBGbBean>());
-        recyclerViewListLeft.setAdapter(mAdapterLeft);
+        mAdapterListLeft = new GbListAdapterLeft(activity, new ArrayList<DBGbBean>());
+        recyclerViewListLeft.setAdapter(mAdapterListLeft);
         recyclerViewListLeft.getItemAnimator().setChangeDuration(0);
-        mAdapterLeft.setOnItemClickListener(new GbAdapterLeft.OnItemClickListener() {
+        mAdapterListLeft.setOnItemClickListener(new GbListAdapterLeft.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
                 gbDrawerData.getData(datas.get(pos).getBaseId());
@@ -411,10 +409,10 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
             }
         });
 
-        mAdapterRight = new GbAdapterRight(activity, new ArrayList<DBGbBean>(),type);
-        recyclerViewListRight.setAdapter(mAdapterRight);
+        mAdapterListRight = new GbListAdapterRight(activity, new ArrayList<DBGbBean>(),type);
+        recyclerViewListRight.setAdapter(mAdapterListRight);
         recyclerViewListRight.getItemAnimator().setChangeDuration(0);
-        mAdapterRight.setOnItemClickListener(new GbAdapterRight.OnItemClickListener() {
+        mAdapterListRight.setOnItemClickListener(new GbListAdapterRight.OnItemClickListener() {
             @Override
             public void onClick(int pos) {
                 gbDrawerData.getData(datas.get(pos).getBaseId());

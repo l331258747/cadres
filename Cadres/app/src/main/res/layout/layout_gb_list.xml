@@ -32,7 +32,7 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    android:layout_width="@dimen/dp_50"
+                    android:layout_width="@dimen/dp_80"
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:textSize="@dimen/sp_12"
@@ -45,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/tv_xrzw"
-                    android:layout_width="@dimen/dp_120"
+                    android:layout_width="@dimen/dp_150"
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:textSize="@dimen/sp_12"
@@ -98,7 +98,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_xrzsj"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
@@ -124,7 +124,7 @@
 
                         <TextView
                             android:id="@+id/tv_xrzwcc"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:textSize="@dimen/sp_12"
                             android:gravity="center"
@@ -137,7 +137,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_xrzwccsj"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
@@ -164,7 +164,7 @@
 
                         <TextView
                             android:id="@+id/tv_zwjb"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:textSize="@dimen/sp_12"
                             android:gravity="center"
@@ -177,7 +177,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_rzjsj"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
@@ -202,7 +202,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_rzjqssj"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
@@ -227,7 +227,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_cjgzsj"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
@@ -252,7 +252,7 @@
 
                         <TextView
                             android:id="@+id/tv_sex"
-                            android:layout_width="@dimen/dp_40"
+                            android:layout_width="@dimen/dp_50"
                             android:layout_height="0dp"
                             android:textSize="@dimen/sp_12"
                             android:gravity="center"
@@ -278,7 +278,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_csny"
-                            android:layout_width="@dimen/dp_70"
+                            android:layout_width="@dimen/dp_80"
                             android:layout_height="0dp"
                             android:orientation="horizontal"
                             android:gravity="center"
