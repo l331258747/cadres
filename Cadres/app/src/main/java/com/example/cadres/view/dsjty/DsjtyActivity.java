@@ -90,17 +90,17 @@ public class DsjtyActivity extends BaseActivity implements View.OnClickListener 
             group_table1.setVisibility(View.VISIBLE);
 
             mFragments.add(DsjtyZjFragment.newInstance(type));
-            mFragments.add(DsjtyJgFragment.newInstance(type));
+            mFragments.add(DsjtyJgFragment2.newInstance(type));
             mFragments.add(DsjtyHjFragment.newInstance(type));
         }else if(TextUtils.equals(this.type,"2")){
             group_table2.setVisibility(View.VISIBLE);
 
             mFragments.add(DsjtyZjFragment.newInstance(type));
-            mFragments.add(DsjtyJgFragment.newInstance(type));
+            mFragments.add(DsjtyJgFragment2.newInstance(type));
         }else if(TextUtils.equals(this.type,"3")){
             group_table3.setVisibility(View.VISIBLE);
 
-            mFragments.add(DsjtyJgFragment.newInstance(type));
+            mFragments.add(DsjtyJgFragment2.newInstance(type));
         }
 
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, null);
