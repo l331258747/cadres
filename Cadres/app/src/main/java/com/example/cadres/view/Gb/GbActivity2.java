@@ -22,10 +22,8 @@ import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.GbListAdapterLeft;
 import com.example.cadres.adapter.GbListAdapterRight;
-import com.example.cadres.adapter.GbLeftAdapter;
 import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.BaseActivity;
-import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmExplainBean;
@@ -37,9 +35,11 @@ import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
-import com.example.cadres.utils.myData.DialogBmData;
+import com.example.cadres.utils.myData.DialogBmData2;
 import com.example.cadres.utils.myData.GbDrawerData;
 import com.example.cadres.view.search.SearchActivity;
+import com.example.cadres.widget.treelistview.TreeAdapter;
+import com.example.cadres.widget.treelistview.TreeItem;
 
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -85,8 +85,9 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
     CommonDaoUtils<DBGbBean> dBGbDaoUtils;
     List<DBGbBean> datas;
 
-    DialogBmData dialogBmData;
-    List<BmLeftBean> bmLeftBeans2 = new ArrayList<>();
+    DialogBmData2 dialogBmData;
+//    List<BmLeftBean> bmLeftBeans2 = new ArrayList<>();
+    List<TreeItem> bmLeftBeans2 = new ArrayList<>();
 
     String type;
     String title;
@@ -336,7 +337,7 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initData() {
-        dialogBmData = new DialogBmData();
+        dialogBmData = new DialogBmData2();
 
         DaoUtilsStore _Store = DaoUtilsStore.getInstance();
         dBGbDaoUtils = _Store.getGbDaoUtils();
@@ -457,7 +458,7 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
     }
 
     RecyclerView recyclerViewLeft;
-    GbLeftAdapter leftAdapter;
+    TreeAdapter leftAdapter;
     CommonDaoUtils<DBBmBean> dBBmDaoUtils;
 
     //初始化recyclerview
@@ -465,40 +466,38 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
         recyclerViewLeft = $(R.id.recycler_view_left);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerViewLeft.setLayoutManager(linearLayoutManager);
-        leftAdapter = new GbLeftAdapter(activity, new ArrayList<BmLeftBean>());
+        leftAdapter = new TreeAdapter(activity, new ArrayList<TreeItem>());
         recyclerViewLeft.setAdapter(leftAdapter);
 
-        leftAdapter.setOnItemClickListener(new GbLeftAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(int pos) {
-                DBBmBean item = getDBBmBean(pos);
-                if (item == null) return;
-                leftAdapter.setItemData(item.getDeptId());
+        leftAdapter.setOnItemClickListener((pos, isLeaf) -> {
+            DBBmBean item = getDBBmBean(pos);
+            if (item == null) return;
+            leftAdapter.setItemData(item.getDeptId());
 
-                if (TextUtils.equals(item.getDeptType(), "1")) {
-                    group_View_top.setVisibility(View.VISIBLE);
-                    tv_top_title.setText(item.getDeptName());
-                    tv_top_hdzs2.setText(item.getVerification());
-                    tv_top_sjpb2.setText(item.getActual());
-                    tv_top_cpqk2.setText(item.getOvermatch());
-                    tv_top_kqqk2.setText(item.getMismatch());
-                } else {
-                    group_View_top.setVisibility(View.GONE);
-                }
-
-                deptId = item.getDeptId();
-                drawer_layout.closeDrawer(Gravity.LEFT);
-                AppUtils.HideKeyboard(et_left_search);
-
-                if (item.getParentId() == 0) {
-                    deptId = 0;
-                }
-                sortDate(0);
-                setAdapterData(getGbBmData());
+            if (TextUtils.equals(item.getDeptType(), "1")) {
+                group_View_top.setVisibility(View.VISIBLE);
+                tv_top_title.setText(item.getDeptName());
+                tv_top_hdzs2.setText(item.getVerification());
+                tv_top_sjpb2.setText(item.getActual());
+                tv_top_cpqk2.setText(item.getOvermatch());
+                tv_top_kqqk2.setText(item.getMismatch());
+            } else {
+                group_View_top.setVisibility(View.GONE);
             }
+
+            deptId = item.getDeptId();
+            if(isLeaf){
+                drawer_layout.closeDrawer(Gravity.LEFT);
+            }
+            AppUtils.HideKeyboard(et_left_search);
+
+            if (item.getParentId() == 0) {
+                deptId = 0;
+            }
+            sortDate(0);
+            setAdapterData(getGbBmData());
         });
     }
-
 
 
     public DBBmBean getDBBmBean(int pos) {
