@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cadres.R;
+import com.example.cadres.utils.AppUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -84,6 +85,10 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> im
             viewHolder.tv_status.setVisibility(View.INVISIBLE);
         }
 
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) viewHolder.tv_status.getLayoutParams();
+        lp.leftMargin = AppUtils.dip2px(10) + treeItem.itemLevel * AppUtils.dip2px(10) ;
+        viewHolder.tv_status.setLayoutParams(lp);
+
         viewHolder.itemView.setOnClickListener(v -> {
             if (treeItem.itemState == ITEM_STATE_CLOSE) {
                 onOpen(treeItem, viewHolder.getAdapterPosition());
@@ -150,12 +155,16 @@ public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder> im
     public void setData(List<TreeItem> datas) {
         this.mList = datas;
         notifyDataSetChanged();
+        if(mList!=null && mList.size() > 0)
+            onOpen(mList.get(0),0);
     }
 
     public void setData(List<TreeItem> datas, int selectDeptDd) {
         this.mList = datas;
         this.selectDeptDd = selectDeptDd;
         notifyDataSetChanged();
+        if(mList!=null && mList.size() > 0)
+            onOpen(mList.get(0),0);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
