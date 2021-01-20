@@ -17,6 +17,7 @@ import com.example.cadres.beanDB.DBYjjcCadre2;
 import com.example.cadres.beanDB.DBYjjcCadre3;
 import com.example.cadres.mvp.YjjcCadreContract;
 import com.example.cadres.mvp.YjjcCadrePresenter;
+import com.example.cadres.widget.MyItemTouchListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public class YjjcCadreFragment2 extends BaseFragment implements YjjcCadreContrac
 
     RecyclerView recyclerViewRight;
     RecyclerView recyclerViewLeft;
+    MyItemTouchListener touchListenerLeft;
+    MyItemTouchListener touchListenerRight;
+
     TextView tv_btn;
 
     YjjcCadreAdapterRight2 mAdapterRight;
@@ -141,10 +145,13 @@ public class YjjcCadreFragment2 extends BaseFragment implements YjjcCadreContrac
         mAdapterRight = new YjjcCadreAdapterRight2(activity, type, new ArrayList<DBYjjcCadre2>());
         recyclerViewRight.setAdapter(mAdapterRight);
 
+        recyclerViewRight.addOnItemTouchListener(touchListenerRight = new MyItemTouchListener());
+
         recyclerViewRight.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                touchListenerLeft.setCanTouch(newState == 0? false:true);
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -175,10 +182,13 @@ public class YjjcCadreFragment2 extends BaseFragment implements YjjcCadreContrac
         mAdapterLeft = new YjjcCadreLeftAdapter2(activity, new ArrayList<DBYjjcCadre2>());
         recyclerViewLeft.setAdapter(mAdapterLeft);
 
+        recyclerViewLeft.addOnItemTouchListener(touchListenerLeft = new MyItemTouchListener());
+
         recyclerViewLeft.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                touchListenerRight.setCanTouch(newState == 0? false:true);
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
