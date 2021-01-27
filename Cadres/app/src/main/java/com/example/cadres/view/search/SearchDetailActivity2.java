@@ -371,6 +371,11 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
             LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         }
 
+        if (searchDetailBean.getRylbLists().size() > 0) {
+            queryBuilder.where(DBGbBeanDao.Properties.PersonnelType.in(searchDetailBean.getRylbLists()));
+            LogUtil.e("人员类别 数据条数：" + queryBuilder.count());
+        }
+
         if (searchDetailBean.getGllbLists().size() > 0) {
 
             StringBuffer sql = new StringBuffer("");
@@ -471,6 +476,23 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
 //                    ,DBGbBeanDao.Properties.CurrentSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%"));
             LogUtil.e("学校类型 数据条数：" + queryBuilder.count());
         }
+
+        if (searchDetailBean.getRybqLists().size() > 0) {
+            StringBuffer sql = new StringBuffer("");
+            String[] values = new String[searchDetailBean.getRybqLists().size()];
+            for (int i = 0; i < searchDetailBean.getRybqLists().size(); i++) {
+                values[i] = "%" + searchDetailBean.getRybqLists().get(i) + "%";
+                if (i == 0) {
+                    sql.append(" " + DBGbBeanDao.Properties.PostLabel.columnName + " like " + "?");
+                }else {
+                    sql.append(" or " + DBGbBeanDao.Properties.PostLabel.columnName + " like " + " ?");
+                }
+            }
+            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
+
+            LogUtil.e("人员标签 数据条数：" + queryBuilder.count());
+        }
+
         if (searchDetailBean.getGzjlLists().size() > 0) {
 
             StringBuffer sql = new StringBuffer("");
