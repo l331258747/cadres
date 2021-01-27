@@ -75,7 +75,6 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
 
     @Override
     public void initView() {
-//        type = intent.getStringExtra("type");
         searchDetailBean = (SearchDetailBean) intent.getSerializableExtra("data");
         type = "1";
 
@@ -225,9 +224,8 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
             getDbCyssGdList(searchDetailBean.getCyssGd());
         } else if (!TextUtils.isEmpty(searchDetailBean.getCyssZwlx())) {
             getDbCyssZwlxList(searchDetailBean.getCyssZwlx());
-        } else if (!TextUtils.isEmpty(searchDetailBean.getCyssZwbqlx())) {
-            getDbCyssZwbqlxList(searchDetailBean.getCyssZwbqlx());
-        } else {
+        }
+        else {
             getDbList();
         }
     }
@@ -292,27 +290,6 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
-    public void getDbCyssZwbqlxList(String key) {
-        DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
-        QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
-//        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
-//        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
-        queryBuilder.where(DBGbBeanDao.Properties.PostLabel.like("%" + key + "%"));
-        LogUtil.e("常用搜索职务标签类型 数据条数：" + queryBuilder.count());
-
-        if (orderBy != null) {
-            if (isAsc) {
-                queryBuilder.orderAsc(orderBy);
-            } else {
-                queryBuilder.orderDesc(orderBy);
-            }
-        }
-
-        dbList = queryBuilder.list();
-
-        tv_search_content.setText(searchDetailBean.getCyssZwbqlx());
-        tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
-    }
 
     /**
      * public List<HistoryData> getDbGbBmList(List<String> historys,List<String> hellos) {

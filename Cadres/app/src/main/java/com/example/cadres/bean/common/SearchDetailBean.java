@@ -2,8 +2,6 @@ package com.example.cadres.bean.common;
 
 import android.text.TextUtils;
 
-import com.example.cadres.utils.GsonUtil;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,12 +25,15 @@ public class SearchDetailBean implements Serializable {
     List<String> xllxLists;
     List<String> xrzjlxLists;
     List<String> xrzjLists;
+    List<String> rylbLists;
+    List<String> rybqLists;
     String cyssGd;
     String cyssZwlx;
-    String cyssZwbqlx;
 
     public SearchDetailBean() {
         gblxLists = new ArrayList<>();
+        rylbLists = new ArrayList<>();
+        rybqLists = new ArrayList<>();
         lxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
@@ -54,8 +55,9 @@ public class SearchDetailBean implements Serializable {
         search = "";
         cyssGd = "";
         cyssZwlx = "";
-        cyssZwbqlx = "";
         gblxLists = new ArrayList<>();
+        rylbLists = new ArrayList<>();
+        rybqLists = new ArrayList<>();
         lxLists = new ArrayList<>();
         bmlxLists = new ArrayList<>();
         csnLists = new ArrayList<>();
@@ -91,6 +93,18 @@ public class SearchDetailBean implements Serializable {
                 return new ArrayList<>();
         return gblxLists;
     }
+    public List<String> getRylbLists() {
+        for (String str : rylbLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return rylbLists;
+    }
+    public List<String> getRybqLists() {
+        for (String str : rybqLists)
+            if(str.equals("全部"))
+                return new ArrayList<>();
+        return rybqLists;
+    }
 
     public List<String> getLxLists() {
         for (String str : lxLists)
@@ -99,30 +113,8 @@ public class SearchDetailBean implements Serializable {
         return lxLists;
     }
 
-    public String getGllbListsStr(){
-        String string;
-        if(getGllbLists().size() == 0){
-            string = "";
-        }else{
-            StringBuffer str = new StringBuffer();
-            for (String item : getGllbLists()){
-                str.append(item + ",");
-            }
-            string = str.substring(0,str.length() - 1);
-        }
-        return string;
-    }
-
     public String getCyssGd() {
         return cyssGd;
-    }
-
-    public void setGblxLists(List<String> gblxLists) {
-        this.gblxLists = gblxLists;
-    }
-
-    public void setLxLists(List<String> lxLists) {
-        this.lxLists = lxLists;
     }
 
     public List<String> getBmlbLists() {
@@ -132,20 +124,12 @@ public class SearchDetailBean implements Serializable {
         return bmlxLists;
     }
 
-    public void setBmlxLists(List<String> bmlxLists) {
-        this.bmlxLists = bmlxLists;
-    }
-
     public List<String> getCsnLists() {
         if(csnLists.size() == 0)
             return csnLists = new ArrayList<>();
         if(csnLists.get(0).equals("1950") && csnLists.get(1).equals("2000"))
             return csnLists = new ArrayList<>();
         return csnLists;
-    }
-
-    public void setCsnLists(List<String> csnLists) {
-        this.csnLists = csnLists;
     }
 
     public List<String> getXrzjLists() {
@@ -160,10 +144,6 @@ public class SearchDetailBean implements Serializable {
             if(str.equals("全部"))
                 return new ArrayList<>();
         return xlLists;
-    }
-
-    public void setXlLists(List<String> xlLists) {
-        this.xlLists = xlLists;
     }
 
     public List<String> getXllxLists(){
@@ -199,47 +179,11 @@ public class SearchDetailBean implements Serializable {
         return xxlxLists;
     }
 
-    public String getXxlxListsStr(){
-        String string;
-        if(getXxlxLists().size() == 0){
-            string = "";
-        }else{
-            StringBuffer str = new StringBuffer();
-            for (String item : getXxlxLists()){
-                str.append(item + ",");
-            }
-            string = str.substring(0,str.length() - 1);
-        }
-        return string;
-    }
-
-    public void setXxlxLists(List<String> xxlxLists) {
-        this.xxlxLists = xxlxLists;
-    }
-
     public List<String> getGzjlLists() {
         for (String str : gzjlLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
         return gzjlLists;
-    }
-
-    public String getGzjlListsStr(){
-        String string;
-        if(getGzjlLists().size() == 0){
-            string = "";
-        }else{
-            StringBuffer str = new StringBuffer();
-            for (String item : getGzjlLists()){
-                str.append(item + ",");
-            }
-            string = str.substring(0,str.length() - 1);
-        }
-        return string;
-    }
-
-    public void setGzjlLists(List<String> gzjlLists) {
-        this.gzjlLists = gzjlLists;
     }
 
     public List<String> getRxznxLists() {
@@ -311,19 +255,11 @@ public class SearchDetailBean implements Serializable {
         return year;
     }
 
-    public void setXrzjnxLists(List<String> xrzjnxLists) {
-        this.xrzjnxLists = xrzjnxLists;
-    }
-
     public List<String> getXbLists() {
         for (String str : xbLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
         return xbLists;
-    }
-
-    public void setXbLists(List<String> xbLists) {
-        this.xbLists = xbLists;
     }
 
     public List<String> getDpLists() {
@@ -333,27 +269,11 @@ public class SearchDetailBean implements Serializable {
         return dpLists;
     }
 
-    //是否存在非共党员
-//    public boolean isDpFzgdn(){
-//        for (String str : dpLists)
-//            if(str.equals("非中共党员"))
-//                return true;
-//            return false;
-//    }
-
-    public void setDpLists(List<String> dpLists) {
-        this.dpLists = dpLists;
-    }
-
     public List<String> getXrzwccLists() {
         for (String str : xrzwccLists)
             if(str.equals("全部"))
                 return new ArrayList<>();
         return xrzwccLists;
-    }
-
-    public void setXrzwccLists(List<String> xrzwccLists) {
-        this.xrzwccLists = xrzwccLists;
     }
 
     @Override
@@ -376,6 +296,9 @@ public class SearchDetailBean implements Serializable {
                 sb.append("领导干部/");
             }
         }
+        for (String str : getRylbLists()){
+            sb.append(str + "/");
+        }
         for (String str : getGllbLists()){
             sb.append(str + "/");
         }
@@ -392,6 +315,9 @@ public class SearchDetailBean implements Serializable {
             sb.append(str + "/");
         }
         for (String str : getXxlxLists()){
+            sb.append(str + "/");
+        }
+        for (String str : getRybqLists()){
             sb.append(str + "/");
         }
         for (String str : getGzjlLists()){
@@ -432,11 +358,4 @@ public class SearchDetailBean implements Serializable {
         this.cyssZwlx = cyssZwlx;
     }
 
-    public String getCyssZwbqlx() {
-        return cyssZwbqlx;
-    }
-
-    public void setCyssZwbqlx(String cyssZwbqlx) {
-        this.cyssZwbqlx = cyssZwbqlx;
-    }
 }

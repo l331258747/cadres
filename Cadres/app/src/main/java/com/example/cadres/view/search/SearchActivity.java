@@ -40,7 +40,8 @@ public class SearchActivity extends BaseActivity {
     private TagFlowLayout fl_lx,fl_gllb, fl_bmlb, fl_xb,
             fl_dp,fl_xrzwcc,
             fl_xl,fl_xllx,fl_xxlx,
-            fl_gzjl,fl_xrzjlx, fl_xrzj;
+            fl_gzjl,fl_xrzjlx, fl_xrzj,
+            fl_rybq,fl_rylb;
     TextView tv_xrzj;
 
     RangeSeekBar seekbar2;
@@ -108,6 +109,9 @@ public class SearchActivity extends BaseActivity {
         initFLXrzj();
         initXrzjnx();
 
+        initFLRylb();
+        initFLRybq();
+
         tv_btn = findViewById(R.id.tv_btn);
         tv_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +132,12 @@ public class SearchActivity extends BaseActivity {
         }
         for (int index : fl_gllb.getSelectedList()) {
             searchDetailBean.getGllbLists().add(mVals_gllb.get(index).getDictLabel());
+        }
+        for (int index : fl_rylb.getSelectedList()) {
+            searchDetailBean.getRylbLists().add(mVals_rylb.get(index).getDictLabel());
+        }
+        for (int index : fl_rybq.getSelectedList()) {
+            searchDetailBean.getRybqLists().add(mVals_rybq.get(index).getDictLabel());
         }
         for (int index : fl_bmlb.getSelectedList()) {
             searchDetailBean.getBmlbLists().add(mVals_bmlb.get(index).getDictLabel());
@@ -232,8 +242,6 @@ public class SearchActivity extends BaseActivity {
                     searchDetailBean.setCyssGd(mVals_cyss.get(position).getDictLabel());
                 }else if(mVals_cyss.get(position).getType() == 1){
                     searchDetailBean.setCyssZwlx(mVals_cyss.get(position).getDictLabel());
-                }else if(mVals_cyss.get(position).getType() == 2){
-                    searchDetailBean.setCyssZwbqlx(mVals_cyss.get(position).getDictLabel());
                 }
                 goDetailActivity(searchDetailBean);
                 return false;
@@ -419,6 +427,36 @@ public class SearchActivity extends BaseActivity {
             }
         };
         fl_gllb.setAdapter(adapter1);
+    }
+
+    List<SysDictDataBean> mVals_rylb;
+    private void initFLRylb() {
+        fl_rylb = findViewById(R.id.fl_rylb);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_rylb) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_rylb, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_rylb.setAdapter(adapter1);
+    }
+
+    List<SysDictDataBean> mVals_rybq;
+    private void initFLRybq() {
+        fl_rybq = findViewById(R.id.fl_rybq);
+        final LayoutInflater mInflater = LayoutInflater.from(activity);
+        TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_rybq) {
+            @Override
+            public View getView(FlowLayout parent, int position, SysDictDataBean s) {
+                TextView tv = (TextView) mInflater.inflate(R.layout.item_flow_other, fl_rybq, false);
+                tv.setText(s.getDictLabel());
+                return tv;
+            }
+        };
+        fl_rybq.setAdapter(adapter1);
     }
 
     int csnMin = 1950;
@@ -611,6 +649,8 @@ public class SearchActivity extends BaseActivity {
         mVals_xxlx = dbSearchBean.getSchoolTypesList();
         mVals_gzjl = dbSearchBean.getWorkExperienceTypesList();
         mVals_xrzjlx = dbSearchBean.getFunctionaryRankParentTypesList();
+        mVals_rylb = dbSearchBean.getPersonnelTypesList();
+        mVals_rybq = dbSearchBean.getOftenSearchPostLabelTypesList();
         initSearchCyssData();
     }
 
@@ -620,14 +660,11 @@ public class SearchActivity extends BaseActivity {
         List<SysDictDataBean> cyss_zwlx = dbSearchBean.getOftenSearchPostTypesList();//职务类型
         for (SysDictDataBean item : cyss_zwlx)
             item.setType(1);
-        List<SysDictDataBean> cyss_zwbqlx = dbSearchBean.getOftenSearchPostLabelTypesList();//职务标签类型
-        for (SysDictDataBean item : cyss_zwbqlx)
-            item.setType(2);
         mVals_cyss.addAll(cyss_gd);
         mVals_cyss.addAll(cyss_zwlx);
-        mVals_cyss.addAll(cyss_zwbqlx);
     }
 
+    //搜索现任职务
     List<ZzbFunctionaryRankBean> mVals_xrzj;
     private List<ZzbFunctionaryRankBean> getXrzjData(int id){
         mVals_xrzj = new ArrayList<>();

@@ -251,6 +251,14 @@ public class DBSearchBean {
     public String getPersonnelTypes() {
         return this.personnelTypes;
     }
+
+    public List<SysDictDataBean> getPersonnelTypesList(){
+        List<SysDictDataBean> list = GsonUtil.convertString2Collection(personnelTypes, new TypeToken<List<SysDictDataBean>>() {
+        });
+        if (list == null) return new ArrayList<>();
+        return list;
+    }
+
     public void setPersonnelTypes(String personnelTypes) {
         this.personnelTypes = personnelTypes;
     }

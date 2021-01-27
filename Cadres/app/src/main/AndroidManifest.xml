@@ -77,9 +77,6 @@
             android:name=".view.search.SearchActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.search.SearchDetailActivity"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.search.SearchDetailActivity2"
             android:screenOrientation="landscape"/>
         <activity
