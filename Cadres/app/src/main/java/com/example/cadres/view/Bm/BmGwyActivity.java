@@ -7,7 +7,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGwyDWLBDao;
 import com.cadres.greendao.gen.DBGwyFGDJDao;
 import com.cadres.greendao.gen.DBGwyFGZLDJDao;
@@ -180,7 +179,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyZHGLDao.Properties.DeptName.like("%" + key + "%"),DBGwyZHGLDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBGwyZHGLDao.Properties.Display.eq(0));
+//            queryBuilder.where(DBGwyZHGLDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyZHGLDao.Properties.GwyType.eq(orgId));
             if(!TextUtils.isEmpty(cpkqId)){
@@ -205,7 +204,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyZQDao.Properties.DeptName.like("%" + key + "%"),DBGwyZQDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBGwyZQDao.Properties.Display.eq(0));
+//            queryBuilder.where(DBGwyZQDao.Properties.Display.eq(0));
 //            if(!TextUtils.isEmpty(orgId))
 //                queryBuilder.where(DBGwyZQDao.Properties.GwyType.eq(orgId));
             if(!TextUtils.isEmpty(cpkqId)){
@@ -230,7 +229,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyJWJSDao.Properties.DeptName.like("%" + key + "%"),DBGwyJWJSDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBGwyJWJSDao.Properties.Display.eq(0));
+//            queryBuilder.where(DBGwyJWJSDao.Properties.Display.eq(0));
 //            if(!TextUtils.isEmpty(orgId))
 //                queryBuilder.where(DBGwyJWJSDao.Properties.GwyType.eq(orgId));
             if(!TextUtils.isEmpty(cpkqId)){
@@ -255,7 +254,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyFGDJDao.Properties.DeptName.like("%" + key + "%"),DBGwyFGDJDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBGwyFGDJDao.Properties.Display.eq(0));
+//            queryBuilder.where(DBGwyFGDJDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyFGDJDao.Properties.GwyType.eq(orgId));
             if(!TextUtils.isEmpty(cpkqId)){
@@ -280,7 +279,7 @@ public class BmGwyActivity extends BaseActivity implements View.OnClickListener 
             queryBuilder.where(DBGwyFGZLDJDao.Properties.DeptName.like("%" + key + "%"),DBGwyFGZLDJDao.Properties.Display.eq(0));
             dbList = queryBuilder.list();
         }else{
-            queryBuilder.where(DBGwyFGZLDJDao.Properties.Display.eq(0));
+//            queryBuilder.where(DBGwyFGZLDJDao.Properties.Display.eq(0));
             if(!TextUtils.isEmpty(orgId))
                 queryBuilder.where(DBGwyFGZLDJDao.Properties.GwyType.eq(orgId));
             if(!TextUtils.isEmpty(cpkqId)){
