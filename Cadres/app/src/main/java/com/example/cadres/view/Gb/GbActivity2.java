@@ -482,6 +482,11 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
         leftAdapter.setOnItemClickListener((pos, isLeaf) -> {
             DBBmBean item = getDBBmBean(pos);
             if (item == null) return;
+
+            //后备干部和事业干部进来后，这一块不要展示
+            if(TextUtils.equals(type, "3") || TextUtils.equals(type, "4"))
+                return;
+
             leftAdapter.setItemData(item.getDeptId());
 
             if (TextUtils.equals(item.getDeptType(), "1")) {

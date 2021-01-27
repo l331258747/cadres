@@ -62,9 +62,6 @@
             android:name=".view.Bm.BmActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.Gb.GbActivity"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.Gb.GbActivity2"
             android:screenOrientation="landscape"/>
         <activity
