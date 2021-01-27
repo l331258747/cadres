@@ -51,15 +51,25 @@ public class DBBmBean {
     private String mismatchDeputy;//缺配乡科副职
     private String mismatchOther;//缺配其他
 
-    private int subset;
-    private int defulatOrg;
-    private int display;
+    private int subset;//是否有下级 1 有 0 没有
+    private int defulatOrg;//1为干部名册默认选中单位
+    private int display;//1在市管职务名称表不展示，0展示
 
     private String surpass;
     private String lack;
     private String getWomanCadre;
+
+    private int lddisplay;//领导干部组织机构选这中否显示 0展示 1不展示
+    private int gwydisplay;//公务员组织机构选这中否显示 0展示 1不展示
+    private int hbdisplay;//后备干部组织机构选这中否显示 0展示 1不展示
+    private int sydisplay;//事业干部组织机构选这中否显示 0展示 1不展示
+    private int fictitious;//公务员职级中是否虚拟机构 （忽略）
+    private String hdgywrank;//核定公务员职级
+    private String spgywrank;//实配公务员职级
+    private String cpgywrank;//超配公务员职级
+    private String qpgywrank;//缺配公务员职级
     
-    @Generated(hash = 107101579)
+    @Generated(hash = 1117651891)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -72,7 +82,10 @@ public class DBBmBean {
             int lackOther, String overmatchPosition, String overmatchDeputy,
             String overmatchOther, String mismatchPosition, String mismatchDeputy,
             String mismatchOther, int subset, int defulatOrg, int display,
-            String surpass, String lack, String getWomanCadre) {
+            String surpass, String lack, String getWomanCadre, int lddisplay,
+            int gwydisplay, int hbdisplay, int sydisplay, int fictitious,
+            String hdgywrank, String spgywrank, String cpgywrank,
+            String qpgywrank) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -118,6 +131,15 @@ public class DBBmBean {
         this.surpass = surpass;
         this.lack = lack;
         this.getWomanCadre = getWomanCadre;
+        this.lddisplay = lddisplay;
+        this.gwydisplay = gwydisplay;
+        this.hbdisplay = hbdisplay;
+        this.sydisplay = sydisplay;
+        this.fictitious = fictitious;
+        this.hdgywrank = hdgywrank;
+        this.spgywrank = spgywrank;
+        this.cpgywrank = cpgywrank;
+        this.qpgywrank = qpgywrank;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -496,5 +518,59 @@ public class DBBmBean {
     }
     public void setGetWomanCadre(String getWomanCadre) {
         this.getWomanCadre = getWomanCadre;
+    }
+    public int getLddisplay() {
+        return this.lddisplay;
+    }
+    public void setLddisplay(int lddisplay) {
+        this.lddisplay = lddisplay;
+    }
+    public int getGwydisplay() {
+        return this.gwydisplay;
+    }
+    public void setGwydisplay(int gwydisplay) {
+        this.gwydisplay = gwydisplay;
+    }
+    public int getHbdisplay() {
+        return this.hbdisplay;
+    }
+    public void setHbdisplay(int hbdisplay) {
+        this.hbdisplay = hbdisplay;
+    }
+    public int getSydisplay() {
+        return this.sydisplay;
+    }
+    public void setSydisplay(int sydisplay) {
+        this.sydisplay = sydisplay;
+    }
+    public int getFictitious() {
+        return this.fictitious;
+    }
+    public void setFictitious(int fictitious) {
+        this.fictitious = fictitious;
+    }
+    public String getHdgywrank() {
+        return this.hdgywrank;
+    }
+    public void setHdgywrank(String hdgywrank) {
+        this.hdgywrank = hdgywrank;
+    }
+    public String getSpgywrank() {
+        return this.spgywrank;
+    }
+    public void setSpgywrank(String spgywrank) {
+        this.spgywrank = spgywrank;
+    }
+    public String getCpgywrank() {
+        return this.cpgywrank;
+    }
+    public void setCpgywrank(String cpgywrank) {
+        this.cpgywrank = cpgywrank;
+    }
+    public String getQpgywrank() {
+        return this.qpgywrank;
+    }
+    public void setQpgywrank(String qpgywrank) {
+        this.qpgywrank = qpgywrank;
     }
 }

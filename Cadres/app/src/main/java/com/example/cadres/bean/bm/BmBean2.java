@@ -93,12 +93,58 @@ public class BmBean2 {
     private String mismatchDeputy;//缺配乡科副职
     private String mismatchOther;//缺配其他
     private List<BmExplainBean> organizationExplain;
-    private String subset;
-    private int defulatOrg;
-    private int display;
+    private String subset;//是否有下级 1 有 0 没有
+    private int defulatOrg;//1为干部名册默认选中单位
+    private int display;//1在市管职务名称表不展示，0展示
     private String surpass;
     private String lack;
     private String womanCadre;
+
+    private int lddisplay;//领导干部组织机构选这中否显示 0展示 1不展示
+    private int gwydisplay;//公务员组织机构选这中否显示 0展示 1不展示
+    private int hbdisplay;//后备干部组织机构选这中否显示 0展示 1不展示
+    private int sydisplay;//事业干部组织机构选这中否显示 0展示 1不展示
+    private int fictitious;//公务员职级中是否虚拟机构 （忽略）
+    private String hdgywrank;//核定公务员职级
+    private String spgywrank;//实配公务员职级
+    private String cpgywrank;//超配公务员职级
+    private String qpgywrank;//缺配公务员职级
+
+    public int getLddisplay() {
+        return lddisplay;
+    }
+
+    public int getGwydisplay() {
+        return gwydisplay;
+    }
+
+    public int getHbdisplay() {
+        return hbdisplay;
+    }
+
+    public int getSydisplay() {
+        return sydisplay;
+    }
+
+    public int getFictitious() {
+        return fictitious;
+    }
+
+    public String getHdgywrank() {
+        return hdgywrank;
+    }
+
+    public String getSpgywrank() {
+        return spgywrank;
+    }
+
+    public String getCpgywrank() {
+        return cpgywrank;
+    }
+
+    public String getQpgywrank() {
+        return qpgywrank;
+    }
 
     public String getWomanCadre() {
         return womanCadre;

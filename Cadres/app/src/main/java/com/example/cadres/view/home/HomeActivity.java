@@ -733,7 +733,16 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getDisplay(),
                         item.getSurpass(),
                         item.getLack(),
-                        item.getWomanCadre()
+                        item.getWomanCadre(),
+                        item.getLddisplay(),
+                        item.getGwydisplay(),
+                        item.getHbdisplay(),
+                        item.getSydisplay(),
+                        item.getFictitious(),
+                        item.getHdgywrank(),
+                        item.getSpgywrank(),
+                        item.getCpgywrank(),
+                        item.getQpgywrank()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {

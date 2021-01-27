@@ -12,5 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
-/app/src/main/java/com/cadres/greendao/gen
+gen/*
+/.idea/*
 
