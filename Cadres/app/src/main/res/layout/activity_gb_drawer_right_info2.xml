@@ -200,7 +200,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
-        android:text="参加组织\n日期"
+        android:text="入党时间"
         android:textSize="@dimen/sp_12"
         android:background="@color/color_fdf5ed"
         app:layout_constraintStart_toStartOf="@+id/view_cjzzrq"
@@ -215,7 +215,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/dp_5"
         android:paddingEnd="@dimen/dp_5"
-        tools:text="参加组织\n日期"
+        tools:text="入党时间"
         android:textSize="@dimen/sp_12"
         app:layout_constraintStart_toEndOf="@+id/ll_name_title"
         android:layout_height="0dp"/>
