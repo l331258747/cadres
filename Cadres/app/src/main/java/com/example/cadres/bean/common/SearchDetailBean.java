@@ -30,6 +30,9 @@ public class SearchDetailBean implements Serializable {
     String cyssGd;
     String cyssZwlx;
 
+    int deptId;
+    String deptName;
+
     public SearchDetailBean() {
         gblxLists = new ArrayList<>();
         rylbLists = new ArrayList<>();
@@ -281,10 +284,6 @@ public class SearchDetailBean implements Serializable {
 
         StringBuilder sb = new StringBuilder();
 
-        if(!TextUtils.isEmpty(getSearch())){
-            sb.append("关键字：" + getSearch() + "/");
-        }
-
         for (String str : getLxLists()){
             if(TextUtils.equals("4",str)){
                 sb.append("事业干部/");
@@ -356,6 +355,19 @@ public class SearchDetailBean implements Serializable {
 
     public void setCyssZwlx(String cyssZwlx) {
         this.cyssZwlx = cyssZwlx;
+    }
+
+    public int getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptIdName(int deptId,String deptName) {
+        this.deptId = deptId;
+        this.deptName = deptName;
+    }
+
+    public String getDeptName() {
+        return deptName;
     }
 
 }

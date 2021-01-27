@@ -109,7 +109,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="市人大常委"
-                android:minWidth="@dimen/dp_120"
                 android:drawableRight="@mipmap/ic_down3"
                 android:drawablePadding="@dimen/dp_10"
                 android:textSize="@dimen/sp_20"

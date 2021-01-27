@@ -1,7 +1,9 @@
 package com.example.cadres.view.search;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.base.ActivityCollect;
@@ -17,21 +20,32 @@ import com.example.cadres.bean.common.SearchDetailBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.search.SysDictDataBean;
 import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
+import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.dialog.DefaultDialog;
+import com.example.cadres.dialog.ListDialog22;
+import com.example.cadres.utils.AppUtils;
+import com.example.cadres.utils.LogUtil;
+import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
+import com.example.cadres.utils.greendao.DaoUtilsStore;
+import com.example.cadres.utils.myData.DialogBmData2;
 import com.example.cadres.widget.flowlayout.FlowLayout;
 import com.example.cadres.widget.flowlayout.TagAdapter;
 import com.example.cadres.widget.flowlayout.TagFlowLayout;
+import com.example.cadres.widget.treelistview.TreeItem;
 import com.jaygoo.widget.RangeSeekBar;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends BaseActivity {
+import androidx.constraintlayout.widget.Group;
+
+public class SearchActivity extends BaseActivity implements View.OnClickListener {
 
     EditText et_search;
 
@@ -113,12 +127,11 @@ public class SearchActivity extends BaseActivity {
         initFLRybq();
 
         tv_btn = findViewById(R.id.tv_btn);
-        tv_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goSearchDetail();
-            }
-        });
+        tv_btn.setOnClickListener(view -> goSearchDetail());
+
+        group_dialog = $(R.id.group_dialog);
+        tv_dialog = $(R.id.tv_dialog);
+        tv_dialog.setOnClickListener(this);
     }
 
     public void goSearchDetail(){
@@ -621,6 +634,23 @@ public class SearchActivity extends BaseActivity {
     @Override
     public void initData() {
         searchDetailBean = new SearchDetailBean();
+
+        initDialogData();
+    }
+
+    public void initDialogData(){
+        dialogBmData = new DialogBmData2();
+        DaoUtilsStore _Store = DaoUtilsStore.getInstance();
+        dBBmDaoUtils = _Store.getBmDaoUtils();
+
+        getDbBmList("");
+
+        if (dbBmList != null && dbBmList.size() > 0) {
+            tv_dialog.setText(dbBmList.get(0).getDeptName());
+            int deptId = dbBmList.get(0).getDeptId();
+            String deptName = dbBmList.get(0).getDeptName();
+            searchDetailBean.setDeptIdName(deptId,deptName);
+        }
     }
 
 //    @Override
@@ -674,5 +704,102 @@ public class SearchActivity extends BaseActivity {
                 mVals_xrzj.add(item);
         }
         return mVals_xrzj;
+    }
+
+
+    //----------------------------Dialog
+
+    TextView tv_dialog;
+    Group group_dialog;
+
+//    int deptId;
+//    String deptName;
+
+    DialogBmData2 dialogBmData;
+    List<TreeItem> bmLeftBeans2 = new ArrayList<TreeItem>();
+
+    List<DBBmBean> dbBmList;
+    CommonDaoUtils<DBBmBean> dBBmDaoUtils;
+
+    public List<DBBmBean> getDbBmList(String key) {
+        dbBmList = new ArrayList<>();
+        DBBmBeanDao dbBmBeanDao = DaoManager.getInstance().getDaoSession().getDBBmBeanDao();
+        QueryBuilder<DBBmBean> queryBuilder = dbBmBeanDao.queryBuilder();
+
+        if (!TextUtils.isEmpty(key)) {
+            String sql = " " + DBBmBeanDao.Properties.ParentId.columnName
+                    + " in ( "
+                    + " select " + DBBmBeanDao.Properties.DeptId.columnName
+                    + " from " + DBBmBeanDao.TABLENAME
+                    + " where " + DBBmBeanDao.Properties.DeptName.columnName + " like ? "
+                    + " ) "
+                    + " or " + DBBmBeanDao.Properties.DeptName.columnName + " like ? ";
+            String[] values = new String[]{"%" + key + "%", "%" + key + "%"};
+            queryBuilder.where(new WhereCondition.StringCondition(sql, values));
+        }
+
+        dbBmList = queryBuilder.list();
+        LogUtil.e("数据库条数：" + dbBmList.size());
+
+        if (!TextUtils.isEmpty(key)) {
+            bmLeftBeans2 = dialogBmData.getBmLeftBean2(dbBmList);
+        } else {
+            bmLeftBeans2 = dialogBmData.getBmLeftBean(dbBmList);
+        }
+        return dbBmList;
+    }
+
+    ListDialog22 listDialog;
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_dialog:
+                if (listDialog == null) {
+                    listDialog = new ListDialog22(context, bmLeftBeans2);
+                    listDialog.setOnEditorActionListener((v, actionId, event) -> {
+                        /*判断是否是“搜索”键*/
+                        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                            String key = listDialog.getEt_left_search().getText().toString().trim();
+                            if(!TextUtils.isEmpty(key)){
+                                getDbBmList(key);
+                                listDialog.getAdapter().setData(bmLeftBeans2);
+                                AppUtils.HideKeyboard(listDialog.getEt_left_search());
+                            }
+                            return true;
+                        }
+                        return false;
+                    });
+                    listDialog.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            if(TextUtils.isEmpty(listDialog.getEt_left_search().getText().toString())){
+                                getDbBmList("");
+                                listDialog.getAdapter().setData(bmLeftBeans2);
+                            }
+                        }
+                    });
+                    listDialog.setItemClickListener((position, isLeaf) -> {
+                        if(isLeaf)
+                            listDialog.dismiss();
+
+                        tv_dialog.setText(bmLeftBeans2.get(position).getName());
+                        int deptId = bmLeftBeans2.get(position).getId();
+                        String deptName = bmLeftBeans2.get(position).getName();
+                        searchDetailBean.setDeptIdName(deptId,deptName);
+                        listDialog.getAdapter().setItemData(bmLeftBeans2.get(position).getId());
+
+                    });
+                }
+                listDialog.show();
+                break;
+        }
     }
 }
