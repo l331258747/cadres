@@ -22,14 +22,14 @@ public class DBBmBean {
     private String financeTypeName;
     private String simpleName;
     private int orderNum;
-    private String deptType;
+    private String deptType;//部门类型（字典id）
     private String deptTypeName;
     private String delFlag;
     private String parentName;
-    private String verification;
-    private String actual;
-    private String overmatch;
-    private String mismatch;
+    private String verification;//核定职数
+    private String actual;//实际职数
+    private String overmatch;//超配
+    private String mismatch;//缺配
     private int approvedPosition;
     private int approvedDeputy;
     private int approvedOther;

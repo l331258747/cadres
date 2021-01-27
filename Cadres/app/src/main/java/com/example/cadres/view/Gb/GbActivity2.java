@@ -503,10 +503,17 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
             if (TextUtils.equals(item.getDeptType(), "1")) {
                 group_View_top.setVisibility(View.VISIBLE);
                 tv_top_title.setText(item.getDeptName());
-                tv_top_hdzs2.setText(item.getVerification());
-                tv_top_sjpb2.setText(item.getActual());
-                tv_top_cpqk2.setText(item.getOvermatch());
-                tv_top_kqqk2.setText(item.getMismatch());
+                if(TextUtils.equals(type,"1")){
+                    tv_top_hdzs2.setText(item.getVerification());
+                    tv_top_sjpb2.setText(item.getActual());
+                    tv_top_cpqk2.setText(item.getOvermatch());
+                    tv_top_kqqk2.setText(item.getMismatch());
+                }else if(TextUtils.equals(type,"2")){
+                    tv_top_hdzs2.setText(item.getHdgywrank());
+                    tv_top_sjpb2.setText(item.getSpgywrank());
+                    tv_top_cpqk2.setText(item.getCpgywrank());
+                    tv_top_kqqk2.setText(item.getQpgywrank());
+                }
             } else {
                 group_View_top.setVisibility(View.GONE);
             }
