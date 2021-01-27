@@ -86,9 +86,6 @@
             android:name=".view.dsjty.DsjtyActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.dsjty.TyListActivity"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.dsjty.TyListActivity2"
             android:screenOrientation="landscape"/>
         <activity

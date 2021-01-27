@@ -456,6 +456,17 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
             String[] values = new String[]{"%" + key + "%","%" + key + "%"};
             queryBuilder.where(new WhereCondition.StringCondition(sql,values));
         }
+
+        if(TextUtils.equals(type, "1")){//领导干部名册
+            queryBuilder.where(DBBmBeanDao.Properties.Lddisplay.eq(0));
+        }else if(TextUtils.equals(type, "2")){//职级公务员名册
+            queryBuilder.where(DBBmBeanDao.Properties.Gwydisplay.eq(0));
+        }else if(TextUtils.equals(type, "3")){//后备干部名册
+            queryBuilder.where(DBBmBeanDao.Properties.Hbdisplay.eq(0));
+        }else if(TextUtils.equals(type, "4")){//事业干部名册
+            queryBuilder.where(DBBmBeanDao.Properties.Sydisplay.eq(0));
+        }
+
         dbBmList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbBmList.size());
 

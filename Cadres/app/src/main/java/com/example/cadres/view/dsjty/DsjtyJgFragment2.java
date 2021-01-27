@@ -13,14 +13,11 @@ import android.widget.TextView;
 import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DbTyJgDao;
 import com.example.cadres.R;
-import com.example.cadres.adapter.ListDialogAdapter2;
 import com.example.cadres.adapter.ListDialogAdapter22;
 import com.example.cadres.base.BaseFragment;
 import com.example.cadres.bean.ChartBean;
-import com.example.cadres.bean.common.BmLeftBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DbTyJg;
-import com.example.cadres.dialog.ListDialog2;
 import com.example.cadres.dialog.ListDialog22;
 import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
@@ -28,7 +25,6 @@ import com.example.cadres.utils.chart.MyPieChartRenderer2;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
-import com.example.cadres.utils.myData.DialogBmData;
 import com.example.cadres.utils.myData.DialogBmData2;
 import com.example.cadres.widget.treelistview.TreeItem;
 import com.github.mikephil.charting.charts.PieChart;
@@ -336,6 +332,15 @@ public class DsjtyJgFragment2 extends BaseFragment implements View.OnClickListen
             String[] values = new String[]{"%" + key + "%", "%" + key + "%"};
             queryBuilder.where(new WhereCondition.StringCondition(sql, values));
         }
+
+        if(TextUtils.equals(type, "1")){//1领导干部
+            queryBuilder.where(DBBmBeanDao.Properties.Lddisplay.eq(0));
+        }else if(TextUtils.equals(type, "2")){//2职级公务员
+            queryBuilder.where(DBBmBeanDao.Properties.Gwydisplay.eq(0));
+        }else if(TextUtils.equals(type, "3")){//2事业干部
+            queryBuilder.where(DBBmBeanDao.Properties.Sydisplay.eq(0));
+        }
+
         dbBmList = queryBuilder.list();
         LogUtil.e("数据库条数：" + dbBmList.size());
 
