@@ -1528,7 +1528,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 data.getFunctionaryRankParentTypes(),
                 data.getFunctionaryRankTypes(),
                 data.getOftenSearchPostTypes(),
-                data.getOftenSearchPostLabelTypes()
+                data.getOftenSearchPostLabelTypes(),
+                data.getPersonnelTypes()
         );
         dBSearchDaoUtils.insert(db);
     }

@@ -1,17 +1,16 @@
 package com.example.cadres.beanDB;
 
-import com.example.cadres.bean.ChartBean;
 import com.example.cadres.bean.search.SysDictDataBean;
 import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
 import com.example.cadres.utils.GsonUtil;
 import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class DBSearchBean {
@@ -30,13 +29,12 @@ public class DBSearchBean {
     private String functionaryRankTypes;
     private String oftenSearchPostTypes;
     private String oftenSearchPostLabelTypes;
-    @Generated(hash = 637132770)
-    public DBSearchBean(Long _id, String cadreTypes, String orgTypes,
-            String currenRankTypes, String educationTypes, String schoolTypes,
-            String workExperienceTypes, String politicalOutlookTypes,
-            String userSexTypes, String functionaryRankParentTypes,
-            String functionaryRankTypes, String oftenSearchPostTypes,
-            String oftenSearchPostLabelTypes) {
+    private String personnelTypes;
+
+    @Generated(hash = 1120541446)
+    public DBSearchBean(Long _id, String cadreTypes, String orgTypes, String currenRankTypes, String educationTypes, String schoolTypes,
+            String workExperienceTypes, String politicalOutlookTypes, String userSexTypes, String functionaryRankParentTypes, String functionaryRankTypes,
+            String oftenSearchPostTypes, String oftenSearchPostLabelTypes, String personnelTypes) {
         this._id = _id;
         this.cadreTypes = cadreTypes;
         this.orgTypes = orgTypes;
@@ -50,6 +48,7 @@ public class DBSearchBean {
         this.functionaryRankTypes = functionaryRankTypes;
         this.oftenSearchPostTypes = oftenSearchPostTypes;
         this.oftenSearchPostLabelTypes = oftenSearchPostLabelTypes;
+        this.personnelTypes = personnelTypes;
     }
     @Generated(hash = 780196836)
     public DBSearchBean() {
@@ -248,6 +247,12 @@ public class DBSearchBean {
         list.add(item2);
         list.add(item3);
         return list;
+    }
+    public String getPersonnelTypes() {
+        return this.personnelTypes;
+    }
+    public void setPersonnelTypes(String personnelTypes) {
+        this.personnelTypes = personnelTypes;
     }
 
 }

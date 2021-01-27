@@ -1,8 +1,6 @@
 package com.example.cadres.bean.search;
 
 import com.example.cadres.utils.GsonUtil;
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -36,6 +34,11 @@ public class SearchBean {
         private List<ZzbFunctionaryRankBean> functionaryRankTypes;
         private List<SysDictDataBean> oftenSearchPostTypes;
         private List<SysDictDataBean> oftenSearchPostLabelTypes;
+        private List<SysDictDataBean> personnelTypes;
+
+        public String getPersonnelTypes() {
+            return GsonUtil.convertVO2String(personnelTypes);
+        }
 
         public String getCadreTypes() {
             return GsonUtil.convertVO2String(cadreTypes);
