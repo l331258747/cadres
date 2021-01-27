@@ -41,6 +41,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         et_password = findViewById(R.id.et_password);
         tv_btn.setOnClickListener(this);
 
+        if(!TextUtils.isEmpty(MySelfInfo.getInstance().getPhone())){
+            et_account.setText(MySelfInfo.getInstance().getPhone());
+        }
     }
 
     @Override
@@ -79,6 +82,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void loginSuccess(LoginBean.LoginBean2 data) {
         MySelfInfo.getInstance().setData(data);
+
+        MySelfInfo.getInstance().setPhone(username);
 
         startActivity(new Intent(context, HomeActivity.class));
         finish();

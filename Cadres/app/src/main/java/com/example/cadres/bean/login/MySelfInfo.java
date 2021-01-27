@@ -37,6 +37,14 @@ public class MySelfInfo {
         SPUtils.getInstance().putString(SPUtils.SP_USER_NAME, model.getUserName());
     }
 
+    public String getPhone(){
+        return SPUtils.getInstance().getString(SPUtils.SP_PHONE);
+    }
+
+    public void setPhone(String phone){
+        SPUtils.getInstance().putString(SPUtils.SP_PHONE, phone);
+    }
+
     public int getUserId() {
         return SPUtils.getInstance().getInt(SPUtils.SP_USER_ID);
     }
