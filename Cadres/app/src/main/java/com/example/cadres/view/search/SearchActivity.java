@@ -23,7 +23,7 @@ import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.dialog.DefaultDialog;
-import com.example.cadres.dialog.ListDialog22;
+import com.example.cadres.dialog.ListDialog33;
 import com.example.cadres.utils.AppUtils;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -750,13 +750,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         return dbBmList;
     }
 
-    ListDialog22 listDialog;
+    ListDialog33 listDialog;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_dialog:
                 if (listDialog == null) {
-                    listDialog = new ListDialog22(context, bmLeftBeans2);
+                    listDialog = new ListDialog33(context, bmLeftBeans2);
                     listDialog.setOnEditorActionListener((v, actionId, event) -> {
                         /*判断是否是“搜索”键*/
                         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
