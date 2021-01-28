@@ -252,6 +252,15 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
             queryBuilder.distinct();
         }
 
+        String deptName = "";
+        if(!searchDetailBean.isParentDept()){
+            deptName = searchDetailBean.getDeptName();
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(searchDetailBean.getDeptId()));
+            queryBuilder.distinct();
+            LogUtil.e("部门 搜索条数：" + queryBuilder.count());
+        }
+
         if (orderBy != null) {
             if (isAsc) {
                 queryBuilder.orderAsc(orderBy);
@@ -259,12 +268,14 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
                 queryBuilder.orderDesc(orderBy);
             }
         }
-
         LogUtil.e("常用搜索固定条件 数据条数：" + queryBuilder.count());
-
         dbList = queryBuilder.list();
 
-        tv_search_content.setText(searchDetailBean.getCyssGd());
+        if(!TextUtils.isEmpty(deptName)){
+            tv_search_content.setText(deptName + "/" + searchDetailBean.getCyssGd());
+        }else{
+            tv_search_content.setText(searchDetailBean.getCyssGd());
+        }
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
@@ -274,7 +285,15 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
 //        queryBuilder.where(DBGbBeanDao.Properties.Type.like("%" + type + "%"));
 //        LogUtil.e("干部type 数据条数：" + queryBuilder.count());
         queryBuilder.where(DBGbBeanDao.Properties.CurrentPosition.like("%" + key + "%"));
-        LogUtil.e("常用搜索职务类型 数据条数：" + queryBuilder.count());
+
+        String deptName = "";
+        if(!searchDetailBean.isParentDept()){
+            deptName = searchDetailBean.getDeptName();
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(searchDetailBean.getDeptId()));
+            queryBuilder.distinct();
+            LogUtil.e("部门 搜索条数：" + queryBuilder.count());
+        }
 
         if (orderBy != null) {
             if (isAsc) {
@@ -283,10 +302,14 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
                 queryBuilder.orderDesc(orderBy);
             }
         }
-
+        LogUtil.e("常用搜索职务类型 数据条数：" + queryBuilder.count());
         dbList = queryBuilder.list();
 
-        tv_search_content.setText(searchDetailBean.getCyssZwlx());
+        if(!TextUtils.isEmpty(deptName)){
+            tv_search_content.setText(deptName + "/" + searchDetailBean.getCyssZwlx());
+        }else{
+            tv_search_content.setText(searchDetailBean.getCyssZwlx());
+        }
         tv_search_count.setText("据符合筛选条件的数据共" + dbList.size() + "条");
     }
 
@@ -354,6 +377,13 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
 
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
             LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
+        }
+
+        if(!searchDetailBean.isParentDept()){
+            queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                    .where(DBGbCadreDeptListBeanDao.Properties.DeptId.eq(searchDetailBean.getDeptId()));
+            queryBuilder.distinct();
+            LogUtil.e("部门 搜索条数：" + queryBuilder.count());
         }
 
         if (searchDetailBean.getLxLists().size() > 0) {

@@ -650,6 +650,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             int deptId = dbBmList.get(0).getDeptId();
             String deptName = dbBmList.get(0).getDeptName();
             searchDetailBean.setDeptIdName(deptId,deptName);
+            searchDetailBean.setParentDeptId(deptId);
         }
     }
 
