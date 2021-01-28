@@ -1,7 +1,5 @@
 package com.example.cadres.constant;
 
-import com.example.cadres.utils.AppUtils;
-
 /**
  * Created by LGQ
  * Time: 2018/7/17
