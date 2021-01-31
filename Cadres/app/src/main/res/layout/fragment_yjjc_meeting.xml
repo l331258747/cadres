@@ -239,19 +239,41 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/view_top_line"-->
 <!--        app:layout_constraintVertical_bias="1.0" />-->
 
-    <TextView
-        android:id="@+id/tv_content"
+<!--    <TextView-->
+<!--        android:id="@+id/tv_content"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/dp_20"-->
+<!--        android:layout_marginTop="@dimen/dp_30"-->
+<!--        android:layout_marginEnd="@dimen/dp_20"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        tools:text="内容内容内容内容内容内容内容"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_top_line"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
+<!--    -->
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
         android:layout_marginStart="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        tools:text="内容内容内容内容内容内容内容"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_top_line"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/view_top_line">
+
+        <com.example.cadres.utils.webview.LWebView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </androidx.core.widget.NestedScrollView>
 
     <View
         android:layout_width="0dp"
