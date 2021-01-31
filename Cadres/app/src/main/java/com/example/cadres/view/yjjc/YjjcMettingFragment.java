@@ -14,11 +14,13 @@ import com.example.cadres.constant.Constant;
 import com.example.cadres.utils.FileUtil;
 import com.example.cadres.utils.GsonUtil;
 import com.example.cadres.utils.StringUtils;
+import com.example.cadres.utils.webview.LWebView;
 import com.example.cadres.view.other.PhotoImageActivity;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
@@ -28,7 +30,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class YjjcMettingFragment extends BaseFragment {
 
-    TextView tv_content,tv_hynr_content,tv_shsj_content,tv_hylx_content,tv_chry_content,tv_title_content;
+    TextView tv_hynr_content,tv_shsj_content,tv_hylx_content,tv_chry_content,tv_title_content;
+    LWebView tv_content;
 
     DBYjjcMeeting data;
 
@@ -79,8 +82,31 @@ public class YjjcMettingFragment extends BaseFragment {
 
     private void setViewData() {
         if(data == null) return;
-        if(!TextUtils.isEmpty(data.getMeetingSummary()))
-            StringUtils.setHtml(tv_content, data.getMeetingSummary());
+
+        if(!TextUtils.isEmpty(data.getMeetingSummary())){
+            //webView
+            //GlideUtil.LoadImageFitCenter(mContext,
+            //FileUtil.getFolderPath(Constant.IMAGE_PATH + File.separator) + data.getPhotoFileName(),
+            //holder.iv_head,R.mipmap.default_head);
+
+            Set<String> list = tv_content.getImgStr(data.getMeetingSummary());
+            if(list != null){
+                for (String url : list) {
+                    //取得最后一个/的下标
+                    int index = url.lastIndexOf("/");
+                    //将字符串转为字符数组
+                    char[] ch = url.toCharArray();
+                    //根据 copyValueOf(char[] data, int offset, int count) 取得最后一个字符串
+                    String informationId = String.copyValueOf(ch, index + 1, ch.length - index - 1);
+                    String fileName = "file://"+FileUtil.getFolder(Constant.IMAGE_PATH) + File.separator + informationId;
+
+                    data.setMeetingSummary(data.getMeetingSummary().replace(url,fileName));
+                }
+            }
+
+            tv_content.loadDataWithBaseURL(null, data.getMeetingSummary(), "text/html", "utf-8", null);
+        }
+
         tv_hynr_content.setText(data.getMeetingDescribe());
         tv_shsj_content.setText(data.getMeetingTime());
         tv_hylx_content.setText(data.getMeetingType());
