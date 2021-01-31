@@ -37,6 +37,7 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
         public final static Property FunctionaryRankTypes = new Property(10, String.class, "functionaryRankTypes", false, "FUNCTIONARY_RANK_TYPES");
         public final static Property OftenSearchPostTypes = new Property(11, String.class, "oftenSearchPostTypes", false, "OFTEN_SEARCH_POST_TYPES");
         public final static Property OftenSearchPostLabelTypes = new Property(12, String.class, "oftenSearchPostLabelTypes", false, "OFTEN_SEARCH_POST_LABEL_TYPES");
+        public final static Property PersonnelTypes = new Property(13, String.class, "personnelTypes", false, "PERSONNEL_TYPES");
     }
 
 
@@ -64,7 +65,8 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
                 "\"FUNCTIONARY_RANK_PARENT_TYPES\" TEXT," + // 9: functionaryRankParentTypes
                 "\"FUNCTIONARY_RANK_TYPES\" TEXT," + // 10: functionaryRankTypes
                 "\"OFTEN_SEARCH_POST_TYPES\" TEXT," + // 11: oftenSearchPostTypes
-                "\"OFTEN_SEARCH_POST_LABEL_TYPES\" TEXT);"); // 12: oftenSearchPostLabelTypes
+                "\"OFTEN_SEARCH_POST_LABEL_TYPES\" TEXT," + // 12: oftenSearchPostLabelTypes
+                "\"PERSONNEL_TYPES\" TEXT);"); // 13: personnelTypes
     }
 
     /** Drops the underlying database table. */
@@ -141,6 +143,11 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
         if (oftenSearchPostLabelTypes != null) {
             stmt.bindString(13, oftenSearchPostLabelTypes);
         }
+ 
+        String personnelTypes = entity.getPersonnelTypes();
+        if (personnelTypes != null) {
+            stmt.bindString(14, personnelTypes);
+        }
     }
 
     @Override
@@ -211,6 +218,11 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
         if (oftenSearchPostLabelTypes != null) {
             stmt.bindString(13, oftenSearchPostLabelTypes);
         }
+ 
+        String personnelTypes = entity.getPersonnelTypes();
+        if (personnelTypes != null) {
+            stmt.bindString(14, personnelTypes);
+        }
     }
 
     @Override
@@ -233,7 +245,8 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // functionaryRankParentTypes
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // functionaryRankTypes
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // oftenSearchPostTypes
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // oftenSearchPostLabelTypes
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // oftenSearchPostLabelTypes
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // personnelTypes
         );
         return entity;
     }
@@ -253,6 +266,7 @@ public class DBSearchBeanDao extends AbstractDao<DBSearchBean, Long> {
         entity.setFunctionaryRankTypes(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setOftenSearchPostTypes(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setOftenSearchPostLabelTypes(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setPersonnelTypes(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     @Override

@@ -494,28 +494,29 @@ public class GbActivity2 extends BaseActivity implements View.OnClickListener {
             DBBmBean item = getDBBmBean(pos);
             if (item == null) return;
 
-            //后备干部和事业干部进来后，这一块不要展示
-            if(TextUtils.equals(type, "3") || TextUtils.equals(type, "4"))
-                return;
-
             leftAdapter.setItemData(item.getDeptId());
 
-            if (TextUtils.equals(item.getDeptType(), "1")) {
-                group_View_top.setVisibility(View.VISIBLE);
-                tv_top_title.setText(item.getDeptName());
-                if(TextUtils.equals(type,"1")){
-                    tv_top_hdzs2.setText(item.getVerification());
-                    tv_top_sjpb2.setText(item.getActual());
-                    tv_top_cpqk2.setText(item.getOvermatch());
-                    tv_top_kqqk2.setText(item.getMismatch());
-                }else if(TextUtils.equals(type,"2")){
-                    tv_top_hdzs2.setText(item.getHdgywrank());
-                    tv_top_sjpb2.setText(item.getSpgywrank());
-                    tv_top_cpqk2.setText(item.getCpgywrank());
-                    tv_top_kqqk2.setText(item.getQpgywrank());
-                }
-            } else {
+            //后备干部和事业干部进来后，这一块不要展示
+            if(TextUtils.equals(type, "3") || TextUtils.equals(type, "4")){
                 group_View_top.setVisibility(View.GONE);
+            }else {
+                if (TextUtils.equals(item.getDeptType(), "1")) {
+                    group_View_top.setVisibility(View.VISIBLE);
+                    tv_top_title.setText(item.getDeptName());
+                    if(TextUtils.equals(type,"1")){
+                        tv_top_hdzs2.setText(item.getVerification());
+                        tv_top_sjpb2.setText(item.getActual());
+                        tv_top_cpqk2.setText(item.getOvermatch());
+                        tv_top_kqqk2.setText(item.getMismatch());
+                    }else if(TextUtils.equals(type,"2")){
+                        tv_top_hdzs2.setText(item.getHdgywrank());
+                        tv_top_sjpb2.setText(item.getSpgywrank());
+                        tv_top_cpqk2.setText(item.getCpgywrank());
+                        tv_top_kqqk2.setText(item.getQpgywrank());
+                    }
+                } else {
+                    group_View_top.setVisibility(View.GONE);
+                }
             }
 
             deptId = item.getDeptId();

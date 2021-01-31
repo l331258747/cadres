@@ -69,6 +69,15 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property Surpass = new Property(42, String.class, "surpass", false, "SURPASS");
         public final static Property Lack = new Property(43, String.class, "lack", false, "LACK");
         public final static Property GetWomanCadre = new Property(44, String.class, "getWomanCadre", false, "GET_WOMAN_CADRE");
+        public final static Property Lddisplay = new Property(45, int.class, "lddisplay", false, "LDDISPLAY");
+        public final static Property Gwydisplay = new Property(46, int.class, "gwydisplay", false, "GWYDISPLAY");
+        public final static Property Hbdisplay = new Property(47, int.class, "hbdisplay", false, "HBDISPLAY");
+        public final static Property Sydisplay = new Property(48, int.class, "sydisplay", false, "SYDISPLAY");
+        public final static Property Fictitious = new Property(49, int.class, "fictitious", false, "FICTITIOUS");
+        public final static Property Hdgywrank = new Property(50, String.class, "hdgywrank", false, "HDGYWRANK");
+        public final static Property Spgywrank = new Property(51, String.class, "spgywrank", false, "SPGYWRANK");
+        public final static Property Cpgywrank = new Property(52, String.class, "cpgywrank", false, "CPGYWRANK");
+        public final static Property Qpgywrank = new Property(53, String.class, "qpgywrank", false, "QPGYWRANK");
     }
 
 
@@ -128,7 +137,16 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"DISPLAY\" INTEGER NOT NULL ," + // 41: display
                 "\"SURPASS\" TEXT," + // 42: surpass
                 "\"LACK\" TEXT," + // 43: lack
-                "\"GET_WOMAN_CADRE\" TEXT);"); // 44: getWomanCadre
+                "\"GET_WOMAN_CADRE\" TEXT," + // 44: getWomanCadre
+                "\"LDDISPLAY\" INTEGER NOT NULL ," + // 45: lddisplay
+                "\"GWYDISPLAY\" INTEGER NOT NULL ," + // 46: gwydisplay
+                "\"HBDISPLAY\" INTEGER NOT NULL ," + // 47: hbdisplay
+                "\"SYDISPLAY\" INTEGER NOT NULL ," + // 48: sydisplay
+                "\"FICTITIOUS\" INTEGER NOT NULL ," + // 49: fictitious
+                "\"HDGYWRANK\" TEXT," + // 50: hdgywrank
+                "\"SPGYWRANK\" TEXT," + // 51: spgywrank
+                "\"CPGYWRANK\" TEXT," + // 52: cpgywrank
+                "\"QPGYWRANK\" TEXT);"); // 53: qpgywrank
     }
 
     /** Drops the underlying database table. */
@@ -293,6 +311,31 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (getWomanCadre != null) {
             stmt.bindString(45, getWomanCadre);
         }
+        stmt.bindLong(46, entity.getLddisplay());
+        stmt.bindLong(47, entity.getGwydisplay());
+        stmt.bindLong(48, entity.getHbdisplay());
+        stmt.bindLong(49, entity.getSydisplay());
+        stmt.bindLong(50, entity.getFictitious());
+ 
+        String hdgywrank = entity.getHdgywrank();
+        if (hdgywrank != null) {
+            stmt.bindString(51, hdgywrank);
+        }
+ 
+        String spgywrank = entity.getSpgywrank();
+        if (spgywrank != null) {
+            stmt.bindString(52, spgywrank);
+        }
+ 
+        String cpgywrank = entity.getCpgywrank();
+        if (cpgywrank != null) {
+            stmt.bindString(53, cpgywrank);
+        }
+ 
+        String qpgywrank = entity.getQpgywrank();
+        if (qpgywrank != null) {
+            stmt.bindString(54, qpgywrank);
+        }
     }
 
     @Override
@@ -451,6 +494,31 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (getWomanCadre != null) {
             stmt.bindString(45, getWomanCadre);
         }
+        stmt.bindLong(46, entity.getLddisplay());
+        stmt.bindLong(47, entity.getGwydisplay());
+        stmt.bindLong(48, entity.getHbdisplay());
+        stmt.bindLong(49, entity.getSydisplay());
+        stmt.bindLong(50, entity.getFictitious());
+ 
+        String hdgywrank = entity.getHdgywrank();
+        if (hdgywrank != null) {
+            stmt.bindString(51, hdgywrank);
+        }
+ 
+        String spgywrank = entity.getSpgywrank();
+        if (spgywrank != null) {
+            stmt.bindString(52, spgywrank);
+        }
+ 
+        String cpgywrank = entity.getCpgywrank();
+        if (cpgywrank != null) {
+            stmt.bindString(53, cpgywrank);
+        }
+ 
+        String qpgywrank = entity.getQpgywrank();
+        if (qpgywrank != null) {
+            stmt.bindString(54, qpgywrank);
+        }
     }
 
     @Override
@@ -505,7 +573,16 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.getInt(offset + 41), // display
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // surpass
             cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // lack
-            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44) // getWomanCadre
+            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // getWomanCadre
+            cursor.getInt(offset + 45), // lddisplay
+            cursor.getInt(offset + 46), // gwydisplay
+            cursor.getInt(offset + 47), // hbdisplay
+            cursor.getInt(offset + 48), // sydisplay
+            cursor.getInt(offset + 49), // fictitious
+            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // hdgywrank
+            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // spgywrank
+            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // cpgywrank
+            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53) // qpgywrank
         );
         return entity;
     }
@@ -557,6 +634,15 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setSurpass(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
         entity.setLack(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
         entity.setGetWomanCadre(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
+        entity.setLddisplay(cursor.getInt(offset + 45));
+        entity.setGwydisplay(cursor.getInt(offset + 46));
+        entity.setHbdisplay(cursor.getInt(offset + 47));
+        entity.setSydisplay(cursor.getInt(offset + 48));
+        entity.setFictitious(cursor.getInt(offset + 49));
+        entity.setHdgywrank(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
+        entity.setSpgywrank(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
+        entity.setCpgywrank(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
+        entity.setQpgywrank(cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53));
      }
     
     @Override
