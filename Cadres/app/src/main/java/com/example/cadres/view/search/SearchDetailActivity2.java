@@ -490,6 +490,7 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
             StringBuffer sql = new StringBuffer("");
             StringBuffer sql2 = new StringBuffer("");
             String[] values = new String[searchDetailBean.getXxlxLists().size()];
+            if(values.length > 0) sql.append("(");
             for (int i = 0; i < searchDetailBean.getXxlxLists().size(); i++) {
                 values[i] = "%" + searchDetailBean.getXxlxLists().get(i) + "%";
                 if (i == 0) {
@@ -500,6 +501,7 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
                     sql2.append(" or " + DBGbBeanDao.Properties.CurrentSchoolType.columnName + " like " + " ?");
                 }
             }
+            if(values.length > 0) sql.append(")");
             queryBuilder.whereOr(new WhereCondition.StringCondition(sql.toString(), values), new WhereCondition.StringCondition(sql2.toString(), values));
 
 //            queryBuilder.whereOr(DBGbBeanDao.Properties.FullTimeSchoolType.like("%" + searchDetailBean.getXxlxListsStr() + "%")
@@ -510,6 +512,7 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
         if (searchDetailBean.getRybqLists().size() > 0) {
             StringBuffer sql = new StringBuffer("");
             String[] values = new String[searchDetailBean.getRybqLists().size()];
+            if(values.length > 0) sql.append("(");
             for (int i = 0; i < searchDetailBean.getRybqLists().size(); i++) {
                 values[i] = "%" + searchDetailBean.getRybqLists().get(i) + "%";
                 if (i == 0) {
@@ -518,6 +521,7 @@ public class SearchDetailActivity2 extends BaseActivity implements View.OnClickL
                     sql.append(" or " + DBGbBeanDao.Properties.PostLabel.columnName + " like " + " ?");
                 }
             }
+            if(values.length > 0) sql.append(")");
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
 
             LogUtil.e("人员标签 数据条数：" + queryBuilder.count());
