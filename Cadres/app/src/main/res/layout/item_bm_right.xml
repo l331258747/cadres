@@ -10,11 +10,33 @@
     <!--    核定职数-->
     <View
         android:id="@+id/view_hdzs"
-        android:layout_width="@dimen/dp_240"
+        android:layout_width="@dimen/dp_320"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_zz"
         android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_hdzs_xcjfz"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_60"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_zz"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="县处级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_hdzs_xcjfz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hdzs_xcjfz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_hdzs_xcjfz"
+        android:background="@color/color_ffd7b4"/>
 
     <TextView
         android:id="@+id/tv_hdzs_zz"
@@ -25,7 +47,7 @@
         android:textSize="@dimen/sp_12"
         android:maxLines="3"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+        app:layout_constraintStart_toEndOf="@+id/tv_hdzs_xcjfz"
         app:layout_constraintEnd_toStartOf="@+id/tv_hdzs_fz"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="乡科级正职"/>
@@ -85,13 +107,35 @@
     <!--实配情况-->
     <View
         android:id="@+id/view_spqk"
-        android:layout_width="@dimen/dp_240"
+        android:layout_width="@dimen/dp_320"
         android:minLines="3"
         android:maxLines="3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_zz"
         app:layout_constraintStart_toEndOf="@+id/view_hdzs"
         android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_spqk_xcjfz"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_60"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spqk_zz"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="县处级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_spqk_xcjfz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_spqk_xcjfz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_spqk_xcjfz"
+        android:background="@color/color_ffd7b4"/>
 
     <TextView
         android:id="@+id/tv_spqk_zz"
@@ -102,7 +146,7 @@
         android:minLines="3"
         android:textSize="@dimen/sp_12"
         android:maxLines="3"
-        app:layout_constraintStart_toStartOf="@+id/view_spqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_spqk_xcjfz"
         app:layout_constraintEnd_toStartOf="@+id/tv_spqk_fz"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="乡科级正职"/>
@@ -162,13 +206,35 @@
     <!--超配情况-->
     <View
         android:id="@+id/view_cpqk"
-        android:layout_width="@dimen/dp_460"
+        android:layout_width="@dimen/dp_600"
         android:minLines="3"
         android:maxLines="3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_zz"
         app:layout_constraintStart_toEndOf="@+id/view_spqk"
         android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_cpqk_xcjfz"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_60"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_zz"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="县处级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_cpqk_xcjfz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_cpqk_xcjfz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_xcjfz"
+        android:background="@color/color_ffd7b4"/>
 
     <TextView
         android:id="@+id/tv_cpqk_zz"
@@ -179,7 +245,7 @@
         android:minLines="3"
         android:textSize="@dimen/sp_12"
         android:maxLines="3"
-        app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_cpqk_xcjfz"
         app:layout_constraintEnd_toStartOf="@+id/tv_cpqk_fz"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="乡科级正职"/>
@@ -239,13 +305,35 @@
     <!--   空缺情况 -->
     <View
         android:id="@+id/view_kqqk"
-        android:layout_width="@dimen/dp_460"
+        android:layout_width="@dimen/dp_600"
         android:minLines="3"
         android:maxLines="3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_cpqk_zz"
         app:layout_constraintStart_toEndOf="@+id/view_cpqk"
         android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/tv_kqqk_xcjfz"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_60"
+        android:padding="@dimen/dp_5"
+        android:minLines="3"
+        android:textSize="@dimen/sp_12"
+        android:maxLines="3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_zz"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="县处级副职"/>
+
+    <View
+        android:layout_width="@dimen/dp_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_kqqk_xcjfz"
+        app:layout_constraintEnd_toEndOf="@+id/tv_kqqk_xcjfz"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_kqqk_xcjfz"
+        android:background="@color/color_ffd7b4"/>
 
     <TextView
         android:id="@+id/tv_kqqk_zz"
@@ -256,7 +344,7 @@
         android:minLines="3"
         android:textSize="@dimen/sp_12"
         android:maxLines="3"
-        app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+        app:layout_constraintStart_toEndOf="@+id/tv_kqqk_xcjfz"
         app:layout_constraintEnd_toStartOf="@+id/tv_kqqk_fz"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="乡科级正职"/>

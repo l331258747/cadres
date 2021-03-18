@@ -170,7 +170,7 @@
                 <!--    核定职数-->
                 <View
                     android:id="@+id/view_hdzs"
-                    android:layout_width="@dimen/dp_240"
+                    android:layout_width="@dimen/dp_320"
                     app:layout_constraintTop_toTopOf="@+id/view_title"
                     app:layout_constraintStart_toStartOf="@+id/view_title"
                     app:layout_constraintBottom_toBottomOf="@+id/view_title"
@@ -190,7 +190,7 @@
                     android:text="核定职数"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_hdzs_zz"
+                    android:id="@+id/ll_hdzs_xcjfz"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp"
@@ -198,6 +198,42 @@
                     android:paddingEnd="@dimen/dp_5"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="@+id/view_hdzs"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_hdzs_zz"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hdzs"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_hdzs">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        android:text="县处级副职"/>
+
+                    <TextView
+                        android:id="@+id/num_hdzs_xcjfz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="(40)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@+id/ll_hdzs_xcjfz"
+                    app:layout_constraintEnd_toEndOf="@+id/ll_hdzs_xcjfz"
+                    app:layout_constraintBottom_toBottomOf="@+id/ll_hdzs_xcjfz"
+                    android:background="@color/color_ffd7b4"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_hdzs_zz"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/ll_hdzs_xcjfz"
                     app:layout_constraintEnd_toStartOf="@+id/ll_hdzs_fz"
                     app:layout_constraintTop_toBottomOf="@+id/tv_hdzs"
                     app:layout_constraintBottom_toBottomOf="@+id/view_hdzs">
@@ -302,7 +338,7 @@
                 <!--实配情况-->
                 <View
                     android:id="@+id/view_spqk"
-                    android:layout_width="@dimen/dp_240"
+                    android:layout_width="@dimen/dp_320"
                     app:layout_constraintTop_toTopOf="@+id/view_title"
                     app:layout_constraintBottom_toBottomOf="@+id/view_title"
                     app:layout_constraintStart_toEndOf="@+id/view_hdzs"
@@ -322,7 +358,7 @@
                     android:text="实际配备"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_spqk_zz"
+                    android:id="@+id/ll_spqk_xcjfz"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp"
@@ -330,6 +366,42 @@
                     android:paddingEnd="@dimen/dp_5"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="@+id/view_spqk"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_spqk_zz"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_spqk"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_spqk">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        android:text="县处级副职"/>
+
+                    <TextView
+                        android:id="@+id/num_spqk_xcjfz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="(40)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@+id/ll_spqk_xcjfz"
+                    app:layout_constraintEnd_toEndOf="@+id/ll_spqk_xcjfz"
+                    app:layout_constraintBottom_toBottomOf="@+id/ll_spqk_xcjfz"
+                    android:background="@color/color_ffd7b4"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_spqk_zz"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/ll_spqk_xcjfz"
                     app:layout_constraintEnd_toStartOf="@+id/ll_spqk_fz"
                     app:layout_constraintTop_toBottomOf="@+id/tv_spqk"
                     app:layout_constraintBottom_toBottomOf="@+id/view_spqk">
@@ -432,7 +504,7 @@
                 <!--超配情况-->
                 <View
                     android:id="@+id/view_cpqk"
-                    android:layout_width="@dimen/dp_460"
+                    android:layout_width="@dimen/dp_600"
                     app:layout_constraintTop_toTopOf="@+id/view_title"
                     app:layout_constraintBottom_toBottomOf="@+id/view_title"
                     app:layout_constraintStart_toEndOf="@+id/view_spqk"
@@ -452,7 +524,7 @@
                     android:text="超配情况"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_cpqk_zz"
+                    android:id="@+id/ll_cpqk_xcjfz"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp"
@@ -460,6 +532,42 @@
                     android:paddingEnd="@dimen/dp_5"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="@+id/view_cpqk"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_cpqk_zz"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cpqk"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_cpqk">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        android:text="县处级副职"/>
+
+                    <TextView
+                        android:id="@+id/num_cpqk_xcjfz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="(40)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@+id/ll_cpqk_xcjfz"
+                    app:layout_constraintEnd_toEndOf="@+id/ll_cpqk_xcjfz"
+                    app:layout_constraintBottom_toBottomOf="@+id/ll_cpqk_xcjfz"
+                    android:background="@color/color_ffd7b4"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_cpqk_zz"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/ll_cpqk_xcjfz"
                     app:layout_constraintEnd_toStartOf="@+id/ll_cpqk_fz"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cpqk"
                     app:layout_constraintBottom_toBottomOf="@+id/view_cpqk">
@@ -562,7 +670,7 @@
                 <!--   空缺情况 -->
                 <View
                     android:id="@+id/view_kqqk"
-                    android:layout_width="@dimen/dp_460"
+                    android:layout_width="@dimen/dp_600"
                     app:layout_constraintTop_toTopOf="@+id/view_title"
                     app:layout_constraintBottom_toBottomOf="@+id/view_title"
                     app:layout_constraintStart_toEndOf="@+id/view_cpqk"
@@ -582,7 +690,7 @@
                     android:text="空缺情况"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_kqqk_zz"
+                    android:id="@+id/ll_kqqk_xcjfz"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp"
@@ -590,6 +698,42 @@
                     android:paddingEnd="@dimen/dp_5"
                     android:gravity="center"
                     app:layout_constraintStart_toStartOf="@+id/view_kqqk"
+                    app:layout_constraintEnd_toStartOf="@+id/ll_kqqk_zz"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_kqqk">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        android:text="县处级副职"/>
+
+                    <TextView
+                        android:id="@+id/num_kqqk_xcjfz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="(40)"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@+id/ll_kqqk_xcjfz"
+                    app:layout_constraintEnd_toEndOf="@+id/ll_kqqk_xcjfz"
+                    app:layout_constraintBottom_toBottomOf="@+id/ll_kqqk_xcjfz"
+                    android:background="@color/color_ffd7b4"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_kqqk_zz"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp"
+                    android:paddingStart="@dimen/dp_5"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/ll_kqqk_xcjfz"
                     app:layout_constraintEnd_toStartOf="@+id/ll_kqqk_fz"
                     app:layout_constraintTop_toBottomOf="@+id/tv_kqqk"
                     app:layout_constraintBottom_toBottomOf="@+id/view_kqqk">

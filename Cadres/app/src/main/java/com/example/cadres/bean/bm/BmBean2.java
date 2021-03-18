@@ -110,6 +110,37 @@ public class BmBean2 {
     private String cpgywrank;//超配公务员职级
     private String qpgywrank;//缺配公务员职级
 
+    private int approvedCounty;//	Int	核定县处级副职
+    private int actualCounty;//	Int	实配县处级副职
+    private int surpassCounty;//	Int	超配县处级副职数量
+    private int lackCounty;//	Int	缺配县处级副职数量
+    private String overmatchCounty;//	String	超配县处级副职
+    private String mismatchCounty;//	String	缺配县处级副职
+
+    public int getApprovedCounty() {
+        return approvedCounty;
+    }
+
+    public int getActualCounty() {
+        return actualCounty;
+    }
+
+    public int getSurpassCounty() {
+        return surpassCounty;
+    }
+
+    public int getLackCounty() {
+        return lackCounty;
+    }
+
+    public String getOvermatchCounty() {
+        return overmatchCounty;
+    }
+
+    public String getMismatchCounty() {
+        return mismatchCounty;
+    }
+
     public int getLddisplay() {
         return lddisplay;
     }

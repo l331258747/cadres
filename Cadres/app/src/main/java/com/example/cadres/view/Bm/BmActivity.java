@@ -3,7 +3,6 @@ package com.example.cadres.view.Bm;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBBmFinanceTypeBeanDao;
 import com.cadres.greendao.gen.DBBmOrgTypeBeanDao;
-import com.cadres.greendao.gen.DBGbBeanDao;
-import com.cadres.greendao.gen.DbTyZsDao;
 import com.example.cadres.R;
 import com.example.cadres.adapter.BmLeftAdapter;
 import com.example.cadres.adapter.BmRightAdapter;
@@ -23,7 +20,6 @@ import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBBmFinanceTypeBean;
 import com.example.cadres.beanDB.DBBmOrgTypeBean;
-import com.example.cadres.beanDB.DbTyZs;
 import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
@@ -37,7 +33,6 @@ import org.greenrobot.greendao.query.WhereCondition;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +55,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
     DrawerLayout drawer_layout;
 
     TextView num_hdzs_zz,num_hdzs_fz,num_hdzs_qt,num_spqk_zz,num_spqk_fz,num_spqk_qt,num_cpqk_zz,num_cpqk_fz,num_cpqk_qt,num_kqqk_zz,num_kqqk_fz,num_kqqk_qt;
+    TextView num_hdzs_xcjfz,num_spqk_xcjfz,num_cpqk_xcjfz,num_kqqk_xcjfz;
 
     TextView tv_screen_dwlb,tv_screen_dwxz,tv_screen_cpkq;
 
@@ -98,6 +94,11 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         num_kqqk_zz = findViewById(R.id.num_kqqk_zz);
         num_kqqk_fz = findViewById(R.id.num_kqqk_fz);
         num_kqqk_qt = findViewById(R.id.num_kqqk_qt);
+
+        num_hdzs_xcjfz = findViewById(R.id.num_hdzs_xcjfz);
+        num_spqk_xcjfz = findViewById(R.id.num_spqk_xcjfz);
+        num_cpqk_xcjfz = findViewById(R.id.num_cpqk_xcjfz);
+        num_kqqk_xcjfz = findViewById(R.id.num_kqqk_xcjfz);
 
         tv_screen_dwlb = findViewById(R.id.tv_screen_dwlb);
         tv_screen_dwxz = findViewById(R.id.tv_screen_dwxz);
@@ -208,6 +209,7 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
 
     public void setNum(){
         int hdzs_zz = 0,hdzs_fz = 0,hdzs_qt = 0,spqk_zz = 0,spqk_fz = 0,spqk_qt = 0,cpqk_zz = 0,cpqk_fz = 0,cpqk_qt = 0,kqqk_zz = 0,kqqk_fz = 0,kqqk_qt = 0;
+        int hdzs_xcjfz = 0,spqk_xcjfz=0,cpqk_xcjfz=0,kqqk_xcjfz=0;
         for (int i=0;i<datas.size();i++){
             hdzs_zz = hdzs_zz + datas.get(i).getApprovedPosition();
             hdzs_fz = hdzs_fz + datas.get(i).getApprovedDeputy();
@@ -224,6 +226,11 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
             kqqk_zz = kqqk_zz + datas.get(i).getLackPosition();
             kqqk_fz = kqqk_fz + datas.get(i).getLackDeputy();
             kqqk_qt = kqqk_qt + datas.get(i).getLackOther();
+
+            hdzs_xcjfz = hdzs_xcjfz + datas.get(i).getApprovedCounty();
+            spqk_xcjfz = spqk_xcjfz + datas.get(i).getActualCounty();
+            cpqk_xcjfz = cpqk_xcjfz + datas.get(i).getSurpassCounty();
+            kqqk_xcjfz = kqqk_xcjfz + datas.get(i).getLackCounty();
         }
         num_hdzs_zz.setText("（" + hdzs_zz + "）");
         num_hdzs_fz.setText("（" + hdzs_fz + "）");
@@ -237,6 +244,11 @@ public class BmActivity extends BaseActivity implements View.OnClickListener {
         num_kqqk_zz.setText("（" + kqqk_zz + "）");
         num_kqqk_fz.setText("（" + kqqk_fz + "）");
         num_kqqk_qt.setText("（" + kqqk_qt + "）");
+
+        num_hdzs_xcjfz.setText("（" + hdzs_xcjfz + "）");
+        num_spqk_xcjfz.setText("（" + spqk_xcjfz + "）");
+        num_cpqk_xcjfz.setText("（" + cpqk_xcjfz + "）");
+        num_kqqk_xcjfz.setText("（" + kqqk_xcjfz + "）");
 
     }
 

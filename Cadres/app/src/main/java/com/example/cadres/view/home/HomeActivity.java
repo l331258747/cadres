@@ -742,7 +742,13 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                         item.getHdgywrank(),
                         item.getSpgywrank(),
                         item.getCpgywrank(),
-                        item.getQpgywrank()
+                        item.getQpgywrank(),
+                        item.getApprovedCounty(),
+                        item.getActualCounty(),
+                        item.getSurpassCounty(),
+                        item.getLackCounty(),
+                        item.getOvermatchCounty(),
+                        item.getMismatchCounty()
                 ));
 
                 for (int i_explain = 0; i_explain < data.get(i).getOrganizationExplain().size(); i_explain++) {

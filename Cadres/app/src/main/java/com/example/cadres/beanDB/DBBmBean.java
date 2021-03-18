@@ -68,8 +68,15 @@ public class DBBmBean {
     private String spgywrank;//实配公务员职级
     private String cpgywrank;//超配公务员职级
     private String qpgywrank;//缺配公务员职级
+
+    private int approvedCounty;//	Int	核定县处级副职
+    private int actualCounty;//	Int	实配县处级副职
+    private int surpassCounty;//	Int	超配县处级副职数量
+    private int lackCounty;//	Int	缺配县处级副职数量
+    private String overmatchCounty;//	String	超配县处级副职
+    private String mismatchCounty;//	String	缺配县处级副职
     
-    @Generated(hash = 1117651891)
+    @Generated(hash = 1101857974)
     public DBBmBean(Long _id, int deptId, int parentId, String deptName,
             String dzzName, String orgCode, String orgType, String orgTypeName,
             String financeType, String financeTypeName, String simpleName,
@@ -84,8 +91,9 @@ public class DBBmBean {
             String mismatchOther, int subset, int defulatOrg, int display,
             String surpass, String lack, String getWomanCadre, int lddisplay,
             int gwydisplay, int hbdisplay, int sydisplay, int fictitious,
-            String hdgywrank, String spgywrank, String cpgywrank,
-            String qpgywrank) {
+            String hdgywrank, String spgywrank, String cpgywrank, String qpgywrank,
+            int approvedCounty, int actualCounty, int surpassCounty, int lackCounty,
+            String overmatchCounty, String mismatchCounty) {
         this._id = _id;
         this.deptId = deptId;
         this.parentId = parentId;
@@ -140,6 +148,12 @@ public class DBBmBean {
         this.spgywrank = spgywrank;
         this.cpgywrank = cpgywrank;
         this.qpgywrank = qpgywrank;
+        this.approvedCounty = approvedCounty;
+        this.actualCounty = actualCounty;
+        this.surpassCounty = surpassCounty;
+        this.lackCounty = lackCounty;
+        this.overmatchCounty = overmatchCounty;
+        this.mismatchCounty = mismatchCounty;
     }
     @Generated(hash = 730075840)
     public DBBmBean() {
@@ -572,5 +586,59 @@ public class DBBmBean {
     }
     public void setQpgywrank(String qpgywrank) {
         this.qpgywrank = qpgywrank;
+    }
+
+
+    public int getApprovedCounty() {
+        return this.approvedCounty;
+    }
+    public String getApprovedCountyStr() {
+        return approvedCounty + "";
+    }
+    public void setApprovedCounty(int approvedCounty) {
+        this.approvedCounty = approvedCounty;
+    }
+    public int getActualCounty() {
+        return this.actualCounty;
+    }
+    public String getActualCountyStr() {
+        return actualCounty + "";
+    }
+    public void setActualCounty(int actualCounty) {
+        this.actualCounty = actualCounty;
+    }
+    public int getSurpassCounty() {
+        return this.surpassCounty;
+    }
+    public void setSurpassCounty(int surpassCounty) {
+        this.surpassCounty = surpassCounty;
+    }
+    public int getLackCounty() {
+        return this.lackCounty;
+    }
+    public void setLackCounty(int lackCounty) {
+        this.lackCounty = lackCounty;
+    }
+    public String getOvermatchCounty() {
+        return this.overmatchCounty;
+    }
+    public String getOvermatchCountyStr() {
+        if(TextUtils.isEmpty(overmatchCounty))
+            return "无";
+        return overmatchCounty;
+    }
+    public void setOvermatchCounty(String overmatchCounty) {
+        this.overmatchCounty = overmatchCounty;
+    }
+    public String getMismatchCounty() {
+        return this.mismatchCounty;
+    }
+    public String getMismatchCountyStr() {
+        if(TextUtils.isEmpty(mismatchCounty))
+            return "无";
+        return mismatchCounty;
+    }
+    public void setMismatchCounty(String mismatchCounty) {
+        this.mismatchCounty = mismatchCounty;
     }
 }

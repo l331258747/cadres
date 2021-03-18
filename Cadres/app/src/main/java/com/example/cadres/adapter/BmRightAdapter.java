@@ -54,6 +54,11 @@ public class BmRightAdapter extends RecyclerView.Adapter<BmRightAdapter.ViewHold
         holder.tv_kqqk_fz.setText(data.getMismatchDeputyStr());
         holder.tv_kqqk_qt.setText(data.getMismatchOtherStr());
 
+        holder.tv_hdzs_xcjfz.setText(data.getApprovedCountyStr());
+        holder.tv_spqk_xcjfz.setText(data.getActualCountyStr());
+        holder.tv_cpqk_xcjfz.setText(data.getOvermatchCountyStr());
+        holder.tv_kqqk_xcjfz.setText(data.getMismatchCountyStr());
+
         if(mOnItemClickListener != null){
             holder.cl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,6 +83,7 @@ public class BmRightAdapter extends RecyclerView.Adapter<BmRightAdapter.ViewHold
 
         TextView tv_hdzs_zz,tv_hdzs_fz,tv_hdzs_qt,tv_spqk_zz,tv_spqk_fz,tv_spqk_qt;
         TextView tv_cpqk_zz,tv_cpqk_fz,tv_cpqk_qt,tv_kqqk_zz,tv_kqqk_fz,tv_kqqk_qt;
+        TextView tv_hdzs_xcjfz,tv_spqk_xcjfz,tv_cpqk_xcjfz,tv_kqqk_xcjfz;
         ConstraintLayout cl_parent;
 
         public ViewHolder(@NonNull View itemView) {
@@ -96,6 +102,11 @@ public class BmRightAdapter extends RecyclerView.Adapter<BmRightAdapter.ViewHold
             tv_kqqk_zz = itemView.findViewById(R.id.tv_kqqk_zz);
             tv_kqqk_fz = itemView.findViewById(R.id.tv_kqqk_fz);
             tv_kqqk_qt = itemView.findViewById(R.id.tv_kqqk_qt);
+
+            tv_hdzs_xcjfz = itemView.findViewById(R.id.tv_hdzs_xcjfz);
+            tv_spqk_xcjfz = itemView.findViewById(R.id.tv_spqk_xcjfz);
+            tv_cpqk_xcjfz = itemView.findViewById(R.id.tv_cpqk_xcjfz);
+            tv_kqqk_xcjfz = itemView.findViewById(R.id.tv_kqqk_xcjfz);
 
             cl_parent = itemView.findViewById(R.id.cl_parent);
 
