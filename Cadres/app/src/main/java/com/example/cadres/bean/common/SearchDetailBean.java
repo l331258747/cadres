@@ -2,8 +2,6 @@ package com.example.cadres.bean.common;
 
 import android.text.TextUtils;
 
-import com.example.cadres.utils.GsonUtil;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,6 +9,8 @@ import java.util.List;
 
 public class SearchDetailBean implements Serializable {
     String search;
+    String orgId;
+    String orgName;
     List<String> gblxLists;
     List<String> lxLists;
     List<String> bmlxLists;
@@ -52,6 +52,8 @@ public class SearchDetailBean implements Serializable {
 
     public void clean(){
         search = "";
+        orgId = "";
+        orgName = "";
         cyssGd = "";
         cyssZwlx = "";
         cyssZwbqlx = "";
@@ -79,6 +81,22 @@ public class SearchDetailBean implements Serializable {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public void setCyssGd(String cyssGd) {
@@ -363,6 +381,10 @@ public class SearchDetailBean implements Serializable {
 
         if(!TextUtils.isEmpty(getSearch())){
             sb.append("关键字：" + getSearch() + "/");
+        }
+
+        if(!TextUtils.isEmpty(getOrgName())){
+            sb.append("分类：" + getOrgName() + "/");
         }
 
         for (String str : getLxLists()){

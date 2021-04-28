@@ -134,6 +134,11 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(et_search.getText().toString())) {
             searchDetailBean.setSearch(et_search.getText().toString());
         }
+        if (!TextUtils.isEmpty(orgId)) {
+            searchDetailBean.setOrgId(orgId);
+            searchDetailBean.setOrgName(orgName);
+        }
+
         for (int index : fl_lx.getSelectedList()) {
             searchDetailBean.getLxLists().add(mVals_lx.get(index).getDictValue());
         }
@@ -672,6 +677,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     ListDialog listDialogOrg;
     List<ListDialogBean> dialogDatasOrg;
     String orgId;
+    String orgName;
 
     @Override
     public void onClick(View v) {
@@ -683,6 +689,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                         @Override
                         public void onClick(int position) {
                             orgId = dialogDatasOrg.get(position).getsId();
+                            orgName = dialogDatasOrg.get(position).getName();
                             tv_screen_dwlb.setText(TextUtils.isEmpty(orgId) ? "全部" : dialogDatasOrg.get(position).getName());
                             listDialogOrg.dismiss();
                         }
