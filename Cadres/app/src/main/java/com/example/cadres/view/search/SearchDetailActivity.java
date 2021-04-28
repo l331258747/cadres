@@ -1,6 +1,5 @@
 package com.example.cadres.view.search;
 
-import android.database.Cursor;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -8,23 +7,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cadres.greendao.gen.DBBmBeanDao;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
-import com.cadres.greendao.gen.DBGbCadreResumeListBeanDao;
 import com.example.cadres.R;
-import com.example.cadres.adapter.GbAdapter;
-import com.example.cadres.adapter.GbAdapterGwy;
-import com.example.cadres.adapter.GbAdapterHbgb;
 import com.example.cadres.adapter.GbAdapterLdgb;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.common.SearchDetailBean;
-import com.example.cadres.beanDB.DBBmBean;
 import com.example.cadres.beanDB.DBGbBean;
 import com.example.cadres.beanDB.DBGbCadreDeptListBean;
 import com.example.cadres.beanDB.DBGbCadreNowPositionListBean;
-import com.example.cadres.beanDB.DBGbCadreResumeListBean;
 import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
 import com.example.cadres.utils.greendao.DaoManager;
@@ -39,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -389,7 +380,7 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
                     + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
                     + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
                     + " OR " + " T." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.NativePlace.columnName + " LIKE ?"
+                    + " OR " + " T." + DBGbBeanDao.Properties.NativePlaceReplenish.columnName + " LIKE ?"
                     + " OR " + " T." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
                     + " OR " + " T." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
                     + " OR " + " T." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"

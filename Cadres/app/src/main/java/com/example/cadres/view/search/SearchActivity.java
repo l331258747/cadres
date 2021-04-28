@@ -11,14 +11,17 @@ import android.widget.TextView;
 
 import com.cadres.greendao.gen.DBSearchBeanDao;
 import com.example.cadres.R;
+import com.example.cadres.adapter.ListDialogAdapter;
 import com.example.cadres.base.ActivityCollect;
 import com.example.cadres.base.BaseActivity;
+import com.example.cadres.bean.common.ListDialogBean;
 import com.example.cadres.bean.common.SearchDetailBean;
 import com.example.cadres.bean.login.MySelfInfo;
 import com.example.cadres.bean.search.SysDictDataBean;
 import com.example.cadres.bean.search.ZzbFunctionaryRankBean;
 import com.example.cadres.beanDB.DBSearchBean;
 import com.example.cadres.dialog.DefaultDialog;
+import com.example.cadres.dialog.ListDialog;
 import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.widget.flowlayout.FlowLayout;
 import com.example.cadres.widget.flowlayout.TagAdapter;
@@ -31,18 +34,16 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.constraintlayout.widget.Group;
-
-public class SearchActivity extends BaseActivity {
+public class SearchActivity extends BaseActivity implements View.OnClickListener {
 
     EditText et_search;
 
-//    private TagFlowLayout fl_history;
+    //    private TagFlowLayout fl_history;
     private TagFlowLayout fl_cy;
-    private TagFlowLayout fl_lx,fl_gllb, fl_bmlb, fl_xb,
-            fl_dp,fl_xrzwcc,
-            fl_xl,fl_xllx,fl_xxlx,
-            fl_gzjl,fl_xrzjlx, fl_xrzj;
+    private TagFlowLayout fl_lx, fl_gllb, fl_bmlb, fl_xb,
+            fl_dp, fl_xrzwcc,
+            fl_xl, fl_xllx, fl_xxlx,
+            fl_gzjl, fl_xrzjlx, fl_xrzj;
     TextView tv_xrzj;
 
     RangeSeekBar seekbar2;
@@ -54,6 +55,7 @@ public class SearchActivity extends BaseActivity {
     RangeSeekBar seekbar2_rxznx;
     TextView progress2_tv_rxznx;
     TextView tv_btn;
+    TextView tv_screen_dwlb;
 
     SearchDetailBean searchDetailBean;
 
@@ -74,7 +76,7 @@ public class SearchActivity extends BaseActivity {
         showTitleTv("大数据选人");
 
         getDbData();
-        if(dbSearchBean == null){
+        if (dbSearchBean == null) {
             new DefaultDialog(context).setContent("未获取到搜索数据，请重新下载数据").setSubmitListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -85,7 +87,7 @@ public class SearchActivity extends BaseActivity {
         }
 
         initSearchData();
-
+        initSearchType();
         initEdit();
 //        initFLHistory();
         initFLCyss();
@@ -117,12 +119,19 @@ public class SearchActivity extends BaseActivity {
                 goSearchDetail();
             }
         });
+
+        getDbOrgData();
     }
 
-    public void goSearchDetail(){
+    private void initSearchType() {
+        tv_screen_dwlb = findViewById(R.id.tv_screen_dwlb);
+        tv_screen_dwlb.setOnClickListener(this);
+    }
+
+    public void goSearchDetail() {
         searchDetailBean.clean();
 
-        if(!TextUtils.isEmpty(et_search.getText().toString())){
+        if (!TextUtils.isEmpty(et_search.getText().toString())) {
             searchDetailBean.setSearch(et_search.getText().toString());
         }
         for (int index : fl_lx.getSelectedList()) {
@@ -184,8 +193,9 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_lx;
+
     private void initFLLx() {
-        fl_lx= findViewById(R.id.fl_lx);
+        fl_lx = findViewById(R.id.fl_lx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
         TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_lx) {
             @Override
@@ -199,6 +209,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     String[] mVals_xllx;
+
     private void initFLXllx() {
         fl_xllx = findViewById(R.id.fl_xllx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -214,6 +225,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_cyss;
+
     private void initFLCyss() {
         fl_cy = findViewById(R.id.fl_cy);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -230,11 +242,11 @@ public class SearchActivity extends BaseActivity {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 searchDetailBean.clean();
-                if(mVals_cyss.get(position).getType() == 0){
+                if (mVals_cyss.get(position).getType() == 0) {
                     searchDetailBean.setCyssGd(mVals_cyss.get(position).getDictLabel());
-                }else if(mVals_cyss.get(position).getType() == 1){
+                } else if (mVals_cyss.get(position).getType() == 1) {
                     searchDetailBean.setCyssZwlx(mVals_cyss.get(position).getDictLabel());
-                }else if(mVals_cyss.get(position).getType() == 2){
+                } else if (mVals_cyss.get(position).getType() == 2) {
                     searchDetailBean.setCyssZwbqlx(mVals_cyss.get(position).getDictLabel());
                 }
                 goDetailActivity(searchDetailBean);
@@ -244,6 +256,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_dp;
+
     private void initFLDp() {
         fl_dp = findViewById(R.id.fl_dp);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -260,7 +273,8 @@ public class SearchActivity extends BaseActivity {
 
 
     List<SysDictDataBean> mVals_xrzwcc;
-    private void initFLXrzwcc(){
+
+    private void initFLXrzwcc() {
         fl_xrzwcc = findViewById(R.id.fl_xrzwcc);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
         TagAdapter adapter1 = new TagAdapter<SysDictDataBean>(mVals_xrzwcc) {
@@ -275,6 +289,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_xb;
+
     private void initFLXb() {
         fl_xb = findViewById(R.id.fl_xb);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -290,6 +305,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_gzjl;
+
     private void initFLGzjl() {
         fl_gzjl = findViewById(R.id.fl_gzjl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -305,6 +321,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_xxlx;
+
     private void initFLXxlx() {
         fl_xxlx = findViewById(R.id.fl_xxlx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -320,6 +337,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_xl;
+
     private void initFLXl() {
         fl_xl = findViewById(R.id.fl_xl);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -348,6 +366,7 @@ public class SearchActivity extends BaseActivity {
         fl_xrzj.setVisibility(View.GONE);
         mVals_xrzj = new ArrayList<>();
     }
+
     private void setFLXrzj(List<ZzbFunctionaryRankBean> mVals_xrzj) {
         tv_xrzj = findViewById(R.id.tv_xrzj);
         tv_xrzj.setVisibility(View.VISIBLE);
@@ -366,7 +385,8 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<ZzbFunctionaryRankBean> mVals_xrzjlx;
-    private void initFLXrzjlx(){
+
+    private void initFLXrzjlx() {
         fl_xrzjlx = findViewById(R.id.fl_xrzjlx);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
         TagAdapter adapter1 = new TagAdapter<ZzbFunctionaryRankBean>(mVals_xrzjlx) {
@@ -381,9 +401,9 @@ public class SearchActivity extends BaseActivity {
         fl_xrzjlx.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                if(fl_xrzjlx.getSelectedList().size() == 0){
+                if (fl_xrzjlx.getSelectedList().size() == 0) {
                     setFLXrzjNone();
-                }else{
+                } else {
                     setFLXrzj(getXrzjData(mVals_xrzjlx.get(position).getFunctionaryRankId()));
                 }
                 return false;
@@ -394,6 +414,7 @@ public class SearchActivity extends BaseActivity {
 
 
     List<SysDictDataBean> mVals_bmlb;
+
     private void initFLBmlb() {
         fl_bmlb = findViewById(R.id.fl_bmlb);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -409,6 +430,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<SysDictDataBean> mVals_gllb;
+
     private void initFLGllb() {
         fl_gllb = findViewById(R.id.fl_gllb);
         final LayoutInflater mInflater = LayoutInflater.from(activity);
@@ -425,6 +447,7 @@ public class SearchActivity extends BaseActivity {
 
     int csnMin = 1950;
     int csnMax = 2000;
+
     private void initCsn() {
         seekbar2 = findViewById(R.id.seekbar2);
         progress2_tv = findViewById(R.id.progress2_tv);
@@ -447,6 +470,7 @@ public class SearchActivity extends BaseActivity {
 
     int xrzjnxMin = 0;
     int xrzjnxMax = 20;
+
     private void initXrzjnx() {
         seekbar2_xrzjnx = findViewById(R.id.seekbar2_xrzjnx);
         progress2_tv_xrzjnx = findViewById(R.id.progress2_tv_xrzjnx);
@@ -469,7 +493,8 @@ public class SearchActivity extends BaseActivity {
 
     int xrzwccnxMin = 0;
     int xrzwccnxMax = 20;
-    private void initXrzwccnx(){
+
+    private void initXrzwccnx() {
         seekbar2_xrzwccnx = findViewById(R.id.seekbar2_xrzwccnx);
         progress2_tv_xrzwccnx = findViewById(R.id.progress2_tv_xrzwccnx);
         seekbar2_xrzwccnx.setRange(xrzwccnxMin, xrzwccnxMax);//设置范围
@@ -491,6 +516,7 @@ public class SearchActivity extends BaseActivity {
 
     int rxznxMin = 0;
     int rxznxMax = 20;
+
     private void initRxznx() {
         seekbar2_rxznx = findViewById(R.id.seekbar2_rxznx);
         progress2_tv_rxznx = findViewById(R.id.progress2_tv_rxznx);
@@ -576,8 +602,8 @@ public class SearchActivity extends BaseActivity {
 //        });
 //    }
 
-    private void goDetailActivity(SearchDetailBean searchDetailBean){
-        Intent intent = new Intent(context,SearchDetailActivity.class);
+    private void goDetailActivity(SearchDetailBean searchDetailBean) {
+        Intent intent = new Intent(context, SearchDetailActivity.class);
         intent.putExtra("data", searchDetailBean);
         startActivity(intent);
     }
@@ -594,10 +620,11 @@ public class SearchActivity extends BaseActivity {
 //    }
 
     DBSearchBean dbSearchBean;
-    public void getDbData(){
+
+    public void getDbData() {
         DBSearchBeanDao dbDao = DaoManager.getInstance().getDaoSession().getDBSearchBeanDao();
         QueryBuilder<DBSearchBean> queryBuilder = dbDao.queryBuilder();
-        if(queryBuilder.count() != 0)
+        if (queryBuilder.count() != 0)
             dbSearchBean = queryBuilder.unique();
     }
 
@@ -631,13 +658,78 @@ public class SearchActivity extends BaseActivity {
     }
 
     List<ZzbFunctionaryRankBean> mVals_xrzj;
-    private List<ZzbFunctionaryRankBean> getXrzjData(int id){
+
+    private List<ZzbFunctionaryRankBean> getXrzjData(int id) {
         mVals_xrzj = new ArrayList<>();
-        for (int i=0;i<dbSearchBean.getFunctionaryRankTypesList().size();i++){
+        for (int i = 0; i < dbSearchBean.getFunctionaryRankTypesList().size(); i++) {
             ZzbFunctionaryRankBean item = dbSearchBean.getFunctionaryRankTypesList().get(i);
-            if(item.getParentId() == id)
+            if (item.getParentId() == id)
                 mVals_xrzj.add(item);
         }
         return mVals_xrzj;
+    }
+
+    ListDialog listDialogOrg;
+    List<ListDialogBean> dialogDatasOrg;
+    String orgId;
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_screen_dwlb:
+                if (listDialogOrg == null) {
+                    listDialogOrg = new ListDialog(context, dialogDatasOrg);
+                    listDialogOrg.setItemClickListener(new ListDialogAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            orgId = dialogDatasOrg.get(position).getsId();
+                            tv_screen_dwlb.setText(TextUtils.isEmpty(orgId) ? "全部" : dialogDatasOrg.get(position).getName());
+                            listDialogOrg.dismiss();
+                        }
+                    });
+                }
+                listDialogOrg.show();
+                break;
+        }
+    }
+
+    /*
+    name 姓名
+nativePlaceReplenish 籍贯
+nation 民族
+birthplace  出生地
+currentPosition 现任职务
+cadreResume 工作简历
+所在单位(根据cadreDeptList表关联查，之前应该写好了的)
+fullTimeMajor 全日制专业
+fullTimeDegreeName 全日制学位
+fullTimeSchool 全日制毕业院校
+currentMajor 在职专业
+currentDegreeName 在职学位
+currentSchoolMajor 在职毕业院校
+technicalTitle 专业技术职务
+expertise 熟悉专业及专长
+     */
+    public void getDbOrgData(){
+        dialogDatasOrg = new ArrayList<>();
+        dialogDatasOrg.add(new ListDialogBean("","全部"));
+        dialogDatasOrg.add(new ListDialogBean("name","姓名"));
+        dialogDatasOrg.add(new ListDialogBean("nativePlaceReplenish","籍贯"));
+        dialogDatasOrg.add(new ListDialogBean("nation","民族"));
+        dialogDatasOrg.add(new ListDialogBean("birthplace","出生地"));
+        dialogDatasOrg.add(new ListDialogBean("currentPosition","现任职务"));
+        dialogDatasOrg.add(new ListDialogBean("cadreResume","工作简历"));
+        dialogDatasOrg.add(new ListDialogBean("cadreDeptList","所在单位"));
+        dialogDatasOrg.add(new ListDialogBean("fullTimeMajor","全日制专业"));
+        dialogDatasOrg.add(new ListDialogBean("fullTimeDegreeName","全日制学位"));
+        dialogDatasOrg.add(new ListDialogBean("fullTimeSchool","全日制毕业院校"));
+        dialogDatasOrg.add(new ListDialogBean("currentMajor","在职专业"));
+        dialogDatasOrg.add(new ListDialogBean("currentDegreeName","在职学位"));
+        dialogDatasOrg.add(new ListDialogBean("currentSchoolMajor","在职毕业院校"));
+        dialogDatasOrg.add(new ListDialogBean("technicalTitle","专业技术职务"));
+        dialogDatasOrg.add(new ListDialogBean("expertise","熟悉专业及专长"));
+
+
+
     }
 }
