@@ -371,53 +371,52 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
             String key = searchDetailBean.getSearch();
             StringBuffer sql = new StringBuffer("");
 
-            sql.append(" (T." + DBGbBeanDao.Properties.BaseId.columnName
-                    + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
-                    + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
-                    + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
-                    + " IN ( SELECT " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName
-                    + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
-                    + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
-                    + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
-                    + " OR " + " T." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.NativePlaceReplenish.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
-                    + " OR " + " T." + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?)");
-
-            String[] values = new String[]{
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%",
-                    "%" + key + "%"
-            };
-
-            queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
-            LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
-
             if(!TextUtils.isEmpty(searchDetailBean.getOrgId())){
                 if(TextUtils.equals(searchDetailBean.getOrgId(),"cadreDeptList")){
-                    String values1 = "%" + searchDetailBean.getSearch() + "%";
+                    String values1 = "%" + key + "%";
                     queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
-                            .where(DBGbCadreDeptListBeanDao.Properties.DeptType.like(values1));
+                            .where(DBGbCadreDeptListBeanDao.Properties.DeptName.like(values1));
                     queryBuilder.distinct();
                     LogUtil.e("分类所在单位 数据条数：" + queryBuilder.count());
                 }else{
                     sql = new StringBuffer("");
-                    String values1 = "%" + searchDetailBean.getSearch() + "%";
+                    String values1 = "%" + key + "%";
                     sql.append(" " + searchDetailBean.getOrgId() + " like " + "?");
                     queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values1));
                     LogUtil.e("分类 数据条数：" + queryBuilder.count());
                 }
+            }else{
+                sql.append(" (T." + DBGbBeanDao.Properties.BaseId.columnName
+                        + " IN ( SELECT " + " d." + DBGbCadreDeptListBeanDao.Properties.BaseId.columnName
+                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " d"
+                        + " WHERE " + " d." + DBGbCadreDeptListBeanDao.Properties.ParentId.columnName
+                        + " IN ( SELECT " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptId.columnName
+                        + " FROM " + DBGbCadreDeptListBeanDao.TABLENAME + " e"
+                        + " WHERE " + " e." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+                        + " OR " + " d." + DBGbCadreDeptListBeanDao.Properties.DeptName.columnName + " LIKE ? )"
+
+                        + " OR " + " T." + DBGbBeanDao.Properties.Name.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.NativePlaceReplenish.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.TechnicalTitle.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.CurrentPosition.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.Expertise.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.FullTimeSchool.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.FullTimeMajor.columnName + " LIKE ?"
+
+                        + " OR " + " T." + DBGbBeanDao.Properties.Nation.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.Birthplace.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.CadreResume.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.CurrentMajor.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.CurrentDegreeName.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.CurrentSchoolMajor.columnName + " LIKE ?"
+                        + " OR " + " T." + DBGbBeanDao.Properties.FullTimeDegreeName.columnName + " LIKE ?)");
+                String[] values = new String[16];
+                for (int i=0;i<values.length;i++){
+                    values[i] = "%" + key + "%";
+                }
+
+                queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
+                LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
             }
         }
 
