@@ -381,10 +381,10 @@ public class SearchDetailBean implements Serializable {
 
         if(!TextUtils.isEmpty(getSearch())){
             sb.append("关键字：" + getSearch() + "/");
-        }
 
-        if(!TextUtils.isEmpty(getOrgName())){
-            sb.append("分类：" + getOrgName() + "/");
+            if(!TextUtils.isEmpty(getOrgName())){
+                sb.append("分类：" + getOrgName() + "/");
+            }
         }
 
         for (String str : getLxLists()){

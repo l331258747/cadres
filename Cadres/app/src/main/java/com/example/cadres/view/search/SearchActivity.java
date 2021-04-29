@@ -720,21 +720,21 @@ expertise 熟悉专业及专长
     public void getDbOrgData(){
         dialogDatasOrg = new ArrayList<>();
         dialogDatasOrg.add(new ListDialogBean("","全部"));
-        dialogDatasOrg.add(new ListDialogBean("name","姓名"));
-        dialogDatasOrg.add(new ListDialogBean("nativePlaceReplenish","籍贯"));
-        dialogDatasOrg.add(new ListDialogBean("nation","民族"));
-        dialogDatasOrg.add(new ListDialogBean("birthplace","出生地"));
-        dialogDatasOrg.add(new ListDialogBean("currentPosition","现任职务"));
-        dialogDatasOrg.add(new ListDialogBean("cadreResume","工作简历"));
+        dialogDatasOrg.add(new ListDialogBean("NAME","姓名"));
+        dialogDatasOrg.add(new ListDialogBean("NATIVE_PLACE_REPLENISH","籍贯"));
+        dialogDatasOrg.add(new ListDialogBean("NATION","民族"));
+        dialogDatasOrg.add(new ListDialogBean("BIRTHPLACE","出生地"));
+        dialogDatasOrg.add(new ListDialogBean("CURRENT_POSITION","现任职务"));
+        dialogDatasOrg.add(new ListDialogBean("CADRE_RESUME","工作简历"));
         dialogDatasOrg.add(new ListDialogBean("cadreDeptList","所在单位"));
-        dialogDatasOrg.add(new ListDialogBean("fullTimeMajor","全日制专业"));
-        dialogDatasOrg.add(new ListDialogBean("fullTimeDegreeName","全日制学位"));
-        dialogDatasOrg.add(new ListDialogBean("fullTimeSchool","全日制毕业院校"));
-        dialogDatasOrg.add(new ListDialogBean("currentMajor","在职专业"));
-        dialogDatasOrg.add(new ListDialogBean("currentDegreeName","在职学位"));
-        dialogDatasOrg.add(new ListDialogBean("currentSchoolMajor","在职毕业院校"));
-        dialogDatasOrg.add(new ListDialogBean("technicalTitle","专业技术职务"));
-        dialogDatasOrg.add(new ListDialogBean("expertise","熟悉专业及专长"));
+        dialogDatasOrg.add(new ListDialogBean("FULL_TIME_MAJOR","全日制专业"));
+        dialogDatasOrg.add(new ListDialogBean("FULL_TIME_DEGREE_NAME","全日制学位"));
+        dialogDatasOrg.add(new ListDialogBean("FULL_TIME_SCHOOL","全日制毕业院校"));
+        dialogDatasOrg.add(new ListDialogBean("CURRENT_MAJOR","在职专业"));
+        dialogDatasOrg.add(new ListDialogBean("CURRENT_DEGREE_NAME","在职学位"));
+        dialogDatasOrg.add(new ListDialogBean("CURRENT_SCHOOL_MAJOR","在职毕业院校"));
+        dialogDatasOrg.add(new ListDialogBean("TECHNICAL_TITLE","专业技术职务"));
+        dialogDatasOrg.add(new ListDialogBean("EXPERTISE","熟悉专业及专长"));
 
 
 

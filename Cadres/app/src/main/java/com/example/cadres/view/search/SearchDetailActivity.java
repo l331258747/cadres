@@ -403,6 +403,22 @@ public class SearchDetailActivity extends BaseActivity implements View.OnClickLi
 
             queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values));
             LogUtil.e("干部关键字 搜索条数：" + queryBuilder.count());
+
+            if(!TextUtils.isEmpty(searchDetailBean.getOrgId())){
+                if(TextUtils.equals(searchDetailBean.getOrgId(),"cadreDeptList")){
+                    String values1 = "%" + searchDetailBean.getSearch() + "%";
+                    queryBuilder.join(DBGbBeanDao.Properties.BaseId, DBGbCadreDeptListBean.class, DBGbCadreDeptListBeanDao.Properties.BaseId)
+                            .where(DBGbCadreDeptListBeanDao.Properties.DeptType.like(values1));
+                    queryBuilder.distinct();
+                    LogUtil.e("分类所在单位 数据条数：" + queryBuilder.count());
+                }else{
+                    sql = new StringBuffer("");
+                    String values1 = "%" + searchDetailBean.getSearch() + "%";
+                    sql.append(" " + searchDetailBean.getOrgId() + " like " + "?");
+                    queryBuilder.where(new WhereCondition.StringCondition(sql.toString(), values1));
+                    LogUtil.e("分类 数据条数：" + queryBuilder.count());
+                }
+            }
         }
 
         if (searchDetailBean.getLxLists().size() > 0) {
