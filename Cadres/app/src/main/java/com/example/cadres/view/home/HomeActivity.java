@@ -350,8 +350,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         //数据库数据
         cleanDBData();
 
-//        progress.dismiss();
-
         progress.setProgress(10);
 
         mPresenter.getZcfgList();
