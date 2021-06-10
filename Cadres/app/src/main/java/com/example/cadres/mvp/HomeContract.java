@@ -21,9 +21,9 @@ public interface HomeContract {
         void findUserInfo(int userId);
         void getZcfgList();
         void getBmList();
-        void getGbList();
+        void getGbList(boolean isCheck);
         void getYjjcList();
-        void getFiles();
+        void getFiles(boolean isCheck);
 
         void getJgty();
         void getZsty();

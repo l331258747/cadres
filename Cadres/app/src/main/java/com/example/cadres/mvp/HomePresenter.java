@@ -80,7 +80,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void getGbList() {
+    public void getGbList(boolean isCheck) {
         ResponseCallback listener = new ResponseCallback<GbBean>() {
             @Override
             public void onSuccess(GbBean data) {
@@ -92,7 +92,12 @@ public class HomePresenter implements HomeContract.Presenter {
                 iView.getGbListFailed(errorMsg);
             }
         };
-        MethodApi.getGbList(new OnSuccessAndFaultSub(listener, context,false));
+
+        if(isCheck){
+            MethodApi.getGbList(new OnSuccessAndFaultSub(listener, context,false));
+        }else{
+            MethodApi.getGbList2(new OnSuccessAndFaultSub(listener, context,false));
+        }
     }
 
     @Override
@@ -112,7 +117,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void getFiles() {
+    public void getFiles(boolean isCheck) {
         ResponseCallback listener = new ResponseCallback<FileBean>() {
             @Override
             public void onSuccess(FileBean data) {
@@ -134,7 +139,11 @@ public class HomePresenter implements HomeContract.Presenter {
                 iView.getFilesFailed(errorMsg);
             }
         };
-        MethodApi.getFiles(new OnSuccessAndFaultSub(listener, context,false));
+        if(isCheck){
+            MethodApi.getFiles(new OnSuccessAndFaultSub(listener, context,false));
+        }else{
+            MethodApi.getFiles2(new OnSuccessAndFaultSub(listener, context,false));
+        }
     }
 
     @Override

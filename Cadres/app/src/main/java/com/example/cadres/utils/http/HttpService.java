@@ -61,6 +61,9 @@ public interface HttpService {
     @GET("cadreBase/findCadreBaseList")
     Observable<BaseResponse<GbBean>> getGbList();
 
+    @GET("cadreBase/findNoCauseCadreBaseList")
+    Observable<BaseResponse<GbBean>> getGbList2();
+
     @GET("appointDismissScheme/findAppointDismissSchemeList")
     Observable<BaseResponse<YjjcBean>> getYjjcList();
 
@@ -102,6 +105,9 @@ public interface HttpService {
 
     @GET("fileUrl/findFileUrlList")
     Observable<BaseResponse<FileBean>> getFiles();
+
+    @GET("fileUrl/selectNoCauseFileUrlList")
+    Observable<BaseResponse<FileBean>> getFiles2();
 
     @GET("fileUrl/findMeetingFileUrlList")
     Observable<BaseResponse<FileBean>> getMeetingFiles();

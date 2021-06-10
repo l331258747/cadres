@@ -19,6 +19,10 @@ import android.widget.EditText;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.cadres.greendao.gen.DBGbBeanDao;
+import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
+import com.cadres.greendao.gen.DBGbCadreFamilyMemberListDao;
+import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.Gb.GbBean;
@@ -91,6 +95,7 @@ import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.dialog.DialogUtil;
+import com.example.cadres.dialog.DownLoadDialog;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
 import com.example.cadres.utils.AppUtils;
@@ -99,6 +104,7 @@ import com.example.cadres.utils.LogUtil;
 import com.example.cadres.utils.SPUtils;
 import com.example.cadres.utils.ToastUtil;
 import com.example.cadres.utils.greendao.CommonDaoUtils;
+import com.example.cadres.utils.greendao.DaoManager;
 import com.example.cadres.utils.greendao.DaoUtilsStore;
 import com.example.cadres.view.Bm.BmSelectActivity;
 import com.example.cadres.view.Gb.GbSelectActivity;
@@ -106,6 +112,9 @@ import com.example.cadres.view.dsjty.DsjtySelectActivity;
 import com.example.cadres.view.search.SearchActivity;
 import com.example.cadres.view.yjjc.YjjcActivity;
 import com.example.cadres.view.zcfg.ZcfgActivity;
+
+import org.greenrobot.greendao.query.QueryBuilder;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -202,6 +211,7 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     @Override
     public void initData() {
+
         SPUtils.getInstance().putBoolean(SPUtils.IS_LOGIN, true);
 
         mPresenter = new HomePresenter(context, this);
@@ -269,6 +279,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         return "欢迎您的登录，当前用户：" + str;
     }
 
+    boolean isCheck = false;
+
     @Override
     public void onClick(View view) {
         if (!isPermissions) return;
@@ -296,9 +308,18 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 startActivity(new Intent(context, DsjtySelectActivity.class));
                 break;
             case R.id.ll_right1:
+//                new DownLoadDialog(context).setContent("同步数据需要时间较长，您是否确认同步数据？").setOnItemClickListener(new DownLoadDialog.OnItemClickListener() {
+//                    @Override
+//                    public void onClick(boolean isCheck1) {
+//                        isCheck = isCheck1;
+//                        getUserInfoData();
+//                    }
+//                }).show();
+
                 new DefaultDialog(context).setContent("同步数据需要时间较长，您是否确认同步数据？").setSubmitListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        isCheck = true;
                         getUserInfoData();
                     }
                 }).show();
@@ -328,6 +349,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         MySelfInfo.getInstance().setData(data);
         //数据库数据
         cleanDBData();
+
+//        progress.dismiss();
 
         progress.setProgress(10);
 
@@ -367,12 +390,12 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getBmListGwySuccess(BmGwyBean data) {
         setDBBmGwy(data);
-        mPresenter.getGbList();
+        mPresenter.getGbList(isCheck);
     }
 
     @Override
     public void getBmListGwyFailed(String msg) {
-        mPresenter.getGbList();
+        mPresenter.getGbList(isCheck);
     }
 
     @Override
@@ -447,12 +470,12 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getSearchDataSuccess(SearchBean.SearchParamBean data) {
         setDBSearch(data);
-        mPresenter.getFiles();
+        mPresenter.getFiles(isCheck);
     }
 
     @Override
     public void getSearchDataFailed(String msg) {
-        mPresenter.getFiles();
+        mPresenter.getFiles(isCheck);
     }
 
     @Override
@@ -601,10 +624,79 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
         dBBmOrgDaoUtils.deleteAll();
         dBBmFinanceDaoUtils.deleteAll();
 
-        dBGbDaoUtils.deleteAll();
+        if(isCheck){
+            dBGbDaoUtils.deleteAll();
+            dBGbFamilyDaoUtils.deleteAll();
+            dBGbDeptDaoUtils.deleteAll();
+        }else{
+            /**
+             delete  from 干部基本信息表  where type not like '%4%'
+             delete T from 家庭信息表 T LEFT JOIN 干部基本信息表 b on T.base_id=b.base_id where b.type not like '%4%';
+             delete m from 干部部门关联表 m LEFT JOIN 干部基本信息表 b on m.base_id=b.base_id where b.type not like '%4%';
+             */
+
+            //删除干部所属部门表
+            {
+                DBGbCadreDeptListBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbCadreDeptListBeanDao();
+                QueryBuilder<DBGbCadreDeptListBean> queryBuilder = dbGbBeanDao.queryBuilder();
+
+                StringBuffer sql = new StringBuffer("");
+                sql.append(" J1." + DBGbBeanDao.Properties.Type.columnName
+                        + " NOT LIKE ? ");
+                String[] values = new String[]{
+                        "%" + 4 + "%"
+                };
+
+                queryBuilder.join(DBGbCadreDeptListBeanDao.Properties.BaseId, DBGbBean.class, DBGbBeanDao.Properties.BaseId)
+                        .where(new WhereCondition.StringCondition(sql.toString(), values));
+                queryBuilder.distinct();
+
+                List<DBGbCadreDeptListBean> list = queryBuilder.list();
+                dbGbBeanDao.deleteInTx(list);
+            }
+
+            //删除干部家庭成员表
+            {
+                DBGbCadreFamilyMemberListDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbCadreFamilyMemberListDao();
+                QueryBuilder<DBGbCadreFamilyMemberList> queryBuilder = dbGbBeanDao.queryBuilder();
+
+                StringBuffer sql = new StringBuffer("");
+                sql.append(" J1." + DBGbBeanDao.Properties.Type.columnName
+                        + " NOT LIKE ? ");
+                String[] values = new String[]{
+                        "%" + 4 + "%"
+                };
+
+                queryBuilder.join(DBGbCadreDeptListBeanDao.Properties.BaseId, DBGbBean.class, DBGbBeanDao.Properties.BaseId)
+                        .where(new WhereCondition.StringCondition(sql.toString(), values));
+                queryBuilder.distinct();
+
+                List<DBGbCadreFamilyMemberList> list = queryBuilder.list();
+                dbGbBeanDao.deleteInTx(list);
+            }
+
+            //删除干部基本信息表
+            {
+                DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();
+                QueryBuilder<DBGbBean> queryBuilder = dbGbBeanDao.queryBuilder();
+                queryBuilder.where(DBGbBeanDao.Properties.Type.eq("4"));
+                List<DBGbBean> list = queryBuilder.list();
+                dbGbBeanDao.deleteInTx(list);
+            }
+
+
+            LogUtil.e("干部 条数：" + dBGbDaoUtils.queryAll().size());
+            LogUtil.e("干部奖惩记录信息 条数：" + dBGbAwardDaoUtils.queryAll().size());
+            LogUtil.e("干部所属部门信息 条数：" + dBGbDeptDaoUtils.queryAll().size());
+            LogUtil.e("干部家庭成员信息 条数：" + dBGbFamilyDaoUtils.queryAll().size());
+            LogUtil.e("干部曾任职信息 条数：" + dBGbHistoryDaoUtils.queryAll().size());
+            LogUtil.e("干部现任职信息 条数：" + dBGbNowDaoUtils.queryAll().size());
+            LogUtil.e("干部职级信息 条数：" + dBGbRankDaoUtils.queryAll().size());
+            LogUtil.e("干部简历 条数：" + dBGbResumeDaoUtils.queryAll().size());
+            LogUtil.e("干部培训情况 条数：" + dBGbTrainDaoUtils.queryAll().size());
+        }
+
         dBGbAwardDaoUtils.deleteAll();
-        dBGbDeptDaoUtils.deleteAll();
-        dBGbFamilyDaoUtils.deleteAll();
         dBGbHistoryDaoUtils.deleteAll();
         dBGbNowDaoUtils.deleteAll();
         dBGbRankDaoUtils.deleteAll();

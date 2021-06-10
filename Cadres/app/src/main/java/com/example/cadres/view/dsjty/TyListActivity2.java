@@ -251,7 +251,7 @@ public class TyListActivity2 extends BaseActivity implements View.OnClickListene
     public void getDbList() {
         if(ids == null || ids.size() == 0) return;
         if(ids.size() > 900){
-            ids = ids.subList(0,998);
+            ids = ids.subList(0,900);
         }
 
         DBGbBeanDao dbGbBeanDao = DaoManager.getInstance().getDaoSession().getDBGbBeanDao();

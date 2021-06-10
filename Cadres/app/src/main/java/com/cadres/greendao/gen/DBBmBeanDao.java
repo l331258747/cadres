@@ -78,6 +78,12 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         public final static Property Spgywrank = new Property(51, String.class, "spgywrank", false, "SPGYWRANK");
         public final static Property Cpgywrank = new Property(52, String.class, "cpgywrank", false, "CPGYWRANK");
         public final static Property Qpgywrank = new Property(53, String.class, "qpgywrank", false, "QPGYWRANK");
+        public final static Property ApprovedCounty = new Property(54, int.class, "approvedCounty", false, "APPROVED_COUNTY");
+        public final static Property ActualCounty = new Property(55, int.class, "actualCounty", false, "ACTUAL_COUNTY");
+        public final static Property SurpassCounty = new Property(56, int.class, "surpassCounty", false, "SURPASS_COUNTY");
+        public final static Property LackCounty = new Property(57, int.class, "lackCounty", false, "LACK_COUNTY");
+        public final static Property OvermatchCounty = new Property(58, String.class, "overmatchCounty", false, "OVERMATCH_COUNTY");
+        public final static Property MismatchCounty = new Property(59, String.class, "mismatchCounty", false, "MISMATCH_COUNTY");
     }
 
 
@@ -146,7 +152,13 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
                 "\"HDGYWRANK\" TEXT," + // 50: hdgywrank
                 "\"SPGYWRANK\" TEXT," + // 51: spgywrank
                 "\"CPGYWRANK\" TEXT," + // 52: cpgywrank
-                "\"QPGYWRANK\" TEXT);"); // 53: qpgywrank
+                "\"QPGYWRANK\" TEXT," + // 53: qpgywrank
+                "\"APPROVED_COUNTY\" INTEGER NOT NULL ," + // 54: approvedCounty
+                "\"ACTUAL_COUNTY\" INTEGER NOT NULL ," + // 55: actualCounty
+                "\"SURPASS_COUNTY\" INTEGER NOT NULL ," + // 56: surpassCounty
+                "\"LACK_COUNTY\" INTEGER NOT NULL ," + // 57: lackCounty
+                "\"OVERMATCH_COUNTY\" TEXT," + // 58: overmatchCounty
+                "\"MISMATCH_COUNTY\" TEXT);"); // 59: mismatchCounty
     }
 
     /** Drops the underlying database table. */
@@ -336,6 +348,20 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (qpgywrank != null) {
             stmt.bindString(54, qpgywrank);
         }
+        stmt.bindLong(55, entity.getApprovedCounty());
+        stmt.bindLong(56, entity.getActualCounty());
+        stmt.bindLong(57, entity.getSurpassCounty());
+        stmt.bindLong(58, entity.getLackCounty());
+ 
+        String overmatchCounty = entity.getOvermatchCounty();
+        if (overmatchCounty != null) {
+            stmt.bindString(59, overmatchCounty);
+        }
+ 
+        String mismatchCounty = entity.getMismatchCounty();
+        if (mismatchCounty != null) {
+            stmt.bindString(60, mismatchCounty);
+        }
     }
 
     @Override
@@ -519,6 +545,20 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         if (qpgywrank != null) {
             stmt.bindString(54, qpgywrank);
         }
+        stmt.bindLong(55, entity.getApprovedCounty());
+        stmt.bindLong(56, entity.getActualCounty());
+        stmt.bindLong(57, entity.getSurpassCounty());
+        stmt.bindLong(58, entity.getLackCounty());
+ 
+        String overmatchCounty = entity.getOvermatchCounty();
+        if (overmatchCounty != null) {
+            stmt.bindString(59, overmatchCounty);
+        }
+ 
+        String mismatchCounty = entity.getMismatchCounty();
+        if (mismatchCounty != null) {
+            stmt.bindString(60, mismatchCounty);
+        }
     }
 
     @Override
@@ -582,7 +622,13 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
             cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // hdgywrank
             cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // spgywrank
             cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52), // cpgywrank
-            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53) // qpgywrank
+            cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53), // qpgywrank
+            cursor.getInt(offset + 54), // approvedCounty
+            cursor.getInt(offset + 55), // actualCounty
+            cursor.getInt(offset + 56), // surpassCounty
+            cursor.getInt(offset + 57), // lackCounty
+            cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58), // overmatchCounty
+            cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59) // mismatchCounty
         );
         return entity;
     }
@@ -643,6 +689,12 @@ public class DBBmBeanDao extends AbstractDao<DBBmBean, Long> {
         entity.setSpgywrank(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
         entity.setCpgywrank(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
         entity.setQpgywrank(cursor.isNull(offset + 53) ? null : cursor.getString(offset + 53));
+        entity.setApprovedCounty(cursor.getInt(offset + 54));
+        entity.setActualCounty(cursor.getInt(offset + 55));
+        entity.setSurpassCounty(cursor.getInt(offset + 56));
+        entity.setLackCounty(cursor.getInt(offset + 57));
+        entity.setOvermatchCounty(cursor.isNull(offset + 58) ? null : cursor.getString(offset + 58));
+        entity.setMismatchCounty(cursor.isNull(offset + 59) ? null : cursor.getString(offset + 59));
      }
     
     @Override

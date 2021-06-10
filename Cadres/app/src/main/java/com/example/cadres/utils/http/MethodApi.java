@@ -45,6 +45,12 @@ public class MethodApi {
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
+    //获取 干部 列表 - 非事业干部
+    public static void getGbList2(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getGbList2(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+
     //获取 任免决策 列表
     public static void getYjjcList(DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getYjjcList(); //在HttpServer中
@@ -81,6 +87,11 @@ public class MethodApi {
     //获取 file
     public static void getFiles(DisposableObserver subscriber) {
         Observable observable = HttpMethods.getInstance().getHttpService().getFiles(); //在HttpServer中
+        HttpMethods.getInstance().toSubscribe(observable, subscriber);
+    }
+    //获取 file 非事业干部
+    public static void getFiles2(DisposableObserver subscriber) {
+        Observable observable = HttpMethods.getInstance().getHttpService().getFiles2(); //在HttpServer中
         HttpMethods.getInstance().toSubscribe(observable, subscriber);
     }
 
