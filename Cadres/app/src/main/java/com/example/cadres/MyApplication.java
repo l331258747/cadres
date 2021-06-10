@@ -47,7 +47,7 @@ public class MyApplication extends Application {
 
         SPUtils.init(context);
         AppUtils.init(this);
-        LogUtil.setShowLog(true);
+        LogUtil.setShowLog(false);
 
         initGreenDao();
 

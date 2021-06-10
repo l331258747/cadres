@@ -1,6 +1,8 @@
 package com.example.cadres.mvp;
 
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.Gb.GbCadreDeptListBean;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean1;
 import com.example.cadres.bean.bmGwy.BmGwyBean;
@@ -22,6 +24,9 @@ public interface HomeContract {
         void getZcfgList();
         void getBmList();
         void getGbList(boolean isCheck);
+        void getGbFamilyList(boolean isCheck);
+        void getGbDeptList(boolean isCheck);
+
         void getYjjcList();
         void getFiles(boolean isCheck);
 
@@ -67,6 +72,10 @@ public interface HomeContract {
 
         void getGbListSuccess(List<GbBean.GbBean2> data);
         void getGbListFailed(String msg);
+        void getGbFamilyListSuccess(List<GbCadreFamilyMemberList> data);
+        void getGbFamilyListFailed(String msg);
+        void getGbDeptListSuccess(List<GbCadreDeptListBean> data);
+        void getGbDeptListFailed(String msg);
 
         void getYjjcListSuccess(List<YjjcBean.YjjcBean2> data);
         void getYjjcListFailed(String msg);

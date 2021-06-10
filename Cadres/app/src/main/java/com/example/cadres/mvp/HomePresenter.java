@@ -3,6 +3,10 @@ package com.example.cadres.mvp;
 import android.content.Context;
 
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.Gb.GbCadreDeptListBean;
+import com.example.cadres.bean.Gb.GbCadreDeptListBean2;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList2;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bmGwy.BmGwyBean;
@@ -97,6 +101,48 @@ public class HomePresenter implements HomeContract.Presenter {
             MethodApi.getGbList(new OnSuccessAndFaultSub(listener, context,false));
         }else{
             MethodApi.getGbList2(new OnSuccessAndFaultSub(listener, context,false));
+        }
+    }
+
+    @Override
+    public void getGbFamilyList(boolean isCheck) {
+        ResponseCallback listener = new ResponseCallback<GbCadreFamilyMemberList2>() {
+            @Override
+            public void onSuccess(GbCadreFamilyMemberList2 data) {
+                iView.getGbFamilyListSuccess(data.getZzbCadreFamilyMemberList());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getGbFamilyListFailed(errorMsg);
+            }
+        };
+
+        if(isCheck){
+            MethodApi.getGbFamilyList(new OnSuccessAndFaultSub(listener, context,false));
+        }else{
+            MethodApi.getGbFamilyList2(new OnSuccessAndFaultSub(listener, context,false));
+        }
+    }
+
+    @Override
+    public void getGbDeptList(boolean isCheck) {
+        ResponseCallback listener = new ResponseCallback<GbCadreDeptListBean2>() {
+            @Override
+            public void onSuccess(GbCadreDeptListBean2 data) {
+                iView.getGbDeptListSuccess(data.getZzbCadreDeptList());
+            }
+
+            @Override
+            public void onFault(String errorMsg) {
+                iView.getGbDeptListFailed(errorMsg);
+            }
+        };
+
+        if(isCheck){
+            MethodApi.getGbDeptList(new OnSuccessAndFaultSub(listener, context,false));
+        }else{
+            MethodApi.getGbDeptList2(new OnSuccessAndFaultSub(listener, context,false));
         }
     }
 

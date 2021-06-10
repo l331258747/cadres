@@ -401,12 +401,34 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     @Override
     public void getGbListSuccess(List<GbBean.GbBean2> data) {
         setDBGb(data);
-        mPresenter.getJgty();
+        mPresenter.getGbFamilyList(isCheck);
     }
 
     @Override
     public void getGbListFailed(String msg) {
         progress.setProgress(70);
+        mPresenter.getGbFamilyList(isCheck);
+    }
+
+    @Override
+    public void getGbFamilyListSuccess(List<GbCadreFamilyMemberList> data) {
+        setDBGbFamily(data);
+        mPresenter.getGbDeptList(isCheck);
+    }
+
+    @Override
+    public void getGbFamilyListFailed(String msg) {
+        mPresenter.getGbDeptList(isCheck);
+    }
+
+    @Override
+    public void getGbDeptListSuccess(List<GbCadreDeptListBean> data) {
+        setDBGbDept(data);
+        mPresenter.getJgty();
+    }
+
+    @Override
+    public void getGbDeptListFailed(String msg) {
         mPresenter.getJgty();
     }
 
@@ -1100,16 +1122,53 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
 
     }
 
+    private void setDBGbFamily(List<GbCadreFamilyMemberList> data) {
+        List<DBGbCadreFamilyMemberList> dbList_family = new ArrayList<>();
+
+        for (int i_family = 0; i_family < data.size(); i_family++) {
+            GbCadreFamilyMemberList item_family = data.get(i_family);
+            dbList_family.add(new DBGbCadreFamilyMemberList(
+                    null,
+                    item_family.getMemberId(),
+                    item_family.getBaseId(),
+                    item_family.getCadreName(),
+                    item_family.getAppellation(),
+                    item_family.getName(),
+                    item_family.getBirthday(),
+                    item_family.getPoliticalOutlook(),
+                    item_family.getWorkUnit(),
+                    item_family.getAge()
+            ));
+        }
+
+        dBGbFamilyDaoUtils.insertMulti(dbList_family);
+    }
+
+    private void setDBGbDept(List<GbCadreDeptListBean> data) {
+        List<DBGbCadreDeptListBean> dbList_dept = new ArrayList<>();
+
+        for (int i_dept = 0; i_dept < data.size(); i_dept++) {
+            GbCadreDeptListBean item_dept = data.get(i_dept);
+            dbList_dept.add(new DBGbCadreDeptListBean(
+                    null,
+                    item_dept.getDeptId(),
+                    item_dept.getBaseId(),
+                    item_dept.getState(),
+                    item_dept.getDeptName(),
+                    item_dept.getDeptType(),
+                    item_dept.getDeptCode(),
+                    item_dept.getRanking(),
+                    item_dept.getParentId()
+            ));
+        }
+
+        dBGbDeptDaoUtils.insertMulti(dbList_dept);
+    }
+
     private void setDBGb(List<GbBean.GbBean2> data) {
         List<DBGbBean> dbList = new ArrayList<>();
-        List<DBGbCadreAwardPunishList> dbList_award = new ArrayList<>();
         List<DBGbCadreDeptListBean> dbList_dept = new ArrayList<>();
         List<DBGbCadreFamilyMemberList> dbList_family = new ArrayList<>();
-        List<DBGbCadreHistoryPositionListBean> dbList_history = new ArrayList<>();
-        List<DBGbCadreNowPositionListBean> dbList_now = new ArrayList<>();
-        List<DBGbCadreRankListBean> dbList_rank = new ArrayList<>();
-        List<DBGbCadreResumeListBean> dbList_resume = new ArrayList<>();
-        List<DBGbCadreTrainListBean> dbList_train = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
             progress.setProgress((int) (50 + (20f / data.size() * i)));
@@ -1189,39 +1248,6 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                     item.getCadreQuarterAssessment()
             ));
 
-            for (int i_resume = 0; i_resume < data.get(i).getCadreResumeList().size(); i_resume++) {
-                GbCadreResumeListBean item_resume = data.get(i).getCadreResumeList().get(i_resume);
-                dbList_resume.add(new DBGbCadreResumeListBean(
-                        null,
-                        item_resume.getResumeId(),
-                        item_resume.getBaseId(),
-                        item_resume.getCadreName(),
-                        item_resume.getWorkType(),
-                        item_resume.getWorkStartTime(),
-                        item_resume.getWorkEndTime(),
-                        item_resume.getWorkDescribe()
-                ));
-            }
-
-            for (int i_award = 0; i_award < data.get(i).getCadreAwardPunishList().size(); i_award++) {
-                GbCadreAwardPunishList item_award = data.get(i).getCadreAwardPunishList().get(i_award);
-                dbList_award.add(new DBGbCadreAwardPunishList(
-                        null,
-                        item_award.getAwardPunishId(),
-                        item_award.getBaseId(),
-                        item_award.getCadreName(),
-                        item_award.getAwardPunishType(),
-                        item_award.getAwardType(),
-                        item_award.getAwardLevel(),
-                        item_award.getPunishType(),
-                        item_award.getAwardPunishName(),
-                        item_award.getRatifyTime(),
-                        item_award.getRatifyDept(),
-                        item_award.getAwardPunishReason(),
-                        item_award.getAwardPunishExplain()
-                ));
-            }
-
             for (int i_dept = 0; i_dept < data.get(i).getCadreDeptList().size(); i_dept++) {
                 GbCadreDeptListBean item_dept = data.get(i).getCadreDeptList().get(i_dept);
                 dbList_dept.add(new DBGbCadreDeptListBean(
@@ -1253,92 +1279,11 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
                 ));
             }
 
-            for (int i_history = 0; i_history < data.get(i).getCadreHistoryPositionList().size(); i_history++) {
-                GbCadreHistoryPositionListBean item_history = data.get(i).getCadreHistoryPositionList().get(i_history);
-                dbList_history.add(new DBGbCadreHistoryPositionListBean(
-                        null,
-                        item_history.getPositionId(),
-                        item_history.getDeptId(),
-                        item_history.getDeptName(),
-                        item_history.getBaseId(),
-                        item_history.getCadreName(),
-                        item_history.getDutiesRank(),
-                        item_history.getPosition(),
-                        item_history.getPositionTitle(),
-                        item_history.getPositionTitleName(),
-                        item_history.getLeaveTime(),
-                        item_history.getLeaveReason(),
-                        item_history.getLeaveFileNumber(),
-                        item_history.getVacantPosition()
-                ));
-            }
-
-
-            for (int i_now = 0; i_now < data.get(i).getCadreNowPositionList().size(); i_now++) {
-                GbCadreNowPositionListBean item_now = data.get(i).getCadreNowPositionList().get(i_now);
-                dbList_now.add(new DBGbCadreNowPositionListBean(
-                        null,
-                        item_now.getPositionId(),
-                        item_now.getDeptId(),
-                        item_now.getDeptName(),
-                        item_now.getBaseId(),
-                        item_now.getCadreName(),
-                        item_now.getPositionTime(),
-                        item_now.getPosition(),
-                        item_now.getPositionTitle(),
-                        item_now.getPositionTitleName(),
-                        item_now.getPositionReason(),
-                        item_now.getPositionFileNumber(),
-                        item_now.getDutiesRank(),
-                        item_now.getVacantPosition()
-                ));
-            }
-
-
-            for (int i_rank = 0; i_rank < data.get(i).getCadreRankList().size(); i_rank++) {
-                GbCadreRankListBean item_rank = data.get(i).getCadreRankList().get(i_rank);
-                dbList_rank.add(new DBGbCadreRankListBean(
-                        null,
-                        item_rank.getRankId(),
-                        item_rank.getBaseId(),
-                        item_rank.getCadreName(),
-                        item_rank.getState(),
-                        item_rank.getDutiesRank(),
-                        item_rank.getDutiesRankTime(),
-                        item_rank.getTreatmentRank(),
-                        item_rank.getTreatmentRankTime()
-                ));
-            }
-
-
-            for (int i_train = 0; i_train < data.get(i).getCadreTrainList().size(); i_train++) {
-                GbCadreTrainListBean item_train = data.get(i).getCadreTrainList().get(i_train);
-                dbList_train.add(new DBGbCadreTrainListBean(
-                        null,
-                        item_train.getTrainId(),
-                        item_train.getBaseId(),
-                        item_train.getCadreName(),
-                        item_train.getStartTime(),
-                        item_train.getEndTime(),
-                        item_train.getTrainingCourse(),
-                        item_train.getTrainLevel(),
-                        item_train.getTrainType(),
-                        item_train.getTrainOrganization(),
-                        item_train.getTrainMode(),
-                        item_train.getTrainContent()
-                ));
-            }
         }
 
         dBGbDaoUtils.insertMulti(dbList);
-        dBGbAwardDaoUtils.insertMulti(dbList_award);
         dBGbDeptDaoUtils.insertMulti(dbList_dept);
         dBGbFamilyDaoUtils.insertMulti(dbList_family);
-        dBGbHistoryDaoUtils.insertMulti(dbList_history);
-        dBGbNowDaoUtils.insertMulti(dbList_now);
-        dBGbRankDaoUtils.insertMulti(dbList_rank);
-        dBGbResumeDaoUtils.insertMulti(dbList_resume);
-        dBGbTrainDaoUtils.insertMulti(dbList_train);
     }
 
     public void setDBYjjc(List<YjjcBean.YjjcBean2> data) {

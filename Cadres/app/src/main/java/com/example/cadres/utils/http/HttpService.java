@@ -4,6 +4,10 @@ package com.example.cadres.utils.http;
 import com.example.cadres.bean.BaseResponse;
 import com.example.cadres.bean.EmptyModel;
 import com.example.cadres.bean.Gb.GbBean;
+import com.example.cadres.bean.Gb.GbCadreDeptListBean;
+import com.example.cadres.bean.Gb.GbCadreDeptListBean2;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
+import com.example.cadres.bean.Gb.GbCadreFamilyMemberList2;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean;
 import com.example.cadres.bean.bmGwy.BmGwyBean;
@@ -63,6 +67,18 @@ public interface HttpService {
 
     @GET("cadreBase/findNoCauseCadreBaseList")
     Observable<BaseResponse<GbBean>> getGbList2();
+
+    @GET("cadreBase/findCadreFamilyMemberList")
+    Observable<BaseResponse<GbCadreFamilyMemberList2>> getGbFamilyList();
+
+    @GET("cadreBase/findNoCauseCadreFamilyMemberList")
+    Observable<BaseResponse<GbCadreFamilyMemberList2>> getGbFamilyList2();
+
+    @GET("cadreBase/findCadreDeptList")
+    Observable<BaseResponse<GbCadreDeptListBean2>> getGbDeptList();
+
+    @GET("cadreBase/findNoCauseCadreDeptList")
+    Observable<BaseResponse<GbCadreDeptListBean2>> getGbDeptList2();
 
     @GET("appointDismissScheme/findAppointDismissSchemeList")
     Observable<BaseResponse<YjjcBean>> getYjjcList();
