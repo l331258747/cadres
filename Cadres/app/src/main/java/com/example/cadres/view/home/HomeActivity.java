@@ -22,18 +22,11 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.cadres.greendao.gen.DBGbBeanDao;
 import com.cadres.greendao.gen.DBGbCadreDeptListBeanDao;
 import com.cadres.greendao.gen.DBGbCadreFamilyMemberListDao;
-import com.cadres.greendao.gen.DBGbCadreNowPositionListBeanDao;
 import com.example.cadres.R;
 import com.example.cadres.base.BaseActivity;
 import com.example.cadres.bean.Gb.GbBean;
-import com.example.cadres.bean.Gb.GbCadreAwardPunishList;
 import com.example.cadres.bean.Gb.GbCadreDeptListBean;
 import com.example.cadres.bean.Gb.GbCadreFamilyMemberList;
-import com.example.cadres.bean.Gb.GbCadreHistoryPositionListBean;
-import com.example.cadres.bean.Gb.GbCadreNowPositionListBean;
-import com.example.cadres.bean.Gb.GbCadreRankListBean;
-import com.example.cadres.bean.Gb.GbCadreResumeListBean;
-import com.example.cadres.bean.Gb.GbCadreTrainListBean;
 import com.example.cadres.bean.apk.ApkBean;
 import com.example.cadres.bean.bm.BmBean1;
 import com.example.cadres.bean.bm.BmBean2;
@@ -95,7 +88,6 @@ import com.example.cadres.beanDB.DbZcfgNoticeTypeBean;
 import com.example.cadres.constant.Constant;
 import com.example.cadres.dialog.DefaultDialog;
 import com.example.cadres.dialog.DialogUtil;
-import com.example.cadres.dialog.DownLoadDialog;
 import com.example.cadres.mvp.HomeContract;
 import com.example.cadres.mvp.HomePresenter;
 import com.example.cadres.utils.AppUtils;
@@ -587,9 +579,19 @@ public class HomeActivity extends BaseActivity implements HomeContract.View, Vie
     //第一次
     public void fistOne() {
         if (SPUtils.getInstance().getBoolean(SPUtils.FIRST_OPENED, true)) {
+//                new DownLoadDialog(context).setContent("同步数据需要时间较长，您是否确认同步数据？").setOnItemClickListener(new DownLoadDialog.OnItemClickListener() {
+//                    @Override
+//                    public void onClick(boolean isCheck1) {
+//                        isCheck = isCheck1;
+//                        getUserInfoData();
+//                    }
+//                }).show();
+
+
             new DefaultDialog(context).setContent("是否需要同步数据").setSubmitListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    isCheck = true;
                     getUserInfoData();
                 }
             }).show();
